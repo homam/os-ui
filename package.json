@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --config webpack/webpack.config.prod.js",
-    "dev": "webpack-dev-server --open --config webpack/webpack.config.dev.js",
-    "test": "ts-node --config tsconfig.json test.tsx"
+    "ssr": "webpack --config webpack/webpack.config.ssr.js",
+    "ssr:server": "ts-node --config tsconfig.json src/server/ssr.ts",
+    "dev": "webpack-dev-server --open --config webpack/webpack.config.dev.js"
   },
   "author": "",
   "license": "ISC",
@@ -37,6 +38,7 @@
     "pscid": "^2.5.3",
     "purescript": "^0.12.0",
     "purs-loader": "^3.2.0",
+    "react-dev-utils": "^5.0.1",
     "react-hot-loader": "^4.3.4",
     "require-from-string": "^2.0.2",
     "style-loader": "^0.22.1",
@@ -47,6 +49,7 @@
     "typescript": "^3.0.1",
     "webpack": "^4.16.5",
     "webpack-cli": "^3.1.0",
-    "webpack-dev-server": "^3.1.5"
+    "webpack-dev-server": "^3.1.5",
+    "webpack-node-externals": "^1.7.2"
   }
 }

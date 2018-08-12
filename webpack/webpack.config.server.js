@@ -1,15 +1,14 @@
 const { resolve } = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const InterpolateHtmlPlugin = require('./InterpolateHtmlPlugin');
-
+const nodeExternals = require('webpack-node-externals');
 
 
 module.exports = {
+  target: 'node',
+  externals: /^[a-z\-0-9]+$/, //[nodeExternals()],
   mode: 'production',
-  entry: {
-    main: resolve(__dirname, '../src'),
+  entry: resolve(__dirname, '../src/server/index.tsx'),
     // vendor: [
     //   'react-redux',
     //   'react-router-dom',
@@ -17,15 +16,16 @@ module.exports = {
     //   'redux-thunk',
     //   'styled-components',
     // ],
-  },
-  externals: {
-    react: 'React',
-    'react-dom': 'ReactDOM',
-  },
+  // externals: {
+  //   react: 'React',
+  //   'react-dom': 'ReactDOM',
+  // },
   output: {
-    filename: '[name].[chunkhash].js',
+    filename: 'server.js',
     path: resolve(__dirname, '../dist'),
     publicPath: '/',
+    library: 'app',
+    libraryTarget: 'commonjs2'
   },
   resolve: {
     alias: {
@@ -55,11 +55,9 @@ module.exports = {
       },
       {
         test: /\.styl$/,
-        loaders: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: require.resolve('css-loader')
-          },
+        use: [
+          'style-loader',
+          'css-loader',
           {
             loader: 'stylus-loader'
           },
@@ -77,30 +75,10 @@ module.exports = {
       // 'process.env.api_root': JSON.stringify(process.env.api_root || ''),
       // 'process.env.finance_email': JSON.stringify(process.env.finance_email || '')
     }),
-    new MiniCssExtractPlugin({
-      // Options similar to the same options in webpackOptions.output
-      // both options are optional
-      filename: 'static/css/[name].[contenthash:8].css',
-      chunkFilename: 'static/css/[name].[contenthash:8].chunk.css',
-    }),
     new HtmlWebpackPlugin({
-      inject: true,
-      template: 'webpack/template.ssr.html',
-      minify: {
-        removeComments: true,
-        collapseWhitespace: true,
-        removeRedundantAttributes: true,
-        useShortDoctype: true,
-        removeEmptyAttributes: true,
-        removeStyleLinkTypeAttributes: true,
-        keepClosingSlash: true,
-        minifyJS: true,
-        minifyCSS: true,
-        minifyURLs: true,
-      },
+      filename: 'index.html',
+      title: 'OS UI',
+      template: 'webpack/template.html'
     }),
-    new InterpolateHtmlPlugin({
-      'PUBLIC_URL': ''
-    })
   ],
 }

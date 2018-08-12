@@ -1,6 +1,6 @@
 import * as React from 'react'
-
 import './Root.styl'
+// export default () => <div>Hello</div>
 import MSISDN from './MSISDN'
 import {addLocaleData, IntlProvider} from 'react-intl';
 import enLocaleData from 'react-intl/locale-data/en';
@@ -26,7 +26,7 @@ export default class Root extends React.Component {
   render() {
     return <IntlProvider locale={locale} messages={messages}>
     
-    <div id="root">Hello World!!!!!
+    <div className='root'>Hello World!!!!!
 
       <MSISDN msisdn="3373" maxLength={10} />
     </div>
