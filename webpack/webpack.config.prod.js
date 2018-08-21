@@ -4,7 +4,15 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const InterpolateHtmlPlugin = require('./InterpolateHtmlPlugin');
 
-
+const typeScriptCSSLoader = {
+  loader: 'typings-for-css-modules-loader',
+  options: {
+    modules: true,
+    namedExport: true,
+    sourceMap: true,
+    localIdentName: '[path][name]__[local]--[hash:base64:5]'
+  }
+}
 
 module.exports = {
   mode: 'production',
@@ -58,13 +66,14 @@ module.exports = {
         test: /\.styl$/,
         loaders: [
           MiniCssExtractPlugin.loader,
-          {
-            loader: require.resolve('css-loader'),
-            options: {
-              modules: true,
-              localIdentName: '[path][name]__[local]--[hash:base64:5]'
-            }
-          },
+          // {
+            // loader: require.resolve('css-loader'),
+            // options: {
+            //   modules: true,
+            //   localIdentName: '[path][name]__[local]--[hash:base64:5]'
+            // }
+          // },
+          typeScriptCSSLoader,
           {
             loader: 'stylus-loader'
           },
@@ -72,11 +81,15 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [ 'style-loader', 'css-loader' ]
+        use: [ MiniCssExtractPlugin.loader, typeScriptCSSLoader]
       },
     ],
   },
   plugins: [
+    new webpack.WatchIgnorePlugin([
+      /styl\.d\.ts$/,
+      /css\.d\.ts$/
+    ]),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production'),
       // 'process.env.api_root': JSON.stringify(process.env.api_root || ''),

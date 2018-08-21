@@ -1,6 +1,7 @@
 import * as React from 'react'
-// import styles from './Root.styl'
-const styles = require('./Root.styl')
+require('./reset.css')
+import styles from './Root.styl'
+// const styles = require('./Root.styl')
 // export default () => <div>Hello</div>
 import MSISDN from './MSISDN'
 import {addLocaleData, IntlProvider} from 'react-intl';

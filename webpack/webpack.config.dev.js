@@ -6,6 +6,16 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const devMode = true
 
+const typeScriptCSSLoader = {
+  loader: 'typings-for-css-modules-loader',
+  options: {
+    modules: true,
+    namedExport: true,
+    sourceMap: true,
+    localIdentName: '[path][name]__[local]--[hash:base64:5]'
+  }
+}
+
 module.exports = {
   mode: 'development',
   entry: [
@@ -84,7 +94,8 @@ module.exports = {
           'css-hot-loader',
           // MiniCssExtractPlugin.loader,
           'style-loader',
-          'css-loader',
+          // 'css-loader',
+          typeScriptCSSLoader,
           'stylus-loader'
         ]
       },
@@ -94,7 +105,8 @@ module.exports = {
           'css-hot-loader',
           // ExtractTextPlugin.loader,
           'style-loader',
-          'css-loader',
+          typeScriptCSSLoader,
+          // 'css-loader',
         ],
       },
     ],
