@@ -9,17 +9,17 @@ export default ({
   msisdn,
   maxLength
 }: {
-  msisdn: String;
+  msisdn: Number;
   maxLength: Number;
 }) => (
   <div>
     <FormattedMessage
       id="msisdn.number_is_invalid"
       defaultMessage={`
-                        It seems {msisdn} is invalid
+                        It seems {msisdn, number} is invalid
                     `}
       values={{
-        msisdn: <b>{msisdn}</b>
+        msisdn: msisdn
       }}
     />
     <input />

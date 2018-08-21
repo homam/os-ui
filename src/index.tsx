@@ -4,4 +4,4 @@ import Root from './Root'
 
 export default Root
 
-if (!module.hot) render(<Root />, document.querySelector('react'))
+if (!module.hot) render(<Root />, document.querySelector('#root'))

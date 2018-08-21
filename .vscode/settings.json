@@ -8,7 +8,7 @@
       "**/.DS_Store": true,
       "**/node_modules": true,
       "**/elm-stuff": true,
-      "**/dist": true
+      //"**/dist": true
     },
     "prettier.disableLanguages": ["javascript", "jsx"],
     "prettier.ignorePath": ".*",

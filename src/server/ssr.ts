@@ -20,7 +20,7 @@ fs.readFile(fileName, "utf8", (err, file) => {
   const [head, tail] = file.split("{react-app}");
   console.log(head);
   console.log(renderToString(reactElement))
-  console.log(SVGComponentTransferFunctionElement)
+  console.log(tail)
 //   const stream = renderToNodeStream(reactElement);
 //   stream.pipe(res, { end: false });
 //   stream.on("end", () => {

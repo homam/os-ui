@@ -1,34 +1,46 @@
 import * as React from 'react'
-import './Root.styl'
+// import styles from './Root.styl'
+const styles = require('./Root.styl')
 // export default () => <div>Hello</div>
 import MSISDN from './MSISDN'
 import {addLocaleData, IntlProvider} from 'react-intl';
 import enLocaleData from 'react-intl/locale-data/en';
 import nlLocaleData from 'react-intl/locale-data/nl';
 
-const locale = "nl"
 const translations = {
   nl: {
     localeData: nlLocaleData,
-    "msisdn.number_is_invalid": `Het lijkt erop dat {msisdn} ongeldig is`
+    "msisdn.number_is_invalid": `Het lijkt erop dat {msisdn, number} ongeldig is`
   },
   en: {
     localeData: enLocaleData
   }
 }
-addLocaleData(translations[locale].localeData);
-const messages = translations[locale]
+addLocaleData(enLocaleData);
+addLocaleData(nlLocaleData);
 
 export default class Root extends React.Component {
+  state : {
+    locale: string
+  }
   constructor(params : any) {
     super(params)
+    this.state = {locale: "en"}
   }
   render() {
-    return <IntlProvider locale={locale} messages={messages}>
+    return <IntlProvider locale={this.state.locale} messages={
+      translations[this.state.locale]
+    }>
     
-    <div className='root'>Hello World!!!!!
+    <div className={styles.root}>
+      <select onChange={
+        ev => this.setState({locale: ev.target.value})
+      }>
+        <option value="en">English</option>
+        <option value="nl">Dutch</option>
+      </select>
 
-      <MSISDN msisdn="3373" maxLength={10} />
+      <MSISDN msisdn={3373} maxLength={10} />
     </div>
     </IntlProvider>
   }
