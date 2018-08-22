@@ -7,7 +7,7 @@
     "build": "webpack --config webpack/webpack.config.prod.babel.js",
     "ssr": "webpack --config webpack/webpack.config.ssr.babel.js",
     "ssr:server": "ts-node --config tsconfig.json src/server/ssr.ts",
-    "dev": "webpack-dev-server --open --config webpack/webpack.config.dev.babel.js",
+    "dev": "webpack-dev-server --config webpack/webpack.config.dev.js",
     "build:css": "webpack  --config webpack/webpack.config.prod.css.js --mode=production --env.NODE_ENV=production"
   },
   "author": "",
