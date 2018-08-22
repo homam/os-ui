@@ -10,3 +10,4 @@ bower_components/
 .psc-ide-port
 *.styl.d.ts
 *.css.d.ts
+*.less.d.ts

@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --config webpack/webpack.config.prod.babel.js",
-    "ssr": "webpack --config webpack/webpack.config.ssr.babel.js",
-    "ssr:server": "ts-node --config tsconfig.json src/server/ssr.ts",
-    "dev": "webpack-dev-server --config webpack/webpack.config.dev.js",
-    "build:css": "webpack  --config webpack/webpack.config.prod.css.js --mode=production --env.NODE_ENV=production"
+    "build:ssr": "webpack --config webpack/webpack.config.ssr.babel.js",
+    "build:ssr:server": "ts-node --config tsconfig.json src/server/ssr.ts",
+    "dev": "webpack-dev-server --config webpack/webpack.config.dev.babel.js",
+    "build:ssr:all": "(page=$page; export page; rm -rf dist/ && yarn build && yarn build:ssr  && yarn build:ssr:server)"
   },
   "author": "",
   "license": "ISC",

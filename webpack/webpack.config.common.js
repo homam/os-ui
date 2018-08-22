@@ -1,7 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 
-export const urlModule = {
+const urlModule = {
   test: /\.(pdf|jpg|jpeg|png|gif|svg|ico)$/,
   use: [
     {
@@ -13,7 +13,7 @@ export const urlModule = {
   ]
 }
 
-export const puresModule = {
+const puresModule = {
   test: /\.purs$/,
   exclude: /node_modules/,
   loader: 'purs-loader',
@@ -26,14 +26,14 @@ export const puresModule = {
   }
 }
 
-export const tsModule = {
+const tsModule = {
   test: /\.(js|jsx|ts|tsx)$/,
   include: [path.resolve(__dirname, '../src')],
   exclude: /node_modules/,
   loader: 'ts-loader'
 }
 
-export const typeScriptCSSLoader = {
+const typeScriptCSSLoader = {
   loader: 'typings-for-css-modules-loader',
   options: {
     modules: true,
@@ -44,33 +44,33 @@ export const typeScriptCSSLoader = {
   }
 }
 
-export const postCSSLoader = {
+const postCSSLoader = {
   loader: 'postcss-loader',
   options: {
     sourceMap: true,
   },
 }
 
-export const lessLoader = {
+const lessLoader = {
   loader: 'less-loader',
   options: {
     sourceMap: true,
   },
 }
 
-export const stylusLoader = {
+const stylusLoader = {
   loader: 'stylus-loader',
   options: {
     sourceMap: true,
   },
 }
 
-export const externals = {
+const externals = {
   react: 'React',
   'react-dom': 'ReactDOM',
 }
 
-export const resolve = {
+const resolve = {
   alias: {
     moment: 'moment/moment.js',
   },
@@ -82,25 +82,33 @@ export const resolve = {
   extensions: ['.tsx', '.ts', '.js', '.purs']
 }
 
-export const definePlugin = new webpack.DefinePlugin({
+const definePlugin = new webpack.DefinePlugin({
   'process.env.NODE_ENV': JSON.stringify('production'),
   // 'process.env.api_root': JSON.stringify(process.env.api_root || ''),
   // 'process.env.finance_email': JSON.stringify(process.env.finance_email || '')
 })
 
-export const modules = {
+const modules = {
   'purs': puresModule,
   'ts': tsModule,
   'url': urlModule,
 }
 
-export const loaders = {
+const loaders = {
   'typings-for-css': typeScriptCSSLoader,
   'postcss': postCSSLoader,
   'less': lessLoader,
   'stylus': stylusLoader,
 }
 
-export const plugins = {
+const plugins = {
   define: definePlugin
+}
+
+module.exports = {
+  modules,
+  plugins,
+  loaders,
+  resolve,
+  externals
 }
