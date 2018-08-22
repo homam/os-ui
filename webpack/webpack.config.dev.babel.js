@@ -14,7 +14,10 @@ module.exports = {
     'react-hot-loader/patch',
     'webpack-dev-server/client',
     'webpack/hot/only-dev-server',
-    resolve(__dirname, 'hotReload'),
+    // resolve(__dirname, 'hotReload'),
+    !!process.env.page && process.env.page != "default"  
+      ? resolve(__dirname, `../src/landing-pages/${process.env.page}/hotReload`) 
+      : resolve(__dirname, 'hotReload'),
   ],
   externals: common.externals,
   output: {

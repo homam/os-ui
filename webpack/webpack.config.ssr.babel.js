@@ -6,6 +6,9 @@ const webpack = require('webpack')
 const config = require("./webpack.config.prod.babel");
 
 config.entry = resolve(__dirname, '../src/index.ssr.ts') // "../src/index.ssr.ts";
+config.entry = !!process.env.page && process.env.page != "default" 
+ ? resolve(__dirname, `../src/landing-pages/${process.env.page}/index.ssr.ts`) 
+ : resolve(__dirname, '../src/index.ssr.ts')
 
 config.output.filename = "static/ssr/[name].js";
 config.output.libraryTarget = "commonjs2";
