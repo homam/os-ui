@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --config webpack/webpack.config.prod.js",
-    "ssr": "webpack --config webpack/webpack.config.ssr.js",
+    "build": "webpack --config webpack/webpack.config.prod.babel.js",
+    "ssr": "webpack --config webpack/webpack.config.ssr.babel.js",
     "ssr:server": "ts-node --config tsconfig.json src/server/ssr.ts",
-    "dev": "webpack-dev-server --open --config webpack/webpack.config.dev.js",
+    "dev": "webpack-dev-server --open --config webpack/webpack.config.dev.babel.js",
     "build:css": "webpack  --config webpack/webpack.config.prod.css.js --mode=production --env.NODE_ENV=production"
   },
   "author": "",
@@ -31,6 +31,7 @@
     "babel-preset-es2017": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "babel-register": "^6.26.0",
     "css-hot-loader": "^1.4.1",
     "css-loader": "^1.0.0",
     "extract-text-webpack-plugin": "^3.0.2",

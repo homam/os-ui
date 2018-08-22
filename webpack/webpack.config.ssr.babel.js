@@ -3,9 +3,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const InterpolateHtmlPlugin = require('./InterpolateHtmlPlugin');
 const { resolve } = require('path')
 const webpack = require('webpack')
-
-
-const config = require("./webpack.config.prod");
+const config = require("./webpack.config.prod.babel");
 
 config.entry = resolve(__dirname, '../src/index.ssr.ts') // "../src/index.ssr.ts";
 

@@ -1,3 +1,4 @@
+const common = require('./webpack.config.common')
 const { resolve } = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -6,28 +7,6 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const devMode = true
 
-const typeScriptCSSLoader = {
-  loader: 'typings-for-css-modules-loader',
-  options: {
-    modules: true,
-    namedExport: true,
-    sourceMap: true,
-    localIdentName: '[path][name]__[local]--[hash:base64:5]'
-  }
-}
-
-const urlLoader = {
-  test: /\.(pdf|jpg|jpeg|png|gif|svg|ico)$/,
-  use: [
-    {
-      loader: 'url-loader',
-      options: {
-        limit: 12000,
-        name: '[path][name].[ext]'
-      }
-    },
-  ]
-}
 
 module.exports = {
   mode: 'development',
@@ -37,27 +16,14 @@ module.exports = {
     'webpack/hot/only-dev-server',
     resolve(__dirname, 'hotReload'),
   ],
-  externals: {
-    react: 'React',
-    'react-dom': 'ReactDOM',
-  },
+  externals: common.externals,
   output: {
     filename: 'bundle.js',
     path: resolve(__dirname),
     publicPath: '/',
   },
   context: resolve(__dirname, '../src'),
-  resolve: {
-    alias: {
-      moment: 'moment/moment.js',
-    },
-    modules: [
-      'node_modules',
-      'bower_components'
-    ],
-
-    extensions: ['.tsx', '.ts', '.js', '.purs']
-  },
+  resolve: common.resolve,
   devtool: 'inline-source-map',
   devServer: {
     hot: true,
@@ -78,24 +44,8 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        test: /\.purs$/,
-        exclude: /node_modules/,
-        loader: 'purs-loader',
-        options: {
-          src: [
-            'bower_components/purescript-*/src/**/*.purs',
-            'src/**/*.purs'
-          ],
-          pscIde: true
-        }
-      },
-      {
-        test: /\.(ts|tsx)$/,
-        include: [resolve(__dirname, '../src')],
-        exclude: /node_modules/,
-        loader: 'ts-loader'
-      },
+      common.modules.purs,
+      common.modules.ts,
       {
         test: /\.(js|jsx)$/,
         include: [resolve(__dirname, '../src'), resolve(__dirname)],
@@ -105,25 +55,23 @@ module.exports = {
         test: /\.styl$/,
         use: [
           'css-hot-loader',
-          // MiniCssExtractPlugin.loader,
           'style-loader',
-          // 'css-loader',
-          typeScriptCSSLoader,
-          'postcss-loader',
-          'stylus-loader'
+          common.loaders["typings-for-css"],
+          common.loaders.postcss,
+          common.loaders.stylus,
         ]
       },
       {
-        test: /\.css$/,
+        test: /\.(css|less)$/,
         use: [
           'css-hot-loader',
-          // ExtractTextPlugin.loader,
           'style-loader',
-          typeScriptCSSLoader,
-          // 'css-loader',
+          common.loaders["typings-for-css"],
+          common.loaders.postcss,
+          common.loaders.less,
         ],
       },
-      urlLoader
+      common.modules.url,
     ],
   },
   plugins: [

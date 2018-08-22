@@ -1,33 +1,10 @@
+const common = require('./webpack.config.common')
 const { resolve } = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const InterpolateHtmlPlugin = require('./InterpolateHtmlPlugin');
-const autoprefixer = require('autoprefixer');
 
-
-const typeScriptCSSLoader = {
-  loader: 'typings-for-css-modules-loader',
-  options: {
-    modules: true,
-    namedExport: true,
-    sourceMap: true,
-    localIdentName: '[path][name]__[local]--[hash:base64:5]',
-    importLoaders: 3,
-  }
-}
-
-const urlLoader = {
-  test: /\.(pdf|jpg|jpeg|png|gif|svg|ico)$/,
-  use: [
-    {
-      loader: 'url-loader',
-      options: {
-        limit: 12000
-      }
-    },
-  ]
-}
 
 module.exports = {
   mode: 'production',
@@ -41,42 +18,18 @@ module.exports = {
     //   'styled-components',
     // ],
   },
-  externals: {
-    react: 'React',
-    'react-dom': 'ReactDOM',
-  },
+  externals: common.externals,
   output: {
     filename: '[name].[chunkhash].js',
     path: resolve(__dirname, '../dist'),
     publicPath: '/',
   },
-  resolve: {
-    alias: {
-      moment: 'moment/moment.js',
-    },
-    extensions: ['.tsx', '.ts', '.js', '.purs']
-  },
+  resolve: common.resolve,
   devtool: 'source-map',
   module: {
     rules: [
-      {
-        test: /\.purs$/,
-        exclude: /node_modules/,
-        loader: 'purs-loader',
-        options: {
-          src: [
-            'bower_components/purescript-*/src/**/*.purs',
-            'src/**/*.purs'
-          ],
-          pscIde: true
-        }
-      },
-      {
-        test: /\.(js|jsx|ts|tsx)$/,
-        include: [resolve(__dirname, '../src')],
-        exclude: /node_modules/,
-        loader: 'ts-loader'
-      },
+      common.modules.purs,
+      common.modules.ts,
       {
         test: /\.styl$/,
         loaders: [
@@ -88,19 +41,9 @@ module.exports = {
           //   localIdentName: '[path][name]__[local]--[hash:base64:5]'
           // }
           // },
-          typeScriptCSSLoader,
-          {
-            loader: 'postcss-loader',
-            options: {
-              sourceMap: true,
-            },
-          },
-          {
-            loader: 'stylus-loader',
-            options: {
-              sourceMap: true,
-            },
-          },
+          common.loaders["typings-for-css"],
+          common.loaders.postcss,
+          common.loaders.stylus,
         ],
       },
       {
@@ -108,22 +51,12 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           MiniCssExtractPlugin.loader,
-          typeScriptCSSLoader,
-          {
-            loader: 'postcss-loader',
-            options: {
-              sourceMap: true,
-            },
-          },
-          {
-            loader: 'less-loader',
-            options: {
-              sourceMap: true,
-            },
-          },
+          common.loaders["typings-for-css"],
+          common.loaders.postcss,
+          common.loaders.less,
         ],
       },
-      urlLoader
+      common.modules.url,
     ],
   },
   plugins: [
@@ -131,11 +64,7 @@ module.exports = {
       /styl\.d\.ts$/,
       /css\.d\.ts$/
     ]),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production'),
-      // 'process.env.api_root': JSON.stringify(process.env.api_root || ''),
-      // 'process.env.finance_email': JSON.stringify(process.env.finance_email || '')
-    }),
+    common.plugins.define,
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
