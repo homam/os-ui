@@ -4,12 +4,12 @@ require('../../reset.css')
 import * as styles from './assets/css/styles.css'
 // const testStyles = require('./Test.css')
 // export default () => <div>Hello</div>
-import {addLocaleData, IntlProvider} from 'react-intl';
+import { addLocaleData, IntlProvider } from 'react-intl';
 import enLocaleData from 'react-intl/locale-data/en';
 import nlLocaleData from 'react-intl/locale-data/nl';
 
-const catImage = require ('./cat.jpeg')
-const dogImage = require ('./dog.jpg')
+const catImage = require('./cat.jpeg')
+const dogImage = require('./dog.jpg')
 
 const translations = {
   nl: {
@@ -24,25 +24,32 @@ addLocaleData(enLocaleData);
 addLocaleData(nlLocaleData);
 
 export default class Root extends React.Component {
-  state : {
+  state: {
     locale: string
   }
-  constructor(params : any) {
+  constructor(params: any) {
     super(params)
-    this.state = {locale: "en"}
+    this.state = { locale: "en" }
   }
   render() {
     return <IntlProvider locale={this.state.locale} messages={
       translations[this.state.locale]
     }>
-    
-    <div className={styles.container}>
-      <h1>Hello there all!</h1>
-      <div className={styles.btn}>
-        CLIik
+
+      <div className={styles.container}>
+
+        <select onChange={
+          ev => this.setState({ locale: ev.target.value })
+        }>
+          <option value="en">English</option>
+          <option value="nl">Dutch</option>
+        </select>
+        <h1>Hello there all :)!</h1>
+        <div className={styles.btn} onMouseDown={() => alert('you clicked!')}>
+          CLIik on me
       </div>
-    </div>
-    
+      </div>
+
     </IntlProvider>
   }
 }

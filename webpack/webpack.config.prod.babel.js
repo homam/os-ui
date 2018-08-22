@@ -7,6 +7,8 @@ const InterpolateHtmlPlugin = require('./InterpolateHtmlPlugin');
 
 const publicPath = ""
 
+console.log('process.env.page', process.env.page)
+
 module.exports = {
   mode: 'production',
   entry: {
