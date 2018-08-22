@@ -9,6 +9,7 @@
       "**/node_modules": true,
       "**/elm-stuff": true,
       "**/*.styl.d.ts": true,
+      "**/*.less.d.ts": true,
       //"**/dist": true
     },
     "prettier.disableLanguages": ["javascript", "jsx"],

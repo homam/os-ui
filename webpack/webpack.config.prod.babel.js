@@ -5,11 +5,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const InterpolateHtmlPlugin = require('./InterpolateHtmlPlugin');
 
+const publicPath = ""
 
 module.exports = {
   mode: 'production',
   entry: {
-    main: resolve(__dirname, '../src'),
+    main: !!process.env.page  ?  resolve(__dirname, `../src/landing-pages/${process.env.page}`) : resolve(__dirname, '../src'),
     // vendor: [
     //   'react-redux',
     //   'react-router-dom',
@@ -22,7 +23,7 @@ module.exports = {
   output: {
     filename: '[name].[chunkhash].js',
     path: resolve(__dirname, '../dist'),
-    publicPath: '/',
+    publicPath: publicPath + '/',
   },
   resolve: common.resolve,
   devtool: 'source-map',
@@ -88,7 +89,7 @@ module.exports = {
       },
     }),
     new InterpolateHtmlPlugin({
-      'PUBLIC_URL': ''
+      'PUBLIC_URL': publicPath
     })
   ],
 }

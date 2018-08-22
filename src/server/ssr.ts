@@ -8,25 +8,10 @@ const ReactApp = require("../../dist/static/ssr/main").default;
 const reactElement = React.createElement(ReactApp);
 
 
-var fileName = path.join(__dirname, "../../dist", "index.html");
+const inputFileName = path.join(__dirname, "../../dist", "index.html");
+const outputFileName = path.join(__dirname, "../../dist", "index.ssr.html");
 
-fs.readFile(fileName, "utf8", (err, file) => {
-  if (err) {
-    throw err;
-  }
+const file = fs.readFileSync(inputFileName, "utf8");
+const [head, tail] = file.split("{react-app}");
 
-  
-
-  const [head, tail] = file.split("{react-app}");
-  console.log(head);
-  console.log(renderToString(reactElement))
-  console.log(tail)
-//   const stream = renderToNodeStream(reactElement);
-//   stream.pipe(res, { end: false });
-//   stream.on("end", () => {
-//     res.write(tail);
-//     res.end();
-//   });
-});
-
-// module.exports = router;
+fs.writeFileSync(outputFileName, head + renderToString(reactElement) + tail, 'utf8' )
