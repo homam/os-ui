@@ -14,6 +14,18 @@ const typeScriptCSSLoader = {
   }
 }
 
+const urlLoader = {
+  test: /\.(pdf|jpg|jpeg|png|gif|svg|ico)$/,
+  use: [
+    {
+      loader: 'url-loader',
+      options: {
+        limit: 12000
+      }
+    },
+  ]
+}
+
 module.exports = {
   mode: 'production',
   entry: {
@@ -75,7 +87,10 @@ module.exports = {
           // },
           typeScriptCSSLoader,
           {
-            loader: 'stylus-loader'
+            loader: 'stylus-loader',
+            options: {
+              limit: 8192
+            }
           },
         ],
       },
@@ -83,6 +98,7 @@ module.exports = {
         test: /\.css$/,
         use: [ MiniCssExtractPlugin.loader, typeScriptCSSLoader]
       },
+      urlLoader
     ],
   },
   plugins: [

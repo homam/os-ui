@@ -16,6 +16,19 @@ const typeScriptCSSLoader = {
   }
 }
 
+const urlLoader = {
+  test: /\.(pdf|jpg|jpeg|png|gif|svg|ico)$/,
+  use: [
+    {
+      loader: 'url-loader',
+      options: {
+        limit: 12000,
+        name: '[path][name].[ext]'
+      }
+    },
+  ]
+}
+
 module.exports = {
   mode: 'development',
   entry: [
@@ -43,7 +56,7 @@ module.exports = {
       'bower_components'
     ],
 
-    extensions: [ '.tsx', '.ts', '.js', '.purs' ]
+    extensions: ['.tsx', '.ts', '.js', '.purs']
   },
   devtool: 'inline-source-map',
   devServer: {
@@ -96,6 +109,7 @@ module.exports = {
           'style-loader',
           // 'css-loader',
           typeScriptCSSLoader,
+          'postcss-loader',
           'stylus-loader'
         ]
       },
@@ -109,6 +123,7 @@ module.exports = {
           // 'css-loader',
         ],
       },
+      urlLoader
     ],
   },
   plugins: [
