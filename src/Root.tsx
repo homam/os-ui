@@ -1,7 +1,8 @@
 import * as React from 'react'
 require('./reset.css')
-import styles from './Root.styl'
-// const styles = require('./Root.styl')
+import * as styles from './Root.styl'
+import * as testStyles from './Test.less'
+// const testStyles = require('./Test.css')
 // export default () => <div>Hello</div>
 import MSISDN from './MSISDN'
 import {addLocaleData, IntlProvider} from 'react-intl';
@@ -37,6 +38,7 @@ export default class Root extends React.Component {
     }>
     
     <div className={styles.root}>
+      <h1 className={testStyles.mainTitle}>Hello</h1>
       <select onChange={
         ev => this.setState({locale: ev.target.value})
       }>

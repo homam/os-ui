@@ -3,6 +3,8 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const InterpolateHtmlPlugin = require('./InterpolateHtmlPlugin');
+const autoprefixer = require('autoprefixer');
+
 
 const typeScriptCSSLoader = {
   loader: 'typings-for-css-modules-loader',
@@ -10,7 +12,8 @@ const typeScriptCSSLoader = {
     modules: true,
     namedExport: true,
     sourceMap: true,
-    localIdentName: '[path][name]__[local]--[hash:base64:5]'
+    localIdentName: '[path][name]__[local]--[hash:base64:5]',
+    importLoaders: 3,
   }
 }
 
@@ -51,7 +54,7 @@ module.exports = {
     alias: {
       moment: 'moment/moment.js',
     },
-    extensions: [ '.tsx', '.ts', '.js', '.purs' ]
+    extensions: ['.tsx', '.ts', '.js', '.purs']
   },
   devtool: 'source-map',
   module: {
@@ -79,24 +82,46 @@ module.exports = {
         loaders: [
           MiniCssExtractPlugin.loader,
           // {
-            // loader: require.resolve('css-loader'),
-            // options: {
-            //   modules: true,
-            //   localIdentName: '[path][name]__[local]--[hash:base64:5]'
-            // }
+          // loader: require.resolve('css-loader'),
+          // options: {
+          //   modules: true,
+          //   localIdentName: '[path][name]__[local]--[hash:base64:5]'
+          // }
           // },
           typeScriptCSSLoader,
           {
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+          {
             loader: 'stylus-loader',
             options: {
-              limit: 8192
-            }
+              sourceMap: true,
+            },
           },
         ],
       },
       {
-        test: /\.css$/,
-        use: [ MiniCssExtractPlugin.loader, typeScriptCSSLoader]
+        test: /\.(css|less)$/,
+        exclude: /node_modules/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          typeScriptCSSLoader,
+          {
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+          {
+            loader: 'less-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+        ],
       },
       urlLoader
     ],

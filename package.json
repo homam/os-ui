@@ -7,7 +7,8 @@
     "build": "webpack --config webpack/webpack.config.prod.js",
     "ssr": "webpack --config webpack/webpack.config.ssr.js",
     "ssr:server": "ts-node --config tsconfig.json src/server/ssr.ts",
-    "dev": "webpack-dev-server --open --config webpack/webpack.config.dev.js"
+    "dev": "webpack-dev-server --open --config webpack/webpack.config.dev.js",
+    "build:css": "webpack  --config webpack/webpack.config.prod.css.js --mode=production --env.NODE_ENV=production"
   },
   "author": "",
   "license": "ISC",
@@ -35,9 +36,12 @@
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^2.0.0",
     "html-webpack-plugin": "^3.2.0",
+    "less": "^3.8.1",
+    "less-loader": "^4.1.0",
     "memory-fs": "^0.4.1",
     "mini-css-extract-plugin": "^0.4.1",
     "postcss-loader": "^3.0.0",
+    "postcss-reporter": "^6.0.0",
     "pscid": "^2.5.3",
     "purescript": "^0.12.0",
     "purs-loader": "^3.2.0",
