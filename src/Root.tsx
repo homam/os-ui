@@ -46,10 +46,10 @@ export default class Root extends React.Component {
         <option value="nl">Dutch</option>
       </select>
 
-      <img src={catImage} />
+      <img src={catImage} onMouseDown={() => alert('meww')} />
       {/* <img src={dogImage} /> */}
-
-      <MSISDN msisdn={3373} maxLength={10} />
+  
+      <MSISDN msisdn={3373*100} maxLength={10} />
     </div>
     </IntlProvider>
   }

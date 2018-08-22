@@ -12,7 +12,7 @@ console.log('process.env.page', process.env.page)
 module.exports = {
   mode: 'production',
   entry: {
-    main: !!process.env.page  ?  resolve(__dirname, `../src/landing-pages/${process.env.page}`) : resolve(__dirname, '../src'),
+    main: !!process.env.page && process.env.page != "default"  ?  resolve(__dirname, `../src/landing-pages/${process.env.page}`) : resolve(__dirname, '../src'),
     // vendor: [
     //   'react-redux',
     //   'react-router-dom',
