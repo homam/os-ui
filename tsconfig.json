@@ -10,6 +10,7 @@
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
+    "lib": ["es5", "es2015", "dom", "scripthost"], 
   },
   "include": ["src/**/*", "ssr/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts"]

@@ -32,7 +32,7 @@ export default class Root extends React.Component {
     super(params)
     this.state = {locale: "en"}
   }
-  render() {
+  render() { 
     return <IntlProvider locale={this.state.locale} messages={
       translations[this.state.locale]
     }>
