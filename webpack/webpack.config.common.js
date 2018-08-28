@@ -2,7 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 
 const urlModule = {
-  test: /\.(pdf|jpg|jpeg|png|gif|svg|ico)$/,
+  test: /\.(pdf|jpg|jpeg|png|gif|svg|ico|woff|woff2|ttf|eot)$/,
   use: [
     {
       loader: 'url-loader',
@@ -40,6 +40,7 @@ const typeScriptCSSLoader = {
     namedExport: true,
     sourceMap: true,
     localIdentName: '[path][name]__[local]--[hash:base64:5]',
+    camelCase: true,
     importLoaders: 3,
   }
 }
