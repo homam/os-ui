@@ -9,8 +9,6 @@ import {addLocaleData, IntlProvider} from 'react-intl';
 import enLocaleData from 'react-intl/locale-data/en';
 import nlLocaleData from 'react-intl/locale-data/nl';
 
-const catImage = require ('./landing-pages/first/cat.jpeg')
-const dogImage = require ('./landing-pages/first/dog.jpg')
 
 const translations = {
   nl: {
@@ -46,7 +44,7 @@ export default class Root extends React.Component {
         <option value="nl">Dutch</option>
       </select>
 
-      <img src={catImage} onMouseDown={() => alert('meww')} />
+      {/* <img src={catImage} onMouseDown={() => alert('meww')} /> */}
       {/* <img src={dogImage} /> */}
   
       <MSISDN msisdn={3373*100} maxLength={10} />
