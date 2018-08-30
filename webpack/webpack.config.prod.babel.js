@@ -4,6 +4,7 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const InterpolateHtmlPlugin = require('./InterpolateHtmlPlugin');
+const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin")
 
 const publicPath = ""
 
@@ -92,6 +93,10 @@ module.exports = {
         minifyCSS: true,
         minifyURLs: true,
       },
+    }),
+    new ScriptExtHtmlWebpackPlugin({
+      defaultAttribute: "defer",
+      // inline: [/js/ig]
     }),
     new InterpolateHtmlPlugin({
       'PUBLIC_URL': publicPath

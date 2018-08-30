@@ -7,7 +7,8 @@ const urlModule = {
     {
       loader: 'url-loader',
       options: {
-        limit: 12000
+        limit: 12000,
+        name: 'static/[hash].[ext]',
       }
     },
   ]
