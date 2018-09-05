@@ -24,6 +24,7 @@ export default (Comp: any) => (initState: TAPI.TolaRDS) =>
     }
 
     render() {
+      console.log("HOC", this.props, this.context)
       const self = this;
       return (
         <Comp

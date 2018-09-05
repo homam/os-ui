@@ -1,7 +1,7 @@
 import * as React from "react";
+import {Tracker, TrackerProvider} from 'react-tracker'
 import * as RDS from "../../common-types/RemoteDataState";
 import HOC from "../../tola/TolaHOC";
-import * as TS from "../../tola/TolaState";
 import * as TAPI from "../../tola/TolaAPI";
 import {
   TransitionGroup,
@@ -17,6 +17,27 @@ import * as styles from "./assets/css/styles.less";
 import { addLocaleData, IntlProvider } from "react-intl";
 import enLocaleData from "react-intl/locale-data/en";
 import nlLocaleData from "react-intl/locale-data/nl";
+
+
+enum MyEventTypes {PageView = "PageView", PageLoad = "PageLoad"}
+type MyEvents = {type: MyEventTypes.PageView , data: number} | {type: MyEventTypes.PageLoad, data: string}
+type MyEventTracker = (event: MyEvents) => void
+
+const tracker = new Tracker<MyEventTypes, MyEvents>([])
+tracker.on(MyEventTypes.PageLoad, (event, history) => {console.log(event, history); return event })
+
+
+const TrackerContext = React.createContext(tracker.trackEvent)
+
+function withTracker<P>(Component : React.ComponentClass<P & {trackEvent: MyEventTracker}>) {
+  return function ComponentWithEventTracking(props: P) {
+    return (
+      <TrackerContext.Consumer>
+        {trackEvent => <Component {...props} trackEvent={trackEvent} />}
+      </TrackerContext.Consumer>
+    );
+  };
+}
 
 const imgLogo = require("./assets/img/logo.png");
 const imgBadge = require("./assets/img/badge.png");
@@ -35,16 +56,6 @@ const translations = {
 addLocaleData(enLocaleData);
 addLocaleData(nlLocaleData);
 
-/* <div>
-                        <input />
-                        <button
-                          onClick={() =>
-                            actions.chargeAndWait("9218727122", "PAY_NOw", 10)
-                          }
-                        >
-                          GO!
-                        </button>
-                      </div> */
 
 const ExampleTransition = ({
   key,
@@ -142,7 +153,6 @@ class PrelanderStep2 extends React.Component<{ onClick: () => void }> {
     };
   }
   render() {
-    console.log("this.state.showReport", this.state.showReport);
     return (
       <div id="question2">
         <h3 className={styles.mainTitle}>SCANNING YOUR DEVICE</h3>
@@ -349,6 +359,8 @@ class Root extends React.Component<ITolaProps> {
     this.state = { locale: "en", inPrelander: !true };
   }
   render() {
+    console.log("Root", this.props, this.context)
+    tracker.trackEvent({type: MyEventTypes.PageLoad, data: new Date().toString()})
     return (
       <IntlProvider
         locale={this.state.locale}
@@ -383,5 +395,5 @@ class Root extends React.Component<ITolaProps> {
 
 export default (props: any) => {
   const H = HOC(Root)(RDS.NothingYet());
-  return <H {...props} />;
+  return <TrackerProvider tracker={tracker}><H {...props} /></TrackerProvider> ;
 };

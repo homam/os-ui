@@ -9,6 +9,7 @@
     "build:ssr": "webpack --config webpack/webpack.config.ssr.babel.js",
     "build:ssr:server": "ts-node --config tsconfig.json src/server/ssr.ts",
     "dev": "yarn dev:init && webpack-dev-server --config webpack/webpack.config.dev.babel.js",
+    "main": "yarn dev",
     "dev-server": "nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' --exec 'ts-node' src/server/index.ts",
     "build:ssr:all": "(page=$page; export page; rm -rf dist/ && yarn build && yarn build:ssr  && yarn build:ssr:server)"
   },
@@ -16,11 +17,16 @@
   "license": "ISC",
   "dependencies": {
     "base62": "^2.0.0",
+    "bases": "^0.2.1",
     "express": "^4.16.3",
+    "fp-ts": "^1.8.0",
+    "newtype-ts": "^0.2.1",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-intl": "^2.4.0",
+    "react-tracker": "^0.0.8",
     "react-transition-group": "^2.4.0",
+    "request": "^2.88.0",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
@@ -29,6 +35,7 @@
     "@types/react": "^16.4.8",
     "@types/react-dom": "^16.0.7",
     "@types/react-transition-group": "^2.0.13",
+    "@types/request": "^2.47.1",
     "@types/uuid": "^3.4.4",
     "@types/webpack-env": "^1.13.6",
     "autoprefixer": "^9.1.3",

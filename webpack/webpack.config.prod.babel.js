@@ -8,13 +8,13 @@ const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin")
 
 const publicPath = ""
 
-console.log('process.env.page', process.env.page)
+const page = page
 
 module.exports = {
   mode: 'production',
   entry: {
-    main: !!process.env.page && process.env.page != "default"  
-      ?  resolve(__dirname, `../src/landing-pages/${process.env.page}/index`) 
+    main: !!page && page != "default"  
+      ? resolve(__dirname, `../src/landing-pages/${page}/index`) 
       : resolve(__dirname, '../src'),
     // main: resolve(__dirname, '../src'),
     // vendor: [
@@ -27,7 +27,7 @@ module.exports = {
   },
   externals: common.externals,
   output: {
-    filename: '[name].[chunkhash].js',
+    filename: 'static/js/[name].[chunkhash].js',
     path: resolve(__dirname, '../dist'),
     publicPath: publicPath + '/',
   },

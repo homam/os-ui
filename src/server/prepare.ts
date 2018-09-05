@@ -1,7 +1,7 @@
 import * as fs from "fs"
 import {Readable} from "stream"
-import uuid from 'uuid/v1'
 import * as path from "path"
+import * as CT from "./common-types";
 
 
 const search = '<meta name="rockman-id">'
@@ -17,11 +17,11 @@ const after = content.substr(index + length)
 const beforeBuff = Buffer.from(before, 'utf8');
 const afterBuff = Buffer.from(after, 'utf8');
 
-export default () => {
+export default (rockmanId : CT.NTRockmanId) => {
 
   const s = new Readable()
   s.push(beforeBuff)  
-  s.push(`<script>window.rockman_id='${uuid()}'</script>`)
+  s.push(`<script>window.rockman_id='${CT.RockmanId.unwrap(rockmanId)}'</script>`)
   s.push(afterBuff)
   s.push(null) 
 
