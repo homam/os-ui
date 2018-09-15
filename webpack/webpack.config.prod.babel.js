@@ -8,7 +8,7 @@ const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin")
 
 const publicPath = ""
 
-const page = page
+const page = process.env.page
 
 module.exports = {
   mode: 'production',
@@ -27,7 +27,7 @@ module.exports = {
   },
   externals: common.externals,
   output: {
-    filename: 'static/js/[name].[chunkhash].js',
+    filename: `static/${page}/js/[name].[chunkhash].js`,
     path: resolve(__dirname, '../dist'),
     publicPath: publicPath + '/',
   },
@@ -75,12 +75,13 @@ module.exports = {
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
-      filename: 'static/css/[name].[contenthash:8].css',
-      chunkFilename: 'static/css/[name].[contenthash:8].chunk.css',
+      filename: `static/${page}/css/[name].[contenthash:8].css`,
+      chunkFilename: `static/${page}/css/[name].[contenthash:8].chunk.css`,
     }),
     new HtmlWebpackPlugin({
       inject: true,
       template: 'webpack/template.ssr.html',
+      filename: `static/${page}/html/index.html`,
       minify: {
         removeComments: true,
         collapseWhitespace: true,

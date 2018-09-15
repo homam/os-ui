@@ -1,10 +1,12 @@
 import * as CT from '../common-types'
 import {Option, some, none} from 'fp-ts/lib/Option'
+import {CampaignValue} from "./types"
 
-type Value = {
-  page: CT.NTHandleName,
-  country: CT.NTCountry,
-  affiliateInfo: CT.AffiliateInfo
+
+export const invalidCampaign = {
+  page: CT.HandleName.wrap('invalid-campaign-id'),
+  country: CT.Country.wrap(''),
+  affiliateInfo: { offerId: CT.OfferId.wrap(1), affiliateId: CT.AffiliateId.wrap('UNKNWON')} as CT.AffiliateInfo
 }
 
 const campaignIdMap = {
@@ -15,7 +17,7 @@ const campaignIdMap = {
   }
 }
 
-export default function map(campaignId: number) : Option<Value> {
+export function find(campaignId: number) : Option<CampaignValue> {
   const v = campaignIdMap[campaignId]
   if(!!v) {
     return some(v);

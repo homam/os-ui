@@ -1,6 +1,8 @@
 const path = require('path')
 const webpack = require('webpack')
 
+const page = process.env.page
+
 const urlModule = {
   test: /\.(pdf|jpg|jpeg|png|gif|svg|ico|woff|woff2|ttf|eot)$/,
   use: [
@@ -8,7 +10,7 @@ const urlModule = {
       loader: 'url-loader',
       options: {
         limit: 12000,
-        name: 'static/[hash].[ext]',
+        name: `static/${page}/files/[hash].[ext]`,
       }
     },
   ]

@@ -1,5 +1,5 @@
 import * as express from "express";
-import * as CT from '../../common-types'
+import * as CT from '../../server/common-types'
 
 type ProcessIPResult = {
   ip: string;

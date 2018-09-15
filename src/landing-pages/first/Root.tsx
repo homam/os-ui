@@ -356,7 +356,7 @@ class Root extends React.Component<ITolaProps> {
   };
   constructor(params) {
     super(params);
-    this.state = { locale: "en", inPrelander: !true };
+    this.state = { locale: "en", inPrelander: true };
   }
   render() {
     console.log("Root", this.props, this.context)

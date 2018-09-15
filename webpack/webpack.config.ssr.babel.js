@@ -5,9 +5,11 @@ const { resolve } = require('path')
 const webpack = require('webpack')
 const config = require("./webpack.config.prod.babel");
 
+const page  = process.env.page
+
 config.entry = resolve(__dirname, '../src/index.ssr.ts') // "../src/index.ssr.ts";
-config.entry = !!process.env.page && process.env.page != "default" 
- ? resolve(__dirname, `../src/landing-pages/${process.env.page}/index.ssr.ts`) 
+config.entry = !!page && page != "default" 
+ ? resolve(__dirname, `../src/landing-pages/${page}/index.ssr.ts`) 
  : resolve(__dirname, '../src/index.ssr.ts')
 
 config.output.filename = "static/ssr/[name].js";
@@ -25,7 +27,7 @@ config.plugins = [
   new MiniCssExtractPlugin({
     // Options similar to the same options in webpackOptions.output
     // both options are optional
-    filename: 'static/css/[name].[contenthash:8].css',
+    filename: `static/${page}/css/[name].[contenthash:8].css`,
     chunkFilename: 'static/css/[name].[contenthash:8].chunk.css',
   }),
   // new HtmlWebpackPlugin({
