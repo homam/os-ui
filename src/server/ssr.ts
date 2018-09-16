@@ -6,7 +6,7 @@ const React = require("react");
 
 const page = process.env.page
 
-const ReactApp = require("../../dist/static/ssr/main").default;
+const ReactApp = require(`../../dist/static/${page}/ssr/main`).default;
 
 const reactElement = React.createElement(ReactApp);
 

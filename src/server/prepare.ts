@@ -55,7 +55,10 @@ export default (rockmanId: CT.NTRockmanId, campaign: CampaignValue) => {
   const s = new Readable();
   s.push(beforeBuff);
   s.push(
-    `<script>window.visitor='${JSON.stringify(pacman)}'</script>`
+    `<script>window.pac_analytics={
+      visitor:${JSON.stringify(pacman)},
+      startTime: new Date().valueOf()
+    }</script>`
   );
   s.push(afterBuff);
   s.push(null);

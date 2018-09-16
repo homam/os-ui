@@ -12,7 +12,7 @@ config.entry = !!page && page != "default"
  ? resolve(__dirname, `../src/landing-pages/${page}/index.ssr.ts`) 
  : resolve(__dirname, '../src/index.ssr.ts')
 
-config.output.filename = "static/ssr/[name].js";
+config.output.filename = `static/${page}/ssr/[name].js`;
 config.output.libraryTarget = "commonjs2";
 delete config.output.chunkFilename;
 

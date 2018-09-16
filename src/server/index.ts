@@ -1,23 +1,84 @@
 import express from "express";
 import prepare from "./prepare";
-import * as path from "path";
-import * as fs from "fs";
 import uuid from "uuid/v1";
 import * as CT from "./common-types";
-import { callv1 } from "../pacman/server/packman-caller";
 import { decrypt } from "./campaigns/campaigid";
 import * as campaigns from "./campaigns/map";
+import { addImpression, mkPool, run_, addEvent } from "./analytics/db";
+import { CampaignValue } from "./campaigns/types";
+import bodyParser from "body-parser";
+import { left } from "fp-ts/lib/Either";
 
 const app = express();
+const pool = mkPool("postgresql://localhost/os-ui");
+
+app.post(
+  "/analytics/impression",
+  bodyParser.json(),
+  (req: express.Request, res: express.Response) => {
+    const {rockmanId, userId, campaignId, page, originalUrl} = req.body
+    run_(pool, client =>
+      addImpression(
+        client,
+        'Client',
+        rockmanId,
+        userId,
+        campaignId,
+        CT.HandleName.wrap(page),
+        CT.Url.wrap(originalUrl),
+        CT.IP.wrap(req.ip),
+        CT.Country.wrap("xx"),
+        req.headers
+      )
+    )
+    res.end()
+  }
+);
+
+app.post(
+  "/analytics/event",
+  bodyParser.json(),
+  (req: express.Request, res: express.Response) => {
+    const { rockmanId, category, action, label, value, args, relt } = req.body;
+
+    run_(pool, client =>
+      addEvent(
+        client,
+        left(CT.RockmanId.wrap(rockmanId)),
+        category,
+        action,
+        label,
+        value,
+        args,
+        relt
+      )
+    );
+
+    res.send();
+  }
+);
 
 app.get("/:encCampaignId", (req: express.Request, res: express.Response) => {
   const rockmanId = CT.RockmanId.wrap(uuid().replace(/-/g, ""));
+  const userId = CT.userIdFromRockmanId(rockmanId);
   const campaignId = decrypt(req.params.encCampaignId);
   const campaign = campaigns.find(campaignId);
 
-  const recordImpressionEvent = ({ page, country, affiliateInfo }) => {
-    
-  };
+  const recordImpressionEvent = async (cmp: CampaignValue) =>
+    run_(pool, client =>
+      addImpression(
+        client,
+        'Server',
+        rockmanId,
+        userId,
+        cmp.id,
+        cmp.page,
+        CT.Url.wrap(req.originalUrl),
+        CT.IP.wrap(req.ip),
+        CT.Country.wrap("xx"),
+        req.headers
+      )
+    );
 
   campaign.fold(
     () => {
@@ -32,10 +93,9 @@ app.get("/:encCampaignId", (req: express.Request, res: express.Response) => {
   )();
 });
 
-
 app.use(
   "/static",
-  express.static('dist/static') //, { maxAge: 31557600000 })
+  express.static("dist/static") //, { maxAge: 31557600000 })
 );
 
 /*(() => {
@@ -55,6 +115,6 @@ app.use(
   });
 })();*/
 
-const port = !!process.env.port ? parseInt(process.env.port) : 3030
+const port = !!process.env.port ? parseInt(process.env.port) : 3030;
 app.listen(port);
-console.log("Listening on " + port)
+console.log("Listening on " + port);

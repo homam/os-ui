@@ -44,3 +44,6 @@ export const Url = iso<NTUrl>();
 
 export interface NTIP extends Newtype<{ readonly IP: unique symbol }, string> {}
 export const IP = iso<NTIP>();
+
+export interface NTImpressionId extends Newtype<{ readonly ImpressionId: unique symbol }, string> {}
+export const ImpressionId = iso<NTImpressionId>();

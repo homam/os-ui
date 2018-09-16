@@ -4,6 +4,7 @@ import {CampaignValue} from "./types"
 
 
 export const invalidCampaign = {
+  id: 4097,
   page: CT.HandleName.wrap('invalid-campaign-id'),
   country: CT.Country.wrap(''),
   affiliateInfo: { offerId: CT.OfferId.wrap(1), affiliateId: CT.AffiliateId.wrap('UNKNWON')} as CT.AffiliateInfo
@@ -11,6 +12,7 @@ export const invalidCampaign = {
 
 const campaignIdMap = {
   4096: {
+    id: 4096,
     page: CT.HandleName.wrap('first'),
     country: CT.Country.wrap('ke'),
     affiliateInfo: { offerId: CT.OfferId.wrap(1), affiliateId: CT.AffiliateId.wrap('SAM')} as CT.AffiliateInfo
