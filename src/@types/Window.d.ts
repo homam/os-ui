@@ -8,4 +8,11 @@ interface Navigator {
 
 interface Window {
   openDatabase: any;
+  pac_analytics?: {
+    visitor: {
+      country: string,
+      rockmanId: string
+    },
+    startTime: number
+  }
 }

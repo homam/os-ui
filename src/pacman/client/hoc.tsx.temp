@@ -1,0 +1,17 @@
+import * as React from 'react'
+import { EventTracker, tracker } from './events';
+
+
+export const TrackerContext = React.createContext(tracker);
+
+export function withTracker<P>(
+  Component: React.ComponentClass<P & { trackEvent: EventTracker }>
+) {
+  return function ComponentWithEventTracking(props: P) {
+    return (
+      <TrackerContext.Consumer>
+        {trackEvent => <Component {...props} trackEvent={trackEvent} />}
+      </TrackerContext.Consumer>
+    );
+  };
+}

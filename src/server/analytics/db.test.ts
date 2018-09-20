@@ -10,6 +10,7 @@ export async function addImpressionTest(pool: Pool) {
     const rockmanId = CT.RockmanId.wrap(uuid());
     const impression = await addImpression(
       client,
+      'Server',
       rockmanId,
       CT.userIdFromRockmanId(rockmanId),
       4096,

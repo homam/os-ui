@@ -13,10 +13,11 @@ const app = express();
 const pool = mkPool("postgresql://localhost/os-ui");
 
 app.post(
-  "/analytics/impression",
-  bodyParser.json(),
+  "/analytics/impression/:encCampaignId",
+  bodyParser.json({type: _ => true}),
   (req: express.Request, res: express.Response) => {
-    const {rockmanId, userId, campaignId, page, originalUrl} = req.body
+    const {rockmanId, userId, page, originalUrl} = req.body
+    const campaignId = decrypt(req.params.encCampaignId);
     run_(pool, client =>
       addImpression(
         client,
@@ -91,7 +92,7 @@ app.get("/:encCampaignId", (req: express.Request, res: express.Response) => {
       prepare(rockmanId, campaign).pipe(res);
     }
   )();
-});
+}); 
 
 app.use(
   "/static",

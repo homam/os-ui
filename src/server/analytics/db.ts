@@ -141,21 +141,11 @@ export async function run<T>(
   }
 }
 
-export async function run_<T>(
+export const run_ = <T>(
   pool: PG.Pool,
   f: (client: PG.PoolClient) => Promise<T>
-) {
-  const client = await pool.connect();
-  try {
-    return f(client);
-  }
-  catch(ex) {
-    console.error("Error in run_", ex)
-  }
-  finally {
-    client.release();
-  }
-}
+) => run(pool, f).catch(ex => console.error("Error in run_", ex))
+
 
 export function mkPool(connectionString: string) {
   const config: PG.PoolConfig = {

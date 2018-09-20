@@ -1,5 +1,9 @@
 import {IPacman} from './types'
 
+/*
+    From Vlad
+*/
+
 export default function(d: Document, w: Window, n: Navigator, pacman: IPacman) {
 
   var vp = "hidden";

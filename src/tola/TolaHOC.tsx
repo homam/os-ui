@@ -2,7 +2,12 @@ import * as React from "react"
 import * as TAPI from "./TolaAPI"
 import * as RDS from "../common-types/RemoteDataState"
 
-export default (Comp: any) => (initState: TAPI.TolaRDS) => 
+export type ITolaProps = {
+  currentState: TAPI.TolaRDS;
+  actions: TAPI.ITolaActions;
+};
+
+export default (Comp: React.ComponentType<ITolaProps>) => (initState: TAPI.TolaRDS) => 
   class HOC extends React.Component {
     state: {
       current: TAPI.TolaRDS;

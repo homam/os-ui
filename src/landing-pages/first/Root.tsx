@@ -1,9 +1,10 @@
 import * as React from "react";
 import * as RDS from "../../common-types/RemoteDataState";
-import HOC from "../../tola/TolaHOC";
+import HOC, {ITolaProps} from "../../tola/TolaHOC";
 import * as TAPI from "../../tola/TolaAPI";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import Counter from "./components/Counter";
+import Timer from "./components/Timer";
 require("../../reset.css");
 import * as styles from "./assets/css/styles.less";
 import { addLocaleData, IntlProvider } from "react-intl";
@@ -36,7 +37,7 @@ const ExampleTransition = ({
   props?: any[];
 }) => (
   <CSSTransition
-    timeout={{ enter: 500, exit: 1500 }}
+    timeout={{ enter: 100, exit: 300 }}
     classNames={{
       enter: styles.testEnter,
       enterActive: styles.testEnterActive,
@@ -48,44 +49,6 @@ const ExampleTransition = ({
   />
 );
 
-class Timer extends React.Component<{ duration: number }> {
-  constructor(props) {
-    super(props);
-  }
-
-  componentDidMount() {
-    const startTimer = (duration: number, display: HTMLElement) => {
-      const doInterval = (timer: number) => {
-        const seconds = parseInt((timer % 60).toString(), 10);
-
-        const secondsStr = seconds < 10 ? "0" + seconds : seconds.toString();
-
-        display.textContent = secondsStr;
-        if (timer < 1) {
-          // do nothing
-        } else {
-          setTimeout(() => {
-            doInterval(timer - 1);
-          }, 1000);
-        }
-      };
-
-      doInterval(duration);
-    };
-
-    startTimer(this.props.duration, this.refs.timer as HTMLElement);
-  }
-
-  render() {
-    return (
-      <span className={styles.cTimer}>
-        00:
-        <span ref="timer">{this.props.duration}</span>
-      </span>
-    );
-  }
-}
-
 const PrelanderStep1 = ({ onClick }: { onClick: () => void }) => (
   <div className={styles.freeScan}>
     <h3 className={styles.mainTitle}>IS YOUR DEVICE PROTECTED?</h3>
@@ -94,7 +57,7 @@ const PrelanderStep1 = ({ onClick }: { onClick: () => void }) => (
     </div>
     <div className={styles.content}>
       <div className={styles.timer}>
-        Free scan ends in <Timer duration={20} />
+        Free scan ends in <Timer duration={20} className={styles.cTimer} />
       </div>
       <button
         className={styles.btn + " " + styles.buttonExample}
@@ -208,54 +171,56 @@ const imgGift = require("./assets/img/gift.png");
 const imgTick = require("./assets/img/tick.svg");
 const imgClock = require("./assets/img/clock-circular-outline.png");
 
-const NumberEntry = ({ currentState, msisdn, onChange, chargeAndWait, error }) => (
-  <ExampleTransition key="nothingYet">
-    <div>
-      <p>
-        To start cleaning,
-        <br /> register NOW &amp; get
-        <br />
-        <strong>FREE</strong> memory booster
-      </p>
-      <label className={styles.numberEntryLabel}>
-        Enter your mobile number
-      </label>
+const NumberEntry = ({
+  currentState,
+  msisdn,
+  onChange,
+  chargeAndWait,
+  error
+}) => (
+  <div>
+    <p>
+      To start cleaning,
+      <br /> register NOW &amp; get
+      <br />
+      <strong>FREE</strong> memory booster
+    </p>
+    <label className={styles.numberEntryLabel}>Enter your mobile number</label>
 
-      <div className={styles.inputWrapper}>
-        <span className={styles.flag} />
-        <span className={styles.feedback}>
-          <img src={imgTick} />
-        </span>
-        <input
-          type="tel"
-          disabled={currentState.type == "Loading"}
-          className={styles.numberEntryInput}
-          maxLength={10}
-          value={msisdn}
-          onChange={e => onChange(e.target.value)}
-        />
-      </div>
-
-      <button
+    <div className={styles.inputWrapper}>
+      <span className={styles.flag} />
+      <span className={styles.feedback}>
+        <img src={imgTick} />
+      </span>
+      <input
+        type="tel"
         disabled={currentState.type == "Loading"}
-        className={styles.btn}
-        onClick={() => chargeAndWait(msisdn, "PAY", 10)}
-      >
-        {currentState.type == "Loading" ? "..." : "register my number"}
-      </button>
-      {!!error ? (
-        <div
-          className={styles.error}
-          id="already-subscribed-error"
-          data-x-role="already-subscribed-error"
-        >
-          You are already subscribed to this service!
-        </div>
-      ) : (
-        ""
-      )}
+        className={styles.numberEntryInput}
+        maxLength={10}
+        value={msisdn}
+        onChange={e => onChange(e.target.value)}
+      />
     </div>
-  </ExampleTransition>
+
+    <button
+      disabled={currentState.type == "Loading"}
+      className={styles.btn}
+      onClick={() => chargeAndWait(msisdn, "PAY", 10)}
+    >
+      {currentState.type == "Loading" ? "..." : "register my number"}
+    </button>
+    {!!error ? (
+      <div
+        className={styles.error}
+        id="already-subscribed-error"
+        data-x-role="already-subscribed-error"
+      >
+        You are already subscribed to this service!
+      </div>
+    ) : (
+      ""
+    )}
+  </div>
 );
 
 class Modal extends React.Component<ITolaProps> {
@@ -281,13 +246,15 @@ class Modal extends React.Component<ITolaProps> {
             >
               {RDS.match({
                 nothingYet: () => (
-                  <NumberEntry
-                    currentState={currentState}
-                    msisdn={this.state.msisdn}
-                    chargeAndWait={actions.chargeAndWait}
-                    onChange={msisdn => this.setState({ msisdn })}
-                    error={null}
-                  />
+                  <ExampleTransition key="nothingYet">
+                    <NumberEntry
+                      currentState={currentState}
+                      msisdn={this.state.msisdn}
+                      chargeAndWait={actions.chargeAndWait}
+                      onChange={msisdn => this.setState({ msisdn })}
+                      error={null}
+                    />
+                  </ExampleTransition>
                 ),
                 loading: () => (
                   <ExampleTransition key="loading">
@@ -304,13 +271,15 @@ class Modal extends React.Component<ITolaProps> {
                   </ExampleTransition>
                 ),
                 failure: error => (
-                  <NumberEntry
-                    currentState={currentState}
-                    msisdn={this.state.msisdn}
-                    chargeAndWait={actions.chargeAndWait}
-                    onChange={msisdn => this.setState({ msisdn })}
-                    error={error}
-                  />
+                  <ExampleTransition key="failure">
+                    <NumberEntry
+                      currentState={currentState}
+                      msisdn={this.state.msisdn}
+                      chargeAndWait={actions.chargeAndWait}
+                      onChange={msisdn => this.setState({ msisdn })}
+                      error={error}
+                    />
+                  </ExampleTransition>
                 )
               })(currentState)}
             </TransitionGroup>
@@ -326,11 +295,6 @@ class Modal extends React.Component<ITolaProps> {
     );
   }
 }
-
-type ITolaProps = {
-  currentState: TAPI.TolaRDS;
-  actions: TAPI.ITolaActions;
-};
 
 class Root extends React.Component<ITolaProps> {
   state: {
