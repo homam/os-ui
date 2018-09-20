@@ -1,43 +1,14 @@
 import * as React from "react";
-import {Tracker, TrackerProvider} from 'react-tracker'
 import * as RDS from "../../common-types/RemoteDataState";
 import HOC from "../../tola/TolaHOC";
 import * as TAPI from "../../tola/TolaAPI";
-import {
-  TransitionGroup,
-  Transition,
-  CSSTransition
-} from "react-transition-group";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 import Counter from "./components/Counter";
 require("../../reset.css");
-// require('./css/styles.css')
 import * as styles from "./assets/css/styles.less";
-// const testStyles = require('./Test.css')
-// export default () => <div>Hello</div>
 import { addLocaleData, IntlProvider } from "react-intl";
 import enLocaleData from "react-intl/locale-data/en";
 import nlLocaleData from "react-intl/locale-data/nl";
-
-
-enum MyEventTypes {PageView = "PageView", PageLoad = "PageLoad"}
-type MyEvents = {type: MyEventTypes.PageView , data: number} | {type: MyEventTypes.PageLoad, data: string}
-type MyEventTracker = (event: MyEvents) => void
-
-const tracker = new Tracker<MyEventTypes, MyEvents>([])
-tracker.on(MyEventTypes.PageLoad, (event, history) => {console.log(event, history); return event })
-
-
-const TrackerContext = React.createContext(tracker.trackEvent)
-
-function withTracker<P>(Component : React.ComponentClass<P & {trackEvent: MyEventTracker}>) {
-  return function ComponentWithEventTracking(props: P) {
-    return (
-      <TrackerContext.Consumer>
-        {trackEvent => <Component {...props} trackEvent={trackEvent} />}
-      </TrackerContext.Consumer>
-    );
-  };
-}
 
 const imgLogo = require("./assets/img/logo.png");
 const imgBadge = require("./assets/img/badge.png");
@@ -55,7 +26,6 @@ const translations = {
 };
 addLocaleData(enLocaleData);
 addLocaleData(nlLocaleData);
-
 
 const ExampleTransition = ({
   key,
@@ -238,7 +208,55 @@ const imgGift = require("./assets/img/gift.png");
 const imgTick = require("./assets/img/tick.svg");
 const imgClock = require("./assets/img/clock-circular-outline.png");
 
-const when = (cond: boolean) => (comp: JSX.Element) => (cond ? comp : "");
+const NumberEntry = ({ currentState, msisdn, onChange, chargeAndWait, error }) => (
+  <ExampleTransition key="nothingYet">
+    <div>
+      <p>
+        To start cleaning,
+        <br /> register NOW &amp; get
+        <br />
+        <strong>FREE</strong> memory booster
+      </p>
+      <label className={styles.numberEntryLabel}>
+        Enter your mobile number
+      </label>
+
+      <div className={styles.inputWrapper}>
+        <span className={styles.flag} />
+        <span className={styles.feedback}>
+          <img src={imgTick} />
+        </span>
+        <input
+          type="tel"
+          disabled={currentState.type == "Loading"}
+          className={styles.numberEntryInput}
+          maxLength={10}
+          value={msisdn}
+          onChange={e => onChange(e.target.value)}
+        />
+      </div>
+
+      <button
+        disabled={currentState.type == "Loading"}
+        className={styles.btn}
+        onClick={() => chargeAndWait(msisdn, "PAY", 10)}
+      >
+        {currentState.type == "Loading" ? "..." : "register my number"}
+      </button>
+      {!!error ? (
+        <div
+          className={styles.error}
+          id="already-subscribed-error"
+          data-x-role="already-subscribed-error"
+        >
+          You are already subscribed to this service!
+        </div>
+      ) : (
+        ""
+      )}
+    </div>
+  </ExampleTransition>
+);
 
 class Modal extends React.Component<ITolaProps> {
   state: {
@@ -261,75 +279,40 @@ class Modal extends React.Component<ITolaProps> {
               className={styles.fadeTransitionGroup}
               style={{ height: 280 }}
             >
-              {when(
-                [RDS.IsFailure, RDS.IsNothingYet].some(f => f(currentState))
-              )(
-                <ExampleTransition key="nothingYet">
-                  <div>
-                    <p>
-                      To start cleaning,
-                      <br /> register NOW &amp; get
-                      <br />
-                      <strong>FREE</strong> memory booster
-                    </p>
-                    <label className={styles.numberEntryLabel}>
-                      Enter your mobile number
-                    </label>
-
-                    <div className={styles.inputWrapper}>
-                      <span className={styles.flag} />
-                      <span className={styles.feedback}>
-                        <img src={imgTick} />
-                      </span>
-                      <input
-                        type="tel"
-                        disabled={currentState.type == "Loading"}
-                        className={styles.numberEntryInput}
-                        maxLength={10}
-                        value={this.state.msisdn}
-                        onChange={e =>
-                          this.setState({ msisdn: e.target.value })
-                        }
-                      />
+              {RDS.match({
+                nothingYet: () => (
+                  <NumberEntry
+                    currentState={currentState}
+                    msisdn={this.state.msisdn}
+                    chargeAndWait={actions.chargeAndWait}
+                    onChange={msisdn => this.setState({ msisdn })}
+                    error={null}
+                  />
+                ),
+                loading: () => (
+                  <ExampleTransition key="loading">
+                    <div>
+                      <p>Enter your mPesa PIN</p>
                     </div>
-
-                    <button
-                      disabled={currentState.type == "Loading"}
-                      className={styles.btn}
-                      onClick={() =>
-                        actions.chargeAndWait(this.state.msisdn, "PAY", 10)
-                      }
-                    >
-                      {currentState.type == "Loading"
-                        ? "..."
-                        : "register my number"}
-                    </button>
-                    {RDS.WhenFailure(<div/>, () => (
-                      <div
-                        className={styles.error}
-                        id="already-subscribed-error"
-                        data-x-role="already-subscribed-error"
-                      >
-                        You are already subscribed to this service!
-                      </div>
-                    ))(currentState)}
-                  </div>
-                </ExampleTransition>
-              )}
-              {when(RDS.IsLoading(currentState))(
-                <ExampleTransition key="loading">
-                  <div>
-                    <p>Enter your mPesa PIN</p>
-                  </div>
-                </ExampleTransition>
-              )}
-              {when(RDS.IsSuccess(currentState))(
-                <ExampleTransition key="success">
-                  <div>
-                    <p>Thank you!</p>
-                  </div>
-                </ExampleTransition>
-              )}
+                  </ExampleTransition>
+                ),
+                success: () => (
+                  <ExampleTransition key="success">
+                    <div>
+                      <p>Thank you!</p>
+                    </div>
+                  </ExampleTransition>
+                ),
+                failure: error => (
+                  <NumberEntry
+                    currentState={currentState}
+                    msisdn={this.state.msisdn}
+                    chargeAndWait={actions.chargeAndWait}
+                    onChange={msisdn => this.setState({ msisdn })}
+                    error={error}
+                  />
+                )
+              })(currentState)}
             </TransitionGroup>
           </div>
         </div>
@@ -359,8 +342,8 @@ class Root extends React.Component<ITolaProps> {
     this.state = { locale: "en", inPrelander: true };
   }
   render() {
-    console.log("Root", this.props, this.context)
-    tracker.trackEvent({type: MyEventTypes.PageLoad, data: new Date().toString()})
+    console.log("Root", this.props, this.context);
+
     return (
       <IntlProvider
         locale={this.state.locale}
@@ -395,5 +378,5 @@ class Root extends React.Component<ITolaProps> {
 
 export default (props: any) => {
   const H = HOC(Root)(RDS.NothingYet());
-  return <TrackerProvider tracker={tracker}><H {...props} /></TrackerProvider> ;
+  return <H {...props} />;
 };
