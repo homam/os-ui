@@ -96,7 +96,7 @@ app.get("/:encCampaignId", (req: express.Request, res: express.Response) => {
 
 app.use(
   "/static",
-  express.static("dist/static") //, { maxAge: 31557600000 })
+  express.static("../client/dist/static") //, { maxAge: 31557600000 })
 );
 
 /*(() => {

@@ -6,13 +6,13 @@ const React = require("react");
 
 const page = process.env.page
 
-const ReactApp = require(`../../dist/static/${page}/ssr/main`).default;
+const ReactApp = require(`../dist/static/${page}/ssr/main`).default;
 
 const reactElement = React.createElement(ReactApp);
 
 
-const inputFileName = path.join(__dirname, `../../dist/static/${page}/html`, "index.html");
-const outputFileName = path.join(__dirname, `../../dist/static/${page}/html`, "index.ssr.html");
+const inputFileName = path.join(__dirname, `../dist/static/${page}/html`, "index.html");
+const outputFileName = path.join(__dirname, `../dist/static/${page}/html`, "index.ssr.html");
 
 const file = fs.readFileSync(inputFileName, "utf8");
 const [head, tail] = file.split("{react-app}");

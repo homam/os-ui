@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "module": "commonjs",
+    "target": "es5",
+    "jsx": "react",
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "lib": ["es5", "es2015", "dom", "scripthost"], 
+    "typeRoots": ["node_modules/@types", "src/@types"],
+  },
+  "include": ["src/**/*", "ssr/**/*"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
+}
