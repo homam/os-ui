@@ -24,7 +24,7 @@ export function chargeAndWait1(msisdn: string, message: string, price: number) {
     message?: string,
     details?: any
   ) =>
-    Promise.reject(new TolaApiError(message || errorType, errorType, details));
+    Promise.reject(new TolaApiError(message || "", errorType, details));
 
   // Testing different states
   /*

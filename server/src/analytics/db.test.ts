@@ -31,6 +31,7 @@ export async function addEventTest(pool: Pool, rockmanId: CT.NTRockmanId) {
     const impression = await addEvent(
       client,
       left(rockmanId),
+      "Unknown-View",
       "ui-userInt",
       "click",
       "final-cta-button",

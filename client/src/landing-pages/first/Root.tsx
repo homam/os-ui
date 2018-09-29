@@ -1,7 +1,6 @@
 import * as React from "react";
 import * as RDS from "../../common-types/RemoteDataState";
 import HOC, {ITolaProps} from "../../tola/TolaHOC";
-import * as TAPI from "../../tola/TolaAPI";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import Counter from "./components/Counter";
 import Timer from "./components/Timer";
@@ -10,6 +9,12 @@ import * as styles from "./assets/css/styles.less";
 import { addLocaleData, IntlProvider } from "react-intl";
 import enLocaleData from "react-intl/locale-data/en";
 import nlLocaleData from "react-intl/locale-data/nl";
+
+import mkTracker from '../../pacman/record'
+import queryString from '../../pacman/queryString'
+
+const tracker = mkTracker((typeof window != "undefined") ? window : null, queryString(window.location.search, 'xcid'), 'ke', 'first')
+
 
 const imgLogo = require("./assets/img/logo.png");
 const imgBadge = require("./assets/img/badge.png");
@@ -155,7 +160,10 @@ class Prelander extends React.Component<{ onEnd: () => void }> {
       <TransitionGroup className={styles.fadeTransitionGroup}>
         {this.state.step == 1 ? (
           <ExampleTransition key="step-1">
-            <PrelanderStep1 onClick={() => this.setState({ step: 2 })} />
+            <PrelanderStep1 onClick={() => {
+              tracker.advancedInPreFlow('Step 2')
+              this.setState({ step: 2 })
+            }} />
           </ExampleTransition>
         ) : (
           <ExampleTransition key="step-2">
@@ -324,7 +332,10 @@ class Root extends React.Component<ITolaProps> {
               </div>
             </div>
             <TransitionGroup>
-              <Prelander onEnd={() => this.setState({ inPrelander: false })} />
+              <Prelander onEnd={() => {
+                tracker.viewChanged('CTA')
+                this.setState({ inPrelander: false })
+              }} />
               {this.state.inPrelander ? (
                 <div />
               ) : (
@@ -341,6 +352,6 @@ class Root extends React.Component<ITolaProps> {
 }
 
 export default (props: any) => {
-  const H = HOC(Root)(RDS.NothingYet());
+  const H = HOC(tracker, Root)(RDS.NothingYet());
   return <H {...props} />;
 };

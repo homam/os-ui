@@ -61,6 +61,6 @@ if (typeof window != "undefined") {
   window.addEventListener("load", ev => {
     const now = new Date().valueOf();
     const loadEvent = mkWindowLoadEvent(now);
-    setTimeout(() => recordEvent(window, loadEvent), 500);
+    setTimeout(() => recordEvent(window, "Unknown-View", loadEvent), 500);
   });
 }

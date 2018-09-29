@@ -65,6 +65,7 @@ export function addImpression(
 export function addEvent(
   client: PG.PoolClient,
   rockmanOrImpressionId: Either<CT.NTRockmanId, CT.NTImpressionId>,
+  view: string,
   category: string,
   action: string,
   label: string,
@@ -84,6 +85,7 @@ export function addEvent(
         , value
         , args
         , client_rel_time
+        , view
       ) values (
           (select id from imp)
         , $2
@@ -92,6 +94,7 @@ export function addEvent(
         , $5
         , $6
         , $7
+        , $8
       )
     `,
       _ => `
@@ -103,6 +106,7 @@ export function addEvent(
         , value
         , args
         , client_rel_time
+        , view
       ) values (
           $1
         , $2
@@ -111,6 +115,7 @@ export function addEvent(
         , $5
         , $6
         , $7
+        , $8
       ) returning *
     `
     ),
@@ -124,7 +129,8 @@ export function addEvent(
       label,
       value,
       args,
-      client_rel_time
+      client_rel_time,
+      view
     ]
   );
 }

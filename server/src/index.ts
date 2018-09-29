@@ -38,14 +38,14 @@ app.post(
 
 app.post(
   "/analytics/event",
-  bodyParser.json(),
+  bodyParser.json({type: _ => true}),
   (req: express.Request, res: express.Response) => {
-    const { rockmanId, category, action, label, value, args, relt } = req.body;
-
+    const { rockmanId, category, action, label, value, args, relt, view } = req.body;
     run_(pool, client =>
       addEvent(
         client,
         left(CT.RockmanId.wrap(rockmanId)),
+        view,
         category,
         action,
         label,
