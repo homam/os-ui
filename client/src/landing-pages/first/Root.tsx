@@ -4,14 +4,13 @@ import HOC, {ITolaProps} from "../../tola/TolaHOC";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import Counter from "./components/Counter";
 import Timer from "./components/Timer";
-require("../../reset.css");
 import * as styles from "./assets/css/styles.less";
 import { addLocaleData, IntlProvider } from "react-intl";
 import enLocaleData from "react-intl/locale-data/en";
 import nlLocaleData from "react-intl/locale-data/nl";
+require("../../reset.css");
 
-import mkTracker from '../../pacman/record'
-import queryString from '../../pacman/queryString'
+import mkTracker, {queryString} from '../../pacman/record'
 
 const tracker = mkTracker((typeof window != "undefined") ? window : null, queryString(window.location.search, 'xcid'), 'ke', 'first')
 

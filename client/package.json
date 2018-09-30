@@ -12,7 +12,7 @@
     "main": "yarn dev",
     "build:ssr:all": "(page=$page; export page; rm -rf dist/ && yarn build && yarn build:ssr  && yarn build:ssr:server)",
     "react-live": "yarn dev:init && webpack-dev-server --config .react-live/webpack.config.react-live.babel.js",
-    "new-page": "babel-node webpack/new-page.js"
+    "new-page": "node webpack/new-page.js"
   },
   "author": "",
   "license": "ISC",

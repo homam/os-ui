@@ -1,5 +1,8 @@
 import mkSenddBeacon from "./sendBeacon";
 import uuid from "uuid/v1";
+import queryString1 from './queryString'
+
+export const queryString = queryString1
 
 export function recordImpression(
   window: Window,
