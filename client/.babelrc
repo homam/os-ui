@@ -1,5 +1,5 @@
 {
-  "presets":  ["es2017", "react", "stage-0"],
+  "presets":  ["es2017", "react", "stage-0", "es2015"],
   "plugins": [["transform-runtime", { "helpers": false, "polyfill": false }]],
   "env": {
     "development": { "plugins": [] },
