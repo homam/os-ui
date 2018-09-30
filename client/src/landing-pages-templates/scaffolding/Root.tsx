@@ -1,8 +1,7 @@
 import * as React from 'react'
-import mkTracker, {queryString} from '../../pacman/record'
-require("../../reset.css");
+import mkTracker from '../../pacman/record'
 
-const tracker = mkTracker((typeof window != "undefined") ? window : null, queryString(window.location.search, 'xcid'), 'xx', 'Unknown-Page')
+const tracker = mkTracker((typeof window != "undefined") ? window : null, 'xx', 'Unknown')
 
 class Root extends React.PureComponent  {
   constructor(props) {

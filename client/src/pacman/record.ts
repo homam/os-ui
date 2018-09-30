@@ -6,7 +6,6 @@ export const queryString = queryString1
 
 export function recordImpression(
   window: Window,
-  campaignId: string,
   country: string,
   page: string
 ) {
@@ -14,6 +13,7 @@ export function recordImpression(
     const sendBeacon = mkSenddBeacon(window);
     const rockmanId = uuid().replace(/-/g, "");
     const userId = rockmanId;
+    const campaignId = queryString(window.location.search, 'xcid')
     const originalUrl = document.location.href;
 
     window.pac_analytics = {
@@ -70,7 +70,6 @@ export type ITracker = {
 
 export default (
   window: Window,
-  campaignId: string,
   country: string,
   page: string
 ) : ITracker => {
@@ -85,7 +84,7 @@ export default (
   } else {
     var current_view = "Init";
 
-    recordImpression(window, campaignId, country, page);
+    recordImpression(window, country, page);
 
     return {
       viewChanged: (view: string) => {

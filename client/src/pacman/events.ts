@@ -57,7 +57,7 @@ export const tracker: EventTracker = (event: AnalyticsEvents) => {
 };
 
 if (typeof window != "undefined") {
-  recordImpression(window, "Z0JBQQ", "ke", "first");
+  recordImpression(window, "ke", "first");
   window.addEventListener("load", ev => {
     const now = new Date().valueOf();
     const loadEvent = mkWindowLoadEvent(now);

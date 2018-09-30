@@ -8,11 +8,10 @@ import * as styles from "./assets/css/styles.less";
 import { addLocaleData, IntlProvider } from "react-intl";
 import enLocaleData from "react-intl/locale-data/en";
 import nlLocaleData from "react-intl/locale-data/nl";
-require("../../reset.css");
 
-import mkTracker, {queryString} from '../../pacman/record'
+import mkTracker from '../../pacman/record'
 
-const tracker = mkTracker((typeof window != "undefined") ? window : null, queryString(window.location.search, 'xcid'), 'ke', 'first')
+const tracker = mkTracker((typeof window != "undefined") ? window : null, 'ke', 'first')
 
 
 const imgLogo = require("./assets/img/logo.png");
