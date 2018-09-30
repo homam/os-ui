@@ -82,6 +82,7 @@ const resolve = {
     'node_modules',
     'bower_components'
   ],
+  symlinks: false,
 
   extensions: ['.tsx', '.ts', '.js', '.purs']
 }

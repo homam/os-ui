@@ -7,6 +7,8 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const devMode = true
 
+const page = process.env.page
+
 
 module.exports = {
   mode: 'development',
@@ -15,8 +17,8 @@ module.exports = {
     'webpack-dev-server/client',
     'webpack/hot/only-dev-server',
     // resolve(__dirname, 'hotReload'),
-    !!process.env.page && process.env.page != "default"  
-      ? resolve(__dirname, `../src/landing-pages/${process.env.page}/hotReload`) 
+    !!page && page != "default"  
+      ? resolve(__dirname, `../src/landing-pages/${page}/hotReload`) 
       : resolve(__dirname, 'hotReload'),
   ],
   externals: common.externals,
@@ -88,8 +90,8 @@ module.exports = {
       chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
     }),
     new HtmlWebpackPlugin({
-      title: 'Sigma',
-      template: '../webpack/template.html',
+      title: process.env.page,
+      template: "true" == process.env.html ? `../src/landing-pages/${page}/template.html` : '../webpack/template.html',
     }),
     new webpack.DefinePlugin({
       'process.env.api_root': JSON.stringify(process.env.api_root || ''),

@@ -8,9 +8,24 @@
     "version": "1.0.0",
     "repository": null,
     "native": false,
-    "typescript": true
+    "typescript": true,
+    "plugins": [
+      {},
+      {}
+    ]
   },
   "entries": {
+    "index.mdx": {
+      "name": "Getting Started",
+      "route": "/",
+      "id": "91149a4106ab27ef746308b41227aca8",
+      "filepath": "index.mdx",
+      "link": null,
+      "slug": "index",
+      "order": 0,
+      "menu": null,
+      "headings": []
+    },
     "src/landing-pages/first/components/Docs.mdx": {
       "name": "first/components",
       "id": "530775ae237c1b78ea1549d470d01f30",
@@ -35,6 +50,11 @@
           "depth": 2,
           "slug": "counter",
           "value": "Counter"
+        },
+        {
+          "depth": 2,
+          "slug": "msisdninput",
+          "value": "MSISDNInput"
         }
       ]
     }

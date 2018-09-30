@@ -3,6 +3,7 @@ name: first/components
 ---
 import Timer from './Timer'
 import Counter from './Counter'
+import MSISDNInput from './MSISDNInput'
 import { Playground, PropsTable } from 'docz'
 
 
@@ -27,3 +28,15 @@ import { Playground, PropsTable } from 'docz'
 </Playground>
 
 <PropsTable of={Counter} />
+
+## MSISDNInput
+
+<Playground>
+  <MSISDNInput 
+    msisdn="05"
+    isValid={false}
+    maxLength={10}
+    onChange={() => void 6} />
+</Playground>
+
+<PropsTable of={MSISDNInput} />

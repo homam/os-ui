@@ -4,6 +4,7 @@ import HOC, {ITolaProps} from "../../tola/TolaHOC";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import Counter from "./components/Counter";
 import Timer from "./components/Timer";
+import MSISDNInput from "./components/MSISDNInput";
 import * as styles from "./assets/css/styles.less";
 import { addLocaleData, IntlProvider } from "react-intl";
 import enLocaleData from "react-intl/locale-data/en";
@@ -174,7 +175,6 @@ class Prelander extends React.Component<{ onEnd: () => void }> {
 }
 
 const imgGift = require("./assets/img/gift.png");
-const imgTick = require("./assets/img/tick.svg");
 const imgClock = require("./assets/img/clock-circular-outline.png");
 
 const NumberEntry = ({
@@ -193,20 +193,7 @@ const NumberEntry = ({
     </p>
     <label className={styles.numberEntryLabel}>Enter your mobile number</label>
 
-    <div className={styles.inputWrapper}>
-      <span className={styles.flag} />
-      <span className={styles.feedback}>
-        <img src={imgTick} />
-      </span>
-      <input
-        type="tel"
-        disabled={currentState.type == "Loading"}
-        className={styles.numberEntryInput}
-        maxLength={10}
-        value={msisdn}
-        onChange={e => onChange(e.target.value)}
-      />
-    </div>
+    <MSISDNInput disabled={currentState.type === "Loading"} isValid={msisdn.length > 6}  maxLength={10} msisdn={msisdn} onChange={onChange} />
 
     <button
       disabled={currentState.type == "Loading"}
@@ -309,7 +296,7 @@ class Root extends React.Component<ITolaProps> {
   };
   constructor(params) {
     super(params);
-    this.state = { locale: "en", inPrelander: true };
+    this.state = { locale: "en", inPrelander: !true };
   }
   render() {
     console.log("Root", this.props, this.context);
