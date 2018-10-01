@@ -6,7 +6,6 @@ import Counter from './Counter'
 import MSISDNInput from './MSISDNInput'
 import { Playground, PropsTable } from 'docz'
 
-
 # Reusable Components in `first` page
 
 
@@ -40,3 +39,29 @@ import { Playground, PropsTable } from 'docz'
 </Playground>
 
 <PropsTable of={MSISDNInput} />
+
+### Example
+
+<Playground>
+  { ()  => {
+      class Example extends React.PureComponent {
+        constructor(props) {
+          super(props)
+          this.state = {
+            msisdn: "05"
+          }
+        }
+        render() {
+          return (
+            <MSISDNInput 
+              msisdn={this.state.msisdn}
+              isValid={this.state.msisdn.length == 8}
+              maxLength={8}
+              onChange={(msisdn) => this.setState({msisdn})} />
+          );
+        }
+      }
+
+    return <Example />;
+  } }
+</Playground>

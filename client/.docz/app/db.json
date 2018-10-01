@@ -55,6 +55,11 @@
           "depth": 2,
           "slug": "msisdninput",
           "value": "MSISDNInput"
+        },
+        {
+          "depth": 3,
+          "slug": "example",
+          "value": "Example"
         }
       ]
     }
