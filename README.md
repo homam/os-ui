@@ -51,3 +51,17 @@ First make sure that you have built the pages for server-side rendering. (above)
 
 1. `yarn install`
 2. `yarn dev-server` and open [http://localhost:3030/Z0JBQQ](http://localhost:3030/Z0JBQQ)
+
+----
+
+Development Without React:
+
+```
+noReact=true page=love-horoskop html=true yarn dev
+```
+
+Development Without CSS Modules:
+
+```
+noCSSModules=true page=love-horoskop html=true yarn dev
+```

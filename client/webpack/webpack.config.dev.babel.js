@@ -8,19 +8,20 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const devMode = true
 
 const page = process.env.page
+const noReact = "true" == process.env.noReact 
+const noCSSModules = "true" == process.env.noCSSModules 
 
 
 module.exports = {
   mode: 'development',
-  entry: [
-    'react-hot-loader/patch',
+  entry: (noReact ? [] : ['react-hot-loader/patch']).concat([
     'webpack-dev-server/client',
     'webpack/hot/only-dev-server',
     // resolve(__dirname, 'hotReload'),
     !!page && page != "default"  
       ? resolve(__dirname, `../src/landing-pages/${page}/hotReload`) 
       : resolve(__dirname, 'hotReload'),
-  ],
+  ]),
   externals: common.externals,
   output: {
     filename: 'bundle.js',
@@ -61,20 +62,20 @@ module.exports = {
         use: [
           'css-hot-loader',
           'style-loader',
-          common.loaders["typings-for-css"],
+          noCSSModules ? 'css-loader' : common.loaders["typings-for-css"],
           common.loaders.postcss,
           common.loaders.stylus,
-        ]
+        ].filter(x => !!x)
       },
       {
         test: /\.(css|less)$/,
         use: [
           'css-hot-loader',
           'style-loader',
-          common.loaders["typings-for-css"],
+          noCSSModules ? 'css-loader' : common.loaders["typings-for-css"],
           common.loaders.postcss,
           common.loaders.less,
-        ],
+        ].filter(x => !!x),
       },
       common.modules.url,
     ],

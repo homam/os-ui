@@ -38,7 +38,6 @@ export default (tracker: ITracker, Comp: React.ComponentType<ITolaProps>) => (in
     }
 
     render() {
-      console.log("HOC", this.props, this.context)
       const self = this;
       return (
         <Comp
