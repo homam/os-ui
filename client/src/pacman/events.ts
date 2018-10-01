@@ -57,10 +57,10 @@ export const tracker: EventTracker = (event: AnalyticsEvents) => {
 };
 
 if (typeof window != "undefined") {
-  recordImpression(window, "ke", "first");
+  recordImpression(window, '//localhost:3030/analytics', "ke", "first");
   window.addEventListener("load", ev => {
     const now = new Date().valueOf();
     const loadEvent = mkWindowLoadEvent(now);
-    setTimeout(() => recordEvent(window, "Unknown-View", loadEvent), 500);
+    setTimeout(() => recordEvent(window, '//localhost:3030/analytics', "Unknown-View", loadEvent), 500);
   });
 }

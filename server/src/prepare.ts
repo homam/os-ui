@@ -57,7 +57,8 @@ export default (rockmanId: CT.NTRockmanId, campaign: CampaignValue) => {
   s.push(
     `<script>window.pac_analytics={
       visitor:${JSON.stringify(pacman)},
-      startTime: new Date().valueOf()
+      startTime: new Date().valueOf(),
+      url: '/analytics'
     }</script>`
   );
   s.push(afterBuff);

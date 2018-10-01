@@ -13,6 +13,7 @@ interface Window {
       country: string,
       rockmanId: string
     },
-    startTime: number
+    startTime: number,
+    url: string
   }
 }

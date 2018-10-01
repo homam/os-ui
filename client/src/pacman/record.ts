@@ -6,6 +6,7 @@ export const queryString = queryString1
 
 export function recordImpression(
   window: Window,
+  url: string,
   country: string,
   page: string
 ) {
@@ -21,10 +22,11 @@ export function recordImpression(
         rockmanId,
         country
       },
-      startTime: new Date().valueOf()
+      startTime: new Date().valueOf(),
+      url
     };
 
-    sendBeacon(`//localhost:3030/analytics/impression/${campaignId}`, {
+    sendBeacon(`${url}/impression/${campaignId}`, {
       rockmanId,
       userId,
       page,
@@ -37,6 +39,7 @@ export function recordImpression(
 
 export function recordEvent(
   window: Window,
+  url: string,
   view: string,
   args: {
     category: string;
@@ -52,7 +55,7 @@ export function recordEvent(
       "Please call recordImpression() first. 'pac_analytics' was not found."
     );
   }
-  sendBeacon("//localhost:3030/analytics/event", {
+  sendBeacon(`${url}/event`, {
     rockmanId: window.pac_analytics.visitor.rockmanId,
     relt: new Date().valueOf() - window.pac_analytics.startTime,
     view,
@@ -84,12 +87,13 @@ export default (
   } else {
     var current_view = "Init";
 
-    recordImpression(window, country, page);
+    const url = !!window.pac_analytics ? window.pac_analytics.url : (queryString(window.location.search, 'pacman-server') || '/analytics')
+    recordImpression(window, url, country, page);
 
     return {
       viewChanged: (view: string) => {
         if (view != current_view) {
-          recordEvent(window, view, {
+          recordEvent(window, url, view, {
             category: "UI",
             action: "ViewChanged"
           });
@@ -97,24 +101,24 @@ export default (
         }
       },
       msisdnSubmitted: (msisdn: string) => {
-        recordEvent(window, current_view, {
+        recordEvent(window, url, current_view, {
           category: "UX",
           action: "MSISDN-Submitted",
           args: {msisdn}
         })
       },
       advancedInPreFlow: (label: string, args?: any) => {
-        recordEvent(window, current_view, {
+        recordEvent(window, url, current_view, {
           category: "Pre-Flow", action: 'advance', label, args
         })
       },
       recedeInFlow: (flow: string, reason: string, args?: any) => {
-        recordEvent(window, current_view, {
+        recordEvent(window, url, current_view, {
           category: "Flow", action: 'recede', label: `${flow}::${reason}`, args
         })
       },
       advancedInFlow: (flow: string, action: string, args?: any) => {
-        recordEvent(window, current_view, {
+        recordEvent(window, url, current_view, {
           category: "Flow", action: `advance`, label: `${flow}::${action}`, args
         })
       }
