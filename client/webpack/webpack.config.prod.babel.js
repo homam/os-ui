@@ -9,6 +9,7 @@ const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin")
 const publicPath = ""
 
 const page = process.env.page
+const noCSSModules = "true" == process.env.noCSSModules 
 
 module.exports = {
   mode: 'production',
@@ -48,20 +49,20 @@ module.exports = {
           //   localIdentName: '[path][name]__[local]--[hash:base64:5]'
           // }
           // },
-          common.loaders["typings-for-css"],
+          noCSSModules ? 'css-loader' : common.loaders["typings-for-css"],
           common.loaders.postcss,
           common.loaders.stylus,
-        ],
+        ].filter(x => !!x),
       },
       {
         test: /\.(css|less)$/,
         exclude: /node_modules/,
         use: [
           MiniCssExtractPlugin.loader,
-          common.loaders["typings-for-css"],
+          noCSSModules ? 'css-loader' : common.loaders["typings-for-css"],
           common.loaders.postcss,
           common.loaders.less,
-        ],
+        ].filter(x => !!x),
       },
       common.modules.url,
     ],

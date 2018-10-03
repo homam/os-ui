@@ -34,7 +34,7 @@ const getAndCachePreparedContentFromFileSystem = (() => {
       return cachedItem;
     } else {
       const content = fs.readFileSync(
-        path.join(__dirname, "/../../client/dist/static/first/html/index.ssr.html"),
+        path.join(__dirname, "/../../client/dist/static/love-horoscope/html/index.ssr.html"),
         "utf8"
       );
       const item = prepareContent(content);

@@ -31,6 +31,7 @@ export type MSISDNEntryErrorTypes =
 export type PINEntryErrorTypes = "UnknownError" | "TooEarly" | "InvalidPIN";
 
 export const initialState : State = { type: "MSISDNEntry", result: RDS.NothingYet<MSISDNEntryFailure, MSISDNEntrySuccess>()}
+// export const initialState : State = { type: "PINEntry", result: RDS.Failure<PINEntryFailure, PINEntrySuccess>({errorType: 'InvalidPIN'})}
 
 export interface IActions {
   submitMSISDN: (window: Window, { host, country, handle, offer }: IConfig, msisdn: string) => any,
@@ -63,16 +64,24 @@ export default <P extends HOCProps>(tracker: ITracker, Comp: React.ComponentType
             })
           },
           submitMSISDN: async (...args) => {
+            this.setState({
+              currentState: {type: "MSISDNEntry", result: RDS.Loading()} as State
+            })
+            const [,,msisdn] = args
+            tracker.advancedInFlow('assrock/v1', 'msisdn-submitted',{msisdn})
             try {
-              this.setState({
-                currentState: {type: "MSISDNEntry", result: RDS.Loading()} as State
-              })
               const submitPIN = await submitMSISDN(...args);
+              tracker.advancedInFlow('assrock/v1', 'msisdn-submission-success',{msisdn})
               self.setState({
                 currentState: {type: "PINEntry", result: RDS.NothingYet()} as State,
                 actions: {...self.state.actions, submitPIN: async (pin: string) => {
+                  this.setState({
+                    currentState: {type: "PINEntry", result: RDS.Loading()} as State
+                  })
+                  tracker.advancedInFlow('assrock/v1', 'pin-submitted',{msisdn, pin})
                   try {
                     const result = await submitPIN(pin)
+                    tracker.advancedInFlow('assrock/v1', 'pin-submission-success',{msisdn, pin})
                     this.setState({
                       currentState: {
                         type: "PINEntry",
@@ -80,14 +89,19 @@ export default <P extends HOCProps>(tracker: ITracker, Comp: React.ComponentType
                       } as State
                     })
                   } catch(ex) {
+                    const errorType: PINEntryErrorTypes =
+                      "SEInvalidPIN" === ex.type
+                        ? "InvalidPIN"
+                        : "UnknownError";
                     self.setState({
                       currentState: {
                         type: "PINEntry",
                         result: RDS.Failure<PINEntryFailure, PINEntrySuccess>({
-                          errorType: "TooEarly"
+                          errorType: errorType
                         })
                       } as State
                     })
+                    tracker.recedeInFlow('assrock/v1', 'pin-submission-failure',{msisdn, pin})
                   }
                 }}
               })
@@ -107,6 +121,7 @@ export default <P extends HOCProps>(tracker: ITracker, Comp: React.ComponentType
                   })
                 } as State
               });
+              tracker.recedeInFlow('assrock/v1', 'msisdn-submission-failure',{msisdn, errorType: errorType || 'UnknwonError'})
             }
           },
           submitPIN: (_pin: string) =>
