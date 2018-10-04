@@ -2,102 +2,12 @@ import * as React from 'react'
 import './assets/css/styles.less'
 import mkTracker from '../../pacman/record'
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-import HOC, {initialState, HOCProps, MSISDNEntryFailure, MSISDNEntrySuccess, PINEntryFailure, PINEntrySuccess} from '../../clients/lp-api/HOC'
+import HOC, {initialState, mockedCompletedState, HOCProps, MSISDNEntryFailure, MSISDNEntrySuccess, PINEntryFailure, PINEntrySuccess, match} from '../../clients/lp-api/HOC'
 import * as RDS from "../../common-types/RemoteDataState";
-import { addLocaleData, IntlProvider, FormattedMessage, injectIntl } from "react-intl";
-import enLocaleData from "react-intl/locale-data/en";
-import elLocaleData from "react-intl/locale-data/el";
+import { IntlProvider, FormattedMessage, injectIntl } from "react-intl";
+import {translations, Translate} from './localization/index'
 
-const translations = {
-  "en": {
-      localeData: enLocaleData,
-      "check_if_according": "Check if according to your horoscope you are made for each other",
-      "what_is_your": "What is your gender?",
-      "sex": "Sex",
-      "male": "Male",
-      "female": "Female",
-      "start_»": "Start »",
-      "please_fill_in": "Please fill in the information below",
-      "name": "Name",
-      "date_of_birth:": "Date of birth:",
-      "day": "Day",
-      "month": "Month",
-      "year": "Year",
-      "check_your_compatibility": "Check your Compatibility!",
-      "classic_zodiac": "Classic Zodiac",
-      "chinese_horoscope": "Chinese Horoscope",
-      "calculating...": "Calculating...",
-      "your_compatibility_results": "Your compatibility results are now ready",
-      "please_enter_your": "Please enter your phone number to receive your access code.",
-      "phone_number:": "Phone Number:",
-      "see_your_result": "See your result",
-      "please_now_enter": "Please now enter the PIN code you received on your phone.",
-      "pin": "PIN",
-      "confirm_»": "Confirm »",
-      "95%": "95%",
-      "83%": "83%",
-      "75%": "75%",
-      "you_are_a": "You are a great couple! Or at least it is what you feel you are. The chemistry between you is very good, but there are some problems that you have to solve throughout the adventure you have together, but you are not sure what do you want at times. However, you are not willing to sacrifice your relationship. Don't forget that respect of personal preferences and good communication between you two are the key to a healthy, lasting and successful relationship. A very positive aspect is that you will never get bored of each other and that you can always count on each other in sensitive situations.",
-      "there_is_a": "There is a lot of respect between you two. If you add a little more excitement, the flame of passion would awaken more, and it is very likely that you will live the whole happy life together. Try to always maintain this flame and this respect that is only given by the mutual love you feel for each other, even though there are problems - they will be solved and will never affect your relationship in the long run.",
-      "never_formalize_a": "Never formalize a relationship just because you think you should do it. Everyone: your friends, your family and even people who are not so close, think that you are the perfect couple. The love in your relationship can grow and strengthen. It does not have to go too fast, give it time and experiences. It's time to relax and find out if your relationship is solid or only fleeting.",
-      "enter_a_valid": "Enter a valid phone number.",
-      "accept_the_terms": "Accept the terms and conditions.",
-      "accept_the": "Accept the",
-      "terms_and_conditions": "Terms and Conditions",
-      "this_code_is": "this code is your personal ID",
-      "please_enter_correct": "Please enter correct PIN",
-      "checking_the_subscription...": "Checking the subscription...",
-      "if_": "if  is not your phone number",
-      "click_here...": "Click here..."
-  },
-  "el": {
-      localeData: elLocaleData,
-      "check_if_according": "Ελέγξτε αν σύμφωνα με το ωροσκόπιό σας είστε φτιαγμένοι ο ένας για τον άλλο",
-      "what_is_your": "Ποιο είναι το φύλο σας;",
-      "sex": "Φύλο",
-      "male": "Άνδρας",
-      "female": "Γυναίκα",
-      "start_»": "Έναρξη »",
-      "please_fill_in": "Συμπληρώστε τις παρακάτω πληροφορίες",
-      "name": "Όνομα",
-      "date_of_birth:": "Ημερομηνία γέννησης:",
-      "day": "Ημέρα",
-      "month": "Μήνας",
-      "year": "Έτος",
-      "check_your_compatibility": "Ελέγξτε τη συμβατότητά σας!",
-      "classic_zodiac": "Κλασικά Ζώδια",
-      "chinese_horoscope": "Κινέζικο Ωροσκόπιο",
-      "calculating...": "Υπολογισμός...",
-      "your_compatibility_results": "Τα αποτελέσματα συμβατότητάς σας είναι τώρα έτοιμα",
-      "please_enter_your": "Εισαγάγετε τον αριθμό τηλεφώνου σας για να λάβετε τον κωδικό πρόσβασής σας.",
-      "phone_number:": "Αριθμός Τηλεφώνου:",
-      "see_your_result": "Δείτε το αποτέλεσμά σας",
-      "please_now_enter": "Εισαγάγετε τώρα τον κωδικό PIN που λάβατε στο τηλέφωνό σας.",
-      "pin": "PIN",
-      "confirm_»": "Επιβεβαίωση »",
-      "95%": "95%",
-      "83%": "83%",
-      "75%": "75%",
-      "you_are_a": "Είστε ένα υπέροχο ζευγάρι! Ή τουλάχιστον αυτό νιώθετε ότι είστε. Η χημεία μεταξύ σας είναι πολύ καλή, αλλά υπάρχουν κάποια προβλήματα που πρέπει να λύσετε στην περιπέτεια που περνάτε μαζί, αλλά δεν είστε σίγουροι τι θέλετε κατά καιρούς. Ωστόσο, δεν είστε διατεθειμένοι να θυσιάσετε τη σχέση σας. Μην ξεχνάτε ότι ο σεβασμός των προσωπικών προτιμήσεων και της καλής επικοινωνίας μεταξύ των δύο σας είναι το κλειδί για μια υγιή, σταθερή και επιτυχημένη σχέση. Μια πολύ θετική πτυχή είναι ότι ποτέ δεν θα βαρεθείτε ο ένας τον άλλον και ότι μπορείτε πάντα να υπολογίζετε ο ένας στον άλλο σε ευαίσθητες καταστάσεις.",
-      "there_is_a": "Υπάρχει πολύς σεβασμός μεταξύ των δυο σας. Εάν προσθέσετε λίγο περισσότερο ενθουσιασμό, η φλόγα του πάθους θα ξυπνήσει περισσότερο, και είναι πολύ πιθανό ότι θα ζήσετε μια ε��τυχισμένη ζωή μαζί. Προσπαθήστε πάντα να διατηρείτε αυτή τη φλόγα και τον σεβασμό που επιτυγχάνεται από την αμοιβαία αγάπη που αισθάνεστε ο ένας για τον άλλον, παρόλο που υπάρχουν προβλήματα - θα επιλυθούν και δεν θα επηρεάσουν ποτέ τη σχέση σας μακροπρόθεσμα.",
-      "never_formalize_a": "Ποτέ μην επισημοποιήσετε μια σχέση μόνο και μόνο επειδή νομίζετε ότι πρέπει να το κάνετε. Όλοι: οι φίλοι σας, η οικογένειά σας ακόμη και οι άνθρωποι που δεν είναι τόσο κοντά σας, νομίζουν ότι είστε το τέλειο ζευγάρι. Η αγάπη στη σχέση σας μπορεί να αυξηθεί και να ενισχυθεί. Δεν χρειάζεται να προχωρήσετε πολύ γρήγορα, δώστε χρόνο και απολαύστε εμπειρίες. Ήρθε η ώρα να χαλαρώσετε και να μάθετε εάν η σχέση σας είναι σταθερή ή κάτι φευγαλέο.",
-      "enter_a_valid": "Εισαγάγετε έναν έγκυρο αριθμό τηλεφώνου.",
-      "accept_the_terms": "Αποδεχτείτε τους όρους και τις προϋποθέσεις.",
-      "accept_the": "Απο��εχτείτε τους",
-      "terms_and_conditions": "Όρους και Προϋποθέσεις",
-      "this_code_is": "αυτός ο κωδικός είναι το προσωπικό σας ID",
-      "please_enter_correct": "Εισαγάγετε το σωστό PIN",
-      "checking_the_subscription...": "Έλεγχος της συνδρομής ...",
-      "if_": "αν   δεν είναι ο αριθμός τηλεφώνου σας",
-      "click_here...": "Κάντε κλικ ΕΔΩ..."
-  }
-}
-
-addLocaleData(enLocaleData);
-addLocaleData(elLocaleData);
-
-
-const tracker = mkTracker((typeof window != "undefined") ? window : null, 'xx', 'Unknown')
+const tracker = mkTracker((typeof window != "undefined") ? window : null, 'xx', 'love-horoscope')
 
 const ExampleTransition = ({
   key,
@@ -136,7 +46,7 @@ const Step0 = ({onEnd}) => (
   <div id="step0" className={"step center"}>
     <div className={"logo center"}></div>
     <div className={"text center font1"}><b><FormattedMessage id={"check_if_according"} defaultMessage={`Put your names to the test and see if you're meant to be!`} /> </b></div>
-    <div className={"text text2 center font2"}><FormattedMessage id="what_is_your" defaultMessage="What is your gender?"/></div>
+    <div className={"text text2 center font2"}><Translate id="what_is_your" /> </div>
 
     <div className={"genres center"}>
       <GenderSelector className="input-left font5" />
@@ -234,7 +144,7 @@ class Step2 extends React.PureComponent<{onEnd: () => void, timeout: number}> {
     return (
       <div className={"step center"} id="step2">
         <div className={"logo center"}></div>
-        <div className={"text center font11"}><b>Classic Zodiac</b></div>
+        <div className={"text center font11"}><b><FormattedMessage id="classic_zodiac" defaultMessage="Classic Zodiac!" /></b></div>
     
         <div className={"points points1 center"}>
           <div className={"point point1 empty"}>
@@ -254,7 +164,7 @@ class Step2 extends React.PureComponent<{onEnd: () => void, timeout: number}> {
           </div>
         </div>
     
-        <div className={"text text2 center font11"}><b>Chinese Horoscope</b></div>
+        <div className={"text text2 center font11"}><b><FormattedMessage id="chinese_horoscope" defaultMessage="Chinese Horoscope"/></b></div>
         <div className={"points points2 center"}>
           <div className={"point point1 empty"}>
             <div></div>
@@ -273,7 +183,7 @@ class Step2 extends React.PureComponent<{onEnd: () => void, timeout: number}> {
           </div>
         </div>
     
-        <div className={"text text3 center font11"}><b>Name</b></div>
+        <div className={"text text3 center font11"}><b><FormattedMessage id="name" defaultMessage="Name" /></b></div>
         <div className={"points points3 center"}>
           <div className={"point point1 empty"}>
             <div></div>
@@ -294,7 +204,7 @@ class Step2 extends React.PureComponent<{onEnd: () => void, timeout: number}> {
     
         <div className={"load font4"} onClick={onEnd}>
           <div className={"inner"}></div>
-          <div className={"txt"}>Calculating...</div>
+          <div className={"txt"}><FormattedMessage id="calculating..." defaultMessage="Calculating..." /></div>
         </div>
       </div>
     )
@@ -313,12 +223,12 @@ class MSISDNEntryStep extends React.PureComponent<{msisdn: string, rds: RDS.Remo
         <div className={"subs-cont center phone-section"}>
           <div className={"inner center"}>
             <div className={"text center font6"}>
-              Your compatibility is about to be revealed. Insert your mobile
-              phone number to receive your access code.
+              <FormattedMessage id="your_compatibility_results" defaultMessage="Your compatibility is about to be revealed." />
+              <FormattedMessage id="please_enter_your" defaultMessage="Insert your mobile phone number to receive your access code." />
             </div>
 
             <div className={"input-left font5"}>
-              <b>Mobile number:</b>
+              <b><FormattedMessage id="phone_number:" defaultMessage="Mobile number:" /></b>
               <div className={"star rotate-it"} />
               <div className={"input"} id="phone">
                 <div className={"input-in center"}>
@@ -343,7 +253,7 @@ class MSISDNEntryStep extends React.PureComponent<{msisdn: string, rds: RDS.Remo
           }
           <div className={"legal center font9"} />
           <div className={"bt font4 btphone"} onClick={() => this.props.onEnd(this.state.msisdn)}>
-            <div>Subscribe</div>
+            <div><FormattedMessage id="see_your_result" defaultMessage="Subscribe" /></div>
           </div>
         </div>
       </div>
@@ -362,10 +272,10 @@ class PINEntryStep extends React.PureComponent<{msisdn: string, rds: RDS.RemoteD
       <div className={"subs-cont center pin-section"}>
         <div className={"inner center"}>
 
-          <div className={"text center font6"}>Please, insert the pin sent to you phone.</div>
+          <div className={"text center font6"}><FormattedMessage id="please_now_enter" defaultMessage="Please, insert the pin sent to you phone." /></div>
 
           <div className={"input-center center font5"}>
-            <b>PIN</b>
+            <b><FormattedMessage id="pin" defaultMessage="PIN"/></b>
             <div className={"star rotate-it"}></div>
             <div className={"input"} id="pin">
               <div className={"input-in center"}><input type="tel" maxLength={5} value={this.state.pin} onChange={ev => this.setState({pin: ev.target.value})} /></div>
@@ -376,7 +286,7 @@ class PINEntryStep extends React.PureComponent<{msisdn: string, rds: RDS.RemoteD
 
         {
           RDS.WhenFailure(null, (err: PINEntryFailure) => <div className={"error_msg center font7"} id="pin_msg">{
-              err.errorType == "InvalidPIN" ? "Invalid PIN, try agian."
+              err.errorType == "InvalidPIN" ? <FormattedMessage id="please_enter_correct" defaultMessage="Invalid PIN, try agian." />
             : err.errorType == "UnknownError" ? "An unknown error occurred."
             : err.errorType == "TooEarly" ? "You must furst submit a mobile number!"
             : "Unknwon error"
@@ -399,7 +309,9 @@ class PINEntryStep extends React.PureComponent<{msisdn: string, rds: RDS.RemoteD
   }
 }
 
-const Step4 = () => (
+const Step4 = () => {
+  const rnd = Math.floor(Math.random() * 3)
+  return (
   <div className={"step success center"} id="step4">
     <div className={"logo center"}></div>
     <div className={"img-legal img-legal1"}></div>
@@ -410,30 +322,39 @@ const Step4 = () => (
     <div className={"text center font8"}>
       <div className={"star star-left"}></div>
       <div className={"star star-right"}></div>
-      <span className={"result1"}><b>95%</b></span>
-      <span className={"result2"}><b>83%</b></span>
-      <span className={"result3"}><b>75%</b></span>
+      <span className={"result1"}><b>{ Math.round(100 - (rnd + 1) * 5.5) }%</b></span>
     </div>
 
     <div className={"text-result center font6"}>
-      <span className={"text-result1"}>Did you expect a casual sex relationship? Your chemistry is surprising and very
-        rare. However there is only a physical attraction between you, without emotional connection. You can end up
-        as great friends once your carnal relationship ends. Both of you are too focused on yourself to make your
-        relationship work. Enjoy it while it lasts!</span>
-      <span className={"text-result2"}></span>
-      <span className={"text-result3"}></span>
+      <span className={"text-result1"}>{
+          rnd == 1 ? <Translate id="you_are_a" />
+        : rnd == 2 ? <Translate id="there_is_a" />
+        : <Translate id="there_is_a" />
+      }</span>
     </div>
     <div className={"legal-suc center font9 legal-success-default"}></div>
 
   </div>
-)
+)}
 
 
 class Root extends React.PureComponent<HOCProps>  {
   state = {
     step: 0,
     msisdn: "",
-    locale: "el"
+    locale: localStorage.getItem('locale') || 'el'
+  }
+  toggleLang() {
+    const {locale} = this.state
+    const newLocale = locale == 'el' ? 'en' : 'el'
+    this.setState({locale: newLocale});
+    localStorage.setItem('locale', newLocale)
+  }
+  componentDidUpdate(prevProps, prevState, snapshot)
+  {
+    if(prevState.step < this.state.step) {
+      tracker.advancedInPreFlow(`Step ${this.state.step}`)
+    }
   }
   render() {
     const step = this.state.step
@@ -451,26 +372,35 @@ class Root extends React.PureComponent<HOCProps>  {
       <div className={"main center"}>
         <div className={"box center"}>
           <TransitionGroup>
-            
             {
-                step === 0 ? <ExampleTransition key="step-0"><Step0 onEnd={() => this.setState({step: 1})} /></ExampleTransition>
+                step === 0 ? <ExampleTransition key="step-0"><Step0 onEnd={() => this.setState({step: 1}) } /></ExampleTransition>
               : step === 1 ? <ExampleTransition key="step-1"><Step1 onEnd={() => this.setState({step: 2})} /></ExampleTransition>
               : step === 2 ? <ExampleTransition key="step-2"><Step2 onEnd={() => this.setState({step: 3})} timeout={3000} /></ExampleTransition>
               : step === 3 ? 
-                  currentState.type == 'MSISDNEntry'
-                    ? <ExampleTransition key="step-3-msisdn"><MSISDNEntryStep msisdn={this.state.msisdn} rds={currentState.result} onEnd={
-                      msisdn => {
-                        this.setState({msisdn})
-                        this.props.actions.submitMSISDN(window, {host: 'm.mobiworld.biz', country: 'gr', handle: 'mobilearts', offer: 853}, msisdn)
-                      }
-                    } /></ExampleTransition>
-                    : <ExampleTransition key="step-3-pin"><PINEntryStep onEnd={ pin => this.props.actions.submitPIN(pin) } backToStart={() => this.props.actions.backToStart()} msisdn={this.state.msisdn} rds={currentState.result} /></ExampleTransition>
-              : step === 4 ? <ExampleTransition key="step-4"><Step4 /></ExampleTransition>
+                  match({
+                    msisdnEntry: rds => (
+                      <ExampleTransition key="step-3-msisdn">
+                        <MSISDNEntryStep msisdn={this.state.msisdn} rds={rds} onEnd={
+                          msisdn => {
+                            this.setState({msisdn})
+                            this.props.actions.submitMSISDN(window, {host: 'm.mobiworld.biz', country: 'gr', handle: 'mobilearts', offer: 853}, msisdn)
+                          }
+                        } />
+                      </ExampleTransition>),
+                    pinEntry: rds => (
+                      <ExampleTransition key="step-3-pin">
+                        <PINEntryStep onEnd={ pin => this.props.actions.submitPIN(pin) } backToStart={() => this.props.actions.backToStart()} msisdn={this.state.msisdn} rds={rds} />
+                      </ExampleTransition>
+                    ),
+                    completed: ({finalUrl}) => (
+                      <ExampleTransition key="step-4"><Step4 /></ExampleTransition>
+                    )
+                  })(currentState)
               : null
             }
-          
           </TransitionGroup>
         </div>
+        <button onClick={() => this.toggleLang()}>{this.state.locale == 'en' ? 'Greek' : 'English'}</button>
       </div>
     </div>
     </IntlProvider>

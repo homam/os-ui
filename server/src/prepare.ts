@@ -46,9 +46,11 @@ const getAndCachePreparedContentFromFileSystem = (() => {
 
 export default (rockmanId: CT.NTRockmanId, campaign: CampaignValue) => {
   const {country, page} = campaign
-  const pacman = {
+  const visitor = {
     rockmanId: CT.RockmanId.unwrap(rockmanId),
-    country: CT.Country.unwrap(country)
+    country: CT.Country.unwrap(country),
+    page: CT.HandleName.unwrap(page),
+    xaid: CT.AffiliateId.unwrap(campaign.affiliateInfo.affiliateId)
   }
   
   const { beforeBuff, afterBuff } = getAndCachePreparedContentFromFileSystem(CT.HandleName.unwrap(page));
@@ -56,7 +58,7 @@ export default (rockmanId: CT.NTRockmanId, campaign: CampaignValue) => {
   s.push(beforeBuff);
   s.push(
     `<script>window.pac_analytics={
-      visitor:${JSON.stringify(pacman)},
+      visitor:${JSON.stringify(visitor)},
       startTime: new Date().valueOf(),
       url: '/analytics'
     }</script>`

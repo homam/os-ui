@@ -11,9 +11,14 @@ interface Window {
   pac_analytics?: {
     visitor: {
       country: string,
-      rockmanId: string
+      rockmanId: string,
+      page: string,
+      xaid: string,
     },
     startTime: number,
     url: string
+  }
+  dataLayer: {
+    push: (...args) => void
   }
 }

@@ -14,4 +14,4 @@ export const encrypt = (i : number) => btoa(randomLetter() + bases.toBase64(i)).
 
 const padRight = s => (s.length % 4 !== 0 ? padRight(s + "=") : s);
 
-export const decrypt = (s : string) => bases.fromBase64(atob(padRight(s)).substr(1));
+export const decrypt = (s : string) : number => bases.fromBase64(atob(padRight(s)).substr(1));

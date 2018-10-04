@@ -21,6 +21,10 @@ export type State =
   | {
       type: "PINEntry";
       result: RDS.RemoteDataState<PINEntryFailure, PINEntrySuccess>;
+    }
+  | {
+      type: 'Completed';
+      result:PINEntrySuccess;
     };
 
 export type MSISDNEntryErrorTypes =
@@ -31,10 +35,11 @@ export type MSISDNEntryErrorTypes =
 export type PINEntryErrorTypes = "UnknownError" | "TooEarly" | "InvalidPIN";
 
 export const initialState : State = { type: "MSISDNEntry", result: RDS.NothingYet<MSISDNEntryFailure, MSISDNEntrySuccess>()}
-// export const initialState : State = { type: "PINEntry", result: RDS.Failure<PINEntryFailure, PINEntrySuccess>({errorType: 'InvalidPIN'})}
+export const mockedCompletedState : State = { type: "Completed", result: {finalUrl: 'https://www.yahoo.com/'} }
+// export const initialState : State = { type: "PINEntry", result: RDS.NothingYet<PINEntryFailure, PINEntrySuccess>()}
 
 export interface IActions {
-  submitMSISDN: (window: Window, { host, country, handle, offer }: IConfig, msisdn: string) => any,
+  submitMSISDN: (window: Window, config: IConfig, msisdn: string) => any,
   submitPIN: (pin: string) => any,
   backToStart: () => void
 }
@@ -43,6 +48,24 @@ export type HOCProps = {
   currentState: State;
   actions: IActions;
 };
+
+export function match<R>(
+  { msisdnEntry, pinEntry, completed }: 
+  {   msisdnEntry: (rds: RDS.RemoteDataState<MSISDNEntryFailure, MSISDNEntrySuccess>) => R
+    , pinEntry: (rds: RDS.RemoteDataState<PINEntryFailure, PINEntrySuccess>) => R 
+    , completed: (result: PINEntrySuccess) => R
+  }): (state: State) => R {
+  return state => {
+    switch (state.type) {
+      case 'MSISDNEntry':
+        return msisdnEntry(state.result)
+      case 'PINEntry':
+        return pinEntry(state.result)
+      case 'Completed':
+        return completed(state.result)
+    }
+  }
+}
 
 export default <P extends HOCProps>(tracker: ITracker, Comp: React.ComponentType<P>) => (
   initialState: State

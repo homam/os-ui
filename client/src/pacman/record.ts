@@ -20,7 +20,9 @@ export function recordImpression(
     window.pac_analytics = {
       visitor: {
         rockmanId,
-        country
+        country,
+        page,
+        xaid: queryString(window.location.search, 'xaid')
       },
       startTime: new Date().valueOf(),
       url
@@ -35,6 +37,8 @@ export function recordImpression(
   } else {
     console.info("No need to record an impression from client");
   }
+
+  return window.pac_analytics
 }
 
 export function recordEvent(
@@ -88,7 +92,11 @@ export default (
     var current_view = "Init";
 
     const url = !!window.pac_analytics ? window.pac_analytics.url : (queryString(window.location.search, 'pacman-server') || '/analytics')
-    recordImpression(window, url, country, page);
+
+    // recordImpression manipulates window object by adding pac_analytics
+    const pac_analytics = recordImpression(window, url, country, page);
+
+    window.dataLayer.push({'xaid': pac_analytics.visitor.xaid, country, page})
 
     return {
       viewChanged: (view: string) => {
@@ -108,19 +116,28 @@ export default (
         })
       },
       advancedInPreFlow: (label: string, args?: any) => {
+        const gaEvent = {category: "Pre-Flow", action: 'advance', label}
         recordEvent(window, url, current_view, {
-          category: "Pre-Flow", action: 'advance', label, args
+          ...gaEvent, args
         })
+        window.dataLayer.push({...gaEvent, event: 'gaEvent'})
+        // how to trigger a custom event on window object:
+        // const event = new CustomEvent('gaEvent', { detail: {category: 'Pre-Flow'} });
+        // window.dispatchEvent(event)
       },
       recedeInFlow: (flow: string, reason: string, args?: any) => {
+        const gaEvent = {category: "Flow", action: 'recede', label: `${flow}::${reason}`}
         recordEvent(window, url, current_view, {
-          category: "Flow", action: 'recede', label: `${flow}::${reason}`, args
-        })
+          ...gaEvent, args
+        });
+        window.dataLayer.push({...gaEvent, event: 'gaEvent'})
       },
       advancedInFlow: (flow: string, action: string, args?: any) => {
+        const gaEvent = {category: "Flow", action: `advance`, label: `${flow}::${action}`}
         recordEvent(window, url, current_view, {
-          category: "Flow", action: `advance`, label: `${flow}::${action}`, args
+          ...gaEvent, args
         })
+        window.dataLayer.push({...gaEvent, event: 'gaEvent'})
       }
     };
   }
