@@ -9,8 +9,6 @@ const devMode = true
 
 const page = process.env.page
 const noReact = "true" == process.env.noReact 
-const noCSSModules = "true" == process.env.noCSSModules 
-
 
 module.exports = {
   mode: 'development',
@@ -59,23 +57,54 @@ module.exports = {
       },
       {
         test: /\.styl$/,
-        use: [
-          'css-hot-loader',
-          'style-loader',
-          noCSSModules ? 'css-loader' : common.loaders["typings-for-css"],
-          common.loaders.postcss,
-          common.loaders.stylus,
-        ].filter(x => !!x)
+        oneOf: [{
+          resourceQuery: /^\?raw$/,
+          use: [
+            'css-hot-loader',
+            'style-loader',
+            'css-loader',
+            common.loaders.postcss,
+            common.loaders.stylus,
+          ]
+        }, {
+          use: [
+            'css-hot-loader',
+            'style-loader',
+            common.loaders["typings-for-css-camelCase"],
+            common.loaders.postcss,
+            common.loaders.stylus
+          ]
+        }]
       },
       {
         test: /\.(css|less)$/,
-        use: [
-          'css-hot-loader',
-          'style-loader',
-          noCSSModules ? 'css-loader' : common.loaders["typings-for-css"],
-          common.loaders.postcss,
-          common.loaders.less,
-        ].filter(x => !!x),
+        oneOf: [{
+          resourceQuery: /^\?raw$/,
+          use: [
+            'css-hot-loader',
+            'style-loader',
+            'css-loader',
+            common.loaders.postcss,
+            common.loaders.less,
+          ]
+        }, {
+          resourceQuery: /^\?dash-case$/,
+          use: [
+            'css-hot-loader',
+            'style-loader',
+            common.loaders["typings-for-css"],
+            common.loaders.postcss,
+            common.loaders.less,
+          ]
+        }, {
+          use: [
+            'css-hot-loader',
+            'style-loader',
+            common.loaders["typings-for-css-camelCase"],
+            common.loaders.postcss,
+            common.loaders.less,
+          ]
+        }]
       },
       common.modules.url,
     ],
@@ -94,10 +123,7 @@ module.exports = {
       title: process.env.page,
       template: "true" == process.env.html ? `../src/landing-pages/${page}/template.html` : '../webpack/template.html',
     }),
-    new webpack.DefinePlugin({
-      'process.env.api_root': JSON.stringify(process.env.api_root || ''),
-      'process.env.finance_email': JSON.stringify(process.env.finance_email || '')
-    })
+    common.plugins.define
   ],
   performance: { hints: false },
 }

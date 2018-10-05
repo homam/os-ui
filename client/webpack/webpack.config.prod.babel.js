@@ -9,7 +9,6 @@ const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin")
 const publicPath = ""
 
 const page = process.env.page
-const noCSSModules = "true" == process.env.noCSSModules 
 
 module.exports = {
   mode: 'production',
@@ -40,29 +39,50 @@ module.exports = {
       common.modules.ts,
       {
         test: /\.styl$/,
-        loaders: [
-          MiniCssExtractPlugin.loader,
-          // {
-          // loader: require.resolve('css-loader'),
-          // options: {
-          //   modules: true,
-          //   localIdentName: '[path][name]__[local]--[hash:base64:5]'
-          // }
-          // },
-          noCSSModules ? 'css-loader' : common.loaders["typings-for-css"],
-          common.loaders.postcss,
-          common.loaders.stylus,
-        ].filter(x => !!x),
+        oneOf: [{
+          resourceQuery: /^\?raw$/,
+          loaders: [
+            MiniCssExtractPlugin.loader,
+            // {
+            // loader: require.resolve('css-loader'),
+            // options: {
+            //   modules: true,
+            //   localIdentName: '[path][name]__[local]--[hash:base64:5]'
+            // }
+            // },
+            'css-loader',
+            common.loaders.postcss,
+            common.loaders.stylus,
+          ]
+        },
+        {
+          loaders: [
+            MiniCssExtractPlugin.loader,
+            common.loaders["typings-for-css-camelCase"],
+            common.loaders.postcss,
+            common.loaders.stylus,
+          ]
+        }]
       },
       {
         test: /\.(css|less)$/,
         exclude: /node_modules/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          noCSSModules ? 'css-loader' : common.loaders["typings-for-css"],
-          common.loaders.postcss,
-          common.loaders.less,
-        ].filter(x => !!x),
+        oneOf: [{
+          resourceQuery: /^\?raw$/,
+          use: [
+            MiniCssExtractPlugin.loader,
+            'css-loader',
+            common.loaders.postcss,
+            common.loaders.less,
+          ]
+        }, {
+          use: [
+            MiniCssExtractPlugin.loader,
+            common.loaders["typings-for-css-camelCase"],
+            common.loaders.postcss,
+            common.loaders.less,
+          ]
+        }]
       },
       common.modules.url,
     ],

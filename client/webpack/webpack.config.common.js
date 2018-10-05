@@ -36,17 +36,17 @@ const tsModule = {
   loader: 'ts-loader'
 }
 
-const typeScriptCSSLoader = {
+const mkTypeScriptCSSLoader = camelCase => ({
   loader: 'typings-for-css-modules-loader',
   options: {
     modules: true,
     namedExport: true,
     sourceMap: true,
     localIdentName: '[path][name]__[local]--[hash:base64:5]',
-    camelCase: true,
+    camelCase,
     importLoaders: 3,
   }
-}
+})
 
 const postCSSLoader = {
   loader: 'postcss-loader',
@@ -89,6 +89,7 @@ const resolve = {
 
 const definePlugin = new webpack.DefinePlugin({
   'process.env.NODE_ENV': JSON.stringify('production'),
+  'process.env.country': JSON.stringify(process.env.country || ''),
   // 'process.env.api_root': JSON.stringify(process.env.api_root || ''),
   // 'process.env.finance_email': JSON.stringify(process.env.finance_email || '')
 })
@@ -100,7 +101,8 @@ const modules = {
 }
 
 const loaders = {
-  'typings-for-css': typeScriptCSSLoader,
+  'typings-for-css': mkTypeScriptCSSLoader(false),
+  'typings-for-css-camelCase': mkTypeScriptCSSLoader(true),
   'postcss': postCSSLoader,
   'less': lessLoader,
   'stylus': stylusLoader,

@@ -63,5 +63,5 @@ noReact=true page=love-horoskop html=true yarn dev
 Development Without CSS Modules:
 
 ```
-noCSSModules=true page=love-horoskop html=true yarn dev
+page=love-horoskop html=true yarn dev
 ```

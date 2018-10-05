@@ -1,11 +1,12 @@
 import * as React from 'react'
-import './assets/css/styles.less'
+import './assets/css/styles.less?raw'
 import mkTracker from '../../pacman/record'
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import HOC, {initialState, mockedCompletedState, HOCProps, MSISDNEntryFailure, MSISDNEntrySuccess, PINEntryFailure, PINEntrySuccess, match} from '../../clients/lp-api/HOC'
 import * as RDS from "../../common-types/RemoteDataState";
 import { IntlProvider, FormattedMessage, injectIntl } from "react-intl";
 import {translations, Translate} from './localization/index'
+import Disclaimer from '../../legal-components/Disclaimer';
 
 const tracker = mkTracker((typeof window != "undefined") ? window : null, 'xx', 'love-horoscope')
 
@@ -342,7 +343,7 @@ class Root extends React.PureComponent<HOCProps>  {
   state = {
     step: 0,
     msisdn: "",
-    locale: localStorage.getItem('locale') || 'el'
+    locale: typeof window != 'undefined' ?  window.localStorage.getItem('locale') || 'el' : 'el'
   }
   toggleLang() {
     const {locale} = this.state
@@ -367,7 +368,7 @@ class Root extends React.PureComponent<HOCProps>  {
         <div className={"header fontHeader"}></div>
       </div>
       <div className={"footer fontFooter modal-legal-content"}>
-        <div className={"footer fontFooter"}></div>
+        <div className={"footer fontFooter"}><Disclaimer /></div>
       </div>
       <div className={"main center"}>
         <div className={"box center"}>
@@ -375,7 +376,7 @@ class Root extends React.PureComponent<HOCProps>  {
             {
                 step === 0 ? <ExampleTransition key="step-0"><Step0 onEnd={() => this.setState({step: 1}) } /></ExampleTransition>
               : step === 1 ? <ExampleTransition key="step-1"><Step1 onEnd={() => this.setState({step: 2})} /></ExampleTransition>
-              : step === 2 ? <ExampleTransition key="step-2"><Step2 onEnd={() => this.setState({step: 3})} timeout={3000} /></ExampleTransition>
+              : step === 2 ? <ExampleTransition key="step-2"><Step2 onEnd={() => this.setState({step: 3})} timeout={5000} /></ExampleTransition>
               : step === 3 ? 
                   match({
                     msisdnEntry: rds => (
@@ -400,7 +401,7 @@ class Root extends React.PureComponent<HOCProps>  {
             }
           </TransitionGroup>
         </div>
-        <button onClick={() => this.toggleLang()}>{this.state.locale == 'en' ? 'Greek' : 'English'}</button>
+        {/* <button onClick={() => this.toggleLang()}>{this.state.locale == 'en' ? 'Greek' : 'English'}</button> */}
       </div>
     </div>
     </IntlProvider>
