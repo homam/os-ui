@@ -50,7 +50,8 @@ export default (rockmanId: CT.NTRockmanId, campaign: CampaignValue) => {
     rockmanId: CT.RockmanId.unwrap(rockmanId),
     country: CT.Country.unwrap(country),
     page: CT.HandleName.unwrap(page),
-    xaid: CT.AffiliateId.unwrap(campaign.affiliateInfo.affiliateId)
+    xaid: CT.AffiliateId.unwrap(campaign.affiliateInfo.affiliateId),
+    offer: CT.OfferId.unwrap(campaign.affiliateInfo.offerId)
   }
   
   const { beforeBuff, afterBuff } = getAndCachePreparedContentFromFileSystem(CT.HandleName.unwrap(page));

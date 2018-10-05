@@ -14,9 +14,11 @@ interface Window {
       rockmanId: string,
       page: string,
       xaid: string,
+      offer: number
     },
     startTime: number,
-    url: string
+    url: string,
+    queryString: (key: string) => string
   }
   dataLayer: {
     push: (...args) => void

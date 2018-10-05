@@ -8,7 +8,7 @@ import { IntlProvider, FormattedMessage, injectIntl } from "react-intl";
 import {translations, Translate} from './localization/index'
 import Disclaimer from '../../legal-components/Disclaimer';
 
-const tracker = mkTracker((typeof window != "undefined") ? window : null, 'xx', 'love-horoscope')
+const tracker = mkTracker((typeof window != "undefined") ? window : null, process.env.country, 'love-horoscope')
 
 const ExampleTransition = ({
   key,
@@ -384,7 +384,7 @@ class Root extends React.PureComponent<HOCProps>  {
                         <MSISDNEntryStep msisdn={this.state.msisdn} rds={rds} onEnd={
                           msisdn => {
                             this.setState({msisdn})
-                            this.props.actions.submitMSISDN(window, {host: 'm.mobiworld.biz', country: 'gr', handle: 'mobilearts', offer: 853}, msisdn)
+                            this.props.actions.submitMSISDN(window, {host: 'm.mobiworld.biz', country: 'gr', handle: 'mobilearts', offer: window.pac_analytics.visitor.offer}, msisdn)
                           }
                         } />
                       </ExampleTransition>),

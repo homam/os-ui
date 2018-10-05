@@ -1,8 +1,8 @@
 import mkSenddBeacon from "./sendBeacon";
 import uuid from "uuid/v1";
-import queryString1 from './queryString'
+import queryString from './queryString'
 
-export const queryString = queryString1
+export {queryString}
 
 export function recordImpression(
   window: Window,
@@ -22,9 +22,11 @@ export function recordImpression(
         rockmanId,
         country,
         page,
-        xaid: queryString(window.location.search, 'xaid')
+        xaid: queryString(window.location.search, 'xaid'),
+        offer: parseInt(queryString(window.location.search, 'offer')) || 0,
       },
       startTime: new Date().valueOf(),
+      queryString: key => queryString(window.location.search, key),
       url
     };
 
@@ -36,6 +38,7 @@ export function recordImpression(
     });
   } else {
     console.info("No need to record an impression from client");
+    window.pac_analytics.queryString = key => queryString(window.location.search, key)
   }
 
   return window.pac_analytics
@@ -96,7 +99,7 @@ export default (
     // recordImpression manipulates window object by adding pac_analytics
     const pac_analytics = recordImpression(window, url, country, page);
 
-    window.dataLayer.push({'xaid': pac_analytics.visitor.xaid, country, page})
+    window.dataLayer.push({'xaid': pac_analytics.visitor.xaid, country, page, offer: pac_analytics.visitor.offer})
 
     return {
       viewChanged: (view: string) => {
