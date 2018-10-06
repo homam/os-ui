@@ -24,6 +24,7 @@ Files in this directory:
 
 * `page=first yarn dev`
 * `page=ipad-desktop yarn dev`
+* `country=gr page=love-horoscope yarn dev`
   
 ### Create a New Page
 
