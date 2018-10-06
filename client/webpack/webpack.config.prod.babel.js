@@ -6,7 +6,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const InterpolateHtmlPlugin = require('./InterpolateHtmlPlugin');
 const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin")
 
-const {page, country, service, publicPath} = process.env
+const {page, country, service} = process.env
+const publicPath = process.env.publicPath || ''
 
 module.exports = {
   mode: 'production',
