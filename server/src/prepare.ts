@@ -3,6 +3,21 @@ import { Readable } from "stream";
 import * as path from "path";
 import * as CT from "./common-types";
 import {CampaignValue} from "./campaigns/types"
+import * as request from 'request-promise-native'
+
+const evnPagesRoot = process.env.root;
+const pagesRootPath = evnPagesRoot || path.join(__dirname, `/../../client/dist/`); // by default we assume we are running the server from the main git repo
+const getPageContent = async (page: string, country: string) : Promise<string> => {
+  console.log(`Fetching...`, pagesRootPath + `static/${page}/html/index_${country}.ssr.html`)
+  if(pagesRootPath.startsWith('http')) {
+    return request.get(pagesRootPath + `static/${page}/html/index_${country}.ssr.html`)
+  } else {
+    return fs.readFileSync(
+      path.join(pagesRootPath, `static/${page}/html/index_${country}.ssr.html`),
+      "utf8"
+    );
+  }
+}
 
 type PreparedContent = {
   beforeBuff: Buffer;
@@ -28,15 +43,12 @@ const prepareContent = (() => {
 
 const getAndCachePreparedContentFromFileSystem = (() => {
   const cache = {};
-  return function(page: string): PreparedContent {
+  return async function(page: string, country: string): Promise<PreparedContent> {
     const cachedItem = cache[page];
     if (!!cachedItem) {
       return cachedItem;
     } else {
-      const content = fs.readFileSync(
-        path.join(__dirname, "/../../client/dist/static/love-horoscope/html/index.ssr.html"),
-        "utf8"
-      );
+      const content = await getPageContent(page, country);
       const item = prepareContent(content);
       cache[page] = item;
       return item;
@@ -44,7 +56,7 @@ const getAndCachePreparedContentFromFileSystem = (() => {
   };
 })();
 
-export default (rockmanId: CT.NTRockmanId, campaign: CampaignValue) => {
+export default async (rockmanId: CT.NTRockmanId, campaign: CampaignValue) => {
   const {country, page} = campaign
   const visitor = {
     rockmanId: CT.RockmanId.unwrap(rockmanId),
@@ -54,7 +66,7 @@ export default (rockmanId: CT.NTRockmanId, campaign: CampaignValue) => {
     offer: CT.OfferId.unwrap(campaign.affiliateInfo.offerId)
   }
   
-  const { beforeBuff, afterBuff } = getAndCachePreparedContentFromFileSystem(CT.HandleName.unwrap(page));
+  const { beforeBuff, afterBuff } = await getAndCachePreparedContentFromFileSystem(CT.HandleName.unwrap(page), CT.Country.unwrap(country));
   const s = new Readable();
   s.push(beforeBuff);
   s.push(

@@ -5,25 +5,31 @@
   "main": "index.js",
   "scripts": {
     "main": "yarn dev",
-    "dev-server": "nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' --exec 'ts-node' src/index.ts"  
+    "prestart": "./node_modules/.bin/tsc -p tsconfig.json --outDir .dist",
+    "start": "pm2 start",
+    "dev-server": "nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' --exec 'ts-node' src/index.ts"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/pg": "^7.4.10",
+    "@types/request-promise-native": "^1.0.15",
     "base62": "^2.0.0",
     "bases": "^0.2.1",
     "express": "^4.16.3",
     "fp-ts": "^1.8.0",
     "newtype-ts": "^0.2.1",
+    "node-cache": "^4.2.0",
     "pg": "^7.4.3",
     "pg-native": "^3.0.0",
     "request": "^2.88.0",
+    "request-promise-native": "^1.0.5",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
     "@types/express": "^4.16.0",
     "@types/node": "^10.5.7",
+    "@types/node-cache": "^4.1.1",
+    "@types/pg": "^7.4.10",
     "@types/request": "^2.47.1",
     "@types/uuid": "^3.4.4",
     "glob": "^7.1.2",

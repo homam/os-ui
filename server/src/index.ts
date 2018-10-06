@@ -3,8 +3,8 @@ import prepare from "./prepare";
 import uuid from "uuid/v1";
 import * as CT from "./common-types";
 import { decrypt } from "./campaigns/campaigid";
-import * as campaigns from "./campaigns/map";
-import { addImpression, mkPool, run_, addEvent } from "./analytics/db";
+import  campaigns, {invalidCampaign} from "./campaigns/map";
+import { addImpression, mkPool, run_, run, addEvent } from "./analytics/db";
 import { CampaignValue } from "./campaigns/types";
 import bodyParser from "body-parser";
 import { left } from "fp-ts/lib/Either";
@@ -59,11 +59,11 @@ app.post(
   }
 );
 
-app.get("/:encCampaignId", (req: express.Request, res: express.Response) => {
+app.get("/:encCampaignId", async (req: express.Request, res: express.Response) => {
   const rockmanId = CT.RockmanId.wrap(uuid().replace(/-/g, ""));
   const userId = CT.userIdFromRockmanId(rockmanId);
   const campaignId = decrypt(req.params.encCampaignId);
-  const campaign = campaigns.find(campaignId);
+  const campaign = await run(pool, client => campaigns(client, campaignId))
 
   const recordImpressionEvent = async (cmp: CampaignValue) =>
     run_(pool, client =>
@@ -83,13 +83,19 @@ app.get("/:encCampaignId", (req: express.Request, res: express.Response) => {
 
   campaign.fold(
     () => {
-      recordImpressionEvent(campaigns.invalidCampaign);
+      recordImpressionEvent(invalidCampaign);
       res.status(404);
       res.end("Campaign is not valid");
     },
-    campaign => () => {
+    campaign => async () => {
       recordImpressionEvent(campaign);
-      prepare(rockmanId, campaign).pipe(res);
+      try {
+        const stream = await prepare(rockmanId, campaign);
+        stream.pipe(res)
+      } catch(ex) {
+        res.status(500);
+        res.send({error: ex.toString()})
+      }
     }
   )();
 }); 

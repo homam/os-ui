@@ -1,0 +1,10 @@
+module.exports = {
+  apps : [{
+    name: "os-ui-server",
+    script: ".dist/index.js",
+    env: {
+      NODE_ENV: "production",
+      root: "http://mobirun.s3.amazonaws.com/os-ui/",
+    }
+  }]
+}
