@@ -13,6 +13,6 @@
     "lib": ["es5", "es2015", "dom", "scripthost"], 
     "typeRoots": ["node_modules/@types", "src/@types"],
   },
-  "include": ["src/**/*", "ssr/**/*"],
+  "include": ["src/**/*", "interactive-tools/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts"]
 }

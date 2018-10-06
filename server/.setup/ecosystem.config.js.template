@@ -5,6 +5,7 @@ module.exports = {
     env: {
       NODE_ENV: "production",
       root: "http://mobirun.s3.amazonaws.com/os-ui/",
+      osui_connection_string: "postgresql://localhost/os-ui",
     }
   }]
 }

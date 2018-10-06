@@ -3,25 +3,26 @@ import prepare from "./prepare";
 import uuid from "uuid/v1";
 import * as CT from "./common-types";
 import { decrypt } from "./campaigns/campaigid";
-import  campaigns, {invalidCampaign} from "./campaigns/map";
+import campaigns, { invalidCampaign, testCampaign} from "./campaigns/map";
 import { addImpression, mkPool, run_, run, addEvent } from "./analytics/db";
 import { CampaignValue } from "./campaigns/types";
 import bodyParser from "body-parser";
 import { left } from "fp-ts/lib/Either";
+import { Option, some } from "fp-ts/lib/Option";
 
 const app = express();
-const pool = mkPool("postgresql://localhost/os-ui");
+const pool = mkPool(process.env.osui_connection_string);
 
 app.post(
   "/analytics/impression/:encCampaignId",
-  bodyParser.json({type: _ => true}),
+  bodyParser.json({ type: _ => true }),
   (req: express.Request, res: express.Response) => {
-    const {rockmanId, userId, page, originalUrl} = req.body
+    const { rockmanId, userId, page, originalUrl } = req.body;
     const campaignId = decrypt(req.params.encCampaignId);
     run_(pool, client =>
       addImpression(
         client,
-        'Client',
+        "Client",
         rockmanId,
         userId,
         campaignId,
@@ -31,16 +32,25 @@ app.post(
         CT.Country.wrap("xx"),
         req.headers
       )
-    )
-    res.end()
+    );
+    res.end();
   }
 );
 
 app.post(
   "/analytics/event",
-  bodyParser.json({type: _ => true}),
+  bodyParser.json({ type: _ => true }),
   (req: express.Request, res: express.Response) => {
-    const { rockmanId, category, action, label, value, args, relt, view } = req.body;
+    const {
+      rockmanId,
+      category,
+      action,
+      label,
+      value,
+      args,
+      relt,
+      view
+    } = req.body;
     run_(pool, client =>
       addEvent(
         client,
@@ -59,17 +69,19 @@ app.post(
   }
 );
 
-app.get("/:encCampaignId", async (req: express.Request, res: express.Response) => {
+async function serveCampaign(
+  campaign: Option<CampaignValue>,
+  req: express.Request,
+  res: express.Response
+) {
   const rockmanId = CT.RockmanId.wrap(uuid().replace(/-/g, ""));
   const userId = CT.userIdFromRockmanId(rockmanId);
-  const campaignId = decrypt(req.params.encCampaignId);
-  const campaign = await run(pool, client => campaigns(client, campaignId))
 
   const recordImpressionEvent = async (cmp: CampaignValue) =>
     run_(pool, client =>
       addImpression(
         client,
-        'Server',
+        "Server",
         rockmanId,
         userId,
         cmp.id,
@@ -91,14 +103,26 @@ app.get("/:encCampaignId", async (req: express.Request, res: express.Response) =
       recordImpressionEvent(campaign);
       try {
         const stream = await prepare(rockmanId, campaign);
-        stream.pipe(res)
-      } catch(ex) {
+        stream.pipe(res);
+      } catch (ex) {
         res.status(500);
-        res.send({error: ex.toString()})
+        res.send({ error: ex.toString() });
       }
     }
   )();
-}); 
+}
+
+app.get('/preview', (req, res) => serveCampaign(some(testCampaign(req.query.page, req.query.country)), req, res))
+
+app.get(
+  "/:encCampaignId",
+  async (req: express.Request, res: express.Response) => {
+    const campaignId = decrypt(req.params.encCampaignId);
+    const campaign = await run(pool, client => campaigns(client, campaignId));
+
+    return serveCampaign(campaign, req, res);
+  }
+);
 
 app.use(
   "/static",

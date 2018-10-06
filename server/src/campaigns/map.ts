@@ -39,3 +39,10 @@ export const invalidCampaign = {
   country: CT.Country.wrap('xx'),
   affiliateInfo: { offerId: CT.OfferId.wrap(1), affiliateId: CT.AffiliateId.wrap('UNKNWON')} as CT.AffiliateInfo
 }
+
+export const testCampaign = (page, country) => ({
+  id: 4096,
+  page: CT.HandleName.wrap(page),
+  country: CT.Country.wrap(country),
+  affiliateInfo: { offerId: CT.OfferId.wrap(1), affiliateId: CT.AffiliateId.wrap('SAM')} as CT.AffiliateInfo
+})

@@ -4,7 +4,7 @@ const path = require('path');
 const chalk = require('chalk');
 const fs = require('fs')
 
-const getPagePath = name => path.resolve(__dirname, `../src/landing-pages/${name}`)
+const getPagePath = name => path.resolve(__dirname, `../../src/landing-pages/${name}`)
 
 const P = async f => {
   const { code, stderr, stdout } = f()
@@ -35,7 +35,7 @@ const shLog = {
 
 
 async function cdWrap(dir, f) {
-  const pwd = shell.pwd()
+  const pwd = await P(() => shell.pwd())
   await shLog.cd(dir)
   await f()
   return await P(() => shell.cd(pwd)) 
