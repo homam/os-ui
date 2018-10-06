@@ -89,7 +89,7 @@ async function serveCampaign(
         cmp.id,
         cmp.page,
         CT.Url.wrap(req.originalUrl),
-        CT.IP.wrap(req.ip),
+        CT.IP.wrap(req.headers['x-forwarded-for'] as string || req.ip),
         CT.Country.wrap("xx"),
         req.headers
       )
