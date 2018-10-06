@@ -13,6 +13,8 @@ import { Option, some } from "fp-ts/lib/Option";
 const app = express();
 const pool = mkPool(process.env.osui_connection_string);
 
+app.use('/favicon.ico', express.static('assets/favicon.ico'));
+
 app.post(
   "/analytics/impression/:encCampaignId",
   bodyParser.json({ type: _ => true }),
@@ -112,7 +114,7 @@ async function serveCampaign(
   )();
 }
 
-app.get('/preview', (req, res) => serveCampaign(some(testCampaign(req.query.page, req.query.country)), req, res))
+app.get('/preview', (req, res) => serveCampaign(some(testCampaign(req.query.page, req.query.country)), req, res));
 
 app.get(
   "/:encCampaignId",
