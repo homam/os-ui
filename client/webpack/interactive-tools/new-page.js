@@ -44,10 +44,10 @@ async function cdWrap(dir, f) {
 const createDir = async pageName => shLog.mkDir(getPagePath(pageName))
 
 const cp = async (pageName, template, fileName) =>
-  cdWrap(getPagePath(pageName), () => shLog.cp(`../../landing-pages-templates/${template}/${fileName}`, fileName))
+  cdWrap(getPagePath(pageName), () => shLog.cp(`../${pageName.split('/').map(s => '../').join('')}landing-pages-templates/${template}/${fileName}`, fileName))
 
 const lnFile = async (pageName, template, fileName) =>
-  cdWrap(getPagePath(pageName), () => shLog.lns(`../../landing-pages-templates/${template}/${fileName}`, fileName))
+  cdWrap(getPagePath(pageName), () => shLog.lns(`../${pageName.split('/').map(s => '../').join('')}landing-pages-templates/${template}/${fileName}`, fileName))
 
 async function main() {
   const { pageName, confirmPageName } = await inquirer.prompt([
@@ -69,6 +69,12 @@ async function main() {
     await lnFile(pageName, 'scaffolding', 'index.tsx')
     await lnFile(pageName, 'scaffolding', 'index.ssr.ts')
     await cp(pageName, 'scaffolding', 'Root.tsx')
+    await createDir(`${pageName}/localization`)
+    await createDir(`${pageName}/localization/translations`)
+    await lnFile(`${pageName}/localization`, 'scaffolding/localization', 'index.tsx')
+    await cp(`${pageName}/localization`, 'scaffolding/localization', 'addLocaleData.ts')
+    await cp(`${pageName}/localization/translations`, 'scaffolding/localization/translations', 'en.json')
+
 
     console.log('✅', chalk.bgGreen.yellowBright.bold('  Done!'))
     console.log('run: ')

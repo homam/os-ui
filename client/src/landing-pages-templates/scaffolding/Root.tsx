@@ -1,16 +1,19 @@
 import * as React from 'react'
 import mkTracker from '../../pacman/record'
+import {TranslationProvider, Translate} from './localization/index'
 
 const tracker = mkTracker((typeof window != "undefined") ? window : null, 'xx', 'Unknown')
 
 class Root extends React.PureComponent  {
-  constructor(props) {
-    super(props)
+  state = {
+    locale: 'en'
   }
   render() {
-    return <div>
-      Hello World!
-    </div>
+    return <TranslationProvider locale={this.state.locale}>
+      <div>
+        Hello World!
+      </div>
+    </TranslationProvider>
   }
 }
 

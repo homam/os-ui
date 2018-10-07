@@ -4,8 +4,7 @@ import mkTracker from '../../pacman/record'
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import HOC, {initialState, mockedCompletedState, HOCProps, MSISDNEntryFailure, MSISDNEntrySuccess, PINEntryFailure, PINEntrySuccess, match} from '../../clients/lp-api/HOC'
 import * as RDS from "../../common-types/RemoteDataState";
-import { IntlProvider, FormattedMessage, injectIntl } from "react-intl";
-import {translations, Translate} from './localization/index'
+import {TranslationProvider, Translate, FormattedMessage, injectIntl} from './localization/index'
 import Disclaimer from '../../legal-components/Disclaimer';
 
 const tracker = mkTracker((typeof window != "undefined") ? window : null, process.env.country, 'love-horoscope')
@@ -360,9 +359,8 @@ class Root extends React.PureComponent<HOCProps>  {
   render() {
     const step = this.state.step
     const currentState = this.props.currentState
-    return <IntlProvider
+    return <TranslationProvider
         locale={this.state.locale}
-        messages={translations[this.state.locale]}
     ><div>
       <div id="legals">
         <div className={"header fontHeader"}></div>
@@ -404,7 +402,7 @@ class Root extends React.PureComponent<HOCProps>  {
         {/* <button onClick={() => this.toggleLang()}>{this.state.locale == 'en' ? 'Greek' : 'English'}</button> */}
       </div>
     </div>
-    </IntlProvider>
+    </TranslationProvider>
   }
 }
 

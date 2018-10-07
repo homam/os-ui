@@ -1,0 +1,14 @@
+{
+  "en": {
+    "name": "English",
+    "countries": null
+  },
+  "ar": {
+    "name": "Arabic",
+    "countries": ["ae", "sa", "kw", "om", "jo", "bh", "eg", "iq"]
+  },
+  "el": {
+    "name": "Greek",
+    "countries": ["gr"]
+  }
+}
