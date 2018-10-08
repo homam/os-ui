@@ -1,0 +1,157 @@
+import * as React from "react";
+import mkTracker from "../../pacman/record";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { TranslationProvider, Translate } from "./localization/index";
+import HOC, {
+  initialState,
+  mockedCompletedState,
+  HOCProps,
+  MSISDNEntryFailure,
+  MSISDNEntrySuccess,
+  PINEntryFailure,
+  PINEntrySuccess,
+  match
+} from "../../clients/lp-api/HOC";
+import * as RDS from "../../common-types/RemoteDataState";
+
+const tracker = mkTracker(
+  typeof window != "undefined" ? window : null,
+  "xx",
+  "Unknown"
+);
+
+const SimpleOpacityTransition = ({
+  key,
+  ...props
+}: {
+  key: string;
+  children: JSX.Element;
+  props?: any[];
+}) => (
+  <CSSTransition
+    timeout={{ enter: 100, exit: 300 }}
+    classNames={{
+      enter: "simple-opacity-enter",
+      enterActive: "simple-opacity-enter-active",
+      exit: "simple-opacity-exit",
+      exitActive: "simple-opacity-exit-active"
+    }}
+    key={key}
+    {...props}
+  />
+);
+
+class MSISDNEntryStep extends React.PureComponent<{
+  msisdn: string;
+  rds: RDS.RemoteDataState<MSISDNEntryFailure, MSISDNEntrySuccess>;
+  onEnd: (msisdn: string) => void;
+}> {
+  state = {
+    msisdn: this.props.msisdn
+  };
+  render() {
+    return (
+      <form
+        onSubmit={ev => {
+          ev.preventDefault();
+          this.props.onEnd(this.state.msisdn);
+        }}
+      >
+        <input
+          placeholder="Phone number"
+          value={this.state.msisdn}
+          onChange={ev => this.setState({ msisdn: ev.target.value })}
+        />
+      </form>
+    );
+  }
+}
+
+class PINEntryStep extends React.PureComponent<{
+  msisdn: string;
+  rds: RDS.RemoteDataState<PINEntryFailure, PINEntrySuccess>;
+  backToStart: () => void;
+  onEnd: (pin: string) => void;
+}> {
+  state = {
+    pin: "356"
+  };
+  render() {
+    return (
+      <form
+        onSubmit={ev => {
+          ev.preventDefault();
+          this.props.onEnd(this.state.pin);
+        }}
+      >
+        <input
+          placeholder="PIN"
+          value={this.state.pin}
+          onChange={ev => this.setState({ pin: ev.target.value })}
+        />
+      </form>
+    );
+  }
+}
+
+const TQStep = () => <div>TQ 3</div>;
+
+class Root extends React.PureComponent<HOCProps> {
+  state = {
+    locale: "en",
+    msisdn: "",
+  };
+  render() {
+    return (
+      <div>
+        {/* <TQStep /> */}
+      <TranslationProvider locale={this.state.locale}>
+        <TransitionGroup>
+          {match({
+            msisdnEntry: rds => (
+              <SimpleOpacityTransition key="step-3-msisdn">
+                <MSISDNEntryStep
+                  msisdn={this.state.msisdn}
+                  rds={rds}
+                  onEnd={msisdn => {
+                    this.setState({ msisdn });
+                    this.props.actions.submitMSISDN(
+                      window,
+                      {
+                        host: "m.mobiworld.biz",
+                        country: "gr",
+                        handle: "mobilearts",
+                        offer: window.pac_analytics.visitor.offer
+                      },
+                      msisdn
+                    );
+                  }}
+                />
+              </SimpleOpacityTransition>
+            ),
+            pinEntry: rds => (
+              <SimpleOpacityTransition key="step-3-pin">
+                <PINEntryStep
+                  onEnd={pin => this.props.actions.submitPIN(pin)}
+                  backToStart={() => this.props.actions.backToStart()}
+                  msisdn={this.state.msisdn}
+                  rds={rds}
+                />
+              </SimpleOpacityTransition>
+            ),
+            completed: ({ finalUrl }) => (
+              <SimpleOpacityTransition key="step-4">
+                <TQStep />
+              </SimpleOpacityTransition>
+            )
+          })(this.props.currentState)}
+        </TransitionGroup>
+      </TranslationProvider>
+      </div>
+    );
+  }
+}
+export default (props: any) => {
+  const H = HOC(tracker, Root)(initialState);
+  return <H {...props} />;
+};
