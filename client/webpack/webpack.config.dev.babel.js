@@ -12,14 +12,11 @@ const noReact = "true" == process.env.noReact
 
 module.exports = {
   mode: 'development',
-  entry: (noReact ? [] : ['react-hot-loader/patch']).concat([
-    'webpack-dev-server/client',
-    'webpack/hot/only-dev-server',
-    // resolve(__dirname, 'hotReload'),
-    !!page && page != "default"  
-      ? resolve(__dirname, `../src/landing-pages/${page}/hotReload`) 
-      : resolve(__dirname, 'hotReload'),
-  ]),
+  entry: {
+    main: [!!page && page != "default"  
+    ? resolve(__dirname, `../src/landing-pages/${page}/main.tsx`) 
+    : resolve(__dirname, 'hotReload'),]
+  },
   externals: common.externals,
   output: {
     filename: 'bundle.js',
@@ -50,11 +47,6 @@ module.exports = {
     rules: [
       common.modules.purs,
       common.modules.ts,
-      {
-        test: /\.(js|jsx)$/,
-        include: [resolve(__dirname, '../src'), resolve(__dirname)],
-        use: 'babel-loader',
-      },
       {
         test: /\.styl$/,
         oneOf: [{
