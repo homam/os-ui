@@ -13,9 +13,14 @@ const noReact = "true" == process.env.noReact
 module.exports = {
   mode: 'development',
   entry: {
-    main: [!!page && page != "default"  
-    ? resolve(__dirname, `../src/landing-pages/${page}/main.tsx`) 
-    : resolve(__dirname, 'hotReload'),]
+    main: (noReact ? [] : ['react-hot-loader/patch']).concat([
+      'webpack-dev-server/client',
+      'webpack/hot/only-dev-server',
+      // resolve(__dirname, 'hotReload'),
+      !!page && page != "default"  
+        ? resolve(__dirname, `../src/landing-pages/${page}/hotReload`) 
+        : resolve(__dirname, 'hotReload'),
+    ])
   },
   externals: common.externals,
   output: {

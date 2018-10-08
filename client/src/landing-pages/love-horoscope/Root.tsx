@@ -406,7 +406,4 @@ class Root extends React.PureComponent<HOCProps>  {
   }
 }
 
-export default (props: any) => {
-  const H = HOC(tracker, Root)(initialState);
-  return <H {...props} />;
-};
+export default HOC(tracker, Root)(initialState);
