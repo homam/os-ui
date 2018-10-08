@@ -33,7 +33,8 @@ const tsModule = {
   test: /\.(js|jsx|ts|tsx)$/,
   include: [path.resolve(__dirname, '../src')],
   exclude: /node_modules/,
-  loader: 'ts-loader'
+  // loader: 'ts-loader',
+  loader: 'babel-loader'
 }
 
 const mkTypeScriptCSSLoader = camelCase => ({
@@ -88,7 +89,7 @@ const resolve = {
 }
 
 const definePlugin = new webpack.DefinePlugin({
-  'process.env.NODE_ENV': JSON.stringify('production'),
+  'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
   'process.env.country': JSON.stringify(process.env.country || ''),
   // 'process.env.api_root': JSON.stringify(process.env.api_root || ''),
   // 'process.env.finance_email': JSON.stringify(process.env.finance_email || '')
