@@ -3,7 +3,7 @@ import prepare from "./prepare";
 import uuid from "uuid/v1";
 import * as CT from "./common-types";
 import { decrypt } from "./campaigns/campaigid";
-import campaigns, { invalidCampaign, testCampaign} from "./campaigns/map";
+import campaigns, { invalidCampaign, testCampaign, normalizeCampaignId} from "./campaigns/map";
 import { addImpression, mkPool, run_, run, addEvent } from "./analytics/db";
 import { CampaignValue } from "./campaigns/types";
 import bodyParser from "body-parser";
@@ -18,9 +18,9 @@ app.use('/favicon.ico', express.static('assets/favicon.ico'));
 app.post(
   "/analytics/impression/:encCampaignId",
   bodyParser.json({ type: _ => true }),
-  (req: express.Request, res: express.Response) => {
+  async (req: express.Request, res: express.Response) => {
     const { rockmanId, userId, page, originalUrl } = req.body;
-    const campaignId = decrypt(req.params.encCampaignId);
+    const campaignId = normalizeCampaignId(decrypt(req.params.encCampaignId));
     run_(pool, client =>
       addImpression(
         client,

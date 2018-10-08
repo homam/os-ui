@@ -5,8 +5,10 @@ import NodeCache from 'node-cache'
 import * as PG from "pg";
 const campaignsCache = new NodeCache( { stdTTL: 100, checkperiod: 120 } );
 
+export const normalizeCampaignId = paddedCampaignId => paddedCampaignId - 4095
+
 export default async function getCampaign(client: PG.PoolClient, paddedCampaignId: number) : Promise<Option<CampaignValue>> {
-  const campaignId = paddedCampaignId - 4095
+  const campaignId = normalizeCampaignId(paddedCampaignId);
   const campaign = campaignsCache.get(campaignId)
   if(campaign != undefined) {
     return campaign as Option<CampaignValue>
