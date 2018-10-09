@@ -94,6 +94,9 @@ export function chargeAndWait1(msisdn: string, message: string, price: number) {
     });
 }
 
+export type TolaFailure = TS.TolaErrors<string>
+export type TolaSuccess = TS.TolaSuccessResult
+
 export type TolaRDS = RDS.RemoteDataState<
   TS.TolaErrors<string>,
   TS.TolaSuccessResult

@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as RDS from "../../common-types/RemoteDataState";
-import HOC, {ITolaProps} from "../../tola/TolaHOC";
+import HOC, {ITolaProps, TolaRDS} from "../../tola/TolaHOC";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import Counter from "./components/Counter";
 import Timer from "./components/Timer";

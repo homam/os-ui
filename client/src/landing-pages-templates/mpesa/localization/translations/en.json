@@ -1,0 +1,10 @@
+{
+  "UnknownError": "An unknown error occurred.",
+  "if_not_your_mobile": "If {phone} is not your mobile number,",
+  "click_here_to_change_your_number": "Click here to change your phone number.",
+  "enter_your_mpesa_pin": "You will receive a PIN request from M-pesa in a few moment. Please enter your M-pesa PIN to continue",
+  "FailChargeResponseReceived": "It seems you have entered an incorrect mobile number. Please make sure your number is correct and you have an active M-pesa account.",
+  "FailLodgementNotificationReceived": "An error occurred. Please make sure that you have a valid M-pesa account.",
+  "FailDisbursementNotificationReceived": "It seems you did not complete the registration process. Please try again.",
+  "Timeout": "If you have not received a M-pesa PIN request yet, please double check your number and try again."
+}

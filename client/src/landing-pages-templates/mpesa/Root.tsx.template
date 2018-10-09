@@ -1,0 +1,98 @@
+
+
+
+import * as React from "react";
+import mkTracker from "../../pacman/record";
+import { TranslationProvider, Translate } from "./localization/index";
+import HOC, {ITolaProps, MatchSuccess, TolaRDS, TolaFailure, initialState} from "../../tola/TolaHOC";
+import * as RDS from "../../common-types/RemoteDataState";
+import { SimpleOpacityTransition, TransitionGroup, simpleOpacityTransitionStyles } from "../../common-components/simple-opacity-transition";
+
+const tracker = mkTracker(
+  typeof window != "undefined" ? window : null,
+  "xx",
+  "Unknown" //TODO: replace Unknown with your page's name
+);
+
+class MSISDNEntryStep extends React.PureComponent<{
+  msisdn: string;
+  rds: TolaRDS;
+  onEnd: (msisdn: string) => void;
+}> {
+  state = {
+    msisdn: this.props.msisdn
+  };
+  render() {
+    return (
+      <form
+        onSubmit={ev => {
+          ev.preventDefault();
+          this.props.onEnd(this.state.msisdn);
+        }}
+      >
+      <div>
+        <input
+          placeholder="Phone number"
+          value={this.state.msisdn}
+          onChange={ev => this.setState({ msisdn: ev.target.value })}
+        />
+        <button type="submit" disabled={RDS.IsLoading(this.props.rds)}>OK</button>
+        </div>
+        <div>
+        {
+            RDS.WhenLoading(null, () => <Translate id="enter_your_mpesa_pin" />)(this.props.rds)
+          }
+        </div>
+        <div>
+          {
+            RDS.WhenFailure(null, (err : TolaFailure) => <Translate id={err.type} />)(this.props.rds)
+          }
+        </div>
+      </form>
+    );
+  }
+}
+
+
+const TQStep = () => <div>
+  <h3>Thank you!</h3>
+</div>;
+
+class Root extends React.PureComponent<ITolaProps> {
+  state = {
+    locale: "en",
+    msisdn: "",
+  };
+  render() {
+    return (
+      <div>
+        <TranslationProvider locale={this.state.locale}>
+          <TransitionGroup className={simpleOpacityTransitionStyles.group}>
+            {
+              MatchSuccess({
+                otherwise: (rds) => (
+                  <SimpleOpacityTransition key="msisdnEntry">
+                    <MSISDNEntryStep
+                      msisdn={this.state.msisdn}
+                      rds={rds}
+                      onEnd={msisdn => {
+                        this.setState({ msisdn });
+                        this.props.actions.chargeAndWait(msisdn, 'PAY_NOW', 10);
+                      }}
+                    />
+                  </SimpleOpacityTransition>
+                ),
+                success: () => (
+                  <SimpleOpacityTransition key="completed">
+                    <TQStep />
+                  </SimpleOpacityTransition>
+                )
+              })(this.props.currentState)
+            }
+          </TransitionGroup>
+        </TranslationProvider>
+      </div>
+    );
+  }
+}
+export default HOC(tracker, Root)(initialState);

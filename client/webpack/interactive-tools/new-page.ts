@@ -3,6 +3,8 @@ import * as shell from 'shelljs';
 import path from 'path';
 import chalk from 'chalk';
 import fs, { mkdir } from 'fs';
+import dedent from 'dedent-js'
+import R from 'ramda'
 
 const getPagePath = name => path.resolve(__dirname, `../../src/landing-pages/${name}`)
 const getTemplatePath = name => path.resolve(__dirname, `../../src/landing-pages-templates/${name}`)
@@ -64,63 +66,99 @@ const cpRAllFiles = async (pageName, template, dir: string) =>
 const lnFile = async (pageName, template, fileName) =>
   cdWrap(getPagePath(pageName), () => shLog.lns(`../${pageName.split('/').map(s => '../').join('')}landing-pages-templates/${template}/${fileName}`, fileName))
 
+const mergeTranslationJSONFiles = async (pageName, locale, newFile) : Promise<object> => {
+  const currentFile = path.resolve(getPagePath(pageName), `localization/translations/${locale}.json`)
+  let currentContent = '{}'
+  try {
+    currentContent = fs.readFileSync(currentFile, 'utf8');
+  } catch(ex) {
+    // eat it!
+  }
+  const current = JSON.parse(currentContent);
+  const newContent = R.merge(current, require(newFile))
+  fs.writeFileSync(currentFile, JSON.stringify(newContent, null, 2), 'utf8')
+  return require(currentFile)
+} 
 async function main() {
-  const { pageName, confirmPageName } = await inquirer.prompt([
+  const { pageName } = await inquirer.prompt([
     {
       type: 'input', name: 'pageName', message: 'Name your page:', validate: name =>
           !name                            ? 'Name is mandatory'
         : fs.existsSync(getPagePath(name)) ? 'This landing page already exist!'
         : true
-    },
-    { type: 'confirm', name: 'confirmPageName', message: ({ pageName }) => `Are you sure you want to create ${pageName}?` }
-  ]) as {pageName: string, confirmPageName: boolean};
-
-  if (!confirmPageName) {
-    return main()
-  } else {
-
-    const {template} = await inquirer.prompt([
-      {
-        type: "list",
-        name: "template",
-        message: "Select a template",
-        choices: [
-          {
-            name: 'assrock/v1 (For PIN and MO flows depending on Bupper.)',
-            value: 'assrock',
-            checked: true
-          },
-          {
-            name: 'Just give me the basics',
-            value: 'basic'
-          }
-        ]
-      }]) as {template : "assrock" | "basic"}
-    
-    if(template == "assrock" || template == "basic") {
-      await createDir(pageName);
-      await lnFile(pageName, 'scaffolding', 'hotReload.js')
-      await lnFile(pageName, 'scaffolding', 'index.tsx')
-      await lnFile(pageName, 'scaffolding', 'index.ssr.ts')
-      await cp(pageName, 'scaffolding', 'Root.tsx')
-      await createDir(`${pageName}/localization`)
-      await createDir(`${pageName}/localization/translations`)
-      await lnFile(`${pageName}/localization`, 'scaffolding/localization', 'index.tsx')
-      await cp(`${pageName}/localization`, 'scaffolding/localization', 'addLocaleData.ts')
-      await cp(`${pageName}/localization/translations`, 'scaffolding/localization/translations', 'en.json')
-    } 
-    if(template == "assrock") {
-      await cp(pageName, 'assrock-v1', 'Root.tsx.template', 'Root.tsx')
-      // await cpRAllFiles(pageName, 'scaffolding', 'assets/styles')
     }
+  ]) as {pageName: string};
 
+  const {template} = await inquirer.prompt([
+    {
+      type: "list",
+      name: "template",
+      message: "Select a template",
+      choices: [
+        {
+          name: 'assrock/v1 (For PIN and MO flows depending on Bupper.)',
+          value: 'assrock',
+          checked: true
+        },
+        {
+          name: "M-pesa",
+          value: "mpesa"
+        },
+        {
+          name: 'Just give me the basics',
+          value: 'basic'
+        }
+      ]
+    }]) as {template : "assrock" | "basic" | "mpesa"}
 
-    console.log('✅', chalk.bgGreen.yellowBright.bold('  Done!'))
-    console.log('run: ')
-    console.log(`page=${pageName} yarn dev`)
+  const {confirm} = await inquirer.prompt([
+    { 
+      type: 'confirm', 
+      name: 'confirm', 
+      message: () => 
+        dedent`Are you sure you want to create 
+                  Page: ${pageName}
+                  With Template: ${template}?` 
+    }
+  ]) as {confirm: boolean}
 
-    return null
+  if(!confirm)
+    return main();
+  
+  await createDir(pageName);
+  await lnFile(pageName, 'scaffolding', 'hotReload.js')
+  await lnFile(pageName, 'scaffolding', 'index.tsx')
+  await lnFile(pageName, 'scaffolding', 'index.ssr.ts')
+  await cp(pageName, 'scaffolding', 'Root.tsx')
+  await createDir(`${pageName}/localization`)
+  await createDir(`${pageName}/localization/translations`)
+  await lnFile(`${pageName}/localization`, 'scaffolding/localization', 'index.tsx')
+  await cp(`${pageName}/localization`, 'scaffolding/localization', 'addLocaleData.ts')
+  await cp(`${pageName}/localization/translations`, 'scaffolding/localization/translations', 'en.json')
+
+  if(template == "assrock") {
+    await cp(pageName, 'assrock-v1', 'Root.tsx.template', 'Root.tsx')
+    // await cpRAllFiles(pageName, 'scaffolding', 'assets/styles')
   }
+  if(template == "mpesa") {
+    await cp(pageName, 'mpesa', 'Root.tsx.template', 'Root.tsx')
+    await mergeTranslationJSONFiles(pageName, 'en', path.resolve(getTemplatePath('mpesa'), 'localization/translations/en.json'))
+    // await cpRAllFiles(pageName, 'scaffolding', 'assets/styles')
+  }
+
+
+  console.log('✅', chalk.bgGreen.yellowBright.bold('  Done!'))
+  console.log(dedent`
+    Your page is ready to be develpped.
+    To start preview and live module replacement, run: \n`)
+  if(template == "mpesa") {
+    console.log(`NODE_ENV=development country=ke page=${pageName} yarn dev`)
+  } else {
+    console.log(`NODE_ENV=development country=gr page=${pageName} yarn dev`)
+  }
+
+  return null
+
 
 }
 
