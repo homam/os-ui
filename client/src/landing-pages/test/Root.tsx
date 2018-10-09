@@ -1,8 +1,6 @@
 import * as React from "react";
-import simpleOpacityTransitionStyles from './assets/styles/simple-opacity-transition.less'
 import mkTracker from "../../pacman/record";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
-import { TranslationProvider, Translate, FormattedMessage } from "./localization/index";
+import { TranslationProvider, Translate } from "./localization/index";
 import HOC, {
   initialState,
   mockedCompletedState,
@@ -14,32 +12,12 @@ import HOC, {
   match
 } from "../../clients/lp-api/HOC";
 import * as RDS from "../../common-types/RemoteDataState";
+import { SimpleOpacityTransition, TransitionGroup, simpleOpacityTransitionStyles } from "../../common-components/simple-opacity-transition";
 
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
   "xx",
   "Unknown" //TODO: replace Unknown with your page's name
-);
-
-const SimpleOpacityTransition = ({
-  key,
-  ...props
-}: {
-  key: string;
-  children: JSX.Element;
-  props?: any[];
-}) => (
-  <CSSTransition
-    timeout={{ enter: 100, exit: 300 }}
-    classNames={{
-      enter: simpleOpacityTransitionStyles.enter,
-      enterActive: simpleOpacityTransitionStyles.enterActive,
-      exit: simpleOpacityTransitionStyles.exit,
-      exitActive: simpleOpacityTransitionStyles.exitActive
-    }}
-    key={key}
-    {...props}
-  />
 );
 
 class MSISDNEntryStep extends React.PureComponent<{

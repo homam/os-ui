@@ -111,8 +111,7 @@ async function main() {
     } 
     if(template == "assrock") {
       await cp(pageName, 'assrock-v1', 'Root.tsx.template', 'Root.tsx')
-      // await mkDirP(pageName, 'assets/styles');
-      await cpRAllFiles(pageName, 'scaffolding', 'assets/styles')
+      // await cpRAllFiles(pageName, 'scaffolding', 'assets/styles')
     }
 
 

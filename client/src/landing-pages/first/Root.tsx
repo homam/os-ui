@@ -336,7 +336,4 @@ class Root extends React.Component<ITolaProps> {
   }
 }
 
-export default (props: any) => {
-  const H = HOC(tracker, Root)(RDS.NothingYet());
-  return <H {...props} />;
-};
+export default HOC(tracker, Root)(RDS.NothingYet());
