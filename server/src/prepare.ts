@@ -43,9 +43,9 @@ const prepareContent = (() => {
 
 const getAndCachePreparedContentFromFileSystem = (() => {
   const cache = {};
-  return async function(page: string, country: string): Promise<PreparedContent> {
+  return async function(page: string, country: string, skipCache: boolean): Promise<PreparedContent> {
     const cachedItem = cache[page];
-    if (!!cachedItem) {
+    if (!skipCache && !!cachedItem) {
       return cachedItem;
     } else {
       const content = await getPageContent(page, country);
@@ -56,7 +56,7 @@ const getAndCachePreparedContentFromFileSystem = (() => {
   };
 })();
 
-export default async (rockmanId: CT.NTRockmanId, campaign: CampaignValue) => {
+export default async (rockmanId: CT.NTRockmanId, campaign: CampaignValue, skipCache: boolean) => {
   const {country, page} = campaign
   const visitor = {
     rockmanId: CT.RockmanId.unwrap(rockmanId),
@@ -66,7 +66,7 @@ export default async (rockmanId: CT.NTRockmanId, campaign: CampaignValue) => {
     offer: CT.OfferId.unwrap(campaign.affiliateInfo.offerId)
   }
   
-  const { beforeBuff, afterBuff } = await getAndCachePreparedContentFromFileSystem(CT.HandleName.unwrap(page), CT.Country.unwrap(country));
+  const { beforeBuff, afterBuff } = await getAndCachePreparedContentFromFileSystem(CT.HandleName.unwrap(page), CT.Country.unwrap(country), skipCache);
   const s = new Readable();
   s.push(beforeBuff);
   s.push(

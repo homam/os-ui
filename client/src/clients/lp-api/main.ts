@@ -1,5 +1,5 @@
 export type IConfig = {
-  host: string, country: string, handle: string, offer: number
+  host?: string, country?: string, handle?: string, offer: number
 }
 
 export type IResult = {
@@ -10,12 +10,37 @@ export type IResult = {
   submissionId?: string
 }
 
-export default async function submitMSISDN(window: Window, { host, country, handle, offer }: IConfig, msisdn: string): Promise<(pin: string) => Promise<string>> {
+const defaultConfig = (offer: number) : IConfig => {
+  switch(process.env.country) {
+    case "gr":
+      return {
+        offer,
+        host: 'm.mobiworld.biz',
+        country: 'gr',
+        handle: 'mobilearts'
+      }
+    case "iq": {
+      return {
+        offer,
+        host: 'n.mobfun.co',
+        country: 'iq',
+        handle: 'mobile-arts'
+      }
+    }
+    default:
+      throw `'country' environment variable is either missing or has an unsupported value (${process.env.country}). This is necesary for defaultConfig(offer).`
+  }
+}
+
+export default async function submitMSISDN(window: Window, maybeConfig: IConfig, msisdn: string): Promise<(pin: string) => Promise<string>> {
+  const config = !maybeConfig ? {offer: window.pac_analytics.visitor.offer} : maybeConfig
+  const { host, country, handle, offer } = !config.host || !config.handle || !config.country ? defaultConfig(config.offer) : config
   const search = window.location.search.substr(1)
   const result : IResult = await fetch(`https://lp-api.sam-media.com/v1/submit_msisdn/${host}/${country}/${handle}/${offer}/?msisdn=${msisdn}&${search}`).then(x => x.json())
   if(!result.isValid) {
     const error = new Error(`${result.errorType}:\n${result.errorText}`)
     error['type'] = result.errorType;
+    console.error(error)
     throw error
   } else {
     return async function submitPIN(pin: string) : Promise<string> {

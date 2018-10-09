@@ -14,6 +14,7 @@ const app = express();
 const pool = mkPool(process.env.osui_connection_string);
 
 app.use('/favicon.ico', express.static('assets/favicon.ico'));
+app.get('/robots.txt', (_, res) => res.end('User-agent: *\nDisallow: /'))
 
 app.post(
   "/analytics/impression/:encCampaignId",
@@ -73,6 +74,7 @@ app.post(
 
 async function serveCampaign(
   campaign: Option<CampaignValue>,
+  skipCache: boolean,
   req: express.Request,
   res: express.Response
 ) {
@@ -104,7 +106,7 @@ async function serveCampaign(
     campaign => async () => {
       recordImpressionEvent(campaign);
       try {
-        const stream = await prepare(rockmanId, campaign);
+        const stream = await prepare(rockmanId, campaign, skipCache);
         stream.pipe(res);
       } catch (ex) {
         res.status(500);
@@ -114,7 +116,7 @@ async function serveCampaign(
   )();
 }
 
-app.get('/preview', (req, res) => serveCampaign(some(testCampaign(req.query.page, req.query.country)), req, res));
+app.get('/preview', (req, res) => serveCampaign(some(testCampaign(req.query.page, req.query.country)), true, req, res));
 
 app.get(
   "/:encCampaignId",
@@ -122,7 +124,7 @@ app.get(
     const campaignId = decrypt(req.params.encCampaignId);
     const campaign = await run(pool, client => campaigns(client, campaignId));
 
-    return serveCampaign(campaign, req, res);
+    return serveCampaign(campaign, false, req, res);
   }
 );
 

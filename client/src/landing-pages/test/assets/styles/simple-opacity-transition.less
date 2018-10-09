@@ -1,0 +1,27 @@
+.group  {
+  position: relative;
+  width: 100%;
+}
+
+.group  > * {
+	position: absolute;
+	left: 0; right: 0; bottom: 0; top: 0;
+}
+
+.enter {
+  opacity: 0.01;
+}
+
+.enter.enterAactive {
+  opacity: 1;
+  transition: opacity 100ms ease-in;
+}
+
+.exit {
+  opacity: 1;
+}
+
+.exit.exitActive {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}

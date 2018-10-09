@@ -65,3 +65,7 @@ export const WhenFailure = <E, D, R>(d: R, r: (err: E) => R) => (
 export const WhenLoading = <D, R>(d: R, r: () => R) => (
   s: RemoteDataState<any, D>
 ) => (s.type == "Loading" ? r() : d);
+
+export const MatchFailure = <E, D, R>({failure, otherwise} : {otherwise: () => R, failure: (err: E) => R}) => (
+  s: RemoteDataState<E, D>
+) => (s.type == "Failure" ? failure(s.error) : otherwise());

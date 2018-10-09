@@ -75,6 +75,14 @@ module.exports = {
             common.loaders.less,
           ]
         }, {
+          resourceQuery: /^\?dash-case$/,
+          use: [
+            MiniCssExtractPlugin.loader,
+            common.loaders["typings-for-css"],
+            common.loaders.postcss,
+            common.loaders.less,
+          ]
+        }, {
           use: [
             MiniCssExtractPlugin.loader,
             common.loaders["typings-for-css-camelCase"],

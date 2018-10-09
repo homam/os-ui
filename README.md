@@ -34,6 +34,14 @@ yarn new-page
 
 And answer the questions.
 
+### Release a Page
+
+```
+publicPath=//d2b4jmuffp1l21.cloudfront.net/os-ui country=ke page=first yarn build-and-upload-page
+```
+
+You must have `osui_aws_access_key_id` environment variable.
+
 ### Generate Server-side rendering
 
 Inside `client`,
