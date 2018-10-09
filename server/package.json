@@ -6,6 +6,7 @@
   "scripts": {
     "main": "yarn dev",
     "prestart": "./node_modules/.bin/tsc -p tsconfig.json --outDir .dist",
+    "build": "yarn prestart",
     "start": "pm2 start",
     "dev-server": "nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' --exec 'ts-node' src/index.ts"
   },

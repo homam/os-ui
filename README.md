@@ -8,8 +8,16 @@
 `cd client`
 
 1. `yarn install`
-2. `page=first yarn dev` and open [http://127.0.0.1:8080/?xcid=Z0JBQQ](http://127.0.0.1:8080/?xcid=Z0JBQQ)
+2. `country=ke page=first yarn dev` and open [http://127.0.0.1:8080/?xcid=Z0JBQQ](http://127.0.0.1:8080/?xcid=Z0JBQQ)
 
+### Create a new Page
+
+```
+cd client
+yarn new-page
+```
+
+And follow the instructions.
 
 ### Code Structure
 
@@ -20,37 +28,50 @@ Files in this directory:
 * `Root.tsx` is the main component for the landing page
 * `index.tsx`, `index.ssr.tsx`, `hotReload.tsx` are boilerplates, don't worry about them.
 
-### Available Pages:
+### Update locales of a page
 
-* `page=first yarn dev`
-* `page=ipad-desktop yarn dev`
+```
+yarn update-page-locales
+```
+
+### Available Pages
+
+* `country=ke page=first yarn dev`
+* `country=ke page=ipad-desktop yarn dev`
 * `country=gr page=love-horoscope yarn dev`
-  
-### Create a New Page
-
-```
-yarn new-page
-```
-
-And answer the questions.
 
 ### Release a Page
 
 ```
-publicPath=//d2b4jmuffp1l21.cloudfront.net/os-ui country=ke page=first yarn build-and-upload-page
+country=ke page=first yarn build-and-upload-page
 ```
 
 You must have `osui_aws_access_key_id` environment variable.
+
+The command will display the preview link of the page.
+
+---
+### Documentation
+
+#### Re-usable components:
+
+`yarn docz:dev` will give you a URL like (http://localhost:3000), open this URL on your browser.
+
+#### System Design Decisions
+
+* [Why Static Web Pages?](docs/StaticWebPages.md)
+* [Why Webpack?](docs/Webpack.md)
+* [Why TypeScript?](docs/TypeScript.md)
+
+---
+
+The following topics are related to advanced features that are not fully tested. 
 
 ### Generate Server-side rendering
 
 Inside `client`,
 
 1. `page=first yarn build:ssr:all`
-
-### Documentation
-
-`yarn docz:dev` will give you a URL like (http://localhost:3000), open this URL on your browser.
 
 ## Server development
 

@@ -14,7 +14,7 @@
     "react-live": "yarn dev:init && webpack-dev-server --config .react-live/webpack.config.react-live.babel.js",
     "new-page": "ts-node webpack/interactive-tools/new-page.ts",
     "update-page-locales": "ts-node webpack/interactive-tools/update-locales.ts",
-    "build-and-upload-page": "yarn build:ssr:all && ts-node webpack/dev-utils/upload-to-s3.ts",
+    "build-and-upload-page": "publicPath=//d2b4jmuffp1l21.cloudfront.net/os-ui yarn build:ssr:all && ts-node webpack/dev-utils/upload-to-s3.ts; echo \"http://c1.ouisys.com/preview/?country=$country&page=$page\"",
     "docz:dev": "docz dev",
     "docz:build": "docz build"
   },
