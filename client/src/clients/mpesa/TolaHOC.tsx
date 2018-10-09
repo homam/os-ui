@@ -1,7 +1,7 @@
 import * as React from "react"
 import * as TAPI from "./TolaAPI"
-import * as RDS from "../common-types/RemoteDataState"
-import { ITracker } from "../pacman/record";
+import * as RDS from "../../common-types/RemoteDataState"
+import { ITracker } from "../../pacman/record";
 
 export type TolaRDS = TAPI.TolaRDS
 export type ITolaProps = {

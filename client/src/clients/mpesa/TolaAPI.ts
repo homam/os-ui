@@ -1,5 +1,5 @@
 import * as TS from "./TolaState";
-import * as RDS from "../common-types/RemoteDataState";
+import * as RDS from "../../common-types/RemoteDataState";
 
 class TolaApiError extends Error {
   constructor(message: string, errorType: TS.TolaErrorTypes, details: any) {
