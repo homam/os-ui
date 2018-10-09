@@ -12,7 +12,7 @@
     "main": "yarn dev",
     "build:ssr:all": "(page=$page; export page; rm -rf dist/ && yarn build && yarn build:ssr  && yarn build:ssr:server)",
     "react-live": "yarn dev:init && webpack-dev-server --config .react-live/webpack.config.react-live.babel.js",
-    "new-page": "node webpack/interactive-tools/new-page.js",
+    "new-page": "ts-node webpack/interactive-tools/new-page.ts",
     "update-page-locales": "ts-node webpack/interactive-tools/update-locales.ts",
     "build-and-upload-page": "yarn build:ssr:all && ts-node webpack/dev-utils/upload-to-s3.ts",
     "docz:dev": "docz dev",
