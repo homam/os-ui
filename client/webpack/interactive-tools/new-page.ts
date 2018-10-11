@@ -149,7 +149,7 @@ async function main() {
 
   console.log('✅', chalk.bgGreen.yellowBright.bold('  Done!'))
   console.log(dedent`
-    Your page is ready to be develpped.
+    Your page is ready to be developed.
     To start preview and live module replacement, run: \n`)
   if(template == "mpesa") {
     console.log(`NODE_ENV=development country=ke page=${pageName} yarn dev`)

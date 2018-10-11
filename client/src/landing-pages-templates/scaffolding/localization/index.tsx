@@ -10,8 +10,6 @@ import * as React from 'react'
 import { injectIntl, IntlProvider, FormattedMessage } from "react-intl";
 import * as translations from './addLocaleData'
 
-injectIntl(({intl}) => intl.formatMessage())
-
 type KeysOfType<A extends object, B> = { [K in keyof A]: A[K] extends B ? K : never }[keyof A]
 export type TranslationKeys = KeysOfType<typeof translations.en, string>
 

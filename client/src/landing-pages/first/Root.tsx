@@ -1,12 +1,12 @@
 import * as React from "react";
 import * as RDS from "../../common-types/RemoteDataState";
-import HOC, {ITolaProps, TolaRDS} from "../../clients/mpesa/TolaHOC"
+import HOC, {ITolaProps, TolaRDS, TolaFailure, match} from "../../clients/mpesa/TolaHOC"
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import Counter from "./components/Counter";
 import Timer from "./components/Timer";
 import MSISDNInput from "./components/MSISDNInput";
 import * as styles from "./assets/css/styles.less";
-import { addLocaleData, IntlProvider } from "react-intl";
+import { addLocaleData, IntlProvider, FormattedMessage } from "react-intl";
 import enLocaleData from "react-intl/locale-data/en";
 import nlLocaleData from "react-intl/locale-data/nl";
 
@@ -21,16 +21,20 @@ const imgPhone = require("./assets/img/phone.png");
 const imgDownload = require("./assets/img/download.png");
 
 const translations = {
-  nl: {
-    localeData: nlLocaleData,
-    "msisdn.number_is_invalid": `Het lijkt erop dat {msisdn, number} ongeldig is`
-  },
   en: {
-    localeData: enLocaleData
+    localeData: enLocaleData,
+    "UnknownError": "An unknown error occurred.",
+    "if_not_your_mobile": "If {phone} is not your mobile number,",
+    "click_here_to_change_your_number": "Click here to change your phone number.",
+    "you_will_receive_a_pin": "You will receive a PIN request from M-pesa in a few moment.",
+    "enter_your_mpesa_pin": "Please enter your M-pesa PIN to continue.",
+    "FailChargeResponseReceived": "It seems you have entered an incorrect mobile number. Please make sure your number is correct and you have an active M-pesa account.",
+    "FailLodgementNotificationReceived": "An error occurred. Please make sure that you have a valid M-pesa account.",
+    "FailDisbursementNotificationReceived": "It seems you did not complete the registration process. Please try again.",
+    "Timeout": "If you have not received a M-pesa PIN request yet, please double check your number and try again."
   }
 };
 addLocaleData(enLocaleData);
-addLocaleData(nlLocaleData);
 
 const ExampleTransition = ({
   key,
@@ -183,7 +187,7 @@ const NumberEntry = ({
   onChange,
   chargeAndWait,
   error
-}) => (
+}: {error: TolaFailure, currentState: TolaRDS, msisdn: string, onChange, chargeAndWait: any}) => (
   <div>
     <p>
       To start cleaning,
@@ -208,7 +212,7 @@ const NumberEntry = ({
         id="already-subscribed-error"
         data-x-role="already-subscribed-error"
       >
-        You are already subscribed to this service!
+        <FormattedMessage id={error.type} />
       </div>
     ) : (
       ""
@@ -237,7 +241,7 @@ class Modal extends React.Component<ITolaProps> {
               className={styles.fadeTransitionGroup}
               style={{ height: 280 }}
             >
-              {RDS.match({
+              {match({
                 nothingYet: () => (
                   <ExampleTransition key="nothingYet">
                     <NumberEntry
@@ -252,7 +256,8 @@ class Modal extends React.Component<ITolaProps> {
                 loading: () => (
                   <ExampleTransition key="loading">
                     <div>
-                      <p>Enter your mPesa PIN</p>
+                      <p style={{paddingTop: '4em'}}><FormattedMessage id="you_will_receive_a_pin" /></p>
+                      <p><FormattedMessage id="enter_your_mpesa_pin" /></p>
                     </div>
                   </ExampleTransition>
                 ),

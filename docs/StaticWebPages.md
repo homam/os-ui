@@ -3,12 +3,12 @@
 * Simplicity
   * Our user flows are simple
   * Single Page Apps
-* Reproductivity
+* Determinability
   * What you develop is what you get
   * Production context is not different from development. We do not modify pages or flows at runtime.
-* Determinability
   * Opt-in flows are state machines and state machines are deterministic
   * Changing one component or one stylesheets or updating some text should not break other pages at runtime.
+* Reproducibility
 * Testability
   * Once a page is tested and is correct, it remains correct.
   * Errors are caught at development time. We can easily catch visual errors, for example: when the text for a new language does not fit inside the original `<div>` element. 
