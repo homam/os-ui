@@ -26,7 +26,7 @@ And follow the instructions.
 Files in this directory:
 
 * `Root.tsx` is the main component for the landing page
-* `index.tsx`, `index.ssr.tsx`, `hotReload.tsx` are boilerplates, don't worry about them.
+* `index.tsx`, `index.ssr.tsx`, `hotReload.tsx` are boilerplate, don't worry about them.
 
 ### Update locales of a page
 
@@ -62,6 +62,7 @@ The command will display the preview link of the page.
 * [Why Static Web Pages?](docs/StaticWebPages.md)
 * [Why Webpack?](docs/Webpack.md)
 * [Why TypeScript?](docs/TypeScript.md)
+* [Open Problems (TODO)](docs/TODO.md)
 
 ---
 
