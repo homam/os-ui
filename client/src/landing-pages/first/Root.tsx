@@ -8,7 +8,6 @@ import MSISDNInput from "./components/MSISDNInput";
 import * as styles from "./assets/css/styles.less";
 import { addLocaleData, IntlProvider, FormattedMessage } from "react-intl";
 import enLocaleData from "react-intl/locale-data/en";
-import nlLocaleData from "react-intl/locale-data/nl";
 
 import mkTracker from '../../pacman/record'
 
@@ -304,8 +303,6 @@ class Root extends React.Component<ITolaProps> {
     this.state = { locale: "en", inPrelander: true };
   }
   render() {
-    console.log("Root", this.props, this.context);
-
     return (
       <IntlProvider
         locale={this.state.locale}

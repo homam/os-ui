@@ -9,6 +9,7 @@ import { CampaignValue } from "./campaigns/types";
 import bodyParser from "body-parser";
 import { left } from "fp-ts/lib/Either";
 import { Option, some } from "fp-ts/lib/Option";
+import * as request from 'request-promise-native'
 
 const app = express();
 const pool = mkPool(process.env.osui_connection_string);
@@ -80,8 +81,9 @@ async function serveCampaign(
 ) {
   const rockmanId = CT.RockmanId.wrap(uuid().replace(/-/g, ""));
   const userId = CT.userIdFromRockmanId(rockmanId);
+  const impressionNumber = CT.ImpressionNumber.wrap(1)
 
-  const recordImpressionEvent = async (cmp: CampaignValue) =>
+  const recordImpressionEvent = async (cmp: CampaignValue) => {
     run_(pool, client =>
       addImpression(
         client,
@@ -97,6 +99,28 @@ async function serveCampaign(
       )
     );
 
+    const theCampaign = campaign.fold(invalidCampaign, x => x)
+    request.default({
+      method: 'POST',
+      json: true,
+      body: {
+        rockmanId: CT.RockmanId.unwrap(rockmanId),
+        pacmanId: `${CT.RockmanId.unwrap(rockmanId)}-1-${CT.ImpressionNumber.unwrap(impressionNumber)}}`,
+        impressionId: CT.ImpressionNumber.unwrap(impressionNumber),
+        landingPageUrl: req.originalUrl, 
+        pageName: 'default',
+        serverTime: new Date().valueOf(),
+        eventType: "impression",
+        headers: req.headers,
+        country: CT.Country.unwrap(theCampaign.country),
+        offerId: CT.OfferId.unwrap(theCampaign.affiliateInfo.offerId),
+        affId: CT.AffiliateId.unwrap(theCampaign.affiliateInfo.affiliateId),
+        remoteAddress: req.headers['x-forwarded-for'] as string || req.ip,
+      },
+      uri: 'https://de-pacman.sam-media.com/api/v1/store'
+    })
+  }
+
   campaign.fold(
     () => {
       recordImpressionEvent(invalidCampaign);
@@ -106,7 +130,7 @@ async function serveCampaign(
     campaign => async () => {
       recordImpressionEvent(campaign);
       try {
-        const stream = await prepare(rockmanId, campaign, skipCache);
+        const stream = await prepare(rockmanId, impressionNumber, campaign, skipCache);
         stream.pipe(res);
       } catch (ex) {
         res.status(500);

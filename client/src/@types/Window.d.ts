@@ -12,6 +12,7 @@ interface Window {
     visitor: {
       country: string,
       rockmanId: string,
+      impressionNumber: number,
       page: string,
       xaid: string,
       offer: number

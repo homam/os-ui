@@ -4,6 +4,8 @@ import {IPacman} from './types'
     From Vlad
 */
 
+var requestNumber = 1;
+
 export default function(d: Document, w: Window, n: Navigator, pacman: IPacman) {
 
   var vp = "hidden";
@@ -81,7 +83,7 @@ export default function(d: Document, w: Window, n: Navigator, pacman: IPacman) {
   xhr.send(JSON.stringify({
       'r': pacman.r,
       'm': pacman.m,
-      'b': pacman.b++,
+      'b': requestNumber++,
       'd': [{'t': 'pageview', 's': 0, 'a': pv}]
   }));
   

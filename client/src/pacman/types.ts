@@ -1,6 +1,5 @@
 export interface IPacman {
-  'b': number, // request number
   'r': string, // rockmanId
-  'm': number, // impressionId
+  'm': number, // impressionNumber
   'server_url': string
 }

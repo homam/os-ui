@@ -144,7 +144,7 @@ export default <P extends HOCProps>(tracker: ITracker, Comp: React.ComponentType
                   })
                 } as State
               });
-              tracker.recedeInFlow('assrock/v1', 'msisdn-submission-failure',{msisdn, errorType: errorType || 'UnknwonError'})
+              tracker.recedeInFlow('assrock/v1', 'msisdn-submission-failure',{msisdn, errorType: errorType || 'UnknownError'})
             }
           },
           submitPIN: (_pin: string) =>

@@ -35,8 +35,8 @@ const defaultConfig = (offer: number) : IConfig => {
 export default async function submitMSISDN(window: Window, maybeConfig: IConfig, msisdn: string): Promise<(pin: string) => Promise<string>> {
   const config = !maybeConfig ? {offer: window.pac_analytics.visitor.offer} : maybeConfig
   const { host, country, handle, offer } = !config.host || !config.handle || !config.country ? defaultConfig(config.offer) : config
-  const search = window.location.search.substr(1)
-  const result : IResult = await fetch(`https://lp-api.sam-media.com/v1/submit_msisdn/${host}/${country}/${handle}/${offer}/?msisdn=${msisdn}&${search}`).then(x => x.json())
+  const search = window.location.search.substr(1) || ''
+  const result : IResult = await fetch(`https://lp-api.sam-media.com/v1/submit_msisdn/${host}/${country}/${handle}/${offer}/?msisdn=${msisdn}&rockman_id=${window.pac_analytics.visitor.rockmanId}&${search}`).then(x => x.json())
   if(!result.isValid) {
     const error = new Error(`${result.errorType}:\n${result.errorText}`)
     error['type'] = result.errorType;

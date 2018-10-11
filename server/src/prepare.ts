@@ -56,10 +56,11 @@ const getAndCachePreparedContentFromFileSystem = (() => {
   };
 })();
 
-export default async (rockmanId: CT.NTRockmanId, campaign: CampaignValue, skipCache: boolean) => {
+export default async (rockmanId: CT.NTRockmanId, impressionNumber: CT.NTImpressionId, campaign: CampaignValue, skipCache: boolean) => {
   const {country, page} = campaign
   const visitor = {
     rockmanId: CT.RockmanId.unwrap(rockmanId),
+    impressionNumber: CT.ImpressionNumber.unwrap(impressionNumber),
     country: CT.Country.unwrap(country),
     page: CT.HandleName.unwrap(page),
     xaid: CT.AffiliateId.unwrap(campaign.affiliateInfo.affiliateId),

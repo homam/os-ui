@@ -1,6 +1,7 @@
-import mkSenddBeacon from "./sendBeacon";
+import mkSendBeacon from "./sendBeacon";
 import uuid from "uuid/v1";
 import queryString from './queryString'
+import recordPacmanPageView from '../pacman/record-page-view'
 
 export {queryString}
 
@@ -11,7 +12,7 @@ export function recordImpression(
   page: string
 ) {
   if (!window.pac_analytics) {
-    const sendBeacon = mkSenddBeacon(window);
+    const sendBeacon = mkSendBeacon(window);
     const rockmanId = uuid().replace(/-/g, "");
     const userId = rockmanId;
     const campaignId = queryString(window.location.search, 'xcid')
@@ -20,6 +21,7 @@ export function recordImpression(
     window.pac_analytics = {
       visitor: {
         rockmanId,
+        impressionNumber: 1, //TODO: get impressionNumber from localStorage
         country,
         page,
         xaid: queryString(window.location.search, 'xaid'),
@@ -41,6 +43,12 @@ export function recordImpression(
     window.pac_analytics.queryString = key => queryString(window.location.search, key)
   }
 
+  recordPacmanPageView(window.document, window, window.navigator, {
+    r: window.pac_analytics.visitor.rockmanId,
+    m: window.pac_analytics.visitor.impressionNumber,
+    server_url: 'https://de-pacman.sam-media.com/api/v2/mstore'
+  })
+
   return window.pac_analytics
 }
 
@@ -56,7 +64,7 @@ export function recordEvent(
     args?: any;
   }
 ) {
-  const sendBeacon = mkSenddBeacon(window);
+  const sendBeacon = mkSendBeacon(window);
   if (!window.pac_analytics) {
     throw Error(
       "Please call recordImpression() first. 'pac_analytics' was not found."

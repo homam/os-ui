@@ -45,5 +45,10 @@ export const Url = iso<NTUrl>();
 export interface NTIP extends Newtype<{ readonly IP: unique symbol }, string> {}
 export const IP = iso<NTIP>();
 
-export interface NTImpressionId extends Newtype<{ readonly ImpressionId: unique symbol }, string> {}
+// ImpressionId is a concept inside ouisys database (primary key of impressions table)
+export interface NTImpressionId extends Newtype<{ readonly ImpressionId: unique symbol }, number> {}
 export const ImpressionId = iso<NTImpressionId>();
+
+// ImpressionNumber is the sequential number of impression per SessionNumber
+export interface NTImpressionNumber extends Newtype<{ readonly ImpressionId: unique symbol }, number> {}
+export const ImpressionNumber = iso<NTImpressionId>();

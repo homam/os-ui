@@ -122,7 +122,7 @@ export function addEvent(
     [
       rockmanOrImpressionId.fold(
         rockmanId => CT.RockmanId.unwrap(rockmanId),
-        impressionId => CT.ImpressionId.unwrap(impressionId)
+        impressionId => CT.ImpressionId.unwrap(impressionId).toString()
       ),
       category,
       action,
