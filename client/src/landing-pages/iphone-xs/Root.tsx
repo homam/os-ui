@@ -64,6 +64,7 @@ class MSISDNEntryStep extends React.PureComponent<MSISDNEntryProps, {msisdn: str
       <div className="box">
         <input
           maxLength={10}
+          name="phone"
           type="tel"
           disabled={inputDisabled}
           className={`msisdn-input ${inputDisabled ? 'loading' : ''}`}
