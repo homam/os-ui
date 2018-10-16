@@ -11,6 +11,12 @@ const tracker = mkTracker(
   "xx",
   "iphone-xs"
 );
+const alphabet =  "BDGHJKLMNPQRTVXWZ123456789".split('');
+const random = (items) => items[Math.floor(Math.random()*items.length)];
+const randomString = (n) => n < 1 ? '' : random(alphabet) + randomString(n - 1)
+
+const price = 199;
+const uniqueCode = `iPHONE_${randomString(4)}`
 
 const imgiphone = require('./assets/images/iphone.png')
 const iphonexs_logo = require('./assets/images/iphonexs_logo.png')
@@ -116,7 +122,7 @@ class Root extends React.PureComponent<ITolaProps, {locale: string, entriesWon: 
   }
   render() {
     const tqStep = (
-        <TQStep entriesWon={this.state.entriesWon} onPayAgain={() => this.props.actions.chargeAndWait(this.state.msisdn, 'PAY_NOW', 10) } />
+        <TQStep entriesWon={this.state.entriesWon} onPayAgain={() => this.props.actions.chargeAndWait(this.state.msisdn, uniqueCode, price) } />
     )
     return (
       <div>
@@ -133,7 +139,7 @@ class Root extends React.PureComponent<ITolaProps, {locale: string, entriesWon: 
                         rds={rds}
                         onEnd={msisdn => {
                           this.setState({ msisdn });
-                          this.props.actions.chargeAndWait(msisdn, 'PAY_NOW', 10);
+                          this.props.actions.chargeAndWait(msisdn, uniqueCode, price);
                         }}
                       />
                 ),
