@@ -1,6 +1,6 @@
 import * as PG from "pg";
 import yargs from "yargs";
-import { encrypt } from "../src/campaigns/campaigid";
+import { encrypt } from "../src/campaigns/campaignId";
 
 const { page, country, comments, affid } = yargs
   .usage(
