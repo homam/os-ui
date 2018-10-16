@@ -49,6 +49,8 @@ export function recordImpression(
     server_url: 'https://de-pacman.sam-media.com/api/v2/mstore'
   })
 
+  window.dataLayer.push({'affiliate_id': window.pac_analytics.visitor.xaid})
+
   return window.pac_analytics
 }
 
@@ -137,14 +139,14 @@ export default (
         // window.dispatchEvent(event)
       },
       recedeInFlow: (flow: string, reason: string, args?: any) => {
-        const gaEvent = {category: "Flow", action: 'recede', label: `${flow}::${reason}`}
+        const gaEvent = {category: "Flow", action: 'recede', label: `${reason}`}
         recordEvent(window, url, current_view, {
           ...gaEvent, args
         });
         window.dataLayer.push({...gaEvent, event: 'gaEvent'})
       },
       advancedInFlow: (flow: string, action: string, args?: any) => {
-        const gaEvent = {category: "Flow", action: `advance`, label: `${flow}::${action}`}
+        const gaEvent = {category: "Flow", action: `advance`, label: `${action}`}
         recordEvent(window, url, current_view, {
           ...gaEvent, args
         })

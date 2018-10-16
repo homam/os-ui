@@ -2,8 +2,8 @@ import express from "express";
 import prepare from "./prepare";
 import uuid from "uuid/v1";
 import * as CT from "./common-types";
-import { decrypt } from "./campaigns/campaigid";
-import campaigns, { invalidCampaign, testCampaign, normalizeCampaignId} from "./campaigns/map";
+import { decrypt } from "./campaigns/campaignId";
+import campaigns, { invalidCampaign, testCampaign} from "./campaigns/map";
 import { addImpression, mkPool, run_, run, addEvent } from "./analytics/db";
 import { CampaignValue } from "./campaigns/types";
 import bodyParser from "body-parser";
@@ -22,7 +22,7 @@ app.post(
   bodyParser.json({ type: _ => true }),
   async (req: express.Request, res: express.Response) => {
     const { rockmanId, userId, page, originalUrl } = req.body;
-    const campaignId = normalizeCampaignId(decrypt(req.params.encCampaignId));
+    const campaignId = decrypt(req.params.encCampaignId);
     run_(pool, client =>
       addImpression(
         client,

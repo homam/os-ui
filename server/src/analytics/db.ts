@@ -1,6 +1,6 @@
 import * as PG from "pg";
 import * as CT from "../common-types";
-import { either, Either } from "fp-ts/lib/Either";
+import { Either } from "fp-ts/lib/Either";
 
 interface IHeaders {
   [key: string]: string | string[];

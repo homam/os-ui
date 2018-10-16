@@ -10,8 +10,8 @@ const atob = function (b64Encoded) {
 
 const randomLetter = () => bases.toBase64(Math.floor(Math.random() * 64));
 
-export const encrypt = (i : number) => btoa(randomLetter() + bases.toBase64(i)).replace(/=/g, "");
+export const encrypt = (i : number) => btoa(randomLetter() + bases.toBase64(i + 4095)).replace(/=/g, "");
 
 const padRight = s => (s.length % 4 !== 0 ? padRight(s + "=") : s);
 
-export const decrypt = (s : string) : number => bases.fromBase64(atob(padRight(s)).substr(1));
+export const decrypt = (s : string) : number => bases.fromBase64(atob(padRight(s)).substr(1)) - 4095;
