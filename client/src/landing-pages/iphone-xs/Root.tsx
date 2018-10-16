@@ -48,6 +48,9 @@ class MSISDNEntryStep extends React.PureComponent<MSISDNEntryProps, {msisdn: str
       <form
         onSubmit={ev => {
           ev.preventDefault();
+          if(!readyToSubmit) {
+            return;
+          }
           this.props.onEnd(this.state.msisdn);
           this.setState({waited: false})
           this.waitedTimer = setTimeout(() => {

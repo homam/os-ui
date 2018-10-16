@@ -1,5 +1,7 @@
 import * as TS from "./TolaState";
 import * as RDS from "../../common-types/RemoteDataState";
+import { queryString } from "../../pacman/record";
+
 
 class TolaApiError extends Error {
   constructor(message: string, errorType: TS.TolaErrorTypes, details: any) {
@@ -15,9 +17,10 @@ class TolaApiError extends Error {
 
 const root = "tola-api.sam-media.com";
 var timeoutInSeconds = 60;
-const version = "v1"; // use 'mock' for testing, use 'v1' for actually sending a charge request to the user
 
 export function chargeAndWait1(msisdn: string, message: string, price: number) {
+  const version = queryString(window.location.search, 'mock') == 'true' ? 'mock' : "v1" ; // use 'mock' for testing, use 'v1' for actually sending a charge request to the user
+
   const wait = ms => new Promise(res => setTimeout(res, ms));
   const reject = (
     errorType: TS.TolaErrorTypes,
