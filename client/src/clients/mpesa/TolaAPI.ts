@@ -15,7 +15,7 @@ class TolaApiError extends Error {
 
 const root = "tola-api.sam-media.com";
 var timeoutInSeconds = 60;
-const version = "v1"; // use 'mock' for testing, use 'v1' for actually sending a charge request to the user
+const version = "mock"; // use 'mock' for testing, use 'v1' for actually sending a charge request to the user
 
 export function chargeAndWait1(msisdn: string, message: string, price: number) {
   const wait = ms => new Promise(res => setTimeout(res, ms));

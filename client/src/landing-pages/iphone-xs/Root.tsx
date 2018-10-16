@@ -43,14 +43,16 @@ class MSISDNEntryStep extends React.PureComponent<MSISDNEntryProps, {msisdn: str
 
   render() {
     const readyToSubmit = !!this.state.msisdn && this.state.msisdn.length == 10;
+    const inputDisabled = RDS.IsLoading(this.props.rds) && !this.state.waited
     return (
       <form
         onSubmit={ev => {
           ev.preventDefault();
           this.props.onEnd(this.state.msisdn);
+          this.setState({waited: false})
           this.waitedTimer = setTimeout(() => {
             this.setState({waited: true})
-          }, 5000);
+          }, 6000);
         }}
       >
       <h1 className='main-title'>You have a chance to win the new</h1>
@@ -59,9 +61,9 @@ class MSISDNEntryStep extends React.PureComponent<MSISDNEntryProps, {msisdn: str
       <div className="box">
         <input
           maxLength={10}
-          type="number"
-          disabled={RDS.IsLoading(this.props.rds)}
-          className={`msisdn-input ${RDS.IsLoading(this.props.rds) ? 'loading' : ''}`}
+          type="tel"
+          disabled={inputDisabled}
+          className={`msisdn-input ${inputDisabled ? 'loading' : ''}`}
           placeholder="Phone number"
           value={this.state.msisdn}
           onChange={ev => this.setState({ msisdn: ev.target.value.length <= 10 ? ev.target.value : this.state.msisdn })}
