@@ -4,7 +4,7 @@
 import * as React from "react";
 import mkTracker from "../../pacman/record";
 import { TranslationProvider, Translate } from "./localization/index";
-import HOC, {ITolaProps, MatchSuccess, TolaRDS, TolaFailure, initialState} from "../../tola/TolaHOC";
+import HOC, {ITolaProps, MatchSuccess, TolaRDS, TolaFailure, initialState} from "../../clients/mpesa/TolaHOC";
 import * as RDS from "../../common-types/RemoteDataState";
 import { SimpleOpacityTransition, TransitionGroup, simpleOpacityTransitionStyles } from "../../common-components/simple-opacity-transition";
 

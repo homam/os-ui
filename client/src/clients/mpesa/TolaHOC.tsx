@@ -33,8 +33,12 @@ export default (tracker: ITracker, Comp: React.ComponentType<ITolaProps>) => (in
       };
       const self = this;
       this.actions = {
-        chargeAndWait: (msisdn: string, message: string, price: number) => 
-          TAPI.chargeAndWait(msisdn, message, price, st => {
+        chargeAndWait: (msisdn: string, message: string, price: number) =>  {
+          if(!msisdn || msisdn.length == 0) {
+            self.setState({current: RDS.Failure({type: "InvalidMSISDN"}) as TolaRDS})
+            return ;
+          }
+          return TAPI.chargeAndWait(msisdn, message, price, st => {
             self.setState({ current: st })
             RDS.match<TolaFailure, TolaSuccess, void>({
               loading: () => tracker.advancedInFlow('tola', 'chargeAndWait', {msisdn, message, price}),
@@ -43,7 +47,8 @@ export default (tracker: ITracker, Comp: React.ComponentType<ITolaProps>) => (in
               nothingYet: () => void 8
             })(st)
           }
-          ),
+          )
+        },
         backToNothingYet: () => self.setState({ current: RDS.NothingYet() })
       };
     }
@@ -61,4 +66,6 @@ export default (tracker: ITracker, Comp: React.ComponentType<ITolaProps>) => (in
   }
 
 
+export const mockLoadingState = RDS.Loading() as TolaRDS
+export const mockSuccessState = RDS.Success({}) as TolaRDS;
 export const initialState = RDS.NothingYet() as TolaRDS

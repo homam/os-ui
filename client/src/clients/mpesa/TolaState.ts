@@ -1,4 +1,5 @@
 export type TolaErrorTypes =
+  | "InvalidMSISDN"
   | "FailChargeResponseReceived"
   | "FailLodgementNotificationReceived"
   | "FailDisbursementNotificationReceived"
