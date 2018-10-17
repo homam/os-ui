@@ -15,7 +15,8 @@ export function recordImpression(
     const sendBeacon = mkSendBeacon(window);
     const rockmanId = uuid().replace(/-/g, "");
     const userId = rockmanId;
-    const campaignId = queryString(window.location.search, 'xcid')
+    const encCampaignId = queryString(window.location.search, 'xcid')
+    const campaignId = queryString(window.location.search, 'cid')
     const originalUrl = document.location.href;
 
     window.pac_analytics = {
@@ -25,6 +26,7 @@ export function recordImpression(
         country,
         page,
         xaid: queryString(window.location.search, 'xaid'),
+        cid: campaignId,
         offer: parseInt(queryString(window.location.search, 'offer')) || 0,
       },
       startTime: new Date().valueOf(),
@@ -32,7 +34,7 @@ export function recordImpression(
       url
     };
 
-    sendBeacon(`${url}/impression/${campaignId}`, {
+    sendBeacon(`${url}/impression/${encCampaignId}`, {
       rockmanId,
       userId,
       page,

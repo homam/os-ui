@@ -64,6 +64,7 @@ export default async (rockmanId: CT.NTRockmanId, impressionNumber: CT.NTImpressi
     country: CT.Country.unwrap(country),
     page: CT.HandleName.unwrap(page),
     xaid: CT.AffiliateId.unwrap(campaign.affiliateInfo.affiliateId),
+    cid: campaign.id,
     offer: CT.OfferId.unwrap(campaign.affiliateInfo.offerId)
   }
   

@@ -14,7 +14,8 @@ interface Window {
       rockmanId: string,
       impressionNumber: number,
       page: string,
-      xaid: string,
+      xaid: string, // affiliateId
+      cid: number, // integer normalized value of campaignId
       offer: number
     },
     startTime: number,
