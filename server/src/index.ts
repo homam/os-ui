@@ -1,6 +1,7 @@
 import express from "express";
 import prepare from "./prepare";
 import uuid from "uuid/v1";
+import R from 'ramda';
 import * as CT from "./common-types";
 import { decrypt } from "./campaigns/campaignId";
 import campaigns, { invalidCampaign, testCampaign} from "./campaigns/map";
@@ -10,6 +11,7 @@ import bodyParser from "body-parser";
 import { left } from "fp-ts/lib/Either";
 import { Option, some } from "fp-ts/lib/Option";
 import * as request from 'request-promise-native'
+import cookieParser from 'cookie-parser'
 
 const app = express();
 const pool = mkPool(process.env.osui_connection_string);
@@ -80,8 +82,8 @@ async function serveCampaign(
   res: express.Response
 ) {
   const rockmanId = CT.RockmanId.wrap(uuid().replace(/-/g, ""));
-  const userId = CT.userIdFromRockmanId(rockmanId);
-  const impressionNumber = CT.ImpressionNumber.wrap(1)
+  const userId = CT.userIdFromRockmanId(req.cookies.userId || rockmanId);
+  const impressionNumber = CT.ImpressionNumber.wrap(1);
 
   const recordImpressionEvent = async (cmp: CampaignValue) => {
     run_(pool, client =>
@@ -95,7 +97,7 @@ async function serveCampaign(
         CT.Url.wrap(req.originalUrl),
         CT.IP.wrap(req.headers['x-forwarded-for'] as string || req.ip),
         CT.Country.wrap("xx"),
-        req.headers
+        R.omit(['connection', 'accept', 'accept-encoding', 'upgrade-insecure-requests'], req.headers)
       )
     );
 
@@ -129,6 +131,7 @@ async function serveCampaign(
     },
     campaign => async () => {
       recordImpressionEvent(campaign);
+      res.cookie('userId', CT.UserId.unwrap(userId), {expires: new Date(new Date().valueOf() + 90*24*3600*1000)})
       try {
         const stream = await prepare(rockmanId, impressionNumber, campaign, skipCache);
         stream.pipe(res);
@@ -144,6 +147,7 @@ app.get('/preview', (req, res) => serveCampaign(some(testCampaign(req.query.page
 
 app.get(
   "/:encCampaignId",
+  cookieParser(),
   async (req: express.Request, res: express.Response) => {
     const campaignId = decrypt(req.params.encCampaignId);
     const campaign = await run(pool, client => campaigns(client, campaignId));
