@@ -21,6 +21,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "core-js": "^2.5.7",
     "fp-ts": "^1.8.0",
     "newtype-ts": "^0.2.1",
     "react": "^16.4.2",
@@ -29,7 +30,8 @@
     "react-transition-group": "^2.4.0",
     "request": "^2.88.0",
     "rxjs": "^6.3.2",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.2",
+    "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
