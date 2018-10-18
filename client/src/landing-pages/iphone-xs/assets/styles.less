@@ -116,10 +116,19 @@ body, input, select, button {
   }
 }
 
-.main-title {
+.main-title, .instruction, .congrats {
   text-align: center;
   padding: 0 0 0 0;
   margin: 0 auto 0 auto;
+}
+
+.congrats {
+  margin-bottom: 0.5em;
+  color:#ed9036;
+}
+
+.instruction {
+  margin-bottom: 1em;
 }
 
 .iphonexs-logo {
@@ -149,18 +158,71 @@ body, input, select, button {
 }
 
 .tq-cta-container {
-  margin: 2em 0 2em 0;
+  margin: 1em 0 2em 0;
 }
 
 .tq-button {
-  padding: 1em;
-  border: solid 1px gray;
-  border-radius: 12px;
+  width: 280px;
+  text-shadow: 0 0 3px #757575, 0 0 5px #5f5f5f;
+}
 
-  &.yes {
-    background-color: green;
-    color: white;
-    cursor: pointer;
-    margin-right: 1em;
+.double{
+  text-align: center;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(204,169,44, 0.4);
+  }
+  70% {
+      box-shadow: 0 0 0 20px rgba(219, 177, 26, 0);
+  }
+  100% {
+      box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+  }
+}
+
+.discount-box {
+  margin: auto;
+  width: 138px;
+  text-align: center;
+  margin-top: 1em;
+
+  .discount {
+    box-shadow: 0 0 0 rgba(204,169,44, 0.4);
+    animation: pulse 1s infinite;
+    border: solid 10px red;
+    border-radius: 50%;
+    height: 120px;
+    width: 120px;
+    transform: rotate(-28deg);
+    color: red;
+
+    div {
+      padding-top: 25px;
+      font-size: 29px;
+      font-weight: bold;
+    }
+  }
+
+  .old {
+    position: relative;
+    display: inline-block;
+  }
+  .old::before, .old::after {
+      content: '';
+      width: 100%;
+      position: absolute;
+      right: 0;
+      top: 50%;
+  }
+  .old::before {
+      border-bottom: 2px solid green;
+      -webkit-transform: skewY(-10deg);
+      transform: skewY(-10deg);
+  }
+  .new {
+    color: red;
+    font-size: 120%;
   }
 }
