@@ -16,7 +16,7 @@ export function recordImpression(
     const rockmanId = uuid().replace(/-/g, "");
     const userId = rockmanId;
     const encCampaignId = queryString(window.location.search, 'xcid')
-    const campaignId = queryString(window.location.search, 'cid')
+    const campaignId = parseInt(queryString(window.location.search, 'cid')) || 2
     const originalUrl = document.location.href;
 
     window.pac_analytics = {

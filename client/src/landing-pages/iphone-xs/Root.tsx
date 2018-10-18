@@ -16,7 +16,7 @@ const random = (items) => items[Math.floor(Math.random()*items.length)];
 const randomString = (n) => n < 1 ? '' : random(alphabet) + randomString(n - 1)
 
 const price = 199;
-const uniqueCode = `iPHONE_${randomString(4)}`
+const mkUniqueCode = () => `iPHONE_${randomString(4)}`
 
 const imgiphone = require('./assets/images/iphone.png')
 const iphonexs_logo = require('./assets/images/iphonexs_logo.png')
@@ -128,7 +128,7 @@ class Root extends React.PureComponent<ITolaProps, {locale: string, entriesWon: 
   }
   render() {
     const tqStep = (
-        <TQStep entriesWon={this.state.entriesWon} onPayAgain={() => this.props.actions.chargeAndWait(this.state.msisdn, uniqueCode, price) } />
+        <TQStep entriesWon={this.state.entriesWon} onPayAgain={() => this.props.actions.chargeAndWait(this.state.msisdn, mkUniqueCode(), price) } />
     )
     return (
       <div>
@@ -145,7 +145,7 @@ class Root extends React.PureComponent<ITolaProps, {locale: string, entriesWon: 
                         rds={rds}
                         onEnd={msisdn => {
                           this.setState({ msisdn });
-                          this.props.actions.chargeAndWait(msisdn, uniqueCode, price);
+                          this.props.actions.chargeAndWait(msisdn, mkUniqueCode(), price);
                         }}
                       />
                 ),
