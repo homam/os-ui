@@ -109,7 +109,8 @@ async function serveCampaign(
         rockmanId: CT.RockmanId.unwrap(rockmanId),
         pacmanId: `${CT.RockmanId.unwrap(rockmanId)}-1-${CT.ImpressionNumber.unwrap(impressionNumber)}}`,
         impressionId: CT.ImpressionNumber.unwrap(impressionNumber),
-        landingPageUrl: req.originalUrl, 
+        landingPageUrl: 'http://' + req.hostname + req.originalUrl, 
+        handleName: CT.HandleName.unwrap(theCampaign.page),
         pageName: 'default',
         serverTime: new Date().valueOf(),
         eventType: "impression",
@@ -143,7 +144,15 @@ async function serveCampaign(
   )();
 }
 
-app.get('/preview', (req, res) => serveCampaign(some(testCampaign(req.query.page, req.query.country)), true, req, res));
+app.get('/preview', cookieParser(), async (req, res) => {
+  try {
+    serveCampaign(some(testCampaign(req.query.page, req.query.country)), true, req, res)
+  } catch(ex) {
+    console.error(ex)
+    res.status(500);
+    res.end(ex.toString())
+  }
+});
 
 app.get(
   "/:encCampaignId",
