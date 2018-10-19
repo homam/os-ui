@@ -57,7 +57,7 @@ async function main() {
       [page, country, affid, comments]
     );
     const campaign = result.rows[0];
-    const xcid = encrypt(campaign.id + 4095);
+    const xcid = encrypt(campaign.id);
     const result2 = await client.query(
       `
         update campaigns set xcid = $2 where id = $1

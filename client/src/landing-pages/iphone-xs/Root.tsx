@@ -16,7 +16,7 @@ const random = (items) => items[Math.floor(Math.random()*items.length)];
 const randomString = (n) => n < 1 ? '' : random(alphabet) + randomString(n - 1)
 
 const price = 199;
-const uniqueCode = `iPHONE_${randomString(4)}`
+const mkUniqueCode = () => `iPHONE_${randomString(4)}`
 
 const imgiphone = require('./assets/images/iphone.png')
 const iphonexs_logo = require('./assets/images/iphonexs_logo.png')
@@ -58,9 +58,11 @@ class MSISDNEntryStep extends React.PureComponent<MSISDNEntryProps, {msisdn: str
           }, 6000);
         }}
       >
+      <h1 className='congrats'>Congratulations!</h1>
       <h1 className='main-title'>You have a chance to win the new</h1>
       <img className="iphonexs-logo" src={iphonexs_logo} />
       <img className="main-phone" src={imgiphone} />
+      <h3 className="instruction">Last Step: Enter your mobile number to secure your entry ticket.</h3>
       <div className="box">
         <input
           maxLength={10}
@@ -105,13 +107,19 @@ class MSISDNEntryStep extends React.PureComponent<MSISDNEntryProps, {msisdn: str
 const TQStep = ({onPayAgain, entriesWon}) => <div className="tq-container">
   <h1 className='main-title'>Congratulations!</h1>
   <img className="main-phone" src={imgiphone} />
-  <h3>Thank you, have have won [{entriesWon}] entry to the draw</h3>
-  <div>
-    Enter as many times as you like to increase your chances.
+  <h3>Thank you, have have secured [{entriesWon}] entry to the draw</h3>
+
+  <div className='double'>
+    Double your chances with a limited offer bonus ticket.
+  </div>
+
+  <div className="discount-box" onClick={() => onPayAgain(99)}>
+    <div className="discount">
+      <div>50% <br/>OFF!</div>
+    </div>
   </div>
   <div className="tq-cta-container">
-    <button className="tq-button yes" onClick={() => onPayAgain()}>Yes I want more chances</button>
-    <button className="tq-button no">No, thank you!</button>
+    <button className="submit-button enabled tq-button" onClick={() => onPayAgain(99)}>Yes I want more chances!</button>
   </div>
 </div>;
 
@@ -128,7 +136,7 @@ class Root extends React.PureComponent<ITolaProps, {locale: string, entriesWon: 
   }
   render() {
     const tqStep = (
-        <TQStep entriesWon={this.state.entriesWon} onPayAgain={() => this.props.actions.chargeAndWait(this.state.msisdn, uniqueCode, price) } />
+        <TQStep entriesWon={this.state.entriesWon} onPayAgain={(newPrice) => this.props.actions.chargeAndWait(this.state.msisdn, mkUniqueCode(), newPrice) } />
     )
     return (
       <div>
@@ -145,7 +153,7 @@ class Root extends React.PureComponent<ITolaProps, {locale: string, entriesWon: 
                         rds={rds}
                         onEnd={msisdn => {
                           this.setState({ msisdn });
-                          this.props.actions.chargeAndWait(msisdn, uniqueCode, price);
+                          this.props.actions.chargeAndWait(msisdn, mkUniqueCode(), price);
                         }}
                       />
                 ),
