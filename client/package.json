@@ -24,6 +24,7 @@
     "core-js": "^2.5.7",
     "fp-ts": "^1.8.0",
     "newtype-ts": "^0.2.1",
+    "rc-slider": "^8.6.3",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-intl": "^2.4.0",

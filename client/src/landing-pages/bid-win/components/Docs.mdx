@@ -1,0 +1,36 @@
+---
+name: bid-win/components
+---
+import CustomSlider from './CustomSlider'
+
+import { Playground, PropsTable } from 'docz'
+
+# Reusable Components in `bin-win` page
+
+
+## CustomSlider
+
+<Playground>
+  <CustomSlider value={200} min={100} max={400} onChange={() => {}} />
+</Playground>
+
+### Example:
+
+<Playground>
+ { ()  => {
+    class Example extends React.PureComponent {
+      constructor(props) {
+        super(props)
+        this.state = {
+          value: 200
+        }
+      }
+
+      render() {
+        return <CustomSlider value={this.state.value} min={100} max={400} onChange={value => this.setState({value})} />;
+      }
+    }
+
+    return <Example />;
+ } }
+</Playground>
