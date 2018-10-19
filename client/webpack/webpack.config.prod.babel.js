@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const InterpolateHtmlPlugin = require('./InterpolateHtmlPlugin');
 const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin")
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const {page, country, service} = process.env
 const publicPath = process.env.publicPath || ''
@@ -93,6 +94,9 @@ module.exports = {
       },
       common.modules.url,
     ],
+  },
+  optimization: {
+    minimizer: [new UglifyJsPlugin()]
   },
   plugins: [
     new webpack.WatchIgnorePlugin([
