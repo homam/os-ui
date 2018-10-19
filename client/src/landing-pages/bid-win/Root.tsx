@@ -319,19 +319,20 @@ class Root extends React.PureComponent<ITolaProps> {
           <h1>Terms &amp; Conditions</h1>
             
           <p>
-            Service available only to users with a valid mPesa or Airtel money account.
-            Service cost is Ksh 199 for a ticket into the draw for a new iPhone X, unless alternative prizes were specifically promoted. 
-            Promotion runs from 16-10-2018 until 02-01-2019. Winners will be drawn randomly and contacted by telephone on the mobile number 
-            associated with the account used to make payment. Proof of payment SMS required to claim prize. 
+          Service available only to users with a valid mPesa or Airtel money account. Promotion runs from 16-10-2018 until 02-01-2019. 
+          Securing and paying the highest unique amount in the specified range at the close of the contest period, or in earlier 
+          frequencies determined at the promoters' discretion, awards the prize. In the event of no unique bid existing, the winner will be drawn randomly from a list of users with the highest bid. 
+          Proof of payment SMS required to claim prize. 
+          
+          <br></br>
+          <br></br>
 
-            <br></br>
-            <br></br>
-
-            The service provider will cover the cost of shipping prizes to winners within the Republic of Kenya. 
-            Prizes are not transferable and non redeemable for cash. By entering the draw you confirm to be 18 years or older and that you have obtained the 
-            bill payer's permission. By using the service you agree to receive promotional marketing related to this and similar services from the same provider. 
-            Service provided by Right Net Limited, under authorisation of the Betting Control and Licensing Board (license number 002397 of 2018).
-            For help call 0703065013.   
+          The service provider will cover the cost of shipping prizes to winners 
+          within the Republic of Kenya. Prizes are not transferable and non redeemable for cash. By entering the draw you 
+          confirm to be 18 years or older and that you have obtained the bill payer's permission. By using the service you 
+          agree to receive promotional marketing related to this and similar services from the same provider. 
+          Service provided by Right Net Limited, under authorisation of the Betting Control and Licensing Board 
+          (license number 002397 of 2018). For help call 0703065013.  
           </p> 
 
 
