@@ -189,6 +189,13 @@ interface IMSISDNEntryProps {
   onBidAgain: () => void
 }
 
+const MSISDNEntryStepInternalSteps = {
+  1: 'Question',
+  2: 'Answer',
+  3: 'Bid',
+  4: 'NumberEntry'
+}
+
 class MSISDNEntryStep extends React.PureComponent<IMSISDNEntryProps> {
   state = {
     msisdn: this.props.msisdn,
@@ -197,9 +204,13 @@ class MSISDNEntryStep extends React.PureComponent<IMSISDNEntryProps> {
     correctAnswer: null,
     showTQ: false
   };
-  componentDidUpdate(prevProps : IMSISDNEntryProps) {
+  componentDidUpdate(prevProps : IMSISDNEntryProps, prevState) {
     if(RDS.IsLoading(prevProps.rds) && RDS.IsSuccess(this.props.rds)) {
       setTimeout(() => this.setState({showTQ: true}), 4500);
+    }
+
+    if(prevState.step < this.state.step) {
+      tracker.advancedInPreFlow(`${this.state.step} - ${MSISDNEntryStepInternalSteps[this.state.step]}`)
     }
   }
   render() {
