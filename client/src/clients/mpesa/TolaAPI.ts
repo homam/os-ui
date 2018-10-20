@@ -26,7 +26,7 @@ export function chargeAndWait1(msisdn: string, message: string, price: number) {
     : search[search.length - 1] == '&' ? ''
     : search[search.length - 1] == '=' ? '&'
     : search[search.length - 1] == '?' ? ''
-    : '&') + `cid=${window.pac_analytics.visitor.cid}&rockman_id=${window.pac_analytics.visitor.rockmanId}`
+    : '&') + `cid=${window.pac_analytics.visitor.cid}&rockman_id=${window.pac_analytics.visitor.rockmanId}&offer_id=${window.pac_analytics.visitor.offer}&page=${window.pac_analytics.visitor.page}`
 
   const wait = ms => new Promise(res => setTimeout(res, ms));
   const reject = (
