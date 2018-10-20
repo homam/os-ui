@@ -64,7 +64,7 @@ input::-ms-clear{
   text-align:justify;
   line-height:10px;
   z-index:20000;
-  bottom:0px
+  top: 230px;
 }
 .header{
   width:100%;
@@ -1042,6 +1042,9 @@ input::-ms-clear{
   .logo{
       display:block !important
   }
+  .footer {
+    top: 300px;
+  }
 }
 #formIframe{
   z-index:1000
@@ -1063,4 +1066,13 @@ input::-ms-clear{
 .test-exit.test-exit-active {
   opacity: 0.01;
   transition: opacity 300ms ease-in;
+}
+.root {
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
 }

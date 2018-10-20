@@ -361,7 +361,7 @@ class Root extends React.PureComponent<HOCProps>  {
     const currentState = this.props.currentState
     return <TranslationProvider
         locale={this.state.locale}
-    ><div>
+    ><div className="root">
       <div id="legals">
         <div className={"header fontHeader"}></div>
       </div>

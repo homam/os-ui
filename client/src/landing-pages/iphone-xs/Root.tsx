@@ -107,7 +107,7 @@ class MSISDNEntryStep extends React.PureComponent<MSISDNEntryProps, {msisdn: str
 const TQStep = ({onPayAgain, entriesWon}) => <div className="tq-container">
   <h1 className='main-title'>Congratulations!</h1>
   <img className="main-phone" src={imgiphone} />
-  <h3>Thank you, have have secured [{entriesWon}] entry to the draw</h3>
+  <h3 className="tq-thankyou">Thank you, have have secured [{entriesWon}] entry to the draw</h3>
 
   <div className='double'>
     Double your chances with a limited offer bonus ticket.
