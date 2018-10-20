@@ -35,6 +35,7 @@ export type MSISDNEntryErrorTypes =
 export type PINEntryErrorTypes = "UnknownError" | "TooEarly" | "InvalidPIN";
 
 export const initialState : State = { type: "MSISDNEntry", result: RDS.NothingYet<MSISDNEntryFailure, MSISDNEntrySuccess>()}
+export const mockedPINState : State = { type: "PINEntry", result: RDS.NothingYet<PINEntryFailure, PINEntrySuccess>() }
 export const mockedCompletedState : State = { type: "Completed", result: {finalUrl: 'https://www.yahoo.com/'} }
 // export const initialState : State = { type: "PINEntry", result: RDS.NothingYet<PINEntryFailure, PINEntrySuccess>()}
 
