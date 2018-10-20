@@ -1,0 +1,98 @@
+.bidAmount{
+  font-size: 20px;
+  color:#0b94ff;
+  font-weight: bold;
+
+  span{
+    color:#ffffff;
+  }
+
+}
+
+.bidSliderArea{
+  width:260px;
+  height: 50px;
+  padding:10px;
+  margin:5px auto;
+  display: block;
+  position: relative;
+  border-radius: 7px;
+  background-color: rgba(255,255,255,0.2);
+
+  &::after{
+    content:"";
+    top:28px;
+    left:10px;
+    right:10px;
+    height: 6px;
+    display: block;
+    position: absolute;
+    border-radius: 10px;
+    background-color: rgba(0,0,0,0.5);
+  }
+
+  .bidSlider{
+    width:245px;
+    margin:10px 0 0 0;
+
+      .rc-slider-rail {
+        display: none;
+      }
+
+      .rc-slider-track {
+        display: none;
+      }
+
+      .rc-slider-handle {
+        top: 0px;
+        z-index: 2;;
+        width: 30px;
+        height: 30px;
+        outline: none;
+        cursor: pointer;
+        line-height: 30px;
+        border-radius: 5px;
+        position: absolute;
+        background-color: #00aeef;
+        border: solid 2px #1482d0 !important;
+        background-image: linear-gradient(to top, #147bcd, #51a9ee);
+
+          &::before{
+            content:"";
+            width:3px;
+            height:15px;
+            margin:0 2px;
+            display: inline-block;
+            background-color: rgba(255,255,255,0.25);
+          }
+      
+          &::after{
+            content:"";
+            width:3px;
+            height:15px;
+            margin:0 2px;
+            display: inline-block;
+            background-color: rgba(255,255,255,0.25);
+          }
+
+      }
+
+  }
+
+  .alignLeft,
+  .alignRight{
+    top:45px;
+    color:#fff;
+    font-size: 12px;
+    position: absolute;
+  }
+
+  .alignLeft{
+    left:10px;
+  }
+
+  .alignRight{
+    right:10px;
+  }
+
+}

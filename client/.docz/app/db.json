@@ -26,6 +26,33 @@
       "menu": null,
       "headings": []
     },
+    "src/landing-pages/bid-win/components/Docs.mdx": {
+      "name": "bid-win/components",
+      "id": "8a7e31ab7cf05e247977fad7dd6a271a",
+      "filepath": "src/landing-pages/bid-win/components/Docs.mdx",
+      "link": null,
+      "slug": "src-landing-pages-bid-win-components-docs",
+      "route": "/src-landing-pages-bid-win-components-docs",
+      "order": 0,
+      "menu": null,
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "reusable-components-in-bin-win-page",
+          "value": "Reusable Components in  bin-win  page"
+        },
+        {
+          "depth": 2,
+          "slug": "customslider",
+          "value": "CustomSlider"
+        },
+        {
+          "depth": 3,
+          "slug": "example",
+          "value": "Example:"
+        }
+      ]
+    },
     "src/landing-pages/first/components/Docs.mdx": {
       "name": "first/components",
       "id": "530775ae237c1b78ea1549d470d01f30",

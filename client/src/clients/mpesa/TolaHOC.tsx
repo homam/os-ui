@@ -68,4 +68,5 @@ export default (tracker: ITracker, Comp: React.ComponentType<ITolaProps>) => (in
 
 export const mockLoadingState = RDS.Loading() as TolaRDS
 export const mockSuccessState = RDS.Success({}) as TolaRDS;
+export const mockFailureState = (err : TolaFailure) => RDS.Failure(err) as TolaRDS;
 export const initialState = RDS.NothingYet() as TolaRDS

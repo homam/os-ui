@@ -66,7 +66,7 @@ module.exports = {
       },
       {
         test: /\.(css|less)$/,
-        exclude: /node_modules/,
+        // exclude: /node_modules/,
         oneOf: [{
           resourceQuery: /^\?raw$/,
           use: [
