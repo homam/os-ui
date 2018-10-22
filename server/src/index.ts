@@ -86,6 +86,33 @@ async function serveCampaign(
   const userId = CT.userIdFromRockmanId(req.cookies.userId || rockmanId);
   const impressionNumber = CT.ImpressionNumber.wrap(1);
 
+  const oldRockmanId = R.pipe(
+    x => !!x ? CT.RockmanId.wrap(x) : null
+  )(req.query['rockman_id'] || req.cookies['rockmanId'])
+  const no_js_form_submission = req.query["no_js_form_submission"]
+
+
+  const recordFormSubmissionEvent = async (oldRockmanId : CT.NTRockmanId, no_js_form_submission: boolean) => {
+    if(!oldRockmanId) {
+      console.log('oldRockmanId is null');
+    } else {
+      run_(pool, client => addEvent(
+        client,
+        left(oldRockmanId),
+        "default",
+        "Fraud",
+        "form-submitted",
+        no_js_form_submission ? 'no-js': 'with-js',
+        null,
+        {
+          url: req.originalUrl,
+          ip: req.headers['x-forwarded-for'] as string || req.ip
+        },
+        null
+      ));
+    }
+  }
+
   const recordImpressionEvent = async (cmp: CampaignValue) => {
     run_(pool, client =>
       addImpression(
@@ -128,13 +155,14 @@ async function serveCampaign(
 
   campaign.fold(
     () => {
-      recordImpressionEvent(invalidCampaign);
+      !!no_js_form_submission ? recordFormSubmissionEvent(oldRockmanId, "true" == no_js_form_submission) : recordImpressionEvent(invalidCampaign);
       res.status(404);
       res.end("Campaign is not valid");
     },
     campaign => async () => {
-      recordImpressionEvent(campaign);
+      !!no_js_form_submission ? recordFormSubmissionEvent(oldRockmanId, "true" == no_js_form_submission) : recordImpressionEvent(campaign);;
       res.cookie('userId', CT.UserId.unwrap(userId), {expires: new Date(new Date().valueOf() + 90*24*3600*1000)})
+      res.cookie('rockmanId', CT.RockmanId.unwrap(rockmanId), {expires: new Date(new Date().valueOf() + 3600*1000)})
       try {
         const stream = await prepare(rockmanId, impressionNumber, campaign, skipCache);
         stream.pipe(res);

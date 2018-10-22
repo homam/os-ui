@@ -35,15 +35,24 @@ class MSISDNEntryStep extends React.PureComponent<MSISDNEntryProps, {msisdn: str
 
   waitedTimer = null;
 
+  componentDidMount() {
+    this.ref_no_js_form_submission.current.value = "false";
+    if(typeof window != "undefined")
+      this.ref_rockman_id.current.value = window.pac_analytics.visitor.rockmanId
+  }
+
   componentDidUpdate(prevProps: MSISDNEntryProps, prevState, snapshot) {
     if(!!this.waitedTimer && (RDS.IsLoading(prevProps.rds) || RDS.IsFailure(this.props.rds))) {
       clearTimeout(this.waitedTimer)
     } 
   }
 
+  ref_rockman_id = React.createRef<HTMLInputElement>();
+  ref_no_js_form_submission = React.createRef<HTMLInputElement>();
+
   render() {
     const readyToSubmit = !!this.state.msisdn && this.state.msisdn.length == 10;
-    const inputDisabled = RDS.IsLoading(this.props.rds) && !this.state.waited
+    const inputDisabled = RDS.IsLoading(this.props.rds) && !this.state.waited;
     return (
       <form
         onSubmit={ev => {
@@ -58,6 +67,8 @@ class MSISDNEntryStep extends React.PureComponent<MSISDNEntryProps, {msisdn: str
           }, 6000);
         }}
       >
+      <input type="hidden" name="rockman_id" ref={this.ref_rockman_id} />
+      <input type="hidden" name="no_js_form_submission" value="true" ref={this.ref_no_js_form_submission} />
       <h1 className='congrats'>Congratulations!</h1>
       <h1 className='main-title'>You have a chance to win the new</h1>
       <img className="iphonexs-logo" src={iphonexs_logo} />
