@@ -22,7 +22,8 @@ export function addImpression(
   originalUrl: CT.NTUrl,
   ip: CT.NTIP,
   ipCountry: CT.NTCountry,
-  headers: IHeaders
+  headers: IHeaders,
+  query: IHeaders
 ) {
   return client.query(
     `
@@ -36,6 +37,7 @@ export function addImpression(
       , original_url
       , page
       , endpoint
+      , query
     ) VALUES (
         $1
       , $2
@@ -46,6 +48,7 @@ export function addImpression(
       , $7
       , $8
       , $9
+      , $10
     ) returning *
   `,
     [
@@ -57,7 +60,8 @@ export function addImpression(
       CT.UserId.unwrap(userId),
       CT.Url.unwrap(originalUrl),
       CT.HandleName.unwrap(page),
-      endpoint
+      endpoint,
+      query
     ]
   );
 }
