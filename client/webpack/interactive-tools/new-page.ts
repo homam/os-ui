@@ -105,11 +105,15 @@ async function main() {
           value: "mpesa"
         },
         {
+          name: "One Click",
+          value: "one-click"
+        },
+        {
           name: 'Just give me the basics',
           value: 'basic'
         }
       ]
-    }]) as {template : "assrock" | "basic" | "mpesa"}
+    }]) as {template : "assrock" | "basic" | "mpesa" | "one-click"}
 
   const {confirm} = await inquirer.prompt([
     { 
@@ -145,6 +149,9 @@ async function main() {
     await mergeTranslationJSONFiles(pageName, 'en', path.resolve(getTemplatePath('mpesa'), 'localization/translations/en.json'))
     // await cpRAllFiles(pageName, 'scaffolding', 'assets/styles')
   }
+  if(template == "one-click") {
+    await cp(pageName, 'one-click', 'Root.tsx.template', 'Root.tsx')
+  }
 
 
   console.log('✅', chalk.bgGreen.yellowBright.bold('  Done!'))
@@ -153,7 +160,9 @@ async function main() {
     To start preview and live module replacement, run: \n`)
   if(template == "mpesa") {
     console.log(`NODE_ENV=development country=ke page=${pageName} yarn dev`)
-  } else {
+  } else if (template == "one-click") {
+    console.log(`NODE_ENV=development country=gb page=${pageName} yarn dev`)
+  }else {
     console.log(`NODE_ENV=development country=gr page=${pageName} yarn dev`)
   }
 
