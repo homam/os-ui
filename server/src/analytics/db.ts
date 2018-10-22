@@ -154,7 +154,7 @@ export async function run<T>(
 export const run_ = <T>(
   pool: PG.Pool,
   f: (client: PG.PoolClient) => Promise<T>
-) => run(pool, f).catch(ex => console.error("Error in run_", ex))
+) => run(pool, f).then(() => void 6).catch(ex => console.error("Error in run_", ex))
 
 
 export function mkPool(connectionString: string) {
@@ -172,7 +172,7 @@ export function mkPool(connectionString: string) {
     pool
       .end()
       .then(result => {
-        console.log("[PG Pool] Cleanedup, bye!", result);
+        console.log("[PG Pool] Cleaned up, bye!", result);
         process.exit(2);
       })
       .catch(error => {

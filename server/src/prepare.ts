@@ -4,6 +4,17 @@ import * as path from "path";
 import * as CT from "./common-types";
 import {CampaignValue} from "./campaigns/types"
 import * as request from 'request-promise-native'
+import { Option, none, some } from "fp-ts/lib/Option";
+
+type IVisitor = {
+  rockmanId: string;
+  impressionNumber: number;
+  country: string;
+  page: string;
+  xaid: string;
+  cid: number;
+  offer: number;
+}
 
 const evnPagesRoot = process.env.root;
 const pagesRootPath = evnPagesRoot || path.join(__dirname, `/../../client/dist/`); // by default we assume we are running the server from the main git repo
@@ -25,25 +36,91 @@ type PreparedContent = {
 };
 
 // Replace `<meta name="rockman-id">` with a script tag
-const prepareContent = (() => {
-  const search = '<meta name="rockman-id">';
-  const length = search.length;
 
-  return function(content: string): PreparedContent {
+const mkBeforeAfterBuffers = (search: string) => {
+  const length = search.length
+  return (content : string) : Option<PreparedContent> => {
     const index = content.indexOf(search);
-    const before = content.substr(0, index);
-    const after = content.substr(index + length);
 
-    const beforeBuff = Buffer.from(before, "utf8");
-    const afterBuff = Buffer.from(after, "utf8");
+    if(index < 0) {
+      return none
+    } else {
 
-    return { beforeBuff, afterBuff };
+      const before = content.substr(0, index);
+      const after = content.substr(index + length);
+
+      const beforeBuff = Buffer.from(before, "utf8");
+      const afterBuff = Buffer.from(after, "utf8");
+
+      return some({ beforeBuff, afterBuff }); 
+    }
+  }
+}
+
+const prepareContent = (() => {
+
+  const pacmanSearch = '<meta name="rockman-id">';
+  const pacmanLength = pacmanSearch.length;
+
+  const fieldSearch = '<input type="hidden" name="rockman_id"/>'
+  const fieldLength = fieldSearch.length
+
+  return function(content: string): (visitor : IVisitor) => Readable {
+    const pacmanIndex = content.indexOf(pacmanSearch);
+    const pacmanBefore = content.substr(0, pacmanIndex);
+    const pacmanAfter = content.substr(pacmanIndex + pacmanLength);
+
+    const beforeBuff = Buffer.from(pacmanBefore, "utf8");
+
+    const fieldIndex = pacmanAfter.indexOf(fieldSearch);
+    if(fieldIndex < 0) {
+
+      const afterBuff = Buffer.from(pacmanAfter, "utf8");
+  
+      return (visitor) => {
+        const s = new Readable();
+        s.push(beforeBuff);
+        s.push(
+          `<script>window.pac_analytics={
+            visitor:${JSON.stringify(visitor)},
+            startTime: new Date().valueOf(),
+            url: '/analytics'
+          }</script>`
+        );
+        s.push(afterBuff);
+        s.push(null);
+        return s;
+      }
+    } else {
+
+      const fieldBefore = pacmanAfter.substr(0, fieldIndex);
+      const fieldAfter = pacmanAfter.substr(fieldIndex + fieldLength);
+      const beforeFieldBuff = Buffer.from(fieldBefore, "utf8");
+      const afterFieldBuff = Buffer.from(fieldAfter, "utf8");
+
+      return (visitor) => {
+        const s = new Readable();
+        s.push(beforeBuff);
+        s.push(
+          `<script>window.pac_analytics={
+            visitor:${JSON.stringify(visitor)},
+            startTime: new Date().valueOf(),
+            url: '/analytics'
+          }</script>`
+        );
+        s.push(beforeFieldBuff);
+        s.push(`<input type="hidden" name="rockman_id" value="${visitor.rockmanId}"/>`)
+        s.push(afterFieldBuff)
+        s.push(null)
+        return s
+      }
+    }
   };
 })();
 
 const getAndCachePreparedContentFromFileSystem = (() => {
   const cache = {};
-  return async function(page: string, country: string, skipCache: boolean): Promise<PreparedContent> {
+  return async function(page: string, country: string, skipCache: boolean): Promise<(visitor: IVisitor) => Readable> {
     const cachedItem = cache[page];
     if (!skipCache && !!cachedItem) {
       return cachedItem;
@@ -56,7 +133,7 @@ const getAndCachePreparedContentFromFileSystem = (() => {
   };
 })();
 
-export default async (rockmanId: CT.NTRockmanId, impressionNumber: CT.NTImpressionId, campaign: CampaignValue, skipCache: boolean) => {
+export default async (rockmanId: CT.NTRockmanId, impressionNumber: CT.NTImpressionId, campaign: CampaignValue, skipCache: boolean) : Promise<Readable> => {
   const {country, page} = campaign
   const visitor = {
     rockmanId: CT.RockmanId.unwrap(rockmanId),
@@ -68,18 +145,7 @@ export default async (rockmanId: CT.NTRockmanId, impressionNumber: CT.NTImpressi
     offer: CT.OfferId.unwrap(campaign.affiliateInfo.offerId)
   }
   
-  const { beforeBuff, afterBuff } = await getAndCachePreparedContentFromFileSystem(CT.HandleName.unwrap(page), CT.Country.unwrap(country), skipCache);
-  const s = new Readable();
-  s.push(beforeBuff);
-  s.push(
-    `<script>window.pac_analytics={
-      visitor:${JSON.stringify(visitor)},
-      startTime: new Date().valueOf(),
-      url: '/analytics'
-    }</script>`
-  );
-  s.push(afterBuff);
-  s.push(null);
+  const serve = await getAndCachePreparedContentFromFileSystem(CT.HandleName.unwrap(page), CT.Country.unwrap(country), skipCache);
 
-  return s;
+  return serve(visitor)
 };
