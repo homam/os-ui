@@ -20,6 +20,9 @@ export async function addImpressionTest(pool: Pool) {
       CT.Country.wrap("my"),
       {
         "user-agent": "iPhone"
+      },
+      {
+        
       }
     );
     return impression.rows;
