@@ -1,61 +1,66 @@
 import * as React from 'react'
 
-import "./ComponentTesti.less?raw"
+import "./CustomTesti.less?raw"
 
-export default class extends React.PureComponent {
+type TestimonialElement = {
+  Message: () => JSX.Element;
+  Name: () => JSX.Element;
+  stars: number;
+}
+
+interface IProps {
+  testimonials?: TestimonialElement[],
+  className?: string
+}
+
+const defaultTestimonials = [
+  {
+    Message: () => <span className="message">I'm so lucky to have grabbed <br></br> this deal while it lasted!</span>,
+    Name: () => <span> -Chege</span>,
+    stars: 5
+  },
+  {
+    Message: () => <span className="message">Wow! I couldn't believe my eyes when I received my iPhone X!</span>,
+    Name: () => <span> -Felistas</span>,
+    stars: 4
+  },
+  {
+    Message: () => <span className="message">I bid, confirmed and won! So happy! Thank you!</span>,
+    Name: () => <span> -Mandere</span>,
+    stars: 5
+  }
+]
+
+export default class extends React.PureComponent<IProps> {
   constructor(props) {
     super(props);
   }
 
   render() {
 
-    return <div className="customTesti">
+    const testimonials = this.props.testimonials  || defaultTestimonials
+
+    return <div className={`customTesti ${this.props.className}`}>
 
       <ul className="customTestiSlider slide">
-        <li>
-          <div className="avatar person1"></div>
-          <div className="details">
-            <span className="message">I'm so lucky to have grabbed <br></br> this deal while it lasted!</span>
-            <span className="rating">
-              <i className="icon-star"></i>
-              <i className="icon-star"></i>
-              <i className="icon-star"></i>
-              <i className="icon-star"></i>
-              <i className="icon-star"></i>
-              <span> -Chege</span>
-            </span>
-          </div>
-        </li>
-
-        <li>
-          <div className="avatar person2"></div>
-          <div className="details">
-            <span className="message">Wow! I couldn't believe my eyes when I received my iPhone X!</span>
-            <span className="rating">
-              <i className="icon-star"></i>
-              <i className="icon-star"></i>
-              <i className="icon-star"></i>
-              <i className="icon-star"></i>
-              <i className="icon-star"></i>
-              <span> -Felistas</span>
-            </span>
-          </div>
-        </li>
-
-        <li>
-          <div className="avatar person3"></div>
-          <div className="details">
-            <span className="message">I bid, confirmed and won! So happy! Thank you!</span>
-            <span className="rating">
-              <i className="icon-star"></i>
-              <i className="icon-star"></i>
-              <i className="icon-star"></i>
-              <i className="icon-star"></i>
-              <i className="icon-star"></i>
-              <span> -Mandere</span>
-            </span>
-          </div>
-        </li>
+        {
+          testimonials.map(({Message, Name, stars}, index) => 
+            <li>
+              <div className={`avatar person${index + 1}`}></div>
+              <div className="details">
+                <Message />
+                <span className="rating">
+                  {
+                    [...Array(stars).keys()].map(() =>
+                      <i className="icon-star"></i>
+                    )
+                  }
+                  <Name />
+                </span>
+              </div>
+            </li>  
+          )
+        }
       </ul>
 
     </div>
