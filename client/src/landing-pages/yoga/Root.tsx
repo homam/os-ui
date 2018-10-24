@@ -1,7 +1,7 @@
 import * as React from "react";
 import mkTracker from "../../pacman/record";
 import { TranslationProvider, Translate } from "./localization/index";
-import HOC, {IProps, initialState} from "../../clients/one-click/HOC"
+import HOC, { IProps, initialState } from "../../clients/one-click/HOC"
 import "./assets/styles.less?raw"
 import CustomToplegal from "./components/CustomToplegal";
 import CustomTesti from "../bid-win/components/CustomTesti";
@@ -13,10 +13,10 @@ const tracker = mkTracker(
   "Unknown" //TODO: replace Unknown with your page's name
 );
 
-const ButtonArea = ({clicked, subscribeNowClicked, confirmClicked}) => {
-  if(clicked){
+const ButtonArea = ({ clicked, subscribeNowClicked, confirmClicked }) => {
+  if (clicked) {
     return <div>
-      
+
       <button className="ConfirmBtn" onClick={confirmClicked}>Confirm</button>
     </div>
   } else {
@@ -37,54 +37,54 @@ class Root extends React.PureComponent<IProps> {
           <div>
 
 
-            <CustomToplegal/>
+            <CustomToplegal />
 
             <div className="rate"></div>
-            
-              <div className="creative">
-                <div className="timeico">
-                    <h1>15</h1>
-                    <span>MIN</span>
-                  </div>
-                  
-                  <div className="lotusicon"></div>
-                  <h1 className="toptitle">A day for</h1>
-                
-                  <div className="title">
-                    <h1><strong>Quick</strong> &amp; <strong>Effective</strong></h1>
-                    <br></br>
-                    <span>Home Yoga</span>
-                  </div>
 
-                  <div className="border"></div>
-
-                  <div className="text">
-                      <p>Choose only 15 minute practices, begin every day connected &amp; energized.</p>
-                  </div>
-
-                  <div className="yogapose"></div>
-                  <div className="triangle-down"></div>
-
-                
+            <div className="creative">
+              <div className="timeico">
+                <h1>15</h1>
+                <span>MIN</span>
               </div>
 
-              
+              <div className="lotusicon"></div>
+              <h1 className="toptitle">A day for</h1>
 
-            <ButtonArea clicked={this.state.clicked} 
-                  subscribeNowClicked={() => this.setState({clicked: true})} 
-                  confirmClicked={() => this.props.actions.onClick()}  
-               
-               
-             />
+              <div className="title">
+                <h1><strong>Quick</strong> &amp; <strong>Effective</strong></h1>
+                <br></br>
+                <span>Home Yoga</span>
+              </div>
+
+              <div className="border"></div>
+
+              <div className="text">
+                <p>Choose only 15 minute practices, begin every day connected &amp; energized.</p>
+              </div>
+
+              <div className="yogapose"></div>
+              <div className="triangle-down"></div>
+
+
+            </div>
+
+
+
+            <ButtonArea clicked={this.state.clicked}
+              subscribeNowClicked={() => this.setState({ clicked: true })}
+              confirmClicked={() => this.props.actions.onClick()}
+
+
+            />
 
             <div className="disclaimer">
 
-               <p>Subscribe and transform your body, mind and life today for just £4.50 a week! Service provided by Mobio TV</p>
+              <p>Subscribe and transform your body, mind and life today for just £4.50 a week! Service provided by Mobio TV</p>
 
-                <div className="links">
-                  <a href="" className="align-left">Terms &amp; Conditions</a>
-                  <a href="" className="align-right">Privacy Policy</a>
-                </div>
+              <div className="links">
+                <a href="" className="align-left">Terms &amp; Conditions</a>
+                <a href="" className="align-right">Privacy Policy</a>
+              </div>
 
             </div>
 
@@ -108,28 +108,28 @@ class Root extends React.PureComponent<IProps> {
                 }
               ]
 
-            
+
             } />
 
             <div className="logoarea">
               <span>Exclusive to</span>
               <div className="logo"></div>
             </div>
-            
+
             <div className="benefits">
 
               <h1 className="yogabenefits">Benefits of Yoga</h1>
-                <ul>
-                    <li>Could Promote Sleep Quality and Quality of Life</li>
-                    <li>Could Improve Heart Health and Breathing</li>
-                    <li>Could Reduce Chronic Pain</li>
-              
-                </ul>             
+              <ul>
+                <li>Could Promote Sleep Quality and Quality of Life</li>
+                <li>Could Improve Heart Health and Breathing</li>
+                <li>Could Reduce Chronic Pain</li>
+
+              </ul>
 
             </div>
-            
 
-            
+
+
           </div>
         </TranslationProvider>
       </div>
