@@ -35,28 +35,6 @@ type PreparedContent = {
   afterBuff: Buffer;
 };
 
-// Replace `<meta name="rockman-id">` with a script tag
-
-const mkBeforeAfterBuffers = (search: string) => {
-  const length = search.length
-  return (content : string) : Option<PreparedContent> => {
-    const index = content.indexOf(search);
-
-    if(index < 0) {
-      return none
-    } else {
-
-      const before = content.substr(0, index);
-      const after = content.substr(index + length);
-
-      const beforeBuff = Buffer.from(before, "utf8");
-      const afterBuff = Buffer.from(after, "utf8");
-
-      return some({ beforeBuff, afterBuff }); 
-    }
-  }
-}
-
 const prepareContent = (() => {
 
   const pacmanSearch = '<meta name="rockman-id">';
