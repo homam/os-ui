@@ -343,7 +343,7 @@ class Root extends React.PureComponent<ITolaProps> {
           confirm to be 18 years or older and that you have obtained the bill payer's permission. By using the service you 
           agree to receive promotional marketing related to this and similar services from the same provider. 
           Service provided by Right Net Limited, under authorisation of the Betting Control and Licensing Board 
-          (license number 002397 of 2018). For help call 0703065013.  
+          (license number 002397 of 2018). For help call 0703065013 or email us at <a href="mailto:help@bidiotv.com">help@bidiotv.com</a>  
           </p> 
 
 
