@@ -212,10 +212,16 @@ app.get(
   "/:encCampaignId",
   cookieParser(),
   async (req: express.Request, res: express.Response) => {
-    const campaignId = decrypt(req.params.encCampaignId);
-    const campaign = await run(pool, client => campaigns(client, campaignId));
-
-    return serveCampaign(campaign, false, req, res);
+    try {
+      const campaignId = decrypt(req.params.encCampaignId);
+      //TODO: pass pool itself to campaigns() function
+      const campaign = await run(pool, client => campaigns(client, campaignId));
+      return serveCampaign(campaign, false, req, res);
+    } catch(ex) {
+      console.error(ex)
+      res.status(500)
+      res.end({error: ex.toString()})
+    }
   }
 );
 
