@@ -22,11 +22,11 @@ const getRedirectUrl = (maybeConfig : IConfig) : string => {
     case "gb": 
         var host = maybeConfig.host || 'n.mobzonefun.com'
         var handle = maybeConfig.handle || 'yoga-videos'
-        return `http://${host}/uk/${handle}?offer=${offer}&atmobirun=1`
+        return `http://${host}/uk/${handle}?offer=${offer}&atmobirun=1&rockman_id=${window.pac_analytics.visitor.rockmanId}`
     case "iq":
       var host = maybeConfig.host || 'n.gamezpark.com'
       var handle = maybeConfig.handle || 'racing-m-dmb'
-      return `http://${host}/iq/${handle}?device=smart&offer=${offer}&atmobirun=1`
+      return `http://${host}/iq/${handle}?device=smart&offer=${offer}&atmobirun=1&rockman_id=${window.pac_analytics.visitor.rockmanId}`
     default:
       throw `'country' environment variable is either missing or has an unsupported value (${process.env.country}). This is necessary for defaultConfig(offer).`
   }
