@@ -187,6 +187,7 @@ async function serveCampaign(
           : recordImpressionEvent(campaign);
         res.cookie('userId', CT.UserId.unwrap(userId), {expires: new Date(new Date().valueOf() + 90*24*3600*1000)})
         res.cookie('rockmanId', CT.RockmanId.unwrap(rockmanId), {expires: new Date(new Date().valueOf() + 3600*1000)})
+        res.setHeader('Content-Type', 'text/html; charset=UTF-8')
         const stream = await prepare(rockmanId, impressionNumber, campaign, skipCache);
         stream.pipe(res);
       } catch (ex) {
