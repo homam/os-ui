@@ -2,6 +2,7 @@ import mkSendBeacon from "./sendBeacon";
 import uuid from "uuid/v1";
 import queryString from './queryString'
 import recordPacmanPageView from '../pacman/record-page-view'
+import recordPacmanInteractions from '../pacman/main'
 
 export {queryString}
 
@@ -48,7 +49,15 @@ export function recordImpression(
   recordPacmanPageView(window.document, window, window.navigator, {
     r: window.pac_analytics.visitor.rockmanId,
     m: window.pac_analytics.visitor.impressionNumber,
-    server_url: 'https://de-pacman.sam-media.com/api/v2/mstore'
+    server_url: 'https://de-pacman.sam-media.com/api/v2/mstore',
+    b: 0
+  })
+
+  recordPacmanInteractions(window.document, window, Date.now(), {
+      r: window.pac_analytics.visitor.rockmanId,
+      m: window.pac_analytics.visitor.impressionNumber,
+      server_url: 'https://de-pacman.sam-media.com/api/v2/mstore',
+      b: 0
   })
 
   window.dataLayer.push({'affiliate_id': window.pac_analytics.visitor.xaid})

@@ -3,7 +3,6 @@ import {IPacman} from './types'
 /*
     From Vlad
 */
-
 var requestNumber = 1;
 
 export default function(d: Document, w: Window, n: Navigator, pacman: IPacman) {
