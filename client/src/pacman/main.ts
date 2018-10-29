@@ -2,8 +2,24 @@ import {IPacman} from './types'
 
 
 // import { map } from 'rxjs/operators';
-import {map, bufferWhen, filter, debounceTime, first } from 'rxjs/operators';
-import  {fromEvent, from, interval, empty, merge, zip } from 'rxjs';
+// import {map, bufferWhen, filter, debounceTime, first } from 'rxjs/operators';
+// import  {fromEvent, from, interval, empty, merge, zip } from 'rxjs';
+
+import { map }  from 'rxjs/operators/map';
+import { throttle } from 'rxjs/operators/throttle';
+import { bufferWhen } from 'rxjs/operators/bufferWhen';
+import { filter } from 'rxjs/operators/filter';
+import { debounceTime } from 'rxjs/operators/debounceTime';
+import { first } from 'rxjs/operators/first';
+
+import { merge } from 'rxjs/observable/merge';
+import { fromEvent } from 'rxjs/observable/fromEvent';
+import { from } from 'rxjs/observable/from';
+import { interval } from 'rxjs/observable/interval';
+import { timer } from 'rxjs/observable/timer';
+import { empty } from 'rxjs/observable/empty';
+import { zip } from 'rxjs/observable/zip';
+
 
 export default function(d : Document, w: Window, loadTime: number, pacman: IPacman) {
 
