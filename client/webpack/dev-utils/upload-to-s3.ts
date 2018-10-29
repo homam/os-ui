@@ -22,7 +22,8 @@ const upload = ({key, file}) =>
     Key: `os-ui${key}`,
     Body: fs.createReadStream(file),
     ACL: 'public-read', 
-    ContentType: mime.contentType(path.extname(file))
+    ContentType: mime.contentType(path.extname(file)),
+    CacheControl: /\.html$/.test(file) ? 'max-age=2592000' : 'max-age=1'
   }).promise()
 
 
