@@ -124,6 +124,7 @@ async function serveCampaign(
     const rockmanId = CT.RockmanId.wrap(uuid().replace(/-/g, ""));
     const userId = CT.userIdFromRockmanId(req.cookies.userId || rockmanId);
     const impressionNumber = CT.ImpressionNumber.wrap(1);
+    const remoteAddress = req.headers['x-forwarded-for'] as string || req.ip
     
     run_(pool, client =>
       addImpression(
@@ -134,7 +135,7 @@ async function serveCampaign(
         cmp.id,
         cmp.page,
         CT.Url.wrap(req.originalUrl),
-        CT.IP.wrap(req.headers['x-forwarded-for'] as string || req.ip),
+        CT.IP.wrap(remoteAddress),
         CT.Country.wrap("xx"),
         R.omit(['connection', 'accept', 'accept-encoding', 'upgrade-insecure-requests'], req.headers),
         req.query
@@ -142,12 +143,20 @@ async function serveCampaign(
     );
 
     const theCampaign = campaign.fold(invalidCampaign, x => x)
+
+    const ipTokens = R.pipe(
+      x => x.split('.')
+    , x => ({
+        ip2: R.pipe(R.take(2), y => y.join('.'))(x)
+      , ip3: R.pipe(R.take(3), y => y.join('.'))(x)
+    })
+    )(remoteAddress)
     request.default({
       method: 'POST',
       json: true,
       body: {
         rockmanId: CT.RockmanId.unwrap(rockmanId),
-        pacmanId: `${CT.RockmanId.unwrap(rockmanId)}-1-${CT.ImpressionNumber.unwrap(impressionNumber)}}`,
+        pacmanId: `${CT.RockmanId.unwrap(rockmanId)}-1-${CT.ImpressionNumber.unwrap(impressionNumber)}`,
         impressionId: CT.ImpressionNumber.unwrap(impressionNumber),
         landingPageUrl: 'http://' + req.hostname + req.originalUrl, 
         handleName: CT.HandleName.unwrap(theCampaign.page),
@@ -158,7 +167,9 @@ async function serveCampaign(
         country: CT.Country.unwrap(theCampaign.country),
         offerId: CT.OfferId.unwrap(theCampaign.affiliateInfo.offerId),
         affId: CT.AffiliateId.unwrap(theCampaign.affiliateInfo.affiliateId),
-        remoteAddress: req.headers['x-forwarded-for'] as string || req.ip,
+        remoteAddress,
+        ipTokens,
+        queryTokens: req.query
       },
       uri: 'https://de-pacman.sam-media.com/api/v1/store'
     });
