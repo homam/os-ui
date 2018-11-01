@@ -1,5 +1,6 @@
 import express from "express";
 import prepare from "./prepare";
+import prepareStatic from "./prepare-static";
 import uuid from "uuid/v1";
 import R from 'ramda';
 import * as CT from "./common-types";
@@ -9,7 +10,7 @@ import { addImpression, mkPool, run_, run, addEvent } from "./analytics/db";
 import { CampaignValue } from "./campaigns/types";
 import bodyParser from "body-parser";
 import { left } from "fp-ts/lib/Either";
-import { Option, some } from "fp-ts/lib/Option";
+import { Option, some, none } from "fp-ts/lib/Option";
 import * as request from 'request-promise-native'
 import cookieParser from 'cookie-parser'
 
@@ -75,6 +76,17 @@ app.post(
     res.send();
   }
 );
+
+app.get("/pixels/", async (req, res) => {
+  try {
+    const stream = await prepareStatic(CT.HandleName.wrap('online-pixels'), none, req.query.skipCache == 'true');
+    stream.pipe(res);
+  } catch(ex)  {
+    console.error(ex)
+    res.status(500);
+    res.send({ error: ex.toString() });
+  }
+})
 
 async function serveCampaign(
   campaign: Option<CampaignValue>,

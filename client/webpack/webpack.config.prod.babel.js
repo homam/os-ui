@@ -7,7 +7,8 @@ const InterpolateHtmlPlugin = require('./InterpolateHtmlPlugin');
 const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin")
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
-const {page, country, service} = process.env
+const {page, country, service, noReact} = process.env
+const html = !!process.env.html
 const publicPath = process.env.publicPath || ''
 
 module.exports = {
@@ -112,7 +113,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       inject: true,
-      template: 'webpack/template.ssr.html',
+      template: !!html ? `src/landing-pages/${page}/template.html` : 'webpack/template.ssr.html',
       filename: `static/${page}/html/index.html`,
       minify: {
         removeComments: true,
