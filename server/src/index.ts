@@ -155,6 +155,7 @@ async function serveCampaign(
     );
 
     const theCampaign = campaign.fold(invalidCampaign, x => x)
+    const bupperizeCountry = c => c == 'gb' ? 'uk' : c
 
     const ipTokens = R.pipe(
       x => x.split('.')
@@ -176,7 +177,7 @@ async function serveCampaign(
         serverTime: new Date().valueOf(),
         eventType: "impression",
         headers: req.headers,
-        country: CT.Country.unwrap(theCampaign.country),
+        country: bupperizeCountry(CT.Country.unwrap(theCampaign.country)),
         offerId: CT.OfferId.unwrap(theCampaign.affiliateInfo.offerId),
         affId: CT.AffiliateId.unwrap(theCampaign.affiliateInfo.affiliateId),
         remoteAddress,
