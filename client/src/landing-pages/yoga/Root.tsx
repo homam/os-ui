@@ -17,7 +17,7 @@ const ButtonArea = ({ clicked, subscribeNowClicked, confirmClicked }) => {
   if (clicked) {
     return <div>
 
-      <button className="ConfirmBtn" onClick={confirmClicked}>Confirm</button>
+      <button className="ConfirmBtn" onClick={confirmClicked}>Confirm<br></br>£4.50 per week!</button>
     </div>
   } else {
     return <div><button className="SubscribeBtn" onClick={subscribeNowClicked}>Subscribe Now!<br></br>£4.50 per week!</button></div>
@@ -59,7 +59,7 @@ class Root extends React.PureComponent<IProps> {
               <div className="border"></div>
 
               <div className="text">
-                <p>Choose only 15 minute practices, begin every day connected &amp; energized.</p>
+                <p>Choose only 15 minute video streaming practices, begin every day connected &amp; energized.</p>
               </div>
 
               <div className="yogapose"></div>
@@ -77,19 +77,7 @@ class Root extends React.PureComponent<IProps> {
 
             />
 
-            <div className="disclaimer">
-
-              <p>Subscribe and transform your body, mind and life today for just £4.50 a week! Service provided by Mobio TV</p>
-
-              <div className="links">
-                <a href="" className="align-left">Terms &amp; Conditions</a>
-                <a href="" className="align-right">Privacy Policy</a>
-              </div>
-
-            </div>
-
-
-            <CustomTesti className="british-testimonials" testimonials={
+            <CustomTesti className="british-testimonials no-anim" testimonials={
               [
                 {
                   Message: () => <span className="message">It’s really helped me to establish an at-home practice.</span>,
@@ -111,10 +99,17 @@ class Root extends React.PureComponent<IProps> {
 
             } />
 
-            <div className="logoarea">
-              <span>Exclusive to</span>
-              <div className="logo"></div>
+            <div className="disclaimer">
+
+              <p>Subscribe and transform your body, mind and life today for just £4.50 a week! Service provided by Mobio TV</p>
+
+              <div className="links">
+                <a href="" className="align-left">Terms &amp; Conditions</a>
+                <a href="" className="align-right">Privacy Policy</a>
+              </div>
+
             </div>
+
 
             <div className="benefits">
 
@@ -125,6 +120,11 @@ class Root extends React.PureComponent<IProps> {
                 <li>Could Reduce Chronic Pain</li>
 
               </ul>
+
+              <div className="logoarea">
+                <span>Exclusive to</span>
+                <div className="logo"></div>
+              </div>
 
             </div>
 
