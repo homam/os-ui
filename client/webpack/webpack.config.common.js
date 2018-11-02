@@ -2,6 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 
 const page = process.env.page
+const noReact = "true" == process.env.noReact 
 
 const urlModule = {
   test: /\.(pdf|jpg|jpeg|png|gif|svg|ico|woff|woff2|ttf|eot)$/,
@@ -70,7 +71,7 @@ const stylusLoader = {
   },
 }
 
-const externals = {
+const externals = noReact ? {} : {
   react: 'React',
   'react-dom': 'ReactDOM',
 }

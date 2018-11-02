@@ -15,6 +15,7 @@
     "new-page": "ts-node webpack/interactive-tools/new-page.ts",
     "update-page-locales": "ts-node webpack/interactive-tools/update-locales.ts",
     "build-and-upload-page": "NODE_ENV=production publicPath=//d2b4jmuffp1l21.cloudfront.net/os-ui yarn build:ssr:all && ts-node webpack/dev-utils/upload-to-s3.ts; echo \"http://c1.ouisys.com/preview/?country=$country&page=$page\"",
+    "upload-to-s3": "ts-node webpack/dev-utils/upload-to-s3.ts; echo \"http://c1.ouisys.com/preview/?country=$country&page=$page\"",
     "docz:dev": "docz dev",
     "docz:build": "docz build"
   },
@@ -31,6 +32,7 @@
     "react-transition-group": "^2.4.0",
     "request": "^2.88.0",
     "rxjs": "^6.3.2",
+    "rxjs-compat": "^6.3.3",
     "uuid": "^3.3.2",
     "whatwg-fetch": "^3.0.0"
   },

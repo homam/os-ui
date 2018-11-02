@@ -1,5 +1,6 @@
 import express from "express";
 import prepare from "./prepare";
+import prepareStatic from "./prepare-static";
 import uuid from "uuid/v1";
 import R from 'ramda';
 import * as CT from "./common-types";
@@ -9,7 +10,7 @@ import { addImpression, mkPool, run_, run, addEvent } from "./analytics/db";
 import { CampaignValue } from "./campaigns/types";
 import bodyParser from "body-parser";
 import { left } from "fp-ts/lib/Either";
-import { Option, some } from "fp-ts/lib/Option";
+import { Option, some, none } from "fp-ts/lib/Option";
 import * as request from 'request-promise-native'
 import cookieParser from 'cookie-parser'
 
@@ -76,6 +77,17 @@ app.post(
   }
 );
 
+app.get("/pixels/", async (req, res) => {
+  try {
+    const stream = await prepareStatic(CT.HandleName.wrap('online-pixels'), none, req.query.skipCache == 'true');
+    stream.pipe(res);
+  } catch(ex)  {
+    console.error(ex)
+    res.status(500);
+    res.send({ error: ex.toString() });
+  }
+})
+
 async function serveCampaign(
   campaign: Option<CampaignValue>,
   skipCache: boolean,
@@ -124,6 +136,7 @@ async function serveCampaign(
     const rockmanId = CT.RockmanId.wrap(uuid().replace(/-/g, ""));
     const userId = CT.userIdFromRockmanId(req.cookies.userId || rockmanId);
     const impressionNumber = CT.ImpressionNumber.wrap(1);
+    const remoteAddress = req.headers['x-forwarded-for'] as string || req.ip
     
     run_(pool, client =>
       addImpression(
@@ -134,7 +147,7 @@ async function serveCampaign(
         cmp.id,
         cmp.page,
         CT.Url.wrap(req.originalUrl),
-        CT.IP.wrap(req.headers['x-forwarded-for'] as string || req.ip),
+        CT.IP.wrap(remoteAddress),
         CT.Country.wrap("xx"),
         R.omit(['connection', 'accept', 'accept-encoding', 'upgrade-insecure-requests'], req.headers),
         req.query
@@ -142,12 +155,21 @@ async function serveCampaign(
     );
 
     const theCampaign = campaign.fold(invalidCampaign, x => x)
+    const bupperizeCountry = c => c == 'gb' ? 'uk' : c
+
+    const ipTokens = R.pipe(
+      x => x.split('.')
+    , x => ({
+        ip2: R.pipe(R.take(2), y => y.join('.'))(x)
+      , ip3: R.pipe(R.take(3), y => y.join('.'))(x)
+    })
+    )(remoteAddress)
     request.default({
       method: 'POST',
       json: true,
       body: {
         rockmanId: CT.RockmanId.unwrap(rockmanId),
-        pacmanId: `${CT.RockmanId.unwrap(rockmanId)}-1-${CT.ImpressionNumber.unwrap(impressionNumber)}}`,
+        pacmanId: `${CT.RockmanId.unwrap(rockmanId)}-1-${CT.ImpressionNumber.unwrap(impressionNumber)}`,
         impressionId: CT.ImpressionNumber.unwrap(impressionNumber),
         landingPageUrl: 'http://' + req.hostname + req.originalUrl, 
         handleName: CT.HandleName.unwrap(theCampaign.page),
@@ -155,10 +177,12 @@ async function serveCampaign(
         serverTime: new Date().valueOf(),
         eventType: "impression",
         headers: req.headers,
-        country: CT.Country.unwrap(theCampaign.country),
+        country: bupperizeCountry(CT.Country.unwrap(theCampaign.country)),
         offerId: CT.OfferId.unwrap(theCampaign.affiliateInfo.offerId),
         affId: CT.AffiliateId.unwrap(theCampaign.affiliateInfo.affiliateId),
-        remoteAddress: req.headers['x-forwarded-for'] as string || req.ip,
+        remoteAddress,
+        ipTokens,
+        queryTokens: req.query
       },
       uri: 'https://de-pacman.sam-media.com/api/v1/store'
     });
@@ -187,6 +211,7 @@ async function serveCampaign(
           : recordImpressionEvent(campaign);
         res.cookie('userId', CT.UserId.unwrap(userId), {expires: new Date(new Date().valueOf() + 90*24*3600*1000)})
         res.cookie('rockmanId', CT.RockmanId.unwrap(rockmanId), {expires: new Date(new Date().valueOf() + 3600*1000)})
+        res.setHeader('Content-Type', 'text/html; charset=UTF-8')
         const stream = await prepare(rockmanId, impressionNumber, campaign, skipCache);
         stream.pipe(res);
       } catch (ex) {
@@ -212,10 +237,16 @@ app.get(
   "/:encCampaignId",
   cookieParser(),
   async (req: express.Request, res: express.Response) => {
-    const campaignId = decrypt(req.params.encCampaignId);
-    const campaign = await run(pool, client => campaigns(client, campaignId));
-
-    return serveCampaign(campaign, false, req, res);
+    try {
+      const campaignId = decrypt(req.params.encCampaignId);
+      //TODO: pass pool itself to campaigns() function
+      const campaign = await run(pool, client => campaigns(client, campaignId));
+      return serveCampaign(campaign, false, req, res);
+    } catch(ex) {
+      console.error(ex)
+      res.status(500)
+      res.end({error: ex.toString()})
+    }
   }
 );
 

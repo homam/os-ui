@@ -8,7 +8,7 @@ import "./assets/css/styles.css?raw";
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
   "xx",
-  "Unknown" //TODO: replace Unknown with your page's name
+  "racing-monster"
 );
 
 const operatorImg = require("./assets/img/iraqcom.png");
