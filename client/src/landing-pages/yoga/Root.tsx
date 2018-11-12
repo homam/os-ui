@@ -10,7 +10,7 @@ import CustomTesti from "../bid-win/components/CustomTesti";
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
   "xx",
-  "Unknown" //TODO: replace Unknown with your page's name
+  "yoga" 
 );
 
 const ButtonArea = ({ clicked, subscribeNowClicked, confirmClicked }) => {
@@ -59,7 +59,7 @@ class Root extends React.PureComponent<IProps> {
               <div className="border"></div>
 
               <div className="text">
-                <p>Choose only 15 minute video streaming practices, begin every day connected &amp; energized.</p>
+                <p>Choose only 15 minute video streaming practices,  begin every day connected &amp; energized</p>
               </div>
 
               <div className="yogapose"></div>
@@ -121,14 +121,12 @@ class Root extends React.PureComponent<IProps> {
 
               </ul>
 
-              <div className="logoarea">
-                <span>Exclusive to</span>
-                <div className="logo"></div>
-              </div>
-
+            <div className="logoarea">
+              <span>Exclusive to</span>
+              <div className="logo"></div>
             </div>
 
-
+            </div>
 
           </div>
         </TranslationProvider>
