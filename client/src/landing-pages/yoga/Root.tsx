@@ -121,17 +121,9 @@ class Root extends React.PureComponent<IProps> {
 
               </ul>
 
-<<<<<<< HEAD
             <div className="logoarea">
               <span>Exclusive to</span>
               <div className="logo"></div>
-=======
-              <div className="logoarea">
-                <span>Exclusive to</span>
-                <div className="logo"></div>
-              </div>
-
->>>>>>> f931126a302450e8b6719abbfefc09c5baa8b2e9
             </div>
 
             </div>
