@@ -37,6 +37,26 @@ h3{
   font-size: 11px;
 }
 
+h4{
+  margin:5px 0;
+  color:#fff;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+h5{
+  margin:0;
+  color:#ccc;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.msg{
+  display: block;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
 .pageViews{
   height: auto;
   padding:10px;
@@ -45,6 +65,16 @@ h3{
   margin:10px auto;
   border-radius: 8px;
   background-color:rgba(255, 255, 255, 0.1);
+
+  &.display-deviceModel .deviceModel,
+  &.display-deviceCapacity .deviceCapacity,
+  &.display-deviceFinish .deviceFinish,
+  &.display-finalResult .finalResult,
+  &.display-preloader .preloader,
+  &.display-thankyou .thankyou{
+    display:block;
+  }
+
 }
 
 .btnChoice{
@@ -73,15 +103,18 @@ h3{
   background-size: 100% auto;
   background-repeat: no-repeat;
 
-  &.phone1{
+  &.phone1,
+  &.iPhone.X{
     background-image: url(../img/phone1.png);
   }
 
-  &.phone2{
+  &.phone2,
+  &.iPhone.Xs{
     background-image: url(../img/phone2.png);
   }
 
-  &.phone3{
+  &.phone3,
+  &.iPhone.Xr{
     background-image: url(../img/phone3.png);
   }
 
@@ -121,6 +154,30 @@ h3{
 
 }
 
+input[type="tel"]{
+  width:160px;
+  border:none;
+  outline:none;
+  padding:10px;
+  color:#000;
+  display: block;
+  font-size: 20px;
+  border-radius: 7px;
+  margin:0px auto 10px auto;
+  background-color:#ffffff;
+}
+
+.error{
+  padding:10px;
+  font-size: 12px;
+  border-radius: 4px;
+  line-height: 1.5em;
+  text-align: center;
+  margin-bottom: 15px;
+  margin-top:10px;
+  background-color: #720800;
+}
+
 .deviceName{
   color:#fff;
   display: block;
@@ -134,6 +191,25 @@ h3{
   color:#f68c26;
   font-size: 11px;
   margin-top: 5px;
+}
+
+.offer{
+  color:#f68c26;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.btn{
+  width:220px;
+  border:none;
+  display: block;
+  font-size: 18px;
+  margin:10px auto;
+  padding:15px 10px;
+  border-radius: 8px;
+  background: #ffaf4b; 
+  background: -webkit-linear-gradient(top, #ffaf4b 0%,#ff920a 100%);
+  background: linear-gradient(to bottom, #ffaf4b 0%,#ff920a 100%);
 }
 
 .finalResult{
@@ -172,6 +248,14 @@ h3{
   display: block;
 }
 
+.step{
+  display:none;
+}
+
+.customTesti ul li::after{
+  color:#f68c26 !important;
+}
+
 .disclaimer{
   color:#ccc;
   padding:10px;
@@ -181,4 +265,39 @@ h3{
   max-width: 620px;
   line-height: 1.5em;
   text-align: justify;
+
+    h4{
+      font-size: 12px;
+    }
+
+}
+
+
+.loader{
+  background-color:transparent !important;
+}
+
+span[class*="l-"] {
+  background:#f68c26 !important;
+}
+
+.congrats{
+
+h1{
+  color: #fff;
+  font-size: 18px;
+}
+
+h2{
+  margin: 0;
+  color: #ec8f32;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+p{
+  font-size: 12px;
+  line-height: 1.5em;
+}
+
 }
