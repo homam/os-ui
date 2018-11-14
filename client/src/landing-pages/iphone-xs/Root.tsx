@@ -1,5 +1,5 @@
 import * as React from "react";
-import mkTracker from "../../pacman/record";
+import mkTracker, { queryString } from "../../pacman/record";
 import { TranslationProvider, Translate } from "./localization/index";
 import HOC, {ITolaProps, MatchSuccess, TolaRDS, TolaFailure, initialState, mockLoadingState, mockSuccessState} from "../../clients/mpesa/TolaHOC";
 import * as RDS from "../../common-types/RemoteDataState";
@@ -15,7 +15,7 @@ const alphabet =  "BDGHJKLMNPQRTVXWZ123456789".split('');
 const random = (items) => items[Math.floor(Math.random()*items.length)];
 const randomString = (n) => n < 1 ? '' : random(alphabet) + randomString(n - 1)
 
-const price = 199;
+const price = typeof window != "undefined" ? (parseInt(queryString(window.location.search, 'price')) || 199) : 199;
 const mkUniqueCode = () => `iPHONE_${randomString(4)}`
 
 const imgiphone = require('./assets/images/iphone.png')
