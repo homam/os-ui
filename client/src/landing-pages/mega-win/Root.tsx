@@ -228,7 +228,7 @@ class Root extends React.PureComponent<ITolaProps> {
                       rds={rds}
                       onEnd={msisdn => {
                         this.setState({ msisdn });
-                        this.props.actions.chargeAndWait(msisdn, 'PAY_NOW', 10);
+                        this.props.actions.chargeAndWait(msisdn, mkUniqueCode(), 199);
                       }}
                     />
 
