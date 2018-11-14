@@ -15,7 +15,7 @@ class TolaApiError extends Error {
   details: any;
 }
 
-var timeoutInSeconds = 60;
+var timeoutInSeconds = 120;
 
 export function chargeAndWait1(msisdn: string, message: string, price: number) {
   const version = queryString(window.location.search, 'mock') == 'true' ? 'mock' : "v1" ; // use 'mock' for testing, use 'v1' for actually sending a charge request to the user
