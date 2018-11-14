@@ -1,0 +1,303 @@
+body{
+  margin: 0;
+  padding:0;
+  color:#ccc;
+  background-color: #000000;
+  font-family: Arial, Arial, Helvetica, sans-serif;
+
+  -webkit-touch-callout:none;
+	-webkit-text-size-adjust: none;
+	-webkit-font-smoothing: antialiased;
+}
+
+.container{
+  margin:10px;
+  position: relative;
+  text-align: center;
+}
+
+.mainTitle{
+  width:216px;
+  height: 100px;
+  display: block;
+  margin:10px auto;
+  background-size: 100% auto;
+  background-image: url(../img/mainTitle.png);
+}
+
+h2{
+  margin:0;
+  color:#fff;
+  font-size: 12px;
+}
+
+h3{
+  margin:0;
+  color:#fff;
+  font-size: 11px;
+}
+
+h4{
+  margin:5px 0;
+  color:#fff;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+h5{
+  margin:0;
+  color:#ccc;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.msg{
+  display: block;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.pageViews{
+  height: auto;
+  padding:10px;
+  display: block;
+  max-width:620px;
+  margin:10px auto;
+  border-radius: 8px;
+  background-color:rgba(255, 255, 255, 0.1);
+
+  &.display-deviceModel .deviceModel,
+  &.display-deviceCapacity .deviceCapacity,
+  &.display-deviceFinish .deviceFinish,
+  &.display-finalResult .finalResult,
+  &.display-preloader .preloader,
+  &.display-thankyou .thankyou{
+    display:block;
+  }
+
+}
+
+.btnChoice{
+  width:100%;
+  border:none;
+  padding: 5px;
+  outline: none;
+  display: block;
+  cursor: pointer;
+  margin:6px auto;
+  text-align: left;
+  border-radius: 8px;
+  background-color:rgba(255, 255, 255, 0.1);
+
+  &:hover{
+    background-color:rgba(255, 255, 255, 0.2);
+  }  
+}
+
+.device{
+  float:left;
+  width:50px;
+  height: 80px;
+  display: block;
+  margin-right:10px;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+
+  &.phone1,
+  &.iPhone.X{
+    background-image: url(../img/phone1.png);
+  }
+
+  &.phone2,
+  &.iPhone.Xs{
+    background-image: url(../img/phone2.png);
+  }
+
+  &.phone3,
+  &.iPhone.Xr{
+    background-image: url(../img/phone3.png);
+  }
+
+}
+
+.chip{
+    float:left;
+    width:50px;
+    height: 50px;
+    display: block;
+    margin:10px 10px 10px 5px;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-image: url(../img/chip.png);
+}
+
+.circle{
+  float:left;
+  width:50px;
+  height:50px;
+  display: block;
+  border-radius: 50%;
+  border:1px solid #ccc;
+  margin:10px 10px 10px 5px;
+
+  &.black{
+    background-color: #000000;
+  }
+
+  &.white{
+    background-color: #ffffff;
+  }
+
+  &.red{
+    background-color:red;
+  }
+
+}
+
+input[type="tel"]{
+  width:160px;
+  border:none;
+  outline:none;
+  padding:10px;
+  color:#000;
+  display: block;
+  font-size: 20px;
+  border-radius: 7px;
+  margin:0px auto 10px auto;
+  background-color:#ffffff;
+}
+
+.error{
+  padding:10px;
+  font-size: 12px;
+  border-radius: 4px;
+  line-height: 1.5em;
+  text-align: center;
+  margin-bottom: 15px;
+  margin-top:10px;
+  background-color: #720800;
+}
+
+.deviceName{
+  color:#fff;
+  display: block;
+  font-size: 12px;
+  font-weight:bold;
+  margin-top: 20px;
+}
+
+.deviceInfo{
+  display: block;
+  color:#f68c26;
+  font-size: 11px;
+  margin-top: 5px;
+}
+
+.offer{
+  color:#f68c26;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.btn{
+  width:220px;
+  border:none;
+  display: block;
+  font-size: 18px;
+  margin:10px auto;
+  padding:15px 10px;
+  border-radius: 8px;
+  background: #ffaf4b; 
+  background: -webkit-linear-gradient(top, #ffaf4b 0%,#ff920a 100%);
+  background: linear-gradient(to bottom, #ffaf4b 0%,#ff920a 100%);
+}
+
+.finalResult{
+    display: block;
+
+    .btnChoice:hover{
+      cursor: default;
+      background-color:rgba(255, 255, 255, 0.1);
+    }
+
+  .deviceName{
+    margin-top: 0px;
+    font-size: 24px;
+    padding-top: 12px;
+    margin-left: 65px;
+  }
+
+  .deviceInfo{
+    margin-top:-5px;
+  }
+
+  .chip,
+  .circle{
+    width: 20px;
+    height:20px;
+    float:none;
+    vertical-align: middle;
+    display: inline-block;
+  }
+
+}
+
+.wrapper{
+  width:206px;
+  margin:0 auto;
+  display: block;
+}
+
+.step{
+  display:none;
+}
+
+.customTesti ul li::after{
+  color:#f68c26 !important;
+}
+
+.disclaimer{
+  color:#ccc;
+  padding:10px;
+  display: block;
+  font-size: 12px;
+  margin:0px auto;
+  max-width: 620px;
+  line-height: 1.5em;
+  text-align: justify;
+
+    h4{
+      font-size: 12px;
+    }
+
+}
+
+
+.loader{
+  background-color:transparent !important;
+}
+
+span[class*="l-"] {
+  background:#f68c26 !important;
+}
+
+.congrats{
+
+h1{
+  color: #fff;
+  font-size: 18px;
+}
+
+h2{
+  margin: 0;
+  color: #ec8f32;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+p{
+  font-size: 12px;
+  line-height: 1.5em;
+}
+
+}
