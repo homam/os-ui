@@ -20,6 +20,7 @@ const mkUniqueCode = () => `iPHONE_${randomString(4)}`
 
 const imgiphone = require('./assets/images/iphone.png')
 const iphonexs_logo = require('./assets/images/iphonexs_logo.png')
+const blackfriday = require('./assets/images/blackfriday.png')
 
 type MSISDNEntryProps = {
   msisdn: string;
@@ -66,9 +67,12 @@ class MSISDNEntryStep extends React.PureComponent<MSISDNEntryProps, {msisdn: str
             this.setState({waited: true})
           }, 6000);
         }}
+
+        className="main-view"
       >
       <input type="hidden" name="rockman_id" ref={this.ref_rockman_id} />
       <input type="hidden" name="no_js_form_submission" value="true" ref={this.ref_no_js_form_submission} />
+      <div className="black-friday-banner"></div>
       <h1 className='congrats'>Congratulations!</h1>
       <h1 className='main-title'>You have a chance to win the new</h1>
       <img className="iphonexs-logo" src={iphonexs_logo} />

@@ -71,7 +71,10 @@ class Root extends React.PureComponent<IProps> {
 
 
             <ButtonArea clicked={this.state.clicked}
-              subscribeNowClicked={() => this.setState({ clicked: true })}
+              subscribeNowClicked={() => {
+                this.setState({ clicked: true });
+                tracker.advancedInPreFlow('Click 1')
+              } }
               confirmClicked={() => this.props.actions.onClick()}
 
 
@@ -104,8 +107,8 @@ class Root extends React.PureComponent<IProps> {
               <p>Subscribe and transform your body, mind and life today for just £4.50 a week! Service provided by Mobio TV</p>
 
               <div className="links">
-                <a href="" className="align-left">Terms &amp; Conditions</a>
-                <a href="" className="align-right">Privacy Policy</a>
+                <a href="http://n.mobiotv.com/uk/tnc-mobiotv?offer=1&_next=index.html" className="align-left">Terms &amp; Conditions</a>
+                <a href="http://n.mobiotv.com/uk/tnc-mobiotv?offer=1&_next=privacy_policy.html" className="align-right">Privacy Policy</a>
               </div>
 
             </div>
