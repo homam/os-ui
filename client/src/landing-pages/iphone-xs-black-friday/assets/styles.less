@@ -1,0 +1,248 @@
+body, input, select, button {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+@keyframes fadeIn {
+  0% {
+      -webkit-transform: scale(0);
+      opacity: 0.0;		
+  }
+  60% {
+      -webkit-transform: scale(1.1);
+  }
+  80% {
+      -webkit-transform: scale(0.9);
+      opacity: 1;	
+  }	
+  100% {
+      -webkit-transform: scale(1);
+      opacity: 1;	
+  }		
+} 
+
+body {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.disclaimer {
+  // position: absolute;
+  // top: 400px;
+  font-size: smaller;
+  border-top: solid 1px silver;
+  margin: 1em auto 0 auto;
+  padding: 1em 0 0 0;
+}
+
+
+.box {
+  color: #fff;
+  padding: 1em;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+  max-width: 480px;
+  line-height: 1.5em;
+  position: relative;
+  border-radius: 10px;
+  background-color: rgba(51, 51, 51, 0.95);
+  -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(88%, transparent) , to(rgba(250, 250, 250, 0.1)));
+}
+
+.submit-button {
+  width: 220px;
+  display: block;
+  margin: 0 auto;
+  outline: none;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 15px 10px;
+  text-align: center;
+  border-radius: 7px;
+  text-decoration: none;
+  border: 1px solid #000;
+  text-shadow: 0px 1px 1px rgba(0,0,0,0.25);
+
+  background: #737373;
+  box-shadow: -1px 0px 1px rgba(33, 30, 30, 0.75);
+
+  transition: 0.3s;
+
+  &.enabled {
+    color: #fff;
+    background-color: #ed9036;
+    box-shadow: inset 0px 1px 1px rgba(255,255,255,0.75);
+  }
+}
+
+.msisdn-input {
+  width: 180px;
+  margin: 0 auto 0.5em auto;
+  outline: none;
+  direction: ltr;
+  font-size: 20px;
+  border-radius: 7px;
+  border: 1px solid #ccc;
+  padding: 10px 10px 10px 30px;
+  text-align: left !important;
+  background-size: 20px auto;
+  background-position: 5px 5px;
+  background-repeat: no-repeat;
+  background-image: url(./images/mobile.svg);
+  display: block;
+
+  &.loading {
+    background-color: #737373;
+    color: white;
+  }
+}
+
+.nice-opacity-trans {
+  opacity: 0;
+  transition: 0.3s;
+  height: 1em;
+  overflow: hidden;
+
+  &.visible {
+    opacity: 1;
+    height: auto;
+  }
+}
+
+.mpesa-pin {
+  .box;
+  .nice-opacity-trans;
+  margin-top: 1em; 
+}
+
+.waited {
+  .nice-opacity-trans;
+  &.visible {
+    margin-top: 1em;
+  }
+}
+
+.main-view h1 {
+  font-size: 150%;
+}
+
+.main-title, .instruction, .congrats {
+  text-align: center;
+  padding: 0 0 0 0;
+  margin: 0 auto 0 auto;
+}
+
+.congrats {
+  margin-bottom: 0.5em;
+  color:#ed9036;
+}
+
+.instruction {
+  margin-bottom: 1em;
+}
+
+.black-friday-banner {
+  width: 100%;
+  height: 150px;
+  background-image: url('./images/blackfriday.png');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.iphonexs-logo {
+  height: 44px;
+  margin: auto;
+  display: block;
+}
+
+.main-phone {
+  animation: 1.5s fadeIn ease-in-out;
+  margin: 1em auto 1em auto;
+  display: block;
+  width: 100%;
+  max-width: 600px;
+}
+
+.error {
+  color: #FFEB3B;
+  margin: 1em 0 1em 0;
+  text-align: center;
+}
+
+.tq-container {
+  .main-title {
+    margin-bottom: 1em;
+  }
+}
+
+.tq-cta-container {
+  margin: 1em 0 2em 0;
+}
+
+.tq-button {
+  width: 280px;
+  text-shadow: 0 0 3px #757575, 0 0 5px #5f5f5f;
+}
+
+.double, .tq-thankyou{
+  text-align: center;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(204,169,44, 0.4);
+  }
+  70% {
+      box-shadow: 0 0 0 20px rgba(219, 177, 26, 0);
+  }
+  100% {
+      box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+  }
+}
+
+.discount-box {
+  margin: auto;
+  width: 138px;
+  text-align: center;
+  margin-top: 1em;
+
+  .discount {
+    box-shadow: 0 0 0 rgba(204,169,44, 0.4);
+    animation: pulse 1s infinite;
+    border: solid 10px red;
+    border-radius: 50%;
+    height: 120px;
+    width: 120px;
+    transform: rotate(-28deg);
+    color: red;
+    background-image: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.65) 50%,rgb(218, 38, 38) 100%);
+
+
+    div {
+      padding-top: 25px;
+      font-size: 29px;
+      font-weight: bold;
+    }
+  }
+
+  .old {
+    position: relative;
+    display: inline-block;
+  }
+  .old::before, .old::after {
+      content: '';
+      width: 100%;
+      position: absolute;
+      right: 0;
+      top: 50%;
+  }
+  .old::before {
+      border-bottom: 2px solid green;
+      -webkit-transform: skewY(-10deg);
+      transform: skewY(-10deg);
+  }
+  .new {
+    color: red;
+    font-size: 120%;
+  }
+}

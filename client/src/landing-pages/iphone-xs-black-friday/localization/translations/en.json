@@ -1,0 +1,18 @@
+{
+  "hello_world": "Hello World!",
+  "AlreadySubscribed": "You are already a subscriber!",
+  "InvalidMSISDN": "This mobile number is incorrect, please try again with another phone number.",
+  "UnknownError": "An unknown error occurred.",
+  "InvalidPIN": "Please enter the correct PIN that you received on your phone",
+  "TooEarly": "You must first submit a mobile number",
+  "we_just_sent_a_pin": "We just sent a PIN to your mobile phone.\nPlease check your SMS inbox and enter the PIN that you received below:",
+  "didnt_receive_pin_yet": "Didn't receive a PIN yet? Make sure {phone} is your correct mobile number.",
+  "if_not_your_mobile": "If {phone} is not your mobile number,",
+  "click_here_to_change_your_number": "Click here to change your phone number.",
+  "enter_your_mpesa_pin": "You will be prompted to pay securely by M-pesa in a few moments. Enter your M-pesa PIN and confirm.",
+  "FailChargeResponseReceived": "It seems you have entered an incorrect mobile number. Please make sure your number is correct and you have an active M-pesa account.",
+  "FailLodgementNotificationReceived": "An error occurred. Please make sure that you have a valid M-pesa account.",
+  "FailDisbursementNotificationReceived": "It seems you did not complete the registration process. Please try again.",
+  "Timeout": "If you have not received a M-pesa PIN request yet, please double check your number and try again.",
+  "disclaimer": "Service available only to users with a valid mPesa or Airtel money account. Service cost is Ksh 199 for a ticket into the draw for a new iPhone X, unless alternative prizes were specifically promoted. Promotion runs from 16-10-2018 until 02-01-2019. Winners will be drawn randomly and contacted by telephone on the mobile number associated with the account used to make payment. Proof of payment SMS required to claim prize. The service provider will cover the cost of shipping prizes to winners within the Republic of Kenya. Prizes are not transferable and non redeemable for cash. By entering the draw you confirm to be 18 years or older and that you have obtained the bill payer's permission. By using the service you agree to receive promotional marketing related to this and similar services from the same provider. Service provided by Right Net Limited, under authorisation of the Betting Control and Licensing Board (license number 002397 of 2018). For help call 0703065013. "
+}
