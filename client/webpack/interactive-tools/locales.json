@@ -10,5 +10,9 @@
   "el": {
     "name": "Greek",
     "countries": ["gr"]
+  },
+  "ms": {
+    "name": "Bahasa",
+    "countries": ["my", "id"]
   }
 }
