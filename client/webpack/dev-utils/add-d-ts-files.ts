@@ -23,7 +23,6 @@ const write = async fileName => {
   try {
     return await toPromise(fs.writeFile)(`${fileName}.d.ts`, content, { flag: 'wx' })
   } catch(ex) {
-    // console.log('>>>', ex)
     if(ex.code == 'EEXIST') {
       return null
     } else {
@@ -42,5 +41,5 @@ async function main () {
 }
 
 main()
-  .then(console.log)
+  .then(arr => console.log(`${arr.length} .d files for less, css and styl were added`))
   .catch(console.log)
