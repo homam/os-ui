@@ -133,7 +133,7 @@ const TQStep = ({finalUrl} : {finalUrl: string}) => <div>
   <a href={finalUrl}>Click here to access the product</a>
 </div>;
 
-const Flag = () => {
+{ /*const Flag = () => {
   const country = process.env.country;
   switch (country) {
     case "my":
@@ -146,6 +146,7 @@ const Flag = () => {
       return <span>🚧</span>
   }
 }
+*/}
 
 class Root extends React.PureComponent<HOCProps> {
   state = {
@@ -157,7 +158,6 @@ class Root extends React.PureComponent<HOCProps> {
       <div>
         <TranslationProvider locale={this.state.locale}>
           <div className="container">
-            <h1>{process.env.country === "my" ? "Hello from Malaysia!" : "Go home!"}</h1>
             <div className="top-bar">
               <Translate id="Digital_Deluxe_Edition" defaultMessage="!!Digital Deluxe Edition!!" />
               <button
@@ -235,7 +235,7 @@ class Root extends React.PureComponent<HOCProps> {
             </div>
             <div className="disclaimer">
               <div style={{fontSize: '12em'}}>
-                <Flag />
+              {/* <Flag /> */}
               </div>
               <Disclaimer />
             </div>
