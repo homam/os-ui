@@ -5,7 +5,14 @@ html, body {
     line-height: 1.2;
     height: 100%;
     font-size: 16px;
-    background-color: #7F141D;
+    background: #bdbdbd;
+background: -moz-linear-gradient(top, #bdbdbd 0%, #f6f6f6 61%, #ffffff 100%);
+background: -webkit-gradient(left top, left bottom, color-stop(0%, #bdbdbd), color-stop(61%, #f6f6f6), color-stop(100%, #ffffff));
+background: -webkit-linear-gradient(top, #bdbdbd 0%, #f6f6f6 61%, #ffffff 100%);
+background: -o-linear-gradient(top, #bdbdbd 0%, #f6f6f6 61%, #ffffff 100%);
+background: -ms-linear-gradient(top, #bdbdbd 0%, #f6f6f6 61%, #ffffff 100%);
+background: linear-gradient(to bottom, #bdbdbd 0%, #f6f6f6 61%, #ffffff 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bdbdbd', endColorstr='#ffffff', GradientType=0 );
 }
 
 * {
@@ -16,6 +23,10 @@ html, body {
 .banner {
     width: 100%;
     display: block;
+}
+
+.banner-intro  {
+    background-image: url("../../assets/img/banner-full.jpg");
 }
 
 .wrapper {
@@ -90,6 +101,7 @@ html, body {
 .red-ribbon {
     position: absolute;
     left: 0;
+    z-index: 1;
 }
 
 .red-ribbon img {
@@ -105,7 +117,7 @@ html, body {
 }
 
 .body-copy {
-    font-size: 0.7em;
+    font-size: 14px;
 }
 
 .body-copy-main {
@@ -229,7 +241,7 @@ a.btn {
     width: 83%;
 }
 
-.phone-number-wrapper  .pin input {
+.phone-number-wrapper .pin input {
     background-color: white;
     width: 78%;
     display: block;
@@ -239,6 +251,10 @@ a.btn {
     margin: 10px auto 0 auto;
     text-align: center;
     border-radius: 10px;
+}
+
+.phone-number-wrapper .pin input:hover, .phone-number-wrapper .pin input:focus, .phone-number-wrapper .pin input:active {
+    border: solid 1px #ff8f00;
 }
 
 .phone-number-wrapper input {
@@ -296,11 +312,11 @@ input:focus {
 
 .left-icon {
     float: left;
-    padding: 10px;
+    padding: 10px 0;
 }
 
 .left-text {
-    padding: 10px 15px;
+    padding: 10px 5px;
     float: left;
     font-size: 1em;
 }
@@ -372,13 +388,17 @@ input:focus {
     height: 19px;
 }
 
+.flag:hover, .flag:focus, .flag:active {
+    border: solid 1px #ff8f00;
+}
+
 .black-bg {
     background-color: black;
     opacity: 0.5;
     height: 100vh;
     width: 100%;
     position: absolute;
-    z-index: 1;
+    z-index: 2;
 }
 
 @media only screen and (min-width: 452px) {
@@ -446,6 +466,70 @@ input:focus {
       -webkit-transform: translateZ(0);
               transform: translateZ(0);
       opacity: 0.7;
+    }
+  }
+  
+.fade-in-bck {
+	-webkit-animation: fade-in-bck 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+	        animation: fade-in-bck 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+ @-webkit-keyframes fade-in-bck {
+    0% {
+      -webkit-transform: translateZ(80px);
+              transform: translateZ(80px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: translateZ(0);
+              transform: translateZ(0);
+      opacity: 1;
+    }
+  }
+  @keyframes fade-in-bck {
+    0% {
+      -webkit-transform: translateZ(80px);
+              transform: translateZ(80px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: translateZ(0);
+              transform: translateZ(0);
+      opacity: 1;
+    }
+  }
+
+  .pulsate-fwd {
+	-webkit-animation: pulsate-fwd 2s ease-in-out infinite both;
+	        animation: pulsate-fwd 2s ease-in-out infinite both;
+}
+
+ @-webkit-keyframes pulsate-fwd {
+    0% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+    }
+    50% {
+      -webkit-transform: scale(1.05);
+              transform: scale(1.05);
+    }
+    100% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+    }
+  }
+  @keyframes pulsate-fwd {
+    0% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+    }
+    50% {
+      -webkit-transform: scale(1.05);
+              transform: scale(1.05);
+    }
+    100% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
     }
   }
   
