@@ -176,7 +176,7 @@ class Root extends React.PureComponent<ITolaProps, {locale: string, entriesWon: 
               })(this.props.currentState)
             }
             <div className='disclaimer'>
-              <Translate id="disclaimer" />
+              <Translate id="disclaimer" values={{price}} />
             </div>
           </div>
         </TranslationProvider>
