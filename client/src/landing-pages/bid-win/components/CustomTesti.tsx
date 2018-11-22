@@ -45,14 +45,14 @@ export default class extends React.PureComponent<IProps> {
       <ul className="customTestiSlider slide">
         {
           testimonials.map(({Message, Name, stars}, index) => 
-            <li>
+            <li key={index.toString()}>
               <div className={`avatar person${index + 1}`}></div>
               <div className="details">
                 <Message />
                 <span className="rating">
                   {
-                    [...Array(stars).keys()].map(() =>
-                      <i className="icon-star"></i>
+                    [...Array(stars).keys()].map((i) =>
+                      <i key={i.toString()} className="icon-star"></i>
                     )
                   }
                   <Name />
