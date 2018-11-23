@@ -3,19 +3,19 @@ import mkTracker from "../../pacman/record";
 import { TranslationProvider, Translate } from "./localization/index";
 import HOC, {
   initialState,
+  mockedMSISDNEntrySuccess,
   mockedCompletedState,
   HOCProps,
   MSISDNEntryFailure,
   MSISDNEntrySuccess,
-  PINEntryFailure,
-  PINEntrySuccess,
   match,
-  mockedPINState
-} from "../../clients/lp-api/HOC";
+  MOLink,
+} from "../../clients/lp-api-mo/HOC";
 import * as RDS from "../../common-types/RemoteDataState";
 import "./assets/css/styles.less?raw"
 import CustomTesti from "../bid-win/components/CustomTesti"
 import Disclaimer from "../../legal-components/Disclaimer";
+import { IKeywordShortcode } from "../../clients/lp-api-mo/main";
 
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
@@ -39,23 +39,23 @@ class MSISDNEntryStep extends React.PureComponent<{
           this.props.onEnd(this.state.msisdn);
         }}
       >
-      <div>
-        <input
-          className="phone-input"
-          placeholder="Phone number"
-          value={this.state.msisdn}
-          onChange={ev => this.setState({ msisdn: ev.target.value })}
-        />
-        <button type="submit" disabled={RDS.IsLoading(this.props.rds)}>
-          <Translate id="submit_phone"/>
-        </button>
+        <div>
+          <input
+            className="phone-input"
+            placeholder="Phone number"
+            value={this.state.msisdn}
+            onChange={ev => this.setState({ msisdn: ev.target.value })}
+          />
+          <button type="submit" disabled={RDS.IsLoading(this.props.rds)}>
+            <Translate id="submit_phone" />
+          </button>
           {
             RDS.WhenLoading(null, () => 'Wait...')(this.props.rds)
           }
         </div>
         <div>
           {
-            RDS.WhenFailure(null, (err : MSISDNEntryFailure) => <Translate id={err.errorType} />)(this.props.rds)
+            RDS.WhenFailure(null, (err: MSISDNEntryFailure) => <Translate id={err.errorType} />)(this.props.rds)
           }
         </div>
       </form>
@@ -63,90 +63,15 @@ class MSISDNEntryStep extends React.PureComponent<{
   }
 }
 
-class PINEntryStep extends React.PureComponent<{
-  msisdn: string;
-  rds: RDS.RemoteDataState<PINEntryFailure, PINEntrySuccess>;
-  backToStart: () => void;
-  onEnd: (pin: string) => void;
-}> {
-  state = {
-    pin: ""
-  };
-  render() {
-    return (
-      <form
-        onSubmit={ev => {
-          ev.preventDefault();
-          this.props.onEnd(this.state.pin);
-        }}
-      >
-        <div>
-          <Translate id="we_just_sent_a_pin" />
-        </div>
-        <div>
-          <input
-            placeholder="PIN"
-            value={this.state.pin}
-            onChange={ev => this.setState({ pin: ev.target.value })}
-          />
-          <button type="submit" disabled={RDS.IsLoading(this.props.rds)}>OK</button>
-            {
-              RDS.WhenLoading(null, () => 'Wait...')(this.props.rds)
-            }
-        </div>
-        <div>
-          {
-            RDS.match({
-              failure: (err: PINEntryFailure) => (
-                <div>
-                  <div><Translate id={err.errorType} /></div>
-                  <Translate id="if_not_your_mobile" values={{
-                      phone: this.props.msisdn
-                  }} />&nbsp;
-                  <a onClick={() => this.props.backToStart()}>
-                    <Translate id="click_here_to_change_your_number" />
-                  </a>
-                </div>
-              ),
-              nothingYet: () => (
-                <div>
-                  <Translate id="didnt_receive_pin_yet" values={{
-                      phone: this.props.msisdn
-                  }} />&nbsp;
-                  <a onClick={() => this.props.backToStart()}>
-                    <Translate id="click_here_to_change_your_number" />
-                  </a>
-                </div>
-              ),
-              loading: () => null,
-              success: () => null
-            })(this.props.rds)
-          }
-        </div>
-      </form>
-    );
-  }
+function MO({ keyword, shortcode, backToStart }: IKeywordShortcode & {backToStart: () => void}) {
+  return <div>
+    <MOLink keywordAndShortcode={{keyword, shortcode}}><h1>SMS {keyword} to {shortcode}</h1></MOLink>
+    <div>
+    <a onClick={() => backToStart()}>Try again</a>
+    </div>
+  </div>
 }
 
-const TQStep = ({finalUrl} : {finalUrl: string}) => <div>
-  <h3>Thank you!</h3>
-  <a href={finalUrl}>Click here to access the product</a>
-</div>;
-
-{ /*const Flag = () => {
-  const country = process.env.country;
-  switch (country) {
-    case "my":
-      return <span>🇲🇾</span>
-    case "qa":
-      return <span>🇶🇦</span>
-    case "pk":
-      return <span>🇵🇰</span>
-    default:
-      return <span>🚧</span>
-  }
-}
-*/}
 
 class Root extends React.PureComponent<HOCProps> {
   state = {
@@ -162,53 +87,45 @@ class Root extends React.PureComponent<HOCProps> {
               <Translate id="Digital_Deluxe_Edition" defaultMessage="!!Digital Deluxe Edition!!" />
               <button
                 onClick={() => {
-                  if(this.state.locale === "en") {
-                    this.setState({locale: "ms"})
+                  if (this.state.locale === "en") {
+                    this.setState({ locale: "ms" })
                     document.getElementsByTagName('html')[0].setAttribute("lang", "ms")
                   } else {
-                    this.setState({locale: "en"})
+                    this.setState({ locale: "en" })
                     document.getElementsByTagName('html')[0].setAttribute("lang", "en")
                   }
                 }}
               >{
-                this.state.locale === "ms"
-                ? "Change Language"
-                : "Tukar bahasa"
-              }</button>
+                  this.state.locale === "ms"
+                    ? "Change Language"
+                    : "Tukar bahasa"
+                }</button>
             </div>
             <div className="eye-blaster"></div>
             <div className="box">
               {match({
                 msisdnEntry: rds => (
                   <div>
-                    <MSISDNEntryStep
-                      msisdn={this.state.msisdn}
-                      rds={rds}
-                      onEnd={msisdn => {
-                        this.setState({ msisdn });
-                        this.props.actions.submitMSISDN(window, null, msisdn);
-                      }}
-                    />
+                    {
+                      RDS.WhenSuccess<MSISDNEntrySuccess, JSX.Element>(<MSISDNEntryStep
+                        msisdn={this.state.msisdn}
+                        rds={rds}
+                        onEnd={msisdn => {
+                          this.setState({ msisdn });
+                          this.props.actions.submitMSISDN(window, null, msisdn);
+                        }}
+                      />, data => <MO {...data} backToStart={this.props.actions.backToStart} />)(rds)
+                    }
                   </div>
                 ),
-                pinEntry: rds => (
+                completed: () => (
                   <div>
-                    <PINEntryStep
-                      onEnd={pin => this.props.actions.submitPIN(pin)}
-                      backToStart={() => this.props.actions.backToStart()}
-                      msisdn={this.state.msisdn}
-                      rds={rds}
-                    />
-                  </div>
-                ),
-                completed: ({ finalUrl }) => (
-                  <div>
-                    <TQStep finalUrl={finalUrl} />
+                    Well done!
                   </div>
                 )
               })(this.props.currentState)}
-              </div>
-           
+            </div>
+
             <div className="testimonials">
               <CustomTesti
                 className="frontline-testimonials"
@@ -234,8 +151,8 @@ class Root extends React.PureComponent<HOCProps> {
               />
             </div>
             <div className="disclaimer">
-              <div style={{fontSize: '12em'}}>
-              {/* <Flag /> */}
+              <div style={{ fontSize: '12em' }}>
+                {/* <Flag /> */}
               </div>
               <Disclaimer />
             </div>
