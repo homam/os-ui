@@ -30,7 +30,7 @@ const ExampleTransition = ({
   />
 );
 
-const GenderSelector = injectIntl(({ className, intl }) => <div className={className}>
+const GenderSelectorBase = ({ className, intl } : {className: string, intl: any}) => (<div className={className}>
   <b><FormattedMessage id="sex" defaultMessage="Sex:" /></b>
   <div className={"input"} id="genre1">
     <div className={"input-in dropdown center"}>
@@ -41,6 +41,8 @@ const GenderSelector = injectIntl(({ className, intl }) => <div className={class
     </div>
   </div>
 </div>)
+
+const GenderSelector = injectIntl(GenderSelectorBase)
 
 const Step0 = ({onEnd}) => (
   <div id="step0" className={"step center"}>

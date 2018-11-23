@@ -93,7 +93,7 @@ class MSISDNEntryStep extends React.PureComponent<{
                          src={bannerIntro} alt="The Sunnah Way"/>
 
                     <img
-                        className={"banner-honey banner hidden " + (this.state.introStep === 1 ? "active" : "")}
+                        className={"banner-honey banner hidden fade-in-bck " + (this.state.introStep === 1 ? "active" : "")}
                         src={banner} alt="The Sunnah Way"/>
 
                     <div className="headline-container">
@@ -118,7 +118,7 @@ class MSISDNEntryStep extends React.PureComponent<{
                                 proved to be useful for health
                             </div>
 
-                            <button onClick={this.selectIntro} type="submit" className="btn uppercase more">
+                            <button onClick={this.selectIntro} type="submit" className="btn uppercase more pulsate-fwd ">
                                 Discover More
                             </button>
                         </div>
@@ -129,13 +129,13 @@ class MSISDNEntryStep extends React.PureComponent<{
                             (this.state.introStep === 1 ? "active" : "")
                         }>
                             <h3>HONEY</h3>
-                            <div className="body-copy center">
+                            <div className="body-copy center fade-in-bck ">
                                 “Honey is a remedy for every illness and the quran is a remedy for all illness of the
                                 mind,
                                 therefore i recommend to you remedies, the quran and honey”. (bukhari)
                             </div>
 
-                            <button onClick={this.selectIntro2} type="submit" className="btn uppercase now">
+                            <button onClick={this.selectIntro2} type="submit" className="btn uppercase now pulsate-fwd ">
                                 Discover Now
                             </button>
                         </div>
