@@ -139,6 +139,7 @@ h3 {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffdd00', endColorstr='#d25820', GradientType=0 );
     padding: 13px;
     width: 100%;
+    max-width: 300px;
     margin: 15px auto;
     -webkit-border-radius: 15px;
     -moz-border-radius: 15px;
@@ -398,7 +399,53 @@ input:focus {
     height: 100vh;
     width: 100%;
     position: absolute;
-    z-index: 2;
+    z-index: 3;
+}
+
+.customTesti.sunnah-testimonials {
+    width: auto;
+    margin: auto;
+    max-width: 300px;
+}
+
+.customTesti.sunnah-testimonials ul li .details .rating span {
+    color: white;
+}
+
+.customTesti.sunnah-testimonials ul li .avatar {
+    width: 60px;
+    height: 60px;
+}
+
+.customTesti.sunnah-testimonials ul li .details .rating {
+    margin-left: 60px;
+}
+
+.customTesti.sunnah-testimonials ul li::after {
+    right: 16px;
+}
+
+.customTesti.sunnah-testimonials ul li .avatar.person1 {
+    background-image: url("../../assets/img/display-pic.jpg")
+}
+
+.customTesti.sunnah-testimonials ul li .avatar.person2 {
+    background-image: url("../../assets/img/display-pic.jpg")
+}
+
+.customTesti.sunnah-testimonials ul li .avatar.person3 {
+    background-image: url("../../assets/img/display-pic.jpg")
+}
+
+.language-switcher {
+    width: auto;
+    padding: 10px;
+    margin: auto;
+    position: absolute;
+    background-color: white;
+    z-index: 1;
+    right: 0;
+    border: none;
 }
 
 @media only screen and (min-width: 452px) {
