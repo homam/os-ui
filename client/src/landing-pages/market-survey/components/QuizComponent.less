@@ -1,0 +1,74 @@
+.quizPanel{
+  display: block;
+  padding: 20px 0;
+  margin: 20px auto;
+  text-align: center;
+  border-top: 1px dashed #ccc;
+
+  &.currentQuestionIndex-4{
+    padding:0;
+  }
+
+  .progress{
+    top:0;
+    left:0;
+    right:0;
+    width: 0%;
+    height: 10px;
+    display: block;
+    position: absolute;
+    margin-bottom: 10px;
+    background-color: #0387e1;
+    transition: 0.5s ease-in-out;
+
+    &.currentQuestionIndex-1{
+      width:33%;
+    }
+
+    &.currentQuestionIndex-2{
+      width:66%;
+    }
+
+    &.currentQuestionIndex-3{
+      width:100%;
+    }
+
+  }
+
+  .counter{
+    display: none;
+  }
+
+  .question{
+      padding: 3px;
+      display: none;
+      font-size: 1.0em;
+      font-weight: bold;
+
+      &.visible{
+        display: block; 
+       }
+  
+  }
+
+  button{
+    width:260px;
+    border: none;
+    outline: none;
+    color: #fff;
+    display: block;
+    cursor:pointer;
+    padding: 15px 0;
+    font-size: 18px;
+    margin: 10px auto;
+    font-weight: bold;
+    border-radius: 2px;
+    text-decoration: none;
+    letter-spacing: 0.2rem;
+    text-transform: uppercase;
+    background-color: #0387e1;
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.3);
+  }
+
+}
+
