@@ -24,6 +24,8 @@ import {
 import { en } from "../iphone-xs/localization/addLocaleData";
 import { MockObserver } from "rx";
 import { mockSuccessState } from "../../clients/mpesa/TolaHOC";
+import CustomTesti from "../bid-win/components/CustomTesti";
+
 
 const tracker = mkTracker(
     typeof window != "undefined" ? window : null,
@@ -42,11 +44,13 @@ const star = require("./assets/img/star.png");
 const download = require("./assets/img/download.png");
 const history = require("./assets/img/history.png");
 
+
 class MSISDNEntryStep extends React.PureComponent<{
     msisdn: string;
     rds: RDS.RemoteDataState<MSISDNEntryFailure, MSISDNEntrySuccess>;
     onEnd: (msisdn: string) => void;
 }> {
+    
     state = {
         locale: "en",
         msisdn: this.props.msisdn,
@@ -78,12 +82,31 @@ class MSISDNEntryStep extends React.PureComponent<{
 
     render() {
         return (
+                
             <form
                 onSubmit={ev => {
                     ev.preventDefault();
                     this.props.onEnd(this.state.msisdn);
                 }}
             >
+            
+             <button className="language-switcher"
+                onClick={() => {
+                  if(this.state.locale === "en") {
+                    this.setState({locale: "ar"})
+                    document.getElementsByTagName('html')[0].setAttribute("lang", "ar")
+                  } else {
+                    this.setState({locale: "en"})
+                    document.getElementsByTagName('html')[0].setAttribute("lang", "en")
+                  }
+                }}
+              >{
+                this.state.locale === "ar"
+                ? "Arabic"
+                : "English"
+              }</button>
+
+
             <div className={"black-bg fade-in-fwd hidden " + (this.state.introStep2 === 1 ? "active" : "")}></div>
                 <div className="wrapper">
                     <div className="red-ribbon">
@@ -106,7 +129,9 @@ class MSISDNEntryStep extends React.PureComponent<{
                         <div className="star">
                             <img src={star} alt="5 Star Rating"/>
                         </div>
-                        <div className="rating-text">5 Star Rating</div>
+                        <div className="rating-text">
+                            <Translate id="rating"></Translate>
+                        </div>
 
                         {/*This is Main Intro*/}
                         <div className={
@@ -141,7 +166,7 @@ class MSISDNEntryStep extends React.PureComponent<{
                         </div>
 
                         {/*This is Testimonial Intro*/}
-                        <div className="testimonial">
+                        {/* <div className="testimonial">
                             <div className="img-container">
                                 <img className="rounded" src={testimonialImg} alt="User View"/>
                             </div>
@@ -153,7 +178,31 @@ class MSISDNEntryStep extends React.PureComponent<{
                                     <i>- Ahmad</i>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
+
+                        <CustomTesti
+                className="sunnah-testimonials"
+                testimonials={
+                  [
+                    {
+                      Message: () => <span className="message">Wow! I couldn't believe my eyes when I received my iPhone X!</span>,
+                      Name: () => <span className="testimonials-name"> -Syazalina</span>,
+                      stars: 5
+                    },
+                    {
+                      Message: () => <span className="message">Wow! I couldn't believe my eyes when I received my iPhone X!</span>,
+                      Name: () => <span className="testimonials-name"> -Rahim</span>,
+                      stars: 4
+                    },
+                    {
+                      Message: () => <span className="message">I bid, confirmed and won! So happy! Thank you!</span>,
+                      Name: () => <span className="testimonials-name"> -Amira</span>,
+                      stars: 5
+                    }
+                  ]
+                }
+              />
+
                     </div>
                     {/*This is Popup Number Section*/}
                     <div className={"phone-number-wrapper slide-in-bottom hidden " +
@@ -244,7 +293,9 @@ class PINEntryStep extends React.PureComponent
                         <div className="star">
                             <img src={star} alt="5 Star Rating"/>
                         </div>
-                        <div className="rating-text">5 Star Rating</div>
+                        <div className="rating-text">
+                        <Translate id="rating"></Translate>
+                        </div>
 
                         {/*This is Honey Intro*/}
                         <div className="content-honey active">
@@ -365,7 +416,9 @@ const TQStep = ({finalUrl}: { finalUrl: string }) => <div className="wrapper">
                         <div className="star">
                             <img src={star} alt="5 Star Rating"/>
                         </div>
-                        <div className="rating-text">5 Star Rating</div>
+                        <div className="rating-text">
+                            <Translate id="rating"></Translate>
+                        </div>
 
                         {/*This is Honey Intro*/}
                         <div className="content-honey active">
