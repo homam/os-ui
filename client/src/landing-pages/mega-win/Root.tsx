@@ -127,7 +127,7 @@ class MSISDNEntryStep extends React.PureComponent<{
 
           <h4>Enter your mobile number below:</h4>
 
-          <div className="offer">Limited time offer <Timer duration={30} className="cTimer" /></div>
+          <div className="offer">Limited time offer {this.state.display == "finalResult" ? <Timer duration={30} className="cTimer" /> : null}</div>
 
           <form
             onSubmit={ev => {

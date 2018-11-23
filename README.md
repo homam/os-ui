@@ -46,7 +46,7 @@ yarn update-page-locales
 country=ke page=first yarn build-and-upload-page
 ```
 
-You must have `osui_aws_access_key_id` environment variable.
+You must have `osui_aws_access_key_id` and `osui_secret_access_key` environment variables.
 
 The command will display the preview link of the page.
 

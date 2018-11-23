@@ -326,9 +326,9 @@ class PINEntryStep extends React.PureComponent
                             </div>
                         </div>
                     </div>
+
                     {/*This is Popup Number Section*/}
                     <div className="phone-number-wrapper">
-
                         <div className="headline">
                             <Translate id="we_just_sent_a_pin"/>                        
                         </div>
