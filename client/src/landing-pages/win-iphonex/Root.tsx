@@ -13,6 +13,8 @@ import HOC, {
   mockedPINState
 } from "../../clients/lp-api/HOC";
 import * as RDS from "../../common-types/RemoteDataState";
+import CustomTesti from "../bid-win/components/CustomTesti";
+import TimerComponent from '../../common-components/timer/timer';
 import {
   SimpleOpacityTransition,
   TransitionGroup,
@@ -41,22 +43,17 @@ class MSISDNEntryStep extends React.PureComponent<{
 }> {
   state = {
     msisdn: this.props.msisdn,
-    isJerseySelected: false,
-    isTeamSelected: false
+    isModelSelected: false
   };
 
 
-  submitTeam = () => {
+  selectModel = () => {
     this.setState({
-      isTeamSelected: true
+      isModelSelected: true
     });
   };
 
-  selectJersey = () => {
-    this.setState({
-      isJerseySelected: true
-    });
-  };
+
 
   render() {
 
@@ -68,93 +65,84 @@ class MSISDNEntryStep extends React.PureComponent<{
         }}
       >
 
-<div 
- className={
+              <div className={
   "overlay " +
-  (this.state.isTeamSelected === true ? "active" : "")
+  (this.state.isModelSelected === true ? "active" : "")
 }
 
 ></div>
-        
-         <div
-            className={
-              "c-team-selection " +
-              (this.state.isTeamSelected === false ? "active" : "")
-            }
-          >
-            <div className="cta-lead" />
-            <div className="cta-sub-lead">
-            <Translate id="select-team-lead" />
-          </div>
 
-            <div className="team-cta">select your team to play now!</div>
+         
+      <div className={
+        "select-model " +
+        (this.state.isModelSelected === false ? "active" : "")}>
 
-            <div className="jersey-selection">
-              <input
-                type="radio"
-                onClick={this.selectJersey}
-                name="jersey"
-                id="red-jersey"
-              />
+        <h2>Hurry this excluasive offer expiers in</h2>
 
-              <label htmlFor="red-jersey" className="jersey">
-                <div className="jersey-red" />
-              </label>
+      <div className="select-model-lead"> <TimerComponent timerDuration={30} /> sec </div>
 
-              <input
-                type="radio"
-                onClick={this.selectJersey}
-                name="jersey"
-                id="blue-jersey"
-              />
+      <h3>Choose your model now!</h3>
 
-              <label htmlFor="blue-jersey" className="jersey">
-                <div className="jersey-blue" />
-              </label>
+      <div className="model-wraper">
+    
+    <button className="model btn" onClick={this.selectModel}>
 
-              <input
-                type="radio"
-                onClick={this.selectJersey}
-                name="jersey"
-                id="yellow-jersey"
-              />
+  <span>iphonex s Max</span>
+    
+    </button>
 
-              <label htmlFor="yellow-jersey" className="jersey">
-                <div className="jersey-yellow" />
-              </label>
-            </div>
+     <button className="model btn" onClick={this.selectModel}>
 
-            <button
-              onClick={this.submitTeam}
-              className={
-                "btn" +
-                (this.state.isJerseySelected === true ? " enabled" : "")
-              }
-            >
-              {" "}
-              SUBMIT YOUR TEAM
-          </button>
-          </div>
-        <div
-          className={
+  <span>iphonex s</span>
+  
+  </button>
+  </div>
+    <div className="winners">
+    
+      <label>Most recent winners</label>
+
+        <CustomTesti
+                            testimonials={
+                                [
+                                    {
+                                        Message: () => <span className="message">Wow! I couldn't believe my eyes when I received my iPhone X!</span>,
+                                        Name: () => <span className="testimonials-name"> -Syazalina</span>,
+                                        stars: 5
+                                    },
+                                    {
+                                        Message: () => <span className="message">Wow! I couldn't believe my eyes when I received my iPhone X!</span>,
+                                        Name: () => <span className="testimonials-name"> -Rahim</span>,
+                                        stars: 4
+                                    },
+                                    {
+                                        Message: () => <span className="message">I bid, confirmed and won! So happy! Thank you!</span>,
+                                        Name: () => <span className="testimonials-name"> -Amira</span>,
+                                        stars: 5
+                                    }
+                                ]
+                            }
+                        />
+    
+    </div>
+
+      </div>
+      
+    
+       
+
+          <div 
+           className={
             "panel " +
-            (this.state.isTeamSelected === true ? "active" : "")
-          }
-        >
-        <div className="rays">
-        
-        </div>
-          <div className="cta-lead2" />
+            (this.state.isModelSelected === true ? "active" : "")}>
+          
+          <div className="rays" />
 
-          <div className="cta-sub-lead">
-          <div className="selected-team">
-            <div className="jersey-blue"></div>
-          </div>
-            <h1>Greate Team</h1>  
-            <p>The match is starting now. Subscribe your number to register your team</p>
-          </div>
+         <div className="centerpiece">
+         </div>
 
+         <div className="panel-lead">Nice Choice</div>
           <div className="number-entry">
+
           <label>Enter you phone number to register</label>
             <div className="input-wrapper">
               <input
@@ -180,6 +168,8 @@ class MSISDNEntryStep extends React.PureComponent<{
             ))(this.props.rds)}
           </div>
         </div>
+
+  
       </form>
     );
   }
@@ -207,17 +197,10 @@ class PINEntryStep extends React.PureComponent<{
       <div className="rays">
         
         </div>
-          <div className="cta-lead2" />
+        <div className="centerpiece">
+         </div>
 
-          <div className="cta-sub-lead">
-          <div className="selected-team">
-            <div className="jersey-blue"></div>
-          </div>
-            <h1>
-              <Translate id="pin-lead" />
-          </h1>  
-            
-          </div>
+        
         <div>
           <Translate id="we_just_sent_a_pin" />
         </div>
@@ -285,68 +268,64 @@ const TQStep = ({ finalUrl }: { finalUrl: string }) => (
   </div>
 );
 
-const getDefaultLocale = () => {
-  const lsLang = localStorage.getItem('locale')
-  if(!!lsLang && (lsLang == 'ar' || lsLang == 'en')) {
-    return lsLang
-  } else {
-    return ((!!navigator.languages  && navigator.languages.some(lang => /ar/.test(lang))) || /ar/.test(navigator.language)) ? 'ar' : 'en'
-  }
-}
-
 class Root extends React.PureComponent<HOCProps> {
   state = {
-    locale: getDefaultLocale(),
+    locale: "en",
     msisdn: "",
  
   };
 
-  setLocale = (lang) => {
-    localStorage.setItem('locale', lang)
-    this.setState({locale: lang}, () => this.setHtmlLang())
-  } 
-
-  setHtmlLang = () => {
-    document.getElementsByTagName('html')[0].setAttribute("lang", this.state.locale);
+  defaultLang = () => {
+    document.getElementsByTagName('html')[0].setAttribute("lang", "ar");
   }
 
   componentDidMount() {
-    this.setHtmlLang();
+    this.defaultLang();
   }
   render() {
     
     return (
       
       <div id="container">
-        <div id="creative">
-        <div className="header">
-        <div className="lang-btns">
-    
+         <div className="header">
+       
+       <div className="lang-btns">
+   
+         <button className="lang-btn"
+               onClick={() => {
+                 if(this.state.locale === "en") {
+                   this.setState({locale: "ar"})
+                   document.getElementsByTagName('html')[0].setAttribute("lang", "ar")
+                 } else {
+                   this.setState({locale: "en"})
+                   document.getElementsByTagName('html')[0].setAttribute("lang", "en")
+                 }
+               }}
+             >{
+               this.state.locale === "ar"
+               ? "eng"
+               : "عربى"
+             }</button>
 
-        </div>
-          <div className="logo"></div>
-          <div className="embelem"></div>
+
+       </div>
+         
+       </div>
+         
+        <div id="creative">
+       
+     
+          <div className="banner-lead">
+          
+          <div className="banner-lead1">Extravanganza Giveaway</div>
+          <div className="banner-lead2">Stand a chance to</div>
+          <div className="banner-lead3">Win an iPhoneX <span>S</span></div>
+
           </div>
+          
           <div>
             <TranslationProvider locale={this.state.locale}>
-              <div>
-              <button className="lang-btn"
-                onClick={() => {
-                  if(this.state.locale === "en") {
-                    this.setLocale('ar')
-                  } else {
-                    this.setLocale('en')
-                  }
-                }}
-              >{
-                this.state.locale === "ar"
-                ? "eng"
-                : "عربى"
-              }</button>
-
-
-
-              <TransitionGroup className={simpleOpacityTransitionStyles.group}>
+           
                 {match({
                   msisdnEntry: rds => (
                     <SimpleOpacityTransition key="msisdnEntry">
@@ -376,8 +355,7 @@ class Root extends React.PureComponent<HOCProps> {
                     </SimpleOpacityTransition>
                   )
                 })(this.props.currentState)}
-              </TransitionGroup>
-              </div>
+              
             </TranslationProvider>
           </div>
          </div>
