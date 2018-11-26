@@ -19,7 +19,7 @@ export class PINEntryStep extends React.PureComponent<{
       <div>
         <Translate id="we_just_sent_a_pin" />
       </div>
-      <div>
+      <div className="pinEntry">
         <input placeholder="PIN" value={this.state.pin} onChange={ev => this.setState({ pin: ev.target.value })} />
         <button type="submit" disabled={RDS.IsLoading(this.props.rds)}>OK</button>
         {RDS.WhenLoading(null, () => 'Wait...')(this.props.rds)}

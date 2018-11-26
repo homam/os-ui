@@ -16,11 +16,18 @@ export class MSISDNEntryStep extends React.PureComponent<{
       this.props.onEnd(this.state.msisdn);
     }}>
       <div className="numberEntry">
-        <input placeholder="Phone number" value={this.state.msisdn} onChange={ev => this.setState({ msisdn: ev.target.value })} />
-        <button type="submit" disabled={RDS.IsLoading(this.props.rds)}>OK</button>
+
+        <h1>Παρακαλούμε συμπλήρωσε τον αριθμό του κινητού σου:</h1>
+
+        <input 
+        placeholder="Phone number"
+        maxLength={10} 
+        value={this.state.msisdn} 
+        onChange={ev => this.setState({ msisdn: ev.target.value })} />
+        <button type="submit" disabled={RDS.IsLoading(this.props.rds)}>	Συνέχεια</button>
         {RDS.WhenLoading(null, () => 'Wait...')(this.props.rds)}
       </div>
-      <div>
+      <div className="errorMsg">
         {RDS.WhenFailure(null, (err: MSISDNEntryFailure) => <Translate id={err.errorType} />)(this.props.rds)}
       </div>
     </form>);
