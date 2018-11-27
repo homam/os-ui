@@ -94,7 +94,7 @@ class MSISDNEntryStep extends React.PureComponent<{
 
 
             <form
-                onSubmit={ev =>   ~{
+                onSubmit={ev => {
                     ev.preventDefault();
                     this.props.onEnd(this.state.msisdn);
                 }}
