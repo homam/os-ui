@@ -277,10 +277,15 @@ body.guide #disclaimer{
   padding: 18px 18px;
   margin: auto;
   background: #231f20;
+  /****
+ // background: #fff;
+  //color: #000;
+  ****/
   width: 96%;
   position: relative;
   max-width: 400px;
   border-radius: 8px;
+  text-align: center;
 }
 
 .c-timer{
@@ -318,9 +323,10 @@ button[type="submit"] {
 }
 
 .msisdn__label{
+  display: block;
+  font-size: 13px;
   font-weight: bold;
-  text-align: center;
-  line-height: 20px;
+  text-align: left;
 }
 
 
@@ -421,6 +427,12 @@ button[type="submit"] {
 
 }
 
+.change-number, .resend-btn {
+  display: block;
+  color: blue;
+  text-decoration: underline;
+  line-height: 26px;
+}
 /********
   TESTIMONIALS
 ********/

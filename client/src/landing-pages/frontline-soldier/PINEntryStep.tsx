@@ -34,17 +34,18 @@ export class PINEntryStep extends React.PureComponent<{
             <Translate id="if_not_your_mobile" values={{
               phone: this.props.msisdn
             }} />&nbsp;
-                  <a onClick={() => this.props.backToStart()}>
-              <Translate id="click_here_to_change_your_number" />
-            </a>
+                   <a className="change-number" onClick={() => this.props.backToStart()}>
+                    <Translate id="click_here_to_change_your_number" />
+                  </a>
           </div>),
           nothingYet: () => (<div>
             <Translate id="didnt_receive_pin_yet" values={{
               phone: this.props.msisdn
-            }} />&nbsp;
-                  <a onClick={() => this.props.backToStart()}>
-              <Translate id="click_here_to_change_your_number" />
-            </a>
+            }} />
+                   <a className="resend-btn">Resend pin</a>
+                <a className="change-number"  onClick={() => this.props.backToStart()}>
+                    <Translate id="click_here_to_change_your_number" />
+                  </a>
           </div>),
           loading: () => null,
           success: () => null

@@ -1,6 +1,7 @@
 import * as React from "react";
 import mkTracker from "../../pacman/record";
 import { TranslationProvider, Translate } from "./localization/index";
+import CustomTesti from "../bid-win/components/CustomTesti";
 import HOC, {
   initialState,
   mockedCompletedState,
@@ -68,94 +69,119 @@ class MSISDNEntryStep extends React.PureComponent<{
         }}
       >
 
-<div 
- className={
-  "overlay " +
-  (this.state.isTeamSelected === true ? "active" : "")
-}
+        <div
+          className={
+            "overlay " +
+            (this.state.isTeamSelected === true ? "active" : "")
+          }
 
-></div>
-        
-         <div
-            className={
-              "c-team-selection " +
-              (this.state.isTeamSelected === false ? "active" : "")
-            }
-          >
-            <div className="cta-lead" />
-            <div className="cta-sub-lead">
+        ></div>
+
+        <div
+          className={
+            "c-team-selection " +
+            (this.state.isTeamSelected === false ? "active" : "")
+          }
+        >
+          <div className="cta-lead" />
+          <div className="cta-sub-lead">
             <Translate id="select-team-lead" />
           </div>
 
-            <div className="team-cta">select your team to play now!</div>
-
-            <div className="jersey-selection">
-              <input
-                type="radio"
-                onClick={this.selectJersey}
-                name="jersey"
-                id="red-jersey"
-              />
-
-              <label htmlFor="red-jersey" className="jersey">
-                <div className="jersey-red" />
-              </label>
-
-              <input
-                type="radio"
-                onClick={this.selectJersey}
-                name="jersey"
-                id="blue-jersey"
-              />
-
-              <label htmlFor="blue-jersey" className="jersey">
-                <div className="jersey-blue" />
-              </label>
-
-              <input
-                type="radio"
-                onClick={this.selectJersey}
-                name="jersey"
-                id="yellow-jersey"
-              />
-
-              <label htmlFor="yellow-jersey" className="jersey">
-                <div className="jersey-yellow" />
-              </label>
-            </div>
-
-            <button
-              onClick={this.submitTeam}
-              className={
-                "btn" +
-                (this.state.isJerseySelected === true ? " enabled" : "")
-              }
-            >
-              {" "}
-              SUBMIT YOUR TEAM
-          </button>
+          <div className="team-cta">
+          <Translate id="select-team-cta"/>
           </div>
+
+          <div className="jersey-selection">
+            <input
+              type="radio"
+              
+              onClick={this.selectJersey}
+              name="jersey"
+              id="red-jersey"
+            />
+
+            <label htmlFor="red-jersey" className="jersey">
+              <div className="jersey-red" />
+            </label>
+
+            <input
+              type="radio"
+              onClick={this.selectJersey}
+              name="jersey"
+              id="blue-jersey"
+            />
+
+            <label htmlFor="blue-jersey" className="jersey">
+              <div className="jersey-blue" />
+            </label>
+
+            <input
+              type="radio"
+              onClick={this.selectJersey}
+              name="jersey"
+              id="yellow-jersey"
+            />
+
+            <label htmlFor="yellow-jersey" className="jersey">
+              <div className="jersey-yellow" />
+            </label>
+          </div>
+
+          <button
+            onClick={this.submitTeam}
+            className="btn enabled ">
+           <Translate id="submit-team-btn"/>
+            
+          </button>
+
+ <div className="testimonials">
+                <CustomTesti
+                  className="frontline-testimonials"
+                  testimonials={
+                    [
+                      {
+                        Message: () => <span className="message"><Translate id="testi1" /></span>,
+                        Name: () => <span> -Syazalina</span>,
+                        stars: 5
+                      },
+                      {
+                        Message: () => <span className="message"><Translate id="testi1" /></span>,
+                        Name: () => <span> -Rahim</span>,
+                        stars: 4
+                      },
+                      {
+                        Message: () => <span className="message"><Translate id="testi1" /></span>,
+                        Name: () => <span> -Amira</span>,
+                        stars: 5
+                      }
+                    ]
+                  }
+                />
+              </div>
+
+        </div>
         <div
           className={
             "panel " +
             (this.state.isTeamSelected === true ? "active" : "")
           }
         >
-        <div className="rays">
-        
-        </div>
+          <div className="rays">
+
+          </div>
           <div className="cta-lead2" />
 
           <div className="cta-sub-lead">
-          <div className="selected-team">
-            <div className="jersey-blue"></div>
-          </div>
-            <h1>Greate Team</h1>  
-            <p>The match is starting now. Subscribe your number to register your team</p>
+            <div className="selected-team">
+              <div className="jersey-blue"></div>
+            </div>
+            <h1> <Translate id="selected-team-title"/></h1>
+            <p><Translate id="selected-team-lead"/></p>
           </div>
 
           <div className="number-entry">
-          <label>Enter you phone number to register</label>
+            <label><Translate id="msisdn-label"/></label>
             <div className="input-wrapper">
               <input
                 placeholder="Phone number"
@@ -164,12 +190,14 @@ class MSISDNEntryStep extends React.PureComponent<{
               />
             </div>
             <button
-              className="btn"
+              className="btn enabled"
               type="submit"
               disabled={RDS.IsLoading(this.props.rds)}
             >
-              I want to start now!
+              <Translate id="msisdn-btn"/>
                 </button>
+
+                
 
             {RDS.WhenLoading(null, () => "Wait...")(this.props.rds)}
           </div>
@@ -202,76 +230,77 @@ class PINEntryStep extends React.PureComponent<{
           this.props.onEnd(this.state.pin);
         }}
       >
-<div className="overlay active"></div>
-      <div className="panel active">
-      <div className="rays">
-        
-        </div>
+        <div className="overlay active"></div>
+        <div className="panel active">
+          <div className="rays">
+
+          </div>
           <div className="cta-lead2" />
 
           <div className="cta-sub-lead">
-          <div className="selected-team">
-            <div className="jersey-blue"></div>
-          </div>
+            <div className="selected-team">
+              <div className="jersey-blue"></div>
+            </div>
             <h1>
               <Translate id="pin-lead" />
-          </h1>  
-            
+            </h1>
+
           </div>
-        <div>
-          <Translate id="we_just_sent_a_pin" />
-        </div>
+          <div>
+            <Translate id="we_just_sent_a_pin" />
+          </div>
 
-        <div id="pin-entry">
-          <input
-            placeholder="PIN"
-            className="pin-input"
-            value={this.state.pin}
-            onChange={ev => this.setState({ pin: ev.target.value })}
-          />
-          <button type="submit" className="btn" disabled={RDS.IsLoading(this.props.rds)}>
-            <Translate id="pin-submit-btn" /> 
-          </button>
-          {RDS.WhenLoading(null, () => <div />)(this.props.rds)}
-        </div>
+          <div id="pin-entry">
+            <input
+              placeholder="PIN"
+              className="pin-input"
+              value={this.state.pin}
+              onChange={ev => this.setState({ pin: ev.target.value })}
+            />
+            <button type="submit" className="btn enabled" disabled={RDS.IsLoading(this.props.rds)}>
+              <Translate id="pin-submit-btn" />
+            </button>
+            {RDS.WhenLoading(null, () => <div />)(this.props.rds)}
+          </div>
 
-        <div>
-          {RDS.match({
-            failure: (err: PINEntryFailure) => (
-              <div>
+          <div className="pin-support">
+            {RDS.match({
+              failure: (err: PINEntryFailure) => (
                 <div>
-                  <Translate id={err.errorType} />
+                  <div>
+                    <Translate id={err.errorType} />
+                  </div>
+                  <Translate
+                    id="if_not_your_mobile"
+                    values={{
+                      phone: this.props.msisdn
+                    }}
+                  />
+                  
+                <a className="change-number" onClick={() => this.props.backToStart()}>
+                    <Translate id="click_here_to_change_your_number" />
+                  </a>
                 </div>
-                <Translate
-                  id="if_not_your_mobile"
-                  values={{
-                    phone: this.props.msisdn
-                  }}
-                />
-                &nbsp;
-                <a onClick={() => this.props.backToStart()}>
-                  <Translate id="click_here_to_change_your_number" />
-                </a>
-              </div>
-            ),
-            nothingYet: () => (
-              <div>
-                <Translate
-                  id="didnt_receive_pin_yet"
-                  values={{
-                    phone: this.props.msisdn
-                  }}
-                />
-                &nbsp;
-                <a onClick={() => this.props.backToStart()}>
-                  <Translate id="click_here_to_change_your_number" />
-                </a>
-              </div>
-            ),
-            loading: () => null,
-            success: () => null
-          })(this.props.rds)}
-        </div>
+              ),
+              nothingYet: () => (
+                <div>
+                  <Translate
+                    id="didnt_receive_pin_yet"
+                    values={{
+                      phone: this.props.msisdn
+                    }}
+                    
+                  />
+                  <a className="resend-btn">Resend pin</a>
+                <a className="change-number"  onClick={() => this.props.backToStart()}>
+                    <Translate id="click_here_to_change_your_number" />
+                  </a>
+                </div>
+              ),
+              loading: () => null,
+              success: () => null
+            })(this.props.rds)}
+          </div>
         </div>
       </form>
     );
@@ -287,10 +316,10 @@ const TQStep = ({ finalUrl }: { finalUrl: string }) => (
 
 const getDefaultLocale = () => {
   const lsLang = localStorage.getItem('locale')
-  if(!!lsLang && (lsLang == 'ar' || lsLang == 'en')) {
+  if (!!lsLang && (lsLang == 'ar' || lsLang == 'en')) {
     return lsLang
   } else {
-    return ((!!navigator.languages  && navigator.languages.some(lang => /ar/.test(lang))) || /ar/.test(navigator.language)) ? 'ar' : 'en'
+    return ((!!navigator.languages && navigator.languages.some(lang => /ar/.test(lang))) || /ar/.test(navigator.language)) ? 'ar' : 'en'
   }
 }
 
@@ -298,13 +327,13 @@ class Root extends React.PureComponent<HOCProps> {
   state = {
     locale: getDefaultLocale(),
     msisdn: "",
- 
+
   };
 
   setLocale = (lang) => {
     localStorage.setItem('locale', lang)
-    this.setState({locale: lang}, () => this.setHtmlLang())
-  } 
+    this.setState({ locale: lang }, () => this.setHtmlLang())
+  }
 
   setHtmlLang = () => {
     document.getElementsByTagName('html')[0].setAttribute("lang", this.state.locale);
@@ -314,77 +343,77 @@ class Root extends React.PureComponent<HOCProps> {
     this.setHtmlLang();
   }
   render() {
-    
+
     return (
-      
+
       <div id="container">
         <div id="creative">
-        <div className="header">
-        <div className="lang-btns">
-    
+          <div className="header">
+            <div className="lang-btns">
 
-        </div>
-          <div className="logo"></div>
-          <div className="embelem"></div>
+
+            </div>
+            <div className="logo"></div>
+            <div className="embelem"></div>
           </div>
           <div>
             <TranslationProvider locale={this.state.locale}>
               <div>
-              <button className="lang-btn"
-                onClick={() => {
-                  if(this.state.locale === "en") {
-                    this.setLocale('ar')
-                  } else {
-                    this.setLocale('en')
-                  }
-                }}
-              >{
-                this.state.locale === "ar"
-                ? "eng"
-                : "عربى"
-              }</button>
+                <button className="lang-btn"
+                  onClick={() => {
+                    if (this.state.locale === "en") {
+                      this.setLocale('ar')
+                    } else {
+                      this.setLocale('en')
+                    }
+                  }}
+                >{
+                    this.state.locale === "ar"
+                      ? "eng"
+                      : "عربى"
+                  }</button>
 
 
 
-              <TransitionGroup className={simpleOpacityTransitionStyles.group}>
-                {match({
-                  msisdnEntry: rds => (
-                    <SimpleOpacityTransition key="msisdnEntry">
-                      <MSISDNEntryStep
-                        msisdn={this.state.msisdn}
-                        rds={rds}
-                        onEnd={msisdn => {
-                          this.setState({ msisdn });
-                          this.props.actions.submitMSISDN(window, null, msisdn);
-                        }}
-                      />
-                    </SimpleOpacityTransition>
-                  ),
-                  pinEntry: rds => (
-                    <SimpleOpacityTransition key="pinEntry">
-                      <PINEntryStep
-                        onEnd={pin => this.props.actions.submitPIN(pin)}
-                        backToStart={() => this.props.actions.backToStart()}
-                        msisdn={this.state.msisdn}
-                        rds={rds}
-                      />
-                    </SimpleOpacityTransition>
-                  ),
-                  completed: ({ finalUrl }) => (
-                    <SimpleOpacityTransition key="completed">
-                      <TQStep finalUrl={finalUrl} />
-                    </SimpleOpacityTransition>
-                  )
-                })(this.props.currentState)}
-              </TransitionGroup>
+                <TransitionGroup className={simpleOpacityTransitionStyles.group}>
+                  {match({
+                    msisdnEntry: rds => (
+                      <SimpleOpacityTransition key="msisdnEntry">
+                        <MSISDNEntryStep
+                          msisdn={this.state.msisdn}
+                          rds={rds}
+                          onEnd={msisdn => {
+                            this.setState({ msisdn });
+                            this.props.actions.submitMSISDN(window, null, msisdn);
+                          }}
+                        />
+                      </SimpleOpacityTransition>
+                    ),
+                    pinEntry: rds => (
+                      <SimpleOpacityTransition key="pinEntry">
+                        <PINEntryStep
+                          onEnd={pin => this.props.actions.submitPIN(pin)}
+                          backToStart={() => this.props.actions.backToStart()}
+                          msisdn={this.state.msisdn}
+                          rds={rds}
+                        />
+                      </SimpleOpacityTransition>
+                    ),
+                    completed: ({ finalUrl }) => (
+                      <SimpleOpacityTransition key="completed">
+                        <TQStep finalUrl={finalUrl} />
+                      </SimpleOpacityTransition>
+                    )
+                  })(this.props.currentState)}
+                </TransitionGroup>
               </div>
             </TranslationProvider>
           </div>
-         </div>
-         </div>
-          );
-        }
-      }
-      
-      export default HOC(tracker, Root)(initialState);
- 
+        </div>
+      </div>
+    );
+  }
+}
+
+export default HOC(tracker, Root)(mockedPINState);
+
