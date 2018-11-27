@@ -5,11 +5,15 @@
   "UnknownError": "An unknown error occurred.",
   "InvalidPIN": "Please enter the correct PIN that you received on your phone",
   "TooEarly": "You must first submit a mobile number",
-  "we_just_sent_a_pin": "We have sent you a 4 digit pin, please enter it below to confirm you number!",
-  "didnt_receive_pin_yet": "Didn't receive a PIN yet? Make sure {phone} is your correct mobile number.",
+  "we_just_sent_a_pin": "We have sent you a 4 digit pin, please enter it below to confirm your team!",
+  "didnt_receive_pin_yet": "Didn't receive a PIN yet?",
   "if_not_your_mobile": "If {phone} is not your mobile number,",
-  "click_here_to_change_your_number": "Click here to change your phone number.",
-  "select-team-lead": "Manage and compete with others!",
+  "click_here_to_change_your_number": "or change your phone number.",
+  "click_here": "Click here",
+
+  "select-team-lead": "Manage & compete with others!",
   "pin-lead": "Confirm you team!",
-  "pin-submit-btn": "Confirm Pin Now"
+  "pin-submit-btn": "Confirm Pin Now",
+  "select-team-cta":""
+  
 }

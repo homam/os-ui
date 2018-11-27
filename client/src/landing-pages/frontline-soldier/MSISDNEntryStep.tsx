@@ -33,7 +33,7 @@ export class MSISDNEntryStep extends React.PureComponent<{
             <span>You have </span><TimerComponent timerDuration={30} /><span> To register</span>
           </div>
 
-          <button className="btn primary" onClick={this.joinNowState}> Join Now</button>
+          <button type="button" className="btn primary" onClick={this.joinNowState}> Join Now</button>
           <div className="bonus-comp">
             <div className="bonus-comp__img">
               <div className="bonus-tag">

@@ -14,6 +14,7 @@ import * as RDS from "../../common-types/RemoteDataState";
 import "./assets/css/styles.less?raw"
 import CustomTesti from "../bid-win/components/CustomTesti";
 import Disclaimer from "../../legal-components/Disclaimer";
+// import "../../common-components/flag-styles/flag.css?raw";
 import { mockSuccessState } from "../../clients/mpesa/TolaHOC";
 import { MSISDNEntryStep } from "./MSISDNEntryStep";
 import { PINEntryStep } from "./PINEntryStep";
@@ -35,7 +36,7 @@ const TQStep = ({ finalUrl }: { finalUrl: string }) => <div className="tq-msg">
 
 class Root extends React.PureComponent<HOCProps> {
   state = {
-    locale: "ms",
+    locale: "en",
     msisdn: "",
 
   };
@@ -50,7 +51,7 @@ class Root extends React.PureComponent<HOCProps> {
             <div id="top-legal"></div>
 
             <div className="top-bar">
-              digital delux edition</div>
+              </div>
 
             <div id="creative">
               <div className="header">
@@ -58,9 +59,7 @@ class Root extends React.PureComponent<HOCProps> {
                 <div className="mature-badge"></div>
               </div>
 
-
               <div id="holder">
-
                 <div className="eye-blaster">
 
                 </div>
@@ -125,12 +124,8 @@ class Root extends React.PureComponent<HOCProps> {
                 />
               </div>
               <div className="disclaimer">
-                <div style={{ fontSize: '12em' }}>
-                  {/* <Flag /> */}
-                </div>
                 <Disclaimer />
               </div>
-
             </div>
           </div>
 
