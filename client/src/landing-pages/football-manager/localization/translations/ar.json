@@ -1,0 +1,15 @@
+{
+  "hello_world": "ar:: Hello World!",
+  "AlreadySubscribed": "ar:: You are already a subscriber!",
+  "InvalidMSISDN": "ar:: This mobile number is incorrect, try again",
+  "UnknownError": "ar:: An unknown error occurred.",
+  "InvalidPIN": "ar:: Please enter the correct PIN that you received on your phone",
+  "TooEarly": "ar:: You must first submit a mobile number",
+  "we_just_sent_a_pin": "لقد أرسلنا إليك رقمًا من 4 أرقام ، يرجى إدخاله أدناه لتأكيد رقمك!",
+  "didnt_receive_pin_yet": "Didn't receive a PIN yet?",
+  "if_not_your_mobile": "ar:: If {phone} is not your mobile number,",
+  "click_here_to_change_your_number": "ar:: Click here to change your phone number.",
+  "select-team-lead": "Manage and compete with others!",
+  "pin-lead": "أكد لك فريق!",
+  "pin-submit-btn": "تأكيد دبوس الآن!"
+}
