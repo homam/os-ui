@@ -3,17 +3,19 @@ import * as React from 'react'
 
 export default class Disclaimer extends React.Component<{className?: string}> {
   state = {
-    Gr: null
+    Country: null
   }
   constructor(props) {
     super(props);
   }
   componentDidMount(){
-    const gr = import(/* webpackMode: "lazy" */ `./Disclaimers/${process.env.country}`).then(Gr => this.setState({Gr: Gr.Disclaimer}))
+    import(/* webpackMode: "lazy" */ `./Disclaimers/${process.env.country}`)
+    .then(Country => this.setState({Country: Country.Disclaimer}))
+    .catch(err => console.warn(err))
   }
   render() {
-    const {Gr} = this.state
-    return !Gr ? null : <Gr className={this.props.className} />
+    const {Country} = this.state
+    return !Country ? null : <Country className={this.props.className} />
   }
 }
 

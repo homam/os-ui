@@ -251,10 +251,12 @@ body.guide #disclaimer{
   position: relative;
   z-index: 9;
   -webkit-appearance: none;
+  text-transform: uppercase;
 }
 
 .primary{
-  background-color: red;
+  background: linear-gradient(to bottom, #f61d1d 0%, #8c1c1c 100%);
+  background: -webkit-gradient(linear, left top, left bottom, from(#f61d1d), to(#8c1c1c));
 }
 
 
@@ -277,10 +279,15 @@ body.guide #disclaimer{
   padding: 18px 18px;
   margin: auto;
   background: #231f20;
+  /****
+ // background: #fff;
+  //color: #000;
+  ****/
   width: 96%;
   position: relative;
   max-width: 400px;
   border-radius: 8px;
+  text-align: center;
 }
 
 .c-timer{
@@ -291,13 +298,9 @@ body.guide #disclaimer{
 }
 
 button[type="submit"] {
-  background: red;
-  color: white;
-  display: block;
-  
 
   &[disabled] {
-    background-color: #231f20;
+    opacity: 0.3;
   }
 }
 
@@ -318,9 +321,11 @@ button[type="submit"] {
 }
 
 .msisdn__label{
+  display: block;
+  font-size: 13px;
   font-weight: bold;
-  text-align: center;
-  line-height: 20px;
+  text-align: left;
+  margin-top: 10px;
 }
 
 
@@ -342,8 +347,9 @@ button[type="submit"] {
   text-transform: uppercase;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 10px;
-  line-height: 1.3em;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  line-height: 1.5em;
   font-size: 15px;
 }
 
@@ -370,7 +376,7 @@ button[type="submit"] {
 .bonus-comp{
   position: relative;
   display: flex;
-  margin-top: 0px;
+  margin-top: 10px;
   align-content: center;
   margin-left: -18px;
   
@@ -382,7 +388,7 @@ button[type="submit"] {
     background-size: cover;
     background-position: top right;
     background-repeat: no-repeat;
-    margin-top: -23px;
+    margin-top: -16px;
     z-index: 0;
     position: absolute;
     left:0;
@@ -406,11 +412,12 @@ button[type="submit"] {
   &__details{
     flex:1;
     margin-left: 120px;
-    margin-top: 7px;
+    margin-top: 14px;
     line-height: 1.2em;
     align-self: center;
     z-index: 2;
-    font-size: 13px;
+    text-align: left;
+    font-size: 14px;
 
     span{
       font-weight: bold;
@@ -421,6 +428,12 @@ button[type="submit"] {
 
 }
 
+.change-number, .resend-btn {
+  display: block;
+  color: blue;
+  text-decoration: underline;
+  line-height: 26px;
+}
 /********
   TESTIMONIALS
 ********/
@@ -440,19 +453,13 @@ button[type="submit"] {
 /********
   TESTIMONIALS
 ********/
-.customTesti{
-  width: 90% !important;
-  max-width: 400px;
-}
+
 
 .customTesti.frontline-testimonials  {
-  ul li {
-
-    .avatar{
-      width: 50px;
-      height: 50px;
-    }
-
+  ul {
+    display: flex;
+    li {
+      width: 300px;
     .avatar.person1 {
       background-image: none;
       background-color: wheat;
@@ -467,6 +474,7 @@ button[type="submit"] {
     }
   }
 }
+}
 
 .msisdin, .prelander{
   display: none;
@@ -474,4 +482,74 @@ button[type="submit"] {
 
 .active{
   display: block;
+}
+
+.mo-wrapper{
+  a{
+  color: #fff;
+  text-decoration: none;
+
+}
+
+h1{
+  font-size: 17px;
+  margin-bottom: 25px;
+  font-weight: bold;
+}
+a{
+
+  div{
+    
+    font-size: 20px;
+    color: #fff;
+    text-transform: uppercase;
+
+    span{
+      display: inline-block;
+      margin: 10px 0;
+      font-weight: bold;
+      font-size: 22px;
+      color: red;
+      
+    
+      
+    }
+  }
+h2{
+  text-transform: capitalize;
+  em{
+    text-decoration: underline;
+  }
+}
+
+
+}
+
+button{
+  margin: 10px 0 20px 0;
+}
+
+.try-again{
+  opacity: 0.5;
+}
+}
+
+.error-msg{
+  //padding: 10px 5px;
+  line-height: 35px;
+  background-color: #F1CAC8;
+  font-weight: bold;
+  color: #b70800;
+  border-radius: 4px;
+  font-size: 12px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.disclaimer{
+  max-width: 300px;
+  margin: auto;
+  font-size: 11px;
+  opacity: 0.8;
+  margin-top: 20px;
 }

@@ -42,6 +42,17 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bdbdbd', end
     display: grid;
 }
 
+.masthead-container {
+    width: 300px;
+    height: 50vw;
+    background-size: contain;
+    left: 5px !important;
+    background-position: center;
+    max-width: 300px;
+    background-repeat: no-repeat;
+    max-height: 210px;
+}
+
 .uppercase {
     text-transform: uppercase;
 }
@@ -64,7 +75,49 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bdbdbd', end
 .rating-text {
     position: relative;
     margin-top: -12px;
-    font-size: 0.7em;
+    font-size: 14px;
+}
+
+html[lang="ar"] {
+    direction: rtl;
+    .masthead-img {
+        background-image: url("../img/ar/masthead-ar.png");
+    }
+    .red-ribbon-img {
+        background-image: url("../img/ar/red-ribbon-ar.png");
+    }
+    .body-copy-main {
+        padding: 0 10px;
+        font-size: 21px;
+    }
+    .customTesti ul li .details .message {
+        direction: rtl;
+        text-align: right;
+        padding: 0 12px;
+    }
+
+    .customTesti ul li .details .rating {
+        width: 58%;
+        float: right;
+        text-align: right;
+    }
+    .body-copy {
+        font-size: 18px;
+    }
+
+    h3 {
+        font-size: 24px;
+    }
+}
+
+html[lang="en"], html {
+    direction: ltr;
+    .masthead-img {
+        background-image: url("../img/en/masthead.png");
+    }
+    .red-ribbon-img {
+        background-image: url("../img/en/red-ribbon-en.png");
+    }
 }
 
 .masthead {
@@ -99,14 +152,17 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bdbdbd', end
 }
 
 .red-ribbon {
-    position: absolute;
+    width: 100%;
+    height: 30vw;
+    background-size: contain;
     left: 0;
+    top: -1px;
+    background-position: left center;
+    max-width: 300px;
+    background-repeat: no-repeat;
+    max-height: 120px;
+    position: absolute;
     z-index: 1;
-}
-
-.red-ribbon img {
-    width: 34vw;
-    max-width: 155px;
 }
 
 .content {
@@ -118,6 +174,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bdbdbd', end
 
 .body-copy {
     font-size: 14px;
+    padding: 0 10px;
 }
 
 .body-copy-main {
@@ -150,6 +207,13 @@ h3 {
     font-weight: bold;
     transition: all 0.08s ease-in;
     text-decoration: none;
+    &.btn--small-margin {
+        margin: 5px auto;
+    }
+}
+
+button {
+    cursor: pointer;
 }
 
 a.btn {
@@ -217,6 +281,8 @@ a.btn {
 
 .content-intro {
     padding-top: 20px;
+    max-width: 320px;
+    margin: auto;
 }
 
 .hidden {
@@ -249,7 +315,7 @@ a.btn {
     border-radius: 0;
     float: none;
     position: relative;
-    margin: 10px auto 0 auto;
+    margin: 10px auto 2px auto;
     text-align: center;
     border-radius: 10px;
 }
@@ -305,6 +371,7 @@ input:focus {
 
 .headline {
     font-size: 0.9em;
+    padding: 0 10px;
 }
 
 .left-icon img {
@@ -374,6 +441,8 @@ input:focus {
     background-color: white;
     border-radius: 10px;
     margin: 15px auto 0px auto;
+    direction: ltr;
+    border: solid 1px #ff8f00;
 }
 
 .flag:before {
@@ -406,6 +475,7 @@ input:focus {
     width: auto;
     margin: auto;
     max-width: 300px;
+    direction: ltr;
 }
 
 .customTesti.sunnah-testimonials ul li .details .rating span {
@@ -423,29 +493,47 @@ input:focus {
 
 .customTesti.sunnah-testimonials ul li::after {
     right: 16px;
+    font-size: 16px;
 }
 
 .customTesti.sunnah-testimonials ul li .avatar.person1 {
-    background-image: url("../../assets/img/display-pic.jpg")
+    background-image: url("../../assets/img/pic-1.png")
 }
 
 .customTesti.sunnah-testimonials ul li .avatar.person2 {
-    background-image: url("../../assets/img/display-pic.jpg")
+    background-image: url("../../assets/img/pic-2.png")
 }
 
 .customTesti.sunnah-testimonials ul li .avatar.person3 {
-    background-image: url("../../assets/img/display-pic.jpg")
+    background-image: url("../../assets/img/pic-3.png")
 }
 
-.language-switcher {
+.customTesti.sunnah-testimonials ul li .details .message, .customTesti.sunnah-testimonials ul li .details .rating span  {
+    font-size: 11px;
+}
+
+button.language-switcher {
     width: auto;
-    padding: 10px;
-    margin: auto;
-    position: absolute;
-    background-color: white;
-    z-index: 1;
+    padding: 4px 16px;
+    margin: 6px;
+    position: relative;
+    background-color: #891723;
+    z-index: 10;
     right: 0;
-    border: none;
+    border: solid 2px #f8d135;
+    float: right;
+    border-radius: 50px;
+    color: white;
+    font-weight: bold;
+}
+
+button.language-switcher:focus {
+    outline: none;
+}
+
+.language-container {
+    width: 100%;
+    max-width: 320px;
 }
 
 @media only screen and (min-width: 452px) {
@@ -579,5 +667,41 @@ input:focus {
               transform: scale(1);
     }
   }
+  
+.fade-in-top {
+	-webkit-animation: fade-in-top 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) 1s both;
+	        animation: fade-in-top 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) 1s both;
+}
+
+.fade-in-top-2 {
+	-webkit-animation: fade-in-top 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) 1.5s both;
+	        animation: fade-in-top 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) 1.5s both;
+}
+
+ @-webkit-keyframes fade-in-top {
+    0% {
+      -webkit-transform: translateY(-50px);
+              transform: translateY(-50px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: translateY(0);
+              transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  @keyframes fade-in-top {
+    0% {
+      -webkit-transform: translateY(-50px);
+              transform: translateY(-50px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: translateY(0);
+              transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
   
   

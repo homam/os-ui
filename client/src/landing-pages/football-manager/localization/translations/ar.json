@@ -5,11 +5,18 @@
   "UnknownError": "ar:: An unknown error occurred.",
   "InvalidPIN": "ar:: Please enter the correct PIN that you received on your phone",
   "TooEarly": "ar:: You must first submit a mobile number",
-  "we_just_sent_a_pin": "لقد أرسلنا إليك رقمًا من 4 أرقام ، يرجى إدخاله أدناه لتأكيد رقمك!",
-  "didnt_receive_pin_yet": "Didn't receive a PIN yet?",
+  "we_just_sent_a_pin": "لقد قمنا بإرسال رمز تأكيد الاشتراك، الرجاء ادخال الرمز لتأكيد اشتراكك",
+  "didnt_receive_pin_yet": "لم تستلم رمز التعرف بعد؟",
   "if_not_your_mobile": "ar:: If {phone} is not your mobile number,",
-  "click_here_to_change_your_number": "ar:: Click here to change your phone number.",
-  "select-team-lead": "Manage & compete with others!",
-  "pin-lead": "أكد لك فريق!",
-  "pin-submit-btn": "تأكيد دبوس الآن!"
+  "click_here_to_change_your_number": "أو قم بإدخال رقم الهاتف الصحيح",
+  "selected-team-lead": "استعد للمنافسة",
+  "select-team-cta": "إختر فريقك الان!",
+  "pin-lead": "قم بتأكيد فريقك",
+  "pin-submit-btn": "تأكيد دبوس الآن!",
+  "resend-pin": "اعادة ارسال رمز التعريف",
+  "submit-team-btn": "أرسل إسم فريقك",
+  "selected-team-title": "...",
+  "msisdn-label": "أدخل رقم هاتفك المحمول للمشاركة الان",
+  "msisdn-btn": "أدخل المباراة"
+  
 }

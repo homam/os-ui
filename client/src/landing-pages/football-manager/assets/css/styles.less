@@ -23,6 +23,17 @@ body.guide #disclaimer{
 	direction:rtl;
 }
 
+.change-number, .resend-btn{
+	display: block;
+	color: blue;
+	text-decoration: underline;
+	line-height: 26px;
+}
+
+.pin-support{
+	text-align: center;
+}
+
 #container{
 	padding:0;
 	margin:0 auto;
@@ -171,7 +182,7 @@ body.guide #disclaimer{
     position: absolute;
     top: 10px;
     left: 1px;
-    height: 45px;
+    height: 43px;
 		width: 45px;
 		border-radius: 20px 0 0 20px;
 	background-color: #ececec;
@@ -345,7 +356,7 @@ body.guide #disclaimer{
 
 .btn{
 	color:#fff;
-	width:270px;
+	width: 100%;
 	display:block;
 	margin:0 auto;
 	font-size:18px;
@@ -416,6 +427,8 @@ background-image:url('../img/en/top-game-badge.png');
 
 .c-team-selection{
 	padding-top: 100px;
+	max-width: 300px;
+    margin: auto;
 }
 
 .panel{
@@ -433,6 +446,7 @@ background-image:url('../img/en/top-game-badge.png');
 	box-sizing: border-box;
 	margin-top: 150px;
 	display: none;
+	text-align: center;
 
 	.rays{
 		margin:-135px auto 0 auto;
@@ -469,21 +483,14 @@ background-image:url('../img/en/top-game-badge.png');
   
 }
 
-html[lang="en"] .cta-lead{
-  background-image:url('../img/en/start_utl_tm.png');
-}
-
-html[lang="ar"] {
+html[lang="en"]{
 
 	.cta-lead{
-		background-image:url('../img/ar/start-match.png');
-		height: 110px;
-		margin-top: 37px;
-		background-position: center;
-		
-	  }
-
+  background-image:url('../img/en/start_utl_tm.png');
+	}
 }
+
+
 
 
 .cta-sub-lead{
@@ -497,7 +504,7 @@ html[lang="ar"] {
 	h1{
 		
 		font-weight: bold;
-		font-size: 25px;
+		font-size: 20px;
 		margin:0 0 12px 0;
 	}
 
@@ -668,4 +675,42 @@ input[type=radio]:checked + label {
 	
 	
 	border: 2px solid red;
+}
+
+.customTesti ul li .avatar{
+	height: 45px;
+	width: 45px;
+}
+
+.customTesti, .customTesti ul{
+	min-height: 60px;
+	height: auto;
+	direction: ltr !important
+}
+
+html[lang="ar"] {
+
+	body{
+		direction: rtl;
+	}
+
+	.cta-lead{
+		background-image:url('../img/ar/start-match.png');
+		height: 110px;
+		margin-top: 37px;
+		background-position: center;
+	  }
+
+	  .embelem{
+		background-image: url("../img/ar/top-game-badge.png");
+	  }
+
+	  .logo{
+		  background-image: url("../img/ar/emblem_footballstarmanager@2x.png");
+	  }
+
+	  .jersey:last-child{
+		margin-right: 10px;
+	  }
+
 }
