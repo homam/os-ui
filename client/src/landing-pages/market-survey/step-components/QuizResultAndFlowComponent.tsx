@@ -47,8 +47,11 @@ export default class QuizResultAndFlowComponent extends React.PureComponent<{ an
     return <div className={`quiz-result-and-flow ${this.state.phase == 'result' ? 'result' : 'flow'}`}>
 
       <div className="quiz-result result">
+
         <QuizResult answers={this.props.answers} />
+
       </div>
+      
       <div className="subscriptionArea flow">
         {match({
           msisdnEntry: rds => (
