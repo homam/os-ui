@@ -3,19 +3,19 @@ import mkTracker from "../../pacman/record";
 import { TranslationProvider, Translate } from "./localization/index";
 import HOC, {
   initialState,
-  mockedMSISDNEntrySuccess,
   mockedCompletedState,
   HOCProps,
-  MSISDNEntryFailure,
-  MSISDNEntrySuccess,
+  PINEntryFailure,
+  PINEntrySuccess,
   match,
-  MOLink,
-} from "../../clients/lp-api-mo/HOC";
+  mockedPINState
+} from "../../clients/lp-api/HOC";
 import * as RDS from "../../common-types/RemoteDataState";
 import "./assets/css/styles.less?raw"
 import CustomTesti from "../bid-win/components/CustomTesti";
 import Disclaimer from "../../legal-components/Disclaimer";
-import { IKeywordShortcode } from "../../clients/lp-api-mo/main";
+// import "../../common-components/flag-styles/flag.css?raw";
+import { mockSuccessState } from "../../clients/mpesa/TolaHOC";
 import { MSISDNEntryStep } from "./MSISDNEntryStep";
 import { PINEntryStep } from "./PINEntryStep";
 import { from } from "rxjs";
@@ -26,14 +26,6 @@ const tracker = mkTracker(
   "frontline-soldier"
 );
 
-function MO({ keyword, shortcode, backToStart }: IKeywordShortcode & { backToStart: () => void }) {
-  return <div>
-    <MOLink keywordAndShortcode={{ keyword, shortcode }}><h1>SMS {keyword} to {shortcode}</h1></MOLink>
-    <div>
-      <a onClick={() => backToStart()}>Try again</a>
-    </div>
-  </div>
-}
 
 const TQStep = ({ finalUrl }: { finalUrl: string }) => <div className="tq-msg">
   <h3 className="tq-msg__header">Thank you 123!</h3>
@@ -44,7 +36,7 @@ const TQStep = ({ finalUrl }: { finalUrl: string }) => <div className="tq-msg">
 
 class Root extends React.PureComponent<HOCProps> {
   state = {
-    locale: "ms",
+    locale: "en",
     msisdn: "",
 
   };
@@ -59,87 +51,82 @@ class Root extends React.PureComponent<HOCProps> {
             <div id="top-legal"></div>
 
             <div className="top-bar">
+              </div>
 
-              <Translate id="Digital_Deluxe_Edition" defaultMessage="!!Digital Deluxe Edition!!" />
-              <button
-                onClick={() => {
-                  if (this.state.locale === "en") {
-                    this.setState({ locale: "ms" })
-                    document.getElementsByTagName('html')[0].setAttribute("lang", "ms")
-                  } else {
-                    this.setState({ locale: "en" })
-                    document.getElementsByTagName('html')[0].setAttribute("lang", "en")
-                  }
-                }}
-              >{
-                  this.state.locale === "ms"
-                    ? "Change Language"
-                    : "Tukar bahasa"
-                }</button>
-            </div>
             <div id="creative">
               <div className="header">
                 <div className="rating-badge"></div>
                 <div className="mature-badge"></div>
               </div>
 
-
               <div id="holder">
-                <div className="eye-blaster"></div>
+                <div className="eye-blaster">
+
+                </div>
                 <div className="box">
+
                   {match({
                     msisdnEntry: rds => (
                       <div>
-                        {
-                          RDS.WhenSuccess<MSISDNEntrySuccess, JSX.Element>(<MSISDNEntryStep
-                            msisdn={this.state.msisdn}
-                            rds={rds}
-                            onEnd={msisdn => {
-                              this.setState({ msisdn });
-                              this.props.actions.submitMSISDN(window, null, msisdn);
-                            }}
-                          />, data => <MO {...data} backToStart={this.props.actions.backToStart} />)(rds)
-                        }
+                        <MSISDNEntryStep
+                          msisdn={this.state.msisdn}
+                          rds={rds}
+                          onEnd={msisdn => {
+                            this.setState({ msisdn });
+                            this.props.actions.submitMSISDN(window, null, msisdn);
+                          }}
+                        />
                       </div>
+
                     ),
-                    completed: () => (
+                    pinEntry: rds => (
+
+                      <PINEntryStep
+                        onEnd={pin => this.props.actions.submitPIN(pin)}
+                        backToStart={() => this.props.actions.backToStart()}
+                        msisdn={this.state.msisdn}
+                        rds={rds}
+                      />
+
+                    ),
+                    completed: ({ finalUrl }) => (
                       <div>
-                        <TQStep finalUrl={""} />
+                        <TQStep finalUrl={finalUrl} />
                       </div>
                     )
                   })(this.props.currentState)}
-                </div>
 
-                <div className="testimonials">
-                  <CustomTesti
-                    className="frontline-testimonials"
-                    testimonials={
-                      [
-                        {
-                          Message: () => <span className="message"><Translate id="testi1" /></span>,
-                          Name: () => <span> -Syazalina</span>,
-                          stars: 5
-                        },
-                        {
-                          Message: () => <span className="message">Wow! I couldn't believe my eyes when I received my iPhone X! when I received my iPhone X!</span>,
-                          Name: () => <span> -Rahim</span>,
-                          stars: 4
-                        },
-                        {
-                          Message: () => <span className="message">I bid, confirmed and won! So happy! Thank you!</span>,
-                          Name: () => <span> -Amira</span>,
-                          stars: 5
-                        }
-                      ]
-                    }
-                  />
                 </div>
+              </div>
+
+              <div className="testimonials">
+                <CustomTesti
+                  className="frontline-testimonials"
+                  testimonials={
+                    [
+                      {
+                        Message: () => <span className="message"><Translate id="testi1" /></span>,
+                        Name: () => <span> -Syazalina</span>,
+                        stars: 5
+                      },
+                      {
+                        Message: () => <span className="message">Wow! I couldn't believe my eyes when I received my iPhone X! when I received my iPhone X!</span>,
+                        Name: () => <span> -Rahim</span>,
+                        stars: 4
+                      },
+                      {
+                        Message: () => <span className="message">I bid, confirmed and won! So happy! Thank you!</span>,
+                        Name: () => <span> -Amira</span>,
+                        stars: 5
+                      }
+                    ]
+                  }
+                />
               </div>
               <div className="disclaimer">
                 <Disclaimer />
               </div>
             </div>
-
           </div>
 
         </TranslationProvider>
@@ -147,4 +134,4 @@ class Root extends React.PureComponent<HOCProps> {
     );
   }
 }
-export default HOC(tracker, Root)(initialState);
+export default HOC(tracker, Root)(mockedPINState);
