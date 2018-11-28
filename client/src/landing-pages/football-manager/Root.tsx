@@ -415,5 +415,5 @@ class Root extends React.PureComponent<HOCProps> {
   }
 }
 
-export default HOC(tracker, Root)(mockedPINState);
+export default HOC(tracker, Root)(initialState);
 
