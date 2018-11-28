@@ -86,8 +86,8 @@ export interface IProps {
 }
 
 
-export default <P extends IResultPhaseComponentProps>(ResultPhaseComponent : React.ComponentType<P>, quizDetails :  IQuestion[]) : React.ComponentType<any> => 
-  class extends React.PureComponent<any> {
+export default function mkQuizComponent <P>(ResultPhaseComponent : React.ComponentType<P & IResultPhaseComponentProps>) : React.ComponentType<P & IProps> {
+  return class extends React.PureComponent<P & IProps> {
     state = {
       phase: "quiz",
       answers: []
@@ -101,7 +101,7 @@ export default <P extends IResultPhaseComponentProps>(ResultPhaseComponent : Rea
               }`}
           >
             <QuizPhase
-              quizDetails={quizDetails}
+              quizDetails={this.props.quizDetails}
               onEnd={answers => {
                 this.setState({ phase: "result", answers: answers });
               }}
@@ -123,3 +123,4 @@ export default <P extends IResultPhaseComponentProps>(ResultPhaseComponent : Rea
       );
     }
   }
+}

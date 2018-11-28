@@ -42,7 +42,7 @@ const MyQuizComponent  = mkQuizComponent(({ answers, currentState, actions } : I
       currentState={currentState} 
       actions={actions} 
   />
-  , quizData)
+  )
 
 class Root extends React.PureComponent<HOCProps> {
   state = {
@@ -71,7 +71,7 @@ class Root extends React.PureComponent<HOCProps> {
                 Αυτή η προσφορά ισχύει μόνο για <strong>23-11-2018</strong>. Παρακαλώ απαντήστε στις ακόλουθες 3 ερωτήσεις για να μάθετε αν είστε ο νικητής!
               </p>
 
-              <MyQuizComponent currentState={this.props.currentState} actions={this.props.actions}  />
+              <MyQuizComponent quizDetails={quizData} currentState={this.props.currentState} actions={this.props.actions}  />
 
             </div>
 
