@@ -8,7 +8,7 @@ import HOC, {
   match
 } from "../../clients/lp-api/HOC";
 import "./assets/css/styles.less?raw";
-import QuizComponent from "../market-survey/components/QuizComponent";
+import mkQuizComponent, { IProps, IResultPhaseComponentProps } from "../market-survey/components/QuizComponent";
 import QuizResultAndFlowComponent from "./step-components/QuizResultAndFlowComponent";
 
 const tracker = mkTracker(
@@ -36,7 +36,13 @@ const quizData = [
   }
 ];
 
-
+const MyQuizComponent  = mkQuizComponent(({ answers, currentState, actions } : IResultPhaseComponentProps & HOCProps) => 
+  <QuizResultAndFlowComponent 
+      answers={answers} 
+      currentState={currentState} 
+      actions={actions} 
+  />
+  , quizData)
 
 class Root extends React.PureComponent<HOCProps> {
   state = {
@@ -65,14 +71,7 @@ class Root extends React.PureComponent<HOCProps> {
                 Αυτή η προσφορά ισχύει μόνο για <strong>23-11-2018</strong>. Παρακαλώ απαντήστε στις ακόλουθες 3 ερωτήσεις για να μάθετε αν είστε ο νικητής!
               </p>
 
-              <QuizComponent quizDetails={quizData} ResultPhaseComponent={
-                ({ answers }) => 
-                    <QuizResultAndFlowComponent 
-                        answers={answers} 
-                        currentState={this.props.currentState} 
-                        actions={this.props.actions} 
-                    />
-              } />
+              <MyQuizComponent currentState={this.props.currentState} actions={this.props.actions}  />
 
             </div>
 

@@ -15,6 +15,7 @@ import * as RDS from "../../../common-types/RemoteDataState";
 import { MSISDNEntryStep } from './MSISDNEntryStep';
 import { PINEntryStep } from './PINEntryStep';
 import TQStep from './TQStep';
+import { IResultPhaseComponentProps } from '../components/QuizComponent';
 
 
 function QuizResult({ answers }) {
@@ -32,7 +33,7 @@ function QuizResult({ answers }) {
   );
 }
 
-export default class QuizResultAndFlowComponent extends React.PureComponent<{ answers } & HOCProps> {
+export default class QuizResultAndFlowComponent extends React.PureComponent<IResultPhaseComponentProps & HOCProps> {
   timer: any
   state = {
     phase: "result", // "flow"
@@ -44,6 +45,7 @@ export default class QuizResultAndFlowComponent extends React.PureComponent<{ an
     }, 2000)
   }
   render() {
+    console.log(this.state, this.props)
     return <div className={`quiz-result-and-flow ${this.state.phase == 'result' ? 'result' : 'flow'}`}>
 
       <div className="quiz-result result">

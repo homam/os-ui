@@ -77,48 +77,49 @@ class QuizPhase extends React.PureComponent<IQuizPhaseProps> {
   }
 }
 
-interface IResultPhaseComponentProps {
+export interface IResultPhaseComponentProps {
   answers: string[]
 }
 
-interface IProps {
+export interface IProps {
   quizDetails :  IQuestion[]
-  ResultPhaseComponent: React.ComponentType<IResultPhaseComponentProps>
 }
 
-export default class extends React.PureComponent<IProps> {
-  state = {
-    phase: "quiz",
-    answers: []
-  };
-  render() {
-    return (
-      <div className="quiz-container">
-        <div
-          className={`quiz-phase ${
-            this.state.phase == "quiz" ? "visible" : "hidden"
-            }`}
-        >
-          <QuizPhase
-            quizDetails={this.props.quizDetails}
-            onEnd={answers => {
-              this.setState({ phase: "result", answers: answers });
-            }}
-          />
-        </div>
 
-        <div
-          className={`quiz-phase ${
-            this.state.phase == "result" ? "visible" : "hidden"
-            }`}
-        >
-          {
-            this.state.phase == 'result'
-              ? <this.props.ResultPhaseComponent answers={this.state.answers} />
-              : null
-          }
+export default <P extends IResultPhaseComponentProps>(ResultPhaseComponent : React.ComponentType<P>, quizDetails :  IQuestion[]) : React.ComponentType<any> => 
+  class extends React.PureComponent<any> {
+    state = {
+      phase: "quiz",
+      answers: []
+    };
+    render() {
+      return (
+        <div className="quiz-container">
+          <div
+            className={`quiz-phase ${
+              this.state.phase == "quiz" ? "visible" : "hidden"
+              }`}
+          >
+            <QuizPhase
+              quizDetails={quizDetails}
+              onEnd={answers => {
+                this.setState({ phase: "result", answers: answers });
+              }}
+            />
+          </div>
+
+          <div
+            className={`quiz-phase ${
+              this.state.phase == "result" ? "visible" : "hidden"
+              }`}
+          >
+            {
+              this.state.phase == 'result'
+                ? <ResultPhaseComponent answers={this.state.answers} {...this.props} />
+                : null
+            }
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
-}
