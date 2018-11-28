@@ -28,7 +28,7 @@ export function recordImpression(
         page,
         xaid: queryString(window.location.search, 'xaid'),
         cid: campaignId,
-        offer: parseInt(queryString(window.location.search, 'offer')) || 0,
+        offer: parseInt(queryString(window.location.search, 'offer')) || 1, // default to 1 offer id
       },
       startTime: new Date().valueOf(),
       queryString: key => queryString(window.location.search, key),

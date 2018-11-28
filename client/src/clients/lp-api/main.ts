@@ -27,8 +27,18 @@ const defaultConfig = (offer: number) : IConfig => {
         handle: 'mobile-arts'
       }
     }
+    case "qa": {
+      return {
+        offer,
+        host: 'w1.mozzi.com',
+        country: 'qa',
+        handle: 'finger-print-lock'
+      }
+    }
     default:
-      throw `'country' environment variable is either missing or has an unsupported value (${process.env.country}). This is necessary for defaultConfig(offer).`
+      const errorMsg = `'country' environment variable is either missing or has an unsupported value (${process.env.country}). This is necessary for defaultConfig(offer).`
+      console.error(errorMsg)
+      throw errorMsg;
   }
 }
 
