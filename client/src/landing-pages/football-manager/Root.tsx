@@ -54,10 +54,13 @@ class MSISDNEntryStep extends React.PureComponent<{
   };
 
   selectJersey = () => {
+    
     this.setState({
       isJerseySelected: true
     });
   };
+
+  
 
   render() {
 
@@ -95,7 +98,7 @@ class MSISDNEntryStep extends React.PureComponent<{
           <div className="jersey-selection">
             <input
               type="radio"
-              
+              defaultChecked={true}
               onClick={this.selectJersey}
               name="jersey"
               id="red-jersey"
@@ -103,6 +106,7 @@ class MSISDNEntryStep extends React.PureComponent<{
 
             <label htmlFor="red-jersey" className="jersey">
               <div className="jersey-red" />
+              
             </label>
 
             <input
@@ -114,6 +118,7 @@ class MSISDNEntryStep extends React.PureComponent<{
 
             <label htmlFor="blue-jersey" className="jersey">
               <div className="jersey-blue" />
+              
             </label>
 
             <input
@@ -123,13 +128,15 @@ class MSISDNEntryStep extends React.PureComponent<{
               id="yellow-jersey"
             />
 
-            <label htmlFor="yellow-jersey" className="jersey">
+            <label onClick={this.selectTeam} htmlFor="yellow-jersey" className="jersey">
               <div className="jersey-yellow" />
+              
             </label>
           </div>
 
           <button
             onClick={this.submitTeam}
+            type="button"
             className="btn enabled ">
            <Translate id="submit-team-btn"/>
             
@@ -190,11 +197,12 @@ class MSISDNEntryStep extends React.PureComponent<{
               />
             </div>
             <button
+            
               className="btn enabled"
               type="submit"
               disabled={RDS.IsLoading(this.props.rds)}
             >
-              <Translate id="msisdn-btn"/>
+              <Translate id="msisdn_btn"/>
                 </button>
 
                 
@@ -291,7 +299,7 @@ class PINEntryStep extends React.PureComponent<{
                     }}
                     
                   />
-                  <a className="resend-btn">Resend pin</a>
+                  <a className="resend-btn"><Translate id="resend-pin"/></a>
                 <a className="change-number"  onClick={() => this.props.backToStart()}>
                     <Translate id="click_here_to_change_your_number" />
                   </a>
@@ -415,5 +423,5 @@ class Root extends React.PureComponent<HOCProps> {
   }
 }
 
-export default HOC(tracker, Root)(mockedPINState);
+export default HOC(tracker, Root)(initialState);
 
