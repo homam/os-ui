@@ -55,16 +55,16 @@ body.guide #disclaimer{
 	min-height:352px;
 	position: relative;
 	margin: auto;
-	padding-top: 20px;
+	padding-top: 5px;
 
 	&::before{
 		content: '';
 		position: absolute;
-		top: 125px;
+		top: 90px;
 		left: 0;
 		right: 0;
 		margin: auto;
-		height: 150px;
+		height: 130px;
 		z-index: -1;
 		background-image: url("../img/iPhonex2.jpg");
 		background-repeat: no-repeat;
@@ -325,11 +325,11 @@ BUTTON STYLES
 	display:block;
 	margin:-4px 0 0;
 	border-radius: 12px 12px;
+	background-color: transparent;
 	text-align: center;
-	background-color: #0070c9;
-    background: -webkit-linear-gradient(#42a1ec, #0070c9);
-    background: linear-gradient(#42a1ec, #0070c9);
 	border-color: #07c;
+	border: 2px solid #07c;
+	padding-bottom: 4px;
 	color: #fff;
 	font-weight: bold;
 	text-decoration: none;
@@ -380,8 +380,7 @@ button:focus {outline:0;}
 	
 	h1{
 		font-weight: bold;
-		font-size: 40px;
-		margin-bottom: 2vh;
+		font-size: 35px;
 	}
 
 	h3{
@@ -476,7 +475,7 @@ button:focus {outline:0;}
 	
 	border-radius: 4px;
 	padding:10px;
-	margin-top:120px;
+	margin-top:85px;
 .model.btn{
 	height: 50px;
 	margin: 15px 0 20px 0;
@@ -546,12 +545,13 @@ button:focus {outline:0;}
 
 .tq-msg{
 	text-align: center;
-	margin-top:3vh;
+	margin-top:60px;
+	margin-bottom:3vh;
 
 	h2{
 		font-size: 30px;
 		font-weight: bold;
-		margin-bottom: 15px;
+		margin-bottom: 140px;
 	}
 
 	p{
@@ -559,8 +559,19 @@ button:focus {outline:0;}
 	}
 }
 
-html[lang="ar"]{
+.en-top-legals, .ar-top-legals{
+	display: none;
+	text-align: center;
+	padding: 10px 0;
+	font-size: 12px;
+	background-color: #52525291;
+}
 
+html[lang="ar"]{
+.ar-top-legals{
+	display: block;
+
+}
 body{
 	direction: rtl;
 
@@ -584,6 +595,12 @@ body{
 		font-size: 23px;
 	}
 }
+}
+
+html[lang="en"]{
+	.en-top-legals{
+		display: block;
+	}
 }
 
 .winners{

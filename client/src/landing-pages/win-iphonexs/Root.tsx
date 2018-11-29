@@ -37,7 +37,7 @@ const tracker = mkTracker(
   "Unknown" //TODO: replace Unknown with your page's name
 );
 
-function Bonus(props) {
+function Terms(props) {
   return (
     <div className="disclaimer">
     <p><Translate id="disclaimers" /></p>
@@ -138,7 +138,7 @@ class MSISDNEntryStep extends React.PureComponent<{
 
           </div>
 
-          <Bonus />
+          <Terms />
 
           
 
@@ -181,7 +181,7 @@ class MSISDNEntryStep extends React.PureComponent<{
 
             {RDS.WhenLoading(null, () => "Wait...")(this.props.rds)}
           </div>
-          <Bonus />
+          <Terms />
           <div>
 
             {RDS.WhenFailure(null, (err: MSISDNEntryFailure) => (
@@ -332,8 +332,11 @@ class Root extends React.PureComponent<HOCProps> {
 
     return (
 
+      
       <div id="container">
-      <div className="top-legals">Welcome to buzztoMobile</div>
+      
+      <div className="ar-top-legals">Gameloards أهلا بك في خدمة</div>
+      <div className="en-top-legals">Welcome to Gameloards</div>
         <div className="header">
 
           <div className="lang-btns">
@@ -359,6 +362,8 @@ class Root extends React.PureComponent<HOCProps> {
         <div id="creative">
           <div>
             <TranslationProvider locale={this.state.locale}>
+
+        
 
               {match({
                 msisdnEntry: rds => (

@@ -6,7 +6,7 @@
   "TooEarly": "ar:: You must first submit a mobile number",
   "hurry_slot": "أسرع! لم يتبقى سوى فرصة واحدة!",
   "we_just_sent_a_pin": "لقد قمنا بإرسال رمز التعريف عن طريق رسالة قصيرة ",
-  "wrong_number": "ar:: wrong number?",
+  "wrong_number": "رقم خاطىء",
   "didnt_receive_pin_yet": "ar:: Didn't receive a PIN yet? Make sure {phone} is your correct mobile number.",
   "if_not_your_mobile": "ar:: If {phone} is not your mobile number,",
   "click_here_to_change_your_number": "ar:: Click here to change your phone number.",
@@ -15,7 +15,7 @@
   "choose_model": "اختر موديلك المفضل",
   "you_have": "لديك",
   "to_participate": " ثانية للمشاركة",
-  "recent_winners": "ar:: Most recent Winners",
+  "recent_winners": "رقم خاطىء",
   "testi_1": "ar:: Wow! I couldn't believe my eyes when I received my iPhone X!",
   "testi_2": "ar:: Wow! I couldn't believe my eyes when I received my iPhone X!",
   "testi_3": "ar:: I bid, confirmed and won! So happy! Thank you!",
@@ -30,6 +30,8 @@
   "testi_name1": "Name1",
   "testi_name2": "Name2",
   "testi_name3": "Name3",
+  "entry_accepted": "asdfasd",
+  "new_stuff": "Gameloards أهلا بك في خدمة ",
   "disclaimers": "Gamelords هي خدمة للاشتراك. ستتمتع بفترة تجريبية مجانية لمدة يوم واحد، ومن ثم سيتم خصم 0.5 دينار بحريني في الأسبوع حتى تقوم بإلغاء الاشتراك. لإلغاء الاشتراك، أرسل غ55 إلى 98023"
 
 }
