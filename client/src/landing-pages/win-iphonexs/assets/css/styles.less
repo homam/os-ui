@@ -375,7 +375,9 @@ button:focus {outline:0;}
 	margin: auto;
 	text-align: center;
 	display: none;
-	
+	direction: ltr;
+
+
 	
 	
 	h1{
@@ -436,20 +438,23 @@ button:focus {outline:0;}
 
 	.centerpiece{
 		height: 80px;
-		width: 80px;
+		width: 180px;
 		background-image: url("../img/centerpiece.png");
 		background-size: contain;
 		background-position: center;
 		background-repeat: no-repeat;
 		position: relative;
-		
+		direction: ltr;
 		margin: auto;
 		margin-bottom: 30px;
 		margin-top: -120px;
 
 		span{
-			
+			text-align: center;
 			position: absolute;
+			left:0;
+			right: 0;
+			margin: auto;
 			bottom: -23px;
 		}
 	}
@@ -594,6 +599,10 @@ body{
 	.select-model h3{
 		font-size: 23px;
 	}
+
+	.primary{
+		font-size: 24px;
+	}
 }
 }
 
@@ -606,4 +615,34 @@ html[lang="en"]{
 .winners{
 	direction: ltr;
 }
+
+.s-logo{
+	margin-left: 5px;
+	height: 30px;
+	width: 30px;
+	display: inline-block;
+	margin-bottom: -3px;
+background-image: url("../img/apple-s.svg") ;
+fill: red;
+}	
+
+.s-logo.black{
+	background-image: url("../img/apple-s-black.svg") ;
+	height: 20px;
+	width: 20px;
+
+}
+
+.btn {
+	.s-logo{
+		margin-left: 2px;
+		height: 20px;
+		width: 20px;
+		display: inline-block;
+		margin-bottom: -3px;
+	
+	}	
+}
+
+
 

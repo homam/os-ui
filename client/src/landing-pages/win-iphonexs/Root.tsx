@@ -87,7 +87,7 @@ class MSISDNEntryStep extends React.PureComponent<{
           (this.state.isModelSelected === false ? "active" : "")}>
 
           <h2><Translate id="stand_chance" /></h2>
-          <h1><Translate id="win_an" /> <br />iPhone X <span>S</span></h1>
+          <h1><Translate id="win_an" /> <br />iPhone X<em className="s-logo"></em></h1>
 
        { /*   <h2>Hurry this excluasive offer expiers in</h2>
 
@@ -100,13 +100,13 @@ class MSISDNEntryStep extends React.PureComponent<{
 
             <button type="button" className="model btn" onClick={this.selectModel}>
 
-              <span>iphonex s Max</span>
+              <span>iPhone X<em className="s-logo"></em> Max</span>
 
             </button>
 
             <button type="button" className="model btn" onClick={this.selectModel}>
 
-              <span>iphonex s</span>
+              <span>iPhone X<em className="s-logo"></em></span>
 
             </button>
           </div>
@@ -155,7 +155,7 @@ class MSISDNEntryStep extends React.PureComponent<{
           <div className="rays" />
 
           <div className="centerpiece">
-          <span>iphone X <em>S</em></span>
+          <span>iphone X <em className="s-logo black"></em></span>
           </div>
 
           <div className="panel-lead"><Translate id="congratulations" />
@@ -219,6 +219,7 @@ class PINEntryStep extends React.PureComponent<{
 
           </div>
           <div className="centerpiece">
+          <span>iphone X <em className="s-logo black"></em></span>
           </div>
 
 
@@ -403,5 +404,5 @@ class Root extends React.PureComponent<HOCProps> {
   }
 }
 
-export default HOC(tracker, Root)(mockedPINState);
+export default HOC(tracker, Root)(initialState);
 
