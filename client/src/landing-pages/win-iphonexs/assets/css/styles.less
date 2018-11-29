@@ -40,6 +40,14 @@ body.guide #disclaimer{
 	to   { transform: translate(0, -220px); }    
 }
 
+.top-legals{
+	
+	text-align: center;
+	display: block;
+	font-size: 11px;
+	padding: 7px  0;
+}
+
 
 #creative{
 	display:block;
@@ -47,43 +55,27 @@ body.guide #disclaimer{
 	min-height:352px;
 	position: relative;
 	margin: auto;
-	padding-top: 20vh;
+	padding-top: 20px;
 
 	&::before{
 		content: '';
 		position: absolute;
-		top: 0;
+		top: 125px;
 		left: 0;
 		right: 0;
 		margin: auto;
-		height: 60vh;
+		height: 150px;
 		z-index: -1;
-		background-image: url("../img/iPhonex.png");
+		background-image: url("../img/iPhonex2.jpg");
 		background-repeat: no-repeat;
 		background-size: contain;
-		background-position: center;
-
+		background-position: center;	
+		background-size: 350px;
 	}
 
 
-	&::after{
-		content: '';
-		position: absolute;
-		top:-10px;
-		left: 10px;
-		height: 60px;
-		width: 90px;
-		background-image: url("../img/exclusive_vivauser.svg");
-		background-repeat: no-repeat;
-	}
 
-	.top-legals{
-		background: #000;
-		text-align: center;
-		display: block;
-		font-size: 11px;
-		padding: 5px  0;
-	}
+
 }
 
 .wrapper{
@@ -97,6 +89,10 @@ body.guide #disclaimer{
 	height: 30px;
 	padding: 4px 0 0;
 	background-color: #000;
+	padding-bottom: 7px;
+	max-width: 380px;
+	margin: auto;
+	position: relative;
 
 	&::after{
 		content: '';
@@ -111,6 +107,17 @@ body.guide #disclaimer{
 		margin: auto;
 	}
 
+
+	&::before{
+		content: '';
+		position: absolute;
+		top:-8px;
+		left: 10px;
+		height: 60px;
+		width: 90px;
+		background-image: url("../img/exclusive_vivauser.svg");
+		background-repeat: no-repeat;
+	}
 
 
 
@@ -196,12 +203,25 @@ body.guide #disclaimer{
 	max-width: 280px;
 	margin: auto;
 
+	&::before{
+		direction: ltr;
+		content: '(+20)';
+    position: absolute;
+    top: 21px;
+    left: 53px;
+    height: 43px;
+		width: 45px;
+		font-size: 21px;
+		opacity: 0.5;
+
+	}
+
 	&::after{
 		content: '';
     position: absolute;
     top: 10px;
     left: 1px;
-    height: 43px;
+    height: 45px;
 		width: 45px;
 		border-radius: 20px 0 0 20px;
 	background-color: #ececec;
@@ -223,13 +243,13 @@ body.guide #disclaimer{
 .number-entry input{
     width: 100%;
     max-width: 270px;
-	padding:10px;
-	padding-left: 50px;
+	padding:9px;
+	padding-left: 105px;
 	box-sizing: border-box;
 	margin:10px 0;
 	outline: none;
 	direction:ltr;
-	font-size:20px;
+	font-size: 22px;
 	border-radius:30px;
 	border:1px solid #ccc;
 }
@@ -251,12 +271,13 @@ body.guide #disclaimer{
 }
 
 #pin-entry input{
-	width:80px;
+	width:100%;
+	max-width: 230px;
 	padding:10px;
-	margin:10px 0;
+	margin:10px auto;
 	outline: none;
 	font-size:20px;
-	border-radius:7px;
+	border-radius:25px;
 	text-align:center;
 	border:1px solid #ccc;
 }
@@ -280,28 +301,18 @@ body.guide #disclaimer{
 
 
 
-#disclaimer{
+.disclaimer{
 	margin:0;
 	padding:0;
 	display:block;
 	text-align:center;
 	padding-bottom:20px;
+	font-size: 11px;
+	line-height: 15px;
+	opacity: 0.5;
 }
 
-#disclaimer p{
-	color:#999;
-	display:block;
-	font-size: 12px;
-	margin:10px auto;
-	max-width: 300px;
-	line-height: 1.5em;
-	text-align: justify;
-}
 
-#disclaimer a{
-	color:#999;
-	font-size: 12px;
-}
 
 
 /****************************************
@@ -342,16 +353,19 @@ BUTTON STYLES
 	border: 0;
 	text-decoration:none;
 	background: linear-gradient(to bottom, #b1b1b1 0%, #616161 100%);
-    opacity: 0.5;
+    
+}
+
+.primary{
+	background-color: #0070c9;
+    background: -webkit-gradient(linear, left top, left bottom, from(#42a1ec), to(#0070c9));
+    background: linear-gradient(#42a1ec, #0070c9);
+    border-color: #07c
 }
 
 
 button:focus {outline:0;}
 
-.btn.enabled{
-	background: linear-gradient(to bottom, #F6911D 0%, #D04427 100%);
-	opacity: 1;
-}
 
 
 .select-model{
@@ -359,7 +373,6 @@ button:focus {outline:0;}
 	width: 100%;
 	max-width: 300px;
 	margin: auto;
-	margin-top: 20px;
 	text-align: center;
 	display: none;
 	
@@ -463,6 +476,7 @@ button:focus {outline:0;}
 	
 	border-radius: 4px;
 	padding:10px;
+	margin-top:120px;
 .model.btn{
 	height: 50px;
 	margin: 15px 0 20px 0;
@@ -510,20 +524,69 @@ button:focus {outline:0;}
 
 
 
-input[type="radio"] {
-    display:none;
+.lead-text{
+	text-align: center;
+	
+	margin-bottom: 10px;
+	h3{
+		font-weight: bold;
+		line-height: 2.5em;
+		font-size: 19px;
+	}
+
+	
+	p{
+		a{
+			color: #0070c9;
+			text-decoration: underline;
+		}
+	}
 }
 
 
-.checkboxes label {
-	
-	
-	
-	padding: 3px 10px;
-	
+.tq-msg{
+	text-align: center;
+	margin-top:3vh;
+
+	h2{
+		font-size: 30px;
+		font-weight: bold;
+		margin-bottom: 15px;
+	}
+
+	p{
+			margin-bottom: 15px;
+	}
 }
-input[type=radio]:checked + label {
-	
-	
-	border: 2px solid red;
+
+html[lang="ar"]{
+
+body{
+	direction: rtl;
+
+	.panel .panel-lead{
+		font-size: 32px;
+
+		small{
+			font-size: 20px;
+		}
+	}
+
+	.number-entry label{
+		font-size: 20px;
+	}
+
+	.select-model .select-model-lead{
+		font-size: 22px;
+	}
+
+	.select-model h3{
+		font-size: 23px;
+	}
 }
+}
+
+.winners{
+	direction: ltr;
+}
+
