@@ -1,0 +1,26 @@
+{
+  "testimonial-1": "يا إلهي! لا اصدق انني حصلت على النقود",
+  "testimonial-2": "الاشتراك سهل للغاية، انصح الجميع بالتسجيل للفوز",
+  "testimonial-3": "رائع! اخيراً اصبح بإستطاعتي السفر الى باريس!",
+  "click-to-win": "اضغط للفوز",
+  "congratulations": "تهانينا",
+  "your-destination": "باريس",
+  "take-me-there": "خذني الى هناك",
+  "hurry": "أسرع! سينتهي العرض بعد",
+  "sec": "ثانية",
+  "almost-there": "لقد قاربت على الانتهاء",
+  "latest-participants": "احدث المشتركين",
+  "confirm": "تأكيد",
+  "subscribe": "اشترك",
+  "participate": "for your participation to win",
+
+  "AlreadySubscribed": "انت مشترك مسبقاَ في الخدمة",
+  "InvalidMSISDN": "رقم الهاتف ال1ي ادخلته غير صحيح",
+  "UnknownError": "لقد حصل خطأ اثناء معالجة طلبك",
+  "InvalidPIN": "ar:: Please enter the correct PIN that you received on your phone",
+  "TooEarly": "يجب عليك ادخال رقم هاتفك اولاَ",
+  "we_just_sent_a_pin": "لقد قمنا بإرسال رمز التعريف الى جهازك، ادخل الرمز للتأكيد",
+  "didnt_receive_pin_yet": "هل استلمت رمز التعريف؟ الرجاء التأكد من انك ادخلت رقم الهاتف الصحيح",
+  "if_not_your_mobile": "اذ كان رقم هاتفك المحمول غير صحيح،",
+  "click_here_to_change_your_number": "اضغط هنا لتصحيح الرقم"
+}
