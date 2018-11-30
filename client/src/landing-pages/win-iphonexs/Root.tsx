@@ -86,7 +86,7 @@ class MSISDNEntryStep extends React.PureComponent<{
           "select-model " +
           (this.state.isModelSelected === false ? "active" : "")}>
 
-          <h2><Translate id="stand_chance" /></h2>
+          {/*<h2><Translate id="stand_chance" /></h2>  */}
           <h1><Translate id="win_an" /> <br />iPhone X<em className="s-logo"></em></h1>
 
        { /*   <h2>Hurry this excluasive offer expiers in</h2>
@@ -336,7 +336,7 @@ class Root extends React.PureComponent<HOCProps> {
       
       <div id="container">
       
-      <div className="ar-top-legals">Gameloards أهلا بك في خدمة</div>
+      <div className="ar-top-legals">  أهلا بك في خدمة Gameloards </div>
       <div className="en-top-legals">Welcome to Gameloards</div>
         <div className="header">
 
@@ -352,7 +352,7 @@ class Root extends React.PureComponent<HOCProps> {
                   }}
                 >{
                     this.state.locale === "ar"
-                      ? "eng"
+                      ? "en"
                       : "عربى"
                   }</button>
            
