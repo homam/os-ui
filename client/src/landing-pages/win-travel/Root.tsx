@@ -84,11 +84,13 @@ class MSISDNEntryStep extends React.PureComponent<{
                 <div className="hot-balloon-5"></div>
               </div>
             </div>
-            <div className="pin-point"></div>
+          </div>
+          <div className="pin-point"></div>     
+          <div className="cta-container cta-container-2">
             <button type="" className="btn click-to-win" onClick={this.toNextPage}>
               <Translate id="click-to-win"></Translate>
             </button>
-          </div>
+            </div>
           <div className="world-container">
               <div className="world"></div>
             </div>
@@ -96,8 +98,8 @@ class MSISDNEntryStep extends React.PureComponent<{
 
         <div className={"destination-page " + (this.state.isFlowStep === 1 ? "active" : "")}>
         <div className="wrapper">
+        <div className="fireworks"></div>
           <div className="congrats-container">
-            <div className="fireworks"></div>
             <div className="congrats-title">
               <Translate id="congratulations"></Translate>
             </div>
@@ -105,12 +107,12 @@ class MSISDNEntryStep extends React.PureComponent<{
             <Translate id="your-destination"></Translate>
             </div>
             <div className="paris-title"></div>
-          </div>
-          <div className="cta-container">
+          </div>         
+        </div>
+        <div className="cta-container cta-container-2">
           <button type="" className="btn click-to-win" onClick={this.toNextPage}>
             <Translate id="take-me-there"></Translate>
         </button>
-        </div>
         </div>
         </div>
 
@@ -119,9 +121,9 @@ class MSISDNEntryStep extends React.PureComponent<{
             <div className="banner-container">
             <div className="cash-flag"></div>
               <div className="banner"></div>
-              <div className="banner-headline"></div>
             </div>
             <div className="cta-container">
+            <div className="banner-headline"></div>
               <div className="counter">
                 <div className="counter-title">
                   <Translate id="hurry"></Translate>
@@ -156,12 +158,12 @@ class MSISDNEntryStep extends React.PureComponent<{
                       [
                         {
                           Message: () => <span className="message"><Translate id="testimonial-1"></Translate></span>,
-                          Name: () => <span className="testimonials-name"> - <Translate id="ahmed"></Translate></span>,
+                          Name: () => <span className="testimonials-name"> - <Translate id="zakaria"></Translate></span>,
                           stars: 5
                         },
                         {
                           Message: () => <span className="message"><Translate id="testimonial-2"></Translate></span>,
-                          Name: () => <span className="testimonials-name"> - <Translate id="latifa"></Translate></span>,
+                          Name: () => <span className="testimonials-name"> - <Translate id="fatima"></Translate></span>,
                           stars: 5
                         },
                         {
@@ -217,12 +219,12 @@ class PINEntryStep extends React.PureComponent<{
                       [
                         {
                           Message: () => <span className="message"><Translate id="testimonial-1"></Translate></span>,
-                          Name: () => <span className="testimonials-name"> - <Translate id="ahmed"></Translate></span>,
+                          Name: () => <span className="testimonials-name"> - <Translate id="zakaria"></Translate></span>,
                           stars: 5
                         },
                         {
                           Message: () => <span className="message"><Translate id="testimonial-2"></Translate></span>,
-                          Name: () => <span className="testimonials-name"> - <Translate id="latifa"></Translate></span>,
+                          Name: () => <span className="testimonials-name"> - <Translate id="fatima"></Translate></span>,
                           stars: 5
                         },
                         {

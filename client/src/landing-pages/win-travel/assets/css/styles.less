@@ -1,12 +1,5 @@
 @import "../../../../reset.css";
 
-@font-face {
-	font-family: 'OpenSansCondensedBold';
-	font-style: normal;
-	font-weight: 400;
-	src: url("../fonts/OpenSansCondensed-Bold.ttf");
-}
-
 html, body {
 	margin: 0;
 	padding: 0;
@@ -38,7 +31,7 @@ html[lang="ar"] {
 		left: 0;
 	}
 	.click-to-win {
-		font-size: 28px;
+		font-size: 23px;
 	}
 	.congrats-title {
 		font-size: 42px;
@@ -51,12 +44,20 @@ html[lang="ar"] {
 	}
 	.congrats-container .paris-title {
 		background-image: url("../img/ar/paris-ar.svg");
+		left: 8px;
 	}
 	.awesome {
 		background-image: url("../img/ar/awesome-ar.svg");
 	}
 	.customTesti.win-travel-testimonial {
 		direction: ltr;
+	}
+	.cash-flag {
+		background-image: url("../img/ar/cash-flag-ar.svg");
+	}
+	.banner-headline {
+		background-image: url("../img/ar/banner-headline-ar.svg");
+		height: 32vw;
 	}
 }
 
@@ -116,7 +117,6 @@ html[lang="en"] {
 	}
 	p {
 		position: relative;
-		font-family: 'OpenSansCondensedBold';
 		top: -27px;
 		font-size: 12px;
 		font-weight: 600;
@@ -159,6 +159,17 @@ INPUT (NUMBER ENTRY) SECTION
     background-position: center;
     background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTguMS4xLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDI3LjQ0MiAyNy40NDIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDI3LjQ0MiAyNy40NDI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiPgo8Zz4KCTxwYXRoIGQ9Ik0xOS40OTQsMEg3Ljk0OEM2Ljg0MywwLDUuOTUxLDAuODk2LDUuOTUxLDEuOTk5djIzLjQ0NmMwLDEuMTAyLDAuODkyLDEuOTk3LDEuOTk3LDEuOTk3aDExLjU0NiAgIGMxLjEwMywwLDEuOTk3LTAuODk1LDEuOTk3LTEuOTk3VjEuOTk5QzIxLjQ5MSwwLjg5NiwyMC41OTcsMCwxOS40OTQsMHogTTEwLjg3MiwxLjIxNGg1LjdjMC4xNDQsMCwwLjI2MSwwLjIxNSwwLjI2MSwwLjQ4MSAgIHMtMC4xMTcsMC40ODItMC4yNjEsMC40ODJoLTUuN2MtMC4xNDUsMC0wLjI2LTAuMjE2LTAuMjYtMC40ODJDMTAuNjEyLDEuNDI5LDEwLjcyNywxLjIxNCwxMC44NzIsMS4yMTR6IE0xMy43MjIsMjUuNDY5ICAgYy0wLjcwMywwLTEuMjc1LTAuNTcyLTEuMjc1LTEuMjc2czAuNTcyLTEuMjc0LDEuMjc1LTEuMjc0YzAuNzAxLDAsMS4yNzMsMC41NywxLjI3MywxLjI3NFMxNC40MjMsMjUuNDY5LDEzLjcyMiwyNS40Njl6ICAgIE0xOS45OTUsMjEuMUg3LjQ0OFYzLjM3M2gxMi41NDdWMjEuMXoiIGZpbGw9IiMwMDAwMDAiLz4KCTxnPgoJPC9nPgoJPGc+Cgk8L2c+Cgk8Zz4KCTwvZz4KCTxnPgoJPC9nPgoJPGc+Cgk8L2c+Cgk8Zz4KCTwvZz4KCTxnPgoJPC9nPgoJPGc+Cgk8L2c+Cgk8Zz4KCTwvZz4KCTxnPgoJPC9nPgoJPGc+Cgk8L2c+Cgk8Zz4KCTwvZz4KCTxnPgoJPC9nPgoJPGc+Cgk8L2c+Cgk8Zz4KCTwvZz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K);
 	}
+	&:before {
+		direction: ltr;
+    content: '(+20)';
+    position: absolute;
+    top: 12px;
+    left: 53px;
+    height: 43px;
+    width: 45px;
+    font-size: 21px;
+    opacity: 0.5;
+	}
 }
 
 .number-entry {
@@ -168,17 +179,18 @@ INPUT (NUMBER ENTRY) SECTION
 }
 
 .number-entry input {
-  width: 100%;
-  max-width: 270px;
-	padding:10px;
-	padding-left: 50px;
+	width: 100%;
+	max-width: 270px;
+	padding: 9px;
+	padding-left: 105px;
+	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
-	margin:10px 0;
+	margin: 0;
 	outline: none;
-	direction:ltr;
-	font-size:20px;
-	border-radius:30px;
-	border:1px solid #ccc;
+	direction: ltr;
+	font-size: 22px;
+	border-radius: 30px;
+	border: 1px solid #ccc;
 }
 
 .number-entry label,
@@ -285,14 +297,16 @@ BUTTON STYLES
 	z-index: 3;
 	&.click-to-win {
 		background-image: url("../img/cta-btn-bg-sm.svg");
-		width: 100%;
-		max-width: 264px;
-		height: 100px;
-		background-repeat: no-repeat;
-		background-position: center center;
-		font-size: 18px;
+		width: 73vw;
+    max-width: 420px;
+    height: 26vw;
+    background-repeat: no-repeat;
+    background-position: center center;
+    font-size: 20px;
     font-weight: 900;
     text-transform: uppercase;
+		background-size: contain;
+		margin: 4px auto;
 		&.btn-sm {
 			background-image: url("../img/cta-btn-bg-sm.svg");
 		}
@@ -306,7 +320,8 @@ BUTTON STYLES
 	&.pin-btn {
     position: relative;
     bottom: 0;
-    height: 50px;
+		height: 50px;
+		width: 75vw;
 	}
 }
 
@@ -417,7 +432,7 @@ PAGE SPECIFIC STYLES
 }
 
 .headline {
-	background-image: url("../img/headline.svg");
+	background-image: url("../img/en/headline.svg");
 	display: block;
 	width: 100%;
 	max-width: 300px;
@@ -427,16 +442,16 @@ PAGE SPECIFIC STYLES
 	z-index: 10;
 	position: relative;
 	left: -4px;
-	top: 5px;
+	top: 10px;
 }
 
 .wrapper {
 	width: 100%;
-	max-width: 320px;
+	max-width: 414px;
 	margin: auto;
 	position: relative;
 	max-height: 491px;
-	height: 100%;
+	height: 100vh;
 }
 
 .world-container {
@@ -451,11 +466,13 @@ PAGE SPECIFIC STYLES
 	background-image: url("../img/world-2.png");
 	background-position: center center;
 	background-repeat: no-repeat;
-	width: 100%;
-	height: 520px;
+	width: 100vw;
+	height: 100vh;
 	position: relative;
 	top: 20px;
 	margin: auto;
+	background-size: cover;
+	max-width: 760px;
 }
 
 .plane {
@@ -526,11 +543,11 @@ PAGE SPECIFIC STYLES
 	background-image: url("../img/pin-point.svg");
 	background-repeat: no-repeat;
 	background-position: center center;
-	width: 100px;
-	height: 50px;
+	width: 100vw;
+	height: 23vw;
 	margin: auto;
 	position: absolute;
-	bottom: 145px;
+	bottom: 30vh;
 	left: 0;
 	right: 0;
 	z-index: 1;
@@ -623,7 +640,7 @@ PAGE SPECIFIC STYLES
 .congrats-container {
 	text-align: center;
 	position: relative;
-	top: 35%;
+	top: 36vh;
 	font-weight: bold;
 	.congrats-title {
 		font-size: 26px;
@@ -638,17 +655,20 @@ PAGE SPECIFIC STYLES
 		position: relative;
 	}
 	.paris-title {
-		background-image: url("../img/paris.svg");
-		width: 200px;
-		height: 100px;
-		margin: auto;
-		background-repeat: no-repeat;
-		z-index: 2;
-		left: 8px;
-		position: relative;
+		background-image: url("../img/en/paris.svg");
+		width: 60vw;
+    height: 26vw;
+    margin: auto;
+    background-repeat: no-repeat;
+    z-index: 2;
+    position: relative;
+    background-size: contain;
+    max-width: 400px;
+    max-height: 120px;
+    background-position: center;
 	}
 	.thank-you {
-		background-image: url("../img/thank-you.svg");
+		background-image: url("../img/en/thank-you.svg");
 		width: 280px;
 		height: 100px;
 		margin: auto;
@@ -656,61 +676,62 @@ PAGE SPECIFIC STYLES
 		position: relative;
 		margin-bottom: -28px;
 	}
-	.fireworks {
-		background-image: url("../img/fireworks.png");
-		background-repeat: no-repeat;
-		width: 200px;
-		height: 400px;
-		position: absolute;
-		background-size: 100%;
-		margin: auto;
-		left: 0;
-		right: 0;
-		z-index: 1;
-		top: -95%;
+}
+.fireworks {
+	background-image: url("../img/fireworks.png");
+	background-repeat: no-repeat;
+	height: 82vw;
+	position: absolute;
+	background-size: contain;
+	margin: auto;
+	left: 0;
+	right: 0;
+	z-index: 1;
+	top: 13vh;
+	background-position: center center;
+	max-height: 400px;
+}
+.banner-container {
+		width: 100vw;
+    margin: auto;
+    position: relative;
+    height: 86vw;
+	.banner {
+		background-image: url("../img/banner-2.png");
+		width: 100%;
+    margin: auto;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: -20px;
+    position: relative;
+    height: 100vw;
 	}
 }
 
-.banner-container {
-	width: 100%;
-	max-width: 414px;
-	margin: auto;
+.banner-headline {
+	background-image: url("../img/en/banner-headline.svg");
+	width: 88vw;
 	position: relative;
-	.banner {
-		background-image: url("../img/banner.png");
-		width: 100%;
-		max-width: 320px;
-		height: 303px;
-		margin: auto;
-    background-size: 100%;
-		background-repeat: no-repeat;
-		top: -20px;
-		position: relative;
-	}
-	.banner-headline {
-		background-image: url("../img/headline-3.svg");
-		width: 280px;
-    height: 120px;
-    position: absolute;
-    top: 53%;
-    background-repeat: no-repeat;
-    margin: auto;
-    left: 0;
-    right: 0;
-	}
+	top: 0;
+	background-repeat: no-repeat;
+	margin: auto;
+	left: 0;
+	right: -8px;
+	background-size: contain;
+	height: 40vw;
 }
 
 .counter {
-	background-color: #ffffff8c;
+	background-color: rgba(255, 255, 255, 0.6);
 	border-radius: 10px;
 	position: relative;
 	color: black;
 	text-align: center;
-	margin: 0 auto;
+	margin: -12px auto 8px;
 	display: block;
 	width: 100%;
 	max-width: 280px;
-	top: -35px;
+	top: 0;
 	.counter-title {
 		padding: 6px 0;
 	}
@@ -727,28 +748,34 @@ PAGE SPECIFIC STYLES
 	}
 }
 .input-container {
-	margin: -30px auto 0 auto;
-	width: 100%;
-	max-width: 320px;
-	text-align: center;
-	color: black;
+	margin: 0px auto 0 auto;
+  width: 100%;
+  max-width: 320px;
+  text-align: center;
+  color: black;
 	.number-entry {
 		padding: 0;
 	}
 }
 .cash-flag {
-	background-image: url("../img/cash-flag.svg");
+	background-image: url("../img/en/cash-flag.svg");
 	background-repeat: no-repeat;
 	background-position: center center;
 	width: 100px;
 	height: 72px;
 	position: absolute;
-	right: -10px;
+	left: -10px;
 	margin: auto;
 	z-index: 1;
 }
 .cta-container {
 	padding: 0 2em;
+	position: relative;
+	margin-top: -100px;
+	&.cta-container-2 {
+		margin-top: 0;
+		height: calc(90vh - 470px);
+	}
 }
 .customTesti.win-travel-testimonial {
 	background-color:  #ffffff69;
@@ -759,7 +786,7 @@ PAGE SPECIFIC STYLES
 	margin-bottom: 5.5em;
 }
 .customTesti.win-travel-testimonial ul li::after {
-	right: 25px;
+	right: 42px;
 	font-size: 16px;
 }
 .customTesti.win-travel-testimonial ul li .details .rating span {
@@ -767,6 +794,9 @@ PAGE SPECIFIC STYLES
 }
 .customTesti.win-travel-testimonial ul li .details .message {
 	color: black;
+}
+.customTesti.win-travel-testimonial ul li .details {
+	width: 221px;
 }
 .customTesti.win-travel-testimonial ul li .avatar {
  &.person1 {
@@ -778,10 +808,6 @@ PAGE SPECIFIC STYLES
  &.person3 {
 	background-image: url("../img/pic-3.png");
 }	
-}
-.number-entry input {
-	margin: 0;
-	padding-left: 60px;
 }
 .input-wrapper::after {
 	top: 0;
@@ -876,6 +902,17 @@ PAGE SPECIFIC STYLES
 	display: block;
 	float: left;
 	margin: 3px 20px;
+}
+.error-msg {
+	line-height: 35px;
+	background-color: #F1CAC8;
+	font-weight: bold;
+	color: #b70800;
+	border-radius: 4px;
+	font-size: 12px;
+	margin-bottom: 20px;
+	margin-top: 10px;
+	text-align: center;
 }
 /**** ANIMATION ****/
 .vibrate-slow {

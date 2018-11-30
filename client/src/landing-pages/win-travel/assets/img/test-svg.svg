@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 391 167">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #f33;
+        stroke-miterlimit: 10;
+        stroke-width: 10px;
+      }
+
+      .cls-1, .cls-2 {
+        font-size: 122px;
+        font-family: CapucineBasic-BlackItalic, Capucine Basic;
+        font-weight: 800;
+        font-style: italic;
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <g id="Group_2" data-name="Group 2" transform="translate(10 10)">
+    <g id="Group_1" data-name="Group 1">
+      <text id="PARIS_" data-name="PARIS!" class="cls-1" transform="translate(0 110)"><tspan x="0" y="0">PARIS!</tspan></text>
+      <text id="PARIS_2" data-name="PARIS!" class="cls-2" transform="translate(0 110)"><tspan x="0" y="0">PARIS!</tspan></text>
+    </g>
+  </g>
+</svg>
