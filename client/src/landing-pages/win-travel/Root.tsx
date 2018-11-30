@@ -31,12 +31,14 @@ import { mockedMSISDNEntrySuccess } from "../../clients/lp-api-mo/HOC";
 // IMAGES DECLARATION
 // ok
 const history = require("./assets/img/history.svg");
+const pinPoint = require("./assets/img/pin-point.svg");
+
 // const iphonexs_logo = require('./assets/images/iphonexs_logo.png')
 
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
   "xx",
-  "Unknown" //TODO: replace Unknown with your page's name
+  "Win Travel" //TODO: replace Unknown with your page's name
 );
 
 class MSISDNEntryStep extends React.PureComponent<{
@@ -66,7 +68,10 @@ class MSISDNEntryStep extends React.PureComponent<{
           this.props.onEnd(this.state.msisdn);
         }}
       >
+<div className="header">
+<p><Translate id="exclusive-for"></Translate> <span className="operator-name"></span> <Translate id="users"></Translate></p>
 
+</div>
         <div className={"spin-page " + (this.state.isFlowStep === 0 ? "active" : "")}>
           <div className="wrapper">
             <div className="intro-text">
@@ -85,7 +90,9 @@ class MSISDNEntryStep extends React.PureComponent<{
               </div>
             </div>
           </div>
-          <div className="pin-point"></div>     
+          <div className="pin-point-container">
+          <img className="pin-pint-img" src={pinPoint} />  
+          </div>
           <div className="cta-container cta-container-2">
             <button type="" className="btn click-to-win" onClick={this.toNextPage}>
               <Translate id="click-to-win"></Translate>
@@ -132,11 +139,13 @@ class MSISDNEntryStep extends React.PureComponent<{
                   <Timer duration={30} /> <span className="font-sm"><Translate id="sec"></Translate></span>
                 </div>
               </div>
+              <div>
+              <div className="banner-headline subheadline"></div>
+              </div>
               <div className="input-container">
                 <div className="number-entry">
                   <div className="input-wrapper">
-                    <input
-                      placeholder="Phone number"
+                    <input type="number"
                       value={this.state.msisdn}
                       onChange={ev => this.setState({ msisdn: ev.target.value })}
                     />
@@ -146,7 +155,7 @@ class MSISDNEntryStep extends React.PureComponent<{
               </button>
                   {RDS.WhenLoading(null, () => "Wait...")(this.props.rds)}
                 </div>
-                <div>
+                <div className="error-msg">
                   {RDS.WhenFailure(null, (err: MSISDNEntryFailure) => (
                     <Translate id={err.errorType} />
                   ))(this.props.rds)}
@@ -265,7 +274,7 @@ class PINEntryStep extends React.PureComponent<{
           </div>
           <div className="right-column">
           <h2><Translate id="latest-participants"></Translate></h2>
-          <h3>3 participants in 5 minutes ago</h3>
+          <h3><Translate id="participants-minute"></Translate></h3>
           </div>
           </div>
           <div>
@@ -344,8 +353,7 @@ class Root extends React.PureComponent<HOCProps> {
     return (
 
       <div id="container">
-        <div className="header">
-          <p>Exclusive for <span className="operator-name"></span> users</p>
+        <div className="">
           <div className="lang-btns">
             <button type="button" className="lang-btn"
               onClick={() => {
@@ -357,11 +365,8 @@ class Root extends React.PureComponent<HOCProps> {
                   document.getElementsByTagName('html')[0].setAttribute("lang", "en")
                 }
               }}
-            >{
-                this.state.locale === "ar"
-                  ? "EN"
-                  : "عربى"
-              }</button>
+            >{this.state.locale === "ar" ? "EN" : "عربى"}
+            </button>
           </div>
         </div>
         <div id="creative">

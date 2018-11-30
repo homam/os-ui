@@ -61,7 +61,18 @@ html[lang="ar"] {
 	}
 	.banner-headline {
 		background-image: url("../img/ar/banner-headline-ar.svg");
-		height: 32vw;
+		height: 26vw;
+	}
+	.subheadline {
+		background-image: url("../img/ar/banner-headline-3-ar.svg");
+		background-size: cover;
+		background-position: center center;
+		width: 100%;
+    right: 0;
+    height: 16vw;
+	}
+	.banner-container {
+		height: 79vw;
 	}
 }
 
@@ -145,7 +156,7 @@ INPUT (NUMBER ENTRY) SECTION
 
 .input-wrapper {
 	position: relative;
-	max-width: 280px;
+	max-width: 300px;
 	margin: auto;
 
 	&::after {
@@ -184,7 +195,7 @@ INPUT (NUMBER ENTRY) SECTION
 
 .number-entry input {
 	width: 100%;
-	max-width: 270px;
+	max-width: 300px;
 	padding: 9px;
 	padding-left: 105px;
 	-webkit-box-sizing: border-box;
@@ -320,6 +331,7 @@ BUTTON STYLES
 		display: block;
 		top: 0;
 		height: 60px;
+		width: 100%;
 	}
 	&.pin-btn {
     position: relative;
@@ -700,7 +712,7 @@ PAGE SPECIFIC STYLES
 		width: 100vw;
     margin: auto;
     position: relative;
-    height: 86vw;
+    height: 80vw;
 	.banner {
 		background-image: url("../img/banner-2.png");
 		width: 100%;
@@ -714,7 +726,7 @@ PAGE SPECIFIC STYLES
 }
 
 .banner-headline {
-	background-image: url("../img/en/banner-headline.svg");
+	background-image: url("../img/en/banner-headline-2.svg");
 	width: 88vw;
 	position: relative;
 	top: 0;
@@ -723,11 +735,17 @@ PAGE SPECIFIC STYLES
 	left: 0;
 	right: -8px;
 	background-size: contain;
-	height: 40vw;
+	height: 20vw;
+	&.subheadline {
+		background-image: url("../img/en/banner-headline-3.svg");
+		background-size: cover;
+		background-position: center center;
+    width: 100%;
+	}
 }
 
 .counter {
-	background-color: rgba(255, 255, 255, 0.6);
+	background-color: rgba(255, 255, 255, 0.87);
 	border-radius: 10px;
 	position: relative;
 	color: black;
@@ -780,6 +798,7 @@ PAGE SPECIFIC STYLES
 	&.cta-container-2 {
 		margin-top: 0;
 		height: calc(90vh - 470px);
+		// height: auto;
 	}
 }
 .customTesti.win-travel-testimonial {
@@ -919,6 +938,17 @@ PAGE SPECIFIC STYLES
 	margin-top: 10px;
 	text-align: center;
 }
+.pin-point-container img {
+	z-index: 5;
+	position: absolute;
+	width: 17vw;
+	margin: auto;
+	top: 56%;
+	max-width: 80px;
+	left: 0;
+	right: 0;
+}
+
 /**** ANIMATION ****/
 .vibrate-slow {
 	-webkit-animation: vibrate-slow 6s ease-in infinite both;
@@ -1008,4 +1038,13 @@ PAGE SPECIFIC STYLES
     -webkit-transform: scale(1);
             transform: scale(1);
   }
+}
+
+@media screen and (min-width: 768px) {
+	.world {
+		background-size: contain;
+	}
+	.btn.click-to-win {
+		height: 7vw;
+	}
 }

@@ -15,8 +15,10 @@
   "subscribe": "اشترك",
   "participate": "للمشاركة في الفوز",
   "exclusive-for": "حصرياً لمستخدمي",
+  "users": "المستخدمين",
   "karim": "كريم",
   "fatima": "فاطمة",
+  "participants-minute": "3 مشاركين خلال ال5 دقائق الماضية",
 
   "AlreadySubscribed": "انت مشترك مسبقاَ في الخدمة",
   "InvalidMSISDN": "رقم الهاتف ال1ي ادخلته غير صحيح",
