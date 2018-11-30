@@ -61,7 +61,9 @@ html[lang="ar"] {
 	}
 	.banner-headline {
 		background-image: url("../img/ar/banner-headline-ar.svg");
-		height: 26vw;
+		height: 22vw;
+    max-height: 114px;
+    width: 75vw;
 	}
 	.subheadline {
 		background-image: url("../img/ar/banner-headline-3-ar.svg");
@@ -69,11 +71,16 @@ html[lang="ar"] {
 		background-position: center center;
 		width: 100%;
     right: 0;
-    height: 16vw;
+		height: 16vw;
+		max-height: 60px;
 	}
 	.banner-container {
 		height: 79vw;
 	}
+}
+.subheadline-text {
+	margin: 0 auto 10px auto;
+	font-weight: bold;
 }
 
 html[lang="en"] {
@@ -176,9 +183,9 @@ INPUT (NUMBER ENTRY) SECTION
 	}
 	&:before {
 		direction: ltr;
-    content: '(+20)';
+    content: '(+973)';
     position: absolute;
-    top: 12px;
+    top: 11px;
     left: 53px;
     height: 43px;
     width: 45px;
@@ -197,7 +204,7 @@ INPUT (NUMBER ENTRY) SECTION
 	width: 100%;
 	max-width: 300px;
 	padding: 9px;
-	padding-left: 105px;
+	padding-left: 121px;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	margin: 0;
@@ -712,7 +719,9 @@ PAGE SPECIFIC STYLES
 		width: 100vw;
     margin: auto;
     position: relative;
-    height: 80vw;
+		height: 80vw;
+		max-height: 313px;
+		max-width: 400px;
 	.banner {
 		background-image: url("../img/banner-2.png");
 		width: 100%;
@@ -736,11 +745,15 @@ PAGE SPECIFIC STYLES
 	right: -8px;
 	background-size: contain;
 	height: 20vw;
+	max-width: 380px;
+	max-height: 80px;
 	&.subheadline {
 		background-image: url("../img/en/banner-headline-3.svg");
 		background-size: cover;
 		background-position: center center;
-    width: 100%;
+		width: 100%;
+		max-width: 400px;
+		max-height: 93px;
 	}
 }
 
@@ -752,11 +765,12 @@ PAGE SPECIFIC STYLES
 	text-align: center;
 	margin: -12px auto 8px;
 	display: block;
-	width: 100%;
-	max-width: 280px;
+	width: auto;
 	top: 0;
+	padding: 10px 10px;
 	.counter-title {
 		padding: 6px 0;
+		font-weight: bold;
 	}
 	.counter-time {
 		font-size: 30px;
@@ -799,6 +813,9 @@ PAGE SPECIFIC STYLES
 		margin-top: 0;
 		height: calc(90vh - 470px);
 		// height: auto;
+	}
+	&.sm {
+		padding: 0 1em;
 	}
 }
 .customTesti.win-travel-testimonial {
@@ -948,6 +965,20 @@ PAGE SPECIFIC STYLES
 	left: 0;
 	right: 0;
 }
+.disclaimer {
+	width: 100%;
+	max-width: 320px;
+	margin: auto;
+	height: 130px;
+	color: black;
+	text-align: center;
+	position: relative;
+	top: 0;
+	opacity: 0.5;
+	font-size: 10px;
+	margin-top: -56px;
+}
+
 
 /**** ANIMATION ****/
 .vibrate-slow {

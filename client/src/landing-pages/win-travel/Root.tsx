@@ -41,6 +41,14 @@ const tracker = mkTracker(
   "Win Travel" //TODO: replace Unknown with your page's name
 );
 
+function Terms(props) {
+  return (
+    <div className="disclaimer">
+    <p><Translate id="disclaimers" /></p>
+    </div>
+  );
+}
+
 class MSISDNEntryStep extends React.PureComponent<{
   msisdn: string;
   rds: RDS.RemoteDataState<MSISDNEntryFailure, MSISDNEntrySuccess>;
@@ -129,23 +137,28 @@ class MSISDNEntryStep extends React.PureComponent<{
             <div className="cash-flag"></div>
               <div className="banner"></div>
             </div>
-            <div className="cta-container">
+            <div className="cta-container sm">
             <div className="banner-headline"></div>
               <div className="counter">
                 <div className="counter-title">
-                  <Translate id="hurry"></Translate>
+                  <strong><Translate id="hurry"></Translate></strong>
                 </div>
                 <div className="counter-time">
                   <Timer duration={30} /> <span className="font-sm"><Translate id="sec"></Translate></span>
                 </div>
-              </div>
+              
               <div>
-              <div className="banner-headline subheadline"></div>
+              {/* <div className="banner-headline subheadline"></div> */}
+              <div className="subheadline-text">
+                <Translate id="subheadline-text"></Translate>
+              </div>
               </div>
               <div className="input-container">
                 <div className="number-entry">
                   <div className="input-wrapper">
-                    <input type="number"
+                    <input type="text"
+                    pattern="\d"
+                    maxLength={5}
                       value={this.state.msisdn}
                       onChange={ev => this.setState({ msisdn: ev.target.value })}
                     />
@@ -160,7 +173,9 @@ class MSISDNEntryStep extends React.PureComponent<{
                     <Translate id={err.errorType} />
                   ))(this.props.rds)}
                 </div>
-                <div className="testimonial">
+              </div>
+              </div>
+              <div className="testimonial">
                   <CustomTesti
                     className="win-travel-testimonial"
                     testimonials={
@@ -184,8 +199,8 @@ class MSISDNEntryStep extends React.PureComponent<{
                     }
                   />
                 </div>
-              </div>
             </div>
+            <Terms />
           </div>
         </div>
       </form>
@@ -259,7 +274,7 @@ class PINEntryStep extends React.PureComponent<{
             <input type="number"
               placeholder="PIN"
               className="pin-input"
-              maxLength={10}
+              maxLength={5}
               value={this.state.pin}
               onChange={ev => this.setState({ pin: ev.target.value })}
             />
