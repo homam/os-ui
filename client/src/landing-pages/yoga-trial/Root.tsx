@@ -134,7 +134,7 @@ class Root extends React.PureComponent<IProps> {
               </ul>
 
             <div className="logoarea">
-              <span>Exclusive to</span>
+              <span>Exclusive to </span>
               <div className="logo"></div>
             </div>
 
