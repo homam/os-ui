@@ -17,10 +17,10 @@ const ButtonArea = ({ clicked, subscribeNowClicked, confirmClicked }) => {
   if (clicked) {
     return <div>
 
-      <button className="ConfirmBtn" onClick={confirmClicked}>Confirm<br></br>£4.50 per week!</button>
+      <button className="ConfirmBtn" onClick={confirmClicked}>Confirm<br></br><span>this charge to your mobile </span></button>
     </div>
   } else {
-    return <div><button className="SubscribeBtn" onClick={subscribeNowClicked}>Subscribe Now!<br></br>£4.50 per week!</button></div>
+    return <div><button className="SubscribeBtn" onClick={subscribeNowClicked}>Subscribe Now!</button></div>
   }
 }
 
@@ -48,7 +48,7 @@ class Root extends React.PureComponent<IProps> {
               </div>
 
               <div className="lotusicon"></div>
-              <h1 className="toptitle">A day for</h1>
+              <h1 className="toptitle">TRY FREE FOR<br></br>24 HOURS</h1>
 
               <div className="title">
                 <h1><strong>Quick</strong> &amp; <strong>Effective</strong></h1>
@@ -59,12 +59,21 @@ class Root extends React.PureComponent<IProps> {
               <div className="border"></div>
 
               <div className="text">
-                <p>Choose only 15 minute video streaming practices,  begin every day connected &amp; energized</p>
+                <p>Choose only 15 minute video streaming practices, begin every day connected &amp; energized</p>
               </div>
 
               <div className="yogapose"></div>
               <div className="triangle-down"></div>
 
+              <div className="pricetext">
+                <h2>£3.00 per week<br></br>
+                <span>Free for 24 hours</span></h2>
+
+                <div className="border2"></div>
+                
+                <p>Charges added to this mobile bill.</p>
+              
+              </div>
 
             </div>
 
