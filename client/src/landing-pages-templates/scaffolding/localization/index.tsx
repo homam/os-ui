@@ -19,6 +19,7 @@ export const Translate : React.ComponentType<{id : TranslationKeys, values?: obj
     intl.formatMessage({id, defaultMessage}, values)
   )
 
+
 export const TranslationProvider = ({ locale, children }: { locale: string, children: React.ReactChild }) =>
   <IntlProvider
     locale={locale}

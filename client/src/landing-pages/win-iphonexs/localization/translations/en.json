@@ -11,7 +11,7 @@
   "hurry_slot": "Hurry only ONE slot left",
   "we_just_sent_a_pin": "We sent you a 4 digit PIN code via SMS to {phone} ",
   "pin_label": "Enter PIN code below to confirm",
-  "wrong_number": "wrong number?",
+  "wrong_number": "is it wrong number?",
   "didnt_receive_pin_yet": "Didn't receive a PIN yet? Make sure {phone} is your correct mobile number.",
   "if_not_your_mobile": "If {phone} is not your mobile number,",
   "click_here_to_change_your_number": "Click here to change your phone number.",
@@ -24,9 +24,9 @@
   "testi_1": "I'm so lucky to have grabbed this deal while it lasted!",
   "testi_2": "Wow! I couldn't believe my eyes when I received my iPhone X!",
   "testi_3": "I bid, confirmed and won! So happy! Thank you!",
-  "testi_name1": "Name1",
-  "testi_name2": "Name2",
-  "testi_name3": "Name3",
+  "testi_name1": "Omar",
+  "testi_name2": "Fatima",
+  "testi_name3": "Zakaria",
   "msisdn_btn": "Subscribe Now!",
   "pin_submit_btn": "Confirm PIN",
   "you_are_close": "You are one step closer",
@@ -35,5 +35,6 @@
   "congratulations": "Congratulations",
   "new_stuff": "Welcome to Gamelords",
   "entry_accepted": " Your entry to the lucky draw has been approved you now have the chance to win iphone X",
-  "disclaimers": "Gamelords is a subscription service. You will enjoy one day free trial, then you will be charged BHD 0.5 /week until you un- subscribe from the service. To un-subscribe send UNSUB 55 to 98023."
+  "disclaimers": "Gamelords is a subscription service. You will enjoy one day free trial, then you will be charged BHD 0.5 /week until you un- subscribe from the service. To un-subscribe send UNSUB 55 to 98023.",
+  "pin_placeholder": "en:PIN Number"
 }

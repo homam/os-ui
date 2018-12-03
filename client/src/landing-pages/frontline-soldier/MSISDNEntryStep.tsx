@@ -58,10 +58,10 @@ export class MSISDNEntryStep extends React.PureComponent<{
             Experience the thrilling combat and action gameplay </div>
 
           <div className="c-timer">
-            <span>You have </span><TimerComponent timerDuration={30} /><span> To register</span>
+            <span>You have </span><TimerComponent timerDuration={30} /><span> To Claim Your Slot</span>
           </div>
 
-          <button type="button" className="btn primary" onClick={this.joinNowState}> Join Now</button>
+          <button type="button" className="btn primary" onClick={this.joinNowState}> Join Now!</button>
 
          <Bonus/>
           
