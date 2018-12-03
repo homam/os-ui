@@ -1,0 +1,201 @@
+body{
+	margin:0;
+	padding:0;
+  font-family: 'Ubuntu', sans-serif;
+	
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center center;
+  background-image: url(../img/background.jpg);
+
+	
+	-webkit-touch-callout:none;
+	-webkit-text-size-adjust: none;
+	-webkit-font-smoothing: antialiased;
+}
+
+.headerInfo{
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+  background-color: #000;
+}
+
+.wrapper{
+  margin:0 10px;
+}
+
+.holder{
+  padding:10px;
+  height: auto;
+  display: block;
+  overflow: hidden;
+  max-width: 530px;
+  margin: 70px auto;
+  position: relative;
+  background: #fff;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  box-shadow: 0px 3px 10px rgba(51, 51, 51, 0.42);
+  -webkit-box-shadow: 0px 3px 10px rgba(51, 51, 51, 0.42);
+
+  .productImage{
+    width:100%;
+    margin:0 auto;
+    display: block;
+    max-width: 350px;
+  }
+
+  .info{
+    width: 90%;
+    margin: 0 auto;
+    font-size: 14px;
+    max-width: 400px;
+  }
+
+}
+
+
+.quizResult{
+  display: none;
+  text-align: center;
+
+  h3{
+    font-size: 16px;
+  }
+
+  .dataAnswers{
+    display: none;
+  }
+
+}
+
+.quiz-phase.visible .quizResult{
+  display: block;
+} 
+
+.progressStripe{
+  width:60%;
+  height:20px;
+  display:block;
+  margin:10px auto;
+  border-radius: 7px;
+  background: #4caf50;
+  background-image: -webkit-linear-gradient(135deg, rgba(255,255,255,0.125) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.125) 50%, rgba(255,255,255,0.125) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255,255,255,0.125) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.125) 50%, rgba(255,255,255,0.125) 75%, transparent 75%, transparent);
+  background-size: 35px 35px;
+  -webkit-animation: cssProgressActiveRight 2s linear infinite;
+  animation: cssProgressActiveRight 2s linear infinite;
+}
+
+@-webkit-keyframes 
+cssProgressActiveRight { 0% {
+  background-position:0 0
+  }
+  100% {
+  background-position:-35px -35px
+  }
+}
+@keyframes 
+  cssProgressActiveRight { 0% {
+  background-position:0 0
+  }
+  100% {
+  background-position:-35px -35px
+  }
+}
+
+.quiz-result-and-flow{
+
+  .result,
+  .flow{
+    display: none;
+  }
+
+  &.result .result,
+  &.flow .flow{
+    display: block;
+  }
+
+}
+
+.quiz-container{
+  display: block;
+  text-align: center;
+}
+
+.numberEntry{
+
+  input{
+    display: block;
+    margin: 10px auto;
+  }
+
+
+}
+
+button{
+  width:260px;
+  border: none;
+  outline: none;
+  color: #fff;
+  display: block;
+  cursor:pointer;
+  padding: 15px 0;
+  font-size: 18px;
+  margin: 10px auto;
+  font-weight: bold;
+  border-radius: 2px;
+  text-decoration: none;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+  background-color: #0387e1;
+  box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.3);
+}
+
+
+.numberEntry{
+  width:300px;
+  margin:0 auto;
+  display: block;
+  position: relative;
+
+  input{
+    width:140px;
+    outline: none;
+    display: block;
+    font-size: 22px;
+    border-radius: 8px;
+    padding:8px 10px 8px 32px;
+    margin:0 auto 10px auto;
+    background-repeat: no-repeat;
+    background-position: 8px center;
+    background-size: 18px 24px;
+    background-image: url(../img/icon-phone.png);
+
+    &::-webkit-input-placeholder {
+     font-size:18px;
+    }
+
+  }
+
+h1{
+  font-size: 16px;
+}
+
+button{
+  text-transform: none;
+}
+
+}
+
+.errorMsg{
+  color:red;
+  font-size: 14px;
+}
+
+@media only screen and (max-width : 640px) {
+	.holder{
+    margin: 10px auto;
+  }
+}

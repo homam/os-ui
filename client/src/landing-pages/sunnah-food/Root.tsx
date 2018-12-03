@@ -1,6 +1,6 @@
 import * as React from "react";
 import mkTracker from "../../pacman/record";
-import {TranslationProvider, Translate} from "./localization/index";
+import { TranslationProvider, Translate } from "./localization/index";
 import HOC, {
     initialState,
     mockedCompletedState,
@@ -13,7 +13,7 @@ import HOC, {
     mockedPINState
 } from "../../clients/lp-api/HOC";
 
-import './assets/css/style.css?raw';
+import './assets/css/style.less?raw';
 import './assets/js/script.js';
 import * as RDS from "../../common-types/RemoteDataState";
 import {
@@ -24,6 +24,8 @@ import {
 import { en } from "../iphone-xs/localization/addLocaleData";
 import { MockObserver } from "rx";
 import { mockSuccessState } from "../../clients/mpesa/TolaHOC";
+import CustomTesti from "../bid-win/components/CustomTesti";
+
 
 const tracker = mkTracker(
     typeof window != "undefined" ? window : null,
@@ -34,27 +36,38 @@ const tracker = mkTracker(
 const banner = require("./assets/img/banner-2.jpg");
 const flag = require("./assets/img/malaysia-flag.svg");
 const bannerIntro = require("./assets/img/banner-1.jpg");
-const mastHead = require("./assets/img/masthead.png");
+const mastHead = require("./assets/img/en/masthead.png");
 const ratingBg = require("./assets/img/rating-bg.png");
 const testimonialImg = require("./assets/img/display-pic.jpg");
-const redRibbon = require("./assets/img/red-ribbon.png");
+const redRibbon = require("./assets/img/en/red-ribbon-en.png");
 const star = require("./assets/img/star.png");
 const download = require("./assets/img/download.png");
 const history = require("./assets/img/history.png");
+
 
 class MSISDNEntryStep extends React.PureComponent<{
     msisdn: string;
     rds: RDS.RemoteDataState<MSISDNEntryFailure, MSISDNEntrySuccess>;
     onEnd: (msisdn: string) => void;
 }> {
+
     state = {
         locale: "en",
         msisdn: this.props.msisdn,
         introStep: 0,
         introStep2: 0,
         introStep3: 0,
-        headlineMain: 1
+        headlineMain: 1,
+        mastheadEN: 1,
     };
+
+    defaultLang = () => {
+        document.getElementsByTagName('html')[0].setAttribute("lang", "en");
+    }
+
+    componentDidMount() {
+        this.defaultLang();
+    }
 
     selectIntro = () => {
         this.setState({
@@ -78,35 +91,41 @@ class MSISDNEntryStep extends React.PureComponent<{
 
     render() {
         return (
+
+
             <form
                 onSubmit={ev => {
                     ev.preventDefault();
                     this.props.onEnd(this.state.msisdn);
                 }}
             >
-            <div className={"black-bg fade-in-fwd hidden " + (this.state.introStep2 === 1 ? "active" : "")}></div>
+
+
+
+
+                <div className={"black-bg fade-in-fwd hidden " + (this.state.introStep2 === 1 ? "active" : "")}></div>
                 <div className="wrapper">
-                    <div className="red-ribbon">
-                        <img src={redRibbon} alt="Tagline"/>
+                    <div className="red-ribbon red-ribbon-img">
                     </div>
                     <img className={"banner-intro banner hidden " + (this.state.introStep === 0 ? "active" : "")}
-                         src={bannerIntro} alt="The Sunnah Way"/>
+                        src={bannerIntro} alt="The Sunnah Way" />
 
                     <img
                         className={"banner-honey banner hidden fade-in-bck " + (this.state.introStep === 1 ? "active" : "")}
-                        src={banner} alt="The Sunnah Way"/>
+                        src={banner} alt="The Sunnah Way" />
 
-                    <div className="headline-container">
-                        <img className="masthead" src={mastHead} alt="The Sunnah Way"/>
+                    <div className="headline-container masthead-container masthead-img">
                     </div>
                     <div className="rating">
-                        <img src={ratingBg} alt="5 Star Rating"/>
+                        <img src={ratingBg} alt="5 Star Rating" />
                     </div>
                     <div className="content">
                         <div className="star">
-                            <img src={star} alt="5 Star Rating"/>
+                            <img src={star} alt="5 Star Rating" />
                         </div>
-                        <div className="rating-text">5 Star Rating</div>
+                        <div className="rating-text">
+                            <Translate id="rating"></Translate>
+                        </div>
 
                         {/*This is Main Intro*/}
                         <div className={
@@ -114,12 +133,11 @@ class MSISDNEntryStep extends React.PureComponent<{
                             (this.state.introStep === 0 ? "active" : "")
                         }>
                             <div className="body-copy-main center">
-                                Discover the <strong>Prophet Muhammad's</strong> great foods that used to eat that
-                                proved to be useful for health
+                                <Translate id="introduction"></Translate><strong><Translate id="prophet-bold"></Translate></strong>
                             </div>
 
                             <button onClick={this.selectIntro} type="submit" className="btn uppercase more pulsate-fwd ">
-                                Discover More
+                                <Translate id="discover-more"></Translate>
                             </button>
                         </div>
 
@@ -128,78 +146,86 @@ class MSISDNEntryStep extends React.PureComponent<{
                             "content-honey " +
                             (this.state.introStep === 1 ? "active" : "")
                         }>
-                            <h3>HONEY</h3>
+                            <h3><Translate id="honey"></Translate></h3>
                             <div className="body-copy center fade-in-bck ">
-                                “Honey is a remedy for every illness and the quran is a remedy for all illness of the
-                                mind,
-                                therefore i recommend to you remedies, the quran and honey”. (bukhari)
+                                <Translate id="honey-description"></Translate>
                             </div>
 
                             <button onClick={this.selectIntro2} type="submit" className="btn uppercase now pulsate-fwd ">
-                                Discover Now
+                                <Translate id="unlock"></Translate>
                             </button>
                         </div>
 
-                        {/*This is Testimonial Intro*/}
-                        <div className="testimonial">
-                            <div className="img-container">
-                                <img className="rounded" src={testimonialImg} alt="User View"/>
-                            </div>
-                            <div className="text-container">
-                                <div className="text">
-                                    The best of muslim home cooking tips ever based on the Prophet Muhammad's way
-                                    <br/>
-                                    <br/>
-                                    <i>- Ahmad</i>
-                                </div>
-                            </div>
-                        </div>
+
+                        <CustomTesti
+                            className="sunnah-testimonials"
+                            testimonials={
+                                [
+                                    {
+                                        Message: () => <span className="message"><Translate id="testimonial-1"></Translate></span>,
+                                        Name: () => <span className="testimonials-name"> - <Translate id="ahmed"></Translate></span>,
+                                        stars: 5
+                                    },
+                                    {
+                                        Message: () => <span className="message"><Translate id="testimonial-2"></Translate></span>,
+                                        Name: () => <span className="testimonials-name"> - <Translate id="latifa"></Translate></span>,
+                                        stars: 5
+                                    },
+                                    {
+                                        Message: () => <span className="message"><Translate id="testimonial-3"></Translate></span>,
+                                        Name: () => <span className="testimonials-name"> - <Translate id="karim"></Translate></span>,
+                                        stars: 5
+                                    }
+                                ]
+                            }
+                        />
+
                     </div>
                     {/*This is Popup Number Section*/}
                     <div className={"phone-number-wrapper slide-in-bottom hidden " +
-                    (this.state.introStep2 === 1 ? "active" : "")
-                        }>
+                        (this.state.introStep2 === 1 ? "active" : "")
+                    }>
                         <div className="headline ">
-                            Enter your number to get exclusive access to <span className="red-bold">Healthy Eating The Sunnah Way</span>
+                            <Translate id="enter-your-number"></Translate>
                         </div>
-                            <div className="flag">
-                                <img src={flag} alt="Malaysia Flag" />
-                                <input type="text" className="code" placeholder="Phone number" value={this.state.msisdn}
-                               onChange={ev => this.setState({msisdn: ev.target.value})}/>   
-                            </div>
+                        <div className="flag">
+                            <img src={flag} alt="Malaysia Flag" />
+                            <input type="text" className="code" placeholder="Phone number" value={this.state.msisdn}
+                                onChange={ev => this.setState({ msisdn: ev.target.value })} />
+                        </div>
 
-                        <button onClick={this.selectIntro3} className="btn uppercase" type="submit"
-                                disabled={RDS.IsLoading(this.props.rds)}>Discover More
+                        <button onClick={this.selectIntro3} className="btn btn--small-margin uppercase" type="submit"
+                            disabled={RDS.IsLoading(this.props.rds)}><Translate id="get-exclusive"></Translate>
                         </button>
 
                         {
                             RDS.WhenLoading(null, () => 'Wait...')(this.props.rds)
                         }
-                        <div className="sub-headline">
+                        <div className="sub-headline fade-in-top">
                             <div className="left-icon">
-                                <img src={download} alt="Downloads"/>
+                                <img src={download} alt="Downloads" />
                             </div>
                             <div className="align-left left-text">
-                                <span className="red-bold"> 86,234</span> <strong>Downloads</strong>
-                                <br/>
-                                <span className="text-sm"> in last 7 days</span>
+                                <span className="red-bold"> 86,234</span> <strong><Translate id="downloads"></Translate></strong>
+                                <br />
+                                <span className="text-sm"> <Translate id="in-last-7-days"></Translate></span>
                             </div>
                         </div>
-                        <hr className="no-margin-padding"/>
-                        <div className="sub-headline">
+                        <hr className="no-margin-padding" />
+                        <div className="sub-headline fade-in-top-2">
                             <div className="left-icon">
-                                <img src={history} alt="Downloads"/>
+                                <img src={history} alt="Downloads" />
                             </div>
                             <div className="align-left left-text">
-                                <strong>Most Downloads</strong>
-                                <br/>
-                                <span className="text-sm"> Less than a minute ago</span>
+                                <strong><Translate id="most-downloads"></Translate></strong>
+                                <br />
+                                <span className="text-sm"> <Translate id="less-than-a-minute"></Translate></span>
                             </div>
                         </div>
                         <div>
                             {
                                 RDS.WhenFailure(null, (err: MSISDNEntryFailure) => <Translate
-                                    id={err.errorType}/>)(this.props.rds)
+                                    id={err.errorType} />)(this.props.rds)
                             }
                         </div>
                     </div>
@@ -211,14 +237,19 @@ class MSISDNEntryStep extends React.PureComponent<{
 
 class PINEntryStep extends React.PureComponent
     <{
-        msisdn: string;x
+        msisdn: string;
         rds: RDS.RemoteDataState<PINEntryFailure, PINEntrySuccess>;
         backToStart: () => void;
         onEnd: (pin: string) => void;
     }> {
     state = {
+        locale: "en",
         pin: ""
     };
+
+    defaultLang = () => {
+        document.getElementsByTagName('html')[0].setAttribute("lang", "en");
+    }
 
     render() {
         return (
@@ -228,118 +259,126 @@ class PINEntryStep extends React.PureComponent
                     this.props.onEnd(this.state.pin);
                 }}
             >
-        <div className="wrapper">
-            <div className="black-bg"></div>
-                <div className="red-ribbon">
-                    <img src={redRibbon} alt="Tagline"/>
-                </div>
-                    <img className="banner-honey banner " src={banner} alt="The Sunnah Way"/>
-                        <div className="headline-container">
-                            <img className="masthead" src={mastHead} alt="The Sunnah Way"/>
-                        </div>
+                <div className="wrapper">
+                    <div className="black-bg"></div>
+                    <div className="red-ribbon red-ribbon-img">
+                    </div>
+                    <img className="banner-honey banner " src={banner} alt="The Sunnah Way" />
+                    <div className="headline-container masthead-container masthead-img">
+                    </div>
                     <div className="rating">
-                        <img src={ratingBg} alt="5 Star Rating"/>
+                        <img src={ratingBg} alt="5 Star Rating" />
                     </div>
                     <div className="content">
                         <div className="star">
-                            <img src={star} alt="5 Star Rating"/>
+                            <img src={star} alt="5 Star Rating" />
                         </div>
-                        <div className="rating-text">5 Star Rating</div>
+                        <div className="rating-text">
+                            <Translate id="rating"></Translate>
+                        </div>
 
                         {/*This is Honey Intro*/}
                         <div className="content-honey active">
-                            <h3>HONEY</h3>
+                            <h3><Translate id="honey"></Translate></h3>
                             <div className="body-copy center">
-                                “Honey is a remedy for every illness and the quran is a remedy for all illness of the
-                                mind,
-                                therefore i recommend to you remedies, the quran and honey”. (bukhari)
+                                <Translate id="honey-description"></Translate>
                             </div>
 
                             <button type="submit" className="btn uppercase now">
-                                Discover Now
+                                <Translate id="unlock"></Translate>
                             </button>
                         </div>
 
                         {/*This is Testimonial Intro*/}
-                        <div className="testimonial">
-                            <div className="img-container">
-                                <img className="rounded" src={testimonialImg} alt="User View"/>
-                            </div>
-                            <div className="text-container">
-                                <div className="text">
-                                    The best of muslim home cooking tips ever based on the Prophet Muhammad's way
-                                    <br/>
-                                    <br/>
-                                    <i>- Ahmad</i>
-                                </div>
-                            </div>
-                        </div>
+                        <CustomTesti
+                            className="sunnah-testimonials"
+                            testimonials={
+                                [
+                                    {
+                                        Message: () => <span className="message"><Translate id="testimonial-1"></Translate></span>,
+                                        Name: () => <span className="testimonials-name"> - <Translate id="ahmed"></Translate></span>,
+                                        stars: 5
+                                    },
+                                    {
+                                        Message: () => <span className="message"><Translate id="testimonial-2"></Translate></span>,
+                                        Name: () => <span className="testimonials-name"> - <Translate id="latifa"></Translate></span>,
+                                        stars: 5
+                                    },
+                                    {
+                                        Message: () => <span className="message"><Translate id="testimonial-3"></Translate></span>,
+                                        Name: () => <span className="testimonials-name"> - <Translate id="karim"></Translate></span>,
+                                        stars: 5
+                                    }
+                                ]
+                            }
+                        />
                     </div>
                     {/*This is Popup Number Section*/}
                     <div className="phone-number-wrapper">
 
                         <div className="headline">
-                            <Translate id="we_just_sent_a_pin"/>                        
+                            <Translate id="we_just_sent_a_pin" />
                         </div>
-                         <div className="pin code">
+                        <div className="pin code">
                             <input
                                 placeholder="PIN"
+                                maxLength={10}
                                 value={this.state.pin}
-                                onChange={ev => this.setState({pin: ev.target.value})}
+                                onChange={ev => this.setState({ pin: ev.target.value })}
                             />
-                    <button className="btn uppercase" type="submit" disabled={RDS.IsLoading(this.props.rds)}>Send to Confirm</button>
-                    {
-                        RDS.WhenLoading(null, () => 'Wait...')(this.props.rds)
-                    }
-                </div>
-                <div className="pin-message">
-                    {
-                        RDS.match({
-                            failure: (err: PINEntryFailure) => (
-                                <div>
-                                    <div><Translate id={err.errorType}/></div>
-                                    <Translate id="if_not_your_mobile" values={{
-                                        phone: this.props.msisdn
-                                    }}/>&nbsp;
+                            <button className="btn btn--small-margin uppercase" type="submit" disabled={RDS.IsLoading(this.props.rds)}><Translate id="verify"></Translate></button>
+                            {
+                                RDS.WhenLoading(null, () => 'Wait...')(this.props.rds)
+                            }
+                        </div>
+                        <div className="pin-message">
+                            {
+                                RDS.match({
+                                    failure: (err: PINEntryFailure) => (
+                                        <div>
+                                            <div><Translate id={err.errorType} /></div>
+                                            <Translate id="if_not_your_mobile" values={{
+                                                phone: this.props.msisdn
+                                            }} />&nbsp;
                                     <a onClick={() => this.props.backToStart()}>
-                                        <Translate id="click_here_to_change_your_number"/>
-                                    </a>
-                                </div>
-                            ),
-                            nothingYet: () => (
-                                <div className="pin-message">
-                                    <Translate id="didnt_receive_pin_yet" values={{
-                                        phone: this.props.msisdn
-                                    }}/>&nbsp;
+                                                <Translate id="click_here_to_change_your_number" />
+                                            </a>
+                                        </div>
+                                    ),
+                                    nothingYet: () => (
+                                        <div className="pin-message">
+                                            <Translate id="didnt_receive_pin_yet" values={{
+                                                phone: this.props.msisdn
+                                            }} />&nbsp;
                                     <a onClick={() => this.props.backToStart()}>
-                                        <Translate id="click_here_to_change_your_number"/>
-                                    </a>
-                                </div>
-                            ),
-                            loading: () => null,
-                            success: () => null
-                        })(this.props.rds)
-                    }
-                </div>
+                                                <Translate id="click_here_to_change_your_number" />
+                                            </a>
+                                        </div>
+                                    ),
+                                    loading: () => null,
+                                    success: () => null
+                                })(this.props.rds)
+                            }
+                        </div>
                         <div className="sub-headline">
                             <div className="left-icon">
-                                <img src={download} alt="Downloads"/>
+                                <img src={download} alt="Downloads" />
                             </div>
                             <div className="align-left left-text">
-                                <span className="red-bold"> 86,234</span> <strong>Downloads</strong>
-                                <br/>
-                                <span className="text-sm"> in last 7 days</span>
+                                <span className="red-bold"> 86,234</span> <strong><Translate id="downloads"></Translate></strong>
+                                <br />
+                                <span className="text-sm"> <Translate id="in-last-7-days"></Translate></span>
                             </div>
                         </div>
-                        <hr className="no-margin-padding"/>
+                        <hr className="no-margin-padding" />
                         <div className="sub-headline">
                             <div className="left-icon">
-                                <img src={history} alt="Downloads"/>
+                                <img src={history} alt="Downloads" />
                             </div>
                             <div className="align-left left-text">
-                                <strong>Most Downloads</strong>
-                                <br/>
-                                <span className="text-sm"> Less than a minute ago</span>
+                                <strong><Translate id="most-downloads"></Translate></strong>
+                                <br />
+                                <span className="text-sm"> <Translate id="less-than-a-minute"></Translate></span>
                             </div>
                         </div>
                     </div>
@@ -349,83 +388,91 @@ class PINEntryStep extends React.PureComponent
     }
 }
 
-const TQStep = ({finalUrl}: { finalUrl: string }) => <div className="wrapper">
-    <div className="black-bg"></div>
-    <div className="red-ribbon">
-       <img src={redRibbon} alt="Tagline"/>
-     </div>
-       <img className="banner-honey banner " src={banner} alt="The Sunnah Way"/>
-           <div className="headline-container">
-              <img className="masthead" src={mastHead} alt="The Sunnah Way"/>
+const TQStep = ({ finalUrl }: { finalUrl: string }) => <div className="">
+    <div className="wrapper">
+        <div className="black-bg"></div>
+        <div className="red-ribbon red-ribbon-img">
+        </div>
+        <img className="banner-honey banner " src={banner} alt="The Sunnah Way" />
+        <div className="headline-container masthead-container masthead-img">
+        </div>
+        <div className="rating">
+            <img src={ratingBg} alt="5 Star Rating" />
+        </div>
+        <div className="content">
+            <div className="star">
+                <img src={star} alt="5 Star Rating" />
             </div>
-            <div className="rating">
-                <img src={ratingBg} alt="5 Star Rating"/>
+            <div className="rating-text">
+                <Translate id="rating"></Translate>
             </div>
-            <div className="content">
-                        <div className="star">
-                            <img src={star} alt="5 Star Rating"/>
-                        </div>
-                        <div className="rating-text">5 Star Rating</div>
 
-                        {/*This is Honey Intro*/}
-                        <div className="content-honey active">
-                            <h3>HONEY</h3>
-                            <div className="body-copy center">
-                                “Honey is a remedy for every illness and the quran is a remedy for all illness of the
-                                mind,
-                                therefore i recommend to you remedies, the quran and honey”. (bukhari)
-                            </div>
-
-                            <button type="submit" className="btn uppercase now">
-                                Discover Now
-                            </button>
-                        </div>
-
-                        {/*This is Testimonial Intro*/}
-                        <div className="testimonial">
-                            <div className="img-container">
-                                <img className="rounded" src={testimonialImg} alt="User View"/>
-                            </div>
-                            <div className="text-container">
-                                <div className="text">
-                                    The best of muslim home cooking tips ever based on the Prophet Muhammad's way
-                                    <br/>
-                                    <br/>
-                                    <i>- Ahmad</i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                <div className="phone-number-wrapper">
-                <div className="headline">
-                <span className="red-bold-lg"> Congratulations!</span>
-                  <br/><br/>
-                   We've got your confirmation to download <span className="red-bold"> Healthy Eating The Sunnah Way</span>
-                </div>                   
-                    <a className="btn uppercase" href={finalUrl}>Download Now</a>
-                    <div className="sub-headline">
-                            <div className="left-icon">
-                                <img src={download} alt="Downloads"/>
-                            </div>
-                            <div className="align-left left-text">
-                                <span className="red-bold"> 86,234</span> <strong>Downloads</strong>
-                                <br/>
-                                <span className="text-sm"> in last 7 days</span>
-                            </div>
-                        </div>
-                        <hr className="no-margin-padding"/>
-                        <div className="sub-headline">
-                            <div className="left-icon">
-                                <img src={history} alt="Downloads"/>
-                            </div>
-                            <div className="align-left left-text">
-                                <strong>Most Downloads</strong>
-                                <br/>
-                                <span className="text-sm"> Less than a minute ago</span>
-                            </div>
-                        </div>
+            {/*This is Honey Intro*/}
+            <div className="content-honey active">
+                <h3><Translate id="honey"></Translate></h3>
+                <div className="body-copy center">
+                    <Translate id="honey-description"></Translate>
                 </div>
-                
+
+                <button type="submit" className="btn uppercase now">
+                    <Translate id="unlock"></Translate>
+                </button>
+            </div>
+
+            {/*This is Testimonial Intro*/}
+            <CustomTesti
+                className="sunnah-testimonials"
+                testimonials={
+                    [
+                        {
+                            Message: () => <span className="message"><Translate id="testimonial-1"></Translate></span>,
+                            Name: () => <span className="testimonials-name"> - <Translate id="ahmed"></Translate></span>,
+                            stars: 5
+                        },
+                        {
+                            Message: () => <span className="message"><Translate id="testimonial-2"></Translate></span>,
+                            Name: () => <span className="testimonials-name"> - <Translate id="latifa"></Translate></span>,
+                            stars: 5
+                        },
+                        {
+                            Message: () => <span className="message"><Translate id="testimonial-3"></Translate></span>,
+                            Name: () => <span className="testimonials-name"> - <Translate id="karim"></Translate></span>,
+                            stars: 5
+                        }
+                    ]
+                }
+            />
+        </div>
+        <div className="phone-number-wrapper">
+            <div className="headline">
+                <span className="red-bold-lg"> <Translate id="congratulations"></Translate></span>
+                <br /><br />
+                <Translate id="we-got-your-confirmation"></Translate> <span className="red-bold"> <Translate id="healthy-eating"></Translate></span>
+            </div>
+            <a className="btn btn--small-margin uppercase" href={finalUrl}><Translate id="download-now"></Translate></a>
+            <div className="sub-headline">
+                <div className="left-icon">
+                    <img src={download} alt="Downloads" />
+                </div>
+                <div className="align-left left-text">
+                    <span className="red-bold"> 86,234</span> <strong><Translate id="downloads"></Translate></strong>
+                    <br />
+                    <span className="text-sm"> <Translate id="in-last-7-days"></Translate></span>
+                </div>
+            </div>
+            <hr className="no-margin-padding" />
+            <div className="sub-headline">
+                <div className="left-icon">
+                    <img src={history} alt="Downloads" />
+                </div>
+                <div className="align-left left-text">
+                    <strong><Translate id="most-downloads"></Translate></strong>
+                    <br />
+                    <span className="text-sm"> <Translate id="less-than-a-minute"></Translate></span>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>;
 
 class Root extends React.PureComponent<HOCProps> {
@@ -434,41 +481,63 @@ class Root extends React.PureComponent<HOCProps> {
         msisdn: "",
     };
 
+    defaultLang = () => {
+        document.getElementsByTagName('html')[0].setAttribute("lang", "en");
+    }
+
     render() {
         return (
-                <TranslationProvider locale={this.state.locale}>
-                    <TransitionGroup className={simpleOpacityTransitionStyles.group}>
-                        {match({
-                            msisdnEntry: rds => (
-                                <SimpleOpacityTransition key="msisdnEntry">
-                                    <MSISDNEntryStep
-                                        msisdn={this.state.msisdn}
-                                        rds={rds}
-                                        onEnd={msisdn => {
-                                            this.setState({msisdn});
-                                            this.props.actions.submitMSISDN(window, null, msisdn);
-                                        }}
-                                    />
-                                </SimpleOpacityTransition>
-                            ),
-                            pinEntry: rds => (
-                                <SimpleOpacityTransition key="pinEntry">
-                                    <PINEntryStep
-                                        onEnd={pin => this.props.actions.submitPIN(pin)}
-                                        backToStart={() => this.props.actions.backToStart()}
-                                        msisdn={this.state.msisdn}
-                                        rds={rds}
-                                    />
-                                </SimpleOpacityTransition>
-                            ),
-                            completed: ({finalUrl}) => (
-                                <SimpleOpacityTransition key="completed">
-                                    <TQStep finalUrl={finalUrl}/>
-                                </SimpleOpacityTransition>
-                            )
-                        })(this.props.currentState)}
-                    </TransitionGroup>
-                </TranslationProvider>
+            <TranslationProvider locale={this.state.locale}>
+                <TransitionGroup className={simpleOpacityTransitionStyles.group}>
+                    {match({
+                        msisdnEntry: rds => (
+                            <SimpleOpacityTransition key="msisdnEntry">
+                                <MSISDNEntryStep
+                                    msisdn={this.state.msisdn}
+                                    rds={rds}
+                                    onEnd={msisdn => {
+                                        this.setState({ msisdn });
+                                        this.props.actions.submitMSISDN(window, null, msisdn);
+                                    }}
+                                />
+                            </SimpleOpacityTransition>
+                        ),
+                        pinEntry: rds => (
+                            <SimpleOpacityTransition key="pinEntry">
+                                <PINEntryStep
+                                    onEnd={pin => this.props.actions.submitPIN(pin)}
+                                    backToStart={() => this.props.actions.backToStart()}
+                                    msisdn={this.state.msisdn}
+                                    rds={rds}
+                                />
+                            </SimpleOpacityTransition>
+                        ),
+                        completed: ({ finalUrl }) => (
+                            <SimpleOpacityTransition key="completed">
+                                <TQStep finalUrl={finalUrl} />
+                            </SimpleOpacityTransition>
+                        )
+                    })(this.props.currentState)}
+                    <div className="wrapper">
+                        <button className="language-switcher"
+                            onClick={() => {
+                                if (this.state.locale === "en") {
+                                    this.setState({ locale: "ar" })
+                                    document.getElementsByTagName('html')[0].setAttribute("lang", "ar")
+                                } else {
+                                    this.setState({ locale: "en" })
+                                    document.getElementsByTagName('html')[0].setAttribute("lang", "en")
+                                }
+                            }}
+                        >{
+                                this.state.locale === "ar"
+                                    ? "EN"
+                                    : "عربى"
+                            }</button>
+                    </div>
+
+                </TransitionGroup>
+            </TranslationProvider>
         );
     }
 }
