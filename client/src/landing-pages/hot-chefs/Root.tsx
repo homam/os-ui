@@ -13,12 +13,11 @@ import HOC, {
 } from "../../clients/lp-api/HOC";
 import "./assets/css/styles.less?raw";
 import * as RDS from "../../common-types/RemoteDataState";
-import { SimpleOpacityTransition, TransitionGroup, simpleOpacityTransitionStyles } from "../../common-components/simple-opacity-transition";
 
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
   "xx",
-  "Unknown" //TODO: replace Unknown with your page's name
+  "hot-chefs"
 );
 
 class MSISDNEntryStep extends React.PureComponent<{
@@ -148,6 +147,7 @@ class Root extends React.PureComponent<HOCProps> {
   };
   render() {
     return (
+      <TranslationProvider locale={this.state.locale}>
       <div className="container">
 
         <div className="creative">
@@ -201,6 +201,7 @@ class Root extends React.PureComponent<HOCProps> {
         </div>
 
       </div>
+      </TranslationProvider>
     );
   }
 }
