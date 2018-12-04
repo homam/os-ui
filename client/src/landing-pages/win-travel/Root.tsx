@@ -32,6 +32,7 @@ import { mockedMSISDNEntrySuccess } from "../../clients/lp-api-mo/HOC";
 // ok
 const history = require("./assets/img/history.svg");
 const pinPoint = require("./assets/img/pin-point.svg");
+const planeHotBalloon = require("./assets/img/plane-balloon-cloud.png");
 
 // const iphonexs_logo = require('./assets/images/iphonexs_logo.png')
 
@@ -87,16 +88,17 @@ class MSISDNEntryStep extends React.PureComponent<{
             <div className="intro-text">
               <div className="headline"></div>
               <div className="position-container">
-                <div className="plane vibrate-slow"></div>
-                <div className="dotted-line-1"></div>
-                <div className="dotted-line-2"></div>
-                <div className="cloud-1"></div>
-                <div className="cloud-2"></div>
-                <div className="hot-balloon-1"></div>
+                {/* <div className="plane vibrate-slow"></div> */}
+                {/* <div className="cloud-1"></div>
+                <div className="cloud-2"></div> */}
+                {/* <div className="hot-balloon-1"></div>
                 <div className="hot-balloon-2"></div>
                 <div className="hot-balloon-3"></div>
                 <div className="hot-balloon-4"></div>
-                <div className="hot-balloon-5"></div>
+                <div className="hot-balloon-5"></div> */}
+                <div className="plane-hot-balloon vibrate-slow">
+                  <img src={planeHotBalloon} />
+                </div>
               </div>
             </div>
           </div>
@@ -159,8 +161,6 @@ class MSISDNEntryStep extends React.PureComponent<{
                   <div className="number-entry">
                     <div className="input-wrapper">
                       <input type="text"
-                        pattern="\d"
-                        maxLength={5}
                         value={this.state.msisdn}
                         onChange={ev => this.setState({ msisdn: ev.target.value })}
                       />
@@ -273,9 +273,10 @@ class PINEntryStep extends React.PureComponent<{
               <Translate id="we_just_sent_a_pin" />
             </div>
             <div id="pin-entry" className="">
-              <input type="number"
+              <input type="text"
                 placeholder="PIN"
                 className="pin-input"
+                pattern="\d"
                 maxLength={5}
                 value={this.state.pin}
                 onChange={ev => this.setState({ pin: ev.target.value })}
@@ -344,9 +345,11 @@ const TQStep = ({ finalUrl }: { finalUrl: string }) => (
   <div className="destination-page active">
     <div className="congrats-container">
       <div className="thank-you"></div>
-      <div className="congrats-subtitle">for your participation to win</div>
+      <div className="congrats-subtitle">
+      <Translate id="participation-to-win"></Translate>
+      </div>
       <div className="cash-final-title">
-        $500 cash
+        <Translate id="500-cash"></Translate>
     </div>
     </div>
   </div>
