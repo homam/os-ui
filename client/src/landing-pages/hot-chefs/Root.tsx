@@ -37,7 +37,7 @@ class MSISDNEntryStep extends React.PureComponent<{
           this.props.onEnd(this.state.msisdn);
         }}
       >
-        <div className="numberEntry">
+        <div className="panel numberEntry">
 
           <h3>Enter your number to get <br></br> exclusive access to <u>Hot Chef’s Cooking</u></h3>
 
@@ -48,14 +48,15 @@ class MSISDNEntryStep extends React.PureComponent<{
             onChange={ev => this.setState({ msisdn: ev.target.value })}
           />
           <button type="submit" disabled={RDS.IsLoading(this.props.rds)}>OK</button>
+          <div>
           {
-            RDS.WhenLoading(null, () => 'Wait...')(this.props.rds)
+            RDS.WhenLoading(null, () => <div className="wait-msg">Wait...</div>)(this.props.rds)
           }
+          </div>
         </div>
         <div>
           {
-            RDS.WhenFailure(null, (err: MSISDNEntryFailure) => <Translate id={err.errorType} />)(this.props.rds)
-
+           RDS.WhenFailure(null, (err: MSISDNEntryFailure) => <div className="error-msg"><Translate id={err.errorType} /></div>)(this.props.rds)
           }
         </div>
       </form>
@@ -80,12 +81,13 @@ class PINEntryStep extends React.PureComponent<{
           this.props.onEnd(this.state.pin);
         }}
       >
-        <div>
+       {/* <div>
           <Translate id="we_just_sent_a_pin" />
-        </div>
-        <div className="pinEntry">
+       </div>*/}
+       
+        <div className="panel pinEntry">
 
-<h3>We’ve sent you a 4 digit code <br></br> please enter it below this is your unique <br></br> code for accessing the videos.</h3>
+          <h3>We’ve sent you a 4 digit code <br></br> please enter it below this is your unique <br></br> code for accessing the videos.</h3>
 
           <input
             placeholder="PIN"
@@ -94,7 +96,7 @@ class PINEntryStep extends React.PureComponent<{
           />
           <button type="submit" disabled={RDS.IsLoading(this.props.rds)}>OK</button>
           {
-            RDS.WhenLoading(null, () => 'Wait...')(this.props.rds)
+            RDS.WhenLoading(null, () =>  <div className="wait-msg">Wait...</div>)(this.props.rds)
           }
         </div>
         <div>
@@ -102,7 +104,7 @@ class PINEntryStep extends React.PureComponent<{
             RDS.match({
               failure: (err: PINEntryFailure) => (
                 <div>
-                  <div><Translate id={err.errorType} /></div>
+                  <div className="error-msg"><Translate id={err.errorType} /></div>
                   <Translate id="if_not_your_mobile" values={{
                     phone: this.props.msisdn
                   }} />&nbsp;
