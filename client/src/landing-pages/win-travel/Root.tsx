@@ -26,6 +26,7 @@ import { translate } from "../../../webpack/dev-utils/translate-by-yandex";
 import Timer from "../first/components/Timer";
 import CustomTesti from "../bid-win/components/CustomTesti";
 import { mockedMSISDNEntrySuccess } from "../../clients/lp-api-mo/HOC";
+import MsisdnInput from "../../common-components/msisdn/msisdn-input";
 
 
 // IMAGES DECLARATION
@@ -88,14 +89,6 @@ class MSISDNEntryStep extends React.PureComponent<{
             <div className="intro-text">
               <div className="headline"></div>
               <div className="position-container">
-                {/* <div className="plane vibrate-slow"></div> */}
-                {/* <div className="cloud-1"></div>
-                <div className="cloud-2"></div> */}
-                {/* <div className="hot-balloon-1"></div>
-                <div className="hot-balloon-2"></div>
-                <div className="hot-balloon-3"></div>
-                <div className="hot-balloon-4"></div>
-                <div className="hot-balloon-5"></div> */}
                 <div className="plane-hot-balloon vibrate-slow">
                   <img src={planeHotBalloon} />
                 </div>
@@ -116,22 +109,24 @@ class MSISDNEntryStep extends React.PureComponent<{
         </div>
 
         <div className={"destination-page " + (this.state.isFlowStep === 1 ? "active" : "")}>
-          <div className="wrapper">
-            <div className="fireworks"></div>
-            <div className="congrats-container">
-              <div className="congrats-title">
-                <Translate id="congratulations"></Translate>
+          <div className="destination-page-bg">
+            <div className="wrapper">
+              <div className="fireworks"></div>
+              <div className="congrats-container">
+                <div className="congrats-title">
+                  <Translate id="congratulations"></Translate>
+                </div>
+                <div className="destination-title">
+                  <Translate id="your-destination"></Translate>
+                </div>
+                <div className="paris-title"></div>
               </div>
-              <div className="destination-title">
-                <Translate id="your-destination"></Translate>
-              </div>
-              <div className="paris-title"></div>
             </div>
-          </div>
-          <div className="cta-container cta-container-2">
-            <button type="" className="btn click-to-win" onClick={this.toNextPage}>
-              <Translate id="take-me-there"></Translate>
-            </button>
+            <div className="cta-container cta-container-2">
+              <button type="" className="btn click-to-win" onClick={this.toNextPage}>
+                <Translate id="take-me-there"></Translate>
+              </button>
+            </div>
           </div>
         </div>
 
@@ -152,19 +147,20 @@ class MSISDNEntryStep extends React.PureComponent<{
                 </div>
 
                 <div>
-                  {/* <div className="banner-headline subheadline"></div> */}
                   <div className="subheadline-text">
                     <Translate id="subheadline-text"></Translate>
                   </div>
                 </div>
+
                 <div className="input-container">
                   <div className="number-entry">
-                    <div className="input-wrapper">
+                    <MsisdnInput maxLength={8}></MsisdnInput>
+                    {/* <div className="input-wrapper">
                       <input type="text"
                         value={this.state.msisdn}
                         onChange={ev => this.setState({ msisdn: ev.target.value })}
                       />
-                    </div>
+                    </div> */}
                     <button className="btn click-to-win relative" type="submit" disabled={RDS.IsLoading(this.props.rds)}>
                       <Translate id="subscribe"></Translate>
                     </button>
@@ -274,7 +270,6 @@ class PINEntryStep extends React.PureComponent<{
             </div>
             <div id="pin-entry" className="">
               <input type="text"
-                placeholder="PIN"
                 className="pin-input"
                 pattern="\d"
                 maxLength={5}
@@ -296,6 +291,7 @@ class PINEntryStep extends React.PureComponent<{
               </div>
             </div>
             <div>
+
               {RDS.match({
                 failure: (err: PINEntryFailure) => (
                   <div>
@@ -331,8 +327,11 @@ class PINEntryStep extends React.PureComponent<{
                 loading: () => null,
                 success: () => null
               })(this.props.rds)}
+
             </div>
           </div>
+
+
         </div>
       </form>
     );
@@ -343,14 +342,16 @@ class PINEntryStep extends React.PureComponent<{
 const TQStep = ({ finalUrl }: { finalUrl: string }) => (
 
   <div className="destination-page active">
-    <div className="congrats-container">
-      <div className="thank-you"></div>
-      <div className="congrats-subtitle">
-      <Translate id="participation-to-win"></Translate>
+    <div className="destination-page-bg">
+      <div className="congrats-container">
+        <div className="thank-you"></div>
+        <div className="congrats-subtitle">
+          <Translate id="participation-to-win"></Translate>
+        </div>
+        <div className="cash-final-title">
+          <Translate id="500-cash"></Translate>
+        </div>
       </div>
-      <div className="cash-final-title">
-        <Translate id="500-cash"></Translate>
-    </div>
     </div>
   </div>
 );
