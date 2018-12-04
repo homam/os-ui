@@ -18,17 +18,21 @@ function DigitOnlyInput(props: any) {
   />
 }
 
-class MsisdnComponent extends React.Component {
+interface IProps {
+  maxLength: number
+}
+
+export default class MsisdnComponent extends React.Component<IProps> {
 
   render() {
    
     return (
       <div className="App">
       <div className="msisdn-wrapper">
-        <div className="phone" />
+        <div className="phone flag flag-qac " />
 
-        <div className="country-code country-code-qa">(975)</div>
-        <DigitOnlyInput className="msisdn-input" type="tel" maxLength={8} />
+        <div className="country-code country-code-qa">(+975)</div>
+        <DigitOnlyInput className="msisdn-input" type="tel" maxLength={this.props.maxLength} />
         {/*<label className="placeholder">Placeholder</label> */}
       </div>
     </div>
@@ -40,4 +44,4 @@ class MsisdnComponent extends React.Component {
 
 
 
-export default MsisdnComponent
+// export default MsisdnComponent

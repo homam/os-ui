@@ -48,11 +48,19 @@ const TQStep = ({ finalUrl }: { finalUrl: string }) => <div className="tq-msg">
 </div>;
 
 const getDefaultLocale = () => {
-  const lsLang = localStorage.getItem('locale')
-  if (!!lsLang && (lsLang == 'ms' || lsLang == 'en')) {
-    return lsLang
+
+  if(typeof window == "undefined") {
+    // SSR at Compile-time
+    return "en"
   } else {
-    return ((!!navigator.languages && navigator.languages.some(lang => /ms/.test(lang))) || /ms/.test(navigator.language)) ? 'ms' : 'en'
+    // In Browser
+    const lsLang = localStorage.getItem('locale')
+    if (!!lsLang && (lsLang == 'ms' || lsLang == 'en')) {
+      return lsLang
+    } else {
+      return ((!!navigator.languages && navigator.languages.some(lang => /ms/.test(lang))) || /ms/.test(navigator.language)) ? 'ms' : 'en'
+    }
+
   }
 }
 

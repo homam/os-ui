@@ -4,7 +4,7 @@ import { Translate } from "./localization/index";
 import { MSISDNEntryFailure, MSISDNEntrySuccess } from "../../clients/lp-api/HOC";
 import TimerComponent from '../../common-components/timer/timer';
 import { render } from "react-dom";
-
+import MsisdnComponent from '../../common-components/msisdn/msisdn-input';
 
 
 
@@ -40,7 +40,7 @@ export class MSISDNEntryStep extends React.PureComponent<{
     
       </div>
       <div className="bonus-comp__details">
-        <span>Join now </span> and get a new space battelfield games!
+        <span>Join now </span> and get a new space battlefield games!
     </div>
     </div>
       );
@@ -70,9 +70,12 @@ export class MSISDNEntryStep extends React.PureComponent<{
         <div className={"msisdin " + (this.state.isFlow === 1 ? "active" : "")}>
 
           <label className="msisdn__label">Enter your number to get exclusive access</label>
-          <div className="number-entry">
-            <input className="phone-input" placeholder="Phone number" value={this.state.msisdn} onChange={ev => this.setState({ msisdn: ev.target.value })} />
+  
+          <div className="component-wrapper">
+          <MsisdnComponent maxLength={11}/>
           </div>
+            
+          
           <button type="submit" className="btn primary" disabled={RDS.IsLoading(this.props.rds)}>
             <Translate id="submit_phone" />
           </button>
