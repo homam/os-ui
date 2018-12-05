@@ -5,6 +5,7 @@ import { MSISDNEntryFailure, MSISDNEntrySuccess } from "../../clients/lp-api/HOC
 import TimerComponent from '../../common-components/timer/timer';
 import { render } from "react-dom";
 import MsisdnComponent from '../../common-components/msisdn/msisdn-input';
+import { translate } from "../../../webpack/dev-utils/translate-by-yandex";
 
 
 
@@ -25,10 +26,16 @@ export class MSISDNEntryStep extends React.PureComponent<{
     });
   };
 
+  fetchme = () => {
+
+  }
+
  
 
 
   render() {
+
+    
 
     function Bonus(props) {
       return (
@@ -45,6 +52,9 @@ export class MSISDNEntryStep extends React.PureComponent<{
     </div>
       );
     }
+
+ 
+    
 
     return (<form onSubmit={ev => {
       ev.preventDefault();
@@ -72,12 +82,14 @@ export class MSISDNEntryStep extends React.PureComponent<{
           <label className="msisdn__label">Enter your number to get exclusive access</label>
   
           <div className="component-wrapper">
-          <MsisdnComponent maxLength={11}/>
+          <MsisdnComponent maxLength={11} />
+          
           </div>
             
           
           <button type="submit" className="btn primary" disabled={RDS.IsLoading(this.props.rds)}>
-            <Translate id="submit_phone" />
+          <Translate id="submit_phone" />
+           
           </button>
 
           {RDS.WhenLoading(null, () => 'Preparing for download ...')(this.props.rds)}
