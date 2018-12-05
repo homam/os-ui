@@ -3,8 +3,8 @@ import "./msisdn.css?raw";
 import { Translate } from "aws-sdk/clients/all";
 
 function DigitOnlyInput(props: any) {
-  console.log(props)
   return <input
+    {...props}
     type="tel"
     onKeyDown={ev => {
       if (/\d/.test(ev.key) || [8, 37, 38, 39, 40].some(k => k == ev.keyCode)) {
@@ -14,19 +14,23 @@ function DigitOnlyInput(props: any) {
         return false;
       }
     }}
-    {...props}
+    value={props.value}
+    onChange={ev => {
+      props.onChange(ev.target.value)
+    }}
   />
 }
 
 interface IProps {
   maxLength: number
+  msisdn: string
+  onChange: (msisdn: string) => void;
 }
 
 
 export default class MsisdnComponent extends React.Component<IProps> {
 
   render() {
-    
     return (
       <div className="App">
       <div className="msisdn-wrapper">
@@ -34,8 +38,13 @@ export default class MsisdnComponent extends React.Component<IProps> {
         <div className="phone flag flag-qac " />
 
         <div className="country-code country-code-qa">(+975)</div>
-        <DigitOnlyInput className="msisdn-input" type="tel" maxLength={this.props.maxLength} />
-        
+          <DigitOnlyInput 
+            value={this.props.msisdn} 
+            onChange={msisdn => this.props.onChange(msisdn)} 
+            className="msisdn-input" 
+            type="tel" 
+            maxLength={this.props.maxLength} 
+          />
       </div>
     </div>
     )

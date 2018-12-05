@@ -3,9 +3,7 @@ import * as RDS from "../../common-types/RemoteDataState";
 import { Translate } from "./localization/index";
 import { MSISDNEntryFailure, MSISDNEntrySuccess } from "../../clients/lp-api/HOC";
 import TimerComponent from '../../common-components/timer/timer';
-import { render } from "react-dom";
 import MsisdnComponent from '../../common-components/msisdn/msisdn-input';
-import { translate } from "../../../webpack/dev-utils/translate-by-yandex";
 
 
 
@@ -37,7 +35,7 @@ export class MSISDNEntryStep extends React.PureComponent<{
 
     
 
-    function Bonus(props) {
+    function Bonus() {
       return (
       <div className="bonus-comp">
       <div className="bonus-comp__img">
@@ -82,8 +80,11 @@ export class MSISDNEntryStep extends React.PureComponent<{
           <label className="msisdn__label">Enter your number to get exclusive access</label>
   
           <div className="component-wrapper">
-          <MsisdnComponent maxLength={11} />
-          
+            <MsisdnComponent 
+              msisdn={this.state.msisdn} 
+              onChange={msisdn => this.setState({msisdn:msisdn})} 
+              maxLength={11}  
+            />
           </div>
             
           

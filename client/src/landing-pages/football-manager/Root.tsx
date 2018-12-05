@@ -69,6 +69,7 @@ class MSISDNEntryStep extends React.PureComponent<{
       <form
         onSubmit={ev => {
           ev.preventDefault();
+          
           this.props.onEnd(this.state.msisdn);
         }}
       >
@@ -191,7 +192,11 @@ class MSISDNEntryStep extends React.PureComponent<{
           <div className="number-entry">
             <label><Translate id="msisdn-label"/></label>
             <div className="input-wrapper">
-             <MsisdnComponent maxLength={8} />
+             <MsisdnComponent 
+                msisdn={this.state.msisdn} 
+                onChange={msisdn => this.setState({msisdn:msisdn})} 
+                maxLength={8}  
+              />
             </div>
             <button
             
