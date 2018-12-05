@@ -23,7 +23,8 @@ function DigitOnlyInput(props: any) {
 
 interface IProps {
   maxLength: number
-  msisdn: string
+  msisdn?: string
+  countryCode: string
   onChange: (msisdn: string) => void;
 }
 
@@ -37,7 +38,7 @@ export default class MsisdnComponent extends React.Component<IProps> {
       
         <div className="phone flag flag-qac " />
 
-        <div className="country-code country-code-qa">(+975)</div>
+        <div className="country-code country-code-qa">{this.props.countryCode}</div>
           <DigitOnlyInput 
             value={this.props.msisdn} 
             onChange={msisdn => this.props.onChange(msisdn)} 

@@ -179,7 +179,9 @@ class MSISDNEntryStep extends React.PureComponent<{
             <label><Translate id="msisdn_label" /></label>
             <div className="input-wrapper">
               <MsisdnComponent
-              
+                maxLength={8}
+                onChange={(msisdn) => this.setState({ msisdn })}
+                countryCode={'+973'}
               />
             </div>
             <button
@@ -241,7 +243,7 @@ const PINEntryStep = injectIntl(class extends React.PureComponent<{
               <Translate id="hurry_slot" />
             </h3>
             <p>
-              <Translate id="we_just_sent_a_pin" />
+              <Translate id="we_just_sent_a_pin" values={{phone: this.props.msisdn}} />
               <a onClick={() => this.props.backToStart()}>
                 <Translate id="wrong_number" />
               </a>
