@@ -34,5 +34,7 @@
   "we_just_sent_a_pin": "We’ve sent you a 4 digit code, please enter it below to confirm your number",
   "didnt_receive_pin_yet": "Didn't receive a PIN yet? Make sure {phone} is your correct mobile number.",
   "if_not_your_mobile": "If {phone} is not your mobile number,",
-  "click_here_to_change_your_number": "Click here to change your phone number."
+  "click_here_to_change_your_number": "Click here to change your phone number.",
+  "pin_placeholder": "PIN",
+  "msisdn": "Phone Number"
 }

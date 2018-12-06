@@ -324,6 +324,16 @@ INPUT (NUMBER ENTRY) SECTION
 	font-size: 12px;
 }
 
+.pin-wrapper {
+	position: relative;
+	top: 50%;
+	display: contents;
+}
+.pin-wrapper .disclaimer {
+	color: white;
+	z-index: 10;
+}
+
 /****************************************
 BUTTON STYLES
 /****************************************/
@@ -507,7 +517,7 @@ PAGE SPECIFIC STYLES
 		width: 100%;
     max-width: 520px;
 		margin: auto;
-		height: 100vh;
+		height: 108vh;
 	}
 } 
 
@@ -722,7 +732,8 @@ PAGE SPECIFIC STYLES
     background-repeat: no-repeat;
     top: -20px;
     position: relative;
-    height: 100vw;
+		height: 100vw;
+		max-height: 500px;
 	}
 }
 
@@ -868,7 +879,7 @@ PAGE SPECIFIC STYLES
 	height: 100vh;
 	width: 100%;
 	position: absolute;
-	z-index: 3;
+	z-index: 4;
 }
 
 .awesome {
@@ -1097,7 +1108,10 @@ PAGE SPECIFIC STYLES
 		height: 23vw;
 		top: 4vh;
 	}
-	.congrats-container {
+ 	html[lang="ar"] .congrats-container {
 		top: 19vh;
+	}
+	.congrats-container {
+		top: 24vh;
 	}
 }

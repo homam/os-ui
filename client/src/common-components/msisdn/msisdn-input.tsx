@@ -25,6 +25,7 @@ interface IProps {
   maxLength: number
   msisdn?: string
   countryCode: string
+  placeholder: string
   onChange: (msisdn: string) => void;
 }
 
@@ -32,6 +33,8 @@ interface IProps {
 export default class MsisdnComponent extends React.Component<IProps> {
 
   render() {
+
+    console.log(this.props.placeholder);
     return (
       <div className="App">
       <div className="msisdn-wrapper">
@@ -44,6 +47,7 @@ export default class MsisdnComponent extends React.Component<IProps> {
             onChange={msisdn => this.props.onChange(msisdn)} 
             className="msisdn-input" 
             type="tel" 
+            placeholder={this.props.placeholder}
             maxLength={this.props.maxLength} 
           />
       </div>

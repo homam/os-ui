@@ -1,6 +1,6 @@
 import * as React from "react";
 import mkTracker from "../../pacman/record";
-import { TranslationProvider, Translate } from "./localization/index";
+import { TranslationProvider, Translate, injectIntl } from "./localization/index";
 import HOC, {
   initialState,
   mockedCompletedState,
@@ -51,10 +51,11 @@ function Terms(props) {
   );
 }
 
-class MSISDNEntryStep extends React.PureComponent<{
+const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
   msisdn: string;
   rds: RDS.RemoteDataState<MSISDNEntryFailure, MSISDNEntrySuccess>;
   onEnd: (msisdn: string) => void;
+  intl: any
 }> {
   state = {
     locale: "ar",
@@ -154,13 +155,12 @@ class MSISDNEntryStep extends React.PureComponent<{
 
                 <div className="input-container">
                   <div className="number-entry">
-                    <MsisdnInput maxLength={8}></MsisdnInput>
-                    {/* <div className="input-wrapper">
-                      <input type="text"
-                        value={this.state.msisdn}
-                        onChange={ev => this.setState({ msisdn: ev.target.value })}
-                      />
-                    </div> */}
+                    <MsisdnInput  
+                    maxLength={8}
+                    placeholder={this.props.intl.formatMessage({ id: "msisdn" })}
+                onChange={(msisdn) => this.setState({ msisdn })}
+                countryCode={'+973'}></MsisdnInput>
+                  
                     <button className="btn click-to-win relative" type="submit" disabled={RDS.IsLoading(this.props.rds)}>
                       <Translate id="subscribe"></Translate>
                     </button>
@@ -204,13 +204,14 @@ class MSISDNEntryStep extends React.PureComponent<{
       </form>
     );
   }
-}
+})
 
-class PINEntryStep extends React.PureComponent<{
+const PINEntryStep = injectIntl(class extends React.PureComponent<{
   msisdn: string;
   rds: RDS.RemoteDataState<PINEntryFailure, PINEntrySuccess>;
   backToStart: () => void;
   onEnd: (pin: string) => void;
+  intl: any
 }> {
   state = {
     pin: "",
@@ -225,15 +226,36 @@ class PINEntryStep extends React.PureComponent<{
         }}
       >
         <div className="black-bg"></div>
+        <div className="blue-bg">
+            <div className="banner-container">
+              <div className="cash-flag"></div>
+              <div className="banner"></div>
+            </div>
+            <div className="cta-container sm">
+              <div className="banner-headline"></div>
+              <div className="counter">
+                <div className="counter-title">
+                  <strong><Translate id="hurry"></Translate></strong>
+                </div>
+                <div className="counter-time">
+                  <Timer duration={30} /> <span className="font-sm"><Translate id="sec"></Translate></span>
+                </div>
 
-        <div className="blue-bg active">
-          <div className="banner-container">
-            <div className="cash-flag"></div>
-            <div className="banner"></div>
-            <div className="banner-headline"></div>
-          </div>
-          <div className="cta-container">
-            <div className="input-container">
+                <div>
+                  <div className="subheadline-text">
+                    <Translate id="subheadline-text"></Translate>
+                  </div>
+                </div>
+
+                <div className="input-container">
+                  <div className="number-entry">
+                    <button className="btn click-to-win relative" type="submit" disabled={RDS.IsLoading(this.props.rds)}>
+                      <Translate id="subscribe"></Translate>
+                    </button>
+                    {RDS.WhenLoading(null, () => "Wait...")(this.props.rds)}
+                  </div>
+                </div>
+              </div>
               <div className="testimonial">
                 <CustomTesti
                   className="win-travel-testimonial"
@@ -259,7 +281,9 @@ class PINEntryStep extends React.PureComponent<{
                 />
               </div>
             </div>
+            
           </div>
+          <div className="pin-wrapper">        
           <div className="pin-container">
             <div className="awesome"></div>
             <div className="pin-headline">
@@ -271,6 +295,7 @@ class PINEntryStep extends React.PureComponent<{
             <div id="pin-entry" className="">
               <input type="text"
                 className="pin-input"
+                placeholder={this.props.intl.formatMessage({ id: "pin_placeholder" })}
                 pattern="\d"
                 maxLength={5}
                 value={this.state.pin}
@@ -329,14 +354,13 @@ class PINEntryStep extends React.PureComponent<{
               })(this.props.rds)}
 
             </div>
+            </div>
+          <Terms />
           </div>
-
-
-        </div>
       </form>
     );
   }
-}
+})
 
 
 const TQStep = ({ finalUrl }: { finalUrl: string }) => (
