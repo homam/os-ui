@@ -28,12 +28,12 @@
   "AlreadySubscribed": "انت مشترك مسبقاَ في الخدمة",
   "InvalidMSISDN": "رقم الهاتف ال1ي ادخلته غير صحيح",
   "UnknownError": "لقد حصل خطأ اثناء معالجة طلبك",
-  "InvalidPIN": "ar:: Please enter the correct PIN that you received on your phone",
+  "InvalidPIN": "الرجاء ادخال رمز التعريف الصحيح",
   "TooEarly": "يجب عليك ادخال رقم هاتفك اولاَ",
   "we_just_sent_a_pin": "لقد قمنا بإرسال رمز التعريف الى جهازك، ادخل الرمز للتأكيد",
   "didnt_receive_pin_yet": "هل استلمت رمز التعريف؟ الرجاء التأكد من انك ادخلت رقم الهاتف الصحيح",
   "if_not_your_mobile": "اذ كان رقم هاتفك المحمول غير صحيح،",
   "click_here_to_change_your_number": "اضغط هنا لتصحيح الرقم",
-  "pin_placeholder": "ar:PIN",
-  "msisdn": "ar:Phone Number"
+  "pin_placeholder": "رمز التأكيد",
+  "msisdn": "رقم الموبايل"
 }
