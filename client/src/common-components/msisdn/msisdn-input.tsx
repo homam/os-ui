@@ -38,7 +38,7 @@ export default class MsisdnComponent extends React.Component<IProps> {
       
         <div className="phone flag flag-qac " />
 
-        <div className="country-code country-code-qa">{this.props.countryCode}</div>
+        <div className="country-code country-code-qa">({this.props.countryCode})</div>
           <DigitOnlyInput 
             value={this.props.msisdn} 
             onChange={msisdn => this.props.onChange(msisdn)} 
