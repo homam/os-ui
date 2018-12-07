@@ -130,6 +130,7 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
 
             </button>
           </div>
+          <Terms />
           <div className="winners">
 
             <label><Translate id="recent_winners" /></label>
@@ -158,7 +159,7 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
 
           </div>
 
-          <Terms />
+          
 
 
 
