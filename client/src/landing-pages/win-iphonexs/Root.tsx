@@ -200,7 +200,6 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
             >
               <Translate id="msisdn_btn" />
             </button>
-            <br></br>
             {RDS.WhenLoading(null, () => <Wait />)(this.props.rds)}
           </div>
 
