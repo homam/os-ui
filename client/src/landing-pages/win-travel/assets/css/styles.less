@@ -6,7 +6,7 @@ html, body {
 	font-size: 14px;
 	color: #fff;
 	font-family: Arial, Helvetica, sans-serif;
-	overflow: hidden;
+	height: 100%;
 }
 
 * {
@@ -110,7 +110,8 @@ html[lang="en"] {
 #container {
 	padding:0;
 	margin:0 auto;
-	min-height:	680px;
+	min-height:	480px;
+	height: 100%;
 	position:relative;
 	background-size:100% 300px;
 	background-repeat:no-repeat;
@@ -122,6 +123,7 @@ html[lang="en"] {
 	margin:0 auto;
 	position: relative;
 	margin: auto;
+	height: 100%;
 	.top-legals {
 		background: #000;
 		text-align: center;
@@ -129,6 +131,9 @@ html[lang="en"] {
 		font-size: 11px;
 		padding: 5px  0;
 	}
+}
+#creative form {
+	height: 100%;
 }
 
 .header {
@@ -155,7 +160,7 @@ html[lang="en"] {
 		position: relative;
 		top: 19px;
 		margin: 0 -10px;
-		z-index: 10;
+		z-index: 3;
 	}
 	p {
 		position: relative;
@@ -412,6 +417,14 @@ BUTTON STYLES
 	}
 }
 
+.full-height {
+	height: 100%;
+}
+
+button {
+	cursor: pointer;
+}
+
 button:focus {
 	outline:0;
 }
@@ -477,7 +490,7 @@ PAGE SPECIFIC STYLES
 	background: -ms-linear-gradient(top, #157eff 0%, #157eff 7%, #7ff9ff 58%, #57bcf6 80%, #0087cb 100%);
 	background: linear-gradient(to bottom, #157eff 0%, #157eff 7%, #7ff9ff 58%, #57bcf6 80%, #0087cb 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#157eff', endColorstr='#0087cb', GradientType=0 );
-	height: 100vh;
+	height: 100%;
 	width: 100%;
 	position: relative;
 	overflow-y: auto;
@@ -523,6 +536,7 @@ PAGE SPECIFIC STYLES
 
 .msisdn-page	{
 	display: none;
+	height: 100%;
 }
 
 .headline {
@@ -861,7 +875,7 @@ PAGE SPECIFIC STYLES
 	position: absolute;
 	background-color: white;
 	padding: 40px 17px;
-	top: 23%;
+	top: 31%;
 	left: 0;
 	right: 0;
 	margin: auto;
@@ -876,7 +890,7 @@ PAGE SPECIFIC STYLES
 .black-bg {
 	background-color: black;
 	opacity: 0.5;
-	height: 100vh;
+	height: calc(100% + 47px);
 	width: 100%;
 	position: absolute;
 	z-index: 4;
@@ -973,9 +987,9 @@ PAGE SPECIFIC STYLES
 }
 .disclaimer {
 	width: 100%;
-	max-width: 320px;
+	max-width: 280px;
 	margin: auto;
-	height: 130px;
+	height: 155px;
 	color: black;
 	text-align: center;
 	position: relative;
@@ -983,6 +997,7 @@ PAGE SPECIFIC STYLES
 	opacity: 0.5;
 	font-size: 10px;
 	margin-top: -56px;
+	text-align: justify;
 }
 .top-bar {
 	color: #444444;
@@ -992,13 +1007,34 @@ PAGE SPECIFIC STYLES
 	background-color: #f3f3f3;
 }
 .lang-btns {
-	max-width: 520px;
+	max-width: 400px;
 	margin: auto;
 	display: block;
 	position: relative;
 }
 .btn.pin-btn {
 	width: 100%;
+}
+.height-1 {
+	height: 100%;
+	max-height: 115px;
+}
+.in-front {
+	position: relative;
+	z-index: 12;
+}
+.disclaimer.in-front {
+	color: white;
+}
+.click-here {
+	color: #0087cb;
+	text-decoration: underline;
+}
+.disclaimer-2 {
+	font-size: 10px;
+	margin-top: 15px;
+	display: block;
+	opacity: 0.5;
 }
 
 /**** ANIMATION ****/
@@ -1091,6 +1127,32 @@ PAGE SPECIFIC STYLES
             transform: scale(1);
   }
 }
+
+.slide-top {
+	-webkit-animation: slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+ @-webkit-keyframes slide-top {
+  0% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  100% {
+    -webkit-transform: translateY(-100px);
+            transform: translateY(-100px);
+  }
+}
+@keyframes slide-top {
+  0% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  100% {
+    -webkit-transform: translateY(-100px);
+            transform: translateY(-100px);
+  }
+}
+
 
 @media screen and (min-width: 768px) {
 	.world {

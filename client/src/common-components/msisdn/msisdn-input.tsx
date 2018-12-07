@@ -33,8 +33,6 @@ interface IProps {
 export default class MsisdnComponent extends React.Component<IProps> {
 
   render() {
-
-    console.log(this.props.placeholder);
     return (
       <div className="App">
       <div className="msisdn-wrapper">
