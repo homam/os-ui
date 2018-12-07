@@ -61,10 +61,11 @@ function Terms(props) {
   );
 }
 
-class MSISDNEntryStep extends React.PureComponent<{
+const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
   msisdn: string;
   rds: RDS.RemoteDataState<MSISDNEntryFailure, MSISDNEntrySuccess>;
   onEnd: (msisdn: string) => void;
+  intl: any;
 }> {
   state = {
     msisdn: this.props.msisdn,
@@ -182,6 +183,7 @@ class MSISDNEntryStep extends React.PureComponent<{
                 maxLength={8}
                 onChange={(msisdn) => this.setState({ msisdn })}
                 countryCode={'+973'}
+                placeholder={this.props.intl.formatMessage({ id: "msisdn_placeholder" })}
               />
             </div>
             <button
@@ -208,7 +210,7 @@ class MSISDNEntryStep extends React.PureComponent<{
       </form>
     );
   }
-}
+})
 
 const PINEntryStep = injectIntl(class extends React.PureComponent<{
   msisdn: string;
