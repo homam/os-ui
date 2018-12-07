@@ -43,6 +43,11 @@ const tracker = mkTracker(
   "Win Travel" //TODO: replace Unknown with your page's name
 );
 
+function Wait(props) {
+  return (
+    <Translate id="wait_message" />
+  )
+}
 
 class MSISDNEntryStep extends React.PureComponent<{
   msisdn: string;
@@ -170,7 +175,7 @@ class MSISDNEntryStep extends React.PureComponent<{
                     <button className="btn click-to-win relative" type="submit" disabled={RDS.IsLoading(this.props.rds)}>
                       <Translate id="subscribe"></Translate>
                     </button>
-                    {RDS.WhenLoading(null, () => "Wait...")(this.props.rds)}
+                    {RDS.WhenLoading(null, () => <Wait />)(this.props.rds)}
                   </div>
 
                   <div className="error-msg">
@@ -443,7 +448,7 @@ class Root extends React.PureComponent<HOCProps> {
                       rds={rds}
                       onEnd={msisdn => {
                         this.setState({ msisdn });
-                        this.props.actions.submitMSISDN(window, null, msisdn);
+                        this.props.actions.submitMSISDN(window, null, '973' + msisdn);
                       }}
                     />
                   </SimpleOpacityTransition>

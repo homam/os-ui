@@ -35,5 +35,7 @@
   "if_not_your_mobile": "If {phone} is not your mobile number,",
   "click_here_to_change_your_number": "Click here to change your phone number.",
   "pin_placeholder": "PIN",
-  "msisdn": "Phone Number"
+  "msisdn": "Phone Number",
+  "wait_message": "Wait..."
+
 }

@@ -61,6 +61,12 @@ function Terms(props) {
   );
 }
 
+function Wait(props) {
+  return (
+    <Translate id="wait_message" />
+  )
+}
+
 const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
   msisdn: string;
   rds: RDS.RemoteDataState<MSISDNEntryFailure, MSISDNEntrySuccess>;
@@ -193,8 +199,8 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
             >
               <Translate id="msisdn_btn" />
             </button>
-
-            {RDS.WhenLoading(null, () => "Wait...")(this.props.rds)}
+            <br></br>
+            {RDS.WhenLoading(null, () => <Wait />)(this.props.rds)}
           </div>
 
           <div className="error-msg">
@@ -245,7 +251,7 @@ const PINEntryStep = injectIntl(class extends React.PureComponent<{
               <Translate id="hurry_slot" />
             </h3>
             <p>
-              <Translate id="we_just_sent_a_pin" values={{phone: this.props.msisdn}} />
+              <Translate id="we_just_sent_a_pin" values={{ phone: this.props.msisdn }} />
               <a onClick={() => this.props.backToStart()}>
                 <Translate id="wrong_number" />
               </a>
@@ -396,7 +402,7 @@ class Root extends React.PureComponent<HOCProps> {
                       rds={rds}
                       onEnd={msisdn => {
                         this.setState({ msisdn });
-                        this.props.actions.submitMSISDN(window, null, msisdn);
+                        this.props.actions.submitMSISDN(window, null, '973' + msisdn);
                       }}
                     />
                   </SimpleOpacityTransition>
