@@ -184,6 +184,9 @@ class MSISDNEntryStep extends React.PureComponent<{
                     ))(this.props.rds)}
                   </div>
                 </div>
+                <div className="disclaimer">
+                  <p><Translate id="disclaimers" /></p>
+                </div>
               </div>
               <div className="testimonial">
                 <CustomTesti
@@ -209,9 +212,6 @@ class MSISDNEntryStep extends React.PureComponent<{
                   }
                 />
               </div>
-            </div>
-            <div className="disclaimer">
-              <p><Translate id="disclaimers" /></p>
             </div>
           </div>
         </div>
@@ -476,4 +476,4 @@ class Root extends React.PureComponent<HOCProps> {
     );
   }
 }
-export default HOC(tracker, Root)(initialState);
+export default HOC(tracker, Root)(mockedPINState);
