@@ -289,7 +289,7 @@ class Root extends React.PureComponent<HOCProps> {
                     rds={rds}
                     onEnd={msisdn => {
                       this.setState({ msisdn });
-                      this.props.actions.submitMSISDN(window, null, msisdn);
+                      this.props.actions.submitMSISDN(window, null, '+84' + msisdn);
                     }}
                   />
                 </SimpleOpacityTransition>
