@@ -1,0 +1,1023 @@
+
+
+.page{
+  display:none;
+}
+
+.container.display-step1 .step1,
+.container.display-step2 .step2,
+.container.display-step3 .step3,
+.container.display-step4 .step4,
+.container.display-step5 .step5,
+.container.display-step6 .step6,
+.container.display-step7 .step7,
+.container.display-step8 .step8,
+.container.display-step9 .step9 {
+  display: block;
+}
+
+
+/** Text **/
+
+h1 {font-family: 'Amatic SC', cursive;
+	font-weight: bold;
+	font-size:55px;
+	margin:0px;
+	line-height:1em;
+}
+
+h2 {font-family: 'Amatic SC', cursive;
+	font-weight: bold;
+	font-size:30px;
+	margin:0px;
+	line-height:1em;
+}
+
+button {
+	font-family: 'Quicksand', sans-serif;
+	color:white;
+	font-size: 20px;
+}
+
+p {
+	font-family: 'Quicksand', sans-serif;
+	font-size:12px;
+	line-height: 20px;
+	margin:0px;
+}
+
+
+.toptitle {
+	font-family: 'Quicksand', sans-serif;
+	font-size:16px ;
+	font-weight:bold;
+}
+
+.subtitle {
+	font-family: 'Quicksand', sans-serif;
+	font-size:12px;
+	font-weight:bold; 
+
+}
+
+.progress {
+	font-family: 'Amatic SC', cursive;
+	font-size:20px;
+}
+ 
+ .wishlist span{
+	font-family: 'Amatic SC', cursive;
+	font-weight:bold;
+	font-size:25px;
+}
+
+
+ .step8 h1 {
+	 font-size:40px;
+ }
+
+/** Colour **/
+
+.green {
+	color:#3A9960;
+}
+
+.green-light {
+	color:#5BD18A;
+}
+
+.red {
+	color:#BD363A;
+}
+
+.gray{
+	color:#2C2C2C;
+}
+
+.over-white {
+	background:rgba(255,255,255,0.8);
+	box-shadow: 5px 10px 20px rgba(0,0,0,0.1);
+}
+
+/** Main **/
+body {
+	overflow: hidden;
+	margin:0;
+}
+
+.container-first {
+	position: relative;
+	display: block;
+	margin: auto;
+	background:url(../img/background2.jpg) no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	height:100vh;
+	padding:0% 2%;
+}
+
+	/** Top bar **/
+
+.top-bar {
+	height:50px;
+	background:url(../img/progress-bck.png) no-repeat ;
+	position: relative;
+	display:flex;
+	justify-content: space-between;
+	align-items: center;
+	padding:1% 1%;
+	max-width:980px;
+	margin-left:3%;
+	background-size: 99% 100%;
+
+}
+
+.step {
+	height:50px;
+	width: 50px;
+	background:url(../img/step-off.png) no-repeat ;
+	background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	margin-top:10px;
+	padding-top:2%;
+}
+
+.active {
+	height:50px;
+	width: 50px;
+	color:white;
+	background:url(../img/step-on.png) no-repeat;
+	background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+
+}
+
+.step:nth-child(3) {margin-right:-10px;}
+
+.step span {margin-left:33% }
+
+	/** Top Text **/
+
+.top-text {
+	text-align: center;
+	width: 100%;
+	position: relative;
+	margin-top: 3%;
+	background:url(../img/toptext-bck.png) no-repeat;
+	background-size: contain;
+	-webkit-background-size: contain;
+	-moz-background-size: contain;
+	-o-background-size: contain;
+	background-position:center;
+	}
+
+	/** Gifts **/
+
+.gift-container {
+	position:relative;
+	top:39%;
+	width: 100%;
+}
+
+.gifts {
+	position:relative;
+	z-index:1;
+	display: flex;
+	justify-content: space-between;
+	max-width: 95%;
+	margin: auto;
+}
+
+.gift {
+	width: 30%;
+	height: 90px;
+}
+
+.snow {
+	width:100%;
+	height:50px;
+	background:url(../img/snow-effect.png) no-repeat;
+	background-size: 100%;
+	-webkit-background-size: 100%;
+	-moz-background-size: 100%;
+	-o-background-size: 100%;
+	position:absolute;
+	top:70px;
+	z-index: 2;
+}
+
+.gyellow {
+	background:url(../img/yellow.png) no-repeat;
+	background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+}
+
+.gblue {
+	background:url(../img/blue.png) no-repeat;
+	background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+}
+
+.ggreen{
+	background:url(../img/green.png) no-repeat;
+	background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+}
+
+.gifts .ggreen {
+	position: absolute;
+  top: 0%;
+  left: 35%;
+}
+
+.gifts .gblue {
+	position: absolute;
+	top: 0%;
+	right: 0%;
+}
+
+.gifts .gyellow {
+	position: absolute;
+  top: 0%;
+	left: 0%;
+}
+
+.shaker {
+	animation-name: shake;
+  	animation-duration: 2s;
+  	animation-delay: 2s;
+  	animation-timing-function: 	cubic-bezier(.36,.07,.19,.97);
+  	animation-iteration-count: infinite;	
+
+}
+
+.shaker2 {
+	animation-name: shake-two;
+  	animation-duration: 3s;
+  	animation-delay: 3s;
+  	animation-timing-function: 	cubic-bezier(.36,.07,.19,.97);
+  	animation-iteration-count: infinite;	
+
+}
+
+.shaker3 {
+	animation-name: shake-three;
+  	animation-duration: 3s;
+  	animation-delay: 4s;
+  	animation-timing-function: 	cubic-bezier(.36,.07,.19,.97);
+  	animation-iteration-count: infinite;	
+
+}
+
+
+@keyframes shake {
+
+	10%, 100% {
+	transform: translate3d(0, 0, 0);
+	}
+
+  0% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  3% {
+    transform: translate3d(4px, 0, 0);
+  }
+
+  4% {
+    transform: translate3d(-7px, 0, 0);
+  }
+
+}
+
+@keyframes shake-two {
+
+	10%, 100% {
+	transform: translate3d(0, 0, 0);
+	}
+
+  0% {
+    transform: translate3d(1px, 0, 0);
+  }
+  
+  4% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  6% {
+    transform: translate3d(7px, 0, 0);
+  }
+
+}
+
+@keyframes shake-three {
+
+	20%, 100% {
+	transform: translate3d(0, 0, 0);
+	}
+
+  0% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  
+  10% {
+    transform: translate3d(3px, 0, 0);
+  }
+
+  15% {
+    transform: translate3d(-8px, 0, 0);
+  }
+
+}
+
+/** Wishlist & Santa **/
+
+.snt-wishlist {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	display: flex;
+	z-index: 3;
+
+}
+
+.santa {
+	width:50%;
+	height:100px;
+	background:url(../img/santa-1.png) no-repeat;
+	background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover; 
+	margin-left:-50px;
+}
+
+.wishlist {
+	width:52%;
+	padding:2%;
+	border-radius:20px;
+	margin:2% 0% 0% 5%;
+	height:70px;
+	
+}
+
+.leaf-red {
+	width:30px;
+	height:30px;
+	background:url(../img/leaf-red.png) no-repeat;
+	background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover; 
+	position:absolute;
+	right:5%;
+	top:-2%;
+}
+
+.wishlist-content {
+position: relative;
+display: flex;
+}
+
+.wishlist-content img {
+	height:35px;
+	margin-right:10px;
+
+}
+
+.wishlist-gift {
+	display: flex;
+	position: relative;
+}
+
+#sml-iphone, #sml-laptop, #sml-tv {
+	display:none;
+}
+
+#sml-iphone {
+	background:url(../img/IphoneX.png) no-repeat;
+	background-size: contain;
+	-webkit-background-size: contain;
+	-moz-background-size: contain;
+	-o-background-size: contain; 
+	height:35px;
+	width:20px;
+	margin-right:10px; 
+ }
+
+#sml-laptop {
+	background:url(../img/laptop-min.png) no-repeat;
+	background-size: contain;
+	-webkit-background-size: contain;
+	-moz-background-size: contain;
+	-o-background-size: contain; 
+	height:40px;
+	width:50px;
+	margin-right:10px;
+}
+#sml-tv {
+	background:url(../img/tv-min.png) no-repeat;
+	background-size: contain;
+	-webkit-background-size: contain;
+	-moz-background-size: contain;
+	-o-background-size: contain; 
+	height:40px;
+	width:50px;
+	margin-right:10px;
+}
+
+
+/** Overlay gift **/
+
+.overlay-gift {
+	opacity:1;
+}
+
+.cover {
+		width:100%;
+    top: 0%;
+    left: 0%;
+    position: absolute;
+    z-index: 10;
+    background: rgba(255,255,255,0.7);
+}
+
+.blur-in {
+	-webkit-animation: blur 0.5s forwards;
+    -moz-animation: blur 0.5s forwards;
+    -o-animation: blur 0.5s forwards;
+    animation: blur 0.5s forwards;
+}
+
+
+.blur-in-a {
+	-webkit-animation: blur 0s forwards;
+    -moz-animation: blur 0s forwards;
+    -o-animation: blur 0s forwards;
+    animation: blur 0s forwards;
+}
+
+@keyframes blur {
+
+0% {
+    -webkit-filter: blur(0px);
+    -moz-filter: blur(0px);
+    -o-filter: blur(0px);
+    -ms-filter: blur(0px);
+    filter: blur(0px);
+}
+100% {
+    -webkit-filter: blur(70px);
+    -moz-filter: blur(70px);
+    -o-filter: blur(70px);
+    -ms-filter: blur(70px);
+    filter: blur(70px);
+   }
+ } 
+
+ /** Jump bloc **/
+
+.open-box {
+  opacity:1;
+	position: absolute;
+	z-index: 20;
+	width:100%;
+ }
+
+.yellow-gift {
+	opacity:1;
+}
+
+.blue-gift { 
+	opacity:1;
+}
+
+.green-gift {
+	opacity:1;
+}
+
+.open-box .top-text{
+	width: 70%;
+	margin:auto;
+	margin-top: 40%;
+	background: none;
+	}
+
+.big-gift {
+	width:150px;
+	height:150px;
+	margin:auto;
+	animation: bouncing 0.5s cubic-bezier(0.1,0.25,0.1,1) 0s infinite alternate both;
+}
+
+@keyframes bouncing{
+	0%  { margin-top: 27%;}
+  100%{ margin-top: 15%;}
+}
+
+
+/** gift open overlay **/
+
+
+.gift-open {
+	text-align: center;
+	background: url(../img/snowflakes.png) no-repeat;
+	background-size: cover;
+	height:100vh;
+	left:0;
+}
+
+.gift-open.yellow-gift {
+	opacity:1;
+}
+
+.gift-open.blue-gift {
+	opacity:1;	
+}
+
+.gift-open.green-gift{
+	opacity:1;	
+}
+
+
+
+.gift-open .top-text{
+	width: 100%;
+	margin:auto;
+	margin-top: 30%;
+	background: none;
+	}
+
+.box-over {
+	width:100%;
+	height:140px;
+	margin-top:20%;
+	font-weight: bold;
+	text-align: center;
+	
+}
+
+.box-over img {
+  width:170px;
+	margin-top:-10%;
+	animation-name: zoomin;
+  	-webkit-animation-name: zoomin;
+ 	animation-iteration-count: 1;
+	-webkit-animation-iteration-count: 1;
+	animation-duration: 1s;
+	-webkit-animation-duration: 1s;
+	animation-timing-function: ease-in;
+	-webkit-animation-timing-function: ease-in;
+}
+
+@keyframes zoomin {
+  	0% {transform: scale(0);}
+  	100% {transform: scale(1);}
+ }
+
+@-webkit-keyframes zoomin {
+ 	0% {transform: scale(0);}
+ 	100% {transform: scale(1);}
+}
+
+.box-over p {
+	font-size:20px !important;
+	margin-top:8%;
+}
+
+button.add-to-wishlist {
+	position: relative;
+	display: block;
+	margin-top:10% !important;
+	background:  linear-gradient(0deg, #3A9960, #63E396);
+	width:70%;
+	height:50px;
+	border-radius: 100px;
+	margin:auto;
+	box-shadow: 0px 10px 30px rgba(0,0,0,0.3);
+	border: none;
+	animation-name: zoomina;
+  -webkit-animation-name: zoomina;
+ 	animation-iteration-count: 1;
+	-webkit-animation-iteration-count: 1;
+	animation-duration: 1s;
+	-webkit-animation-duration: 1s;
+	animation-timing-function: ease-in;
+	-webkit-animation-timing-function: ease-in;
+}
+
+@keyframes zoomina {
+	0% {transform: scale(0.8);}
+	100% {transform: scale(1);}
+}
+
+@-webkit-keyframes zoomina {
+ 0% {transform: scale(0.8);}
+ 100% {transform: scale(1);}
+}
+
+.gift-open .santa {
+	position: absolute;
+	bottom: 0
+
+}
+
+/** Phone Overlay **/ 
+
+.phone-container {
+	opacity:1;
+	position: relative;
+	z-index: 100;
+	height:100vh;
+	width:100% !important;
+}
+
+
+ .top-phone {
+	text-align: center;
+	width: 100%;
+	position: relative;
+	margin-top: 3%;
+	display: block;
+
+}
+
+.title-santa, .title-message{
+	background:url(../img/santatext-bck.png) no-repeat;
+	background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover; 
+	width:35%;
+	margin:auto;
+}
+
+.santa-left {
+	width:55%;
+	height:200px;
+	background:url(../img/santa-2.png) no-repeat;
+	background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover; 
+	transform: rotate(20deg);
+	 position: absolute;
+    left: -25%;
+    top: 7%;
+} 
+
+.input-box input:valid button {
+	background:  blue;
+}
+
+.input-box button {
+	position: relative;
+	display: block;
+	margin-top:3% !important;
+	background:  linear-gradient(0deg, #3A9960, #5BD18A);
+	width:80%;
+	height:40px;
+	border-radius: 100px;
+	margin:auto;
+	box-shadow: 0px 10px 30px rgba(0,0,0,0.3);
+	border: none;
+
+}
+
+button.btn-active {
+	background:  linear-gradient(0deg, #3A9960, #63E396) !important;
+
+}
+
+.phone-enter {
+	position:absolute;
+	width: 100%;
+	height:150px;
+	padding:5% 0% 5% 0% ;
+	text-align: center;
+	top:30%;
+}
+
+.input-box {
+	 position: relative; 
+	 height:110px;
+	}
+
+.input-box div {
+	display:flex !important;
+	flex-direction: column;
+	align-content: center;
+	justify-content: center;
+}
+
+.input-box input {
+	width:48%;
+	max-width:80%;
+	margin:auto;
+	height:40px;
+	border-radius: 100px;
+	border:2px solid #3A9960;
+	font-family: 'Quicksand', sans-serif;
+	font-size:22px;
+	margin-top: 10px;
+	background: url(../img/za-flag.jpg) no-repeat ;
+	background-position:5% 45%;
+	padding-left: 32%;
+}
+
+.common-components-simple-opacity-transition-simple-opacity-transition__group--3k1Ig div:nth-child(2),
+.common-components-simple-opacity-transition-simple-opacity-transition__group--3k1Ig div:nth-child(3){
+	font-family: 'Quicksand', sans-serif;
+	background:white;
+	font-size:12px;
+	padding-bottom:1%;
+}
+
+.unit {
+	position: absolute;
+	display: block;
+	left: 22%;
+	top: 15%;
+	z-index: 9;
+	font-size: 21px !important;
+	border-left: 2px solid rgba(0, 0, 0, 0.2);
+	padding-left: 5px;}
+
+.phone-enter span {
+	font-family: 'Quicksand', sans-serif;
+	font-size:14px;
+	line-height: 30px;
+
+}
+
+.phone-enter p {
+	font-family: 'Quicksand', sans-serif;
+	font-size:14px;
+	line-height: 20px;
+}
+
+.wishlist-container {
+	position: absolute;
+    top: 63%;
+    width:100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.wishlist-container p {
+	width :70%;
+	line-height:12px;
+}
+
+.wishlist-container .wishlist{
+	margin:2% 0% !important;
+	text-align: left !important;
+}
+
+.wishlist-container .leaf-red {
+	right:20%;
+	top:8%;
+}
+
+.testimonial {
+	height:60px;
+	background:#BD363A;
+	width: 100%;
+	position:absolute; 
+	bottom: 0;
+	display: flex;
+	justify-content: center;
+	padding:2% 0%;
+}
+
+.picture {
+	width:40px;
+	height:40px;
+	border:4px white solid;
+	margin:2%;
+	border-radius:75px;
+	background: url(../img/test-bck.jpg) no-repeat;
+	background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover; 
+
+}
+
+.text-container {
+	background:rgba(255,255,255,0.1);
+	border-radius:10px;
+	width:70%;
+	padding: 2% 4%;
+
+}
+
+.name {
+	font-weight:bold;
+	font-size:10px;
+	background:white;
+	color:#BD363A;
+	border-radius:15px;
+	width: 110px;
+	text-align: center;
+}
+
+.testimonial-txt {
+	margin-top:5px;
+	font-size: 12px;
+	line-height:14px;
+	color:white;
+}
+
+/** Message **/
+.message-container {
+	opacity:1;
+	position: relative;
+	z-index: 100;
+	height:100vh;
+}
+
+.message-container .phone-enter {
+	padding:5% 0%;
+}
+
+.message {
+	width: 90%;
+	margin: auto;
+	background: white;
+	border-radius: 30px;
+	height:100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.reply {
+	font-size:75px;
+	animation-name: zoomin;
+  	-webkit-animation-name: zoomin;
+ 	animation-iteration-count: 1;
+	-webkit-animation-iteration-count: 1;
+	animation-duration: 1s;
+	-webkit-animation-duration: 1s;
+	animation-timing-function: ease-in;
+	-webkit-animation-timing-function: ease-in;
+}
+
+
+.yes {
+	font-family: 'Amatic SC', sans-serif;
+	font-size: 220px;
+	line-height: 220px;
+	animation-name: zoomin;
+  	-webkit-animation-name: zoomin;
+ 	animation-iteration-count: 1;
+	-webkit-animation-iteration-count: 1;
+	animation-duration: 1s;
+	-webkit-animation-duration: 1s;
+	animation-timing-function: ease-in;
+	-webkit-animation-timing-function: ease-in;
+}
+
+/** Message **/
+.success-container {
+	opacity:1;
+	position: relative;
+	z-index: 100;
+	height:100vh;
+}
+
+.success-container .phone-enter {
+	padding:5% 0%;
+}
+
+.message {
+	width: 90%;
+	margin: auto;
+	background: white;
+	border-radius: 30px;
+	height:100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.draw {
+	font-size:75px;
+	line-height: 75px;
+	margin-bottom:5%;
+}
+
+/** Media queries **/
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+
+
+	.gift {
+		height:200px;
+	}
+
+	.snow {
+		top:180px;
+	}
+
+	.santa {
+		width:40%;
+		height:200px; 
+	}
+
+	h1 {
+		font-size: 100px;
+	}
+
+	.toptitle {
+		font-size :30px;
+	}
+
+	.wishlist {
+		height:130px;
+	}
+
+	.wishlist span {
+		font-size:50px;
+	}
+
+	p {
+		font-size:20px;
+	}
+
+	.big-gift {
+		width:250px;
+		height:250px;
+	}
+
+	.box-over img {
+		width:330px;
+	}
+
+	.gift-open .top-text {
+		margin-top:20%
+	}
+
+	.box-over {
+		height:250px;
+	}
+
+	.box-over p {
+		font-size:33px !important;
+	}
+
+	button.add-to-wishlist {
+	width: 40%;
+	height: 70px;
+	}
+
+	button {
+		font-size:25px;
+	}
+
+	.step {
+    height: 70px;
+		width: 70px;
+		padding-top:2%;
+	}
+
+	.active {
+			height: 70px;
+			width: 70px;
+	}
+
+	.progress {
+		font-size:30px;
+	}
+
+
+}
+
+
+
+
+
+
+
+
