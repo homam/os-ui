@@ -93,7 +93,7 @@ class MSISDNEntryStep extends React.PureComponent<{
             <span className="circle black"></span>
             <span className="deviceName">Black</span>
             <span className="deviceInfo">Highly-average users like to choose.</span>
-          </button>
+         </button>
 
           <button className="btnChoice" onClick={() => { this.setState({ display: 'finalResult', finish: 'white' }) }}>
             <span className="circle white"></span>
@@ -107,7 +107,7 @@ class MSISDNEntryStep extends React.PureComponent<{
             <span className="deviceInfo">Average users like to choose.</span>
           </button>
 
-        </div>
+        </div> 
 
         <div className="finalResult step">
 
