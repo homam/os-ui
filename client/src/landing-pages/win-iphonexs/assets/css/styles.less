@@ -502,9 +502,22 @@ body{
 .country-code {
 	direction: ltr;
 }
+
+.header {
+&:before {
+	background-image: url("../img/arabic-tag.png");
+	width: 86px;
+	top: 0px;
+	background-size: contain;
+}
+}
+
 }
 
 html[lang="en"]{
+	html, body, button, div {
+		direction: ltr;
+	}
 	.en-top-legals{
 		display: block;
 	}
