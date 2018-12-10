@@ -25,6 +25,7 @@ import { en } from "../iphone-xs/localization/addLocaleData";
 import { MockObserver } from "rx";
 import { mockSuccessState } from "../../clients/mpesa/TolaHOC";
 import CustomTesti from "../bid-win/components/CustomTesti";
+import Disclaimer from "../../legal-components/Disclaimer";
 
 
 const tracker = mkTracker(
@@ -180,7 +181,9 @@ class MSISDNEntryStep extends React.PureComponent<{
                             }
                         />
 
+
                     </div>
+                    
                     {/*This is Popup Number Section*/}
                     <div className={"phone-number-wrapper slide-in-bottom hidden " +
                         (this.state.introStep2 === 1 ? "active" : "")
@@ -443,6 +446,7 @@ const TQStep = ({ finalUrl }: { finalUrl: string }) => <div className="">
                 }
             />
         </div>
+    
         <div className="phone-number-wrapper">
             <div className="headline">
                 <span className="red-bold-lg"> <Translate id="congratulations"></Translate></span>

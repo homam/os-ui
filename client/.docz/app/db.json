@@ -26,6 +26,33 @@
       "menu": null,
       "headings": []
     },
+    "src/common-components/msisdn/msisdn.mdx": {
+      "name": "common-components/msisdn-input",
+      "id": "b291cb66bcf43e1b1b002d0a51d30122",
+      "filepath": "src/common-components/msisdn/msisdn.mdx",
+      "link": null,
+      "slug": "src-common-components-msisdn-msisdn",
+      "route": "/src-common-components-msisdn-msisdn",
+      "order": 0,
+      "menu": null,
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "reusable-components-in-bin-win-page",
+          "value": "Reusable Components in  bin-win  page"
+        },
+        {
+          "depth": 2,
+          "slug": "customslider",
+          "value": "CustomSlider"
+        },
+        {
+          "depth": 3,
+          "slug": "example",
+          "value": "Example:"
+        }
+      ]
+    },
     "src/landing-pages/bid-win/components/Docs.mdx": {
       "name": "bid-win/components",
       "id": "8a7e31ab7cf05e247977fad7dd6a271a",

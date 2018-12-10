@@ -1,0 +1,35 @@
+---
+name: common-components/msisdn-input
+---
+import { Playground, PropsTable } from 'docz'
+import Msisdn from './MsisdnInput'
+
+# Reusable Components in `bin-win` page
+
+
+## CustomSlider
+
+<Playground>
+  <Msisdn />
+</Playground>
+
+### Example:
+
+<Playground>
+ { ()  => {
+    class Example extends React.PureComponent {
+      constructor(props) {
+        super(props)
+        this.state = {
+          value: 200
+        }
+      }
+
+      render() {
+        return <div />;
+      }
+    }
+
+    return <Example />;
+ } }
+</Playground>
