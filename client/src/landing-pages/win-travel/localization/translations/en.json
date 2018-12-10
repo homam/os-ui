@@ -1,9 +1,9 @@
 {
   "testimonial-1": "Wow! I couldn't believe my eyes when I received my cash",
   "testimonial-2": "Found this easy to register, i recommend others to register to win",
-  "testimonial-3": "This is so awesome! Finally I can go travel to Paris!",
+  "testimonial-3": "This is so awesome! Finally I can go travel to Paris",
   "zakaria": "Zakaria",
-  "click-to-win": "Click to win",
+  "click-to-win": "Click to win!",
   "congratulations": "Congratulations!",
   "your-destination": "Your destination is",
   "take-me-there": "Take me there",
@@ -16,15 +16,14 @@
   "participate": "for your participation to win",
   "exclusive-for": "Exclusive for",
   "users": "users",
-  "karim": "Karim",
+  "karim": "Jasim",
   "fatima": "Fatima",
   "participants-minute": "3 participants in 5 minutes ago",
-  "disclaimers": "Gamelords is a subscription service. You will enjoy one day free trial, then you will be charged BHD 0.5 /week until you un- subscribe from the service. To un-subscribe send UNSUB 55 to 98023.",
+  "disclaimers": "Gamelords is a subscription service with one day free trial. The service gives players the chance to win $500 cash. By subscribing to the service, you will automatically enter the draw competition which will be conducted once every 3 months from the starting date of the competition. The winner will be randomly chosen. Subscribers will enjoy one day free trial, then you will be charged BHD 0.50 /week until you un- subscribe from the service. To un-subscribe send UNSUB 55 to 98023.",
   "subheadline-text": "Enter your mobile number to join now",
   "top-bar": "Welcome to Gamelords",
   "participation-to-win": "for your participation to win",
   "500-cash":"$500 cash",
-
   "hello_world": "Hello World!",
   "AlreadySubscribed": "You are already a subscriber!",
   "InvalidMSISDN": "This mobile number is incorrect, try again",
@@ -34,5 +33,9 @@
   "we_just_sent_a_pin": "We’ve sent you a 4 digit code, please enter it below to confirm your number",
   "didnt_receive_pin_yet": "Didn't receive a PIN yet? Make sure {phone} is your correct mobile number.",
   "if_not_your_mobile": "If {phone} is not your mobile number,",
-  "click_here_to_change_your_number": "Click here to change your phone number."
+  "click_here_to_change_your_number": "Click here to change your phone number.",
+  "pin_placeholder": "PIN",
+  "msisdn": "Phone Number",
+  "wait_message": "Wait..."
+
 }

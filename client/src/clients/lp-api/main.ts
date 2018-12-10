@@ -35,6 +35,14 @@ const defaultConfig = (offer: number) : IConfig => {
         handle: 'finger-print-lock'
       }
     }
+    case "bh": {
+      return {
+        offer,
+        host: 'n.game-lords.com',
+        country: 'bh',
+        handle: 'win-cash'
+      }
+    }
     default:
       const errorMsg = `'country' environment variable is either missing or has an unsupported value (${process.env.country}). This is necessary for defaultConfig(offer).`
       console.error(errorMsg)

@@ -113,8 +113,8 @@ body.guide #disclaimer{
 		position: absolute;
 		top:-8px;
 		left: 10px;
-		height: 60px;
-		width: 90px;
+		height: 65px;
+		width: 130px;
 		background-image: url("../img/exclusive_vivauser.svg");
 		background-repeat: no-repeat;
 	}
@@ -496,9 +496,28 @@ body{
 		font-size: 24px;
 	}
 }
+.customTesti ul li .details .message {
+	text-align: right;
+}
+.country-code {
+	direction: ltr;
+}
+
+.header {
+&:before {
+	background-image: url("../img/arabic-tag.png");
+	width: 86px;
+	top: 0px;
+	background-size: contain;
+}
+}
+
 }
 
 html[lang="en"]{
+	html, body, button, div {
+		direction: ltr;
+	}
 	.en-top-legals{
 		display: block;
 	}
@@ -565,3 +584,13 @@ fill: red;
  }	
  }
 
+ .msisdn-input {
+	 font-size: 18px;
+ }
+
+ .customTesti ul li .details .message {
+	 width: 200px;
+ }
+ .country-code {
+	 direction: ltr;
+ }

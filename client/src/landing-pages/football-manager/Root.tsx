@@ -2,6 +2,7 @@ import * as React from "react";
 import mkTracker from "../../pacman/record";
 import { TranslationProvider, Translate } from "./localization/index";
 import CustomTesti from "../bid-win/components/CustomTesti";
+import MsisdnComponent from '../../common-components/msisdn/msisdn-input';
 import HOC, {
   initialState,
   mockedCompletedState,
@@ -68,6 +69,7 @@ class MSISDNEntryStep extends React.PureComponent<{
       <form
         onSubmit={ev => {
           ev.preventDefault();
+          
           this.props.onEnd(this.state.msisdn);
         }}
       >
@@ -190,10 +192,10 @@ class MSISDNEntryStep extends React.PureComponent<{
           <div className="number-entry">
             <label><Translate id="msisdn-label"/></label>
             <div className="input-wrapper">
-              <input
-                placeholder="Phone number"
-                value={this.state.msisdn}
-                onChange={ev => this.setState({ msisdn: ev.target.value })}
+             <MsisdnComponent 
+                msisdn={this.state.msisdn} 
+                onChange={msisdn => this.setState({msisdn:msisdn})} 
+                maxLength={8}  
               />
             </div>
             <button

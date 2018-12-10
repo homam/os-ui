@@ -26,6 +26,7 @@ import { translate } from "../../../webpack/dev-utils/translate-by-yandex";
 import Timer from "../first/components/Timer";
 import CustomTesti from "../bid-win/components/CustomTesti";
 import { mockedMSISDNEntrySuccess } from "../../clients/lp-api-mo/HOC";
+import MsisdnInput from "../../common-components/msisdn/msisdn-input";
 
 
 // IMAGES DECLARATION
@@ -42,12 +43,10 @@ const tracker = mkTracker(
   "Win Travel" //TODO: replace Unknown with your page's name
 );
 
-function Terms(props) {
+function Wait(props) {
   return (
-    <div className="disclaimer">
-      <p><Translate id="disclaimers" /></p>
-    </div>
-  );
+    <Translate id="wait_message" />
+  )
 }
 
 class MSISDNEntryStep extends React.PureComponent<{
@@ -58,15 +57,26 @@ class MSISDNEntryStep extends React.PureComponent<{
   state = {
     locale: "ar",
     msisdn: this.props.msisdn,
-    isFlowStep: 0
+    firstStep: 1,
+    secondStep: 0,
+    msisdnPage: 0
   };
 
-  toNextPage = () => {
-
+  showPage2 = () => {
     this.setState({
-      isFlowStep: this.state.isFlowStep += 1
-    });
-  };
+      firstStep: 0,
+      secondStep: 1,
+      msisdnPage: 0
+    })
+  }
+  showMsisdn = () => {
+    this.setState({
+      firstStep: 0,
+      secondStep: 0,
+      msisdnPage: 1
+    })
+  }
+
 
   render() {
 
@@ -77,25 +87,19 @@ class MSISDNEntryStep extends React.PureComponent<{
           this.props.onEnd(this.state.msisdn);
         }}
       >
+
+        {/* INSERT FIRST PRELANDING HERE */}
         <div className="top-bar">
           <Translate id="top-bar"></Translate>
         </div>
         <div className="header">
           <p><Translate id="exclusive-for"></Translate> <span className="operator-name"></span> <Translate id="users"></Translate></p>
         </div>
-        <div className={"spin-page " + (this.state.isFlowStep === 0 ? "active" : "")}>
+        <div className={"spin-page " + (this.state.firstStep === 1 ? "active" : "")}>
           <div className="wrapper">
             <div className="intro-text">
               <div className="headline"></div>
               <div className="position-container">
-                {/* <div className="plane vibrate-slow"></div> */}
-                {/* <div className="cloud-1"></div>
-                <div className="cloud-2"></div> */}
-                {/* <div className="hot-balloon-1"></div>
-                <div className="hot-balloon-2"></div>
-                <div className="hot-balloon-3"></div>
-                <div className="hot-balloon-4"></div>
-                <div className="hot-balloon-5"></div> */}
                 <div className="plane-hot-balloon vibrate-slow">
                   <img src={planeHotBalloon} />
                 </div>
@@ -106,7 +110,7 @@ class MSISDNEntryStep extends React.PureComponent<{
             <img className="pin-pint-img" src={pinPoint} />
           </div>
           <div className="cta-container cta-container-2">
-            <button type="" className="btn click-to-win" onClick={this.toNextPage}>
+            <button className="btn click-to-win" onClick={this.showPage2} type="button">
               <Translate id="click-to-win"></Translate>
             </button>
           </div>
@@ -115,27 +119,33 @@ class MSISDNEntryStep extends React.PureComponent<{
           </div>
         </div>
 
-        <div className={"destination-page " + (this.state.isFlowStep === 1 ? "active" : "")}>
-          <div className="wrapper">
-            <div className="fireworks"></div>
-            <div className="congrats-container">
-              <div className="congrats-title">
-                <Translate id="congratulations"></Translate>
+        {/* INSERT SECOND PRELANDING HERE */}
+        <div className={"destination-page " + (this.state.secondStep === 1 ? "active" : "")}>
+          <div className="destination-page-bg">
+            <div className="wrapper">
+              <div className="fireworks"></div>
+              <div className="congrats-container">
+                <div className="congrats-title">
+                  <Translate id="congratulations"></Translate>
+                </div>
+                <div className="destination-title">
+                  <Translate id="your-destination"></Translate>
+                </div>
+                <div className="paris-title"></div>
               </div>
-              <div className="destination-title">
-                <Translate id="your-destination"></Translate>
-              </div>
-              <div className="paris-title"></div>
             </div>
-          </div>
-          <div className="cta-container cta-container-2">
-            <button type="" className="btn click-to-win" onClick={this.toNextPage}>
-              <Translate id="take-me-there"></Translate>
-            </button>
+            <div>
+              <div className="cta-container cta-container-2">
+                <button className="btn click-to-win" onClick={this.showMsisdn} type="button">
+                  <Translate id="take-me-there"></Translate>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div className={"msisdn-page " + (this.state.isFlowStep === 2 ? "active" : "")}>
+        {/* INSERT MSISDN PAGE HERE */}
+        <div className={"msisdn-page " + (this.state.msisdnPage === 1 ? "active" : "")}>
           <div className="blue-bg">
             <div className="banner-container">
               <div className="cash-flag"></div>
@@ -150,31 +160,32 @@ class MSISDNEntryStep extends React.PureComponent<{
                 <div className="counter-time">
                   <Timer duration={30} /> <span className="font-sm"><Translate id="sec"></Translate></span>
                 </div>
-
                 <div>
-                  {/* <div className="banner-headline subheadline"></div> */}
                   <div className="subheadline-text">
                     <Translate id="subheadline-text"></Translate>
                   </div>
                 </div>
                 <div className="input-container">
                   <div className="number-entry">
-                    <div className="input-wrapper">
-                      <input type="text"
-                        value={this.state.msisdn}
-                        onChange={ev => this.setState({ msisdn: ev.target.value })}
-                      />
-                    </div>
+
+                    <MsisdnInput maxLength={8}
+                      onChange={(msisdn) => this.setState({ msisdn })}
+                      countryCode={'+973'}></MsisdnInput>
+
                     <button className="btn click-to-win relative" type="submit" disabled={RDS.IsLoading(this.props.rds)}>
                       <Translate id="subscribe"></Translate>
                     </button>
-                    {RDS.WhenLoading(null, () => "Wait...")(this.props.rds)}
+                    {RDS.WhenLoading(null, () => <Wait />)(this.props.rds)}
                   </div>
+
                   <div className="error-msg">
                     {RDS.WhenFailure(null, (err: MSISDNEntryFailure) => (
                       <Translate id={err.errorType} />
                     ))(this.props.rds)}
                   </div>
+                </div>
+                <div className="disclaimer">
+                  <p><Translate id="disclaimers" /></p>
                 </div>
               </div>
               <div className="testimonial">
@@ -202,14 +213,15 @@ class MSISDNEntryStep extends React.PureComponent<{
                 />
               </div>
             </div>
-            <Terms />
           </div>
         </div>
+        {/* END OF MSISDN PAGE */}
       </form>
     );
   }
 }
 
+ {/* INSERT PIN PAGE HERE*/}
 class PINEntryStep extends React.PureComponent<{
   msisdn: string;
   rds: RDS.RemoteDataState<PINEntryFailure, PINEntrySuccess>;
@@ -228,16 +240,40 @@ class PINEntryStep extends React.PureComponent<{
           this.props.onEnd(this.state.pin);
         }}
       >
-        <div className="black-bg"></div>
 
-        <div className="blue-bg active">
-          <div className="banner-container">
-            <div className="cash-flag"></div>
-            <div className="banner"></div>
-            <div className="banner-headline"></div>
-          </div>
-          <div className="cta-container">
-            <div className="input-container">
+        <div className="black-bg"></div>
+        <div className="top-bar">
+          <Translate id="top-bar"></Translate>
+        </div>
+        <div className="header">
+          <p><Translate id="exclusive-for"></Translate> <span className="operator-name"></span> <Translate id="users"></Translate></p>
+        </div>
+        <div className="msisdn-page active">
+          <div className="blue-bg">
+            <div className="banner-container">
+              <div className="cash-flag"></div>
+              <div className="banner"></div>
+            </div>
+            <div className="cta-container sm">
+              <div className="banner-headline"></div>
+              <div className="counter">
+                <div className="counter-title">
+                  <strong><Translate id="hurry"></Translate></strong>
+                </div>
+                <div className="counter-time">
+                </div>
+                <div>
+                  <div className="subheadline-text">
+                    <Translate id="subheadline-text"></Translate>
+                  </div>
+                </div>
+                <div className="input-container">
+                  <div className="number-entry">
+
+                  </div>
+
+                </div>
+              </div>
               <div className="testimonial">
                 <CustomTesti
                   className="win-travel-testimonial"
@@ -263,77 +299,86 @@ class PINEntryStep extends React.PureComponent<{
                 />
               </div>
             </div>
-          </div>
-          <div className="pin-container">
-            <div className="awesome"></div>
-            <div className="pin-headline">
-              <Translate id="almost-there"></Translate>
-            </div>
-            <div>
-              <Translate id="we_just_sent_a_pin" />
-            </div>
-            <div id="pin-entry" className="">
-              <input type="text"
-                placeholder="PIN"
-                className="pin-input"
-                pattern="\d"
-                maxLength={5}
-                value={this.state.pin}
-                onChange={ev => this.setState({ pin: ev.target.value })}
-              />
-              <button type="submit" className="btn click-to-win pin-btn" disabled={RDS.IsLoading(this.props.rds)}>
-                <Translate id="confirm"></Translate>
-              </button>
-              {RDS.WhenLoading(null, () => <div />)(this.props.rds)}
-            </div>
-            <div className="participants-container">
-              <div className="left-column history">
-                <img src={history} alt="history icon" />
-              </div>
-              <div className="right-column">
-                <h2><Translate id="latest-participants"></Translate></h2>
-                <h3><Translate id="participants-minute"></Translate></h3>
-              </div>
-            </div>
-            <div>
-              {RDS.match({
-                failure: (err: PINEntryFailure) => (
-                  <div>
-                    <div>
-                      <Translate id={err.errorType} />
-                    </div>
-                    <Translate
-                      id="if_not_your_mobile"
-                      values={{
-                        phone: this.props.msisdn
-                      }}
-                    />
-                    &nbsp;
-                <a onClick={() => this.props.backToStart()}>
-                      <Translate id="click_here_to_change_your_number" />
-                    </a>
-                  </div>
-                ),
-                nothingYet: () => (
-                  <div>
-                    <Translate
-                      id="didnt_receive_pin_yet"
-                      values={{
-                        phone: this.props.msisdn
-                      }}
-                    />
-                    &nbsp;
-                <a onClick={() => this.props.backToStart()}>
-                      <Translate id="click_here_to_change_your_number" />
-                    </a>
-                  </div>
-                ),
-                loading: () => null,
-                success: () => null
-              })(this.props.rds)}
+            <div className="disclaimer">
+              <p><Translate id="disclaimers" /></p>
             </div>
           </div>
         </div>
+        <div className="pin-container slide-top">
+          <div className="awesome"></div>
+          <div className="pin-headline">
+            <Translate id="almost-there"></Translate>
+          </div>
+          <div>
+            <Translate id="we_just_sent_a_pin" />
+          </div>
+          <div id="pin-entry" className="">
+            <input type="text"
+              className="pin-input"
+              pattern="\d*"
+              maxLength={5}
+              value={this.state.pin}
+              onChange={ev => this.setState({ pin: ev.target.value })}
+            />
+            <button type="submit" className="btn click-to-win pin-btn" disabled={RDS.IsLoading(this.props.rds)}>
+              <Translate id="confirm"></Translate>
+            </button>
+            {RDS.WhenLoading(null, () => <div />)(this.props.rds)}
+          </div>
+          <div className="participants-container">
+            <div className="left-column history">
+              <img src={history} alt="history icon" />
+            </div>
+            <div className="right-column">
+              <h2><Translate id="latest-participants"></Translate></h2>
+              <h3><Translate id="participants-minute"></Translate></h3>
+            </div>
+          </div>
+          
+          <div>
+
+            {RDS.match({
+              failure: (err: PINEntryFailure) => (
+                <div>
+                  <div>
+                    <Translate id={err.errorType} />
+                  </div>
+                  <Translate
+                    id="if_not_your_mobile"
+                    values={{
+                      phone: this.props.msisdn
+                    }}
+                  />
+                  &nbsp;
+                <a className="click-here" onClick={() => this.props.backToStart()}>
+                    <Translate id="click_here_to_change_your_number" />
+                  </a>
+                </div>
+              ),
+              nothingYet: () => (
+                <div>
+                  <Translate
+                    id="didnt_receive_pin_yet"
+                    values={{
+                      phone: this.props.msisdn
+                    }}
+                  />
+                  &nbsp;
+                <a className="click-here" onClick={() => this.props.backToStart()}>
+                    <Translate id="click_here_to_change_your_number" />
+                  </a>
+                </div>
+              ),
+              loading: () => null,
+              success: () => null
+            })(this.props.rds)}
+
+          </div>
+          <div className="disclaimer-2">
+            <Translate id="disclaimers"></Translate>
+          </div>
+        </div>
+
       </form>
     );
   }
@@ -343,14 +388,16 @@ class PINEntryStep extends React.PureComponent<{
 const TQStep = ({ finalUrl }: { finalUrl: string }) => (
 
   <div className="destination-page active">
-    <div className="congrats-container">
-      <div className="thank-you"></div>
-      <div className="congrats-subtitle">
-      <Translate id="participation-to-win"></Translate>
+    <div className="destination-page-bg">
+      <div className="congrats-container">
+        <div className="thank-you"></div>
+        <div className="congrats-subtitle">
+          <Translate id="participation-to-win"></Translate>
+        </div>
+        <div className="cash-final-title">
+          <Translate id="500-cash"></Translate>
+        </div>
       </div>
-      <div className="cash-final-title">
-        <Translate id="500-cash"></Translate>
-    </div>
     </div>
   </div>
 );
@@ -390,7 +437,7 @@ class Root extends React.PureComponent<HOCProps> {
           </div>
         </div>
         <div id="creative">
-          <div>
+          <div className="full-height">
             <TranslationProvider locale={this.state.locale}>
 
               {match({
@@ -401,7 +448,7 @@ class Root extends React.PureComponent<HOCProps> {
                       rds={rds}
                       onEnd={msisdn => {
                         this.setState({ msisdn });
-                        this.props.actions.submitMSISDN(window, null, msisdn);
+                        this.props.actions.submitMSISDN(window, null, '973' + msisdn);
                       }}
                     />
                   </SimpleOpacityTransition>

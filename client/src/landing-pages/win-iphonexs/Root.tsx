@@ -61,10 +61,17 @@ function Terms(props) {
   );
 }
 
-class MSISDNEntryStep extends React.PureComponent<{
+function Wait(props) {
+  return (
+    <Translate id="wait_message" />
+  )
+}
+
+const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
   msisdn: string;
   rds: RDS.RemoteDataState<MSISDNEntryFailure, MSISDNEntrySuccess>;
   onEnd: (msisdn: string) => void;
+  intl: any;
 }> {
   state = {
     msisdn: this.props.msisdn,
@@ -123,6 +130,7 @@ class MSISDNEntryStep extends React.PureComponent<{
 
             </button>
           </div>
+          <Terms />
           <div className="winners">
 
             <label><Translate id="recent_winners" /></label>
@@ -151,7 +159,7 @@ class MSISDNEntryStep extends React.PureComponent<{
 
           </div>
 
-          <Terms />
+          
 
 
 
@@ -179,7 +187,10 @@ class MSISDNEntryStep extends React.PureComponent<{
             <label><Translate id="msisdn_label" /></label>
             <div className="input-wrapper">
               <MsisdnComponent
-              
+                maxLength={8}
+                onChange={(msisdn) => this.setState({ msisdn })}
+                countryCode={'+973'}
+                placeholder={this.props.intl.formatMessage({ id: "msisdn_placeholder" })}
               />
             </div>
             <button
@@ -189,8 +200,7 @@ class MSISDNEntryStep extends React.PureComponent<{
             >
               <Translate id="msisdn_btn" />
             </button>
-
-            {RDS.WhenLoading(null, () => "Wait...")(this.props.rds)}
+            {RDS.WhenLoading(null, () => <Wait />)(this.props.rds)}
           </div>
 
           <div className="error-msg">
@@ -206,7 +216,7 @@ class MSISDNEntryStep extends React.PureComponent<{
       </form>
     );
   }
-}
+})
 
 const PINEntryStep = injectIntl(class extends React.PureComponent<{
   msisdn: string;
@@ -241,7 +251,7 @@ const PINEntryStep = injectIntl(class extends React.PureComponent<{
               <Translate id="hurry_slot" />
             </h3>
             <p>
-              <Translate id="we_just_sent_a_pin" />
+              <Translate id="we_just_sent_a_pin" values={{ phone: this.props.msisdn }} />
               <a onClick={() => this.props.backToStart()}>
                 <Translate id="wrong_number" />
               </a>
@@ -392,7 +402,7 @@ class Root extends React.PureComponent<HOCProps> {
                       rds={rds}
                       onEnd={msisdn => {
                         this.setState({ msisdn });
-                        this.props.actions.submitMSISDN(window, null, msisdn);
+                        this.props.actions.submitMSISDN(window, null, '973' + msisdn);
                       }}
                     />
                   </SimpleOpacityTransition>

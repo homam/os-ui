@@ -3,7 +3,6 @@ import * as RDS from "../../common-types/RemoteDataState";
 import { Translate } from "./localization/index";
 import { MSISDNEntryFailure, MSISDNEntrySuccess } from "../../clients/lp-api/HOC";
 import TimerComponent from '../../common-components/timer/timer';
-import { render } from "react-dom";
 import MsisdnComponent from '../../common-components/msisdn/msisdn-input';
 
 
@@ -25,12 +24,18 @@ export class MSISDNEntryStep extends React.PureComponent<{
     });
   };
 
+  fetchme = () => {
+
+  }
+
  
 
 
   render() {
 
-    function Bonus(props) {
+    
+
+    function Bonus() {
       return (
       <div className="bonus-comp">
       <div className="bonus-comp__img">
@@ -45,6 +50,9 @@ export class MSISDNEntryStep extends React.PureComponent<{
     </div>
       );
     }
+
+ 
+    
 
     return (<form onSubmit={ev => {
       ev.preventDefault();
@@ -72,12 +80,17 @@ export class MSISDNEntryStep extends React.PureComponent<{
           <label className="msisdn__label">Enter your number to get exclusive access</label>
   
           <div className="component-wrapper">
-          <MsisdnComponent maxLength={11}/>
+            <MsisdnComponent 
+              msisdn={this.state.msisdn} 
+              onChange={msisdn => this.setState({msisdn:msisdn})} 
+              maxLength={11}  
+            />
           </div>
             
           
           <button type="submit" className="btn primary" disabled={RDS.IsLoading(this.props.rds)}>
-            <Translate id="submit_phone" />
+          <Translate id="submit_phone" />
+           
           </button>
 
           {RDS.WhenLoading(null, () => 'Preparing for download ...')(this.props.rds)}
