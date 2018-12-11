@@ -1,3 +1,5 @@
+@import "../../../../reset.css";
+
 body{
   margin: 0;
   padding:0;
@@ -10,7 +12,7 @@ body{
 	-webkit-font-smoothing: antialiased;
 }
 
-.beginDiv, .genderDiv, .nameDiv, .dateDiv, .phoneDiv, .overlay{
+.beginDiv, .genderDiv, .nameDiv, .dateDiv, .phoneDiv, .overlay, .moDiv{
   display: none;
 }
 
@@ -18,8 +20,8 @@ body{
   display: block;
 }
 
-.button {
-  font-size: 16px;
+.button, .button3{
+  font-size: 18px;
   background-color: #9D2257;
   background: linear-gradient(#F00B6C,#9D2257);
   border-radius: 50px;
@@ -29,15 +31,138 @@ body{
   min-width: 30px;
   box-sizing: border-box;
   width: 100%;
-  max-width: 200px;
-  height: 40px;
-  margin: 10px auto;
+  max-width: 250px;
+  height: 50px;
+  margin: 0px auto;
   font-weight: bold;
+  box-shadow: 0px 2px 5px #9c9090;
+}
+
+.button3{
+  max-width: 280px;
+  font-size: 22px;
+}
+
+/*mo designs start*/
+
+a{
+  text-decoration: none;
+}
+
+.keyword, .shortcode{
+  color: rgb(62, 6, 159);
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  animation: flash 3s infinite; 
+}
+
+@-webkit-keyframes flash {
+  from,
+  50%,
+  to {
+    opacity: 1;
+  }
+
+  25%,
+  75% {
+    opacity: 0;
+  }
+}
+
+@keyframes flash {
+  from,
+  50%,
+  to {
+    opacity: 1;
+  }
+
+  25%,
+  75% {
+    opacity: 0;
+  }
+}
+
+
+.keys{
+  font-size: 22px;
+  color: #000;
+  text-align: center;
+}
+
+.tag1{
+  font-size: 14px;
+  color: #000;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.or{
+  font-size: 22px;
+  color: #000;
+  text-align: center;
+  font-weight: bold;
+  padding-top: 7px;
+  padding-bottom: 10px;
+}
+
+.moHead{
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.timer{
+  color: red;
+  font-size: 22px;
+  font-weight: bold;
+}
+/*mo designs end*/
+
+.button1{
+  background-image: url('../imgs/male.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 110px;
+  height: 110px;
+  background-color: white;
+  border: none;
+}
+
+.button2{
+  background-image: url('../imgs/female.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 110px;
+  height: 110px;
+  background-color: white;
+  border: none;
+}
+
+.btnGender{
+  padding-top: 15px;
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.gend{
+  display: flex;
+  justify-content: space-around;
+}
+
+.male, .female{
+  color: #000;
+  font-size: 16px;
+  font-weight: bold;
+
 }
 
 .fat1{
-  height: 55px;
-  font-size: 20px;
+  height: 60px;
+  font-size: 22px;
+  max-width: 250px;
 }
 
 .container{
@@ -59,6 +184,32 @@ body{
   padding-top: 20px;
 }
 
+.form1{
+  padding-top: 10px;
+}
+
+.entryTitle{
+  text-align: left;
+  font-size: 16px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.smallTitle{
+  color: #000;
+  font-size: 14px;
+  text-align: center;
+  margin: 30px auto 15px;
+}
+
+.firstHead{
+  padding-top: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 20px;
+}
+
 .whiteBox{
   background-color: white;
   display: block;
@@ -67,16 +218,22 @@ body{
   height: 220px;
   border-radius: 10px;
   margin: 0 auto;
+  margin-top: 30px !important;
+}
+
+.bigBox{
+  height: 260px;
 }
 
 .header{
   background: linear-gradient(#028D9F, #22BCBC);
   width: 100%;
-  padding-top: 4px;
-  padding-bottom: 4px;
+  padding-top: 6px;
+  padding-bottom: 6px;
   color: white;
   text-align: center;
   font-size: 18px;
+  font-weight: bold;
 }
 
 .creative{
@@ -120,16 +277,21 @@ body{
   transform: rotate(-10deg);
 }
 
-.labelStyle{
-  color: black;
-  padding-left: 20px;
-  padding-top: 10px;
-  font-size: 14px;
-  float: left;
+.c-input-name{
+  padding-bottom: 10px;
 }
 
-.inputStyle{
-  width: 60%;
+.labelStyle{
+  color: black;
+  padding-left: 10px;
+  padding-top: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/*for text form*/
+.inputStyle1{
+  width: 100%;
   max-width: 280px;
   min-width: 200px;
   padding-left: 7px;
@@ -138,9 +300,31 @@ body{
   font-size: 16px;
   border-radius: 30px;
   border: none;
-  background-color: rgb(232, 231, 232);
+  border: 1px solid #9c9090;
   display: block;
   margin: 0 auto;
+}
+
+/*for date*/
+.inputStyle2{
+  width: 100%;
+  max-width: 280px;
+  min-width: 200px;
+  padding-left: 7px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 16px;
+  border-radius: 30px;
+  border: none;
+  border: 1px solid #9c9090;
+  display: block;
+  margin: 0 auto;
+  background-color: white;
+  
+}
+
+.customTesti{
+  background-color: rgba(27, 4, 4, 0.55) !important;
 }
 
 .customTesti.testi {
@@ -148,6 +332,7 @@ body{
   margin: auto;
   max-width: 300px;
   direction: ltr;
+  margin-top: 10px;
 }
 
 .customTesti.testi ul li .details .rating span {
@@ -206,13 +391,46 @@ body{
 }
 
 .overlay{
-  background-color: rgba(0, 0, 0, 0.44);
+  background-color: rgba(0, 0, 0, 0.8);
   display: block;
-  height: 38%;
+  height: 40%;
   width: 100%;
   position: absolute;
   z-index: 2;
   top: 30px;
 }
 
+.tagline{
+  color: white;
+  font-size: 18px;
+  padding: 10px 30px;
+  position: absolute;
+  bottom: 10px;
+}
 
+.disclaimer{
+  margin: 60px auto;
+  width: 100%;
+  max-width: 310px;
+  color: gray;
+  font-size: 20px;
+}
+
+.disclaimer span{
+  font-size: 24px;
+  color: yellow;
+}
+
+.App{
+  padding-left: 10px;
+}
+
+.country-code{
+  display: none;
+}
+
+.msisdn-input{
+  padding-left: 60px !important;
+  min-width: 260px;
+  margin: 10px auto !important;
+}

@@ -8,5 +8,17 @@
   "we_just_sent_a_pin": "We just sent a PIN to your mobile phone.\nPlease check your SMS inbox and enter the PIN that you received below:",
   "didnt_receive_pin_yet": "Didn't receive a PIN yet? Make sure {phone} is your correct mobile number.",
   "if_not_your_mobile": "If {phone} is not your mobile number,",
-  "click_here_to_change_your_number": "Click here to change your phone number."
+  "click_here_to_change_your_number": "Click here to change your phone number.",
+  "msisdn_placeholder": "Phone-Number",
+  "submit_button": "Submit",
+  "phone_entry_statement": "Nhập số điện thoại để tiếp tục:",
+  "incentive_statement": "Để bảo mật thông tin cá nhân, chúng tôi sẽ gửi kết quả đến điện thoại của bạn...",
+  "SMS_text": "Gửi",
+  "To_text": "đến",
+  "Male_text": "Nam",
+  "Female_text": "Nữ",
+  "your_dob": "Ngày sinh:",
+  "discover_text": "Bạn và 'người ấy' hòa hợp như thế nào?",
+  "invite_text": "Kết quả chính xác & đáng tin cậy",
+  "start_now": "Bắt đầu!"
 }
