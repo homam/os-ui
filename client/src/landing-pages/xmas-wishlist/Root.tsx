@@ -26,7 +26,7 @@ const imgBigLaptop = require("./assets/img/laptop.png");
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
   "xx",
-  "Unknown" //TODO: replace Unknown with your page's name
+  "xmas-wishlist" //TODO: replace Unknown with your page's name
 );
 
 class MSISDNEntryStep extends React.PureComponent<{
