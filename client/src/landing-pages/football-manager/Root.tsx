@@ -24,6 +24,8 @@ import {
 // CSS DECLARATION
 import "./assets/css/styles.less?raw";
 import { translate } from "../../../webpack/dev-utils/translate-by-yandex";
+import { mockedMSISDNEntrySuccess } from "../../clients/lp-api-mo/HOC";
+import { mockSuccessState } from "../../clients/mpesa/TolaHOC";
 
 // IMAGES DECLARATION
 // ok
@@ -381,7 +383,7 @@ class Root extends React.PureComponent<HOCProps> {
                   }}
                 >{
                     this.state.locale === "ar"
-                      ? "eng"
+                      ? "EN"
                       : "عربى"
                   }</button>
 
@@ -427,5 +429,5 @@ class Root extends React.PureComponent<HOCProps> {
   }
 }
 
-export default HOC(tracker, Root)(mockedPINState);
+export default HOC(tracker, Root)(initialState);
 

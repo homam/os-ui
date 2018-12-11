@@ -1,5 +1,4 @@
 {
-  "hello_world": "Hello World!",
   "AlreadySubscribed": "You are already a subscriber!",
   "InvalidMSISDN": "This mobile number is incorrect, try again",
   "UnknownError": "An unknown error occurred.",
@@ -16,7 +15,8 @@
   "pin-submit-btn": "Confirm Pin Now",
   "select-team-cta":"Select your team now!",
   "resend-pin": "Resend Pin",
-  "select-team-lead": "You have received a match challenge, play now!",
+  "select-team-lead": "Your friend challenge you a match. Challenge him now!",
+  "selected-team-title": "THE MATCH IS STARTED!",
   "msisdn-label": "Enter your phone number to start game",
   "msisdn_btn": "Enter The Match",
   "msisdn_placeholder": "Phone number"
