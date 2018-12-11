@@ -1,0 +1,16 @@
+{
+  "hello_world": "Helo, Dunia!",
+  "AlreadySubscribed": "Anda telah pun melanggan!",
+  "InvalidMSISDN": "Ini nombor telefon bimbit yang salah, cuba lagi",
+  "UnknownError": "Ralat yang tidak diketahui berlaku.",
+  "InvalidPIN": "Sila masukkan PIN betul bahawa anda diterima di telefon",
+  "TooEarly": "Anda mesti mengemukakan nombor telefon bimbit",
+  "we_just_sent_a_pin": "Kita hanya kirim PIN untuk anda telefon bimbit.\nSila periksa inbox SMS dan masukkan PIN yang anda diterima di bawah:",
+  "didnt_receive_pin_yet": "Tidak menerima satu PIN? Pastikan {telefon} adalah anda yang betul nombor telefon bimbit.",
+  "if_not_your_mobile": "Jika {telefon} tidak nombor telefon bimbit,",
+  "click_here_to_change_your_number": "Klik di sini untuk menukar nombor telefon anda.",
+  "Digital_Deluxe_Edition": "Digital Deluxe Edisi",
+  "submit_phone": "Hantar untuk bermain",
+  "testi1": "Saya sangat bernasib baik kerana telah merebut!",
+  "submitPhoner": "placeholder of tex"
+}
