@@ -154,16 +154,19 @@ class Root extends React.PureComponent<HOCProps> {
         if(dataName == 'iphone'){
           document.getElementById("wishlist-title").style.display = "none";
           document.getElementById("sml-iphone").style.display = "block";
+          document.getElementById("arrow").style.left = "45%";
         };
 
         if(dataName == 'tv'){
           document.getElementById("wishlist-title").style.display = "none";
           document.getElementById("sml-tv").style.display = "block";
+          document.getElementById("arrow").style.left = "47%";
         };
 
         if(dataName == 'laptop'){
           document.getElementById("wishlist-title").style.display = "none";
           document.getElementById("sml-laptop").style.display = "block";
+          document.getElementById("arrow").style.left = "75%";
         };
 
       }, false)
@@ -214,7 +217,7 @@ class Root extends React.PureComponent<HOCProps> {
 
       <div className="page step1">
 
-        <div className="overlay-gift cover">
+        <div className="overlay-gift">
 
           <div className="container-first">
 
@@ -229,7 +232,7 @@ class Root extends React.PureComponent<HOCProps> {
               <h1 className="red">choose your gift</h1>
             </div>
 
-
+            <div className="arrow-down" id="arrow"></div>
             <div className="gift-container">
               <div className="gifts" id="gifts">
                 <div className="gift shaker gyellow" data-item="iphone" onClick={() => { this.setState({ display: 'step2' }) }} id="gift1"></div>
@@ -256,7 +259,7 @@ class Root extends React.PureComponent<HOCProps> {
 
 
             </div>
-
+            
           </div>
         </div>
 
