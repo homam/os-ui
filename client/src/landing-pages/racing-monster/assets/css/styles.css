@@ -57,13 +57,14 @@ ul,li{
 	right:0;
 	top:10px;
 	z-index: 9;
-	width:195px;
+	width:180px;
 	height:92px;
 	margin:0 auto;
 	display: block;
 	position: absolute;
 	background-size: 100% auto;
-	background-image: url(../img/title.png);
+	background-image: url(../img/title-ar.png);
+	background-repeat: no-repeat;
 	animation: 1s fadeInDown ease-in-out;
 }
 

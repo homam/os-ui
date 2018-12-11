@@ -1,22 +1,25 @@
 {
-  "hello_world": "ar:: Hello World!",
-  "AlreadySubscribed": "ar:: You are already a subscriber!",
-  "InvalidMSISDN": "ar:: This mobile number is incorrect, try again",
-  "UnknownError": "ar:: An unknown error occurred.",
-  "InvalidPIN": "ar:: Please enter the correct PIN that you received on your phone",
-  "TooEarly": "ar:: You must first submit a mobile number",
+  "AlreadySubscribed": "انت مشترك مسبقاَ في الخدمة",
+  "InvalidMSISDN": "رقم الهاتف ال1ي ادخلته غير صحيح",
+  "UnknownError": "لقد حصل خطأ اثناء معالجة طلبك",
+  "InvalidPIN": "الرجاء ادخال رمز التعريف الصحيح",
+  "TooEarly": "يجب عليك ادخال رقم هاتفك اولاَ",
   "we_just_sent_a_pin": "لقد قمنا بإرسال رمز تأكيد الاشتراك، الرجاء ادخال الرمز لتأكيد اشتراكك",
   "didnt_receive_pin_yet": "لم تستلم رمز التعرف بعد؟",
-  "if_not_your_mobile": "ar:: If {phone} is not your mobile number,",
+  "if_not_your_mobile": "اذ كان رقم هاتفك المحمول غير صحيح،",
   "click_here_to_change_your_number": "أو قم بإدخال رقم الهاتف الصحيح",
+  "submit-team-btn": "أرسل إسم فريقك",
+
   "selected-team-lead": "استعد للمنافسة",
-  "select-team-cta": "إختر فريقك الان!",
   "pin-lead": "قم بتأكيد فريقك",
   "pin-submit-btn": "تأكيد دبوس الآن!",
+  "select-team-cta": "إختر فريقك الان!",
   "resend-pin": "اعادة ارسال رمز التعريف",
-  "submit-team-btn": "أرسل إسم فريقك",
-  "selected-team-title": "...",
+  "select-team-lead": "صديقك يريد منافستك؟ قم بهزيمته الان!",
+  "selected-team-title": "بدأت المباراة",
   "msisdn-label": "أدخل رقم هاتفك المحمول للمشاركة الان",
-  "msisdn-btn": "أدخل المباراة"
+  "msisdn_btn": "أدخل المباراة",
+  "msisdn_placeholder": "رقم الهاتف"
+
   
 }

@@ -59,7 +59,7 @@ export class MSISDNEntryStep extends React.PureComponent<{
           <Bonus />
         </div>
         <div className={"msisdin " + (this.state.isFlow === 1 ? "active" : "")}>
-          <label className="msisdn__label">Enter your number to get exclusive access</label>
+          <label className="msisdn__label"><Translate id="exclusive-access"></Translate></label>
           <div className="component-wrapper">
             <MsisdnComponent
               msisdn={this.state.msisdn}

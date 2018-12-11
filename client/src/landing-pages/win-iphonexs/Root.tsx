@@ -334,7 +334,7 @@ const TQStep = ({ finalUrl }: { finalUrl: string }) => (
 
 class Root extends React.PureComponent<HOCProps> {
   state = {
-    locale: "en",
+    locale: "ar",
     msisdn: "",
 
   };

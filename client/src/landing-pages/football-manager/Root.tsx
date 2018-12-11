@@ -1,6 +1,6 @@
 import * as React from "react";
 import mkTracker from "../../pacman/record";
-import { TranslationProvider, Translate } from "./localization/index";
+import { TranslationProvider, Translate, injectIntl } from "./localization/index";
 import CustomTesti from "../bid-win/components/CustomTesti";
 import MsisdnComponent from '../../common-components/msisdn/msisdn-input';
 import HOC, {
@@ -24,6 +24,8 @@ import {
 // CSS DECLARATION
 import "./assets/css/styles.less?raw";
 import { translate } from "../../../webpack/dev-utils/translate-by-yandex";
+import { mockedMSISDNEntrySuccess } from "../../clients/lp-api-mo/HOC";
+import { mockSuccessState } from "../../clients/mpesa/TolaHOC";
 
 // IMAGES DECLARATION
 // ok
@@ -36,10 +38,11 @@ const tracker = mkTracker(
   "Unknown" //TODO: replace Unknown with your page's name
 );
 
-class MSISDNEntryStep extends React.PureComponent<{
+const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
   msisdn: string;
   rds: RDS.RemoteDataState<MSISDNEntryFailure, MSISDNEntrySuccess>;
   onEnd: (msisdn: string) => void;
+  intl: any
 }> {
   state = {
     msisdn: this.props.msisdn,
@@ -193,9 +196,10 @@ class MSISDNEntryStep extends React.PureComponent<{
             <label><Translate id="msisdn-label"/></label>
             <div className="input-wrapper">
              <MsisdnComponent 
-                msisdn={this.state.msisdn} 
-                onChange={msisdn => this.setState({msisdn:msisdn})} 
-                maxLength={8}  
+               countryCode={"+06"}
+               placeholder={this.props.intl.formatMessage({ id: "msisdn_placeholder" })}
+               onChange={msisdn => this.setState({msisdn:msisdn})} 
+               maxLength={11}  
               />
             </div>
             <button
@@ -221,7 +225,7 @@ class MSISDNEntryStep extends React.PureComponent<{
       </form>
     );
   }
-}
+});
 
 class PINEntryStep extends React.PureComponent<{
   msisdn: string;
@@ -379,7 +383,7 @@ class Root extends React.PureComponent<HOCProps> {
                   }}
                 >{
                     this.state.locale === "ar"
-                      ? "eng"
+                      ? "EN"
                       : "عربى"
                   }</button>
 

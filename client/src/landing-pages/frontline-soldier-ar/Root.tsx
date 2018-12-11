@@ -70,7 +70,7 @@ const getDefaultLocale = () => {
 class Root extends React.PureComponent<HOCProps> {
   state = {
     // locale: getDefaultLocale(),
-    locale: "en",
+    locale: "ar",
     msisdn: ""
 
   };
@@ -95,9 +95,9 @@ class Root extends React.PureComponent<HOCProps> {
           <div id="container">
             <div id="top-legal"></div>
             <div className="top-bar">
-            <img src={topbarHeadline} />
-              {/* <div className="lang-btns">
-                <button type="button" className="lang-btn"
+              <div className="lang-btns">
+              <p className="topbar-headline"><Translate id="digital-deluxe"></Translate></p>
+                {/* <button type="button" className="lang-btn"
                   onClick={() => {
                     if (this.state.locale === "en") {
                       this.setState({ locale: "ar" })
@@ -108,8 +108,8 @@ class Root extends React.PureComponent<HOCProps> {
                     }
                   }}
                 >{this.state.locale === "ar" ? "EN" : "عربى"}
-                </button>
-              </div> */}
+                </button> */}
+              </div>
 
             </div>
             <div id="creative">
