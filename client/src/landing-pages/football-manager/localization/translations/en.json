@@ -9,17 +9,17 @@
   "didnt_receive_pin_yet": "Didn't receive a PIN yet?",
   "if_not_your_mobile": "If {phone} is not your mobile number,",
   "click_here_to_change_your_number": "or change your phone number.",
-
+  "submit-team-btn": "Submit your Team ",
 
   "selected-team-lead": "Manage & compete with others!",
   "pin-lead": "Confirm you team!",
   "pin-submit-btn": "Confirm Pin Now",
-  "select-team-cta":"",
+  "select-team-cta":"Select your team now!",
   "resend-pin": "Resend Pin",
-
-  "msisdn-label": "Enter your phone number to participate now",
-  "msisdn-btn": "Enter The Match"
-  
+  "select-team-lead": "You have received a match challenge, play now!",
+  "msisdn-label": "Enter your phone number to start game",
+  "msisdn_btn": "Enter The Match",
+  "msisdn_placeholder": "Phone number"
   
   
 }

@@ -17,6 +17,8 @@
   "submit-team-btn": "أرسل إسم فريقك",
   "selected-team-title": "...",
   "msisdn-label": "أدخل رقم هاتفك المحمول للمشاركة الان",
-  "msisdn-btn": "أدخل المباراة"
+  "msisdn_btn": "أدخل المباراة",
+  "msisdn_placeholder": "ar::Phone number"
+
   
 }
