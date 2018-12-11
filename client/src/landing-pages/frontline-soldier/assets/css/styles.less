@@ -198,15 +198,14 @@ body.guide #disclaimer{
 }
 
 .lang-btn{
-	width:100px;
-	height:30px;
-	display:block;
-	margin:0 auto;
-	border-radius: 4px;
-	text-align: center;
-	border:1px solid #ccc;
-	text-decoration: none;
-	background-color: #e1e1e1;
+  background-color: black;
+  color: white;
+  border-radius: 25px;
+  float: right;
+  margin-right: 5px;
+  width: 60px;
+  height: 28px;
+  border: solid 2px white;
 }
 
 .lang-btn span{
@@ -526,6 +525,7 @@ h2{
 
 button{
   margin: 10px 0 20px 0;
+  cursor: pointer;
 }
 .try-again{
   opacity: 0.5;
@@ -551,13 +551,14 @@ button{
 }
 
 .disclaimer{
-  max-width: 380px;
+  max-width: 280px;
   margin: auto;
   font-size: 12px;
   opacity: 0.6;
   margin-top: 20px;
   text-align: justify;
   line-height: 1.3em;
+  padding-bottom: 20px;
 }
 
 .component-wrapper {
@@ -576,4 +577,22 @@ input{
 .country-code{
   display: none;
 }
+}
+
+html[lang="ar"] {
+  direction: rtl;
+  .bonus-comp__details {
+    text-align: right;
+  }
+  .bonus-comp__img {
+    right: 0;
+  }
+  .bonus-comp__details {
+    margin-left: 20px;
+    margin-right: 120px;
+  }
+}
+
+button:focus {
+  outline: 0;
 }

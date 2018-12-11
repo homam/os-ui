@@ -7,8 +7,12 @@ import enLocaleData from "react-intl/locale-data/en";
 import en from "./translations/en.json"
 import msLocaleData from "react-intl/locale-data/ms";
 import ms from "./translations/ms.json";
+import arLocaleData from "react-intl/locale-data/ar";
+import ar from "./translations/ar.json";
 
 export { en }
 addLocaleData(enLocaleData);
 addLocaleData(msLocaleData);
 export { ms };
+addLocaleData(arLocaleData);
+export { ar };

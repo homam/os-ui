@@ -1,7 +1,7 @@
 {
-  "hello_world": "Halo, Dunia!",
-  "AlreadySubscribed": "Anda sudah pelanggan!",
-  "InvalidMSISDN": "Ini nombor telefon bimbit yang salah, coba lagi",
+  "hello_world": "Helo, Dunia!",
+  "AlreadySubscribed": "Anda telah pun melanggan!",
+  "InvalidMSISDN": "Ini nombor telefon bimbit yang salah, cuba lagi",
   "UnknownError": "Ralat yang tidak diketahui berlaku.",
   "InvalidPIN": "Sila masukkan PIN betul bahawa anda diterima di telefon",
   "TooEarly": "Anda mesti mengemukakan nombor telefon bimbit",
