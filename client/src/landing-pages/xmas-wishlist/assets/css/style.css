@@ -116,6 +116,7 @@ p {
 /** Main **/
 body {
 	margin:0;
+	overflow: hidden;
 }
 
 .container-first {
@@ -196,7 +197,7 @@ body {
 		width:50px;
 		height:50px;
 		position: absolute;
-		top:53%;
+		top:48%;
 		left:10%;
 		background:url(../img/arrow.svg) no-repeat;
 		background-size: contain;
@@ -240,7 +241,7 @@ body {
 
 .gift-container {
 	position:relative;
-	top:41%;
+	top:38%;
 	width: 100%;
 }
 
@@ -739,10 +740,6 @@ button.add-to-wishlist {
     top: 7%;
 } 
 
-.input-box input:valid button {
-	background:  blue;
-}
-
 .input-box button {
 	position: relative;
 	display: block;
@@ -797,6 +794,9 @@ button.btn-active {
 	background-position:5% 45%;
 	padding-left: 32%;
 }
+
+.input-box input:focus{
+	outline: none;}
 
 .common-components-simple-opacity-transition-simple-opacity-transition__group--3k1Ig div:nth-child(2),
 .common-components-simple-opacity-transition-simple-opacity-transition__group--3k1Ig div:nth-child(3){
@@ -1086,7 +1086,7 @@ button.btn-active {
 
 @media only screen 
   and (min-device-width: 375px) 
-  and (max-device-width: 414px) 
+  and (max-device-width: 424px) 
   and (-webkit-min-device-pixel-ratio: 1) {
 
 .gift {height:110px}
@@ -1128,7 +1128,10 @@ button.btn-active {
 		.santa-left {
 			left:-35%;
 		}
+
 	}
+
+
 
 	@media only screen 
   and (min-device-width: 1280px) {
@@ -1148,8 +1151,8 @@ button.btn-active {
 		}
 
 		.gift-open, .phone-container {
-			left:37%;
-			max-width:350px;
+			left:34%;
+			max-width:450px;
 			 
 		}
 
