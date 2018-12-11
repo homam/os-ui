@@ -116,7 +116,6 @@ p {
 /** Main **/
 body {
 	margin:0;
-	overflow: hidden;
 }
 
 .container-first {
@@ -801,9 +800,10 @@ button.btn-active {
 .common-components-simple-opacity-transition-simple-opacity-transition__group--3k1Ig div:nth-child(2),
 .common-components-simple-opacity-transition-simple-opacity-transition__group--3k1Ig div:nth-child(3){
 	font-family: 'Quicksand', sans-serif;
-	background:white;
+	background:#BD363A;
+	color:white;
 	font-size:12px;
-	padding-bottom:1%;
+	
 }
 
 .unit {
