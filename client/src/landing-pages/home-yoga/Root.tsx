@@ -56,16 +56,6 @@ class Root extends React.PureComponent<IProps> {
               </div>
 
 
-              {/* <div className="pricetext">
-                <h2>£3.00 per week<br></br>
-                <span>Free for 24 hours</span></h2>
-
-                <div className="border2"></div>
-                
-                <p>Charges added to this mobile bill.</p>
-              
-              </div> */}
-
             </div>
 
 
