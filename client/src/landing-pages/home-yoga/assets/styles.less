@@ -2,7 +2,7 @@
 body{
 	margin:0;
 	padding:0;
-	background-color: #ffffff;
+	background-color: #000;
 	font-family: Arial, Helvetica, sans-serif;
 	
 	-webkit-touch-callout:none;
@@ -10,222 +10,132 @@ body{
 	-webkit-font-smoothing: antialiased;
 }
 
+
+	
 .container{
+	z-index: -1;
 	display: block;
 	margin: 0px auto;
+	padding-bottom: 21px;
 	max-width: 1020px;
 	min-height: 680px;
-	position: relative;
-	padding-bottom: 10px;
 	background-repeat: no-repeat;
 	background-size: 1020px 680px;
-	background-position: 50% -50px;
-	background-image: url('./imgs/yoga-bg.jpg');
-	box-shadow: 0px 0px 16px 4px #888888;
+	background-position: 50%;
+	background-image: url('./imgs/homeyogabg.jpg');
+	overflow: hidden;
+
 }
 
 
 .creative{
-	width:300px;
-	margin:0 auto;
-	height: 254px;
-	display: block;
-	position: relative;
-}
-
-.rate{
-    top:34px;
-	left:0;
+	width: 300px;
+    max-width: 460px;
+    margin: 0 auto;
+    min-height: 268px;
     display: block;
-    width: 92px;
-	height: 85px;
-	position:absolute;
+    position: relative;
+    overflow: hidden;
+}
+
+
+.logo{
+    left: 38%;
+    width: 85px;
+    height: 41px;
+    position: relative;
     background-size: 100%;
-    background-image: url('./imgs/rate.png');
-}
-
-.yogapose{
-    top:10px;
-    right: -15px;
-    margin:0;
-	padding:0;
-	z-index: 1;
-	height: 225px;
-	width: 333px;
-	position: absolute;
-	background-size: 100% auto;
-	background-image: url('./imgs/yogapose.png');
-
-}
-
-.lotusicon{
-    top:24px;
-    right: 55px;
-    width:73px;
-    height:55px;
-    position: absolute;
-    background-size: 100% auto;
-    background-image: url('./imgs/lotus.svg');
+    background-image: url('./imgs/logo.png');
     
 }
 
 .toptitle{
-	color: #d1218e;
-	font-family: 'Dancing Script', cursive;
-	font-weight: bold;
-	top:50px;
-	z-index: 2;
-	position: absolute;
-	right:55px;
-	font-size:23px;
-}
-
-.title h1{
-	top: 78px;
-	text-align: center;
-	font-size: 18px;
-	color: #000;
-    right:3px;
-    line-height: 1.7em;
-	position: absolute;
-	font-style: normal;
-	font-weight: lighter;
-	text-transform: uppercase;
-}
-
-.title span{
-	top: 116px;
-	text-align: center;
-	font-size: 28px;
-	color: #2994df;
-    right:3px;
-    line-height: 1.7em;
-	position: absolute;
-	font-style: normal;
-	font-weight: bold;
-	text-transform: uppercase;
-}
-
-
-.timeico{
-	top:-3px;
-	right:-14px;
-	margin:0;
-	padding:0;
-	z-index: 1;
-	height: 89px;
-	width: 78px;
-	position: absolute;
-	background-size: 100% auto;
-	background-image: url('./imgs/timeico.png');
-
-}
-
-.timeico h1{
 	color: #fff;
-	font-size: 16px;
-	z-index: 2;
-	top:29px;
-	right:31px;
-	position: absolute;
+    font-family: 'Helvetica', bold;
+    font-weight: bold;
+    top: 28px;
+    z-index: 2;
+    position: absolute;
+    right: 1px;
+    font-size: 29px;
+    text-shadow: 1px 1px #0000005e;
+}
+
+.time{
+	top: 42px;
+    left: -4px;
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+    height: 69px;
+    width: 58px;
+    position: absolute;
+    background-size: 100% auto;
+	background-image: url('./imgs/time.png');
 
 }
 
-.timeico span{
-	color: #fff;
-	font-size: 12px;
-	font-weight: bold;
-	z-index: 2;
-	top:55px;
-	right:28px;
-	position: absolute;
-
-}
-
-
-
-.border{
-	top:103px;
-	border:1px solid #d1218e;
-	position: relative;
-	width: 176px;
-	margin-left:120px;
-
-}
-
-.triangle-down{
-	top:221px;
-	left:132px;
-	width: 0;
-	height: 0;
-	position: absolute;
-	display: block;
-	border-left: 25px solid transparent;
-	border-right: 25px solid transparent;
-	border-top: 25px solid #026cd6;
-}
 
 .text{
-    margin-top:131px;
-	text-align: center;
-	font-size: 10px;
-	color: #000;
-	margin-left: 118px;
-	display: block;
-    padding: 1px;
-    width: 183px;
-    line-height: 1.3em;
+	width: 245px;
+    height: 20px;
+    margin-top: 41px;
+    font-family: 'Desyrel', regular;
+    font-size: 14px;
+    color: #fff;
+    margin-left: 56px;
+    display: block;
     text-align: center;
-	font-style: normal;
+    border-radius: 2px;
+    font-style: normal;
+    background-color: #e0389e;
 
 }
 
-.holder{
-	left:0;
-	right:0;
-	z-index: 5;
-	width:280px;
-	bottom:-25px;
-	height: auto;
-	padding:10px;
-	margin:0 auto;
-	display: block;
-	position: absolute;
-	text-align: center;
-}
 
 
 .SubscribeBtn{
-	color:#fff;
-	width:295px;
-	margin:0 auto;
-	display: block;
-	font-size: 14px;
-	font-weight:bold;
-	padding:18px 10px;
-	text-align: center;
-	border-radius: 30px;
-	text-decoration: none;
-	text-transform: uppercase;
-	background-image: linear-gradient(to bottom, #187be5, #1473d9, #106bce, #0b63c2, #055bb7);;
-	
-	border:0;
+	top: 166px;
+    color: #fff;
+	width: 83%;
+	max-width: 400px;
+    z-index: 2;
+    margin: 0 auto;
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 24px 10px;
+    position: relative;
+    text-align: center;
+    border-radius: 11px;
+    text-decoration: none;
+    text-transform: uppercase;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#3fa9fa), to(#1580eb));
+    background-image: linear-gradient(to bottom, #3fa9fa 0%, #1580eb 100%);
+    box-shadow: inset 0px -3px 0px #4b9fe6;
+    border: 2px #000;
 }
 
+
 .ConfirmBtn{
-	color:#fff;
-	width:295px;
-	margin:0 auto;
-	display: block;
-	font-size: 14px;
-	font-weight:bold;
-	padding:18px 10px;
-	text-align: center;
-	border-radius: 30px;
-	text-decoration: none;
-	text-transform: uppercase;
-	background-image: linear-gradient(to bottom, #17a555, #12984c, #0c8b42, #067e3a, #007131);
-	border:0;
+	top: 166px;
+    color: #fff;
+	width: 83%;
+	max-width: 400px;
+    z-index: 2;
+    margin: 0 auto;
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 24px 10px;
+    position: relative;
+    text-align: center;
+    border-radius: 11px;
+    text-decoration: none;
+    text-transform: uppercase;
+	background: linear-gradient(to bottom, rgba(78,168,5,1) 0%, rgba(49,105,0,1) 100%);
+    box-shadow: inset 0px -2px 0px #4ea805;
+    border: 2px #000;
 }
 
 
@@ -237,7 +147,7 @@ body{
 	max-width: 620px;
 	text-align: center;
 	margin:0 auto;
-	padding: 10px 25px 0px 25px;
+    padding: 5px 25px 0px 25px;
 }
 
 .links{
@@ -268,117 +178,141 @@ body{
 	right:0;
 }
 
-.logoarea{
-	margin:auto;
-	display:block;
-	width: 300px;
-	padding: 7px 0 0 0;
-	position: relative;
+// .logoarea{
+// 	margin:auto;
+// 	display:block;
+// 	width: 300px;
+// 	padding: 7px 0 0 0;
+// 	position: relative;
 	
-	span{
-		left:84px;
-		display: inline-block;
+// 	span{
+// 		left:84px;
+// 		display: inline-block;
+// 		text-align: center;
+// 		font-size:12px;
+// 		font-weight: bold;
+// 		position: absolute;
+
+// 	}
+// 	.logo{
+// 		display: inline-block;
+// 		right:0;
+// 		width: 141px;
+// 		height:29px;
+// 		background-size: 70px;
+// 		background-image:url('./imgs/mobiotv.png');
+// 		background-repeat: no-repeat;
+// 		position: absolute;
+
+
+// 	}
+
+	
+
+
+
+.wrap{
+    background-color: rgba(11, 16, 21, 0.88);
+    border-radius: 9px;
+    margin: 20px auto 0 auto;
+    width: 93%;
+    height: 174px;
+	max-width: 460px;
+	
+	p{
+		z-index: 2;
+		padding: 4px 39px;
+		font-size: 13px;
+        line-height: 1.4;
+        text-align: center;
+		color: #fff;
+		background-color: #000000;
+		height: 39px;
+		border-radius: 10px 10px 0 0;
+
+	}
+
+	.price{
+
+		margin-top: -5px;
+		font-size: 12px;
+		color: #c1c1c1;
 		text-align: center;
-		font-size:12px;
-		font-weight: bold;
-		position: absolute;
-
-	}
-	.logo{
-		display: inline-block;
-		right:0;
-		width: 141px;
-		height:29px;
-		background-size: 70px;
-		background-image:url('./imgs/mobiotv.png');
-		background-repeat: no-repeat;
-		position: absolute;
-
 
 	}
 
+	.undertext{
+		margin-top: 84px;
+		font-size: 9px;
+		color: #c1c1c1;
+		text-align: center;
+
+	}
+
+	// ul, li {
+	// 	margin: 0; padding: 0;
+	// }
+
+	// li{
+	// 	font-size:15px;
+	// 	margin-bottom:7px;
+	// 	padding-left: 54px;
+	// 	list-style-type: none;
+	// 	position: relative;
+	// 	&:before{
+	// 		content:'';
+	// 		left:18px;
+	// 		z-index: 2;
+	// 		width: 25px;
+	// 		height:25px;
+	// 		display:block;
+	// 		position: absolute;
+	// 		background-size: 25px;
+	// 		background-repeat: no-repeat;
+	// 		background-position: 0px -2px;
+	// 	}
+	// 	&:nth-child(1) {
+	// 		&:before {
+	// 			background-image: url('./imgs/sleep.svg');
+	// 		}
+	// 	}
+
+	// 	&:nth-child(2) {
+	// 		&:before {
+	// 			background-image: url('./imgs/heart.svg');
+	// 		}
+	// 	}
+	// 	&:nth-child(3) {
+	// 		&:before {
+	// 			background-image: url('./imgs/medical.svg');
+	// 		}
+	// 	}
 	
 }
 
 
-.benefits{
-	background-color:rgba(231, 230, 230, 0.671);
-	border-radius: 9px;
-	margin: 20px auto 0 auto;
-	width: 300px;
-	height: 180px;
 
-	h1{
-		padding:10px 0 0 0;
-		font-size: 20px;
-		text-transform:uppercase;
-		text-align: center;
-	}
+// .british-testimonials {
+// 	top:5px;
 
-	ul, li {
-		margin: 0; padding: 0;
-	}
+// 	.message {
+// 		color: black !important;
+// 	}
+// 	ul li .avatar {
+// 		&.person1{
+// 			background-image: url('./imgs/1.jpg') !important;
+// 		  }
+// 		  &.person2{
+// 			background-image: url('./imgs/2.jpg') !important;
+// 		  }
+// 		  &.person3{
+// 			background-image: url('./imgs/3.jpg') !important;
+// 		  }
+// 	}
 
-	li{
-		font-size:15px;
-		margin-bottom:7px;
-		padding-left: 54px;
-		list-style-type: none;
-		position: relative;
-		&:before{
-			content:'';
-			left:18px;
-			z-index: 2;
-			width: 25px;
-			height:25px;
-			display:block;
-			position: absolute;
-			background-size: 25px;
-			background-repeat: no-repeat;
-			background-position: 0px -2px;
-		}
-		&:nth-child(1) {
-			&:before {
-				background-image: url('./imgs/sleep.svg');
-			}
-		}
+// 	li{
 
-		&:nth-child(2) {
-			&:before {
-				background-image: url('./imgs/heart.svg');
-			}
-		}
-		&:nth-child(3) {
-			&:before {
-				background-image: url('./imgs/medical.svg');
-			}
-		}
-	}
-}
-
-
-
-.british-testimonials {
-	top:5px;
-
-	.message {
-		color: black !important;
-	}
-	ul li .avatar {
-		&.person1{
-			background-image: url('./imgs/1.jpg') !important;
-		  }
-		  &.person2{
-			background-image: url('./imgs/2.jpg') !important;
-		  }
-		  &.person3{
-			background-image: url('./imgs/3.jpg') !important;
-		  }
-	}
-
-	li{
-
-		background-color:rgba(231, 230, 230, 0.671);
+// 		background-color:rgba(231, 230, 230, 0.671);
 		
-	}
-}
+// 	}
+// }
