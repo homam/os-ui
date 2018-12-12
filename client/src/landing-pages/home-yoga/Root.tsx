@@ -81,14 +81,18 @@ class Root extends React.PureComponent<IProps> {
                   <span>Charges added to this mobile bill.</span>
               </div>
 
-
- 
-
             </div>
 
 
+            {/* <div className="tq">
 
-          
+               <h1 className="tqtext">Thank You!</h1>
+                <div className="tqpayment">
+                    <span>The payment has been added to your mobile bill.<br></br>You can now access Home Yoga video lessons.<br></br>Redirecting...</span>
+                </div>
+
+            </div> */}
+
 
             <div className="disclaimer">
 
