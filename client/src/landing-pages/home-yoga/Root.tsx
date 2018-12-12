@@ -74,7 +74,7 @@ class Root extends React.PureComponent<IProps> {
 
               <p className="wraptext">Get unlimited weekly access cheaper<br></br>than the cost of one regular class</p>
               <div className="price">
-                  <span>£3.00 per week</span>
+                  <span>£4.50 per week</span>
               </div>
               
               <div className="undertext">
@@ -84,19 +84,10 @@ class Root extends React.PureComponent<IProps> {
             </div>
 
 
-            {/* <div className="tq">
-
-               <h1 className="tqtext">Thank You!</h1>
-                <div className="tqpayment">
-                    <span>The payment has been added to your mobile bill.<br></br>You can now access Home Yoga video lessons.<br></br>Redirecting...</span>
-                </div>
-
-            </div> */}
-
 
             <div className="disclaimer">
 
-              <p>Subscribe and transform your body, mind and life today for just £3.00 a week! Service provided by Mobio TV</p>
+              <p>Subscribe and transform your body, mind and life today for just £4.50 a week! Service provided by Mobio TV</p>
 
               <div className="links">
                 <a href="http://n.mobiotv.com/uk/tnc-mobiotv?offer=1&_next=index.html" className="align-left">Terms &amp; Conditions</a>
