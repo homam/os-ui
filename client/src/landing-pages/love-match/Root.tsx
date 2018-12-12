@@ -28,16 +28,16 @@ const tracker = mkTracker(
  const MoComp = ({ keyword, shortcode }: IKeywordShortcode ) => {
 
   return  <div className="whiteBox boxMove">
-  <div className="boxTitles moHead">Send SMS to get your Love Results Now!</div>
-  <div className="tag1">Your results will be deleted in <span className="timer"><TimerComponent timerDuration={30} /></span></div>
+  <div className="boxTitles moHead"><Translate id="send_sms_text"/></div>
+  <div className="tag1"><Translate id="results_deleted_text"/> <span className="timer"><TimerComponent timerDuration={30} /></span></div>
 
     <MOLink keywordAndShortcode={{ keyword, shortcode }}>
     
  {/* FROM HERE YOU DESIGN */}
     
- <button type="button" className="button3">SMS Now</button>
+ <button type="button" className="button3"><Translate id="sms_now_text"/></button>
 
-  <div className="or">- or -</div>
+  <div className="or">- <Translate id="or_text"/> -</div>
 
    <div className="keys"> <Translate id="SMS_text"/> <span className="keyword">{keyword}</span> <Translate id="To_text"/> <span className="shortcode">{shortcode}  </span></div>
 
@@ -81,7 +81,7 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
         }}
       >
 
-      <div className="header">Is your partner going to cheat on you?</div>
+      <div className="header"><Translate id="header_text"/></div>
       <div className="creative">
       <div className="stamp"></div>
       <div className="title"></div>
@@ -100,7 +100,7 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
 
         <div className={"genderDiv " + (this.state.displayScreen == 2 ? "display" : "")}>
         <div className="whiteBox">
-          <h2 className="boxTitles">Select your Gender</h2>
+          <h2 className="boxTitles"><Translate id="select_gender"/></h2>
           <div className="btnGender">
           <button type="button" className="button1" onClick={this.updateState} ></button>
 
@@ -118,10 +118,10 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
         
         <div className={"nameDiv " + (this.state.displayScreen == 3 ? "display" : "")}>
         <div className="whiteBox bigBox">
-          <h2 className="boxTitles">Fill your details below:</h2>
+          <h2 className="boxTitles"><Translate id="fill_your_details"/></h2>
 
         <div className="c-input-name form1">
-        <label className="labelStyle">Your Name:</label><input className="inputStyle1" type="text"/>
+        <label className="labelStyle"><Translate id="your_name"/></label><input className="inputStyle1" type="text"/>
         </div>
 
         <div className="c-input-name form1">
@@ -129,7 +129,7 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
         </div>
 
         <button type="button" className="button3" onClick={this.updateState} >
-          Submit
+          <Translate id="submit"/>
         </button>
         </div>
         </div>
@@ -139,18 +139,18 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
       
       <div className={"dateDiv " + (this.state.displayScreen == 4 ? "display" : "")}>
       <div className="whiteBox bigBox">
-        <h2 className="boxTitles">Fill your Lover's details below:</h2>
+        <h2 className="boxTitles boxFont"><Translate id="fill_lovers_details"/></h2>
 
         <div className="c-input-name form1">
-        <label className="labelStyle">Lover's Name:</label><input className="inputStyle1" type="text"/>
+        <label className="labelStyle"><Translate id="lovers_name"/></label><input className="inputStyle1" type="text"/>
         </div>
 
         <div className="c-input-name form1">
-        <label className="labelStyle">Lover's Date of Birth:</label><input  className="inputStyle2" type="date" />
+        <label className="labelStyle"><Translate id="lovers_dob"/></label><input  className="inputStyle2" type="date" />
         </div>
 
         <button type="button" className="button3" onClick={this.updateState} >
-            <Translate id="submit_button"/>
+            <Translate id="submit"/>
         </button>
        </div>
       </div>
@@ -162,16 +162,16 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
      </div>
      <div className="whiteBox boxMove">
      <h2 className="boxTitles entryTitle"><Translate id="phone_entry_statement"/></h2>
-     <button type="button" className="button" onClick={this.updateState} >
-            Submit
-        </button>
-        {/* <div>
+     {/* <button type="button" className="button" onClick={this.updateState} >
+     <Translate id="submit"/>
+        </button> */}
+        <div>
          
           <MsisdnInput maxLength={10}
                       placeholder={this.props.intl.formatMessage({ id: "msisdn_placeholder" })}
                       onChange={(msisdn) => this.setState({ msisdn })}
                       countryCode={'+84'}></MsisdnInput>
-          <button className="button3" type="submit" disabled={RDS.IsLoading(this.props.rds)}>Submit</button>
+          <button className="button3" type="submit" disabled={RDS.IsLoading(this.props.rds)}> <Translate id="submit"/></button>
           {
             RDS.WhenLoading(null, () => 'Wait...')(this.props.rds)
           }
@@ -180,7 +180,7 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
           {
             RDS.WhenFailure(null, (err: MSISDNEntryFailure) => <Translate id={err.errorType} />)(this.props.rds)
           }
-        </div> */}
+        </div>
         </div>
         </div>
 
@@ -198,18 +198,18 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
           testimonials={
             [
               {
-                Message: () => <span className="message">"This app has been fun!"</span>,
-                Name: () => <span className="testimonials-name">- Mena Wang</span>,
+                Message: () => <span className="message"><Translate id="testi1_text"/></span>,
+                Name: () => <span className="testimonials-name">- <Translate id="testi1_name"/></span>,
                 stars: 5
               },
               {
-                Message: () => <span className="message">"I love how accurate this is."</span>,
-                Name: () => <span className="testimonials-name">- Mira Woh</span>,
+                Message: () => <span className="message"><Translate id="testi2_text"/></span>,
+                Name: () => <span className="testimonials-name">- <Translate id="testi2_name"/></span>,
                 stars: 5
               },
               {
-                Message: () => <span className="message">"Love matching is everything"</span>,
-                Name: () => <span className="testimonials-name">- Mimi Blah</span>,
+                Message: () => <span className="message"><Translate id="testi3_text"/></span>,
+                Name: () => <span className="testimonials-name">- <Translate id="testi3_name"/></span>,
                 stars: 5
               }
             ]
