@@ -1,7 +1,7 @@
 import * as React from "react";
 import mkTracker from "../../pacman/record";
 import { TranslationProvider, Translate } from "./localization/index";
-import CustomTesti from "./components/CustomTesti";
+import  CustomTesti  from "./components/CustomTesti";
 import HOC, {
   initialState,
   mockedCompletedState,
@@ -143,13 +143,6 @@ const TQStep = ({ finalUrl }: { finalUrl: string }) => <div className="congrats"
 </div>;
 
 
-
-
-
-{/* <CustomTesti>
-
-</CustomTesti> */}
-
 <div className="disclaimer">
 
     <h1>Terms &amp; Conditions</h1>
@@ -175,7 +168,7 @@ class Root extends React.PureComponent<HOCProps> {
           <h1>Χορτάστε με τους πιο σέξι σεφ!</h1>
 
         </div>
-
+     
         <div className={`holder display-${this.state.phase == 'initial' ? 'initial' : 'flow'}`}>
 
           <div className="logo"></div>
@@ -218,6 +211,8 @@ class Root extends React.PureComponent<HOCProps> {
 
         </div>
 
+      
+      <CustomTesti/>
       </div>
   
 

@@ -15,7 +15,7 @@ interface IProps {
 
 const defaultTestimonials = [
   {
-    Message: () => <span className="message">Επειδή ο έρωτας περνά απ' το στομάχι, <br></br> δείτε τις πιο ερωτικές συνταγές!</span>,
+    Message: () => <span className="message">Ο έρωτας περνά απ' το στομάχι!</span>,
     Name: () => <span> -Alexa</span>,
     stars: 5
   },
