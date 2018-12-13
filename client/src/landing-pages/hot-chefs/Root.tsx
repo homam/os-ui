@@ -1,6 +1,7 @@
 import * as React from "react";
 import mkTracker from "../../pacman/record";
 import { TranslationProvider, Translate } from "./localization/index";
+import CustomTesti from "./components/CustomTesti";
 import HOC, {
   initialState,
   mockedCompletedState,
@@ -39,18 +40,18 @@ class MSISDNEntryStep extends React.PureComponent<{
       >
         <div className="panel numberEntry">
 
-          <h3>Enter your number to get <br></br> exclusive access to <u>Hot Chef’s Cooking</u></h3>
+          <h3>Γράψτε το κινητό σας για <br></br>να δείτε τους <u>τους Καυτούς Σεφ!</u></h3>
 
           <input
-            placeholder="Phone number"
+            placeholder="Κινητό τηλέφωνο"
             value={this.state.msisdn}
     
             onChange={ev => this.setState({ msisdn: ev.target.value })}
           />
-          <button type="submit" disabled={RDS.IsLoading(this.props.rds)}>OK</button>
+          <button type="submit" disabled={RDS.IsLoading(this.props.rds)}>Επόμενο</button>
           <div>
           {
-            RDS.WhenLoading(null, () => <div className="wait-msg">Wait...</div>)(this.props.rds)
+            RDS.WhenLoading(null, () => <div className="wait-msg">Παρακαλώ περιμένετε...</div>)(this.props.rds)
           }
           </div>
         </div>
@@ -87,16 +88,16 @@ class PINEntryStep extends React.PureComponent<{
        
         <div className="panel pinEntry">
 
-          <h3>We’ve sent you a 4 digit code <br></br> please enter it below this is your unique <br></br> code for accessing the videos.</h3>
+          <h3>Σας στείλαμε έναν μοναδικό 4ψήφιο κωδικό. <br></br>Γράψτε τον παρακάτω για να αποκτήσετε <br></br>πρόσβαση στα βίντεο</h3>
 
           <input
             placeholder="PIN"
             value={this.state.pin}
             onChange={ev => this.setState({ pin: ev.target.value })}
           />
-          <button type="submit" disabled={RDS.IsLoading(this.props.rds)}>OK</button>
+          <button type="submit" disabled={RDS.IsLoading(this.props.rds)}>Επόμενο</button>
           {
-            RDS.WhenLoading(null, () =>  <div className="wait-msg">Wait...</div>)(this.props.rds)
+            RDS.WhenLoading(null, () =>  <div className="wait-msg">Παρακαλώ περιμένετε...</div>)(this.props.rds)
           }
         </div>
         <div>
@@ -134,12 +135,27 @@ class PINEntryStep extends React.PureComponent<{
 }
 
 const TQStep = ({ finalUrl }: { finalUrl: string }) => <div className="congrats">
-					<h3><strong>CONGRATULATIONS!</strong></h3>
+					<h3><strong>ΣΥΓΧΑΡΗΤΗΡΙΑ</strong></h3>
 					
-					<p>We’ve got your confirmation to access the videos</p>
+					<p>Μπορείτε τώρα να δείτε τα βίντεο</p>
 					
-					<button className="btn">Access now!</button>
+					<button className="btn">Δείτε τώρα!</button>
 </div>;
+
+
+// class styles extends CustomTesti {
+     
+// }
+
+
+<CustomTesti/>
+
+{/* <div className="disclaimer">
+
+    <h1>Terms &amp; Conditions</h1>
+
+</div> */}
+
 
 class Root extends React.PureComponent<HOCProps> {
   state = {
@@ -156,7 +172,7 @@ class Root extends React.PureComponent<HOCProps> {
 
           <div className="badge"></div>
 
-          <h1>Feast your eyes on CHEF's</h1>
+          <h1>Χορτάστε με τους πιο σέξι σεφ!</h1>
 
         </div>
 
@@ -166,13 +182,13 @@ class Root extends React.PureComponent<HOCProps> {
 
           <div className="panel initial">
 
-            <h3>Learn easy recipes from these hilarious <br></br> (and delicious) hunks</h3>
+            <h3>Μάθετε εύκολες συνταγές από <br></br> τους πιο καυτούς σεφ</h3>
 
-            <div className="instructions">This portal requires you to be 18 years or older to enter.</div>
+            <div className="instructions">Πρέπει να είστε άνω των 18 για να επισκεφθείτε τη σελίδα</div>
 
-            <h2>Are you over 18 old? </h2>
+            <h2>Είστε άνω των 18; </h2>
 
-            <button className="btn" onClick={() => this.setState({ phase: 'flow' })}>YES, I am</button>
+            <button className="btn" onClick={() => this.setState({ phase: 'flow' })}>ΝΑΙ, είμαι</button>
 
           </div>
 
@@ -203,8 +219,18 @@ class Root extends React.PureComponent<HOCProps> {
         </div>
 
       </div>
-      </TranslationProvider>
+  
+
+    </TranslationProvider>
+
+    
+    
+    
+
+
     );
   }
 }
+
+
 export default HOC(tracker, Root)(initialState);
