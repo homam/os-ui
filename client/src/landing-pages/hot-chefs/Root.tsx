@@ -143,18 +143,18 @@ const TQStep = ({ finalUrl }: { finalUrl: string }) => <div className="congrats"
 </div>;
 
 
-// class styles extends CustomTesti {
-     
-// }
 
 
-<CustomTesti/>
 
-{/* <div className="disclaimer">
+{/* <CustomTesti>
+
+</CustomTesti> */}
+
+<div className="disclaimer">
 
     <h1>Terms &amp; Conditions</h1>
 
-</div> */}
+</div> 
 
 
 class Root extends React.PureComponent<HOCProps> {
