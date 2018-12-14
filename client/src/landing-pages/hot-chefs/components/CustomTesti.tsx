@@ -16,17 +16,17 @@ interface IProps {
 const defaultTestimonials = [
   {
     Message: () => <span className="message">Ο έρωτας περνά απ' το στομάχι!</span>,
-    Name: () => <span> -Alexa</span>,
+    Name: () => <span className="name">-Alexa</span>,
     stars: 5
   },
   {
     Message: () => <span className="message">Θα γλύφετε τα δάχτυλά σας μετά από αυτά τα βίντεο!</span>,
-    Name: () => <span> -Lolanda</span>,
+    Name: () => <span className="name"> -Lolanda</span>,
     stars: 4
   },
   {
     Message: () => <span className="message">Έτσι θα ήταν αν ο Άκης έπαιζε στο Magic Mike</span>,
-    Name: () => <span> -Niki</span>,
+    Name: () => <span className="name"> -Niki</span>,
     stars: 5
   }
 ]
