@@ -32,10 +32,12 @@ import { mockSuccessState } from "../../clients/mpesa/TolaHOC";
 //const imgiphone = require("./assets/images");
 // const iphonexs_logo = require('./assets/images/iphonexs_logo.png')
 
+const history = require("./assets/img/history.svg");
+
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
   "xx",
-  "Unknown" //TODO: replace Unknown with your page's name
+  "Football Star Manager" //TODO: replace Unknown with your page's name
 );
 
 const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
@@ -58,13 +60,13 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
   };
 
   selectJersey = () => {
-    
+
     this.setState({
       isJerseySelected: true
     });
   };
 
-  
+
 
   render() {
 
@@ -72,7 +74,7 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
       <form
         onSubmit={ev => {
           ev.preventDefault();
-          
+
           this.props.onEnd(this.state.msisdn);
         }}
       >
@@ -97,7 +99,7 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
           </div>
 
           <div className="team-cta">
-          <Translate id="select-team-cta"/>
+            <Translate id="select-team-cta" />
           </div>
 
           <div className="jersey-selection">
@@ -111,7 +113,7 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
 
             <label htmlFor="red-jersey" className="jersey">
               <div className="jersey-red" />
-              
+
             </label>
 
             <input
@@ -123,7 +125,7 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
 
             <label htmlFor="blue-jersey" className="jersey">
               <div className="jersey-blue" />
-              
+
             </label>
 
             <input
@@ -135,7 +137,7 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
 
             <label onClick={this.selectTeam} htmlFor="yellow-jersey" className="jersey">
               <div className="jersey-yellow" />
-              
+
             </label>
           </div>
 
@@ -143,34 +145,34 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
             onClick={this.submitTeam}
             type="button"
             className="btn enabled ">
-           <Translate id="submit-team-btn"/>
-            
+            <Translate id="submit-team-btn" />
+
           </button>
 
- <div className="testimonials">
-                <CustomTesti
-                  className="frontline-testimonials"
-                  testimonials={
-                    [
-                      {
-                        Message: () => <span className="message"><Translate id="testi1" /></span>,
-                        Name: () => <span> -Syazalina</span>,
-                        stars: 5
-                      },
-                      {
-                        Message: () => <span className="message"><Translate id="testi1" /></span>,
-                        Name: () => <span> -Rahim</span>,
-                        stars: 4
-                      },
-                      {
-                        Message: () => <span className="message"><Translate id="testi1" /></span>,
-                        Name: () => <span> -Amira</span>,
-                        stars: 5
-                      }
-                    ]
+          <div className="testimonials">
+            <CustomTesti
+              className="frontline-testimonials"
+              testimonials={
+                [
+                  {
+                    Message: () => <span className="message"><Translate id="testi1" /></span>,
+                    Name: () => <span> -Hashem</span>,
+                    stars: 5
+                  },
+                  {
+                    Message: () => <span className="message"><Translate id="testi2" /></span>,
+                    Name: () => <span> -Suleiman</span>,
+                    stars: 4
+                  },
+                  {
+                    Message: () => <span className="message"><Translate id="testi3" /></span>,
+                    Name: () => <span> -Amir</span>,
+                    stars: 5
                   }
-                />
-              </div>
+                ]
+              }
+            />
+          </div>
 
         </div>
         <div
@@ -188,30 +190,36 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
             <div className="selected-team">
               <div className="jersey-blue"></div>
             </div>
-            <h1> <Translate id="selected-team-title"/></h1>
-            <p><Translate id="selected-team-lead"/></p>
+            <h1> <Translate id="selected-team-title" /></h1>
+            <p><Translate id="selected-team-lead" /></p>
           </div>
 
           <div className="number-entry">
-            <label><Translate id="msisdn-label"/></label>
+            <label><Translate id="msisdn-label" /></label>
             <div className="input-wrapper">
-             <MsisdnComponent 
-               countryCode={"+06"}
-               placeholder={this.props.intl.formatMessage({ id: "msisdn_placeholder" })}
-               onChange={msisdn => this.setState({msisdn:msisdn})} 
-               maxLength={11}  
+              <MsisdnComponent
+                countryCode={"+06"}
+                placeholder={this.props.intl.formatMessage({ id: "msisdn_placeholder" })}
+                onChange={msisdn => this.setState({ msisdn: msisdn })}
+                maxLength={11}
               />
             </div>
             <button
-            
               className="btn enabled"
               type="submit"
               disabled={RDS.IsLoading(this.props.rds)}
             >
-              <Translate id="msisdn_btn"/>
-                </button>
-
-                
+              <Translate id="msisdn_btn" />
+            </button>
+            <div className="participants-container">
+            <div className="left-column history">
+              <img src={history} alt="history icon" />
+            </div>
+            <div className="right-column">
+              <h2><Translate id="latest-participants"></Translate></h2>
+              <h3><Translate id="participants-minute"></Translate></h3>
+            </div>
+          </div>
 
             {RDS.WhenLoading(null, () => "Wait...")(this.props.rds)}
           </div>
@@ -290,8 +298,8 @@ class PINEntryStep extends React.PureComponent<{
                       phone: this.props.msisdn
                     }}
                   />
-                  
-                <a className="change-number" onClick={() => this.props.backToStart()}>
+
+                  <a className="change-number" onClick={() => this.props.backToStart()}>
                     <Translate id="click_here_to_change_your_number" />
                   </a>
                 </div>
@@ -303,10 +311,10 @@ class PINEntryStep extends React.PureComponent<{
                     values={{
                       phone: this.props.msisdn
                     }}
-                    
+
                   />
-                  <a className="resend-btn"><Translate id="resend-pin"/></a>
-                <a className="change-number"  onClick={() => this.props.backToStart()}>
+                  <a className="resend-btn"><Translate id="resend-pin" /></a>
+                  <a className="change-number" onClick={() => this.props.backToStart()}>
                     <Translate id="click_here_to_change_your_number" />
                   </a>
                 </div>
@@ -322,9 +330,26 @@ class PINEntryStep extends React.PureComponent<{
 }
 
 const TQStep = ({ finalUrl }: { finalUrl: string }) => (
+
   <div>
-    <h3>Thank you!</h3>
-    <a href={finalUrl}>Click here to access the product</a>
+    <div className="overlay active"></div>
+    <div className="panel active">
+      <div className="rays">
+      </div>
+      <div className="cta-lead2" />
+      <div className="cta-sub-lead">
+        <div className="selected-team">
+          <div className="jersey-blue"></div>
+        </div>
+        <h1>
+          <Translate id="thank-you" />
+        </h1>
+      </div>
+      <div className="pin-support"></div>
+      <a className="btn thank-you enabled" href={finalUrl}>
+        <Translate id="download-now"></Translate>
+      </a>
+    </div>
   </div>
 );
 
@@ -364,8 +389,6 @@ class Root extends React.PureComponent<HOCProps> {
         <div id="creative">
           <div className="header">
             <div className="lang-btns">
-
-
             </div>
             <div className="logo"></div>
             <div className="embelem"></div>
@@ -373,21 +396,24 @@ class Root extends React.PureComponent<HOCProps> {
           <div>
             <TranslationProvider locale={this.state.locale}>
               <div>
-                <button className="lang-btn"
-                  onClick={() => {
-                    if (this.state.locale === "en") {
-                      this.setLocale('ar')
-                    } else {
-                      this.setLocale('en')
-                    }
-                  }}
-                >{
-                    this.state.locale === "ar"
-                      ? "EN"
-                      : "عربى"
-                  }</button>
+                <div className="language-container">
 
 
+                  <button className="lang-btn"
+                    onClick={() => {
+                      if (this.state.locale === "en") {
+                        this.setLocale('ar')
+                      } else {
+                        this.setLocale('en')
+                      }
+                    }}
+                  >{
+                      this.state.locale === "ar"
+                        ? "EN"
+                        : "عربى"
+                    }</button>
+
+                </div>
 
                 <TransitionGroup className={simpleOpacityTransitionStyles.group}>
                   {match({

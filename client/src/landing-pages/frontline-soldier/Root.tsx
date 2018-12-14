@@ -167,12 +167,7 @@ class Root extends React.PureComponent<HOCProps> {
                     }
                   />
                 </div> */}
-
-
                 </div>
-
-
-
               </div>
               <div className="disclaimer">
                 <Translate id="disclaimer"></Translate>

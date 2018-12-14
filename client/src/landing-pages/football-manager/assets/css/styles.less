@@ -291,9 +291,10 @@ body.guide #disclaimer{
 	border: 1px solid #fff;
 	font-weight: bold;
 	text-decoration: none;
-	position: absolute;
+	position: relative;
 	right: 0;
 	z-index: 9999;
+	float: right;
 }
 
 
@@ -409,6 +410,11 @@ background-image:url('../img/en/top-game-badge.png');
 		margin:-120px auto 0 auto;
 	}
 
+	&.floating {
+		position: absolute;
+		height: 300px;
+	}
+
 }
 
 
@@ -433,48 +439,42 @@ html[lang="en"]{
 	}
 }
 
-
-
-
 .cta-sub-lead{
 	text-align: center;
 	display: block;
 	z-index: 999 !important;
 	font-weight: bold;
-		font-size: 15px;
-		line-height: 25px;
+		font-size: 12px;
+		line-height: 1.2;
     text-transform: uppercase;
 	
 	h1{
 		
 		font-weight: bold;
-		font-size: 20px;
-		margin:0 0 12px 0;
+		font-size: 25px;
+		margin:0 0 8px 0;
 	}
 
 	p{
-		line-height: 20px;
-		margin: 16px 0;
 		text-transform: initial;
 		font-weight: 100;
+		font-size: 15px;
 	}
-
 }
 
 .team-cta{
 	color: #fff;
   text-align: center;
   margin: 20px 0 0 0;
-  text-transform: capitalize;
+	text-transform: capitalize;
+	font-size: 12px;
   
 }
 
 .jersey-selection{
 	display: flex;
 	margin: 15px auto;
-	max-width: 260px;
-	
-	
+	max-width: 260px;	
 }
 
 .jersey{
@@ -609,12 +609,9 @@ input[type="radio"] {
 
 
 .checkboxes label {
-	
-	
-	
 	padding: 3px 10px;
-	
 }
+
 input[type=radio]:checked + label {
 	
 	
@@ -629,7 +626,31 @@ input[type=radio]:checked + label {
 .customTesti, .customTesti ul{
 	min-height: 60px;
 	height: auto;
-	direction: ltr !important
+	direction: ltr !important;
+}
+
+.customTesti ul li .details .message {
+	font-size: 12px;
+	line-height: 1.2;
+}
+
+.customTesti ul li .avatar.person1 {
+	background-image: url("../img/testimonial-img-1.png");
+}
+
+.customTesti ul li .avatar.person2 {
+	background-image: url("../img/testimonial-img-2.png");
+}
+
+.customTesti ul li .avatar.person3 {
+	background-image: url("../img/testimonial-img-3.png");
+}
+
+.language-container {
+	width: 100%;
+	max-width: 520px;
+	margin: auto;
+	display: block;
 }
 
 html[lang="ar"] {
@@ -660,4 +681,49 @@ html[lang="ar"] {
 			direction: ltr;
 		}
 
+}
+
+.thank-you {
+	padding: 15px 0;
+}
+.thank-you-text {
+	font-weight: bold;
+	padding: 10px 0;
+}
+
+h1 {
+	text-transform: capitalize;
+}
+
+.participants-container {
+	background-color: #d6d6d657;
+	padding: 15px;
+	border-radius: 40px;
+	text-align: left;
+	height: 33px;
+	margin: 10px 0;
+	h2 {
+		font-weight: 900;
+		font-size: 12px;
+		margin-bottom: 3px;
+		float: left;
+		display: block;
+	}
+	h3 {
+		font-size: 11px;
+		display: block;
+		clear: both;
+	}
+}
+.left-column {
+	&.history img {
+		width: 30px;
+    float: left;
+    display: block;
+	}
+}
+.right-column {
+	display: block;
+	float: left;
+	margin: 3px 20px;
 }
