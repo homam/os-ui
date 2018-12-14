@@ -63,6 +63,7 @@ export class MSISDNEntryStep extends React.PureComponent<{
           <div className="component-wrapper">
             <MsisdnComponent
               msisdn={this.state.msisdn}
+              countryCode={"+60"}
               onChange={msisdn => this.setState({ msisdn: msisdn })}
               maxLength={11}
             />
