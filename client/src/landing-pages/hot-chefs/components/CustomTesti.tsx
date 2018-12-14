@@ -21,12 +21,12 @@ const defaultTestimonials = [
   },
   {
     Message: () => <span className="message">Θα γλύφετε τα δάχτυλά σας μετά από αυτά τα βίντεο!</span>,
-    Name: () => <span className="name"> -Lolanda</span>,
+    Name: () => <span className="name">-Lolanda</span>,
     stars: 4
   },
   {
-    Message: () => <span className="message">Έτσι θα ήταν αν ο Άκης έπαιζε στο Magic Mike</span>,
-    Name: () => <span className="name"> -Niki</span>,
+    Message: () => <span className="message">Έτσι θα ήταν αν ο Άκης έπαιζε στο Magic Mike.</span>,
+    Name: () => <span className="name">-Niki</span>,
     stars: 5
   }
 ]

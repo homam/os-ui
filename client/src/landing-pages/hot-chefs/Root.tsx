@@ -2,6 +2,8 @@ import * as React from "react";
 import mkTracker from "../../pacman/record";
 import { TranslationProvider, Translate } from "./localization/index";
 import  CustomTesti  from "./components/CustomTesti";
+import  CustomGRTopLegal from "./components/CustomGRTopLegal";
+
 import HOC, {
   initialState,
   mockedCompletedState,
@@ -20,6 +22,7 @@ const tracker = mkTracker(
   "xx",
   "hot-chefs"
 );
+
 
 class MSISDNEntryStep extends React.PureComponent<{
   msisdn: string;
@@ -160,6 +163,8 @@ class Root extends React.PureComponent<HOCProps> {
     return (
       <TranslationProvider locale={this.state.locale}>
       <div className="container">
+      
+      <CustomGRTopLegal/>
 
         <div className="creative">
 
