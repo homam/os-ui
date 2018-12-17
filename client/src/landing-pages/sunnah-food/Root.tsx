@@ -26,6 +26,7 @@ import { MockObserver } from "rx";
 import { mockSuccessState } from "../../clients/mpesa/TolaHOC";
 import CustomTesti from "../bid-win/components/CustomTesti";
 import Disclaimer from "../../legal-components/Disclaimer";
+import MsisdnEntry from "../../common-components/msisdn/msisdn-input";
 
 
 const tracker = mkTracker(
@@ -137,7 +138,7 @@ class MSISDNEntryStep extends React.PureComponent<{
                                 <Translate id="introduction"></Translate><strong><Translate id="prophet-bold"></Translate></strong>
                             </div>
 
-                            <button onClick={this.selectIntro} type="submit" className="btn uppercase more pulsate-fwd ">
+                            <button onClick={this.selectIntro} type="button" className="btn uppercase more pulsate-fwd ">
                                 <Translate id="discover-more"></Translate>
                             </button>
                         </div>
@@ -152,7 +153,7 @@ class MSISDNEntryStep extends React.PureComponent<{
                                 <Translate id="honey-description"></Translate>
                             </div>
 
-                            <button onClick={this.selectIntro2} type="submit" className="btn uppercase now pulsate-fwd ">
+                            <button onClick={this.selectIntro2} type="button" className="btn uppercase now pulsate-fwd ">
                                 <Translate id="unlock"></Translate>
                             </button>
                         </div>
@@ -183,7 +184,7 @@ class MSISDNEntryStep extends React.PureComponent<{
 
 
                     </div>
-                    
+
                     {/*This is Popup Number Section*/}
                     <div className={"phone-number-wrapper slide-in-bottom hidden " +
                         (this.state.introStep2 === 1 ? "active" : "")
@@ -191,16 +192,22 @@ class MSISDNEntryStep extends React.PureComponent<{
                         <div className="headline ">
                             <Translate id="enter-your-number"></Translate>
                         </div>
-                        <div className="flag">
+                        {/* <div className="flag">
                             <img src={flag} alt="Malaysia Flag" />
                             <input type="text" className="code" placeholder="Phone number" value={this.state.msisdn}
                                 onChange={ev => this.setState({ msisdn: ev.target.value })} />
+                        </div> */}
+                        <div className="input-container">
+                            <div className="number-entry">
+                                <MsisdnEntry maxLength={8}
+                                    onChange={(msisdn) => this.setState({ msisdn })}
+                                    countryCode={'+973'}></MsisdnEntry>
+
+                                <button onClick={this.selectIntro3} className="btn btn--small-margin uppercase" type="submit"
+                                    disabled={RDS.IsLoading(this.props.rds)}><Translate id="get-exclusive"></Translate>
+                                </button>
+                            </div>
                         </div>
-
-                        <button onClick={this.selectIntro3} className="btn btn--small-margin uppercase" type="submit"
-                            disabled={RDS.IsLoading(this.props.rds)}><Translate id="get-exclusive"></Translate>
-                        </button>
-
                         {
                             RDS.WhenLoading(null, () => 'Wait...')(this.props.rds)
                         }
@@ -262,8 +269,8 @@ class PINEntryStep extends React.PureComponent
                     this.props.onEnd(this.state.pin);
                 }}
             >
+                <div className="black-bg"></div>
                 <div className="wrapper">
-                    <div className="black-bg"></div>
                     <div className="red-ribbon red-ribbon-img">
                     </div>
                     <img className="banner-honey banner " src={banner} alt="The Sunnah Way" />
@@ -392,8 +399,8 @@ class PINEntryStep extends React.PureComponent
 }
 
 const TQStep = ({ finalUrl }: { finalUrl: string }) => <div className="">
+    <div className="black-bg"></div>
     <div className="wrapper">
-        <div className="black-bg"></div>
         <div className="red-ribbon red-ribbon-img">
         </div>
         <img className="banner-honey banner " src={banner} alt="The Sunnah Way" />
@@ -446,7 +453,7 @@ const TQStep = ({ finalUrl }: { finalUrl: string }) => <div className="">
                 }
             />
         </div>
-    
+
         <div className="phone-number-wrapper">
             <div className="headline">
                 <span className="red-bold-lg"> <Translate id="congratulations"></Translate></span>
@@ -523,7 +530,7 @@ class Root extends React.PureComponent<HOCProps> {
                         )
                     })(this.props.currentState)}
                     <div className="wrapper">
-                        <button className="language-switcher"
+                        <button type="button" className="language-switcher"
                             onClick={() => {
                                 if (this.state.locale === "en") {
                                     this.setState({ locale: "ar" })
