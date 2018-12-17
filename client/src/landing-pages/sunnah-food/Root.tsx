@@ -28,6 +28,11 @@ import CustomTesti from "../bid-win/components/CustomTesti";
 import Disclaimer from "../../legal-components/Disclaimer";
 import MsisdnEntry from "../../common-components/msisdn/msisdn-input";
 
+function Wait(props) {
+    return (
+      <Translate id="wait_message" />
+    )
+  }
 
 const tracker = mkTracker(
     typeof window != "undefined" ? window : null,
@@ -208,9 +213,7 @@ class MSISDNEntryStep extends React.PureComponent<{
                                 </button>
                             </div>
                         </div>
-                        {
-                            RDS.WhenLoading(null, () => 'Wait...')(this.props.rds)
-                        }
+                        {RDS.WhenLoading(null, () => <Wait />)(this.props.rds)}
                         <div className="sub-headline fade-in-top">
                             <div className="left-icon">
                                 <img src={download} alt="Downloads" />
@@ -337,9 +340,7 @@ class PINEntryStep extends React.PureComponent
                                 onChange={ev => this.setState({ pin: ev.target.value })}
                             />
                             <button className="btn btn--small-margin uppercase" type="submit" disabled={RDS.IsLoading(this.props.rds)}><Translate id="verify"></Translate></button>
-                            {
-                                RDS.WhenLoading(null, () => 'Wait...')(this.props.rds)
-                            }
+                            {RDS.WhenLoading(null, () => <Wait />)(this.props.rds)}
                         </div>
                         <div className="pin-message">
                             {

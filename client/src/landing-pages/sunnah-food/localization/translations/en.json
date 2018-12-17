@@ -36,7 +36,9 @@
   "didnt_receive_pin_yet": "Didn't receive a PIN yet? Make sure {phone} is your correct mobile number",
   "if_not_your_mobile": "If {phone} is not your mobile number,",
   "click_here_to_change_your_number": "Click here to change your phone number",
-  "pin-submit-btn": "Confirm Pin Now"
+  "pin-submit-btn": "Confirm Pin Now",
+  "wait_message": "Wait..."
+
 }
 
 

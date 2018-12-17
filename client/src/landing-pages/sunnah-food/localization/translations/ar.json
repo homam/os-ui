@@ -36,5 +36,7 @@
   "didnt_receive_pin_yet": "هل استلمت رمز التعريف؟ الرجاء التأكد من انك ادخلت رقم الهاتف الصحيح",
   "if_not_your_mobile": "اذ كان رقم هاتفك المحمول غير صحيح،",
   "click_here_to_change_your_number": "اضغط هنا لتصحيح الرقم",
-  "pin-submit-btn": "تأكيد"
+  "pin-submit-btn": "تأكيد",
+  "wait_message": "انتظر..."
+
 }
