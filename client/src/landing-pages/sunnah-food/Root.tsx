@@ -235,7 +235,7 @@ class MSISDNEntryStep extends React.PureComponent<{
                                 <span className="text-sm"> <Translate id="less-than-a-minute"></Translate></span>
                             </div>
                         </div>
-                        <div>
+                        <div className="error-msg">
                             {
                                 RDS.WhenFailure(null, (err: MSISDNEntryFailure) => <Translate
                                     id={err.errorType} />)(this.props.rds)
