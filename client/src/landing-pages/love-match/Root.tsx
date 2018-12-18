@@ -35,7 +35,7 @@ const tracker = mkTracker(
     
  {/* FROM HERE YOU DESIGN */}
     
- <button type="button" className="button3"><Translate id="sms_now_text"/></button>
+ <button type="button" className="button3" id="sms-now-button"><Translate id="sms_now_text"/></button>
 
   <div className="or">- <Translate id="or_text"/> -</div>
 
@@ -90,7 +90,7 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
         <div className="whiteBox boxMove">
           <h2 className="boxTitles firstHead"><Translate id="discover_text"/></h2>
           <h6 className="smallTitle"><Translate id="invite_text"/></h6>
-          <button type="button" className="button fat1" onClick={this.updateState} >
+          <button type="button" className="button fat1" id="start-button" onClick={this.updateState} >
             <Translate id="start_now"/>
           </button>
         </div>
@@ -102,9 +102,9 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
         <div className="whiteBox">
           <h2 className="boxTitles"><Translate id="select_gender"/></h2>
           <div className="btnGender">
-          <button type="button" className="button1" onClick={this.updateState} ></button>
+          <button type="button" className="button1"  id="male-button" onClick={this.updateState} ></button>
 
-          <button type="button" className="button2" onClick={this.updateState} ></button>
+          <button type="button" className="button2" id="female-button" onClick={this.updateState} ></button>
           </div>
           <div className="gend">
             <div className="male"><Translate id="Male_text"/></div>
@@ -125,10 +125,10 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
         </div>
 
         <div className="c-input-name form1">
-        <label className="labelStyle"><Translate id="your_dob"/></label><input className="inputStyle2" type="date"/>
+        <label className="labelStyle"><Translate id="your_dob"/></label><input className="inputStyle1" type="text" placeholder="dd / mm / yyyy"/>
         </div>
 
-        <button type="button" className="button3" onClick={this.updateState} >
+        <button type="button" className="button3" id="submit-your-details" onClick={this.updateState} >
           <Translate id="submit"/>
         </button>
         </div>
@@ -146,10 +146,10 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
         </div>
 
         <div className="c-input-name form1">
-        <label className="labelStyle"><Translate id="lovers_dob"/></label><input  className="inputStyle2" type="date" />
+        <label className="labelStyle"><Translate id="lovers_dob"/></label><input  className="inputStyle1" type="text" placeholder="dd / mm / yyyy"/>
         </div>
 
-        <button type="button" className="button3" onClick={this.updateState} >
+        <button type="button" className="button3" id="submit-lover-details" onClick={this.updateState} >
             <Translate id="submit"/>
         </button>
        </div>
@@ -162,16 +162,16 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
      </div>
      <div className="whiteBox boxMove">
      <h2 className="boxTitles entryTitle"><Translate id="phone_entry_statement"/></h2>
-     <button type="button" className="button" onClick={this.updateState} >
+     {/* <button type="button" className="button" onClick={this.updateState} >
      <Translate id="submit"/>
-        </button>
+        </button> */}
         <div>
          
           <MsisdnInput maxLength={10}
                       placeholder={this.props.intl.formatMessage({ id: "msisdn_placeholder" })}
                       onChange={(msisdn) => this.setState({ msisdn })}
                       countryCode={'+84'}></MsisdnInput>
-          <button className="button3" type="submit" disabled={RDS.IsLoading(this.props.rds)}> <Translate id="submit"/></button>
+          <button className="button3" type="submit" id="msisdn-submit-button" disabled={RDS.IsLoading(this.props.rds)}> <Translate id="submit"/></button>
           {
             RDS.WhenLoading(null, () => 'Wait...')(this.props.rds)
           }
