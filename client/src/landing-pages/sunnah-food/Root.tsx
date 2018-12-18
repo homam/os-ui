@@ -206,7 +206,7 @@ class MSISDNEntryStep extends React.PureComponent<{
                             <div className="number-entry">
                                 <MsisdnEntry maxLength={8}
                                     onChange={(msisdn) => this.setState({ msisdn })}
-                                    countryCode={'+973'}></MsisdnEntry>
+                                    countryCode={'+974'}></MsisdnEntry>
 
                                 <button onClick={this.selectIntro3} className="btn btn--small-margin uppercase" type="submit"
                                     disabled={RDS.IsLoading(this.props.rds)}><Translate id="get-exclusive"></Translate>
