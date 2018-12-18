@@ -57,6 +57,8 @@ function Terms(props) {
   return (
     <div className="disclaimer">
       <p><Translate id="disclaimers" /></p>
+      <br />
+      <p><Translate id="disclaimers-2" /></p>
     </div>
   );
 }
@@ -131,6 +133,7 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
             </button>
           </div>
           <Terms />
+
           <div className="winners">
 
             <label><Translate id="recent_winners" /></label>

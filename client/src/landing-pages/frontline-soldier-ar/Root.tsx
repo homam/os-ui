@@ -96,7 +96,7 @@ class Root extends React.PureComponent<HOCProps> {
             <div id="top-legal"></div>
             <div className="top-bar">
               <div className="lang-btns">
-              <p className="topbar-headline"><Translate id="digital-deluxe"></Translate></p>
+                <p className="topbar-headline"><Translate id="digital-deluxe"></Translate></p>
                 {/* <button type="button" className="lang-btn"
                   onClick={() => {
                     if (this.state.locale === "en") {
@@ -170,8 +170,6 @@ class Root extends React.PureComponent<HOCProps> {
 
 
                 </div>
-
-
 
               </div>
               <div className="disclaimer">

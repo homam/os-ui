@@ -13,12 +13,16 @@ import HOC, {
 } from "../../clients/lp-api/HOC";
 import * as RDS from "../../common-types/RemoteDataState";
 import { SimpleOpacityTransition, TransitionGroup, simpleOpacityTransitionStyles } from "../../common-components/simple-opacity-transition";
+import "./assets/css/style.less?raw";
 
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
   "xx",
-  "Unknown" //TODO: replace Unknown with your page's name
+  "WhatsApp Sticker" //TODO: replace Unknown with your page's name
 );
+
+const Monster = require("./assets/img/monster-body.png");
+const Monster2 = require("./assets/img/monster-whatsapp.png");
 
 class MSISDNEntryStep extends React.PureComponent<{
   msisdn: string;
@@ -26,6 +30,7 @@ class MSISDNEntryStep extends React.PureComponent<{
   onEnd: (msisdn: string) => void;
 }> {
   state = {
+    locale: "en",
     msisdn: this.props.msisdn
   };
   render() {
@@ -36,22 +41,37 @@ class MSISDNEntryStep extends React.PureComponent<{
           this.props.onEnd(this.state.msisdn);
         }}
       >
-      <div>
-        <input
-          placeholder="Phone number"
-          value={this.state.msisdn}
-          onChange={ev => this.setState({ msisdn: ev.target.value })}
-        />
-        <button type="submit" disabled={RDS.IsLoading(this.props.rds)}>OK</button>
-          {
-            RDS.WhenLoading(null, () => 'Wait...')(this.props.rds)
-          }
+
+        {/* MSISDN START HERE*/}
+        <div className="wrapper">
+          <div className="monster-container1">
+            <img src={Monster2} />
+          </div>
+          <div className="monster-container">
+            <div className="body-container">
+              <p>Express yourself with</p>
+              <p>New Whatsapp Stickers</p>
+            </div>
+          </div>
+
+          {/* MSISDN INPUT */}
+          <div>
+            <input
+              placeholder="Phone number"
+              value={this.state.msisdn}
+              onChange={ev => this.setState({ msisdn: ev.target.value })}
+            />
+            <button type="submit" disabled={RDS.IsLoading(this.props.rds)}>OK</button>
+            {RDS.WhenLoading(null, () => 'Wait...')(this.props.rds)}
+          </div>
+          <div>
+            {
+              RDS.WhenFailure(null, (err: MSISDNEntryFailure) => <Translate id={err.errorType} />)(this.props.rds)
+            }
+          </div>
+
         </div>
-        <div>
-          {
-            RDS.WhenFailure(null, (err : MSISDNEntryFailure) => <Translate id={err.errorType} />)(this.props.rds)
-          }
-        </div>
+        {/* MSISDN END HERE*/}
       </form>
     );
   }
@@ -84,9 +104,9 @@ class PINEntryStep extends React.PureComponent<{
             onChange={ev => this.setState({ pin: ev.target.value })}
           />
           <button type="submit" disabled={RDS.IsLoading(this.props.rds)}>OK</button>
-            {
-              RDS.WhenLoading(null, () => 'Wait...')(this.props.rds)
-            }
+          {
+            RDS.WhenLoading(null, () => 'Wait...')(this.props.rds)
+          }
         </div>
         <div>
           {
@@ -95,7 +115,7 @@ class PINEntryStep extends React.PureComponent<{
                 <div>
                   <div><Translate id={err.errorType} /></div>
                   <Translate id="if_not_your_mobile" values={{
-                      phone: this.props.msisdn
+                    phone: this.props.msisdn
                   }} />&nbsp;
                   <a onClick={() => this.props.backToStart()}>
                     <Translate id="click_here_to_change_your_number" />
@@ -105,7 +125,7 @@ class PINEntryStep extends React.PureComponent<{
               nothingYet: () => (
                 <div>
                   <Translate id="didnt_receive_pin_yet" values={{
-                      phone: this.props.msisdn
+                    phone: this.props.msisdn
                   }} />&nbsp;
                   <a onClick={() => this.props.backToStart()}>
                     <Translate id="click_here_to_change_your_number" />
@@ -122,7 +142,7 @@ class PINEntryStep extends React.PureComponent<{
   }
 }
 
-const TQStep = ({finalUrl} : {finalUrl: string}) => <div>
+const TQStep = ({ finalUrl }: { finalUrl: string }) => <div>
   <h3>Thank you!</h3>
   <a href={finalUrl}>Click here to access the product</a>
 </div>;

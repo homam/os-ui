@@ -1,0 +1,56 @@
+@import "../../../../reset.css";
+
+@width100: 100%;
+@maxWidth420: 420px;
+@maxWidth320: 320px;
+@font12: 12px;
+@font14: 14px;
+
+html, body {
+  background-color: #59BBA6;
+  padding: 0;
+  margin: 0;
+  line-height: auto;
+  font-size: @font12;
+}
+
+.wrapper {
+  width: @width100;
+  max-width: @maxWidth420;
+  margin: auto;
+  position: relative;
+}
+
+.monster-container {
+  background: url("../img/monster-body.png") no-repeat center center;
+  background-size: cover;
+  width: 420px;
+  height: 300px;
+  position: relative;
+  margin: auto;
+  top: 35px;
+  display: inline-table;
+  text-align: center;
+  img {
+    width: @width100;
+    margin: auto;
+  }
+}
+.monster-container1 {
+  position: absolute;
+  left: 30px;
+  img {
+    width: @width100;
+    max-width: 139px;
+    margin: auto;
+  }
+}
+.body-container {
+  vertical-align: middle;
+  display: table-cell;
+  height: 400px;
+  width: 100%;
+  margin: auto;
+  max-width: @maxWidth320;
+  text-align: center;
+}

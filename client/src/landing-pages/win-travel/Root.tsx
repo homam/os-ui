@@ -186,6 +186,8 @@ class MSISDNEntryStep extends React.PureComponent<{
                 </div>
                 <div className="disclaimer">
                   <p><Translate id="disclaimers" /></p>
+                  <br />
+                  <p><Translate id="disclaimers-2" /></p>
                 </div>
               </div>
               <div className="testimonial">
@@ -221,7 +223,7 @@ class MSISDNEntryStep extends React.PureComponent<{
   }
 }
 
- {/* INSERT PIN PAGE HERE*/}
+{/* INSERT PIN PAGE HERE*/ }
 class PINEntryStep extends React.PureComponent<{
   msisdn: string;
   rds: RDS.RemoteDataState<PINEntryFailure, PINEntrySuccess>;
@@ -334,7 +336,7 @@ class PINEntryStep extends React.PureComponent<{
               <h3><Translate id="participants-minute"></Translate></h3>
             </div>
           </div>
-          
+
           <div>
 
             {RDS.match({
