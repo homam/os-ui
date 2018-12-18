@@ -119,7 +119,7 @@ export default <P extends HOCProps>(tracker: ITracker, Comp: React.ComponentType
   };
 
 const formatSMSLink = (keywordAndShortcode : IKeywordShortcode) =>
-  (/iPhone/i.test(navigator.userAgent) || /Mac OS/i.test(navigator.userAgent))
+  (typeof navigator != "undefined" && (/iPhone/i.test(navigator.userAgent) || /Mac OS/i.test(navigator.userAgent)))
   ? `sms:${keywordAndShortcode.shortcode}&body=${keywordAndShortcode.keyword}`
   : `sms:${keywordAndShortcode.shortcode}?body=${keywordAndShortcode.keyword}`
 
