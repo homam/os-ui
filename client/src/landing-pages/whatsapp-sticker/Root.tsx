@@ -23,6 +23,7 @@ const tracker = mkTracker(
 
 const Monster = require("./assets/img/monster-body.png");
 const Monster2 = require("./assets/img/monster-whatsapp.png");
+const Bg = require("./assets/img/background.png");
 
 class MSISDNEntryStep extends React.PureComponent<{
   msisdn: string;
@@ -31,8 +32,16 @@ class MSISDNEntryStep extends React.PureComponent<{
 }> {
   state = {
     locale: "en",
-    msisdn: this.props.msisdn
+    msisdn: this.props.msisdn,
+    firstStep: 1
   };
+
+  showStep = () => {
+    this.setState({
+      firstStep: 0,
+    })
+  }
+
   render() {
     return (
       <form
@@ -43,34 +52,39 @@ class MSISDNEntryStep extends React.PureComponent<{
       >
 
         {/* MSISDN START HERE*/}
-        <div className="wrapper">
-          <div className="monster-container1">
-            <img src={Monster2} />
-          </div>
-          <div className="monster-container">
-            <div className="body-container">
-              <p>Express yourself with</p>
-              <p>New Whatsapp Stickers</p>
+        <div className="bg"></div>
+        <div className={"first-prelander " + (this.state.firstStep === 1 ? "active" : "")}>
+          <div className="wrapper">
+            <div className="monster-container1">
+              <img src={Monster2} />
+            </div>
+            <div className="monster-container">
+              <div className="body-container">
+                <p>Express yourself with</p>
+                <p>New Whatsapp Stickers</p>
+                <div>
+                  <button type="button" className="btn" onClick={this.showStep}>Funny</button>
+                  <button type="button" className="btn">Romance</button>
+                </div>
+              </div>
             </div>
           </div>
-
-          {/* MSISDN INPUT */}
-          <div>
-            <input
-              placeholder="Phone number"
-              value={this.state.msisdn}
-              onChange={ev => this.setState({ msisdn: ev.target.value })}
-            />
-            <button type="submit" disabled={RDS.IsLoading(this.props.rds)}>OK</button>
-            {RDS.WhenLoading(null, () => 'Wait...')(this.props.rds)}
-          </div>
-          <div>
-            {
-              RDS.WhenFailure(null, (err: MSISDNEntryFailure) => <Translate id={err.errorType} />)(this.props.rds)
-            }
-          </div>
-
         </div>
+        {/* MSISDN INPUT */}
+        <div className={"hidden " + (this.state.firstStep === 0 ? "active" : "")}>
+          <input
+            placeholder="Phone number"
+            value={this.state.msisdn}
+            onChange={ev => this.setState({ msisdn: ev.target.value })}
+          />
+          <button type="submit" disabled={RDS.IsLoading(this.props.rds)}>OK</button>
+          {RDS.WhenLoading(null, () => 'Wait...')(this.props.rds)}
+        </div>
+        <div>
+          {RDS.WhenFailure(null, (err: MSISDNEntryFailure) => <Translate id={err.errorType} />)(this.props.rds)}
+        </div>
+
+
         {/* MSISDN END HERE*/}
       </form>
     );
