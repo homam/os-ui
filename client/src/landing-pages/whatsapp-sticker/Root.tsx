@@ -14,6 +14,7 @@ import HOC, {
 import * as RDS from "../../common-types/RemoteDataState";
 import { SimpleOpacityTransition, TransitionGroup, simpleOpacityTransitionStyles } from "../../common-components/simple-opacity-transition";
 import "./assets/css/style.less?raw";
+import CustomTesti from "../bid-win/components/CustomTesti";
 
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
@@ -24,6 +25,10 @@ const tracker = mkTracker(
 const Monster = require("./assets/img/monster-body.png");
 const Monster2 = require("./assets/img/monster-whatsapp.png");
 const Bg = require("./assets/img/background.png");
+const LaughitUp = require("./assets/img/laugh.png")
+const New = require("./assets/img/star.png");
+const More = require("./assets/img/more.png");
+const NewSm = require("./assets/img/star-sm.svg");
 
 class MSISDNEntryStep extends React.PureComponent<{
   msisdn: string;
@@ -53,25 +58,41 @@ class MSISDNEntryStep extends React.PureComponent<{
 
         {/* MSISDN START HERE*/}
         <div className="bg"></div>
-        <div className={"first-prelander " + (this.state.firstStep === 1 ? "active" : "")}>
-          <div className="wrapper">
+        <div className="wrapper">
+        <div className="new">
+          <img src={New} />
+        </div>
+        <div className="laugh-it">
+          <img src={LaughitUp} />
+        </div>
+        <div className={"first-prelander " + (this.state.firstStep === 1 ? "active" : "")}>  
             <div className="monster-container1">
               <img src={Monster2} />
             </div>
             <div className="monster-container">
               <div className="body-container">
+              <div className="space1"></div>
                 <p>Express yourself with</p>
                 <p>New Whatsapp Stickers</p>
+                <br/>
+                <p>Choose your sticker type:</p>
+                <div className="btn-wrapper">
                 <div>
-                  <button type="button" className="btn" onClick={this.showStep}>Funny</button>
+                <button type="button" className="btn" onClick={this.showStep}>Funny</button>
+                </div>
+                <div>
                   <button type="button" className="btn">Romance</button>
+                </div>
                 </div>
               </div>
             </div>
+           
           </div>
-        </div>
+        
         {/* MSISDN INPUT */}
         <div className={"hidden " + (this.state.firstStep === 0 ? "active" : "")}>
+        <div className="monster-container humour">
+        <div className="body-container">
           <input
             placeholder="Phone number"
             value={this.state.msisdn}
@@ -79,13 +100,23 @@ class MSISDNEntryStep extends React.PureComponent<{
           />
           <button type="submit" disabled={RDS.IsLoading(this.props.rds)}>OK</button>
           {RDS.WhenLoading(null, () => 'Wait...')(this.props.rds)}
-        </div>
         <div>
           {RDS.WhenFailure(null, (err: MSISDNEntryFailure) => <Translate id={err.errorType} />)(this.props.rds)}
         </div>
-
-
         {/* MSISDN END HERE*/}
+        </div>
+        </div>
+        </div>
+        </div>
+        <div className="new-sm">
+            <img src={NewSm} />
+            </div>
+            <div className="more">
+            <img src={More} />
+            </div>
+            <div className="whatsapp-testimonial">
+              <CustomTesti></CustomTesti>
+            </div>
       </form>
     );
   }
