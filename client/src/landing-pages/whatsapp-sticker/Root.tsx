@@ -9,12 +9,15 @@ import HOC, {
   MSISDNEntrySuccess,
   PINEntryFailure,
   PINEntrySuccess,
-  match
+  match,
+  mockedPINState
 } from "../../clients/lp-api/HOC";
 import * as RDS from "../../common-types/RemoteDataState";
 import { SimpleOpacityTransition, TransitionGroup, simpleOpacityTransitionStyles } from "../../common-components/simple-opacity-transition";
 import "./assets/css/style.less?raw";
 import CustomTesti from "../bid-win/components/CustomTesti";
+import MsisdnInput from "../../common-components/msisdn/msisdn-input";
+
 
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
@@ -22,28 +25,46 @@ const tracker = mkTracker(
   "WhatsApp Sticker" //TODO: replace Unknown with your page's name
 );
 
-const Monster = require("./assets/img/monster-body.png");
 const Monster2 = require("./assets/img/monster-whatsapp.png");
-const Bg = require("./assets/img/background.png");
 const LaughitUp = require("./assets/img/laugh.png")
 const New = require("./assets/img/star.png");
 const More = require("./assets/img/more.png");
 const NewSm = require("./assets/img/star-sm.svg");
+const Monster1 = require("./assets/img/monster-1.png");
+const StickerPack = require("./assets/img/sticker-pack.png");
+const HumourSticker = require("./assets/img/humour-sticker.png");
+const Romance = require("./assets/img/romance.png");
 
 class MSISDNEntryStep extends React.PureComponent<{
   msisdn: string;
   rds: RDS.RemoteDataState<MSISDNEntryFailure, MSISDNEntrySuccess>;
   onEnd: (msisdn: string) => void;
+
 }> {
   state = {
     locale: "en",
     msisdn: this.props.msisdn,
-    firstStep: 1
+    firstStep: 1,
+    secondStep: 0,
+    humour: 0,
+    romance: 0,
   };
 
   showStep = () => {
     this.setState({
       firstStep: 0,
+      secondStep: 0,
+      humour: 1,
+      romance: 0,
+    })
+  }
+
+  showStep2 = () => {
+    this.setState({
+      firstStep: 0,
+      secondStep: 1,
+      humour: 0,
+      romance: 1,
     })
   }
 
@@ -55,68 +76,98 @@ class MSISDNEntryStep extends React.PureComponent<{
           this.props.onEnd(this.state.msisdn);
         }}
       >
-
-        {/* MSISDN START HERE*/}
+        {/* FIRST PRELANDER*/}
         <div className="bg"></div>
         <div className="wrapper">
-        <div className="new">
-          <img src={New} />
-        </div>
-        <div className="laugh-it">
-          <img src={LaughitUp} />
-        </div>
-        <div className={"first-prelander " + (this.state.firstStep === 1 ? "active" : "")}>  
+          <div className="new">
+            <img src={New} />
+          </div>
+          <div className="laugh-it">
+            <img src={LaughitUp} />
+          </div>
+          <div className={"first-prelander " + (this.state.firstStep === 1 ? "active" : "")}>
             <div className="monster-container1">
               <img src={Monster2} />
             </div>
             <div className="monster-container">
-              <div className="body-container">
-              <div className="space1"></div>
+              <div className="body-container2 body-container2--monster1">
+                <div className={"monster-1 " + (this.state.firstStep === 1 ? "active" : "")}>
+                  <img src={Monster1} />
+                </div>
                 <p>Express yourself with</p>
                 <p>New Whatsapp Stickers</p>
-                <br/>
+                <br />
                 <p>Choose your sticker type:</p>
                 <div className="btn-wrapper">
-                <div>
-                <button type="button" className="btn" onClick={this.showStep}>Funny</button>
-                </div>
-                <div>
-                  <button type="button" className="btn">Romance</button>
-                </div>
+                  <div>
+                    <button type="button" className="btn" onClick={this.showStep}>Funny</button>
+                  </div>
+                  <div>
+                    <button type="button" className="btn" onClick={this.showStep2}>Romance</button>
+                  </div>
                 </div>
               </div>
             </div>
-           
           </div>
-        
-        {/* MSISDN INPUT */}
-        <div className={"hidden " + (this.state.firstStep === 0 ? "active" : "")}>
-        <div className="monster-container humour">
-        <div className="body-container">
-          <input
-            placeholder="Phone number"
-            value={this.state.msisdn}
-            onChange={ev => this.setState({ msisdn: ev.target.value })}
-          />
-          <button type="submit" disabled={RDS.IsLoading(this.props.rds)}>OK</button>
-          {RDS.WhenLoading(null, () => 'Wait...')(this.props.rds)}
-        <div>
-          {RDS.WhenFailure(null, (err: MSISDNEntryFailure) => <Translate id={err.errorType} />)(this.props.rds)}
+
+          {/* MSISDN INPUT */}
+          <div className={"hidden " + (this.state.firstStep === 0 ? "active" : "")}>
+            <div className="monster-container">
+              {/* FUNNY */}
+              <div className="body-container2 body-container2--monster2">
+                <div className={"humour " + (this.state.humour === 0 ? "hidden" : "")}>
+                  <div className="monster-2">
+                    <img src={HumourSticker} />
+                  </div>
+                  <div className="space1"></div>
+                  <div className="title">
+                    You’ve got good sense of humour
+              </div>
+                </div>
+                {/* ROMANCE */}
+                <div className={"romantic " + (this.state.romance === 0 ? "hidden" : "")}>
+                  <div className="monster-2 monster-2--md">
+                    <img src={Romance} />
+                  </div>
+                  <div className="space1"></div>
+                  <div className="title">
+                    You are so romantic
+              </div>
+                </div>
+
+                <div>
+                  Enter your number to get all the sticker packs.
+              </div>
+                {/* <input
+                  placeholder="Phone number"
+                  value={this.state.msisdn}
+                  onChange={ev => this.setState({ msisdn: ev.target.value })}
+                /> */}
+                <div className="whatsapp-input">
+                  <MsisdnInput maxLength={8}
+                    onChange={(msisdn) => this.setState({ msisdn })}
+                    countryCode={'+973'}></MsisdnInput>
+                </div>
+
+                <button className="btn" type="submit" disabled={RDS.IsLoading(this.props.rds)}>Submit to Subscribe</button>
+                {RDS.WhenLoading(null, () => 'Wait...')(this.props.rds)}
+                <div>
+                  {RDS.WhenFailure(null, (err: MSISDNEntryFailure) => <Translate id={err.errorType} />)(this.props.rds)}
+                </div>
+                {/* MSISDN END HERE*/}
+              </div>
+            </div>
+          </div>
         </div>
-        {/* MSISDN END HERE*/}
-        </div>
-        </div>
-        </div>
-        </div>
-        <div className="new-sm">
+        <div className="more">
+          <div className="new-sm">
             <img src={NewSm} />
-            </div>
-            <div className="more">
-            <img src={More} />
-            </div>
-            <div className="whatsapp-testimonial">
-              <CustomTesti></CustomTesti>
-            </div>
+          </div>
+          <img src={More} />
+        </div>
+        <div className="whatsapp-testimonial">
+          <CustomTesti></CustomTesti>
+        </div>
       </form>
     );
   }
@@ -139,48 +190,70 @@ class PINEntryStep extends React.PureComponent<{
           this.props.onEnd(this.state.pin);
         }}
       >
-        <div>
-          <Translate id="we_just_sent_a_pin" />
-        </div>
-        <div>
-          <input
-            placeholder="PIN"
-            value={this.state.pin}
-            onChange={ev => this.setState({ pin: ev.target.value })}
-          />
-          <button type="submit" disabled={RDS.IsLoading(this.props.rds)}>OK</button>
-          {
-            RDS.WhenLoading(null, () => 'Wait...')(this.props.rds)
-          }
-        </div>
-        <div>
-          {
-            RDS.match({
-              failure: (err: PINEntryFailure) => (
-                <div>
-                  <div><Translate id={err.errorType} /></div>
-                  <Translate id="if_not_your_mobile" values={{
-                    phone: this.props.msisdn
-                  }} />&nbsp;
+        <div className="bg"></div>
+        <div className="wrapper">
+          <div className="new">
+            <img src={New} />
+          </div>
+          <div className="laugh-it">
+            <img src={LaughitUp} />
+          </div>
+          <div className="monster-container sticker-ready">
+            <div className="body-container2">
+              <div className="pin-title">
+                <Translate id="we_just_sent_a_pin" />
+              </div>
+              <div>
+                <input id="pin-entry"
+                  className="pin-input"
+                  placeholder="PIN Number"
+                  pattern="\d*"
+                  maxLength={5}
+                  value={this.state.pin}
+                  onChange={ev => this.setState({ pin: ev.target.value })}
+                />
+                <button className="btn" type="submit" disabled={RDS.IsLoading(this.props.rds)}>Confirm</button>
+                {RDS.WhenLoading(null, () => 'Wait...')(this.props.rds)}
+              </div>
+
+              {
+                RDS.match({
+                  failure: (err: PINEntryFailure) => (
+                    <div>
+                      <div><Translate id={err.errorType} /></div>
+                      <Translate id="if_not_your_mobile" values={{
+                        phone: this.props.msisdn
+                      }} />&nbsp;
                   <a onClick={() => this.props.backToStart()}>
-                    <Translate id="click_here_to_change_your_number" />
-                  </a>
-                </div>
-              ),
-              nothingYet: () => (
-                <div>
-                  <Translate id="didnt_receive_pin_yet" values={{
-                    phone: this.props.msisdn
-                  }} />&nbsp;
+                        <Translate id="click_here_to_change_your_number" />
+                      </a>
+                    </div>
+                  ),
+                  nothingYet: () => (
+                    <div>
+                      <Translate id="didnt_receive_pin_yet" values={{
+                        phone: this.props.msisdn
+                      }} />&nbsp;
                   <a onClick={() => this.props.backToStart()}>
-                    <Translate id="click_here_to_change_your_number" />
-                  </a>
-                </div>
-              ),
-              loading: () => null,
-              success: () => null
-            })(this.props.rds)
-          }
+                        <Translate id="click_here_to_change_your_number" />
+                      </a>
+                    </div>
+                  ),
+                  loading: () => null,
+                  success: () => null
+                })(this.props.rds)
+              }
+            </div>
+          </div>
+          <div className="more">
+            <div className="new-sm">
+              <img src={NewSm} />
+            </div>
+            <img src={More} />
+          </div>
+          <div className="whatsapp-testimonial">
+            <CustomTesti></CustomTesti>
+          </div>
         </div>
       </form>
     );
@@ -188,8 +261,26 @@ class PINEntryStep extends React.PureComponent<{
 }
 
 const TQStep = ({ finalUrl }: { finalUrl: string }) => <div>
-  <h3>Thank you!</h3>
-  <a href={finalUrl}>Click here to access the product</a>
+  <div className="bg"></div>
+  <div className="wrapper">
+    <div className="new">
+      <img src={New} />
+    </div>
+    <div className="laugh-it">
+      <img src={LaughitUp} />
+    </div>
+
+    <div className="monster-container sticker-ready">
+      <div className="body-container2">
+        Thank you!
+</div>
+      <div>
+        Now you can express your emotions
+        with the amazing stickers. Have fun!
+  </div>
+      <a className="btn" href={finalUrl}>Download Now</a>
+    </div>
+  </div>
 </div>;
 
 class Root extends React.PureComponent<HOCProps> {

@@ -10,18 +10,17 @@ html, body {
   background-color: #59BBA6;
   padding: 0;
   margin: 0;
-  line-height: auto;
+  line-height: 1.2;
   font-size: @font14;
   font-family: Arial, Helvetica, sans-serif;
 }
-
 .wrapper {
   width: @width100;
   max-width: @maxWidth420;
   margin: auto;
   position: relative;
+  padding: 10px;
 }
-
 .first-prelander {
   display: none;
 }
@@ -31,10 +30,9 @@ html, body {
 .active {
   display: block;
 }
-
 .monster-container {
-  background: url("../img/monster-body.png") no-repeat center center;
-  background-size: cover;
+  // background: url("../img/monster-body.png") no-repeat center center;
+  // background-size: cover;
   width: @width100;
   height: 300px;
   position: relative;
@@ -50,6 +48,7 @@ html, body {
   &.humour {
     background: url("../img/humour-bg.png") no-repeat center center;
     background-size: cover;
+    top: 5px;
   }
 }
 .monster-container1 {
@@ -62,15 +61,62 @@ html, body {
     margin: auto;
   }
 }
-.body-container {
-  vertical-align: middle;
-  display: table-cell;
-  height: 400px;
-  width: @width100;
+.body-container2 {
+  width: auto;
   margin: auto;
-  max-width: @maxWidth320;
+  max-width: 280px;
   text-align: center;
   color: black;
+  padding: 18px;
+  background-color: white;
+  display: block;
+  margin-top: 100px;
+  margin-bottom: 24px;
+  z-index: 2;
+  &:before {
+    content: '';
+    background-image: url("../img/sticker-pack.png");
+    height: 200px;
+    width: 150px;
+    display: block;
+    background-repeat: no-repeat;
+    position: absolute;
+    background-size: contain;
+    text-align: center;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: -37px;
+    z-index: -1;
+  }
+  &.body-container2--monster1 {
+    &:before {
+      content:'';
+      // background-image: url("../img/monster-1.png");
+      background-image: none;
+      top: -7px;
+      z-index: 2;
+      right: -130px;  
+    }
+  }
+  &.body-container2--monster2 {
+    &:before {
+      content:'';
+      // background-image: url("../img/humour-sticker.png");
+      background-image: none;
+      z-index: 1;
+      left: 22px;
+    }
+  }
+}
+.monster-body {
+  background-color: transparent;
+  &:before {
+    background-image: url("../img/monster-body.png");
+    background-size: cover;
+    width: 100%;
+    height: 330px;
+  }
 }
 .bg {
   background: url("../img/background.png") no-repeat center center;
@@ -102,7 +148,7 @@ html, body {
     background: linear-gradient(to bottom, #eb7317 0%, #f2a130 3%, #f2a130 22%, #f2a130 37%, #f05539 66%, #f05539 97%, #c72a0e 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eb7317', endColorstr='#c72a0e', GradientType=0 );    border: none;
     border: none;
-    width: 88%;
+    width: @width100;
     margin: auto;
     padding: 13px;
     border-radius: 50px;
@@ -112,6 +158,7 @@ html, body {
     -moz-box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.49);
     box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.49);
     border: solid 4px white;
+    font-size: 22px;
 }
 .laugh-it {
     right: 0;
@@ -131,7 +178,7 @@ html, body {
   }
 }
 .space1 {
-  height: 40px;
+  height: 60px;
 }
 .more {
   width: @width100;
@@ -151,5 +198,51 @@ button:focus {
   margin-top: 5px;
   img {
     width: @width100;
+  }
+}
+.title {
+  &.title--margin-top {
+    margin-top: 108px;
+  }
+}
+.pin-input {
+  border: solid 1px #ababab;
+  padding: 10px;
+  width: 78%;
+  margin: auto;
+  border-radius: 50px;
+  text-align: center;
+  font-size: 21px;
+}
+input:focus {
+  outline: none;
+  border: solid 1px orange;
+}
+.pin-title {
+  margin-bottom: 10px;
+}
+a.btn {
+  text-decoration: none;
+  padding: 13px 30px;
+}
+.whatsapp-input {
+  .country-code {
+    top: 21px;
+  }
+}
+.monster-1 {
+  position: absolute;
+  top: 0;
+  right: 30px;
+}
+.monster-2 {
+  position: absolute;
+  max-width: 117px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: -27px;
+  &.monster-2--md {
+    max-width: 163px;
   }
 }
