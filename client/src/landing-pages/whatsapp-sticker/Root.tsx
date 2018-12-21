@@ -96,7 +96,7 @@ class MSISDNEntryStep extends React.PureComponent<{
                 </div>
                 <div className="body-copy">
                   <p>Express yourself with</p>
-                  <p>New <span className="green">Whatsapp Stickers</span></p>
+                  <p>New <span className="green">WhatsApp Stickers</span></p>
                 </div>
                 <p>Choose your sticker type:</p>
                 <div className="btn-wrapper">
@@ -137,7 +137,7 @@ class MSISDNEntryStep extends React.PureComponent<{
                 </div>
 
                 <div>
-                  Enter your number to get all the sticker packs.
+                  Enter your phone number to get all the sticker packs.
               </div>
                 {/* <input
                   placeholder="Phone number"
@@ -174,17 +174,17 @@ class MSISDNEntryStep extends React.PureComponent<{
                 [
                   {
                     Message: () => <span className="message"><Translate id="testimonial-1"></Translate></span>,
-                    Name: () => <span className="testimonials-name"> - <Translate id="rahim"></Translate></span>,
+                    Name: () => <span className="testimonials-name"> - <Translate id="faris"></Translate></span>,
                     stars: 5
                   },
                   {
                     Message: () => <span className="message"><Translate id="testimonial-2"></Translate></span>,
-                    Name: () => <span className="testimonials-name"> - <Translate id="fatima"></Translate></span>,
+                    Name: () => <span className="testimonials-name"> - <Translate id="layla"></Translate></span>,
                     stars: 5
                   },
                   {
                     Message: () => <span className="message"><Translate id="testimonial-3"></Translate></span>,
-                    Name: () => <span className="testimonials-name"> - <Translate id="sam"></Translate></span>,
+                    Name: () => <span className="testimonials-name"> - <Translate id="ismail"></Translate></span>,
                     stars: 5
                   }
                 ]
@@ -232,7 +232,7 @@ class PINEntryStep extends React.PureComponent<{
                 <img src={StickerPack} />
               </div>
               <div className="title">
-                The sticker packs is ready!
+                The sticker packs are ready!
             </div>
               <div className="pin-title">
                 <Translate id="we_just_sent_a_pin" />
@@ -292,17 +292,17 @@ class PINEntryStep extends React.PureComponent<{
                 [
                   {
                     Message: () => <span className="message"><Translate id="testimonial-1"></Translate></span>,
-                    Name: () => <span className="testimonials-name"> - <Translate id="sam"></Translate></span>,
+                    Name: () => <span className="testimonials-name"> - <Translate id="faris"></Translate></span>,
                     stars: 5
                   },
                   {
                     Message: () => <span className="message"><Translate id="testimonial-2"></Translate></span>,
-                    Name: () => <span className="testimonials-name"> - <Translate id="sam"></Translate></span>,
+                    Name: () => <span className="testimonials-name"> - <Translate id="layla"></Translate></span>,
                     stars: 5
                   },
                   {
                     Message: () => <span className="message"><Translate id="testimonial-3"></Translate></span>,
-                    Name: () => <span className="testimonials-name"> - <Translate id="sam"></Translate></span>,
+                    Name: () => <span className="testimonials-name"> - <Translate id="ismail"></Translate></span>,
                     stars: 5
                   }
                 ]
