@@ -34,6 +34,7 @@ module.exports = {
   devServer: {
     hot: true,
     host: '127.0.0.1',
+    disableHostCheck: true,
     contentBase: resolve(__dirname, '../assets'),
     publicPath: '/',
     historyApiFallback: true,

@@ -19,6 +19,7 @@ import CustomTesti from "../bid-win/components/CustomTesti";
 import MsisdnInput from "../../common-components/msisdn/msisdn-input";
 import TimerComponent from "../../common-components/timer/timer";
 import { translate } from "../../../webpack/dev-utils/translate-by-yandex";
+import DOBPicker from "./components/DOBPicker";
 
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
@@ -125,7 +126,7 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
         </div>
 
         <div className="c-input-name form1">
-        <label className="labelStyle"><Translate id="your_dob"/></label><input className="inputStyle1" type="text" placeholder="dd / mm / yyyy"/>
+        <label className="labelStyle"><Translate id="your_dob"/></label><DOBPicker />
         </div>
 
         <button type="button" className="button3" id="submit-your-details" onClick={this.updateState} >
@@ -146,7 +147,8 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
         </div>
 
         <div className="c-input-name form1">
-        <label className="labelStyle"><Translate id="lovers_dob"/></label><input  className="inputStyle1" type="text" placeholder="dd / mm / yyyy"/>
+
+        <label className="labelStyle"><Translate id="lovers_dob"/></label><DOBPicker />
         </div>
 
         <button type="button" className="button3" id="submit-lover-details" onClick={this.updateState} >
@@ -220,8 +222,6 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
     );
   }
 });
-
-
 
 
 
