@@ -95,7 +95,7 @@ class MSISDNEntryStep extends React.PureComponent<{
                   <img src={Monster1} />
                 </div>
                 <div className="body-copy">
-                  <p>Express yourself with</p>
+                  <p><Translate id="express-yourself"></Translate></p>
                   <p>New <span className="green">WhatsApp Stickers</span></p>
                 </div>
                 <p>Choose your sticker type:</p>
@@ -133,12 +133,11 @@ class MSISDNEntryStep extends React.PureComponent<{
                   <div className="space1"></div>
                   <div className="title">
                     You are so romantic
-              </div>
+                  </div>
                 </div>
-
                 <div>
                   Enter your phone number to get all the sticker packs.
-              </div>
+                </div>
                 {/* <input
                   placeholder="Phone number"
                   value={this.state.msisdn}
@@ -152,7 +151,7 @@ class MSISDNEntryStep extends React.PureComponent<{
 
                 <button className="btn" type="submit" disabled={RDS.IsLoading(this.props.rds)}>Submit to Subscribe</button>
                 {RDS.WhenLoading(null, () => 'Wait...')(this.props.rds)}
-                <div>
+                <div className="error-msg">
                   {RDS.WhenFailure(null, (err: MSISDNEntryFailure) => <Translate id={err.errorType} />)(this.props.rds)}
                 </div>
                 {/* MSISDN END HERE*/}
