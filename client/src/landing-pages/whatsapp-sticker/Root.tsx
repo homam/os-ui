@@ -94,9 +94,10 @@ class MSISDNEntryStep extends React.PureComponent<{
                 <div className={"monster-1 " + (this.state.firstStep === 1 ? "active" : "")}>
                   <img src={Monster1} />
                 </div>
-                <p>Express yourself with</p>
-                <p>New Whatsapp Stickers</p>
-                <br />
+                <div className="body-copy">
+                  <p>Express yourself with</p>
+                  <p>New <span className="green">Whatsapp Stickers</span></p>
+                </div>
                 <p>Choose your sticker type:</p>
                 <div className="btn-wrapper">
                   <div>
@@ -122,7 +123,7 @@ class MSISDNEntryStep extends React.PureComponent<{
                   <div className="space1"></div>
                   <div className="title">
                     You’ve got good sense of humour
-              </div>
+                  </div>
                 </div>
                 {/* ROMANCE */}
                 <div className={"romantic " + (this.state.romance === 0 ? "hidden" : "")}>
@@ -159,14 +160,40 @@ class MSISDNEntryStep extends React.PureComponent<{
             </div>
           </div>
         </div>
-        <div className="more">
-          <div className="new-sm">
-            <img src={NewSm} />
+        <div className="wrapper">
+          <div className="more">
+            <div className="new-sm">
+              <img src={NewSm} />
+            </div>
+            <img src={More} />
           </div>
-          <img src={More} />
-        </div>
-        <div className="whatsapp-testimonial">
-          <CustomTesti></CustomTesti>
+          <div className="whatsapp-testimonial">
+            <CustomTesti
+              className="whatsapp-sticker"
+              testimonials={
+                [
+                  {
+                    Message: () => <span className="message"><Translate id="testimonial-1"></Translate></span>,
+                    Name: () => <span className="testimonials-name"> - <Translate id="rahim"></Translate></span>,
+                    stars: 5
+                  },
+                  {
+                    Message: () => <span className="message"><Translate id="testimonial-2"></Translate></span>,
+                    Name: () => <span className="testimonials-name"> - <Translate id="fatima"></Translate></span>,
+                    stars: 5
+                  },
+                  {
+                    Message: () => <span className="message"><Translate id="testimonial-3"></Translate></span>,
+                    Name: () => <span className="testimonials-name"> - <Translate id="sam"></Translate></span>,
+                    stars: 5
+                  }
+                ]
+              }
+            />
+          </div>
+          <div className="disclaimer">
+            <p><Translate id="disclaimers" /></p>
+          </div>
         </div>
       </form>
     );
@@ -190,6 +217,7 @@ class PINEntryStep extends React.PureComponent<{
           this.props.onEnd(this.state.pin);
         }}
       >
+        {/* PIN FLOW */}
         <div className="bg"></div>
         <div className="wrapper">
           <div className="new">
@@ -200,6 +228,12 @@ class PINEntryStep extends React.PureComponent<{
           </div>
           <div className="monster-container sticker-ready">
             <div className="body-container2">
+              <div className="monster-2 sticker-pack">
+                <img src={StickerPack} />
+              </div>
+              <div className="title">
+                The sticker packs is ready!
+            </div>
               <div className="pin-title">
                 <Translate id="we_just_sent_a_pin" />
               </div>
@@ -234,7 +268,7 @@ class PINEntryStep extends React.PureComponent<{
                       <Translate id="didnt_receive_pin_yet" values={{
                         phone: this.props.msisdn
                       }} />&nbsp;
-                  <a onClick={() => this.props.backToStart()}>
+                  <a className="link" onClick={() => this.props.backToStart()}>
                         <Translate id="click_here_to_change_your_number" />
                       </a>
                     </div>
@@ -252,7 +286,31 @@ class PINEntryStep extends React.PureComponent<{
             <img src={More} />
           </div>
           <div className="whatsapp-testimonial">
-            <CustomTesti></CustomTesti>
+            <CustomTesti
+              className="whatsapp-sticker"
+              testimonials={
+                [
+                  {
+                    Message: () => <span className="message"><Translate id="testimonial-1"></Translate></span>,
+                    Name: () => <span className="testimonials-name"> - <Translate id="sam"></Translate></span>,
+                    stars: 5
+                  },
+                  {
+                    Message: () => <span className="message"><Translate id="testimonial-2"></Translate></span>,
+                    Name: () => <span className="testimonials-name"> - <Translate id="sam"></Translate></span>,
+                    stars: 5
+                  },
+                  {
+                    Message: () => <span className="message"><Translate id="testimonial-3"></Translate></span>,
+                    Name: () => <span className="testimonials-name"> - <Translate id="sam"></Translate></span>,
+                    stars: 5
+                  }
+                ]
+              }
+            />
+          </div>
+          <div className="disclaimer">
+            <p><Translate id="disclaimers" /></p>
           </div>
         </div>
       </form>
@@ -271,14 +329,19 @@ const TQStep = ({ finalUrl }: { finalUrl: string }) => <div>
     </div>
 
     <div className="monster-container sticker-ready">
-      <div className="body-container2">
-        Thank you!
-</div>
-      <div>
-        Now you can express your emotions
-        with the amazing stickers. Have fun!
-  </div>
-      <a className="btn" href={finalUrl}>Download Now</a>
+      <div className="body-container2 thank-you">
+        <div className="monster-2">
+          <img src={HumourSticker} />
+        </div>
+        <div className="space1"></div>
+        <div className="title">Thank you!</div>
+        <div>Now you can express your emotions with the amazing stickers. Have fun!</div>
+        <a className="btn" href={finalUrl}>Download Now</a>
+      </div>
+    </div>
+    <div className="space2"></div>
+    <div className="disclaimer">
+      <p><Translate id="disclaimers" /></p>
     </div>
   </div>
 </div>;
