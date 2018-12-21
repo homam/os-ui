@@ -34,7 +34,7 @@
 /** Text **/
 
 h1 {font-family: 'Amatic SC', cursive;
-	font-weight: normal;
+	font-weight: bold;
 	font-size:55px;
 	margin:0px;
 	line-height:1em;
@@ -128,6 +128,7 @@ body {
 	-o-background-size: cover;
 	background-size: cover;
 	height:100vh;
+	height: calc(var(--vh, 1vh) * 100);
 	padding:0% 2%;
 }
 
@@ -427,10 +428,10 @@ body {
 
 .wishlist {
 	width:52%;
-	padding:2%;
+	padding:0% 2%;
 	border-radius:20px;
 	margin:2% 0% 0% 5%;
-	height:70px;
+	height:85px;
 	
 }
 
@@ -453,7 +454,7 @@ display: flex;
 }
 
 .wishlist-content img {
-	height:35px;
+	height:43px;
 	margin-right:10px;
 
 }
@@ -577,8 +578,8 @@ display: flex;
 	}
 
 .big-gift {
-	width:150px;
-	height:150px;
+	width:230px;
+	height:230px;
 	margin:auto;
 	animation: bouncing 0.5s cubic-bezier(0.1,0.25,0.1,1) 0s infinite alternate both;
 }
@@ -597,6 +598,7 @@ display: flex;
 	background: url(../img/snowflakes.png) no-repeat;
 	background-size: cover;
 	height:100vh;
+	height: calc(var(--vh, 1vh) * 100);
 	left:0;
 }
 
@@ -631,7 +633,7 @@ display: flex;
 }
 
 .box-over img {
-  width:170px;
+  width:230px;
 	margin-top:-10%;
 	animation-name: zoomin;
   	-webkit-animation-name: zoomin;
@@ -702,6 +704,7 @@ button.add-to-wishlist {
 	position: relative;
 	z-index: 100;
 	height:100vh;
+	height: calc(var(--vh, 1vh) * 100);
 	width:100% !important;
 }
 
@@ -764,7 +767,7 @@ button.btn-active {
 	height:150px;
 	padding:5% 0% 5% 0% ;
 	text-align: center;
-	top:30%;
+	top:28%;
 }
 
 .input-box {
@@ -832,7 +835,7 @@ button.btn-active {
 
 .wishlist-container {
 	position: absolute;
-    top: 63%;
+    top: 61%;
     width:100%;
     display: flex;
     justify-content: center;
@@ -862,7 +865,7 @@ button.btn-active {
 	background:#BD363A;
 	width: 100%;
 	position:absolute; 
-	bottom: 0;
+	bottom: 3%;
 	display: flex;
 	justify-content: center;
 	padding:2% 0%;
@@ -909,9 +912,10 @@ button.btn-active {
 
 .reply-message h1 {
 	color:#3A9960;
-	font-size:60px;
+	font-size:80px;
 	font-weight:bold;
-	margin-bottom:25px;
+	margin-bottom:15px;
+	font-family: 'Quicksand';
 }
 
 .reply-message p {
@@ -928,6 +932,7 @@ padding-top:15px;
 	position: relative;
 	z-index: 100;
 	height:100vh;
+	height: calc(var(--vh, 1vh) * 100);
 }
 
 .message-container .phone-enter {
@@ -979,6 +984,7 @@ padding-top:15px;
 	position: relative;
 	z-index: 100;
 	height:100vh;
+	height: calc(var(--vh, 1vh) * 100);
 }
 
 .success-container .phone-enter {
@@ -1048,9 +1054,7 @@ padding-top:15px;
 		height:250px;
 	}
 
-	.box-over img {
-		width:330px;
-	}
+
 
 	.gift-open .top-text {
 		margin-top:20%
@@ -1134,7 +1138,7 @@ padding-top:15px;
 	.box-over {margin-top:12%;height:90px}
 	.box-over p {margin-top:1%;}
 	.gift-open .santa {display: none;}
-	button.add-to-wishlist {margin-top:2% !important;width:50%}
+	button.add-to-wishlist {margin-top:4% !important;width:50%}
 	.phone-container {height:200vh}
 	.santa-left {left:-19%}
 	}
