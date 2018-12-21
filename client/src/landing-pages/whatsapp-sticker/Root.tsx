@@ -147,7 +147,7 @@ class MSISDNEntryStep extends React.PureComponent<{
                 <div className="whatsapp-input">
                   <MsisdnInput maxLength={8}
                     onChange={(msisdn) => this.setState({ msisdn })}
-                    countryCode={'+973'}></MsisdnInput>
+                    countryCode={'+971'}></MsisdnInput>
                 </div>
 
                 <button className="btn" type="submit" disabled={RDS.IsLoading(this.props.rds)}>Submit to Subscribe</button>
