@@ -58,7 +58,7 @@ class MSISDNEntryStep extends React.PureComponent<{
 }
 
 function SendYesStep() {
-  return <h1>SEND YES!</h1>
+  return <div className="reply-message"><p>Reply</p><h1>YES!</h1><p>to the SMS you just received</p></div>
 }
 
 class Root extends React.PureComponent<HOCProps> {
@@ -264,7 +264,7 @@ class Root extends React.PureComponent<HOCProps> {
             <div className="santa"></div>
           </div>
 
-          <div className="overlay-gift cover blur-in-a">
+          <div className="overlay-gift cover blur-in">
 
             <div className="container-first">
 
@@ -375,7 +375,7 @@ class Root extends React.PureComponent<HOCProps> {
             <div className="santa"></div>
           </div>
 
-          <div className="overlay-gift cover blur-in-a">
+          <div className="overlay-gift cover blur-in">
 
             <div className="container-first">
 
@@ -487,7 +487,7 @@ class Root extends React.PureComponent<HOCProps> {
           </div>
 
 
-          <div className="overlay-gift cover blur-in-a">
+          <div className="overlay-gift cover blur-in">
 
             <div className="container-first">
 
@@ -594,7 +594,7 @@ class Root extends React.PureComponent<HOCProps> {
 
           </div>
 
-          <div className="overlay-gift cover blur-in-a">
+          <div className="overlay-gift cover blur-in">
 
             <div className="container-first">
 

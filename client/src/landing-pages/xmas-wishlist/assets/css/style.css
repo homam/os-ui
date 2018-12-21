@@ -516,10 +516,10 @@ display: flex;
 }
 
 .blur-in {
-	-webkit-animation: blur 0.5s forwards;
-    -moz-animation: blur 0.5s forwards;
-    -o-animation: blur 0.5s forwards;
-    animation: blur 0.5s forwards;
+	-webkit-animation: blur 0.3s forwards;
+    -moz-animation: blur 0.3s forwards;
+    -o-animation: blur 0.3s forwards;
+    animation: blur 0.3s forwards;
 }
 
 
@@ -800,7 +800,6 @@ button.btn-active {
 .common-components-simple-opacity-transition-simple-opacity-transition__group--3k1Ig div:nth-child(2),
 .common-components-simple-opacity-transition-simple-opacity-transition__group--3k1Ig div:nth-child(3){
 	font-family: 'Quicksand', sans-serif;
-	background:#BD363A;
 	color:white;
 	font-size:12px;
 	
@@ -810,16 +809,18 @@ button.btn-active {
 	position: absolute;
 	display: block;
 	left: 22%;
-	top: 15%;
+	top: 17%;
 	z-index: 9;
 	font-size: 21px !important;
 	border-left: 2px solid rgba(0, 0, 0, 0.2);
-	padding-left: 5px;}
+	padding-left: 5px;
+  color:#444;}
 
 .phone-enter span {
 	font-family: 'Quicksand', sans-serif;
 	font-size:14px;
 	line-height: 30px;
+	color:#444;
 
 }
 
@@ -895,7 +896,7 @@ button.btn-active {
 	background:white;
 	color:#BD363A;
 	border-radius:15px;
-	width: 110px;
+	width: 130px;
 	text-align: center;
 }
 
@@ -904,6 +905,21 @@ button.btn-active {
 	font-size: 12px;
 	line-height:14px;
 	color:white;
+}
+
+.reply-message h1 {
+	color:#3A9960;
+	font-size:60px;
+	font-weight:bold;
+	margin-bottom:25px;
+}
+
+.reply-message p {
+	font-weight:bold;
+}
+
+.reply-message {
+padding-top:15px;
 }
 
 /** Message **/
