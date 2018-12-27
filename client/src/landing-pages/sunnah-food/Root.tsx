@@ -155,7 +155,8 @@ class MSISDNEntryStep extends React.PureComponent<{
                         }>
                             <h3><Translate id="honey"></Translate></h3>
                             <div className="body-copy center fade-in-bck ">
-                                <Translate id="honey-description"></Translate>
+                                <Translate id="honey-description"></Translate><br></br>
+                                <Translate id="honey-description-2"></Translate>
                             </div>
 
                             <button onClick={this.selectIntro2} type="button" className="btn uppercase now pulsate-fwd ">
@@ -294,7 +295,8 @@ class PINEntryStep extends React.PureComponent
                         <div className="content-honey active">
                             <h3><Translate id="honey"></Translate></h3>
                             <div className="body-copy center">
-                                <Translate id="honey-description"></Translate>
+                                <Translate id="honey-description"></Translate><br></br>
+                                <Translate id="honey-description-2"></Translate>
                             </div>
 
                             <button type="submit" className="btn uppercase now">
@@ -303,7 +305,7 @@ class PINEntryStep extends React.PureComponent
                         </div>
 
                         {/*This is Testimonial Intro*/}
-                        <CustomTesti
+                        {/* <CustomTesti
                             className="sunnah-testimonials"
                             testimonials={
                                 [
@@ -324,7 +326,7 @@ class PINEntryStep extends React.PureComponent
                                     }
                                 ]
                             }
-                        />
+                        /> */}
                     </div>
                     {/*This is Popup Number Section*/}
                     <div className="phone-number-wrapper">
@@ -332,9 +334,8 @@ class PINEntryStep extends React.PureComponent
                         <div className="headline">
                             <Translate id="we_just_sent_a_pin" />
                         </div>
-                        <div className="pin code">
+                        <div className="pin code sunnah-pin">
                             <input
-                                placeholder="PIN"
                                 maxLength={10}
                                 value={this.state.pin}
                                 onChange={ev => this.setState({ pin: ev.target.value })}
@@ -419,19 +420,20 @@ const TQStep = ({ finalUrl }: { finalUrl: string }) => <div className="">
             </div>
 
             {/*This is Honey Intro*/}
-            <div className="content-honey active">
+            {/* <div className="content-honey active">
                 <h3><Translate id="honey"></Translate></h3>
                 <div className="body-copy center">
-                    <Translate id="honey-description"></Translate>
+                    <Translate id="honey-description"></Translate><br></br>
+                    <Translate id="honey-description-2"></Translate>
                 </div>
 
                 <button type="submit" className="btn uppercase now">
                     <Translate id="unlock"></Translate>
                 </button>
-            </div>
+            </div> */}
 
             {/*This is Testimonial Intro*/}
-            <CustomTesti
+            {/* <CustomTesti
                 className="sunnah-testimonials"
                 testimonials={
                     [
@@ -452,17 +454,17 @@ const TQStep = ({ finalUrl }: { finalUrl: string }) => <div className="">
                         }
                     ]
                 }
-            />
+            /> */}
         </div>
 
-        <div className="phone-number-wrapper">
+        <div className="phone-number-wrapper custom-height">
             <div className="headline">
                 <span className="red-bold-lg"> <Translate id="congratulations"></Translate></span>
                 <br /><br />
                 <Translate id="we-got-your-confirmation"></Translate> <span className="red-bold"> <Translate id="healthy-eating"></Translate></span>
             </div>
-            <a className="btn btn--small-margin uppercase" href={finalUrl}><Translate id="download-now"></Translate></a>
-            <div className="sub-headline">
+             {/* <a className="btn btn--small-margin uppercase" href={finalUrl}><Translate id="download-now"></Translate></a>
+           <div className="sub-headline">
                 <div className="left-icon">
                     <img src={download} alt="Downloads" />
                 </div>
@@ -482,7 +484,7 @@ const TQStep = ({ finalUrl }: { finalUrl: string }) => <div className="">
                     <br />
                     <span className="text-sm"> <Translate id="less-than-a-minute"></Translate></span>
                 </div>
-            </div>
+            </div> */}
         </div>
     </div>
 </div>;
@@ -554,4 +556,4 @@ class Root extends React.PureComponent<HOCProps> {
     }
 }
 
-export default HOC(tracker, Root)(initialState);
+export default HOC(tracker, Root)(mockedCompletedState);

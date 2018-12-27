@@ -17,6 +17,7 @@ import { SimpleOpacityTransition, TransitionGroup, simpleOpacityTransitionStyles
 import "./assets/css/style.less?raw";
 import CustomTesti from "../bid-win/components/CustomTesti";
 import MsisdnInput from "../../common-components/msisdn/msisdn-input";
+import { mockFailureState, mockSuccessState } from "../../clients/mpesa/TolaHOC";
 
 
 const tracker = mkTracker(
@@ -24,6 +25,12 @@ const tracker = mkTracker(
   "xx",
   "WhatsApp Sticker" //TODO: replace Unknown with your page's name
 );
+
+function Wait(props) {
+  return (
+    <Translate id="wait_message"></Translate>
+  )
+}
 
 const Monster2 = require("./assets/img/monster-whatsapp.png");
 const LaughitUp = require("./assets/img/laugh.png")
@@ -42,7 +49,7 @@ class MSISDNEntryStep extends React.PureComponent<{
 
 }> {
   state = {
-    locale: "en",
+    locale: "ar",
     msisdn: this.props.msisdn,
     firstStep: 1,
     secondStep: 0,
@@ -96,15 +103,15 @@ class MSISDNEntryStep extends React.PureComponent<{
                 </div>
                 <div className="body-copy">
                   <p><Translate id="express-yourself"></Translate></p>
-                  <p>New <span className="green">WhatsApp Stickers</span></p>
+                  <p><Translate id="New"></Translate> <span className="green"><Translate id="whatsapp-sticker"></Translate></span></p>
                 </div>
-                <p>Choose your sticker type:</p>
+                <p><Translate id="choose-sticker-type"></Translate></p>
                 <div className="btn-wrapper">
                   <div>
-                    <button type="button" className="btn" onClick={this.showStep}>Funny</button>
+                    <button type="button" className="btn" onClick={this.showStep}><Translate id="funny"></Translate></button>
                   </div>
                   <div>
-                    <button type="button" className="btn" onClick={this.showStep2}>Romance</button>
+                    <button type="button" className="btn" onClick={this.showStep2}><Translate id="romance"></Translate></button>
                   </div>
                 </div>
               </div>
@@ -122,7 +129,7 @@ class MSISDNEntryStep extends React.PureComponent<{
                   </div>
                   <div className="space1"></div>
                   <div className="title">
-                    You’ve got good sense of humour
+                    <Translate id="sense-of-humour"></Translate>
                   </div>
                 </div>
                 {/* ROMANCE */}
@@ -132,11 +139,11 @@ class MSISDNEntryStep extends React.PureComponent<{
                   </div>
                   <div className="space1"></div>
                   <div className="title">
-                    You are so romantic
+                    <Translate id="so-romantic"></Translate>
                   </div>
                 </div>
                 <div>
-                  Enter your phone number to get all the sticker packs.
+                  <Translate id="enter-phone-number"></Translate>
                 </div>
                 {/* <input
                   placeholder="Phone number"
@@ -149,8 +156,8 @@ class MSISDNEntryStep extends React.PureComponent<{
                     countryCode={'+971'}></MsisdnInput>
                 </div>
 
-                <button className="btn" type="submit" disabled={RDS.IsLoading(this.props.rds)}>Submit to Subscribe</button>
-                {RDS.WhenLoading(null, () => 'Wait...')(this.props.rds)}
+                <button className="btn" type="submit" disabled={RDS.IsLoading(this.props.rds)}><Translate id="submit-to-subscribe"></Translate></button>
+                {RDS.WhenLoading(null, () => <Wait />)(this.props.rds)}
                 <div className="error-msg">
                   {RDS.WhenFailure(null, (err: MSISDNEntryFailure) => <Translate id={err.errorType} />)(this.props.rds)}
                 </div>
@@ -231,7 +238,7 @@ class PINEntryStep extends React.PureComponent<{
                 <img src={StickerPack} />
               </div>
               <div className="title">
-                The sticker packs are ready!
+                <Translate id="sticker-pack"></Translate>
             </div>
               <div className="pin-title">
                 <Translate id="we_just_sent_a_pin" />
@@ -239,13 +246,12 @@ class PINEntryStep extends React.PureComponent<{
               <div>
                 <input id="pin-entry"
                   className="pin-input"
-                  placeholder="PIN Number"
                   pattern="\d*"
                   maxLength={5}
                   value={this.state.pin}
                   onChange={ev => this.setState({ pin: ev.target.value })}
                 />
-                <button className="btn" type="submit" disabled={RDS.IsLoading(this.props.rds)}>Confirm</button>
+                <button className="btn" type="submit" disabled={RDS.IsLoading(this.props.rds)}><Translate id="confirm"></Translate></button>
                 {RDS.WhenLoading(null, () => 'Wait...')(this.props.rds)}
               </div>
 
@@ -333,9 +339,9 @@ const TQStep = ({ finalUrl }: { finalUrl: string }) => <div>
           <img src={HumourSticker} />
         </div>
         <div className="space1"></div>
-        <div className="title">Thank you!</div>
-        <div>Now you can express your emotions with the amazing stickers. Have fun!</div>
-        <a className="btn" href={finalUrl}>Download Now</a>
+        <div className="title"><Translate id="thank-you"></Translate></div>
+        <div><Translate id="express-emotions"></Translate></div>
+        <a className="btn" href={finalUrl}><Translate id="download-now"></Translate></a>
       </div>
     </div>
     <div className="space2"></div>
@@ -347,9 +353,18 @@ const TQStep = ({ finalUrl }: { finalUrl: string }) => <div>
 
 class Root extends React.PureComponent<HOCProps> {
   state = {
-    locale: "en",
+    locale: "ar",
     msisdn: "",
   };
+
+  defaultLang = () => {
+    document.getElementsByTagName('html')[0].setAttribute("lang", "ar");
+  }
+
+  componentDidMount() {
+    this.defaultLang();
+  }
+
   render() {
     return (
       <div>
@@ -390,4 +405,4 @@ class Root extends React.PureComponent<HOCProps> {
     );
   }
 }
-export default HOC(tracker, Root)(initialState);
+export default HOC(tracker, Root)(mockedCompletedState);
