@@ -151,6 +151,11 @@ html, body {
     font-weight: 600;
 }
 .laugh-it {
+    background-image: url("../img/laugh.png");
+    width: 50px;
+    height: 100px;
+    background-size: contain;
+    background-repeat: no-repeat;
     right: 0;
     position: absolute;
     display: block;
@@ -160,6 +165,12 @@ html, body {
     }
 }
 .new {
+  background-image: url("../img/en/star-en.svg");
+  background-repeat: no-repeat;
+  background-size: 95%;
+  width: 104px;
+  height: 102px;
+  position: absolute;
   img {
     width: 140px;
     position: absolute;
@@ -185,6 +196,9 @@ button:focus {
   outline: none;
 }
 .new-sm{
+  background-image: url("../img/star-sm.svg");
+  background-repeat: no-repeat;
+  height: 40px;
   width: @width100;
   max-width: 40px;
   position: absolute;
@@ -297,6 +311,20 @@ a.btn {
   text-decoration: underline;
   color: #198dd6;
 }
+.custom-height {
+  height: 160px;
+}
+.error-msg {
+  line-height: 35px;
+	background-color: #F1CAC8;
+	font-weight: bold;
+	color: #b70800;
+	border-radius: 4px;
+	font-size: 12px;
+	margin-bottom: 20px;
+	margin-top: 10px;
+	text-align: center;
+}
 
 html[lang="ar"] {
   .body-copy, .customTesti ul li .details .message {
@@ -304,6 +332,15 @@ html[lang="ar"] {
   }
   .customTesti ul li .details .rating span {
     font-style: normal;
+  }
+  .new-sm {
+    background-image: url("../img/ar/star-sm-ar.svg");
+  }
+  .new {
+    background-image: url("../img//ar/star-ar.svg");
+  }
+  .laugh-it {
+    background-image: url("../img/ar/laugh-ar.png");
   }
 }
 
