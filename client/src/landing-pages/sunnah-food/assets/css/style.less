@@ -168,7 +168,7 @@ html[lang="en"], html {
 .content {
     background-color: #7f141d;
     color: white;
-    height: calc(100vh - 40vh);
+    height: calc(100vh - 33vh);
     padding: 0 15px;
 }
 
@@ -320,33 +320,23 @@ a.btn {
     border-radius: 10px;
 }
 
+.pin.code.sunnah-pin input {
+    border: none;
+    padding: 12px 0;
+    border-radius: 50px;
+    width: 100%;
+    font-size: 18px;
+}
+
 .phone-number-wrapper .pin input:hover, .phone-number-wrapper .pin input:focus, .phone-number-wrapper .pin input:active {
     border: solid 1px #ff8f00;
 }
-
-// .phone-number-wrapper input {
-//     padding: 11px 26px 11px 30px;
-//     width: 50%;
-//     font-size: 16px;
-//     color: #000000;
-//     border-radius: 0 10px 10px 0;
-//     border: none;
-//     float: left;
-//     height: 16px;
-//     position: absolute;
-//     right: 0;
-//     margin: auto;
-//     background: transparent;
-// }
-
 .pin-message {
     font-size: 0.85em;
 }
-
 input:focus {
     outline: none;
 }
-
 .opacity-bg {
     background-color: #000000;
     width: 100%;
@@ -357,12 +347,10 @@ input:focus {
     right: 0;
     margin: auto;
 }
-
 .red-bold {
     font-weight: bold;
     color: #7F141D;
 }
-
 .red-bold-lg {
     font-weight: bold;
     color: #7F141D;
@@ -433,38 +421,9 @@ input:focus {
     border-radius: 10px 0 0px 10px;
     left: -44px;
 }
-
-// .flag {
-//     display: inline-block;
-//     width: 100%;
-//     max-width: 300px;
-//     background-color: white;
-//     border-radius: 10px;
-//     margin: 15px auto 0px auto;
-//     direction: ltr;
-//     border: solid 1px #ff8f00;
-// }
-
-// .flag:before {
-//     content: '(+60)';
-//     color:black;
-//     position: relative;
-//     float: left;
-//     left: 50px;
-//     top: 0;
-//     z-index: 1;
-//     padding: 9px;
-//     background-color: white;
-//     height: 19px;
-// }
-
-// .flag:hover, .flag:focus, .flag:active {
-//     border: solid 1px #ff8f00;
-// }
-
 .black-bg {
-    background-color: black;
-    opacity: 0.5;
+    background-color: #4a4949;
+    opacity: 0.4;
     height: 100vh;
     width: 100%;
     position: absolute;
@@ -476,6 +435,9 @@ input:focus {
     margin: auto;
     max-width: 300px;
     direction: ltr;
+}
+.customTesti.sunnah-testimonials ul li .details {
+    width: 220px;
 }
 
 .customTesti.sunnah-testimonials ul li .details .rating span {
@@ -534,6 +496,11 @@ button.language-switcher:focus {
 .language-container {
     width: 100%;
     max-width: 320px;
+}
+
+.custom-height {
+    padding-top: 30px;
+    height: 160px;
 }
 
 @media only screen and (min-width: 452px) {
@@ -741,7 +708,6 @@ button.language-switcher:focus {
 	display:block;
 	text-align:center;
 }
-
 .input-container .number-entry input {
 	width: 100%;
 	max-width: 300px;
@@ -784,15 +750,12 @@ button.language-switcher:focus {
 	font-size:14px;
 	font-weight:bold;
 }
-
-
 #pin-entry {
 	margin:0px;
 	padding:10px;
 	display:block;
 	text-align:center;
 }
-
 #pin-entry input {
 	width:80px;
 	padding:10px;
