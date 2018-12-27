@@ -127,8 +127,6 @@ body {
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-	height:100vh;
-	height: calc(var(--vh, 1vh) * 100);
 	padding:0% 2%;
 }
 
@@ -597,8 +595,6 @@ display: flex;
 	text-align: center;
 	background: url(../img/snowflakes.png) no-repeat;
 	background-size: cover;
-	height:100vh;
-	height: calc(var(--vh, 1vh) * 100);
 	left:0;
 }
 
@@ -703,8 +699,6 @@ button.add-to-wishlist {
 	opacity:1;
 	position: relative;
 	z-index: 100;
-	height:100vh;
-	height: calc(var(--vh, 1vh) * 100);
 	width:100% !important;
 }
 
@@ -931,8 +925,6 @@ padding-top:15px;
 	opacity:1;
 	position: relative;
 	z-index: 100;
-	height:100vh;
-	height: calc(var(--vh, 1vh) * 100);
 }
 
 .message-container .phone-enter {
@@ -983,8 +975,6 @@ padding-top:15px;
 	opacity:1;
 	position: relative;
 	z-index: 100;
-	height:100vh;
-	height: calc(var(--vh, 1vh) * 100);
 }
 
 .success-container .phone-enter {
@@ -1120,7 +1110,6 @@ padding-top:15px;
 		.container-first {
 			background:url(../img/background2.jpg) no-repeat center center; 
 			background-size: cover;
-			height: 130vh;
 	}
 
 	.gift-container {top:2%;}
@@ -1139,7 +1128,7 @@ padding-top:15px;
 	.box-over p {margin-top:1%;}
 	.gift-open .santa {display: none;}
 	button.add-to-wishlist {margin-top:4% !important;width:50%}
-	.phone-container {height:200vh}
+	
 	.santa-left {left:-19%}
 	}
 

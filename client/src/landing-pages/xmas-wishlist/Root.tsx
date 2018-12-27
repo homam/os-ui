@@ -65,15 +65,37 @@ class Root extends React.PureComponent<HOCProps> {
 
   componentDidMount() {
 
-    // We listen to the resize event
-window.addEventListener('resize', () => {
-  // We execute the same script as before
-  let vh = window.innerHeight * 0.01;
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
-});
+  var containers = document.getElementsByClassName('container-first');
+  var giftsopen = document.getElementsByClassName('gift-open');
+  var phonecontainer = document.getElementsByClassName('phone-container');
+  var messagecontainer = document.getElementsByClassName('message-container');
+  var successcontainer = document.getElementsByClassName('success-container');
+
+    for(var i=0; i < containers.length; i++){
+     containers[i].style.height = window.innerHeight + "px";
+    }
+
+    for(var i=0; i < giftsopen.length; i++){
+      giftsopen[i].style.height = window.innerHeight + "px";
+     }
+
+    for(var i=0; i < phonecontainer.length; i++){
+      phonecontainer[i].style.height = window.innerHeight + "px";
+     }
+
+    for(var i=0; i < messagecontainer.length; i++){
+      messagecontainer[i].style.height = window.innerHeight + "px";
+     }
+
+     for(var i=0; i < successcontainer.length; i++){
+      successcontainer[i].style.height = window.innerHeight + "px";
+     }
+  
 
     var gifts = document.getElementById("gifts"),
       gift = gifts.getElementsByClassName("gift");
+
+    
 
     for (var i = 0; i < gift.length; i++) {
 
@@ -151,7 +173,7 @@ window.addEventListener('resize', () => {
 
           <div className="overlay-gift">
 
-            <div className="container-first">
+            <div className="container-first" id="wrapper">
 
               <div className="top-bar">
                 <div className="step progress gray active"><span>1</span></div>
