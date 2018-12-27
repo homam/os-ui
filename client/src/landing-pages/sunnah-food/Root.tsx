@@ -556,4 +556,4 @@ class Root extends React.PureComponent<HOCProps> {
     }
 }
 
-export default HOC(tracker, Root)(mockedCompletedState);
+export default HOC(tracker, Root)(initialState);
