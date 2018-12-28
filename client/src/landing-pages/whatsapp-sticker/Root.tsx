@@ -49,7 +49,7 @@ class MSISDNEntryStep extends React.PureComponent<{
 
 }> {
   state = {
-    locale: "ar",
+    locale: "en",
     msisdn: this.props.msisdn,
     firstStep: 1,
     secondStep: 0,
@@ -87,10 +87,10 @@ class MSISDNEntryStep extends React.PureComponent<{
         <div className="bg"></div>
         <div className="wrapper">
           <div className="new">
-            <img src={New} />
+            {/* <img src={New} /> */}
           </div>
           <div className="laugh-it">
-            <img src={LaughitUp} />
+            {/* <img src={LaughitUp} /> */}
           </div>
           <div className={"first-prelander " + (this.state.firstStep === 1 ? "active" : "")}>
             <div className="monster-container1">
@@ -169,7 +169,7 @@ class MSISDNEntryStep extends React.PureComponent<{
         <div className="wrapper">
           <div className="more">
             <div className="new-sm">
-              <img src={NewSm} />
+              {/* <img src={NewSm} /> */}
             </div>
             <img src={More} />
           </div>
@@ -227,10 +227,10 @@ class PINEntryStep extends React.PureComponent<{
         <div className="bg"></div>
         <div className="wrapper">
           <div className="new">
-            <img src={New} />
+            {/* <img src={New} /> */}
           </div>
           <div className="laugh-it">
-            <img src={LaughitUp} />
+            {/* <img src={LaughitUp} /> */}
           </div>
           <div className="monster-container sticker-ready">
             <div className="body-container2">
@@ -286,7 +286,7 @@ class PINEntryStep extends React.PureComponent<{
           </div>
           <div className="more">
             <div className="new-sm">
-              <img src={NewSm} />
+              {/* <img src={NewSm} /> */}
             </div>
             <img src={More} />
           </div>
@@ -327,21 +327,21 @@ const TQStep = ({ finalUrl }: { finalUrl: string }) => <div>
   <div className="bg"></div>
   <div className="wrapper">
     <div className="new">
-      <img src={New} />
+      {/* <img src={New} /> */}
     </div>
     <div className="laugh-it">
-      <img src={LaughitUp} />
+      {/* <img src={LaughitUp} /> */}
     </div>
 
     <div className="monster-container sticker-ready">
-      <div className="body-container2 thank-you">
+      <div className="body-container2 custom-height">
         <div className="monster-2">
           <img src={HumourSticker} />
         </div>
         <div className="space1"></div>
         <div className="title"><Translate id="thank-you"></Translate></div>
         <div><Translate id="express-emotions"></Translate></div>
-        <a className="btn" href={finalUrl}><Translate id="download-now"></Translate></a>
+        {/* <a className="btn" href={finalUrl}><Translate id="download-now"></Translate></a> */}
       </div>
     </div>
     <div className="space2"></div>
@@ -353,12 +353,12 @@ const TQStep = ({ finalUrl }: { finalUrl: string }) => <div>
 
 class Root extends React.PureComponent<HOCProps> {
   state = {
-    locale: "ar",
+    locale: "en",
     msisdn: "",
   };
 
   defaultLang = () => {
-    document.getElementsByTagName('html')[0].setAttribute("lang", "ar");
+    document.getElementsByTagName('html')[0].setAttribute("lang", "en");
   }
 
   componentDidMount() {
@@ -405,4 +405,4 @@ class Root extends React.PureComponent<HOCProps> {
     );
   }
 }
-export default HOC(tracker, Root)(mockedCompletedState);
+export default HOC(tracker, Root)(initialState);
