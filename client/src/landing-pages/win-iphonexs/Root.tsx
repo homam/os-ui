@@ -367,8 +367,8 @@ class Root extends React.PureComponent<HOCProps> {
 
       <div id="container">
 
-        <div className="ar-top-legals">  أهلا بك في خدمة Gameloards </div>
-        <div className="en-top-legals">Welcome to Gameloards</div>
+        <div className="ar-top-legals">  أهلا بك في خدمة Gamelords </div>
+        <div className="en-top-legals">Welcome to Gamelords</div>
         <div className="header">
 
           <div className="lang-btns">
