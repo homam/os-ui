@@ -9,6 +9,7 @@ import HOC, {
 import * as RDS from "../../common-types/RemoteDataState";
 import { SimpleOpacityTransition, TransitionGroup, simpleOpacityTransitionStyles } from "../../common-components/simple-opacity-transition";
 import './assets/css/style.css?raw'
+import MSISDNInput from "../../common-components/msisdn/msisdn-input"
 
 const imgPhone = require("./assets/img/IphoneX.png");
 const imgTv = require("./assets/img/tv-min.png");
@@ -42,13 +43,21 @@ class MSISDNEntryStep extends React.PureComponent<{
         <div>
           <p>Enter your mobile phone</p>
           <div className="input-box" id="input-box">
-            <input
+          <MSISDNInput
+              maxLength={10}
+              placeholder="Phone number"
+              countryCode="+27"
+              id="msisdnid"
+              msisdn={this.state.msisdn}
+              onChange={msisdn => this.setState({ msisdn })}
+            />
+            {/* <input
               placeholder="Phone number"
               value={this.state.msisdn}
               onChange={ev => this.setState({ msisdn: ev.target.value })}
-            />
-            <button type="submit" disabled={false}>OK</button>
-            <span className="unit">(+27)</span>
+            /> */}
+            <button id="btn-submit" disabled type="submit" disabled={false}>OK</button>
+            <div id="valid"></div>
             <span>subscription R10/day</span>
           </div>
         </div>
@@ -64,6 +73,35 @@ function SendYesStep() {
 class Root extends React.PureComponent<HOCProps> {
 
   componentDidMount() {
+
+
+    document.getElementById("btn-submit").disabled = true
+
+    window.onkeyup = function(event) {
+      if (document.querySelector('input').value.length >= 9) {
+        document.querySelector('input').style.border = "2px solid #3A9960";
+        document.querySelector('input').style.backgroundColor = "rgba(58, 153, 96, 0.2)";
+        document.querySelector('input').style.color = "#3A9960";
+        document.querySelector('input').style.fontWeight = "bold";
+        document.getElementById('btn-submit').style.opacity = "1";
+        document.getElementById("btn-submit").disabled = false;
+        document.getElementById('valid').style.display = "block";
+        
+      }
+      if (document.querySelector('input').value.length <= 9) {
+        document.querySelector('input').style.border = "2px solid grey";
+        document.querySelector('input').style.backgroundColor = "rgba(0, 0, 0, 0.05)";
+        document.querySelector('input').style.color = "black";
+        document.querySelector('input').style.fontWeight = "normal";
+        document.getElementById('btn-submit').style.opacity = "0.2";
+        document.getElementById("btn-submit").disabled = true;
+        document.getElementById('valid').style.display = "none";
+        
+      }
+    };
+
+    
+   
 
   var containers = document.getElementsByClassName('container-first');
   var giftsopen = document.getElementsByClassName('gift-open');
@@ -236,38 +274,6 @@ class Root extends React.PureComponent<HOCProps> {
 
             <div className="container-first">
 
-              <div className="top-bar">
-                <div className="step progress gray active"><span>1</span></div>
-                <div className="step progress gray"><span>2</span></div>
-                <div className="step progress gray"><span>3</span></div>
-              </div>
-
-              <div className="top-text">
-                <div className="toptitle green">First</div>
-                <h1 className="red">choose your gift</h1>
-              </div>
-
-
-              <div className="gift-container">
-                <div className="gifts">
-                  <div className="gift shaker gyellow"></div>
-                  <div className="gift shaker2 gblue"></div>
-                  <div className="gift shaker3 ggreen"></div>
-                </div>
-
-                <div className="snow"></div>
-              </div>
-
-              <div className="snt-wishlist">
-                <div className="santa"></div>
-                <div className="wishlist empty over-white">
-                  <div className="leaf-red"></div>
-                  <span className="green">Your wishlist</span>
-                  <p className="gray">is empty, open your first gift</p>
-                </div>
-
-              </div>
-
             </div>
           </div>
 
@@ -296,38 +302,6 @@ class Root extends React.PureComponent<HOCProps> {
           <div className="overlay-gift cover blur-in">
 
             <div className="container-first">
-
-              <div className="top-bar">
-                <div className="step progress gray active"><span>1</span></div>
-                <div className="step progress gray"><span>2</span></div>
-                <div className="step progress gray"><span>3</span></div>
-              </div>
-
-              <div className="top-text">
-                <div className="toptitle green">First</div>
-                <h1 className="red">choose your gift</h1>
-              </div>
-
-
-              <div className="gift-container">
-                <div className="gifts">
-                  <div className="gift shaker gyellow"></div>
-                  <div className="gift shaker2 gblue"></div>
-                  <div className="gift shaker3 ggreen"></div>
-                </div>
-
-                <div className="snow"></div>
-              </div>
-
-              <div className="snt-wishlist">
-                <div className="santa"></div>
-                <div className="wishlist empty over-white">
-                  <div className="leaf-red"></div>
-                  <span className="green">Your wishlist</span>
-                  <p className="gray">is empty, open your first gift</p>
-                </div>
-
-              </div>
 
             </div>
           </div>
@@ -407,38 +381,6 @@ class Root extends React.PureComponent<HOCProps> {
           <div className="overlay-gift cover blur-in">
 
             <div className="container-first">
-
-              <div className="top-bar">
-                <div className="step progress gray active"><span>1</span></div>
-                <div className="step progress gray"><span>2</span></div>
-                <div className="step progress gray"><span>3</span></div>
-              </div>
-
-              <div className="top-text">
-                <div className="toptitle green">First</div>
-                <h1 className="red">choose your gift</h1>
-              </div>
-
-
-              <div className="gift-container">
-                <div className="gifts">
-                  <div className="gift shaker gyellow"></div>
-                  <div className="gift shaker2 gblue"></div>
-                  <div className="gift shaker3 ggreen"></div>
-                </div>
-
-                <div className="snow"></div>
-              </div>
-
-              <div className="snt-wishlist">
-                <div className="santa"></div>
-                <div className="wishlist empty over-white">
-                  <div className="leaf-red"></div>
-                  <span className="green">Your wishlist</span>
-                  <p className="gray">is empty, open your first gift</p>
-                </div>
-
-              </div>
 
             </div>
           </div>
@@ -520,38 +462,6 @@ class Root extends React.PureComponent<HOCProps> {
 
             <div className="container-first">
 
-              <div className="top-bar">
-                <div className="step progress gray active"><span>1</span></div>
-                <div className="step progress gray"><span>2</span></div>
-                <div className="step progress gray"><span>3</span></div>
-              </div>
-
-              <div className="top-text">
-                <div className="toptitle green">First</div>
-                <h1 className="red">choose your gift</h1>
-              </div>
-
-
-              <div className="gift-container">
-                <div className="gifts">
-                  <div className="gift shaker gyellow"></div>
-                  <div className="gift shaker2 gblue"></div>
-                  <div className="gift shaker3 ggreen"></div>
-                </div>
-
-                <div className="snow"></div>
-              </div>
-
-              <div className="snt-wishlist">
-                <div className="santa"></div>
-                <div className="wishlist empty over-white">
-                  <div className="leaf-red"></div>
-                  <span className="green">Your wishlist</span>
-                  <p className="gray">is empty, open your first gift</p>
-                </div>
-
-              </div>
-
             </div>
           </div>
 
@@ -626,38 +536,6 @@ class Root extends React.PureComponent<HOCProps> {
           <div className="overlay-gift cover blur-in">
 
             <div className="container-first">
-
-              <div className="top-bar">
-                <div className="step progress gray active"><span>1</span></div>
-                <div className="step progress gray"><span>2</span></div>
-                <div className="step progress gray"><span>3</span></div>
-              </div>
-
-              <div className="top-text">
-                <div className="toptitle green">First</div>
-                <h1 className="red">choose your gift</h1>
-              </div>
-
-
-              <div className="gift-container">
-                <div className="gifts">
-                  <div className="gift shaker gyellow"></div>
-                  <div className="gift shaker2 gblue"></div>
-                  <div className="gift shaker3 ggreen"></div>
-                </div>
-
-                <div className="snow"></div>
-              </div>
-
-              <div className="snt-wishlist">
-                <div className="santa"></div>
-                <div className="wishlist empty over-white">
-                  <div className="leaf-red"></div>
-                  <span className="green">Your wishlist</span>
-                  <p className="gray">is empty, open your first gift</p>
-                </div>
-
-              </div>
 
             </div>
           </div>

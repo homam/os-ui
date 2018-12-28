@@ -747,6 +747,7 @@ button.add-to-wishlist {
 	margin:auto;
 	box-shadow: 0px 10px 30px rgba(0,0,0,0.3);
 	border: none;
+	opacity:0.2;
 
 }
 
@@ -769,27 +770,43 @@ button.btn-active {
 	 height:110px;
 	}
 
+
+
 .input-box div {
-	display:flex !important;
+	display:flex ;
 	flex-direction: column;
 	align-content: center;
 	justify-content: center;
 }
 
 .input-box input {
-	width:48%;
+	width:80%;
 	max-width:80%;
 	margin:auto;
 	height:40px;
 	border-radius: 100px;
-	border:2px solid #3A9960;
+	border:2px solid grey;
 	font-family: 'Quicksand', sans-serif;
 	font-size:22px;
 	margin-top: 10px;
 	background: url(../img/za-flag.jpg) no-repeat ;
+	background-color:rgba(0, 0, 0, 0.05);
 	background-position:5% 45%;
-	padding-left: 32%;
+	padding-left: 20%;
+	letter-spacing:1px;
 }
+
+#valid {
+	background: url(../img/checked.svg) no-repeat ;
+	background-size:cover;
+	width:20px;
+	height:20px;
+	position:absolute;
+	right:15%;
+	top:18%;
+	display:none;
+}
+
 
 .input-box input:focus{
 	outline: none;}
@@ -803,15 +820,7 @@ button.btn-active {
 }
 
 .unit {
-	position: absolute;
-	display: block;
-	left: 22%;
-	top: 17%;
-	z-index: 9;
-	font-size: 21px !important;
-	border-left: 2px solid rgba(0, 0, 0, 0.2);
-	padding-left: 5px;
-  color:#444;}
+display:none;}
 
 .phone-enter span {
 	font-family: 'Quicksand', sans-serif;
@@ -997,6 +1006,20 @@ padding-top:15px;
 	font-size:75px;
 	line-height: 75px;
 	margin-bottom:5%;
+}
+
+/** Input custom **/
+
+ .msisdn-wrapper::after {
+  display:none;
+}
+
+.MSISDNEntry .country-code {
+  display: none;
+}
+
+.MSISDNEntry .msisdn-input {
+  padding-left: 70px;
 }
 
 /** Media queries **/
