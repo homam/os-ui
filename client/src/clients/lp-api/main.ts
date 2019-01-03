@@ -43,6 +43,14 @@ const defaultConfig = (offer: number) : IConfig => {
         handle: 'win-cash'
       }
     }
+    case "ae": {
+      return {
+        offer,
+        host: 'n.mobfun.co',
+        country: 'ae',
+        handle: 'general-download-1'
+      }
+    }
     default:
       const errorMsg = `'country' environment variable is either missing or has an unsupported value (${process.env.country}). This is necessary for defaultConfig(offer).`
       console.error(errorMsg)

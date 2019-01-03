@@ -59,7 +59,7 @@ export function match<R>(
 export default <P extends HOCProps>(tracker: ITracker, Comp: React.ComponentType<P>) => (
   initialState: State
 ) =>
-  class HOC extends React.PureComponent {
+  class HOC extends React.PureComponent<P> {
     state: {
       currentState: State;
       actions: IActions;
@@ -113,7 +113,7 @@ export default <P extends HOCProps>(tracker: ITracker, Comp: React.ComponentType
 
     render() {
       return (
-        <Comp currentState={this.state.currentState} actions={this.state.actions} />
+        <Comp {...this.props} currentState={this.state.currentState} actions={this.state.actions} />
       );
     }
   };
