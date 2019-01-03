@@ -68,6 +68,12 @@ export function match<R>(
   }
 }
 
+export const isMSISDNEntry = (s: State) =>
+  s.type == "MSISDNEntry";
+export const isPINEntry = (s: State) =>
+  s.type == "PINEntry";
+
+
 export default <P extends HOCProps>(tracker: ITracker, Comp: React.ComponentType<P>) => (
   initialState: State
 ) =>
