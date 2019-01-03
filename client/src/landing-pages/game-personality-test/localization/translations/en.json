@@ -1,0 +1,19 @@
+{
+  "hello_world": "Hello World!",
+  "AlreadySubscribed": "You are already a subscriber!",
+  "InvalidMSISDN": "This mobile number is incorrect, try again",
+  "UnknownError": "An unknown error occurred.",
+  "InvalidPIN": "Please enter the correct PIN that you received on your phone",
+  "TooEarly": "You must first submit a mobile number",
+  "we_just_sent_a_pin": "We just sent a PIN to your mobile phone.\nPlease check your SMS inbox and enter the PIN that you received below:",
+  "didnt_receive_pin_yet": "Didn't receive a PIN yet? Make sure {phone} is your correct mobile number.",
+  "if_not_your_mobile": "If {phone} is not your mobile number,",
+  "click_here_to_change_your_number": "Click here to change your phone number.",
+  "testi_1": "I just found out, I am Sub Zero from Mortal Kombat. LOL",
+  "testi_name1": "Ahmad",
+  "testi_2": "It's fun and really addictive. My character is Dante!",
+  "testi_name2": "Afiq",
+  "testi_3": "Oh, great! I'm a mage from Dragon Age, this is fun!",
+  "testi_name3": "Zain",
+  "disclaimer": "This is a subscription service. This game is compatible with most mobile phones with color screen. Supported mobile brands include Nokia, iPhone, Sony, Samsung, Motorola, LG, HTC, Xiaomi and more. No subscription fees will be charged. Maxis: RM4 per message, maximum 7 times per month, max of RM30(excl. GST) per month. Normal mobile operator network charges apply. GPRS / 3G access needs to be enabled to download the content. Data charges are billed separately. Some phones do not support GPRS / 3G. Please seek parental or guardian approval if you are 18 years old or below. Helpdesk 03-74910666 (9am-5pm Mon-Fri). To cancel send STOP ALARM to 36099. Buz2mobile operates according to the Malaysian code of conduct for SMS services. Powered by Moblife. TV Sdn Bhd."
+}
