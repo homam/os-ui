@@ -1,5 +1,3 @@
-import { isError } from "util";
-
 export type RemoteDataState<E, D> =
   | { type: "NothingYet" }
   | { type: "Loading" }

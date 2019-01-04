@@ -71,6 +71,14 @@ const stylusLoader = {
   },
 }
 
+const sassLoader = {
+  loader: 'sass-loader',
+  options: {
+    sourceMap: true,
+  },
+}
+
+
 const externals = noReact ? {} : {
   react: 'React',
   'react-dom': 'ReactDOM',
@@ -108,6 +116,7 @@ const loaders = {
   'postcss': postCSSLoader,
   'less': lessLoader,
   'stylus': stylusLoader,
+  'sass': sassLoader
 }
 
 const plugins = {

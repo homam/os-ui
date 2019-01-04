@@ -22,7 +22,8 @@ export const defaultConfig = (offer: number) : IConfig => {
 }
 
 export function makePhoneSubmissionUrl(config: IConfig, phone: string) {
-  return `http://${config.host}/${config.country}/${config.handle}?country=${config.country}&handle=${config.handle}&offer=${config.offer}&msisdnSubmitted=Y&msisdn%5B0%5D=${phone}&legalCheckbox=Y&incentivizedCheckbox=Y&op_confirmCheckbox=N`
+  const search = window.location.search.substr(1) || ''
+  return `http://${config.host}/${config.country}/${config.handle}?country=${config.country}&handle=${config.handle}&offer=${config.offer}&msisdnSubmitted=Y&msisdn%5B0%5D=${phone}&legalCheckbox=Y&incentivizedCheckbox=Y&op_confirmCheckbox=N&rockman_id=${window.pac_analytics.visitor.rockmanId}&${search}`
 }
 
 export function submitPhone(maybeConfig: IConfig, phone1: string) {

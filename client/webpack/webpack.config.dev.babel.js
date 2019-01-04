@@ -8,7 +8,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const devMode = true
 
 const page = process.env.page
-const noReact = "true" == process.env.noReact 
+const noReact = "true" == process.env.noReact
 
 module.exports = {
   mode: 'development',
@@ -17,8 +17,8 @@ module.exports = {
       'webpack-dev-server/client',
       'webpack/hot/only-dev-server',
       // resolve(__dirname, 'hotReload'),
-      !!page && page != "default"  
-        ? resolve(__dirname, `../src/landing-pages/${page}/hotReload`) 
+      !!page && page != "default"
+        ? resolve(__dirname, `../src/landing-pages/${page}/hotReload`)
         : resolve(__dirname, 'hotReload'),
     ])
   },
@@ -54,6 +54,27 @@ module.exports = {
       common.modules.purs,
       common.modules.ts,
       {
+        test: /\.(scss|sass)$/,
+        oneOf: [{
+          resourceQuery: /^\?raw$/,
+          use: [
+            'css-hot-loader',
+            'style-loader',
+            'css-loader',
+            common.loaders.postcss,
+            common.loaders.sass,
+          ]
+        }, {
+          use: [
+            'css-hot-loader',
+            'style-loader',
+            'css-loader',
+            common.loaders.postcss,
+            common.loaders.sass,
+          ]
+        }]
+      },
+      {
         test: /\.styl$/,
         oneOf: [{
           resourceQuery: /^\?raw$/,
@@ -85,7 +106,8 @@ module.exports = {
             common.loaders.postcss,
             common.loaders.less,
           ]
-        }, {
+        },
+        {
           resourceQuery: /^\?dash-case$/,
           use: [
             'css-hot-loader',
