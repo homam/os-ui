@@ -1,1 +1,0 @@
-../../landing-pages-templates/scaffolding/hotReload.js
