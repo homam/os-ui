@@ -30,6 +30,9 @@ html, body{
   background: -ms-linear-gradient(top, #0cb3f5 0%, #0099d6 27%, #000000 81%, #000000 100%);
   background: linear-gradient(to bottom, #0cb3f5 0%, #0099d6 27%, #000000 81%, #000000 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0cb3f5', endColorstr='#000000', GradientType=0 );
+  // height: calc(100vh + 46px);
+  // height: 100vh;
+  min-height: 850px;
   height: 100vh;
   width: 100%;
   margin: auto;
@@ -41,9 +44,9 @@ html, body{
   max-width: 320px;
   margin: 0 auto;
   position: relative;
-  display: block;
+  display: table;
   text-align: center;
-  padding: 40px 0;
+  padding: 40px 0 0 0;
 }
 
 .starburst{
@@ -78,7 +81,7 @@ html, body{
       background-position: center;
       background-size: contain;
       height: 141px;
-      margin-top: -12px;
+      margin-top: -20px;
     }
 }
 
@@ -212,7 +215,7 @@ html, body{
   }
 }
 .black-bg {
-  height: 100vh;
+  height: 100%;
   width: 100%;
   position: absolute;
   z-index: 3;
@@ -454,14 +457,14 @@ a {
   }
 }
 
-@media screen and (max-height: 728px) {
-  body {
-    height: calc(100% + 147px);
-  }
-}
+// @media screen and (max-height: 728px) {
+//   body {
+//     height: calc(100% + 147px);
+//   }
+// }
 
-@media screen and (max-width: 767px) {
-  .bg {
-    height: 100vh;
-  }
-  }
+// @media screen and (max-width: 400px) {
+//   .bg {
+//     height: 100%;
+//   }
+// }

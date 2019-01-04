@@ -54,23 +54,24 @@ const MO = ({ keyword, shortcode }: IKeywordShortcode) => {
 
 // THANK YOU PAGE START
 const TQStep = ({ finalUrl }: { finalUrl: string }) => <div className="tq-msg">
-  <div className="starburst"></div>
-  <div className="wrapper">
-    <div className="title">
-      YOU ARE A <span className="yellow-lg">WARRIOR</span>
-    </div>
-    <div className="img-wrapper">
-      <img src={thankyou}></img>
-    </div>
-    {/* <a href={finalUrl} className="btn primary">Access Product</a> */}
-    <div className="text-container">
-      You possess strong acrobatics and hand-to-hand combat skills with unique hybrid fighting style.
+  <div className="bg">
+    <div className="starburst"></div>
+    <div className="wrapper">
+      <div className="title">
+        YOU ARE A <span className="yellow-lg">WARRIOR</span>
+      </div>
+      <div className="img-wrapper">
+        <img src={thankyou}></img>
+      </div>
+      {/* <a href={finalUrl} className="btn primary">Access Product</a> */}
+      <div className="text-container">
+        You possess strong acrobatics and hand-to-hand combat skills with unique hybrid fighting style.
   </div>
-    <div className="disclaimer">
-      <Translate id="disclaimer"></Translate>
+      <div className="disclaimer">
+        <Translate id="disclaimer"></Translate>
+      </div>
     </div>
   </div>
-
 </div>;
 // THANK YOU PAGE END
 
