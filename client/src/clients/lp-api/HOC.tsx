@@ -50,10 +50,13 @@ export type HOCProps = {
   actions: IActions;
 };
 
+export type PINEntryState = RDS.RemoteDataState<PINEntryFailure, PINEntrySuccess>
+export type MSISDNEntryState = RDS.RemoteDataState<MSISDNEntryFailure, MSISDNEntrySuccess>
+
 export function match<R>(
   { msisdnEntry, pinEntry, completed }: 
-  {   msisdnEntry: (rds: RDS.RemoteDataState<MSISDNEntryFailure, MSISDNEntrySuccess>) => R
-    , pinEntry: (rds: RDS.RemoteDataState<PINEntryFailure, PINEntrySuccess>) => R 
+  {   msisdnEntry: (rds: MSISDNEntryState) => R
+    , pinEntry: (rds: PINEntryState) => R 
     , completed: (result: PINEntrySuccess) => R
   }): (state: State) => R {
   return state => {
@@ -73,11 +76,26 @@ export const isMSISDNEntry = (s: State) =>
 export const isPINEntry = (s: State) =>
   s.type == "PINEntry";
 
+export function whenMSISDNEntry<R>  (f: (x: MSISDNEntryState) => R) {
+  return (s: State) => {
+    if(isMSISDNEntry(s)) {
+      return f(s.result as MSISDNEntryState)
+    }
+  }
+}
+
+export function whenPINEntry<R>  (f: (x: PINEntryState) => R) {
+  return (s: State) => {
+    if(isPINEntry(s)) {
+      return f(s.result as PINEntryState)
+    }
+  }
+}
 
 export default <P extends HOCProps>(tracker: ITracker, Comp: React.ComponentType<P>) => (
   initialState: State
 ) =>
-  class HOC extends React.PureComponent {
+  class HOC extends React.PureComponent<P> {
     state: {
       currentState: State;
       actions: IActions;
@@ -169,7 +187,7 @@ export default <P extends HOCProps>(tracker: ITracker, Comp: React.ComponentType
 
     render() {
       return (
-        <Comp currentState={this.state.currentState} actions={this.state.actions} />
+        <Comp {...this.props} currentState={this.state.currentState} actions={this.state.actions} />
       );
     }
   };
