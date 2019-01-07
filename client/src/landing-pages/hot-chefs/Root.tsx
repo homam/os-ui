@@ -2,7 +2,6 @@ import * as React from "react";
 import mkTracker from "../../pacman/record";
 import { TranslationProvider, Translate } from "./localization/index";
 import  CustomTesti  from "./components/CustomTesti";
-import  CustomGRTopLegal from "./components/CustomGRTopLegal";
 
 import HOC, {
   initialState,
@@ -16,6 +15,7 @@ import HOC, {
 } from "../../clients/lp-api/HOC";
 import "./assets/css/styles.less?raw";
 import * as RDS from "../../common-types/RemoteDataState";
+import DisclaimerGR from "../ichat/components/DisclaimerGR";
 
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
@@ -163,8 +163,7 @@ class Root extends React.PureComponent<HOCProps> {
     return (
       <TranslationProvider locale={this.state.locale}>
       <div className="container">
-      
-      <CustomGRTopLegal/>
+  
 
         <div className="creative">
 
@@ -216,8 +215,10 @@ class Root extends React.PureComponent<HOCProps> {
 
         </div>
 
+        <DisclaimerGR />
       
       <CustomTesti/>
+
       </div>
   
 
