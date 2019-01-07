@@ -1,6 +1,5 @@
 import * as React from "react";
 import "./msisdn.css?raw";
-import { Translate } from "aws-sdk/clients/all";
 
 function DigitOnlyInput(props: any) {
   return <input
