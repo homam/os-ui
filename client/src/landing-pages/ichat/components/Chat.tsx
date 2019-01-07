@@ -462,9 +462,9 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps> {
 
         <div className="boolean-group animated" id="boolean-buttons">
 
-          <button data-reply="Yes"><Translate id="answer_yes" defaultMessage="Yes" /></button>
+          <button data-reply={this.props.intl.formatMessage({id: "answer_yes", defaultMessage: "Yes"})}><Translate id="answer_yes" defaultMessage="Yes" /></button>
 
-          <button data-reply="No"><Translate id="answer_no" defaultMessage="No" /></button>
+          <button data-reply={this.props.intl.formatMessage({id: "answer_no", defaultMessage: "No"})}><Translate id="answer_no" defaultMessage="No" /></button>
 
         </div>
 

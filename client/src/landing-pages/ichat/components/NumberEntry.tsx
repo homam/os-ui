@@ -34,7 +34,7 @@ class NumberEntry extends React.PureComponent<IProps & InjectedIntlProps> {
 
        <input type="checkbox" checked={this.state.checked} onChange={ev => this.setState({checked: ev.target.checked})} name="agree" id="agree"/>
        <label htmlFor="agree"><Translate id="accept_text" defaultMessage="I accept the" /></label>  
-       <a href="javascript:void 9" onClick={() => this.props.onTermsClicked()}><Translate id="terms_text" defaultMessage="Terms &amp; Conditions" /></a>
+       <a href={this.props.intl.formatMessage({id: "terms_link", defaultMessage: "javascript:void 9"})} /*onClick={() => this.props.onTermsClicked()}*/ target="_blank"><Translate id="terms_text" defaultMessage="Terms &amp; Conditions" /></a>
 
       </div>
 

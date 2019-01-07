@@ -1,33 +1,73 @@
 {
-  "hello_world": "el:: Hello World!",
-  "AlreadySubscribed": "el:: You are already a subscriber!",
-  "InvalidMSISDN": "el:: This mobile number is incorrect, try again",
-  "UnknownError": "el:: An unknown error occurred.",
-  "InvalidPIN": "el:: Please enter the correct PIN that you received on your phone",
-  "TooEarly": "el:: You must first submit a mobile number",
-  "we_just_sent_a_pin": "el:: We just sent a PIN to your mobile phone.\nPlease check your SMS inbox and enter the PIN that you received below:",
-  "didnt_receive_pin_yet": "el:: Didn't receive a PIN yet? Make sure {phone} is your correct mobile number.",
-  "if_not_your_mobile": "el:: If {phone} is not your mobile number,",
-  "click_here_to_change_your_number": "el:: Click here to change your phone number.",
-  "medium_amanda": "el:: Medium Amanda",
-  "astrologer": "el:: Astrologer",
-  "amanda_welcome": "el:: Welcome, I was waiting for you.",
-  "amanda_amazing_vision": "el:: An amazing vision occured and I am sensing information about you.",
-  "amanda_your_dob": "el:: Is it correct that you were born {month}?",
-  "amanda_your_gender": "el:: Is it right that you are a woman?",
-  "amanda_marital_status": "el:: Is it correct that you are currently married?",
-  "amanda_signals": "el:: Ok, I have already confirmed that I am receiving your signals.",
-  "amanda_would_you_future": "el:: Would you like to receive your complete reading of the future?",
-  "amanda_private_secure": "el:: Because I would like it to be private and secure, I would like to send it to your cell phone.",
-  "amanda_accept_tnc": "el:: Please accept the Terms and Conditions. And enter your mobile number.",
-  "amanda_not_valid_number": "el:: It's seems the number you've sent is not valid. Please enter a valid mobile number.",
-  "amanda_have_not_agreed_tnc": "el:: It's seems that ou hayven't agreed to terms and conditions. Please agree to the terms and conditions.",
-  "amanda_tq_submit_number": "el:: Thank you for submitting your number.",
-  "amanda_sent_you_a_code": "el:: I sent you a code kindly enter it below.",
-  "amanda_valid_pin": "el:: Please enter a valid PIN code.",
-  "amanda_succesfully_subscribe": "el:: You've succesfully subscribe.",
+  "splash_header_msg":"Συζητήστε μαζί της τώρα",
+  "splash_start_title":"Οι προβλέψεις",
+  "splash_medium_amanda":"Μέντιουμ Μαρία",
+  "splash_startsub_title":"η πιο αναγνωρισμένη μελλοντολόγος παγκοσμίως",
+  "splash_footer_title":"Το μέλλον σας έχει γραφτεί...",
+  "establishing_text":"Παρακαλώ περιμένετε...",
+  
+  "medium_amanda": "Μέντιουμ Μαρία",
+  "astrologer": "Μελλοντολόγος",
+  
+  "amanda_welcome": "Καλώς ήρθες, σε περίμενα.",
+  "amanda_amazing_vision": "Είχα ένα όραμα, και βλέπω πληροφορίες για εσένα.",
+  "amanda_your_dob": "Γεννήθηκες {month}, σωστά;",
+  "amanda_your_gender": "Είσαι {gender};",
+  "amanda_marital_status": "Έχεις σύζυγο, έτσι δεν είναι;",
+  "amanda_signals": "Επιβεβαίωσα ήδη πως βλέπω καθαρά για σένα.",
+  "amanda_would_you_future": "Θέλεις να λάβεις την πλήρη πρόβλεψή μου για σένα;",
+  "amanda_private_secure": "Αυτές είναι ιδιωτικές πληροφορίες, θα ήθελα για σιγουριά να τις στείλω στο κινητό σου.",
+  "amanda_accept_tnc": "Δέξου τους όρους χρήσης και γράψε τον αριθμό σου.",
+  "amanda_not_valid_number": "Λάθος αριθμός - παρακαλώ γράψε το σωστό νούμερο.",
+  "amanda_have_not_agreed_tnc": "Για να προχωρήσεις, δέξου τους όρους χρήσης.",
+  "amanda_tq_submit_number": "Ευχαριστώ που έγραψες τον αριθμό σου.",
+  "amanda_sent_you_a_code": "Σου έστειλα έναν κωδικό, παρακαλώ συμπλήρωσέ τον.",
+  "amanda_valid_pin": "Γράψε το σωστό PIN παρακαλώ.",
+  "amanda_succesfully_subscribe": "Έχετε εγγραφεί με επιτυχία!",
+  
+  "on_a_day": "μια μέρα",
+  "man": "άνδρας",
+  "woman": "γυναίκα",
+  
+  "January": "Γενάρη",
+  "February": "Φλεβάρη",
+  "March": "Μάρτιο",
+  "April": "Απρίλιο",
+  "May": "Μάη",
+  "June": "Ιούνιο",
+  "July": "Ιούλιο",
+  "August": "Αύγουστο",
+  "September": "Σεπτέμβρη",
+  "October": "Οκτώβρη",
+  "Novemeber": "Νοέμβρη",
+  "December": "Δεκέμβρη",
+  
+  "answer_yes": "Ναι",
+  
+  "answer_no": "Όχι",
+  
+  "enter_mobile_number_here":"Γράψε τον αριθμό σου",
+  
+  "msisdn_btn_send" : "Αποστολή",
+  
+  "accept_text" : "Δέχομαι τους όρους",
+  
+  "terms_text" : "Όροι χρήσης",
+  
+  "enter_pin_number_here" : "Γράψε το PIN",
+  
+  "pin_btn_text" : "Αποστολή",
+  
+  "msisdnCheck_if" : "Αν ο",
+  
+  "msisdnCheck_not" : "δεν είναι ο αριθμός σου",
+  
+  "msisdnCheck_click" : "κάνε κλικ εδώ",
+  
+  "access_portal": "Μπες στο πόρταλ",
+  
+  "sms_now": "Στείλε μήνυμα τώρα",
 
-  "on_a_day": "el:: on a day",
-  "January": "el:: January",
-  "February": "el:: February"
+  "terms_link": "http://n.appspool.net/gr/tnc-appspool?offer=1&_next=general_conditions.html"
+
 }
