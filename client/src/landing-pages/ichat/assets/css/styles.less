@@ -16,7 +16,7 @@ body{
 
 .container{
 	display: block;
-	min-height: 100%;
+	min-height: auto;
 	position: relative;
 	background-color: #652AEA;
 }
@@ -28,13 +28,17 @@ body{
   display: flex;
 }
 
+.container.display-Splash .footer-gr{
+	display: none;
+}
+
 .splash{
 	top:0;
 	left:0;
 	right:0;
 	bottom:0;
 	display: none;
-	min-height: 100%;
+	min-height: 100vh;
 	position: absolute;
 	background-size: cover;
 	background-position: center center;
@@ -75,8 +79,10 @@ body{
 			h2{
 				color:#ffffff;
 				font-size: 18px;
+				max-width: 260px;
 				line-height: 1.5em;
 				font-weight: normal;
+				display: inline-block;
 			}
 			
 			p{
@@ -194,7 +200,7 @@ body{
 		right:10px;
 		width:23px;
 		height: 23px;
-		display:block;
+		display:none;
 		cursor:pointer;
 		position: absolute;
 		background-size: 100% auto;

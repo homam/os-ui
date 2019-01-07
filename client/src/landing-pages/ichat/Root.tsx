@@ -1,21 +1,13 @@
 import * as React from "react";
 import mkTracker from "../../pacman/record";
-import { TranslationProvider, Translate } from "./localization/index";
+import { TranslationProvider, injectIntl } from "./localization/index";
 import HOC, {
   initialState,
-  mockedCompletedState,
-  HOCProps,
-  MSISDNEntryFailure,
-  MSISDNEntrySuccess,
-  PINEntryFailure,
-  PINEntrySuccess,
-  match
-} from "../../clients/lp-api/HOC";
-import * as RDS from "../../common-types/RemoteDataState";
+  HOCProps} from "../../clients/lp-api/HOC";
 import "./assets/css/styles.less?raw"
-import { number } from "prop-types";
 import SplashScreen from "./components/SplashScreen";
 import Chat from "./components/Chat";
+import DisclaimerGR from "./components/DisclaimerGR";
 
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
@@ -59,10 +51,13 @@ componentDidMount(){
 
             <Chat currentState={this.props.currentState} actions={this.props.actions} />
 
+            <DisclaimerGR />
+
           </div>
 
         </TranslationProvider>
       </div>
+      
     );
   }
 }

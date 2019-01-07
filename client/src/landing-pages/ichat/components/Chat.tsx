@@ -1,90 +1,136 @@
 import * as React from "react"
 import NumberEntry from "./NumberEntry";
-import HOC, {
-  initialState,
-  mockedCompletedState,
+import {
   HOCProps,
   MSISDNEntryFailure,
-  MSISDNEntrySuccess,
   PINEntryFailure,
   PINEntrySuccess,
   match,
-  isMSISDNEntry,
-  isPINEntry,
   whenMSISDNEntry,
   whenPINEntry
 } from "../../../clients/lp-api/HOC";
 import * as RDS from "../../../common-types/RemoteDataState"
 import PinEntry from "./PinEntry";
 import Loader from "./Loader";
+import {Translate, injectIntl} from "./../localization/index"
+import { InjectedIntlProps } from "react-intl";
+import { queryString } from "../../../pacman/record";
 
-const message1 = [
-  "Welcome, I was waiting for you.",
-  "An amazing vision occured and I am sensing information about you.",
-  "Is it correct that you were born December?"
-];
-
-const message2 = [
-  "Is it right that you are a woman?"
-];
-
-const message3 = [
-  "Is it correct that you are currently married?"
-];
-
-const message4 = [
-  "Ok, I have already confirmed that I am receiving your signals.",
-  "Would you like to receive your complete reading of the future?"
-]
-
-const message5 = [
-  "Because I would like it to be private and secure, I would like to send it to your cell phone.",
-  "Please accept the Terms and Conditions. And enter your mobile number."
-]
-
-const message6 = [
-  "It's seems the number you've sent is not valid. Please enter a valid mobile number."
-]
-
-const message7 = [
-  "It's seems that you haven't agreed to terms and conditions. Please agree to the terms and conditions."
-]
-
-const message8 = [
-  "Thank you for submitting your number." , "I sent you a code kindly enter it below."
-]
-
-const message9 = [
-  "Please enter a valid PIN code."
-]
-
-const message10 = [
-  "You've succesfully subscribe."
-]
 
 type ChatApplicationState = "Chatting" | "Subscribing"
 
-export default class Chat extends React.PureComponent<HOCProps> {
+class Chat extends React.PureComponent<HOCProps & InjectedIntlProps> {
 
   state = {
       msisdnValue:"",
       checked: false,
       pinValue: "",
       infoBox:"",
-      applicationState: "Chatting" as ChatApplicationState
+      applicationState: "Chatting" as ChatApplicationState,
+      messages: [
+        [
+            this.props.intl.formatMessage({
+                id: "amanda_welcome",
+                defaultMessage: "Welcome, I was waiting for you."
+            }),
+            this.props.intl.formatMessage({
+                id: "amanda_amazing_vision",
+                defaultMessage: "An amazing vision occured and I am sensing information about you."
+            }),
+            this.props.intl.formatMessage({
+                id: "amanda_your_dob",
+                defaultMessage: "Is it correct that you were born {month}?" 
+            }, {month: typeof window == "undefined" ? "Unknown" : this.props.intl.formatMessage({id: queryString(window.location.search, "month") || "on_a_day", defaultMessage: "on a day"})})
+        ],
+      
+        [
+            this.props.intl.formatMessage({
+                id: "amanda_your_gender",
+                defaultMessage: "Is it right that you are a {gender}?"
+            }, {gender: typeof window == "undefined" ? "Unknown" : this.props.intl.formatMessage({id: queryString(window.location.search, "gender") || "woman", defaultMessage: "woman"})})
+        ],
+      
+        [
+            this.props.intl.formatMessage({
+                id: "amanda_marital_status",
+                defaultMessage: "Is it correct that you are currently married?"
+            })
+        ],
+      
+        [
+            this.props.intl.formatMessage({
+                id: "amanda_signals",
+                defaultMessage: "Ok, I have already confirmed that I am receiving your signals."
+            }),
+            this.props.intl.formatMessage({
+                id: "amanda_would_you_future",
+                defaultMessage: "Would you like to receive your complete reading of the future?"
+            })
+        ],
+      
+        [
+            this.props.intl.formatMessage({
+                id: "amanda_private_secure",
+                defaultMessage: "Because I would like it to be private and secure, I would like to send it to your cell phone."
+            }),
+            this.props.intl.formatMessage({
+                id: "amanda_accept_tnc",
+                defaultMessage: "Please accept the Terms and Conditions. And enter your mobile number."
+            })
+        ],
+      
+        [
+            this.props.intl.formatMessage({
+                id: "amanda_not_valid_number",
+                defaultMessage: "It's seems the number you've sent is not valid. Please enter a valid mobile number."
+            })
+        ],
+      
+        [
+            this.props.intl.formatMessage({
+                id: "amanda_have_not_agreed_tnc",
+                defaultMessage: "It's seems that ou hayven't agreed to terms and conditions. Please agree to the terms and conditions."
+            })
+        ],
+      
+        [
+            this.props.intl.formatMessage({
+                id: "amanda_tq_submit_number",
+                defaultMessage: "Thank you for submitting your number.",
+            }),
+            this.props.intl.formatMessage({
+              id: "amanda_sent_you_a_code",
+              defaultMessage: "I sent you a code kindly enter it below."
+            })
+        ],
+      
+        [
+            this.props.intl.formatMessage({
+                id: "amanda_valid_pin",
+                defaultMessage: "Please enter a valid PIN code."
+            })
+        ],
+      
+        [
+            this.props.intl.formatMessage({
+                id: "amanda_succesfully_subscribe",
+                defaultMessage: "You've succesfully subscribe."
+            })
+        ]
+      
+      ]
   }
 
   botResponse: (msg) => void;
 
   componentDidMount() {
 
+    console.log(queryString(window.location.search, "gender"), this.state.messages)
+
     const self = this;
 
     var
       strTime, botMsg, i, li,
-      chatWrap = document.getElementById("chat-wrap"),
-      chatHeader = document.getElementById("chat-header"),
-      chatFooter = document.getElementById("chat-footer"),
       chatOuter = document.getElementById("chat-outer"),
       chatInner = document.getElementById("chatInner"),
       chatMessages = document.getElementById("chatBox"),
@@ -108,7 +154,7 @@ export default class Chat extends React.PureComponent<HOCProps> {
 
       setTimeout(() => status.classList.add('online'), 100);
 
-      botResponse(message1);
+      botResponse(self.state.messages[0]);
 
     }
 
@@ -275,19 +321,19 @@ export default class Chat extends React.PureComponent<HOCProps> {
 
         if (k == 2) {
 
-          setTimeout(() => botResponse(message2), 1000);
+          setTimeout(() => botResponse(self.state.messages[1]), 1000);
 
         } else if (k == 3) {
 
-          setTimeout(() => botResponse(message3), 1000);
+          setTimeout(() => botResponse(self.state.messages[2]), 1000);
 
         } else if (k == 4) {
 
-          setTimeout(() => botResponse(message4), 1000);
+          setTimeout(() => botResponse(self.state.messages[3]), 1000);
 
         } else if (k == 5) {
 
-          setTimeout(() => botResponse(message5), 1000);
+          setTimeout(() => botResponse(self.state.messages[4]), 1000);
 
         } else {
 
@@ -303,18 +349,19 @@ export default class Chat extends React.PureComponent<HOCProps> {
   }
 
   componentDidUpdate(prevProps : HOCProps) {
+    const self = this
     whenMSISDNEntry(previous_rds => {
       whenMSISDNEntry(new_rds => {
         if(RDS.IsLoading(previous_rds) && RDS.IsFailure(new_rds)) {
           // invalid mobile number
-          this.botResponse(message6);
+          this.botResponse(self.state.messages[5]);
         }
       })(this.props.currentState)
 
       whenPINEntry(new_rds => {
         if(RDS.IsNothingYet(new_rds)) {
           // we just sent you a pin
-          this.botResponse(message8);
+          this.botResponse(self.state.messages[7]);
         }
       })(this.props.currentState)
     })(prevProps.currentState)
@@ -324,14 +371,14 @@ export default class Chat extends React.PureComponent<HOCProps> {
       whenPINEntry(new_rds => {
         if(RDS.IsLoading(previous_rds) && RDS.IsFailure(new_rds)) {
           // invalid pin
-          this.botResponse(message9);
+          this.botResponse(self.state.messages[8]);
         }
       })(this.props.currentState)
 
       whenPINEntry(new_rds => {
-        RDS.whenSuccess((data: PINEntrySuccess) => {
+        RDS.whenSuccess(() => {
           // succesful subscribe
-          this.botResponse(message10);
+          this.botResponse(self.state.messages[9]);
         })(new_rds)
       })(this.props.currentState)
 
@@ -341,6 +388,7 @@ export default class Chat extends React.PureComponent<HOCProps> {
 
 
   render() {
+    const self = this
     const numberEntry = <NumberEntry 
       value={this.state.msisdnValue} 
       checked={this.state.checked}
@@ -349,11 +397,11 @@ export default class Chat extends React.PureComponent<HOCProps> {
 
         if(value == ""){
 
-          this.botResponse(message6);
+          this.botResponse(self.state.messages[5]);
 
         }else if(!checked){
 
-          this.botResponse(message7);
+          this.botResponse(self.state.messages[6]);
 
         }else{
           //Proceed if msisdn is not blank and accepted terms
@@ -379,6 +427,8 @@ export default class Chat extends React.PureComponent<HOCProps> {
             <div className="closeBtn" onClick={() => this.setState({infoBox:''})}>X</div>
 
           
+
+
           </div>
 
       </div>
@@ -389,8 +439,8 @@ export default class Chat extends React.PureComponent<HOCProps> {
 
         <div className="user-details">
 
-          <h1>Medium Amanda</h1>
-          <p>Astrologer</p>
+          <h1><Translate id="medium_amanda" defaultMessage="Medium Amanda" /></h1>
+          <p><Translate id="astrologer" defaultMessage="Astrologer" /></p>
 
         </div>
 
@@ -412,9 +462,9 @@ export default class Chat extends React.PureComponent<HOCProps> {
 
         <div className="boolean-group animated" id="boolean-buttons">
 
-          <button data-reply="Yes">Yes</button>
+          <button data-reply="Yes"><Translate id="answer_yes" defaultMessage="Yes" /></button>
 
-          <button data-reply="No">No</button>
+          <button data-reply="No"><Translate id="answer_no" defaultMessage="No" /></button>
 
         </div>
 
@@ -425,15 +475,15 @@ export default class Chat extends React.PureComponent<HOCProps> {
               nothingYet: () => numberEntry,
               loading: () => <Loader />,
               success: () => null,
-              failure: (error : MSISDNEntryFailure) => numberEntry
+              failure: () => numberEntry
             })(rds),
             pinEntry: (rds) => RDS.match({
               nothingYet: ()  => pinEntry,
               loading: () => <div>...</div>,
               success: (succ: PINEntrySuccess) => <div className="animated" id="finalLink">
-                <a href={succ.finalUrl} className="button">Access Portal</a>
+                <a href={succ.finalUrl} className="button"><Translate id="access_portal" defaultMessage="Access Portal" /></a>
               </div>,
-              failure: (err: PINEntryFailure) => pinEntry
+              failure: () => pinEntry
             })(rds) ,
 
           })(this.props.currentState) 
@@ -441,13 +491,14 @@ export default class Chat extends React.PureComponent<HOCProps> {
 
         <div className="animated" id="mo">
 
-          <button>SMS NOW</button>
+          <button><Translate id="sms_now" defaultMessage="SMS NOW" /></button>
 
         </div>
 
       </div>
 
     </div >
-
   }
 }
+
+export default(injectIntl(Chat))
