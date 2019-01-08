@@ -164,9 +164,9 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
      </div>
      <div className="whiteBox boxMove">
      <h2 className="boxTitles entryTitle"><Translate id="phone_entry_statement"/></h2>
-     {/* <button type="button" className="button" onClick={this.updateState} >
+     <button type="button" className="button" onClick={this.updateState} >
      <Translate id="submit"/>
-        </button> */}
+        </button>
         <div>
          
           <MsisdnInput maxLength={10}
