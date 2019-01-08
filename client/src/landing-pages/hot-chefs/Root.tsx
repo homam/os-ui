@@ -15,7 +15,7 @@ import HOC, {
 } from "../../clients/lp-api/HOC";
 import "./assets/css/styles.less?raw";
 import * as RDS from "../../common-types/RemoteDataState";
-import DisclaimerGR from "../ichat/components/DisclaimerGR";
+import DisclaimerGR from "./components/DisclaimerGR";
 
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
@@ -215,7 +215,7 @@ class Root extends React.PureComponent<HOCProps> {
 
         </div>
 
-        <DisclaimerGR />
+       <DisclaimerGR/>
       
       <CustomTesti/>
 

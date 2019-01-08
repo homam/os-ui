@@ -66,7 +66,7 @@ class Root extends React.PureComponent<IProps> {
               <div className="triangle-down"></div>
 
               <div className="pricetext">
-                <h2>£3.00 per week<br></br>
+                <h2>£4.50 per week<br></br>
                 <span>Free for 24 hours</span></h2>
 
                 <div className="border2"></div>

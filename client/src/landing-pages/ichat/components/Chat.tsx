@@ -40,14 +40,14 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps> {
             this.props.intl.formatMessage({
                 id: "amanda_your_dob",
                 defaultMessage: "Is it correct that you were born {month}?" 
-            }, {month: typeof window == "undefined" ? "Unknown" : this.props.intl.formatMessage({id: queryString(window.location.search, "month") || "on_a_day", defaultMessage: "on a day"})})
+            }, {month: typeof window == "undefined" ? "Unknown" : this.props.intl.formatMessage({id: (queryString(window.location.search, "month") || "on_a_day").toLowerCase(), defaultMessage: "on a day"})})
         ],
       
         [
             this.props.intl.formatMessage({
                 id: "amanda_your_gender",
                 defaultMessage: "Is it right that you are a {gender}?"
-            }, {gender: typeof window == "undefined" ? "Unknown" : this.props.intl.formatMessage({id: queryString(window.location.search, "gender") || "woman", defaultMessage: "woman"})})
+            }, {gender: typeof window == "undefined" ? "Unknown" : this.props.intl.formatMessage({id: (queryString(window.location.search, "gender") || "woman").toLowerCase(), defaultMessage: "woman"})})
         ],
       
         [
@@ -280,26 +280,27 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps> {
 
         numberEntry.classList.add("fadeInUp");
 
+          /*
+            var delayTimer;
 
-        var delayTimer;
+            var userAgent = navigator.userAgent || navigator.vendor || window['opera'];
 
-        var userAgent = navigator.userAgent || navigator.vendor || window['opera'];
+            if (/iPad|iPhone|iPod/.test(userAgent) && !window['MSStream']) {
 
-        if (/iPad|iPhone|iPod/.test(userAgent) && !window['MSStream']) {
+              delayTimer = 400;
 
-          delayTimer = 400;
+            } else {
 
-        } else {
+              delayTimer = 2000;
 
-          delayTimer = 2000;
+            }
 
-        }
+            setTimeout(function () {
 
-        setTimeout(function () {
+              document.getElementById("msisdn").focus();
 
-          document.getElementById("msisdn").focus();
-
-        }, delayTimer);
+            }, delayTimer);
+            */
 
 
       }
@@ -479,8 +480,8 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps> {
             })(rds),
             pinEntry: (rds) => RDS.match({
               nothingYet: ()  => pinEntry,
-              loading: () => <div>...</div>,
-              success: (succ: PINEntrySuccess) => <div className="animated" id="finalLink">
+              loading: () => <Loader />,
+              success: (succ: PINEntrySuccess) => <div className="animated fadeUp" id="finalLink">
                 <a href={succ.finalUrl} className="button"><Translate id="access_portal" defaultMessage="Access Portal" /></a>
               </div>,
               failure: () => pinEntry
