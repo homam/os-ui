@@ -541,53 +541,7 @@ class Root extends React.PureComponent<HOCProps> {
           </div>
 
         </div>
-        <div className="page step9">
-          <div className="message-container">
-
-            <div className="top-bar">
-              <div className="step progress gray "><span>1</span></div>
-              <div className="step progress gray "><span>2</span></div>
-              <div className="step progress gray active"><span>3</span></div>
-            </div>
-
-            <div className="top-phone">
-              <div className="subtitle green">Last step!</div>
-              <h1 className="red">We just sent you</h1>
-              <div className="title-message"><h2 className="red">a message</h2></div>
-
-            </div>
-
-            <div className="santa-left"></div>
-
-
-            <div className="over-white phone-enter">
-              <div className="message">
-                <p className="reply gray">reply</p>
-                <p className="yes green">yes</p>
-              </div>
-            </div>
-
-            <div className="wishlist-container">
-              <p>To stand a chance to win</p>
-              <div className="wishlist add-tree over-white">
-                <div className="leaf-red"></div>
-                <span className="green">Your wishlist</span>
-                <div className="wishlist-content "><img src={imgPhone} /><img src={imgTv} /><img src={imgLaptop} /></div>
-              </div>
-              <p>For Help call 011 218 5618' <a href="http://n.vidzclubs.com/za/tnc-vidzclubs?device=pc&offer=1">Terms and Conditions</a></p>
-            </div>
-
-            <div className="testimonial">
-              <div className="picture"></div>
-              <div className="text-container">
-                <p className="name">2 days ago - Anna P.</p>
-                <p className="testimonial-txt">«  My gifts were delivered wrapped!
-            The kids are SO excited! »</p>
-              </div>
-            </div>
-
-          </div>
-        </div>
+        
 
       </div>
     );
