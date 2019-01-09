@@ -70,5 +70,9 @@ export default (tracker: ITracker, maybeConfig: IConfig, Comp: React.ComponentTy
   }
 
 
+export function Link ({maybeConfig, tracker, children, ...props} : {maybeConfig? : IConfig, tracker: ITracker, children: React.ReactNode} & React.HTMLProps<HTMLAnchorElement>)  {
+  const url = getRedirectUrl(maybeConfig || {})
+  return <a {...props} onClick={() => tracker.advancedInFlow('one-click/v1', 'click', {url})} href={url}>{children}</a>
+}
 
-export const initialState : IState = "NothingYet"
+  export const initialState : IState = "NothingYet"

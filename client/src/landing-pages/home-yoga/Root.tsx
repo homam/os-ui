@@ -1,7 +1,7 @@
 import * as React from "react";
 import mkTracker from "../../pacman/record";
 import { TranslationProvider, Translate } from "./localization/index";
-import HOC, { IProps, initialState } from "../../clients/one-click/HOC"
+import HOC, { IProps, initialState, Link } from "../../clients/one-click/HOC"
 import "./assets/styles.less?raw"
 import CustomToplegal from "./components/CustomToplegal";
 
@@ -20,7 +20,8 @@ const ButtonArea = ({ clicked, subscribeNowClicked, confirmClicked }) => {
 
 
 
-      <button className="ConfirmBtn" onClick={confirmClicked}>Confirm</button>
+      {/* <button className="ConfirmBtn" onClick={confirmClicked}>Confirm</button> */}
+      <Link className="ConfirmBtn" tracker={tracker}>Confirm</Link>
     </div>
   } else {
     return <div><button className="SubscribeBtn" onClick={subscribeNowClicked}>Subscribe Now!</button></div>
