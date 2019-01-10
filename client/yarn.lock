@@ -7599,9 +7599,10 @@ ouisys-clients@^0.0.9:
     rxjs-compat "^6.3.3"
     uuid "^3.3.2"
 
-ouisys-phone-input@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/ouisys-phone-input/-/ouisys-phone-input-0.0.3.tgz#03df48b4ec0c63244afcc277022c43fdf70f48aa"
+ouisys-phone-input@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/ouisys-phone-input/-/ouisys-phone-input-0.0.4.tgz#80c8c46ee2815b3124d40a5c8d91fa6a2d3236d1"
+  integrity sha512-Kpd+iR3K+NVQx0mgmkhSs9N2Cp4nJkg7IHs3Vpf23SwRBcVWNxdjZLXLNkgj8Au6dCyHxj0nI03zC1a3rGbtuA==
   dependencies:
     ouisys-clients "^0.0.9"
     react "16.5.2"

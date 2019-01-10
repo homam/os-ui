@@ -14,7 +14,7 @@ import HOC, {
 import './assets/css/style.css?raw'
 import * as RDS from "../../common-types/RemoteDataState";
 import { SimpleOpacityTransition, TransitionGroup, simpleOpacityTransitionStyles } from "../../common-components/simple-opacity-transition";
-import PhoneInput from "ouisys-phone-input/dist/common/PhoneInput/PhoneInput"
+import PhoneInput from "ouisys-phone-input/dist/common/PhoneInput/PhoneInput"; 
 
 const imgPhone = require("./assets/img/IphoneXS.png");
 const imgtitle = require("./assets/img/imgtitle.jpg");
@@ -49,8 +49,9 @@ class MSISDNEntryStep extends React.PureComponent<{
         <PhoneInput 
           msisdn={this.state.msisdn} 
           countryCode={process.env.country} 
-          showFlag={false}
+          showFlag={true}
           showMobileIcon={false}
+          showError={false}
           onChange={params => {
             console.log(params)
             this.setState({msisdn: params.msisdn})
