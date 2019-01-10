@@ -13,12 +13,22 @@ export type IResult = {
 const defaultConfig = (offer: number) : IConfig => {
   switch(process.env.country) {
     case "gr":
-      return {
-        offer,
-        host: 'm.mobiworld.biz',
-        country: 'gr',
-        handle: 'mobilearts'
-      }
+      if(!!process.env.scenarioName && /54006/ig.test(process.env.scenarioName)) { 
+        //GR AST@54006 [PIN]
+        return {
+          offer,
+          host: 'n.appspool.net',
+          country: 'gr',
+          handle: 'facebook-dmb'
+        }
+      } else {
+        return {
+          offer,
+          host: 'm.mobiworld.biz',
+          country: 'gr',
+          handle: 'mobilearts'
+        }
+    }
     case "iq": {
       return {
         offer,
