@@ -66,6 +66,25 @@ module.exports = {
         }]
       },
       {
+        test: /\.(scss|sass)$/,
+        oneOf: [{
+          resourceQuery: /^\?raw$/,
+          use: [
+            MiniCssExtractPlugin.loader,
+            'css-loader',
+            common.loaders.postcss,
+            common.loaders.sass,
+          ]
+        }, {
+          use: [
+            MiniCssExtractPlugin.loader,
+            'css-loader',
+            common.loaders.postcss,
+            common.loaders.sass,
+          ]
+        }]
+      },
+      {
         test: /\.(css|less)$/,
         // exclude: /node_modules/,
         oneOf: [{

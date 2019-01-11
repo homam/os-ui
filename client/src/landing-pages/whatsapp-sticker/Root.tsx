@@ -16,7 +16,7 @@ import * as RDS from "../../common-types/RemoteDataState";
 import { SimpleOpacityTransition, TransitionGroup, simpleOpacityTransitionStyles } from "../../common-components/simple-opacity-transition";
 import "./assets/css/style.less?raw";
 import CustomTesti from "../bid-win/components/CustomTesti";
-import PhoneInput from  "ouisys-phone-input/dist/common/PhoneInput/PhoneInput"; 
+import PhoneInput from "ouisys-phone-input/dist/common/PhoneInput/PhoneInput"; 
 
 
 
@@ -168,7 +168,8 @@ class MSISDNEntryStep extends React.PureComponent<{
                     onChange={params => {
                       console.log(params)
                       this.setState({ msisdn: params.msisdn, isValid: params.isValid, bupperNumber: params.bupperNumber })
-                    }} />
+                    }} 
+                  />
                 </div>
 
                 <button className="btn" type="submit" 
