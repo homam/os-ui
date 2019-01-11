@@ -8,6 +8,8 @@
 
 import * as React from 'react'
 import { render } from 'react-dom'
+import "@babel/polyfill";
+import "intl"
 import Root from './Root'
 
 export default Root
