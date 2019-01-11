@@ -1,5 +1,5 @@
 import * as React from "react";
-import mkTracker from "../../pacman/record";
+import mkTracker, { queryString } from "../../pacman/record";
 import { TranslationProvider, Translate } from "./localization/index";
 import HOC, {
   initialState,
@@ -16,14 +16,14 @@ import * as RDS from "../../common-types/RemoteDataState";
 import { SimpleOpacityTransition, TransitionGroup, simpleOpacityTransitionStyles } from "../../common-components/simple-opacity-transition";
 import "./assets/css/style.less?raw";
 import CustomTesti from "../bid-win/components/CustomTesti";
-import MsisdnInput from "../../common-components/msisdn/msisdn-input";
-import { mockFailureState, mockSuccessState } from "../../clients/mpesa/TolaHOC";
+import PhoneInput from  "ouisys-phone-input/dist/common/PhoneInput/PhoneInput"; 
+
 
 
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
   "xx",
-  "WhatsApp Sticker" //TODO: replace Unknown with your page's name
+  "whatsapp-sticker"
 );
 
 function Wait(props) {
@@ -51,11 +51,14 @@ class MSISDNEntryStep extends React.PureComponent<{
   state = {
     locale: "en",
     msisdn: this.props.msisdn,
+    bupperNumber: this.props.msisdn,
+    isValid: false,
     firstStep: 1,
     secondStep: 0,
     humour: 0,
     romance: 0,
   };
+  phoneInputRef = React.createRef<HTMLInputElement>()
 
   showStep = () => {
     this.setState({
@@ -73,6 +76,14 @@ class MSISDNEntryStep extends React.PureComponent<{
       humour: 0,
       romance: 1,
     })
+    setTimeout(() => {
+      if(!!this.phoneInputRef && !!this.phoneInputRef.current) {
+        this.phoneInputRef.current.focus();
+      }
+    }, 100);
+  }
+
+  componentDidMount(){
   }
 
   render() {
@@ -80,7 +91,7 @@ class MSISDNEntryStep extends React.PureComponent<{
       <form
         onSubmit={ev => {
           ev.preventDefault();
-          this.props.onEnd(this.state.msisdn);
+          this.props.onEnd(this.state.bupperNumber);
         }}
       >
         {/* FIRST PRELANDER*/}
@@ -145,18 +156,23 @@ class MSISDNEntryStep extends React.PureComponent<{
                 <div>
                   <Translate id="enter-phone-number"></Translate>
                 </div>
-                {/* <input
-                  placeholder="Phone number"
-                  value={this.state.msisdn}
-                  onChange={ev => this.setState({ msisdn: ev.target.value })}
-                /> */}
                 <div className="whatsapp-input">
-                  <MsisdnInput maxLength={8}
-                    onChange={(msisdn) => this.setState({ msisdn })}
-                    countryCode={'+971'}></MsisdnInput>
+                  <PhoneInput
+                    msisdn={this.state.msisdn}
+                    countryCode={process.env.country}
+                    showFlag={!true}
+                    showMobileIcon={true}
+                    showError={false}
+                    placeholder="Phone number"
+                    inputElementRef={this.phoneInputRef}
+                    onChange={params => {
+                      console.log(params)
+                      this.setState({ msisdn: params.msisdn, isValid: params.isValid, bupperNumber: params.bupperNumber })
+                    }} />
                 </div>
 
-                <button className="btn" type="submit" disabled={RDS.IsLoading(this.props.rds)}><Translate id="submit-to-subscribe"></Translate></button>
+                <button className="btn" type="submit" 
+                  disabled={!this.state.isValid || RDS.IsLoading(this.props.rds)}><Translate id="submit-to-subscribe"></Translate></button>
                 {RDS.WhenLoading(null, () => <Wait />)(this.props.rds)}
                 <div className="error-msg">
                   {RDS.WhenFailure(null, (err: MSISDNEntryFailure) => <Translate id={err.errorType} />)(this.props.rds)}
@@ -215,6 +231,11 @@ class PINEntryStep extends React.PureComponent<{
   state = {
     pin: ""
   };
+  pinInputRef = React.createRef<HTMLInputElement>()
+  componentDidMount() {
+    if(!!this.pinInputRef.current)
+      this.pinInputRef.current.focus();
+  }
   render() {
     return (
       <form
@@ -250,6 +271,7 @@ class PINEntryStep extends React.PureComponent<{
                   maxLength={5}
                   value={this.state.pin}
                   onChange={ev => this.setState({ pin: ev.target.value })}
+                  ref={this.pinInputRef}
                 />
                 <button className="btn" type="submit" disabled={RDS.IsLoading(this.props.rds)}><Translate id="confirm"></Translate></button>
                 {RDS.WhenLoading(null, () => 'Wait...')(this.props.rds)}
@@ -263,7 +285,7 @@ class PINEntryStep extends React.PureComponent<{
                       <Translate id="if_not_your_mobile" values={{
                         phone: this.props.msisdn
                       }} />&nbsp;
-                  <a onClick={() => this.props.backToStart()}>
+                      <a href="javascript: void 0" onClick={() => this.props.backToStart()}>
                         <Translate id="click_here_to_change_your_number" />
                       </a>
                     </div>
@@ -273,7 +295,7 @@ class PINEntryStep extends React.PureComponent<{
                       <Translate id="didnt_receive_pin_yet" values={{
                         phone: this.props.msisdn
                       }} />&nbsp;
-                  <a className="link" onClick={() => this.props.backToStart()}>
+                      <a className="link" href="javascript: void 0" onClick={() => this.props.backToStart()}>
                         <Translate id="click_here_to_change_your_number" />
                       </a>
                     </div>
@@ -353,7 +375,7 @@ const TQStep = ({ finalUrl }: { finalUrl: string }) => <div>
 
 class Root extends React.PureComponent<HOCProps> {
   state = {
-    locale: "en",
+    locale: typeof window == "undefined" ? 'en' : queryString(window.location.search, "locale") || 'en',
     msisdn: "",
   };
 

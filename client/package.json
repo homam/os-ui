@@ -93,7 +93,7 @@
     "node-fetch": "^2.2.0",
     "node-sass": "^4.11.0",
     "nodemon": "^1.18.4",
-    "ouisys-phone-input": "^0.0.4",
+    "ouisys-phone-input": "^0.0.5",
     "postcss-loader": "^3.0.0",
     "postcss-reporter": "^6.0.0",
     "pscid": "^2.5.3",
