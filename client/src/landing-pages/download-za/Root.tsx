@@ -12,8 +12,7 @@ import PhoneInput , { getConfig } from "ouisys-phone-input/dist/common/PhoneInpu
 
 const { commonPrefix } = getConfig(process.env.country);
 
-const imgPhone = require("./assets/img/IphoneXS.png");
-const imgtitle = require("./assets/img/imgtitle.jpg");
+const imgDwlD = require("./assets/img/download.gif");
 
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
@@ -41,7 +40,7 @@ class MSISDNEntryStep extends React.PureComponent<HOCProps> {
         }}
       >
         <div>
-        <p>enter your phone number to participate</p>
+        <p>enter your phone number</p>
           <PhoneInput
             msisdn={this.state.msisdn}
             countryCode={process.env.country}
@@ -52,14 +51,14 @@ class MSISDNEntryStep extends React.PureComponent<HOCProps> {
               if(!this.state.justBecomeValid) {
               if(!this.state.isValid && isValid) {
                 this.setState({ msisdn, isValid, justBecomeValid: true })
-                setTimeout(() => this.buttonRef.current.focus(), 100)
+                setTimeout(() => this.buttonRef.current.focus(), 1000)
               } else {
                 this.setState({ msisdn, isValid })
               }
             } else {
               if(msisdn.length < this.state.msisdn.length) {
                 this.setState({ msisdn, isValid, justBecomeValid: false })
-              }
+              } 
             }
             }}
         
@@ -89,8 +88,7 @@ class Root extends React.PureComponent<HOCProps> {
 
       <div id="container">
         <div id="header">
-          <img src={imgtitle} />
-          <img src={imgPhone} />
+          <img src={imgDwlD} />
         </div>
 
         <div id="msisdn-container">
@@ -104,7 +102,7 @@ class Root extends React.PureComponent<HOCProps> {
               })(this.props.currentState)
             }
             </div>
-
+          
           </TranslationProvider>
         </div>
       </div>

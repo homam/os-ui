@@ -1,16 +1,19 @@
 @font-face {
-  font-family: 'Staatliches';
+  font-family: 'Source Sans Pro';
   font-style: normal;
   font-weight: 400;
-  src: local('Staatliches Regular'), local('Staatliches-Regular'), url(https://fonts.gstatic.com/s/staatliches/v1/HI_OiY8KO6hCsQSoAPmtMYebvpCfOMPT.woff2) format('woff2');
+  src: local('Source Sans Pro Regular'), local('SourceSansPro-Regular'), url(https://fonts.gstatic.com/s/sourcesanspro/v11/6xK3dSBYKcSV-LCoeQqfX1RYOo3qOK7lujVj9w.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+body{
+  background: #D5EFFC;
+}
 
 #container {
-  max-width: 900px;
+  max-width: 500px;
   margin:0 auto;
-  font-family:Staatliches;
+  font-family:Source Sans Pro;
 } 
 
 #header {
@@ -28,15 +31,18 @@
 
 
 #msisdn-container {
-  background: black;
+  background: #3799F7;
   text-align:center;
-  display: block;
+  display: flex;
   height:300px;
   margin-top:-40px;
-  border-top: 3px solid #ccc;
-  border-bottom: 3px solid #ccc;
   color:white;
   padding:0 10px;
+  align-items:center;
+  align-content:center;
+  justify-content: center;
+  flex-direction:row;
+  flex-wrap:wrap;
 }
 
 #msisdn-container p {
@@ -65,7 +71,6 @@ button {
   display: block;
   margin:15px auto;
   clear:both;
-  background: linear-gradient(#06ffeb, #0c9e24);
   border-radius:30px;
   width:280px;
   height:50px;
@@ -75,6 +80,7 @@ button {
   color:white;
   font-size:1.3em;
   transition:1s all ease;
+  background: linear-gradient(#06ffeb, #0c9e24);
 }
 
 button:focus {
@@ -114,7 +120,7 @@ svg.checkmark {
 .reply-message h1 {
   font-size:4em;
   margin-bottom:0px !important;
-  margin-top:5px;
+  margin-top:0px;
 
 }
 
@@ -123,10 +129,4 @@ svg.checkmark {
   margin-top:5px !important;
 }
 
-.reply-message p:nth-child(3) {
-  font-size:2em;
-  margin-top:5px !important;
-}
-
-.text p, .text span { font-size: 12px !important;margin-top:5px !important;font-family:Arial;text-transform: none;}
-
+.text p, .text span { font-size: 12px !important;margin-top:5px !important;}
