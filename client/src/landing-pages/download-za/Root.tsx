@@ -65,7 +65,10 @@ class MSISDNEntryStep extends React.PureComponent<HOCProps> {
            />
           <button ref={this.buttonRef} type="submit" disabled={!this.state.isValid}>Submit</button>
           {/* <button disabled={!this.state.isValid} type="submit">Submit</button> */}
-
+          <div className="text">
+          <span>subscription R10/day</span>
+            <p>For Help call 011 218 5618' <a href="http://n.vidzclubs.com/za/tnc-vidzclubs?device=pc&offer=1">Terms and Conditions</a></p>
+          </div>
         </div>
       </form>
     );
@@ -99,7 +102,7 @@ class Root extends React.PureComponent<HOCProps> {
               })(this.props.currentState)
             }
             </div>
-
+          
           </TranslationProvider>
         </div>
       </div>
