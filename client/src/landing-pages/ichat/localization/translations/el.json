@@ -10,10 +10,10 @@
   "astrologer": "Μελλοντολόγος",
   
   "amanda_welcome": "Καλώς ήρθες, σε περίμενα.",
-  "amanda_amazing_vision": "Είχα ένα όραμα, και βλέπω πληροφορίες για εσένα.",
-  "amanda_your_dob": "Γεννήθηκες {month}, σωστά;",
-  "amanda_your_gender": "Είσαι {gender};",
-  "amanda_marital_status": "Έχεις σύζυγο, έτσι δεν είναι;",
+  "amanda_amazing_vision": "Σε παρακαλώ βοήθησέ με να πάρω τα σωστά vibes απαντώντας σε μερικές ερωτήσεις.",
+  "amanda_your_dob": "Αν κοιτάξεις πίσω στη ζωή σου, θεωρείς τον εαυτό σου τυχερό;",
+  "amanda_your_gender": "Έχεις ερωτευτεί ποτέ πραγματικά;",
+  "amanda_marital_status": "Θεωρείς τον εαυτό σου ως ένα κοινωνικά ενεργό άτομο;",
   "amanda_signals": "Επιβεβαίωσα ήδη πως βλέπω καθαρά για σένα.",
   "amanda_would_you_future": "Θέλεις να λάβεις την πλήρη πρόβλεψή μου για σένα;",
   "amanda_private_secure": "Αυτές είναι ιδιωτικές πληροφορίες, θα ήθελα για σιγουριά να τις στείλω στο κινητό σου.",
@@ -68,6 +68,6 @@
   
   "sms_now": "Στείλε μήνυμα τώρα",
 
-  "terms_link": "http://n.appspool.net/gr/tnc-appspool?offer=1&_next=general_conditions.html"
+  "terms_link": "http://n.mobioastro.com/gr/tnc-mobioastro?offer=1&_next=general_conditions.html"
 
 }

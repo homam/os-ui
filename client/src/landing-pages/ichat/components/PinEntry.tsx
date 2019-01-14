@@ -35,10 +35,10 @@ class PinEntry extends React.PureComponent<IProps & InjectedIntlProps> {
 
       <div id="msisdnCheck">
 
-      <Translate id="msisdnCheck_if" defaultMessage="If" /> 
-      <span id="userMSISDN">{this.props.msisdnValue}</span> 
+      <Translate id="msisdnCheck_if" defaultMessage="If" />  
+      <span id="userMSISDN"> {this.props.msisdnValue} </span> 
       <Translate id="msisdnCheck_not" defaultMessage="is not your mobile number" />
-       <a href="javascript: void 6" onClick={() => this.props.onNotMyMobileClicked()}> <Translate id="msisdnCheck_click" defaultMessage="Click here" /> </a>.
+        <a href="javascript: void 6" onClick={() => this.props.onNotMyMobileClicked()}> <Translate id="msisdnCheck_click" defaultMessage="Click here" /> </a>.
 
     </div>
 
