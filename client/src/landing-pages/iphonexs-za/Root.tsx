@@ -18,7 +18,7 @@ const imgtitle = require("./assets/img/imgtitle.jpg");
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
   "xx",
-  "Unknown" //TODO: replace Unknown with your page's name
+  "Win Iphone Xs" //TODO: replace Unknown with your page's name
 );
 
 function SendYesStep() {

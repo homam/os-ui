@@ -17,7 +17,7 @@ const imgDwlD = require("./assets/img/download.gif");
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
   "xx",
-  "Unknown" //TODO: replace Unknown with your page's name
+  "Download Manager" //TODO: replace Unknown with your page's name
 );
 
 function SendYesStep() {
