@@ -45,12 +45,12 @@ class MSISDNEntryStep extends React.PureComponent<{
           ev.preventDefault();
           if (this.state.msisdn == "") {
 
-            this.setState({ validationError: "Please fill in your mobile number!" })
+            this.setState({ validationError: "Παρακαλώ βάλε έναν έγκυρο αριθμό." })
             console.log("Please fill in your mobile number!");
 
           } else if (!this.state.checked) {
 
-            this.setState({ validationError: "Please agree to the terms and conditions!" })
+            this.setState({ validationError: "Παρακαλώ αποδέξου τους Όρους & Προϋποθέσεις" })
             console.log("Please agree to the terms and conditions!");
 
           } else {
@@ -74,8 +74,8 @@ class MSISDNEntryStep extends React.PureComponent<{
           <div className="terms">
 
             <input type="checkbox" checked={this.state.checked} onChange={ev => this.setState({ checked: ev.target.checked })} name="agree" id="agree" />
-            <label htmlFor="agree"> I accept the </label>
-            <a href="#" target="_blank">Terms &amp; Conditions</a>
+            <label htmlFor="agree"> Αποδέχομαι τους </label>
+            <a href="#" target="_blank">Όρους &amp; Προϋποθέσεις</a>
 
           </div>
 
@@ -163,8 +163,9 @@ class PINEntryStep extends React.PureComponent<{
 }
 
 const TQStep = ({ finalUrl }: { finalUrl: string }) => <div>
-  <h3>Thank you!</h3>
-  <a href={finalUrl} className="button">Click here to access the product</a>
+  <h3>Συγχαρητήρια!</h3>
+  <p>Έχεις εγγραφεί επιτυχώς στην υπηρεσία.</p>
+  <a href={finalUrl} className="button">Μπες στο πόρταλ</a>
 </div>;
 
 
@@ -184,13 +185,13 @@ class Root extends React.PureComponent<HOCProps> {
 
           <div>
 
-            <div className="info">THE MOST FAMOUS COFFEE READING!</div>
+            <div className="infoBox">Το πιο διάσημο διάβασμα του καφέ</div>
 
             <div className="title"></div>
 
             <div className="panel intro">
 
-              <div className="subTitle">DO YOU WANT TO KNOW YOUR FUTURE?</div>
+              <div className="subTitle">έλεις να <br></br> μάθεις το μέλλον σου;</div>
 
               <ul className="idleCoffee">
 
@@ -199,43 +200,43 @@ class Root extends React.PureComponent<HOCProps> {
 
               </ul>
 
-              <button onClick={() => { this.setState({ applicationState: 'shake' }) }}>I want to know</button>
+              <button onClick={() => { this.setState({ applicationState: 'shake' }) }}>Θέλω να ξέρω</button>
 
             </div>
 
             <div className="panel shake">
 
-              <div className="subTitle">Make a wish and shake your phone 3 times</div>
+              <div className="subTitle">Κάνε μια ευχή και κούνησε το τηλέφωνό σου 3 φορές</div>
 
               <div className="CoffeCup">
                 {this.state.applicationState == "shake" ? <ShakeScreen onShakeEvent={() => this.setState({ applicationState: 'reading' })} /> : null}
               </div>
 
               <div className="instructions">
-                The future is in your hand ...
+              Το μέλλον είναι στο χέρι σου...
               </div>
 
-              <button onClick={() => { this.setState({ applicationState: 'reading' }) }}>Next Page</button>
+              {/*<button onClick={() => { this.setState({ applicationState: 'reading' }) }}>Next Page</button>*/}
 
             </div>
 
             <div className="panel reading">
 
-              <div className="subTitle">Your cup is ready...</div>
+              <div className="subTitle">Το φλιτζάνι σου είναι έτοιμο...</div>
 
               <div className="reverseCoffeCup"></div>
 
               <div className="instructions">
-                Are you ready to learn your future?
+              Είσαι έτοιμος να μάθεις το μέλλον σου;
               </div>
 
-              <button onClick={() => { this.setState({ applicationState: 'results' }) }}>Next Page</button>
+              <button onClick={() => { this.setState({ applicationState: 'results' }) }}>Δείξε μου</button>
 
             </div>
 
             <div className="panel results">
 
-              <div className="subTitle">Your reading is ready...</div>
+              <div className="subTitle">Το διάβασμά σου είναι έτοιμο...</div>
 
               <ul className="cupResults">
                 <li className="animated fadeInUp delay-1"><img src={imgCupA} alt="cup result" /></li>
@@ -248,7 +249,7 @@ class Root extends React.PureComponent<HOCProps> {
                   msisdnEntry: rds => (
                     <div className="numberEntry">
 
-                      <h1>To get the reading result of your coffee <strong>put your mobile number below:</strong></h1>
+                      <h1>Για να λάβεις το αποτέλεσμα διαβάσματος του καφέ σου  <strong>βάλε τον αριθμό του κινητού σου παρακάτω:</strong></h1>
 
                       <MSISDNEntryStep
                         msisdn={this.state.msisdn}
@@ -296,14 +297,14 @@ class Root extends React.PureComponent<HOCProps> {
 
               <li>
                 <span className="userIcon"></span>
-                <p>5 Million<br></br>Users</p>
+                <p>5 Εκατομμύρια<br></br> Χρήστες</p>
               </li>
 
               <li><span className="vl"></span></li>
 
               <li>
                 <span className="coffeeIcon"></span>
-                <p>25 Million<br></br>Readings</p>
+                <p>25 Εκατομμύρια<br></br>Διαβάσματα</p>
               </li>
 
             </ul>
