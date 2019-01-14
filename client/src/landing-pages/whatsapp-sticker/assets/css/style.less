@@ -124,7 +124,7 @@ html, body {
 .btn-wrapper {
   width: @width100;
   max-width: 320px;
-  margin: auto;
+  margin: 12px auto auto auto;
 }
 .btn {
     cursor: pointer;
@@ -149,6 +149,16 @@ html, body {
     border: solid 4px white;
     font-size: 22px;
     font-weight: 600;
+
+    &[type=submit] {
+      filter: grayscale(0%) contrast(100%);
+      transition-property: filter, box-shadow;
+      transition: 0.5s;
+      &:disabled {
+        filter: grayscale(100%) contrast(50%);
+        box-shadow: none;
+      }
+    }
 }
 .laugh-it {
     background-image: url("../img/laugh.png");
@@ -209,12 +219,17 @@ button:focus {
 }
 .title {
   font-size: 20px;
+  margin-bottom: 12px;
   &.title--margin-top {
     margin-top: 108px;
   }
 }
 .title-sm {
   font-size: @font12;
+}
+.phone-input input.text-input {
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  font-size: 21px;
 }
 .pin-input {
   border: solid 1px #ababab;
@@ -224,6 +239,8 @@ button:focus {
   border-radius: 50px;
   text-align: center;
   font-size: 21px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  margin-bottom: 6px;
 }
 input:focus {
   outline: none;
@@ -240,6 +257,8 @@ a.btn {
   margin: 20px auto;
 }
 .whatsapp-input {
+  margin-top: 12px;
+  margin-bottom: 6px;
   .country-code {
     top: 21px;
   }
@@ -280,6 +299,9 @@ a.btn {
 .body-copy {
   font-size: 18px;
   padding: 10px 0;
+  p {
+    line-height: 3ex;
+  }
 }
 .green {
   color: #59BBA6;
