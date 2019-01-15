@@ -394,7 +394,11 @@ html, body {
 
 .customTesti {
   &.sexy-wallpaper {
+    background-color: rgba(149, 149, 149, 0.52);
     ul li {
+      &:after {
+        color: #ff7eb1;
+      }
       .details {
         .rating {
           width: 60%;
@@ -403,6 +407,84 @@ html, body {
           }
         }
       }
+      .avatar {
+        &.person1 {
+          background-image: url("../img/01.png");
+        }
+        &.person2 {
+          background-image: url("../img/02.png");
+        }
+        &.person3 {
+          background-image: url("../img/03.png");
+        }
+      }
     }
   }
 }
+
+
+// ANIMATION
+
+.vibrate-1 {
+	-webkit-animation: vibrate-1 8s ease-in infinite both;
+	        animation: vibrate-1 8s ease-in infinite both;
+}
+
+.vibrate-2 {
+	-webkit-animation: vibrate-1 8s ease-in 1s infinite both;
+	        animation: vibrate-1 8s ease-in 1s infinite both;
+}
+
+ @-webkit-keyframes vibrate-1 {
+  0% {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+  }
+  20% {
+    -webkit-transform: translate(-2px, 2px);
+            transform: translate(-2px, 2px);
+  }
+  40% {
+    -webkit-transform: translate(-2px, -2px);
+            transform: translate(-2px, -2px);
+  }
+  60% {
+    -webkit-transform: translate(2px, 2px);
+            transform: translate(2px, 2px);
+  }
+  80% {
+    -webkit-transform: translate(2px, -2px);
+            transform: translate(2px, -2px);
+  }
+  100% {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+  }
+}
+@keyframes vibrate-1 {
+  0% {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+  }
+  20% {
+    -webkit-transform: translate(-2px, 2px);
+            transform: translate(-2px, 2px);
+  }
+  40% {
+    -webkit-transform: translate(-2px, -2px);
+            transform: translate(-2px, -2px);
+  }
+  60% {
+    -webkit-transform: translate(2px, 2px);
+            transform: translate(2px, 2px);
+  }
+  80% {
+    -webkit-transform: translate(2px, -2px);
+            transform: translate(2px, -2px);
+  }
+  100% {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+  }
+}
+

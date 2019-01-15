@@ -256,8 +256,8 @@ class Root extends React.PureComponent<HOCProps> {
             {/* 1ST PRELANDER */}
             <div className={"start " + (this.state.preLander === 1 ? "active" : "hidden")}>
               <div className="prelander-img-1">
-                <div className="guy-1"></div>
-                <div className="girl-1"></div>
+                <div className="guy-1 vibrate-2"></div>
+                <div className="girl-1 vibrate-1"></div>
               </div>
               <div className="balloon balloon-1">
                 <div className="title">
@@ -425,17 +425,17 @@ class Root extends React.PureComponent<HOCProps> {
             <CustomTesti className="sexy-wallpaper" testimonials={[
               {
                 Message: () => <span className="message">I really like this app, it has really great pictures.</span>,
-                Name: () => <span className="testimonials-name">- Mongkut</span>,
+                Name: () => <span className="testimonials-name">- Andy</span>,
                 stars: 5
               },
               {
                 Message: () => <span className="message">Like the sexyness. I would give you 10 stars if I could.</span>,
-                Name: () => <span className="testimonials-name">- Naiyana</span>,
+                Name: () => <span className="testimonials-name">- Ploy</span>,
                 stars: 5
               },
               {
                 Message: () => <span className="message">I love the display and quality of the pictures. It's great!</span>,
-                Name: () => <span className="testimonials-name">- Somchai</span>,
+                Name: () => <span className="testimonials-name">- Tanawat</span>,
                 stars: 5
               },
             ]} />
