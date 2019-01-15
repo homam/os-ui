@@ -1,0 +1,38 @@
+.dobPickerEN-container {
+  position: relative;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  justify-content: space-around;
+  
+  select {
+    color: black;
+    width: 90px;
+    height: 30px;
+    border-radius: 50px;
+    border: 1px solid #9c9090;
+    font-size: 14px;
+    -moz-appearance: window;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: white;
+    text-indent: 10px;
+  }
+  .arrowDown {
+    &::after {
+      content: '';
+      color: black;
+      width: 0px;
+      height: 0px;
+      border-style: solid;
+      border-width: 9px 7px 0 7px;
+      border-color: rgb(57, 57, 57) transparent transparent transparent;
+      position: absolute;
+      top: 11px;
+      display: flex;
+      justify-content: space-evenly;
+      margin-left: 69px;
+    }
+  }
+}
+
+

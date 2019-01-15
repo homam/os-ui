@@ -21,6 +21,7 @@ import TimerComponent from "../../common-components/timer/timer";
 import { translate } from "../../../webpack/dev-utils/translate-by-yandex";
 import DOBPicker from "./components/DOBPicker";
 
+
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
   "xx",
@@ -61,7 +62,7 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
 }> {
   state = {
     msisdn: this.props.msisdn,
-    displayScreen: 1, 
+    displayScreen: 1
     
   };
 
