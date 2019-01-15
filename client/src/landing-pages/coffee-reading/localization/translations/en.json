@@ -8,5 +8,21 @@
   "we_just_sent_a_pin": "We just sent a PIN to your mobile phone.\nPlease check your SMS inbox and enter the PIN that you received below:",
   "didnt_receive_pin_yet": "Didn't receive a PIN yet? Make sure {phone} is your correct mobile number.",
   "if_not_your_mobile": "If {phone} is not your mobile number,",
-  "click_here_to_change_your_number": "Click here to change your phone number."
+  "click_here_to_change_your_number": "Click here to change your phone number.",
+  "infoBox":"The most famous reading of coffee",
+  "mainSubTitle": "Do you want to know your future?",
+  "introBtnText": "I Want To Know",
+  "shakeSubTitle": "Make a wish and shake your phone three times,",
+  "shakeInsText": "The future is in your hand ...",
+  "readingSubTitle": "Your cup is ready ...",
+  "readingInsText": "Are you ready to learn your future?",
+  "resultsSubTitle": "Your Reading is Ready ...",
+  "numberEntryFirst": "To get the reading result of your coffee",
+  "numberEntryNext": "enter your mobile number below:",
+  "congratsTitle": "Congratulations!",
+  "congratsText": "You have successfully enrolled in the service.",
+  "portalBtnText": "Go to portal page,",
+  "socialUsersText": "5 Million Users",
+  "socialReadingText": "25 Million Readings",
+  "waitingText":"Please wait..."
 }

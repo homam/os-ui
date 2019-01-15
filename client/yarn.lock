@@ -915,6 +915,7 @@
 "@babel/polyfill@^7.2.5":
   version "7.2.5"
   resolved "https://registry.yarnpkg.com/@babel/polyfill/-/polyfill-7.2.5.tgz#6c54b964f71ad27edddc567d065e57e87ed7fa7d"
+  integrity sha512-8Y/t3MWThtMLYr0YNC/Q76tqN1w30+b0uQMeFUYauG2UGTR19zyUtFrAzT23zNtBxPp+LbE5E/nwV/q/r3y6ug==
   dependencies:
     core-js "^2.5.7"
     regenerator-runtime "^0.12.0"
@@ -6421,6 +6422,7 @@ intl-relativeformat@^2.1.0:
 intl@^1.2.5:
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/intl/-/intl-1.2.5.tgz#82244a2190c4e419f8371f5aa34daa3420e2abde"
+  integrity sha1-giRKIZDE5Bn4Nx9ao02qNCDiq94=
 
 invariant@^2.1.0, invariant@^2.1.1, invariant@^2.2.1, invariant@^2.2.2, invariant@^2.2.4:
   version "2.2.4"
@@ -8740,6 +8742,7 @@ ouisys-clients@^0.0.9:
 ouisys-phone-input@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/ouisys-phone-input/-/ouisys-phone-input-0.0.6.tgz#11bca9d3161a8266f9d4305642b80c8365cfb2e5"
+  integrity sha512-3rR4Ww82st/zgf7+zmbN7xMqyEsSRGzs7vv5cSkUJCO6plYw02wRrqx1rFGCenoVG4KZaNUCKEYxxsGUPFe8xA==
   dependencies:
     ouisys-clients "^0.0.9"
     react "16.5.2"

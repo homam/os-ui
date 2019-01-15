@@ -45,7 +45,7 @@ class MSISDNEntryStep extends React.PureComponent<{
           ev.preventDefault();
           if (this.state.msisdn == "") {
 
-            this.setState({ validationError: "Παρακαλώ βάλε έναν έγκυρο αριθμό." })
+            this.setState({ validationError:  "Παρακαλώ βάλε έναν έγκυρο αριθμό." })
             console.log("Please fill in your mobile number!");
 
           } else if (!this.state.checked) {
@@ -125,7 +125,7 @@ class PINEntryStep extends React.PureComponent<{
           />
           <button type="submit" disabled={RDS.IsLoading(this.props.rds)}>OK</button>
           {
-            RDS.WhenLoading(null, () => <div className="wait-msg">Please wait...</div>)(this.props.rds)
+            RDS.WhenLoading(null, () => <div className="wait-msg"><Translate id="waitingText" defaultMessage="Please wait..." />.</div>)(this.props.rds)
           }
         </div>
         <div>
@@ -163,15 +163,15 @@ class PINEntryStep extends React.PureComponent<{
 }
 
 const TQStep = ({ finalUrl }: { finalUrl: string }) => <div>
-  <h3>Συγχαρητήρια!</h3>
-  <p>Έχεις εγγραφεί επιτυχώς στην υπηρεσία.</p>
-  <a href={finalUrl} className="button">Μπες στο πόρταλ</a>
+  <h3><Translate id="congratsTitle" defaultMessage="Congratulations!" /></h3>
+  <p><Translate id="congratsText" defaultMessage="You have successfully enrolled in the service." /></p>
+  <a href={finalUrl} className="button"><Translate id="portalBtnText" defaultMessage="Go to portal page" /></a>
 </div>;
 
 
 class Root extends React.PureComponent<HOCProps> {
   state = {
-    locale: "en",
+    locale: "el",
     msisdn: "",
     checked: false,
     applicationState: "intro"
@@ -185,13 +185,13 @@ class Root extends React.PureComponent<HOCProps> {
 
           <div>
 
-            <div className="infoBox">Το πιο διάσημο διάβασμα του καφέ</div>
+            <div className="infoBox"><Translate id="infoBox" defaultMessage="The most famous reading of coffee" /></div>
 
             <div className="title"></div>
 
             <div className="panel intro">
 
-              <div className="subTitle">έλεις να <br></br> μάθεις το μέλλον σου;</div>
+              <div className="subTitle"><Translate id="mainSubTitle" defaultMessage="Do you want to learn your future?" /></div>
 
               <ul className="idleCoffee">
 
@@ -200,34 +200,34 @@ class Root extends React.PureComponent<HOCProps> {
 
               </ul>
 
-              <button onClick={() => { this.setState({ applicationState: 'shake' }) }}>Θέλω να ξέρω</button>
+              <button onClick={() => { this.setState({ applicationState: 'shake' }) }}><Translate id="introBtnText" defaultMessage="I want to know" /></button>
 
             </div>
 
             <div className="panel shake">
 
-              <div className="subTitle">Κάνε μια ευχή και κούνησε το τηλέφωνό σου 3 φορές</div>
+              <div className="subTitle"><Translate id="shakeSubTitle" defaultMessage="Make a wish and shake your phone 3 times" /></div>
 
               <div className="CoffeCup">
                 {this.state.applicationState == "shake" ? <ShakeScreen onShakeEvent={() => this.setState({ applicationState: 'reading' })} /> : null}
               </div>
 
               <div className="instructions">
-              Το μέλλον είναι στο χέρι σου...
+                <Translate id="shakeInsText" defaultMessage="The future is in your hand..." />
               </div>
 
-              {/*<button onClick={() => { this.setState({ applicationState: 'reading' }) }}>Next Page</button>*/}
+             <button onClick={() => { this.setState({ applicationState: 'reading' }) }}>Next Page</button>
 
             </div>
 
             <div className="panel reading">
 
-              <div className="subTitle">Το φλιτζάνι σου είναι έτοιμο...</div>
+              <div className="subTitle"><Translate id="readingSubTitle" defaultMessage="Your cup is ready..."/></div>
 
               <div className="reverseCoffeCup"></div>
 
               <div className="instructions">
-              Είσαι έτοιμος να μάθεις το μέλλον σου;
+              <Translate id="readingInsText" defaultMessage="Are you ready to learn your future?" />
               </div>
 
               <button onClick={() => { this.setState({ applicationState: 'results' }) }}>Δείξε μου</button>
@@ -236,7 +236,7 @@ class Root extends React.PureComponent<HOCProps> {
 
             <div className="panel results">
 
-              <div className="subTitle">Το διάβασμά σου είναι έτοιμο...</div>
+              <div className="subTitle"> <Translate id="resultsSubTitle" defaultMessage="Your reading is ready..." /></div>
 
               <ul className="cupResults">
                 <li className="animated fadeInUp delay-1"><img src={imgCupA} alt="cup result" /></li>
@@ -249,7 +249,8 @@ class Root extends React.PureComponent<HOCProps> {
                   msisdnEntry: rds => (
                     <div className="numberEntry">
 
-                      <h1>Για να λάβεις το αποτέλεσμα διαβάσματος του καφέ σου  <strong>βάλε τον αριθμό του κινητού σου παρακάτω:</strong></h1>
+                      <h1><Translate id="numberEntryFirst" defaultMessage="To get your reading result of your coffee" /> 
+                      <strong><Translate id="numberEntryNext" defaultMessage="Put your mobile number below" /></strong></h1>
 
                       <MSISDNEntryStep
                         msisdn={this.state.msisdn}
@@ -297,14 +298,14 @@ class Root extends React.PureComponent<HOCProps> {
 
               <li>
                 <span className="userIcon"></span>
-                <p>5 Εκατομμύρια<br></br> Χρήστες</p>
+                <p><Translate id="socialUsersText" defaultMessage="5 Million Users" /></p>
               </li>
 
               <li><span className="vl"></span></li>
 
               <li>
                 <span className="coffeeIcon"></span>
-                <p>25 Εκατομμύρια<br></br>Διαβάσματα</p>
+                <p><Translate id="socialReadingText" defaultMessage="25 Million Readings" /></p>
               </li>
 
             </ul>
