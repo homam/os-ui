@@ -1,8 +1,10 @@
 @import"../../../../reset.css";
-@font-face {
-  font-family: 'Bubblegum', cursive;
-  src: url('https://fonts.googleapis.com/css?family=Bubblegum+Sans')
- }
+// @font-face {
+//   font-family: 'Bubblegum', cursive;
+//   src: url('https://fonts.googleapis.com/css?family=Bubblegum+Sans')
+//  }
+
+@import: "url('https://fonts.googleapis.com/css?family=Bubblegum+Sans')";
 
 * {
   -webkit-font-smoothing: antialiased;
@@ -18,7 +20,7 @@ html, body{
   line-height: 1.2;
   height: 100%;
   font-size: 14px;
-  font-family: 'Bubblegum', sans-serif;
+  font-family: 'Bubblegum Sans', sans-serif;
 }
 
 .bg {
@@ -417,14 +419,14 @@ a {
 .icons-img-7 {
   &:before {
     content:'';
-    background-image: url("../img/telepath.svg");
+    background-image: url("../img/telepath.png");
     background-repeat: no-repeat;
     background-size: contain;
     width: 40px;
     height: 30px;
     display: block;
     position: absolute;
-    left: 43px;
+    left: 38px;
     margin-top: -9px;
   }
 }
