@@ -198,6 +198,7 @@ class Root extends React.PureComponent<HOCProps> {
             })(this.props.currentState)}
           </TransitionGroup>
         </TranslationProvider>
+        
         </div>
       
           <div className="testimonial">
@@ -219,4 +220,4 @@ those girls doing yoga on a beach</div>
     );
   }
 }
-export default HOC(tracker, Root)(mockedMSISDNEntryFailure);
+export default HOC(tracker, Root)(initialState);
