@@ -8,5 +8,11 @@
   "we_just_sent_a_pin": "We just sent a PIN to your mobile phone.\nPlease check your SMS inbox and enter the PIN that you received below:",
   "didnt_receive_pin_yet": "Didn't receive a PIN yet? Make sure {phone} is your correct mobile number.",
   "if_not_your_mobile": "If {phone} is not your mobile number,",
-  "click_here_to_change_your_number": "Click here to change your phone number."
+  "click_here_to_change_your_number": "Click here to change your phone number.",
+  "testi1_text" : "رائع .... فيديوهات بجودة مذهلة",
+  "testi1_name" : "حمزة",
+  "testi2_text" : "لن تستطيع التوقف عن الضحك ... ممتاز",
+  "testi2_name" : "عمار",
+  "testi3_text" : "هذا الفيديوهات جعلتني سعيدة بشدة! احببتها كثيرا! ",
+  "testi3_name" : "زهره"
 }
