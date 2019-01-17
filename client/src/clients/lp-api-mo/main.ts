@@ -24,6 +24,14 @@ const defaultConfig = (offer: number) : IConfig => {
         country: 'my',
         handle: 'api-handle'
       }
+      case "gh": {
+        return {
+          offer: (offer || 1),
+          host: 'w1.mozzi.com',
+          country: 'gh',
+          handle: 'secure-pro'
+        }
+      }
     default:
       throw `'country' environment variable is either missing or has an unsupported value (${process.env.country}). This is necessary for defaultConfig(offer).`
   }

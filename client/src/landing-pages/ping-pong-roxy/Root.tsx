@@ -3,7 +3,14 @@ import mkTracker from "../../pacman/record";
 import { TranslationProvider, injectIntl } from "./localization/index";
 import HOC, {
   initialState,
-  HOCProps} from "../../clients/lp-api/HOC";
+  mockedMSISDNEntrySuccess,
+  mockedCompletedState,
+  HOCProps,
+  MSISDNEntryFailure,
+  MSISDNEntrySuccess,
+  match,
+  MOLink,
+} from "../../clients/lp-api-mo/HOC";
 import "./assets/css/styles.less?raw"
 import SplashScreen from "./components/SplashScreen";
 import Chat from "./components/Chat";

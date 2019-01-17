@@ -27,40 +27,37 @@ function SendYesStep() {
 class MSISDNEntryStep extends React.PureComponent<HOCProps> {
   state = {
     msisdn: commonPrefix,
+    bupperNumber: "",
     isValid: false,
     justBecomeValid: false
   };
   buttonRef = React.createRef<HTMLButtonElement>()
+  inputRef = React.createRef<HTMLInputElement>()
   render() {
     return (
       <form
         onSubmit={ev => {
           ev.preventDefault();
-          this.props.actions.submitMSISDN(window, null, this.state.msisdn)
+          this.props.actions.submitMSISDN(window, null, this.state.bupperNumber)
         }}
       >
         <div>
         <p>enter your phone number</p>
           <PhoneInput
+             inputElementRef={this.inputRef}
+             placeholder = "Enter phone number"
             msisdn={this.state.msisdn}
             countryCode={process.env.country}
             showFlag={true}
             showMobileIcon={true}
             showError={true}
-            onChange={({msisdn, isValid}) => {
-              if(!this.state.justBecomeValid) {
-              if(!this.state.isValid && isValid) {
-                this.setState({ msisdn, isValid, justBecomeValid: true })
-                setTimeout(() => this.buttonRef.current.focus(), 1000)
-              } else {
-                this.setState({ msisdn, isValid })
-              }
-            } else {
-              if(msisdn.length < this.state.msisdn.length) {
-                this.setState({ msisdn, isValid, justBecomeValid: false })
-              } 
+            onChange={({msisdn, isValid, bupperNumber}) => {
+              
+                this.setState({ msisdn, isValid, bupperNumber })
+              
+                
             }
-            }}
+            }
         
            />
           <button ref={this.buttonRef} type="submit" disabled={!this.state.isValid}>Submit</button>

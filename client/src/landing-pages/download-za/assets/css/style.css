@@ -101,15 +101,12 @@ button:disabled {
  margin-left:5px;
 }
 
-div.checkmark{
+.checkmark-container{
   height:30px !important; 
   width:30px !important;
   margin-right:15px !important;
 }
 
-svg.checkmark {
-  margin-right: 0px !important;
-}
 
 .reply-message p {
   font-size:2em;
@@ -130,3 +127,4 @@ svg.checkmark {
 }
 
 .text p, .text span { font-size: 12px !important;margin-top:5px !important;}
+
