@@ -9,7 +9,8 @@ import HOC, {
   MSISDNEntrySuccess,
   match,
   mockedMSISDNEntrySuccess,
-  mockedMSISDNEntryFailure
+  mockedMSISDNEntryFailure,
+  MOLink,
 } from "../../clients/lp-api-mo/HOC";
 import * as RDS from "../../common-types/RemoteDataState";
 import { SimpleOpacityTransition, TransitionGroup, simpleOpacityTransitionStyles } from "../../common-components/simple-opacity-transition";
@@ -91,11 +92,18 @@ class MSISDNEntryStep extends React.PureComponent<{
   }
 }
 
-const TQStep = ({keywordAndShortcode}) => <div>
-  <h3>Thank you!</h3>
-  <h2>{keywordAndShortcode.keyword}</h2>
-  <h2>{keywordAndShortcode.shortcode}</h2>
-  {/*TODO: tell user that hey have to send SMS*/}
+const TQStep = ({keywordAndShortcode}) => 
+
+<div>
+
+  <h3>Last step</h3>
+  <p className="info">now send</p>
+  <p className="keyword">{keywordAndShortcode.keyword}</p>
+  <p className="info">to</p>
+  <p className="shortcode">{keywordAndShortcode.shortcode}</p>
+  <MOLink keywordAndShortcode={keywordAndShortcode}> <button className="sendsms">Send SMS NOW</button></MOLink>
+
+
 </div>;
 
 class Root extends React.PureComponent<HOCProps> {
