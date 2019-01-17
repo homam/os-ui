@@ -10,6 +10,8 @@ export type IResult = {
   submissionId?: string
 }
 
+const scenario = process.env.scenario
+
 const defaultConfig = (offer: number) : IConfig => {
   switch(process.env.country) {
     case "gr":
@@ -20,6 +22,13 @@ const defaultConfig = (offer: number) : IConfig => {
           host: 'n.appspool.net',
           country: 'gr',
           handle: 'facebook-dmb'
+        }
+      } else if(/gr-gmz19366-pin/ig.test(scenario)) {
+        return {
+          offer,
+          host: 'n.appspool.net',
+          country: 'gr',
+          handle: 'gr-gmz19366-pin'
         }
       } else {
         return {
