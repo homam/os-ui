@@ -24,6 +24,11 @@ body{
 .container.display-Splash .splash{
 	display:block;
 }
+
+.container.display-Chat{
+	background-color: transparent;
+}
+
 .container.display-Chat .chat{
   display: flex;
 }
@@ -209,7 +214,7 @@ body{
 
 	.area{
     flex: 1;
-		overflow: auto;
+		overflow: hidden;
 
 		#chatInner{
 			height: auto;
@@ -430,7 +435,8 @@ body{
 		color:#727272;
 		font-size: 12px;
 		text-align: left;
-		align-items:center;
+		align-items:top;
+		line-height: 1.5em;
 		margin:10px auto 0px auto;
 		
 		input{
@@ -759,7 +765,7 @@ span.l-6 {-webkit-animation-delay: 0;animation-delay: 0;-ms-animation-delay: 0;-
 @media (min-width: 1281px) {
   
 	.chat{
-		height: 80vh;
+		height: 60vh;
 	}
   
 }

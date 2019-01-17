@@ -246,7 +246,7 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps> {
 
       if (chatInner.clientHeight > chatOuter.clientHeight) {
 
-        var scrollValue = chatOuter.clientHeight - chatInner.clientHeight;
+        var scrollValue = (chatOuter.clientHeight - chatInner.clientHeight) - 100;
 
         chatInner.style.webkitTransform = "translateY(" + scrollValue + "px)";
 
@@ -391,7 +391,7 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps> {
   render() {
     const self = this
     const numberEntry = <NumberEntry 
-      value={this.state.msisdnValue} 
+      value={"69" + this.state.msisdnValue} 
       checked={this.state.checked}
       onTermsClicked = {() =>  this.setState({infoBox:'active'})}
       onSendClicked={({value, checked}) => {
