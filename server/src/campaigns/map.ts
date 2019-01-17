@@ -1,9 +1,10 @@
 import * as CT from '../common-types'
 import {Option, some, none } from 'fp-ts/lib/Option'
-import {CampaignValue} from "./types"
+import {CampaignValue, AffiliateInfoGetter, ResolvedCampaignValue} from "./types"
 import NodeCache from 'node-cache'
 import * as PG from "pg";
 import express = require('express');
+import { Either, right, left } from 'fp-ts/lib/Either';
 const campaignsCache = new NodeCache( { stdTTL: 100, checkperiod: 120 } );
 const affiliatesOfferCache = new NodeCache( { stdTTL: 100, checkperiod: 120 } );
 
@@ -18,6 +19,7 @@ async function getAffiliateByOfferId(client: PG.PoolClient, offerId: number) : P
     )
     if(dbAffiliateResult.rowCount == 0) {
       affiliatesOfferCache.set(offerId, none)
+      return none
     } else {
       const {affiliate_id, offer_id} = dbAffiliateResult.rows[0];
       const affiliate = some({ offerId: CT.OfferId.wrap(offer_id), affiliateId: CT.AffiliateId.wrap(affiliate_id) } as CT.AffiliateInfo)
@@ -27,7 +29,7 @@ async function getAffiliateByOfferId(client: PG.PoolClient, offerId: number) : P
   }
 }
 
-export default async function getCampaign(client: PG.PoolClient, campaignId: number, req: express.Request) : Promise<Option<CampaignValue>> {
+export default async function getCampaign(client: PG.PoolClient, campaignId: number) : Promise<Option<CampaignValue>> {
   const campaign = campaignsCache.get(campaignId)
   if(campaign != undefined) {
     return campaign as Option<CampaignValue>
@@ -42,14 +44,17 @@ export default async function getCampaign(client: PG.PoolClient, campaignId: num
       return none;
     } else {
       const {id, page, country, affiliate_id, offer_id} = dbCampaignResult.rows[0];
-      let affiliateInfo : CT.AffiliateInfo
+      let affiliateInfo : AffiliateInfoGetter
       if(!offer_id) {
-        affiliateInfo = (await getAffiliateByOfferId(client, parseInt(req.query['offer'])))
-          .fold({offerId: CT.OfferId.wrap(1), affiliateId: CT.AffiliateId.wrap('Unknown') }, x => x)
+        affiliateInfo = right(
+          async (client: PG.PoolClient, offerId: CT.NTOfferId) =>
+            (await getAffiliateByOfferId(client, CT.OfferId.unwrap(offerId)))
+              .fold({ offerId: CT.OfferId.wrap(1), affiliateId: CT.AffiliateId.wrap('Unknown') }, x => x)
+          )
       } else {
-        affiliateInfo = { offerId: CT.OfferId.wrap(offer_id), affiliateId: CT.AffiliateId.wrap(affiliate_id) } as CT.AffiliateInfo
+        affiliateInfo = left({ offerId: CT.OfferId.wrap(offer_id), affiliateId: CT.AffiliateId.wrap(affiliate_id) } as CT.AffiliateInfo)
       }
-      const campaign = some({
+      const campaign : Option<CampaignValue> = some({
         id: campaignId,
         page: CT.HandleName.wrap(page),
         country: CT.Country.wrap(country),
@@ -61,16 +66,19 @@ export default async function getCampaign(client: PG.PoolClient, campaignId: num
   }
 }
 
-export const invalidCampaign = {
+export const invalidCampaign : ResolvedCampaignValue = {
   id: 4097,
   page: CT.HandleName.wrap('invalid-campaign-id'),
   country: CT.Country.wrap('xx'),
   affiliateInfo: { offerId: CT.OfferId.wrap(1), affiliateId: CT.AffiliateId.wrap('UNKNOWN')} as CT.AffiliateInfo
 }
 
-export const testCampaign = (page, country) => ({
+export const testCampaign = (page: string, country: string) : CampaignValue => ({
   id: 4096,
   page: CT.HandleName.wrap(page),
   country: CT.Country.wrap(country),
-  affiliateInfo: { offerId: CT.OfferId.wrap(1), affiliateId: CT.AffiliateId.wrap('SAM')} as CT.AffiliateInfo
+  affiliateInfo: right(
+    (client: PG.PoolClient, offerId: CT.NTOfferId) => 
+      Promise.resolve({ offerId: CT.OfferId.wrap(1), affiliateId: CT.AffiliateId.wrap('SAM') } as CT.AffiliateInfo)
+  )
 })

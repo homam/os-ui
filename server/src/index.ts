@@ -7,9 +7,9 @@ import * as CT from "./common-types";
 import { decrypt } from "./campaigns/campaignId";
 import campaigns, { invalidCampaign, testCampaign} from "./campaigns/map";
 import { addImpression, mkPool, run_, run, addEvent } from "./analytics/db";
-import { CampaignValue } from "./campaigns/types";
+import { CampaignValue, toResolvedCampaignValue, ResolvedCampaignValue } from "./campaigns/types";
 import bodyParser from "body-parser";
-import { left } from "fp-ts/lib/Either";
+import { left, Either, right } from "fp-ts/lib/Either";
 import { Option, some, none } from "fp-ts/lib/Option";
 import * as request from 'request-promise-native'
 import cookieParser from 'cookie-parser'
@@ -105,7 +105,7 @@ async function serveCampaign(
     impressionNumber: CT.NTImpressionId;
   }
 
-  const recordFormSubmissionEvent = (oldRockmanId : CT.NTRockmanId, no_js_form_submission: boolean) : Impression => {
+  const recordFormSubmissionEvent = async (oldRockmanId : CT.NTRockmanId, no_js_form_submission: boolean) : Promise<Impression> => {
     if(!oldRockmanId) {
       throw new Error(`oldRockmanId is null inside recordFormSubmissionEvent\nUrl: ${req.originalUrl}`);
     } else {
@@ -132,11 +132,13 @@ async function serveCampaign(
     }
   }
 
-  const recordImpressionEvent = (cmp: CampaignValue) : Impression => {
+  const recordImpressionEvent = async (cmp: ResolvedCampaignValue) : Promise<Impression> => {
     const rockmanId = CT.RockmanId.wrap(uuid().replace(/-/g, ""));
     const userId = CT.userIdFromRockmanId(req.cookies.userId || rockmanId);
     const impressionNumber = CT.ImpressionNumber.wrap(1);
     const remoteAddress = req.headers['x-forwarded-for'] as string || req.ip
+
+    const {id, page} = cmp
     
     run_(pool, client =>
       addImpression(
@@ -144,8 +146,8 @@ async function serveCampaign(
         "Server",
         rockmanId,
         userId,
-        cmp.id,
-        cmp.page,
+        id,
+        page,
         CT.Url.wrap(req.originalUrl),
         CT.IP.wrap(remoteAddress),
         CT.Country.wrap("xx"),
@@ -154,7 +156,6 @@ async function serveCampaign(
       )
     );
 
-    const theCampaign = campaign.fold(invalidCampaign, x => x)
     const bupperizeCountry = c => c == 'gb' ? 'uk' : c
 
     const ipTokens = R.pipe(
@@ -172,14 +173,14 @@ async function serveCampaign(
         pacmanId: `${CT.RockmanId.unwrap(rockmanId)}-1-${CT.ImpressionNumber.unwrap(impressionNumber)}`,
         impressionId: CT.ImpressionNumber.unwrap(impressionNumber),
         landingPageUrl: 'http://' + req.hostname + req.originalUrl, 
-        handleName: CT.HandleName.unwrap(theCampaign.page),
+        handleName: CT.HandleName.unwrap(cmp.page),
         pageName: 'default',
         serverTime: new Date().valueOf(),
         eventType: "impression",
         headers: req.headers,
-        country: bupperizeCountry(CT.Country.unwrap(theCampaign.country)),
-        offerId: CT.OfferId.unwrap(theCampaign.affiliateInfo.offerId),
-        affId: CT.AffiliateId.unwrap(theCampaign.affiliateInfo.affiliateId),
+        country: bupperizeCountry(CT.Country.unwrap(cmp.country)),
+        offerId: CT.OfferId.unwrap(cmp.affiliateInfo.offerId),
+        affId: CT.AffiliateId.unwrap(cmp.affiliateInfo.affiliateId),
         remoteAddress,
         ipTokens,
         queryTokens: req.query
@@ -204,11 +205,12 @@ async function serveCampaign(
         res.send({ error: ex.toString() });
       }
     },
-    campaign => async () => {
+    unResolvedCampaign => async () => {
       try {
+        const campaign = await run(pool, client => toResolvedCampaignValue(unResolvedCampaign, client, CT.OfferId.wrap(parseInt(req.query['offer']))))
         const {rockmanId, userId, impressionNumber} = !!no_js_form_submission 
-          ? recordFormSubmissionEvent(oldRockmanId, "true" == no_js_form_submission) 
-          : recordImpressionEvent(campaign);
+          ? await recordFormSubmissionEvent(oldRockmanId, "true" == no_js_form_submission) 
+          : await recordImpressionEvent(campaign);
         res.cookie('userId', CT.UserId.unwrap(userId), {expires: new Date(new Date().valueOf() + 90*24*3600*1000)})
         res.cookie('rockmanId', CT.RockmanId.unwrap(rockmanId), {expires: new Date(new Date().valueOf() + 3600*1000)})
         res.setHeader('Content-Type', 'text/html; charset=UTF-8')
@@ -240,7 +242,7 @@ app.get(
     try {
       const campaignId = decrypt(req.params.encCampaignId);
       //TODO: pass pool itself to campaigns() function
-      const campaign = await run(pool, client => campaigns(client, campaignId, req));
+      const campaign = await run(pool, client => campaigns(client, campaignId));
       return serveCampaign(campaign, false, req, res);
     } catch(ex) {
       console.error(ex)
