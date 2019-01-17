@@ -16,7 +16,6 @@ import {Translate, injectIntl} from "./../localization/index"
 import { InjectedIntlProps } from "react-intl";
 import { queryString } from "../../../pacman/record";
 const chatImg = require("../assets/imgs/chatImg.jpg");
-const emoImg = require("../assets/imgs/emoji.png");
 
 
 
@@ -26,7 +25,6 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps> {
 
   state = {
       msisdnValue:"",
-      checked: false,
       pinValue: "",
       infoBox:"",
       applicationState: "Chatting" as ChatApplicationState,
@@ -41,69 +39,44 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps> {
                 defaultMessage: "Do you think I look cute?"
             }),
             `<img src=${chatImg}/>`
-          ],
+        ],
       
         [
             this.props.intl.formatMessage({
                 id: "roxy_more_photos",
-                defaultMessage: "Do you want to see more of my photos?"
-            }, {gender: typeof window == "undefined" ? "Unknown" : this.props.intl.formatMessage({id: queryString(window.location.search, "gender") || "woman", defaultMessage: "woman"})})
+                defaultMessage: "Do you want to see more sexy photos?"
+            }), 
         ],
-      
+
+       
         [
-          "Let's start baby..." + 
-          `<img src=${emoImg}/>`
+          this.props.intl.formatMessage({
+            id: "roxy_number_entry",
+            defaultMessage: "I want to send it to your mobile number directly. Can you enter your mobile number for me?"
+          }),
         ],
-      
+
+       
         [
             this.props.intl.formatMessage({
-                id: "roxy_sms_prompt",
-                defaultMessage: "Baby since this is between you and me only...can you SMS me?"
-            }),
-            this.props.intl.formatMessage({
-                id: "amanda_accept_tnc",
-                defaultMessage: "(Have a )"
+                id: "roxy_not_valid_number",
+                defaultMessage: "It's seems the number you've sent is not valid. Please enter a valid mobile number baby."
             })
         ],
       
         [
             this.props.intl.formatMessage({
-                id: "amanda_not_valid_number",
-                defaultMessage: "It's seems the number you've sent is not valid. Please enter a valid mobile number."
-            })
-        ],
-      
-        [
-            this.props.intl.formatMessage({
-                id: "amanda_have_not_agreed_tnc",
-                defaultMessage: "It's seems that ou hayven't agreed to terms and conditions. Please agree to the terms and conditions."
-            })
-        ],
-      
-        [
-            this.props.intl.formatMessage({
-                id: "amanda_tq_submit_number",
-                defaultMessage: "Thank you for submitting your number.",
-            }),
-            this.props.intl.formatMessage({
-              id: "amanda_sent_you_a_code",
-              defaultMessage: "I sent you a code kindly enter it below."
-            })
-        ],
-      
-        [
-            this.props.intl.formatMessage({
-                id: "amanda_valid_pin",
-                defaultMessage: "Please enter a valid PIN code."
-            })
-        ],
-      
-        [
-            this.props.intl.formatMessage({
-                id: "amanda_succesfully_subscribe",
+                id: "roxy_succesfully_subscribe",
                 defaultMessage: "You've succesfully subscribe."
             })
-        ]
+        ],
+
+        [
+          this.props.intl.formatMessage({
+              id: "roxy_empty_phone",
+              defaultMessage: "Enter your mobile number to get more sexy photos baby!"
+          })
+      ]
       
       ]
   }
@@ -252,7 +225,7 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps> {
 
       rowAdded();
 
-      if (k != 5) {
+      if (k != 3) {
 
         booleanBtns.style.display = "flex";
 
@@ -260,7 +233,7 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps> {
 
       }
 
-      if (k == 5) {
+      if (k == 3) {
 
         // numberEntry.style.display = "flex";
         self.setState({applicationState: "Subscribing"})
@@ -314,15 +287,17 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps> {
 
           setTimeout(() => botResponse(self.state.messages[2]), 1000);
 
-        } else if (k == 4) {
+         }
+         // else if (k == 4) {
 
-          setTimeout(() => botResponse(self.state.messages[3]), 1000);
+        //   setTimeout(() => botResponse(self.state.messages[3]), 1000);
 
-        } else if (k == 5) {
+        // } else if (k == 5) {
 
-          setTimeout(() => botResponse(self.state.messages[4]), 1000);
+        //   setTimeout(() => botResponse(self.state.messages[2]), 1000);
 
-        } else {
+        // } 
+        else {
 
         }
 
@@ -341,35 +316,9 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps> {
       whenMSISDNEntry(new_rds => {
         if(RDS.IsLoading(previous_rds) && RDS.IsFailure(new_rds)) {
           // invalid mobile number
-          this.botResponse(self.state.messages[5]);
+          this.botResponse(self.state.messages[3]);
         }
       })(this.props.currentState)
-
-      whenPINEntry(new_rds => {
-        if(RDS.IsNothingYet(new_rds)) {
-          // we just sent you a pin
-          this.botResponse(self.state.messages[7]);
-        }
-      })(this.props.currentState)
-    })(prevProps.currentState)
-
-
-    whenPINEntry(previous_rds => {
-      whenPINEntry(new_rds => {
-        if(RDS.IsLoading(previous_rds) && RDS.IsFailure(new_rds)) {
-          // invalid pin
-          this.botResponse(self.state.messages[8]);
-        }
-      })(this.props.currentState)
-
-      whenPINEntry(new_rds => {
-        RDS.whenSuccess(() => {
-          // succesful subscribe
-          this.botResponse(self.state.messages[9]);
-        })(new_rds)
-      })(this.props.currentState)
-
-
     })(prevProps.currentState)
   }
 
@@ -378,22 +327,16 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps> {
     const self = this
     const numberEntry = <NumberEntry 
       value={this.state.msisdnValue} 
-      checked={this.state.checked}
-      onTermsClicked = {() =>  this.setState({infoBox:'active'})}
-      onSendClicked={({value, checked}) => {
+      onSendClicked={({value}) => {
 
         if(value == ""){
 
           this.botResponse(self.state.messages[5]);
 
-        }else if(!checked){
-
-          this.botResponse(self.state.messages[6]);
-
         }else{
-          //Proceed if msisdn is not blank and accepted terms
+          //Proceed if msisdn is not blank
           this.props.actions.submitMSISDN(window, null, value);
-          this.setState({checked, msisdnValue: value})
+          this.setState({msisdnValue: value})
         }
 
         }} 

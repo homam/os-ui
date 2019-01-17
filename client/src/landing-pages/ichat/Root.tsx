@@ -3,11 +3,14 @@ import mkTracker from "../../pacman/record";
 import { TranslationProvider, injectIntl } from "./localization/index";
 import HOC, {
   initialState,
-  HOCProps} from "../../clients/lp-api/HOC";
+  HOCProps,
+  mockedPINState} from "../../clients/lp-api/HOC";
 import "./assets/css/styles.less?raw"
 import SplashScreen from "./components/SplashScreen";
 import Chat from "./components/Chat";
 import DisclaimerGR from "./components/DisclaimerGR";
+import { mockedCompletedState, mockedMSISDNEntrySuccess } from "../../clients/lp-api-mo/HOC";
+import { mockSuccessState } from "../../clients/mpesa/TolaHOC";
 
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
