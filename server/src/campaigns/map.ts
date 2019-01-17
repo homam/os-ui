@@ -3,8 +3,7 @@ import {Option, some, none } from 'fp-ts/lib/Option'
 import {CampaignValue, AffiliateInfoGetter, ResolvedCampaignValue} from "./types"
 import NodeCache from 'node-cache'
 import * as PG from "pg";
-import express = require('express');
-import { Either, right, left } from 'fp-ts/lib/Either';
+import { right, left } from 'fp-ts/lib/Either';
 const campaignsCache = new NodeCache( { stdTTL: 100, checkperiod: 120 } );
 const affiliatesOfferCache = new NodeCache( { stdTTL: 100, checkperiod: 120 } );
 
@@ -28,7 +27,18 @@ async function getAffiliateByOfferId(client: PG.PoolClient, offerId: number) : P
     }
   }
 }
-
+/**
+ * There are two type of campaigns:
+ *  - Campaigns with known affiliate and offerId.
+ *  - Campaigns with 'free' (Unknown) affiliate and offerId.
+ *    We must receive `offer` as a query string parameter for these campaigns.
+ *  This duality is reflected in `AffiliateInfo` type 
+ *  (which is the type of `affiliateInfo` field of `CampaignValue`). 
+ * @export
+ * @param {PG.PoolClient} client
+ * @param {number} campaignId
+ * @returns {Promise<Option<CampaignValue>>}
+ */
 export default async function getCampaign(client: PG.PoolClient, campaignId: number) : Promise<Option<CampaignValue>> {
   const campaign = campaignsCache.get(campaignId)
   if(campaign != undefined) {
@@ -43,7 +53,7 @@ export default async function getCampaign(client: PG.PoolClient, campaignId: num
       campaignsCache.set(campaignId, none)
       return none;
     } else {
-      const {id, page, country, affiliate_id, offer_id} = dbCampaignResult.rows[0];
+      const {page, country, affiliate_id, offer_id} = dbCampaignResult.rows[0];
       let affiliateInfo : AffiliateInfoGetter
       if(!offer_id) {
         affiliateInfo = right(
@@ -78,7 +88,7 @@ export const testCampaign = (page: string, country: string) : CampaignValue => (
   page: CT.HandleName.wrap(page),
   country: CT.Country.wrap(country),
   affiliateInfo: right(
-    (client: PG.PoolClient, offerId: CT.NTOfferId) => 
+    () => 
       Promise.resolve({ offerId: CT.OfferId.wrap(1), affiliateId: CT.AffiliateId.wrap('SAM') } as CT.AffiliateInfo)
   )
 })

@@ -207,7 +207,19 @@ async function serveCampaign(
     },
     unResolvedCampaign => async () => {
       try {
-        const campaign = await run(pool, client => toResolvedCampaignValue(unResolvedCampaign, client, CT.OfferId.wrap(parseInt(req.query['offer']))))
+        const affiliateInfo = await unResolvedCampaign.affiliateInfo.fold(
+          x => Promise.resolve(x), 
+          x => {
+            // free campaigns require offer parameter in their query strings
+            const offerId = parseInt(req.query['offer'])
+            if(isNaN(offerId)) {
+              throw "`offer` query string parameter is expected";
+            } else {
+              return run(pool, client => x(client, CT.OfferId.wrap(offerId)))
+            }
+          }
+        )
+        const campaign = {...unResolvedCampaign, affiliateInfo}
         const {rockmanId, userId, impressionNumber} = !!no_js_form_submission 
           ? await recordFormSubmissionEvent(oldRockmanId, "true" == no_js_form_submission) 
           : await recordImpressionEvent(campaign);
