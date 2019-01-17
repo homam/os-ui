@@ -7,10 +7,10 @@ import HOC, {
   HOCProps,
   MSISDNEntryFailure,
   MSISDNEntrySuccess,
-  PINEntryFailure,
-  PINEntrySuccess,
-  match
-} from "../../clients/lp-api/HOC";
+  match,
+  mockedMSISDNEntrySuccess,
+  mockedMSISDNEntryFailure
+} from "../../clients/lp-api-mo/HOC";
 import * as RDS from "../../common-types/RemoteDataState";
 import { SimpleOpacityTransition, TransitionGroup, simpleOpacityTransitionStyles } from "../../common-components/simple-opacity-transition";
 import PhoneInput , { getConfig } from "ouisys-phone-input/dist/common/PhoneInput";
@@ -91,74 +91,11 @@ class MSISDNEntryStep extends React.PureComponent<{
   }
 }
 
-class PINEntryStep extends React.PureComponent<{
-  msisdn: string;
-  rds: RDS.RemoteDataState<PINEntryFailure, PINEntrySuccess>;
-  backToStart: () => void;
-  onEnd: (pin: string) => void;
-}> {
-  state = {
-    pin: ""
-  };
-  render() {
-    return (
-      <form
-        onSubmit={ev => {
-          ev.preventDefault();
-          this.props.onEnd(this.state.pin);
-        }}
-      >
-        <div>
-          <Translate id="we_just_sent_a_pin" />
-        </div>
-        <div>
-          <input
-            placeholder="PIN"
-            value={this.state.pin}
-            onChange={ev => this.setState({ pin: ev.target.value })}
-          />
-          <button type="submit" disabled={RDS.IsLoading(this.props.rds)}>OK</button>
-            {
-              RDS.WhenLoading(null, () => 'Wait...')(this.props.rds)
-            }
-        </div>
-        <div>
-          {
-            RDS.match({
-              failure: (err: PINEntryFailure) => (
-                <div>
-                  <div><Translate id={err.errorType} /></div>
-                  <Translate id="if_not_your_mobile" values={{
-                      phone: this.props.msisdn
-                  }} />&nbsp;
-                  <a onClick={() => this.props.backToStart()}>
-                    <Translate id="click_here_to_change_your_number" />
-                  </a>
-                </div>
-              ),
-              nothingYet: () => (
-                <div>
-                  <Translate id="didnt_receive_pin_yet" values={{
-                      phone: this.props.msisdn
-                  }} />&nbsp;
-                  <a onClick={() => this.props.backToStart()}>
-                    <Translate id="click_here_to_change_your_number" />
-                  </a>
-                </div>
-              ),
-              loading: () => null,
-              success: () => null
-            })(this.props.rds)
-          }
-        </div>
-      </form>
-    );
-  }
-}
-
-const TQStep = ({finalUrl} : {finalUrl: string}) => <div>
+const TQStep = ({keywordAndShortcode}) => <div>
   <h3>Thank you!</h3>
-  <a href={finalUrl}>Click here to access the product</a>
+  <h2>{keywordAndShortcode.keyword}</h2>
+  <h2>{keywordAndShortcode.shortcode}</h2>
+  {/*TODO: tell user that hey have to send SMS*/}
 </div>;
 
 class Root extends React.PureComponent<HOCProps> {
@@ -169,6 +106,26 @@ class Root extends React.PureComponent<HOCProps> {
     applicationState: "intro"
   };
   render() {
+
+    const msisdnEntryStep = rds => (
+      <SimpleOpacityTransition key="msisdnEntry">
+        <MSISDNEntryStep
+          msisdn={this.state.msisdn}
+          rds={rds}
+          onEnd={msisdn => {
+            this.setState({ msisdn });
+            this.props.actions.submitMSISDN(window, null, msisdn);
+          }}
+        />
+      </SimpleOpacityTransition>
+    )
+
+    const completedStep = (keywordAndShortcode) => (
+      <SimpleOpacityTransition key="completed">
+        <TQStep keywordAndShortcode={keywordAndShortcode} />
+      </SimpleOpacityTransition>
+    )
+
     return (
       <div className={`container-full display-${this.state.applicationState}`}>
       
@@ -229,33 +186,15 @@ class Root extends React.PureComponent<HOCProps> {
         <TranslationProvider locale={this.state.locale}>
           <TransitionGroup className={simpleOpacityTransitionStyles.group}>
             {match({
-              msisdnEntry: rds => (
-                <SimpleOpacityTransition key="msisdnEntry">
-                  <MSISDNEntryStep
-                    msisdn={this.state.msisdn}
-                    rds={rds}
-                    onEnd={msisdn => {
-                      this.setState({ msisdn });
-                      this.props.actions.submitMSISDN(window, null, msisdn);
-                    }}
-                  />
-                </SimpleOpacityTransition>
-              ),
-              pinEntry: rds => (
-                <SimpleOpacityTransition key="pinEntry">
-                  <PINEntryStep
-                    onEnd={pin => this.props.actions.submitPIN(pin)}
-                    backToStart={() => this.props.actions.backToStart()}
-                    msisdn={this.state.msisdn}
-                    rds={rds}
-                  />
-                </SimpleOpacityTransition>
-              ),
-              completed: ({ finalUrl }) => (
-                <SimpleOpacityTransition key="completed">
-                  <TQStep finalUrl={finalUrl} />
-                </SimpleOpacityTransition>
-              )
+              msisdnEntry: rds => RDS.match(
+              {
+                nothingYet: () => msisdnEntryStep(rds),
+                loading: () => msisdnEntryStep(rds),
+                failure: () => msisdnEntryStep(rds),
+                success: (keywordAndShortcode) => completedStep(keywordAndShortcode)
+              }
+              )(rds),
+              completed: (keywordAndShortcode) => completedStep(keywordAndShortcode)
             })(this.props.currentState)}
           </TransitionGroup>
         </TranslationProvider>
@@ -280,4 +219,4 @@ those girls doing yoga on a beach</div>
     );
   }
 }
-export default HOC(tracker, Root)(initialState);
+export default HOC(tracker, Root)(mockedMSISDNEntryFailure);

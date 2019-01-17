@@ -28,6 +28,7 @@ export type PINEntryErrorTypes = "UnknownError" | "TooEarly" | "InvalidPIN";
 
 export const initialState: State = { type: "MSISDNEntry", result: RDS.NothingYet<MSISDNEntryFailure, MSISDNEntrySuccess>() }
 export const mockedMSISDNEntrySuccess: State = { type: "MSISDNEntry", result: RDS.Success<MSISDNEntryFailure, MSISDNEntrySuccess>({ keyword: 'TEST OK', shortcode: '666' }) }
+export const mockedMSISDNEntryFailure: State =  {type: "MSISDNEntry", result: RDS.Failure<MSISDNEntryFailure, MSISDNEntrySuccess>({ errorType: "InvalidMSISDN", error: "Invalid Mobile Number" })}
 export const mockedCompletedState: State = { type: "Completed", result: void 6 }
 
 export interface IActions {
