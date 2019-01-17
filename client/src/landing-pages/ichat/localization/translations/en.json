@@ -63,6 +63,14 @@
 
   "accept_text" : "I accept the terms",
 
+  "alternate_accept_first": "",
+
+  "alternate_accept_second": "",
+
+  "text_terms":"",
+
+  "text_price":"",
+
   "terms_text" : "Terms & Conditions",
 
   "enter_pin_number_here" : "",

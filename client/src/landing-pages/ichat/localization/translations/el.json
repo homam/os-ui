@@ -16,7 +16,7 @@
   "amanda_marital_status": "Θεωρείς τον εαυτό σου ως ένα κοινωνικά ενεργό άτομο;",
   "amanda_signals": "Επιβεβαίωσα ήδη πως βλέπω καθαρά για σένα.",
   "amanda_would_you_future": "Θέλεις να λάβεις την πλήρη πρόβλεψή μου για σένα;",
-  "amanda_private_secure": "Αυτές είναι ιδιωτικές πληροφορίες, θα ήθελα για σιγουριά να τις στείλω στο κινητό σου.",
+  "amanda_private_secure": "Συμπλήρωσε το κινητό σου για να μάθεις το μέλλον σου.",
   "amanda_accept_tnc": "Δέξου τους όρους χρήσης και γράψε τον αριθμό σου.",
   "amanda_not_valid_number": "Λάθος αριθμός - παρακαλώ γράψε το σωστό νούμερο.",
   "amanda_have_not_agreed_tnc": "Για να προχωρήσεις, δέξου τους όρους χρήσης.",
@@ -48,15 +48,23 @@
   
   "enter_mobile_number_here":"Γράψε τον αριθμό σου",
   
-  "msisdn_btn_send" : "Αποστολή",
+  "msisdn_btn_send" : "ΣΥΝΕΧΕΙΑ",
   
-  "accept_text" : "Δέχομαι τους όρους",
+  "accept_text" : "",
   
+  "alternate_accept_first": "Έχω λάβει γνώση των",
+
+  "alternate_accept_second": "κι αποδέχομαι να ενεργοποιήσω τη συνδρομητική υπηρεσία περιεχομένου Mobioastro με χρέωση δύο ευρώ και οκτώ λεπτά ανά sms, τρία sms ανά εβδομάδα.",
+
+  "text_terms":"όρων χρήσης",
+
+  "text_price":"Τελική Τιμή Μηνύματος",
+
   "terms_text" : "Όροι χρήσης",
   
   "enter_pin_number_here" : "Γράψε το PIN",
   
-  "pin_btn_text" : "Αποστολή",
+  "pin_btn_text" : "ΕΠΙΒΕΒΑΙΩΣΗ",
   
   "msisdnCheck_if" : "Αν ο",
   
@@ -64,7 +72,7 @@
   
   "msisdnCheck_click" : "κάνε κλικ εδώ",
   
-  "access_portal": "Μπες στο πόρταλ",
+  "access_portal": "ΜΠΕΣ ΣΤΟ ΠΟΡΤΑΛ",
   
   "sms_now": "Στείλε μήνυμα τώρα",
 
