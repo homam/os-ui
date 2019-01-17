@@ -33,8 +33,22 @@ class NumberEntry extends React.PureComponent<IProps & InjectedIntlProps> {
       <div id="terms">
 
        <input type="checkbox" checked={this.state.checked} onChange={ev => this.setState({checked: ev.target.checked})} name="agree" id="agree"/>
+       <label htmlFor="agree">
+         <Translate id="alternate_accept_first" defaultMessage="Terms" />
+         <a href="http://n.mobioastro.com/gr/tnc-mobioastro?offer=1&_next=general_conditions.html" target="_blank">
+          <Translate id="text_terms" defaultMessage="Terms &amp; Conditions" /></a>
+
+          <Translate id="alternate_accept_second" defaultMessage="Conditions" />
+
+         <a href="http://paydash.gr/pinakas-ypp/" target="_blank">
+          <Translate id="text_price" defaultMessage="Final message price" /></a>
+         </label>
+
+       {/*
        <label htmlFor="agree"><Translate id="accept_text" defaultMessage="I accept the" /></label>  
-       <a href={this.props.intl.formatMessage({id: "terms_link", defaultMessage: "javascript:void 9"})} /*onClick={() => this.props.onTermsClicked()}*/ target="_blank"><Translate id="terms_text" defaultMessage="Terms &amp; Conditions" /></a>
+       <a href={this.props.intl.formatMessage({id: "terms_link", defaultMessage: "javascript:void 9"})}
+        /*onClick={() => this.props.onTermsClicked()} target="_blank">
+       <Translate id="terms_text" defaultMessage="Terms &amp; Conditions" /></a>*/}
 
       </div>
 

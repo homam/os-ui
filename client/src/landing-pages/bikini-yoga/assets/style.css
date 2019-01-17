@@ -46,7 +46,7 @@ body{
 .display-intro .intro, .display-palms .palms, .display-bikini .bikini, .display-subscription .subscription{
   display:block;
   width: 100%;
-  overflow-x: hidden;
+  overflow: hidden;
   height:100vh;
   position:absolute; 
   top:0;
@@ -594,11 +594,44 @@ margin-top:2px;
 .container-msisdn div:last-child {
   font-size:12px;
   margin-top:-5px;
-  color:red;
+  color:red;  
+}
+
+.container-msisdn div:last-child h3{
+  margin-top:15px;
+  margin-bottom:10px;
+  font-size:32px;
+  color:#538870;
+  text-transform:uppercase;
+  font-weight:bold;
+}
+
+.container-msisdn .keyword, .container-msisdn .shortcode {
+  font-size:35px;
+  background: -webkit-linear-gradient(45deg, #FFC84B, #FF6C00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform:uppercase;
+  font-weight:bold;
+  line-height:30px;
+  margin:5px 0px;
+}
+.container-msisdn  a {
+  text-decoration: none;
+}
+.sendsms {
+margin-top:5px;
 }
 
 .container-msisdn h2 {
   font-size:13px;
+}
+
+.container-msisdn .info {
+  font-size:16px;
+  color: #538870;
+  line-height:10px;
+  margin:5px 0px;
 }
 
 .arrow-left {

@@ -25,7 +25,7 @@ const { commonPrefix } = getConfig(process.env.country);
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
   "xx",
-  "Bikini Yoga" //TODO: replace Unknown with your page's name
+  "Sexy Quiz" //TODO: replace Unknown with your page's name
 );
 
 class MSISDNEntryStep extends React.PureComponent<{
@@ -136,60 +136,61 @@ class Root extends React.PureComponent<HOCProps> {
 
     return (
       <div className={`container-full display-${this.state.applicationState}`}>
-      
-      <header>
-      <div className="logo"></div>
-      </header>
 
-      <div className="question intro" onClick={() => { this.setState({ applicationState: 'palms' }) }}>
-        <div className="palms">
-          <div className="palm-a shaker"></div>
-          <div className="palm-b "></div>
-          <div className="palm-c "></div>
-          <div className="palm-d shaker2"></div>
+      <div className="question intro">
+        
+        <div className="header">
+          <div className="logo"></div>
         </div>
-        <div className="button-intro">
-        <p>Girsl are doing <span>bikini yoga...</span></p>
-        <p><span>want to see?</span></p>
-        <button>Yes</button>
+
+        <div className="girls">
+          <div className="introa"></div>
+          <div className="separator"></div>
+          <div className="introb"></div>
         </div>
+
+        <div className="CTA_box">
+          <div className="Title">
+            <p>romantic<span>or</span>naughty</p>
+            <p className="subtitle">Pick your girls</p>
+          </div> 
+          <div className="push">
+          <button onClick={() => { this.setState({ applicationState: 'first' }) }}><p>Start</p><div className="heart"></div></button>
+          </div>
+        </div>
+
+        <div className="testimonial">
+            <div className="testimonial-content">
+              <div className="picture"></div>
+              <div className="txt">
+                <div className="title"><p>Daniel 2 days ago</p><div className="star"></div></div>
+                <div className="quote">Those girls are so HOT, you can’t even imagine! </div>
+              </div>
+              </div>
+          </div>
+
       </div>
 
       {/* END INTRO */}
 
-      <div className="question palms" onClick={() => { this.setState({ applicationState: 'bikini' }) }}>
-      <div className="palms-leaf">
-          <div className="palm-a"></div>
-          <div className="palm-b shaker"></div>
-          <div className="palm-c shaker3"></div>
-          <div className="palm-d shaker2"></div>
-        </div>
-      <div className="button-ui">
-      <p>Remove palm?</p>
-      <div className="push heartbeat"><button >Yes</button></div>
-      </div>
-      
+      <div className="question first" onClick={() => { this.setState({ applicationState: 'second' }) }}>
       </div>
 
-       {/* END PALM */}
+       {/* END First */}
 
-      <div className="question bikini" onClick={() => { this.setState({ applicationState: 'subscription' }) }}>
-      <div className="palms-leaf">
-          <div className="palm-a roll-out-left"></div>
-          <div className="palm-b roll-out-left"></div>
-          <div className="palm-c roll-out-right"></div>
-          <div className="palm-d roll-out-right"></div>
-        </div>
-      <div className="button-ui">
-      <p>Remove bikini?</p>
-      <div className="push heartbeat"><button>Yes</button></div>
-      </div>
+      <div className="question second" onClick={() => { this.setState({ applicationState: 'third' }) }}>
+   
       </div>
 
-       {/* END BIKINI */}
+       {/* END Second */}
 
+       <div className="question third" onClick={() => { this.setState({ applicationState: 'subscription' }) }}>
+   
+      </div>
 
-      <div className="subscription">
+       {/* END Third */}
+
+      <div className="question subscription">
         <div className="container-msisdn zoomIn animated">
         <TranslationProvider locale={this.state.locale}>
           <TransitionGroup className={simpleOpacityTransitionStyles.group}>
