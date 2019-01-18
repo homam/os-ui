@@ -7,7 +7,7 @@
 
 body{
   margin: 0;
-  padding:0;
+  padding: 0;
   background-color: #232020;
   font-family: Arial, Arial, Helvetica, sans-serif;
 
@@ -26,6 +26,7 @@ body{
 	height: 450px;
   position: relative;
   width: 100%;
+  z-index: 1;
 }
 
 .container{
@@ -55,15 +56,25 @@ body{
   display: block;
   width: 100%;
   position: absolute;
-  right: 2vw;
-  top: 10px;
-  max-width: 140px;
+  left: 40vw;
+  top: 40px;
+  max-width: 180px;
   height: 200px;
   z-index: -1;
 }
 
+@media only screen and (min-width: 600px){
+  .mainImg{
+    left: 20vw;
+  }
+  .topBG{
+    max-width: 500px;
+    background-size: contain;
+  }
+}
+
 .mainImg img{
-  transform: rotate(20deg);
+  transform: rotate(30deg);
   width: 100%;
 }
 
@@ -71,7 +82,6 @@ body{
   display: block;
   width: 200px;
   height: 100px;
-  z-index: 9;
 }
 
 h1{
@@ -80,6 +90,7 @@ h1{
   font-weight: bold;
   padding-top: 50px;
   font-family: 'AlJazeera';
+  text-shadow: 0px 3px 2px black;
 }
 
 span{
@@ -192,6 +203,6 @@ h2{
 }
 
 .customTesti.testi ul li .details .message, .customTesti.testi ul li .details .rating span  {
-  font-size: 14px;
+  font-size: 12px;
 }
 
