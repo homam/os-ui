@@ -26,7 +26,7 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps> {
       checked: false,
       pinValue: "",
       infoBox:"",
-      applicationState: "Subscribing" as ChatApplicationState,
+      applicationState: "Chatting" as ChatApplicationState,
       isDelayingPinUI: true,
       messages: [
         [
