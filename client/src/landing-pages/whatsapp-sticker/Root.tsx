@@ -17,6 +17,7 @@ import { SimpleOpacityTransition, TransitionGroup, simpleOpacityTransitionStyles
 import "./assets/css/style.less?raw";
 import CustomTesti from "../bid-win/components/CustomTesti";
 import PhoneInput from "ouisys-phone-input/dist/common/PhoneInput/PhoneInput"; 
+import Disclaimer from "../../legal-components/Disclaimer";
 
 
 
@@ -153,9 +154,9 @@ class MSISDNEntryStep extends React.PureComponent<{
                     <Translate id="so-romantic"></Translate>
                   </div>
                 </div>
-                <div>
+                <p>
                   <Translate id="enter-phone-number"></Translate>
-                </div>
+                </p>
                 <div className="whatsapp-input">
                   <PhoneInput
                     msisdn={this.state.msisdn}
@@ -215,7 +216,7 @@ class MSISDNEntryStep extends React.PureComponent<{
             />
           </div>
           <div className="disclaimer">
-            <p><Translate id="disclaimers" /></p>
+            <Disclaimer />
           </div>
         </div>
       </form>
@@ -381,7 +382,7 @@ class Root extends React.PureComponent<HOCProps> {
   };
 
   defaultLang = () => {
-    document.getElementsByTagName('html')[0].setAttribute("lang", "en");
+    document.getElementsByTagName('html')[0].setAttribute("lang", this.state.locale);
   }
 
   componentDidMount() {
