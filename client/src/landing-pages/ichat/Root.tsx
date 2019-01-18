@@ -9,8 +9,6 @@ import "./assets/css/styles.less?raw"
 import SplashScreen from "./components/SplashScreen";
 import Chat from "./components/Chat";
 import DisclaimerGR from "./components/DisclaimerGR";
-import { mockedCompletedState, mockedMSISDNEntrySuccess } from "../../clients/lp-api-mo/HOC";
-import { mockSuccessState } from "../../clients/mpesa/TolaHOC";
 
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
