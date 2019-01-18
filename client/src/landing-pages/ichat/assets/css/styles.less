@@ -43,8 +43,9 @@ body{
 	right:0;
 	bottom:0;
 	display: none;
-	min-height: 100vh;
+	height: 100vh;
 	position: absolute;
+	flex-direction: column;
 	background-size: cover;
 	background-position: center center;
 	background-image: url(../img/bg.jpg);
@@ -69,7 +70,7 @@ body{
 		top:45%;
 		left:50%;
 		width:100%;
-		height:360px;
+		height:auto;
 		display: block;
 		text-align: center;
 		position: absolute;
@@ -97,8 +98,8 @@ body{
 			}
 			
 			.avatar{
-				width:160px;
-				height:160px;
+				width:120px;
+				height:120px;
 				display: block;
 				margin:20px auto;
 				border-radius: 100%;
@@ -316,19 +317,19 @@ body{
 					border-radius: 100%;
 					display: inline-block;
 					background: rgba(0,0,0,0.60);
-					-webkit-animation: sk-bouncedelay 1.5s infinite ease-in-out both;
-					animation: sk-bouncedelay 1.5s infinite ease-in-out both;
+					-webkit-animation: sk-bouncedelay 1s infinite ease-in-out both;
+					animation: sk-bouncedelay 1s infinite ease-in-out both;
 					
 				}
 				
 				.bounce1 {
-					animation-delay: -0.32s;
-					-webkit-animation-delay: -0.32s;
+					animation-delay: 0.32s;
+					-webkit-animation-delay: 0.32s;
 				}
 				
 				.bounce2 {
-					animation-delay: -0.16s;
-					-webkit-animation-delay: -0.16s;
+					animation-delay: 0.16s;
+					-webkit-animation-delay: 0.16s;
 				}
 				
 				
@@ -440,7 +441,7 @@ body{
 		margin:10px auto 0px auto;
 		
 		input{
-			width:auto;
+			width:50px;
 		}
 		
 		a{
@@ -650,23 +651,17 @@ border-radius: 100%;
 -webkit-animation: loader 4s infinite;
 -webkit-animation-timing-function: cubic-bezier(0.030, 0.615, 0.995, 0.415);
 -webkit-animation-fill-mode: both;
--moz-animation: loader 4s infinite;
--moz-animation-timing-function: cubic-bezier(0.030, 0.615, 0.995, 0.415);
--moz-animation-fill-mode: both;
--ms-animation: loader 4s infinite;
--ms-animation-timing-function: cubic-bezier(0.030, 0.615, 0.995, 0.415);
--ms-animation-fill-mode: both;
 animation: loader 4s infinite;
 animation-timing-function: cubic-bezier(0.030, 0.615, 0.995, 0.415);
 animation-fill-mode: both;
 }
 
-span.l-1 {-webkit-animation-delay: 1s;animation-delay: 1s;-ms-animation-delay: 1s;-moz-animation-delay: 1s;}
-span.l-2 {-webkit-animation-delay: 0.8s;animation-delay: 0.8s;-ms-animation-delay: 0.8s;-moz-animation-delay: 0.8s;}
-span.l-3 {-webkit-animation-delay: 0.6s;animation-delay: 0.6s;-ms-animation-delay: 0.6s;-moz-animation-delay: 0.6s;}
-span.l-4 {-webkit-animation-delay: 0.4s;animation-delay: 0.4s;-ms-animation-delay: 0.4s;-moz-animation-delay: 0.4s;}
-span.l-5 {-webkit-animation-delay: 0.2s;animation-delay: 0.2s;-ms-animation-delay: 0.2s;-moz-animation-delay: 0.2s;}
-span.l-6 {-webkit-animation-delay: 0;animation-delay: 0;-ms-animation-delay: 0;-moz-animation-delay: 0;}
+span.l-1 {-webkit-animation-delay: 1s;animation-delay: 1s;}
+span.l-2 {-webkit-animation-delay: 0.8s;animation-delay: 0.8s;}
+span.l-3 {-webkit-animation-delay: 0.6s;animation-delay: 0.6s;}
+span.l-4 {-webkit-animation-delay: 0.4s;animation-delay: 0.4s;}
+span.l-5 {-webkit-animation-delay: 0.2s;animation-delay: 0.2s;}
+span.l-6 {-webkit-animation-delay: 0;animation-delay: 0;}
 
 @-webkit-keyframes loader {
 0% {-webkit-transform: translateX(-30px); opacity: 0;}
@@ -733,10 +728,12 @@ span.l-6 {-webkit-animation-delay: 0;animation-delay: 0;-ms-animation-delay: 0;-
 	0%,
 	80%,
 	100% {
-		-webkit-transform: scale(0)
+		-webkit-transform: scale(0);
+		transform: scale(0);
 	}
 	40% {
-		-webkit-transform: scale(1.0)
+		-webkit-transform: scale(1.0);
+		transform: scale(1.0);
 	}
 }
 
@@ -753,7 +750,6 @@ span.l-6 {-webkit-animation-delay: 0;animation-delay: 0;-ms-animation-delay: 0;-
 	}
 }
 
-
  @media screen and (orientation:landscape) {
 	 
 	 .container{
@@ -763,7 +759,8 @@ span.l-6 {-webkit-animation-delay: 0;animation-delay: 0;-ms-animation-delay: 0;-
 }
 
 @media (min-width: 1281px) {
-  
+	
+	.splash,
 	.chat{
 		height: 60vh;
 	}
@@ -814,3 +811,11 @@ span.l-6 {-webkit-animation-delay: 0;animation-delay: 0;-ms-animation-delay: 0;-
     }
  	
  }
+
+ @media only screen and (max-height: 480px) {
+
+	.bubble{
+		max-width: 71% !important;
+	}
+
+}

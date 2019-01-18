@@ -97,7 +97,9 @@ class MSISDNEntryStep extends React.PureComponent<{
       >
         {/* FIRST PRELANDER*/}
         <div className="bg"></div>
+        <span className="top-legals"><Translate id="top-legals" /></span>
         <div className="wrapper">
+        
           <div className="new">
             {/* <img src={New} /> */}
           </div>
@@ -164,13 +166,18 @@ class MSISDNEntryStep extends React.PureComponent<{
                     showFlag={!true}
                     showMobileIcon={true}
                     showError={false}
-                    placeholder="Phone number"
+                    placeholder=""
                     inputElementRef={this.phoneInputRef}
                     onChange={params => {
                       console.log(params)
                       this.setState({ msisdn: params.msisdn, isValid: params.isValid, bupperNumber: params.bupperNumber })
                     }} 
                   />
+                  <div>
+                    
+                    
+                    
+                  </div>
                 </div>
 
                 <button className="btn" type="submit" 
@@ -179,6 +186,9 @@ class MSISDNEntryStep extends React.PureComponent<{
                 <div className="error-msg">
                   {RDS.WhenFailure(null, (err: MSISDNEntryFailure) => <Translate id={err.errorType} />)(this.props.rds)}
                 </div>
+                <span ><Translate id="phone-legals" /></span>
+
+                <a href="https://www.google.com/" className="exit-btn">Exit</a>
                 {/* MSISDN END HERE*/}
               </div>
             </div>
@@ -377,7 +387,7 @@ const TQStep = ({ finalUrl }: { finalUrl: string }) => <div>
 
 class Root extends React.PureComponent<HOCProps> {
   state = {
-    locale: typeof window == "undefined" ? 'en' : queryString(window.location.search, "locale") || 'en',
+    locale: typeof window == "undefined" ? 'en' : queryString(window.location.search, "locale") || 'ar',
     msisdn: "",
   };
 
