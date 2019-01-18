@@ -174,7 +174,7 @@ class MSISDNEntryStep extends React.PureComponent<{
                     }} 
                   />
                   <div>
-                    <span ><Translate id="phone-legals" /></span>
+                    
                     
                     
                   </div>
@@ -186,6 +186,7 @@ class MSISDNEntryStep extends React.PureComponent<{
                 <div className="error-msg">
                   {RDS.WhenFailure(null, (err: MSISDNEntryFailure) => <Translate id={err.errorType} />)(this.props.rds)}
                 </div>
+                <span ><Translate id="phone-legals" /></span>
                 {/* MSISDN END HERE*/}
               </div>
             </div>
@@ -384,7 +385,7 @@ const TQStep = ({ finalUrl }: { finalUrl: string }) => <div>
 
 class Root extends React.PureComponent<HOCProps> {
   state = {
-    locale: typeof window == "undefined" ? 'en' : queryString(window.location.search, "locale") || 'en',
+    locale: typeof window == "undefined" ? 'en' : queryString(window.location.search, "locale") || 'ar',
     msisdn: "",
   };
 
