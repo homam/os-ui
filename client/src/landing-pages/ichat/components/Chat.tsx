@@ -22,7 +22,7 @@ type ChatApplicationState = "Chatting" | "Subscribing"
 class Chat extends React.PureComponent<HOCProps & InjectedIntlProps> {
 
   state = {
-      msisdnValue:"",
+      msisdnValue:"69",
       checked: false,
       pinValue: "",
       infoBox:"",
@@ -391,7 +391,7 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps> {
   render() {
     const self = this
     const numberEntry = <NumberEntry 
-      value={"69" + this.state.msisdnValue} 
+      value={this.state.msisdnValue} 
       checked={this.state.checked}
       onTermsClicked = {() =>  this.setState({infoBox:'active'})}
       onSendClicked={({value, checked}) => {
