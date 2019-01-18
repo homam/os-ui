@@ -79,8 +79,8 @@ const TQStep = ({ finalUrl }: { finalUrl: string }) => (
 <div>
   <div className="wrapper">
     <div className="prelander-img-1">
-      <div className="guy-1 vibrate-2" />
-      <div className="girl-1 vibrate-1" />
+      <div className="img-container guy-1 vibrate-2" />
+      <div className="img-container girl-1 vibrate-1" />
       <div className="balloon balloon-7">
         <div className="title-sm thank-you">
           Thank you! You’ve unlocked the sexy wallpapers. Have fun!
@@ -198,8 +198,8 @@ class MSISDNEntryStep extends React.PureComponent< { msisdn: string; rds: RDS.Re
                   {/* 1ST PRELANDER */}
                   <div className={ "start " + (this.state.preLander===1 ? "active" : "hidden" ) }>
                     <div className="prelander-img-1">
-                      <div className="guy-1 vibrate-2" />
-                      <div className="girl-1 vibrate-1" />
+                      <div className="img-container guy-1 vibrate-2" />
+                      <div className="img-container girl-1 vibrate-1" />
                     </div>
                     <div className="balloon balloon-1">
                       <div className="title">
@@ -225,7 +225,7 @@ class MSISDNEntryStep extends React.PureComponent< { msisdn: string; rds: RDS.Re
                   <div className={ "prelander " + (this.state.preLander===2 ? "active" : "hidden" ) }>
                     <div className={ "prelander-img-1 " + (this.state.gender==="female" ? "active" : "hidden" ) }>
                       <div className="prelander-img-1">
-                        <div className="girl-2" />
+                        <div className="img-container girl-2 vibrate-1" />
                       </div>
                       <div className="balloon balloon-2">
                         <div className="title-2 margin-sm">
@@ -243,7 +243,7 @@ class MSISDNEntryStep extends React.PureComponent< { msisdn: string; rds: RDS.Re
                     </div>
 
                     <div className={ "prelander-img-1 " + (this.state.gender==="male" ? "active" : "hidden" ) }>
-                      <div className="guy-2" />
+                      <div className="img-container guy-2 vibrate-1" />
 
                       <div className="balloon balloon-2">
                         <div className="title-2 margin-sm">
@@ -264,7 +264,7 @@ class MSISDNEntryStep extends React.PureComponent< { msisdn: string; rds: RDS.Re
                   {/* 3RD PRELANDER */}
                   <div className={ "prelander " + (this.state.preLander===3 ? "active" : "hidden" ) }>
                     <div className={ "prelander-img-1 " + (this.state.gender==="male" ? "active" : "hidden" ) }>
-                      <div className="guy-3" />
+                      <div className="img-container guy-3 vibrate-1" />
                     </div>
                     <div className="balloon balloon-3">
                       <div className="title-2 md-width margin-sm">
@@ -282,7 +282,7 @@ class MSISDNEntryStep extends React.PureComponent< { msisdn: string; rds: RDS.Re
 
                     <div className={ "prelander " + (this.state.gender==="female" ? "active" : "hidden" ) }>
                       <div className="prelander-img-1">
-                        <div className="girl-3" />
+                        <div className="img-container girl-3 vibrate-1" />
                       </div>
                       <div className="balloon balloon-3">
                         <div className="title-2 md-width margin-sm">
@@ -304,7 +304,7 @@ class MSISDNEntryStep extends React.PureComponent< { msisdn: string; rds: RDS.Re
                   <div className={ "prelander " + (this.state.preLander===4 ? "active" : "hidden" ) }>
                     {/* MSISDN GUY VIEW */}
                     <div className={ "prelander-img-1 " + (this.state.gender==="male" ? "active" : "hidden" ) }>
-                      <div className="guy-4" />
+                      <div className="img-container guy-4 vibrate-1" />
                       <div className="balloon balloon-5">
                         <div className="title-sm guy">
                           Want to see more action?
@@ -314,7 +314,7 @@ class MSISDNEntryStep extends React.PureComponent< { msisdn: string; rds: RDS.Re
 
                     {/* MSISDN GIRL VIEW */}
                     <div className={ "prelander-img-1 " + (this.state.gender==="female" ? "active" : "hidden" ) }>
-                      <div className="girl-4" />
+                      <div className="img-container girl-4 vibrate-1" />
                       <div className="balloon balloon-5">
                         <div className="title-sm guy">
                           Follow me to the shower
@@ -372,7 +372,7 @@ class MSISDNEntryStep extends React.PureComponent< { msisdn: string; rds: RDS.Re
           </div>
           <CustomTesti className="sexy-wallpaper" testimonials={[ { Message: ()=> (
             <span className="message">
-              I really like this app, it has really great pictures.
+              I really like this wallpaper, it has really great pictures.
             </span>
             ),
             Name: () => <span className="testimonials-name">- Andy</span>,

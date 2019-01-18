@@ -4,10 +4,12 @@ import { TranslationProvider, Translate } from "./localization/index";
 import HOC, {IProps, initialState} from "../../clients/one-click/HOC"
 import "./assets/css/styles.less?raw";
 import CustomTesti from "../bid-win/components/CustomTesti";
+import Disclaimer from "../../legal-components/Disclaimer";
 const rateImg = require("./assets/imgs/rate.png");
 const watchImg = require("./assets/imgs/watch.png");
 const monkey = require("./assets/imgs/monkey.png");
 const catImg = require("./assets/imgs/cat1.jpg");
+import Disclaimer from "../../legal-components/Disclaimers/iq-videozland";
 
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
@@ -26,8 +28,8 @@ class Root extends React.PureComponent<IProps> {
           <div>
             {/* <link rel="shortcut icon" href="../assets/imgs/favicon.ico"/> */}
             <div className="topBG">
-            <div className="rateBar"><img src={rateImg} /><img src={watchImg} /></div>
               <div className="container">
+              <div className="rateBar"><img src={rateImg} /><img src={watchImg} /></div>
                 <div className="creative">
                   <div className="text">
                     <h1>
@@ -70,6 +72,7 @@ class Root extends React.PureComponent<IProps> {
         />
           </div>
         </TranslationProvider>
+        <Disclaimer/>
       </div>
     );
   }

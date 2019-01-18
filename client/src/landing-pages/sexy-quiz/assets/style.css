@@ -1,0 +1,89 @@
+/** Fonts **/
+
+@font-face {
+  font-family:"sofia-pro-soft";
+  src:url("https://use.typekit.net/af/9b5307/0000000000000000000157b7/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("woff2"),url("https://use.typekit.net/af/9b5307/0000000000000000000157b7/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("woff"),url("https://use.typekit.net/af/9b5307/0000000000000000000157b7/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("opentype");
+  font-style:normal;font-weight:700;
+  }
+  
+  @font-face {
+  font-family:"sofia-pro-soft";
+  src:url("https://use.typekit.net/af/5c3c84/0000000000000000000157bc/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff2"),url("https://use.typekit.net/af/5c3c84/0000000000000000000157bc/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff"),url("https://use.typekit.net/af/5c3c84/0000000000000000000157bc/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("opentype");
+  font-style:normal;font-weight:400;
+  }
+
+  /** Main **/
+
+  body {
+    background:black;
+    font-family: 'sofia-pro-soft';
+    color:white;
+    margin:0 auto;
+  }
+
+  .container-full {
+    max-width:500px;
+    width: 100%;
+    height:100vh;
+    margin:auto;
+  }
+
+  .display-intro .intro, .display-first .first , .display-second .second, .display-third .third, .display-subscription .subscription {
+    display:block;
+  }
+
+  .question {display:none;}
+
+  /** Intro **/
+
+  .header {
+    width:130px;
+    height:130px;
+    background:black;
+    border:3px solid #DE0089;
+    box-shadow: 0px 5px 15px rgba(240, 28, 134, 0.9);
+    border-radius: 130px;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    align-content: center;
+    position: relative;
+    z-index: 100;
+    margin:-30px auto 0px auto;
+
+  }
+
+  .logo {
+    background:url('./imgs/logo.png');
+    width:120px;
+    height:100px;
+    background-size: contain;
+    background-repeat:no-repeat;
+  }
+
+  .girls {
+    width:100%;
+    height:100vh;
+    position: absolute;
+    z-index:0;
+    top:0;
+    left:0;
+    display:flex;
+  }
+
+  .introa {
+    width:48%;
+    height:100vh;
+    background: url('./imgs/INTRO1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+
+  .separator {
+    width:4%;
+    height:100vh;
+    background: linear-gradient(90deg, #DAOA8F, )
+  }
+

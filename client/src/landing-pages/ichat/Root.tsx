@@ -15,7 +15,7 @@ import { mockSuccessState } from "../../clients/mpesa/TolaHOC";
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
   "xx",
-  "Unknown" //TODO: replace Unknown with your page's name
+  "ichat"
 );
 
 const SplashScreenDuration = 1500;

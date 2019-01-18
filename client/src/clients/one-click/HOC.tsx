@@ -23,6 +23,7 @@ const getRedirectUrl = (maybeConfig : IConfig) : string => {
     case "gb": 
         var host = maybeConfig.host || 'n.mobzonefun.com'
         var handle = maybeConfig.handle || 'yoga-videos'
+        var tq_url = encodeURIComponent(`${window.location.protocol}://${window.location.host}/pixels/?rockman_id=${window.pac_analytics.visitor.rockmanId}`)
         return `http://${host}/uk/${handle}?offer=${offer}&atmobirun=1&rockman_id=${window.pac_analytics.visitor.rockmanId}&redirPixels=${window.location.host}&${search}`
     case "iq":
       if(!!process.env.scenarioName && /2882/ig.test(process.env.scenarioName)) { 

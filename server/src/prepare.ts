@@ -2,9 +2,8 @@ import * as fs from "fs";
 import { Readable } from "stream";
 import * as path from "path";
 import * as CT from "./common-types";
-import {CampaignValue} from "./campaigns/types"
+import {ResolvedCampaignValue} from "./campaigns/types"
 import * as request from 'request-promise-native'
-import { Option, none, some } from "fp-ts/lib/Option";
 
 type IVisitor = {
   rockmanId: string;
@@ -111,7 +110,7 @@ const getAndCachePreparedContentFromFileSystem = (() => {
   };
 })();
 
-export default async (rockmanId: CT.NTRockmanId, impressionNumber: CT.NTImpressionId, campaign: CampaignValue, skipCache: boolean) : Promise<Readable> => {
+export default async (rockmanId: CT.NTRockmanId, impressionNumber: CT.NTImpressionId, campaign: ResolvedCampaignValue, skipCache: boolean) : Promise<Readable> => {
   const {country, page} = campaign
   const visitor = {
     rockmanId: CT.RockmanId.unwrap(rockmanId),

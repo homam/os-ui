@@ -17,6 +17,7 @@ import { SimpleOpacityTransition, TransitionGroup, simpleOpacityTransitionStyles
 import "./assets/css/style.less?raw";
 import CustomTesti from "../bid-win/components/CustomTesti";
 import PhoneInput from "ouisys-phone-input/dist/common/PhoneInput/PhoneInput"; 
+import Disclaimer from "../../legal-components/Disclaimer";
 
 
 
@@ -96,7 +97,9 @@ class MSISDNEntryStep extends React.PureComponent<{
       >
         {/* FIRST PRELANDER*/}
         <div className="bg"></div>
+        <span className="top-legals"><Translate id="top-legals" /></span>
         <div className="wrapper">
+        
           <div className="new">
             {/* <img src={New} /> */}
           </div>
@@ -153,9 +156,9 @@ class MSISDNEntryStep extends React.PureComponent<{
                     <Translate id="so-romantic"></Translate>
                   </div>
                 </div>
-                <div>
+                <p>
                   <Translate id="enter-phone-number"></Translate>
-                </div>
+                </p>
                 <div className="whatsapp-input">
                   <PhoneInput
                     msisdn={this.state.msisdn}
@@ -170,6 +173,11 @@ class MSISDNEntryStep extends React.PureComponent<{
                       this.setState({ msisdn: params.msisdn, isValid: params.isValid, bupperNumber: params.bupperNumber })
                     }} 
                   />
+                  <div>
+                    
+                    
+                    
+                  </div>
                 </div>
 
                 <button className="btn" type="submit" 
@@ -178,6 +186,7 @@ class MSISDNEntryStep extends React.PureComponent<{
                 <div className="error-msg">
                   {RDS.WhenFailure(null, (err: MSISDNEntryFailure) => <Translate id={err.errorType} />)(this.props.rds)}
                 </div>
+                <span ><Translate id="phone-legals" /></span>
                 {/* MSISDN END HERE*/}
               </div>
             </div>
@@ -215,7 +224,7 @@ class MSISDNEntryStep extends React.PureComponent<{
             />
           </div>
           <div className="disclaimer">
-            <p><Translate id="disclaimers" /></p>
+            <Disclaimer />
           </div>
         </div>
       </form>
@@ -376,12 +385,12 @@ const TQStep = ({ finalUrl }: { finalUrl: string }) => <div>
 
 class Root extends React.PureComponent<HOCProps> {
   state = {
-    locale: typeof window == "undefined" ? 'en' : queryString(window.location.search, "locale") || 'en',
+    locale: typeof window == "undefined" ? 'en' : queryString(window.location.search, "locale") || 'ar',
     msisdn: "",
   };
 
   defaultLang = () => {
-    document.getElementsByTagName('html')[0].setAttribute("lang", "en");
+    document.getElementsByTagName('html')[0].setAttribute("lang", this.state.locale);
   }
 
   componentDidMount() {
