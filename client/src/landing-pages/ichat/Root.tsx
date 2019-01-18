@@ -39,6 +39,17 @@ componentDidMount(){
 
   }, SplashScreenDuration + 600);
 
+  var splashArea = document.getElementById("splash"),
+      chatArea = document.getElementById("chat"),
+      wHeight = window.innerHeight + "px",
+      wWidth = window.innerWidth;
+
+
+      if (wWidth < 1280){
+        splashArea.style.height = wHeight ;
+        chatArea.style.height = wHeight;
+      }
+
 }
 
   render() {
