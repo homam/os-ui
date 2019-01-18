@@ -1,6 +1,6 @@
 import * as CT from '../common-types'
 import {Option, some, none } from 'fp-ts/lib/Option'
-import {CampaignValue, AffiliateInfoGetter, ResolvedCampaignValue} from "./types"
+import {UnresolvedCampaignValue, AffiliateInfoGetter, ResolvedCampaignValue} from "./types"
 import NodeCache from 'node-cache'
 import * as PG from "pg";
 import { right, left } from 'fp-ts/lib/Either';
@@ -33,16 +33,16 @@ async function getAffiliateByOfferId(client: PG.PoolClient, offerId: number) : P
  *  - Campaigns with 'free' (Unknown) affiliate and offerId.
  *    We must receive `offer` as a query string parameter for these campaigns.
  *  This duality is reflected in `AffiliateInfo` type 
- *  (which is the type of `affiliateInfo` field of `CampaignValue`). 
+ *  (which is the type of `affiliateInfo` field of `UnresolvedCampaignValue`). 
  * @export
  * @param {PG.PoolClient} client
  * @param {number} campaignId
- * @returns {Promise<Option<CampaignValue>>}
+ * @returns {Promise<Option<UnresolvedCampaignValue>>}
  */
-export default async function getCampaign(client: PG.PoolClient, campaignId: number) : Promise<Option<CampaignValue>> {
+export default async function getCampaign(client: PG.PoolClient, campaignId: number) : Promise<Option<UnresolvedCampaignValue>> {
   const campaign = campaignsCache.get(campaignId)
   if(campaign != undefined) {
-    return campaign as Option<CampaignValue>
+    return campaign as Option<UnresolvedCampaignValue>
   } else {
     const dbCampaignResult = await client.query(`
       select c.id, c.page, c.country, s.affiliate_id, s.offer_id from campaigns c
@@ -64,7 +64,7 @@ export default async function getCampaign(client: PG.PoolClient, campaignId: num
       } else {
         affiliateInfo = left({ offerId: CT.OfferId.wrap(offer_id), affiliateId: CT.AffiliateId.wrap(affiliate_id) } as CT.AffiliateInfo)
       }
-      const campaign : Option<CampaignValue> = some({
+      const campaign : Option<UnresolvedCampaignValue> = some({
         id: campaignId,
         page: CT.HandleName.wrap(page),
         country: CT.Country.wrap(country),
@@ -83,12 +83,9 @@ export const invalidCampaign : ResolvedCampaignValue = {
   affiliateInfo: { offerId: CT.OfferId.wrap(1), affiliateId: CT.AffiliateId.wrap('UNKNOWN')} as CT.AffiliateInfo
 }
 
-export const testCampaign = (page: string, country: string) : CampaignValue => ({
+export const testCampaign = (page: string, country: string) : ResolvedCampaignValue => ({
   id: 4096,
   page: CT.HandleName.wrap(page),
   country: CT.Country.wrap(country),
-  affiliateInfo: right(
-    () => 
-      Promise.resolve({ offerId: CT.OfferId.wrap(1), affiliateId: CT.AffiliateId.wrap('SAM') } as CT.AffiliateInfo)
-  )
+  affiliateInfo: { offerId: CT.OfferId.wrap(1), affiliateId: CT.AffiliateId.wrap('SAM') } as CT.AffiliateInfo
 })
