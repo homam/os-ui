@@ -419,7 +419,7 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps> {
       onNotMyMobileClicked={() => this.props.actions.backToStart()}
       />   
 
-    return <div className={`chat display-${this.state.applicationState}`}>
+    return <div className={`chat display-${this.state.applicationState}`} id="chat">
 
       <div className={`infoBox display-${this.state.infoBox}`}>
       
