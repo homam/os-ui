@@ -166,7 +166,7 @@ class MSISDNEntryStep extends React.PureComponent<{
                     showFlag={!true}
                     showMobileIcon={true}
                     showError={false}
-                    placeholder="Phone number"
+                    placeholder=""
                     inputElementRef={this.phoneInputRef}
                     onChange={params => {
                       console.log(params)
@@ -187,6 +187,8 @@ class MSISDNEntryStep extends React.PureComponent<{
                   {RDS.WhenFailure(null, (err: MSISDNEntryFailure) => <Translate id={err.errorType} />)(this.props.rds)}
                 </div>
                 <span ><Translate id="phone-legals" /></span>
+
+                <a href="https://www.google.com/" className="exit-btn">Exit</a>
                 {/* MSISDN END HERE*/}
               </div>
             </div>
