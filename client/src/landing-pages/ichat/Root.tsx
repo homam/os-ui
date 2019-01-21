@@ -61,7 +61,10 @@ componentDidMount(){
 
             {/*----------Chat Area----------*/}
 
-            <Chat currentState={this.props.currentState} actions={this.props.actions} />
+            <Chat 
+              currentState={this.props.currentState} 
+              actions={this.props.actions}
+              tracker={tracker} />
 
             <DisclaimerGR />
 

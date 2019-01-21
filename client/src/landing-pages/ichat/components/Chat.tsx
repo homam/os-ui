@@ -14,12 +14,12 @@ import PinEntry from "./PinEntry";
 import Loader from "./Loader";
 import {Translate, injectIntl} from "./../localization/index"
 import { InjectedIntlProps } from "react-intl";
-import { queryString } from "../../../pacman/record";
+import { queryString, ITracker } from "../../../pacman/record";
 
 
 type ChatApplicationState = "Chatting" | "Subscribing"
 
-class Chat extends React.PureComponent<HOCProps & InjectedIntlProps> {
+class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: ITracker}> {
 
   state = {
       msisdnValue:"69",
@@ -320,6 +320,11 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps> {
 
         booleanBtns.style.display = "none";
 
+        self.props.tracker.advancedInPreFlow(`Answer-${k - 1}`, { 
+            question: self.state.messages[k - 1][self.state.messages[k - 1].length - 1], 
+            reply 
+          }
+        )
 
         if (k == 2) {
 
