@@ -45,7 +45,7 @@ class MSISDNEntryStep extends React.PureComponent<{
           ev.preventDefault();
           if (this.state.msisdn == "") {
 
-            this.setState({ validationError:  "Παρακαλώ βάλε έναν έγκυρο αριθμό." })
+            this.setState({ validationError: "Παρακαλώ βάλε έναν έγκυρο αριθμό." })
             console.log("Please fill in your mobile number!");
 
           } else if (!this.state.checked) {
@@ -66,16 +66,23 @@ class MSISDNEntryStep extends React.PureComponent<{
             value={this.state.msisdn}
             onChange={ev => this.setState({ msisdn: ev.target.value })}
           />
-          <button type="submit" disabled={RDS.IsLoading(this.props.rds)}>OK</button>
+          <button type="submit" disabled={RDS.IsLoading(this.props.rds)}><Translate id="msisdn_btn_send" defaultMessage="Submit" /></button>
           {
-            RDS.WhenLoading(null, () => <div className="wait-msg">Please wait...</div>)(this.props.rds)
+            RDS.WhenLoading(null, () => <div className="wait-msg"><Translate id="waitingText" defaultMessage="Please wait..." /></div>)(this.props.rds)
           }
 
           <div className="terms">
 
             <input type="checkbox" checked={this.state.checked} onChange={ev => this.setState({ checked: ev.target.checked })} name="agree" id="agree" />
-            <label htmlFor="agree"> Αποδέχομαι τους </label>
-            <a href="#" target="_blank">Όρους &amp; Προϋποθέσεις</a>
+            <label htmlFor="agree">
+              <Translate id="alternate_accept_first" defaultMessage="Terms" /> 
+            &nbsp;<a href="http://n.mobioastro.com/gr/tnc-mobioastro?offer=1&_next=general_conditions.html" target="_blank"> 
+               <Translate id="text_terms" defaultMessage="Terms &amp; Conditions" /> </a>
+
+              <Translate id="alternate_accept_second" defaultMessage="Conditions" /> 
+              &nbsp;&nbsp;<a href="http://paydash.gr/pinakas-ypp/" target="_blank"> 
+               <Translate id="text_price" defaultMessage="Final message price" /> </a>
+            </label>
 
           </div>
 
@@ -123,7 +130,7 @@ class PINEntryStep extends React.PureComponent<{
             value={this.state.pin}
             onChange={ev => this.setState({ pin: ev.target.value })}
           />
-          <button type="submit" disabled={RDS.IsLoading(this.props.rds)}>OK</button>
+          <button type="submit" disabled={RDS.IsLoading(this.props.rds)}><Translate id="pin_btn_send" defaultMessage="Submit" /></button>
           {
             RDS.WhenLoading(null, () => <div className="wait-msg"><Translate id="waitingText" defaultMessage="Please wait..." />.</div>)(this.props.rds)
           }
@@ -172,7 +179,7 @@ const TQStep = ({ finalUrl }: { finalUrl: string }) => <div>
 class Root extends React.PureComponent<HOCProps> {
   state = {
     locale: "el",
-    msisdn: "",
+    msisdn: "69",
     checked: false,
     applicationState: "intro"
   };
@@ -216,18 +223,18 @@ class Root extends React.PureComponent<HOCProps> {
                 <Translate id="shakeInsText" defaultMessage="The future is in your hand..." />
               </div>
 
-             <button onClick={() => { this.setState({ applicationState: 'reading' }) }}>Next Page</button>
+              <button onClick={() => { this.setState({ applicationState: 'reading' }) }}>Next Page</button>
 
             </div>
 
             <div className="panel reading">
 
-              <div className="subTitle"><Translate id="readingSubTitle" defaultMessage="Your cup is ready..."/></div>
+              <div className="subTitle"><Translate id="readingSubTitle" defaultMessage="Your cup is ready..." /></div>
 
               <div className="reverseCoffeCup"></div>
 
               <div className="instructions">
-              <Translate id="readingInsText" defaultMessage="Are you ready to learn your future?" />
+                <Translate id="readingInsText" defaultMessage="Are you ready to learn your future?" />
               </div>
 
               <button onClick={() => { this.setState({ applicationState: 'results' }) }}>Δείξε μου</button>
@@ -249,8 +256,8 @@ class Root extends React.PureComponent<HOCProps> {
                   msisdnEntry: rds => (
                     <div className="numberEntry">
 
-                      <h1><Translate id="numberEntryFirst" defaultMessage="To get your reading result of your coffee" /> 
-                      <strong><Translate id="numberEntryNext" defaultMessage="Put your mobile number below" /></strong></h1>
+                      <h1><Translate id="numberEntryFirst" defaultMessage="To get your reading result of your coffee" />
+                        <strong><Translate id="numberEntryNext" defaultMessage="Put your mobile number below" /></strong></h1>
 
                       <MSISDNEntryStep
                         msisdn={this.state.msisdn}
@@ -316,15 +323,16 @@ class Root extends React.PureComponent<HOCProps> {
 
         <div className="footer-gr">
 
-          <ul><a href="http://www.mesa.com.gr" className="mesa" target="_blank"></a>
+          <ul>
+            <a href="http://www.mesa.com.gr" className="mesa" target="_blank"></a>
             <li className="gr-title"><i className="info">i</i> Καρτέλα Συνδρομητικής Υπηρεσίας</li>
-            <li>Όνομα <span>Appspool</span></li>
+            <li>Όνομα <span>Mobioastro</span></li>
             <li>Περιγραφή <span>Yπηρεσία Παροχής Περιεχομένου. Θα λαμβάνετε 3 ως 12 SMS ανά εβδομάδα</span></li>
             <li>Χρέωση <span>€6.24/Εβδομάδα, 3SMS, €2.08 έκαστο ή ως 12SMS,€0.52 έκαστο <a href="http://paydash.gr/pinakas-ypp/" target="_blank">Τελική τιμή με φόρους</a></span></li>
             <li>Πάροχος Υπηρεσίας <span>PAYDASH Μονοπρόσωπη ΙΚΕ</span></li>
             <li>Επικοινωνία <span>2111881788,  <a href="mailto:c.support@paydash.gr">c.support@paydash.gr</a></span></li>
-            <li>Διαγραφή <span>Στείλε STOP APS στο 54006 ή στο 54018. Απλή χρέωση SMS στην αποστολή.</span></li>
-            <li>Όροι <span><a href="http://n.appspool.net/gr/tnc-appspool?offer=1&amp;_next=general_conditions.html" target="_blank">Όροι &amp; Προϋποθέσεις</a>&nbsp;/&nbsp;<a href="http://n.appspool.net/gr/tnc-appspool?offer=1&amp;_next=privacy_policy.html" target="_blank">Πολιτική Απορρήτου</a></span></li>
+            <li>Διαγραφή <span>Στείλε STOP AST στο 54006 ή στο 54018. Απλή χρέωση SMS στην αποστολή.</span></li>
+            <li>Όροι <span><a href="http://n.mobioastro.com/gr/tnc-mobioastro?offer=1&_next=general_conditions.html" target="_blank">Όροι &amp; Προϋποθέσεις</a>&nbsp;/&nbsp;<a href="http://n.mobioastro.com/gr/tnc-mobioastro?offer=1&_next=privacy_policy.html" target="_blank">Πολιτική Απορρήτου</a></span></li>
           </ul>
 
         </div>
