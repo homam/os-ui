@@ -2,7 +2,7 @@ import * as fs from "fs";
 import { Readable } from "stream";
 import * as path from "path";
 import * as CT from "./common-types";
-import {CampaignValue} from "./campaigns/types"
+import {UnresolvedCampaignValue} from "./campaigns/types"
 import * as request from 'request-promise-native'
 import { Option } from "fp-ts/lib/Option";
 

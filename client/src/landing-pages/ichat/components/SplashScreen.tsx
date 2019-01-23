@@ -32,7 +32,7 @@ export default class SplashScreen extends React.PureComponent<IProps> {
   render() {
     const {duration} = this.props
     const {animating} = this.state
-    return <div className={`panel splash ${animating ? "active" : ""}`} >
+    return <div className={`panel splash ${animating ? "active" : ""}`} id="splash">
 
       <div className="top-area"><Translate id="splash_header_msg" defaultMessage="Exclusive chat invitation"/></div>
 

@@ -9,8 +9,6 @@ import "./assets/css/styles.less?raw"
 import SplashScreen from "./components/SplashScreen";
 import Chat from "./components/Chat";
 import DisclaimerGR from "./components/DisclaimerGR";
-import { mockedCompletedState, mockedMSISDNEntrySuccess } from "../../clients/lp-api-mo/HOC";
-import { mockSuccessState } from "../../clients/mpesa/TolaHOC";
 
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
@@ -39,6 +37,17 @@ componentDidMount(){
 
   }, SplashScreenDuration + 600);
 
+  var splashArea = document.getElementById("splash"),
+      chatArea = document.getElementById("chat"),
+      wHeight = window.innerHeight + "px",
+      wWidth = window.innerWidth;
+
+
+      if (wWidth < 1280){
+        splashArea.style.height = wHeight ;
+        chatArea.style.height = wHeight;
+      }
+
 }
 
   render() {
@@ -52,7 +61,10 @@ componentDidMount(){
 
             {/*----------Chat Area----------*/}
 
-            <Chat currentState={this.props.currentState} actions={this.props.actions} />
+            <Chat 
+              currentState={this.props.currentState} 
+              actions={this.props.actions}
+              tracker={tracker} />
 
             <DisclaimerGR />
 

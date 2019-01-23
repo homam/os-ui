@@ -21,6 +21,7 @@ html, body {
   background-position: center;
   line-height: 1.2;
   min-height: 800px;
+  overflow-x: hidden;
 }
 
 .header {
@@ -29,6 +30,7 @@ html, body {
   padding: 0;
   height: 26px;
   position: relative;
+  z-index: 1;
 }
 
 .rating {
@@ -107,15 +109,15 @@ html, body {
       top: 275px;
     }
     &.balloon-5 {
-      background-image: url("../img/balloon-5.svg");
-      background-size: contain;
-      background-repeat: no-repeat;    
+      background-image: url("../img/balloon-6.svg");
+      background-repeat: no-repeat;
       top: 38%;
       z-index: 1;
       background-size: contain;
-      left: -81px;
-      height: 90px;
-      width: 250px;
+      left: 0px;
+      height: 77px;
+      width: 241px;
+      right: -160px;
     }
     &.balloon-6 {
       background-image: url("../img/balloon-6.svg");
@@ -137,102 +139,67 @@ html, body {
 }
 
 .prelander-img-1 {
-  background-repeat: no-repeat;
   position: relative;
   height: 422px;
-  .guy-1 {
+  .img-container {
+    background-size: cover;
+    width: 100%;
+    position: absolute;
+    background-repeat: no-repeat;
+    left: 0;
+    right: 0;
+    top: 0;
+    margin: auto;
+    height: 400px; 
+  &.guy-1 {
     background-image: url("../img/characters.png");
     background-position: left;
     max-width: 214px;
-    height: 400px;
-    margin: auto;
-    left: 0px;
-    right: 100px;
-    position: absolute;
-    background-size: 800%;
-    background-repeat: no-repeat;
+    right: 127px;
   }
-  .guy-2 {
+  &.guy-2 {
     background-image: url("../img/characters.png");
     background-position: left;
-    max-width: 215px;
-    height: 400px;
-    margin: auto;
-    left: 0;
-    right: 0;
-    position: absolute;
-    background-size: auto;
-    background-repeat: no-repeat;
+    max-width: 220px;
+
   }
-  .guy-3 {
+  &.guy-3 {
     background-image: url("../img/characters.png");
-    background-position: 13%;
-    max-width: 215px;
-    height: 400px;
-    margin: auto;
-    left: 0;
-    right: 0;
-    position: absolute;
-    background-size: auto;
-    background-repeat: no-repeat;
+    background-position: 12%;
+    max-width: 235px;
+
   }
-  .guy-4 {
+  &.guy-4 {
     background-image: url("../img/characters.png");
     background-position: 100%;
-    max-width: 231px;
-    height: 304px;
-    margin: auto;
-    left: 80px;
-    right: 0;
-    position: absolute;
-    background-size: auto;
-    background-repeat: no-repeat;
+    max-width: 307px;
+    height: 380px;
+    left: -30px;
+    top: -33px;
   }
-  .girl-1 {
+  &.girl-1 {
+    background-image: url("../img/characters.png");
+    background-position: 27%;
+    max-width: 420px;
+    left: 69px;
+  }
+  &.girl-2 {
     background-image: url("../img/characters.png");
     background-position: 28%;
     max-width: 373px;
-    height: 400px;
-    margin: auto;
-    left: 95px;
-    right: 0;
-    position: absolute;
-    background-repeat: no-repeat;
   }
-  .girl-2 {
+  &.girl-3 {
     background-image: url("../img/characters.png");
-    background-position: 28%;
-    max-width: 373px;
-    height: 400px;
-    margin: auto;
-    left: 0;
-    right: 0;
-    position: absolute;
-    background-repeat: no-repeat;
+    background-position: 48%;
+    max-width: 319px;
   }
-  .girl-3 {
+  &.girl-4 {
     background-image: url("../img/characters.png");
-    background-position: 49%;
-    max-width: 331px;
-    height: 400px;
-    margin: auto;
-    left: 0;
-    right: 0;
-    position: absolute;
-    background-repeat: no-repeat;
+    background-position: 76%;
+    max-width: 431px;
+    height: 291px;
   }
-  .girl-4 {
-    background-image: url("../img/characters.png");
-    background-position: 77%;
-    max-width: 417px;
-    height: 333px;
-    margin: auto;
-    left: 0;
-    right: 0;
-    position: absolute;
-    background-repeat: no-repeat;
-    background-size: 527%;
-  }
+}
 }
 
 .btn-container {
@@ -343,8 +310,9 @@ html, body {
     top: 30px;
   }
   &.guy {
-    right: 10px;
-    top: 40px;
+    right: 13px;
+    top: 32px;
+    font-size: 13px;
   }
   &.thank-you {
     right: 0;

@@ -7,7 +7,7 @@ import * as CT from "./common-types";
 import { decrypt } from "./campaigns/campaignId";
 import campaigns, { invalidCampaign, testCampaign} from "./campaigns/map";
 import { addImpression, mkPool, run_, run, addEvent } from "./analytics/db";
-import { CampaignValue, toResolvedCampaignValue, ResolvedCampaignValue } from "./campaigns/types";
+import { UnresolvedCampaignValue, ResolvedCampaignValue } from "./campaigns/types";
 import bodyParser from "body-parser";
 import { left, Either, right } from "fp-ts/lib/Either";
 import { Option, some, none } from "fp-ts/lib/Option";
@@ -89,7 +89,7 @@ app.get("/pixels/", async (req, res) => {
 })
 
 async function serveCampaign(
-  campaign: Option<CampaignValue>,
+  campaign: Option<Either<UnresolvedCampaignValue, ResolvedCampaignValue>>,
   skipCache: boolean,
   req: express.Request,
   res: express.Response
@@ -199,32 +199,37 @@ async function serveCampaign(
           : recordImpressionEvent(invalidCampaign);
         res.status(404);
         res.end("Campaign is not valid");
-      } catch(ex) {
+      } catch (ex) {
         console.error(ex)
         res.status(500);
         res.send({ error: ex.toString() });
       }
     },
-    unResolvedCampaign => async () => {
+    (eitherCampaign) => async () => {
       try {
-        const affiliateInfo = await unResolvedCampaign.affiliateInfo.fold(
-          x => Promise.resolve(x), 
-          x => {
-            // free campaigns require offer parameter in their query strings
-            const offerId = parseInt(req.query['offer'])
-            if(isNaN(offerId)) {
-              throw "`offer` query string parameter is expected";
-            } else {
-              return run(pool, client => x(client, CT.OfferId.wrap(offerId)))
-            }
-          }
+        const campaign = await eitherCampaign.fold(
+          async (unResolvedCampaign) => {
+            const affiliateInfo = await unResolvedCampaign.affiliateInfo.fold(
+              x => Promise.resolve(x),
+              x => {
+                // free campaigns require offer parameter in their query strings
+                const offerId = parseInt(req.query['offer'])
+                if (isNaN(offerId)) {
+                  throw "`offer` query string parameter is expected";
+                } else {
+                  return run(pool, client => x(client, CT.OfferId.wrap(offerId)))
+                }
+              }
+            )
+            return { ...unResolvedCampaign, affiliateInfo }
+          },
+          x => Promise.resolve(x)
         )
-        const campaign = {...unResolvedCampaign, affiliateInfo}
-        const {rockmanId, userId, impressionNumber} = !!no_js_form_submission 
-          ? await recordFormSubmissionEvent(oldRockmanId, "true" == no_js_form_submission) 
+        const { rockmanId, userId, impressionNumber } = !!no_js_form_submission
+          ? await recordFormSubmissionEvent(oldRockmanId, "true" == no_js_form_submission)
           : await recordImpressionEvent(campaign);
-        res.cookie('userId', CT.UserId.unwrap(userId), {expires: new Date(new Date().valueOf() + 90*24*3600*1000)})
-        res.cookie('rockmanId', CT.RockmanId.unwrap(rockmanId), {expires: new Date(new Date().valueOf() + 3600*1000)})
+        res.cookie('userId', CT.UserId.unwrap(userId), { expires: new Date(new Date().valueOf() + 90 * 24 * 3600 * 1000) })
+        res.cookie('rockmanId', CT.RockmanId.unwrap(rockmanId), { expires: new Date(new Date().valueOf() + 3600 * 1000) })
         res.setHeader('Content-Type', 'text/html; charset=UTF-8')
         const stream = await prepare(rockmanId, impressionNumber, campaign, skipCache);
         stream.pipe(res);
@@ -239,7 +244,7 @@ async function serveCampaign(
 
 app.get('/preview', cookieParser(), async (req, res) => {
   try {
-    serveCampaign(some(testCampaign(req.query.page, req.query.country)), true, req, res)
+    serveCampaign(some(right(testCampaign(req.query.page, req.query.country))), true, req, res)
   } catch(ex) {
     console.error(ex)
     res.status(500);
@@ -255,7 +260,7 @@ app.get(
       const campaignId = decrypt(req.params.encCampaignId);
       //TODO: pass pool itself to campaigns() function
       const campaign = await run(pool, client => campaigns(client, campaignId));
-      return serveCampaign(campaign, false, req, res);
+      return serveCampaign(campaign.map(c => left(c)), false, req, res);
     } catch(ex) {
       console.error(ex)
       res.status(500)

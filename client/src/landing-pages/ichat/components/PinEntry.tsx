@@ -1,6 +1,7 @@
 import * as React from "react"
 import {Translate, injectIntl} from "./../localization/index"
 import { InjectedIntlProps } from "react-intl";
+import cancelAndDebounce from "./cancelAndDebounceEvent";
 
 interface IProps {
   value,
@@ -16,8 +17,10 @@ class PinEntry extends React.PureComponent<IProps & InjectedIntlProps> {
   }
 
   render() {
-    return <div className="animated" id="pinEntry">
-
+    return <form className="animated" id="pinEntry" onSubmit={cancelAndDebounce((ev: React.FormEvent<HTMLFormElement>) => {
+      this.props.onSendClicked(this.state.value);
+    }, 1000)}>
+         
       <div id="pinForm">
         <input 
         type="tel" 
@@ -29,7 +32,7 @@ class PinEntry extends React.PureComponent<IProps & InjectedIntlProps> {
         placeholder={this.props.intl.formatMessage({id: "enter_pin_number_here", defaultMessage: "Enter PIN code here..."})} 
          />
 
-        <button onClick={() => this.props.onSendClicked(this.state.value)}><Translate id="pin_btn_text" defaultMessage="Send" /></button>
+        <button type="submit"><Translate id="pin_btn_text" defaultMessage="Send" /></button>
 
       </div>
 
@@ -42,7 +45,7 @@ class PinEntry extends React.PureComponent<IProps & InjectedIntlProps> {
 
     </div>
 
-    </div>
+    </form>
 
   }
 }

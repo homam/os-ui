@@ -24,5 +24,12 @@
   "portalBtnText": "Go to portal page,",
   "socialUsersText": "5 Million Users",
   "socialReadingText": "25 Million Readings",
-  "waitingText":"Please wait..."
+  "waitingText":"Please wait...",
+  "accept_text" : "",
+  "alternate_accept_first": "",
+  "alternate_accept_second": "",
+  "text_terms":"",
+  "text_price":"",
+  "msisdn_btn_send" : "Submit",
+  "pin_btn_send" : "Submit"
 }

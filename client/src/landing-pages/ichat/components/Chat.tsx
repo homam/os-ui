@@ -14,19 +14,20 @@ import PinEntry from "./PinEntry";
 import Loader from "./Loader";
 import {Translate, injectIntl} from "./../localization/index"
 import { InjectedIntlProps } from "react-intl";
-import { queryString } from "../../../pacman/record";
+import { queryString, ITracker } from "../../../pacman/record";
 
 
 type ChatApplicationState = "Chatting" | "Subscribing"
 
-class Chat extends React.PureComponent<HOCProps & InjectedIntlProps> {
+class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: ITracker}> {
 
   state = {
-      msisdnValue:"",
+      msisdnValue:"69",
       checked: false,
       pinValue: "",
       infoBox:"",
       applicationState: "Chatting" as ChatApplicationState,
+      isDelayingPinUI: true,
       messages: [
         [
             this.props.intl.formatMessage({
@@ -319,6 +320,11 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps> {
 
         booleanBtns.style.display = "none";
 
+        self.props.tracker.advancedInPreFlow(`Answer-${k - 1}`, { 
+            question: self.state.messages[k - 1][self.state.messages[k - 1].length - 1], 
+            reply 
+          }
+        )
 
         if (k == 2) {
 
@@ -363,6 +369,10 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps> {
         if(RDS.IsNothingYet(new_rds)) {
           // we just sent you a pin
           this.botResponse(self.state.messages[7]);
+          this.setState({isDelayingPinUI: true})
+          setTimeout(() => {
+            this.setState({isDelayingPinUI: false})
+          }, 6500)
         }
       })(this.props.currentState)
     })(prevProps.currentState)
@@ -391,7 +401,7 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps> {
   render() {
     const self = this
     const numberEntry = <NumberEntry 
-      value={"69" + this.state.msisdnValue} 
+      value={this.state.msisdnValue} 
       checked={this.state.checked}
       onTermsClicked = {() =>  this.setState({infoBox:'active'})}
       onSendClicked={({value, checked}) => {
@@ -419,7 +429,7 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps> {
       onNotMyMobileClicked={() => this.props.actions.backToStart()}
       />   
 
-    return <div className={`chat display-${this.state.applicationState}`}>
+    return <div className={`chat display-${this.state.applicationState}`} id="chat">
 
       <div className={`infoBox display-${this.state.infoBox}`}>
       
@@ -479,7 +489,7 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps> {
               failure: () => numberEntry
             })(rds),
             pinEntry: (rds) => RDS.match({
-              nothingYet: ()  => pinEntry,
+              nothingYet: ()  => this.state.isDelayingPinUI ? <Loader /> : pinEntry,
               loading: () => <Loader />,
               success: (succ: PINEntrySuccess) => <div className="animated fadeUp" id="finalLink">
                 <a href={succ.finalUrl} className="button"><Translate id="access_portal" defaultMessage="Access Portal" /></a>
