@@ -248,7 +248,7 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: 
 
       if (chatInner.clientHeight > chatOuter.clientHeight) {
 
-        var scrollValue = (chatOuter.clientHeight - chatInner.clientHeight) - 100;
+        var scrollValue = (chatOuter.clientHeight - chatInner.clientHeight) - 120;
 
         chatInner.style.webkitTransform = "translateY(" + scrollValue + "px)";
 
