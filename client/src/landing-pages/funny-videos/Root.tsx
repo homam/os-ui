@@ -4,12 +4,11 @@ import { TranslationProvider, Translate } from "./localization/index";
 import HOC, {IProps, initialState} from "../../clients/one-click/HOC"
 import "./assets/css/styles.less?raw";
 import CustomTesti from "../bid-win/components/CustomTesti";
-import Disclaimer from "../../legal-components/Disclaimer";
 const rateImg = require("./assets/imgs/rate.png");
 const watchImg = require("./assets/imgs/watch.png");
 const monkey = require("./assets/imgs/monkey.png");
 const catImg = require("./assets/imgs/cat1.jpg");
-import Disclaimer from "../../legal-components/Disclaimers/iq-videozland";
+import Disclaimer from "../../legal-components/Disclaimer";
 
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
@@ -39,13 +38,13 @@ class Root extends React.PureComponent<IProps> {
                       <span> ﺍﻟﻜﻮﻣﻴﺪﻳﺔ </span>
                     </h1>
                   </div>
+                  <div className="mainImg"><img src={monkey} /></div>
                   </div>
                 <div className="middle">
                 <div className="btnPlace"><button className="btnMain" onClick={() => this.props.actions.onClick()}>إشترك الان</button></div>
                 <img src={catImg} />
                 </div>
                 <h2>إشترك الان واحصل على فترة مجانية لمدة ثلاثة أيام</h2>
-                <div className="mainImg"><img src={monkey} /></div>
               </div>
             </div>
             <CustomTesti

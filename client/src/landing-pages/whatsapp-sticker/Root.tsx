@@ -370,7 +370,7 @@ const TQStep = ({ finalUrl }: { finalUrl: string }) => <div>
     </div>
     <div className="space2"></div>
     <div className="disclaimer">
-      <p><Translate id="disclaimers" /></p>
+      <Disclaimer/>
     </div>
   </div>
 </div>;
