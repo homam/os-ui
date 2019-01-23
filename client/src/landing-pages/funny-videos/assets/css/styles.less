@@ -5,6 +5,11 @@
   src: url("../fonts/Aljazeera.ttf") format("truetype");
 }
 
+*, span{
+  -webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
 body{
   margin: 0;
   padding: 0;
@@ -29,19 +34,12 @@ body{
   z-index: 1;
 }
 
-.container{
-  min-height: 450px;
-  margin: 0 auto;
-  position: relative;
-  max-width: 320px;
-  width: 100%;
-}
-
 .rateBar{
   display: flex;
   justify-content: space-between;
   position: relative;
   margin: 0 auto;
+  max-width: 320px;
   padding-top: 10px;
 }
 
@@ -50,22 +48,38 @@ body{
   justify-content: space-between;
   max-width: 320px;
   height: 180px;
+  margin: 0 auto;
+  
 }
 
 .mainImg{
   display: block;
-  width: 100%;
-  position: absolute;
-  left: 40vw;
-  top: 40px;
+  width: 50%;
+  float: right;
   max-width: 180px;
   height: 200px;
   z-index: -1;
+  animation: float 1s linear infinite;
+}
+
+@keyframes float {
+	0% {
+		box-shadow: 0 5px 15px 0px rgba(0,0,0,0.1);
+		transform: translatey(1px);
+	}
+	50% {
+		box-shadow: 0 25px 15px 0px rgba(0,0,0,0.2);
+		transform: translatey(-2px);
+	}
+	100% {
+		box-shadow: 0 5px 15px 0px rgba(0,0,0,0.1);
+		transform: translatey(1px);
+	}
 }
 
 @media only screen and (min-width: 600px){
   .mainImg{
-    left: 20vw;
+    right: 20px;
   }
   .topBG{
     max-width: 500px;
@@ -74,14 +88,13 @@ body{
 }
 
 .mainImg img{
-  transform: rotate(30deg);
   width: 100%;
 }
 
 .text{
   display: block;
-  width: 200px;
-  height: 100px;
+  width: 70%;
+  float: left;
 }
 
 h1{
@@ -103,6 +116,7 @@ span{
   border-radius: 20px;
   box-shadow: 0 0 0 5px white, 0 0 0 7px black;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .middle{
@@ -110,6 +124,7 @@ span{
   width: 100%;
   max-width: 320px;
   height: 230px;
+  margin: 0 auto;
 }
 
 .btnMain{
@@ -119,13 +134,14 @@ span{
   color: white;
   font-size: 1.8em;
   font-family: 'AlJazeera';
-  text-shadow: 4px 4px 15px black;
+  text-shadow: 0px 0px 50px black;
   border: none;
   border-radius: 50px;
   width: 100%;
   max-width: 200px;
   box-shadow: 3px 5px 12px black;
   text-indent: 10px;
+  animation: pulse 0.6s linear infinite;
 
   &::after{
     content: '';
@@ -206,3 +222,8 @@ h2{
   font-size: 12px;
 }
 
+.disclaimer-iq{
+  max-width: 320px;
+  margin: 0 auto; 
+  text-align: center;
+}

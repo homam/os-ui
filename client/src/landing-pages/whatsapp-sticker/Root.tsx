@@ -10,7 +10,8 @@ import HOC, {
   PINEntryFailure,
   PINEntrySuccess,
   match,
-  mockedPINState
+  mockedPINState,
+  mockedPINSuccesState
 } from "../../clients/lp-api/HOC";
 import * as RDS from "../../common-types/RemoteDataState";
 import { SimpleOpacityTransition, TransitionGroup, simpleOpacityTransitionStyles } from "../../common-components/simple-opacity-transition";
@@ -280,7 +281,7 @@ class PINEntryStep extends React.PureComponent<{
                 <input id="pin-entry"
                   className="pin-input"
                   pattern="\d*"
-                  maxLength={5}
+                  maxLength={4}
                   value={this.state.pin}
                   onChange={ev => this.setState({ pin: ev.target.value })}
                   ref={this.pinInputRef}
@@ -357,33 +358,47 @@ class PINEntryStep extends React.PureComponent<{
   }
 }
 
-const TQStep = ({ finalUrl }: { finalUrl: string }) => <div>
-  <div className="bg"></div>
-  <div className="wrapper">
-    <div className="new">
-      {/* <img src={New} /> */}
-    </div>
-    <div className="laugh-it">
-      {/* <img src={LaughitUp} /> */}
-    </div>
+class TQStep extends React.PureComponent<{ finalUrl: string }> {
 
-    <div className="monster-container sticker-ready">
-      <div className="body-container2 custom-height">
-        <div className="monster-2">
-          <img src={HumourSticker} />
+  componentDidMount() {
+    setTimeout(() => {
+      window.location.href = this.props.finalUrl
+    }, 2000);
+  }
+
+  render() {
+    return (
+      <div>
+        <div className="bg"></div>
+        <div className="wrapper">
+          <div className="new">
+            {/* <img src={New} /> */}
+          </div>
+          <div className="laugh-it">
+            {/* <img src={LaughitUp} /> */}
+          </div>
+
+          <div className="monster-container sticker-ready">
+            <div className="body-container2 custom-height">
+              <div className="monster-2">
+                <img src={HumourSticker} />
+              </div>
+              <div className="space1"></div>
+              <div className="title"><Translate id="thank-you"></Translate></div>
+              <div><Translate id="express-emotions"></Translate></div>
+              {/* <a className="btn" href={finalUrl}><Translate id="download-now"></Translate></a> */}
+            </div>
+          </div>
+          <div className="space2"></div>
+          <div className="disclaimer">
+            <Disclaimer/>
+          </div>
         </div>
-        <div className="space1"></div>
-        <div className="title"><Translate id="thank-you"></Translate></div>
-        <div><Translate id="express-emotions"></Translate></div>
-        {/* <a className="btn" href={finalUrl}><Translate id="download-now"></Translate></a> */}
       </div>
-    </div>
-    <div className="space2"></div>
-    <div className="disclaimer">
-      <p><Translate id="disclaimers" /></p>
-    </div>
-  </div>
-</div>;
+    );
+  }
+}
+
 
 class Root extends React.PureComponent<HOCProps> {
   state = {
@@ -417,7 +432,7 @@ class Root extends React.PureComponent<HOCProps> {
                   />
                 </SimpleOpacityTransition>
               ),
-              pinEntry: rds => (
+              pinEntry: rds => RDS.WhenSuccess((
                 <SimpleOpacityTransition key="pinEntry">
                   <PINEntryStep
                     onEnd={pin => this.props.actions.submitPIN(pin)}
@@ -426,7 +441,7 @@ class Root extends React.PureComponent<HOCProps> {
                     rds={rds}
                   />
                 </SimpleOpacityTransition>
-              ),
+              ), ({ finalUrl }) => <TQStep finalUrl={finalUrl} />)(rds),
               completed: ({ finalUrl }) => (
                 <SimpleOpacityTransition key="completed">
                   <TQStep finalUrl={finalUrl} />
