@@ -57,6 +57,12 @@
 
   "answer_no": "No",
 
+  "terms_yes": "Yes",
+
+  "terms_no": "No",
+
+  "terms_msg": "Do you accept the terms and conditions?",
+
   "enter_mobile_number_here":"",
 
   "msisdn_btn_send" : "Send",
