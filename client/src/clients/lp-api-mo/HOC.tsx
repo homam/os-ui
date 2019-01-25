@@ -126,5 +126,5 @@ const formatSMSLink = (keywordAndShortcode : IKeywordShortcode) =>
 
  
 
-export const MOLink = ({keywordAndShortcode, children}: {keywordAndShortcode: IKeywordShortcode, children: React.ReactNode}) =>
-  <a href={formatSMSLink(keywordAndShortcode)}>{children}</a>
+export const MOLink : React.ComponentType<{keywordAndShortcode: IKeywordShortcode, children: React.ReactNode} & React.HTMLAttributes<HTMLAnchorElement>> = ({keywordAndShortcode, children, ...props}) =>
+  <a href={formatSMSLink(keywordAndShortcode)} {...props}>{children}</a>

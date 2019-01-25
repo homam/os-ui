@@ -109,11 +109,15 @@ async function main() {
           value: "one-click"
         },
         {
+          name: "Click 2 SMS (Bupper)",
+          value: "bupper-click2sms"
+        },
+        {
           name: 'Just give me the basics',
           value: 'basic'
         }
       ]
-    }]) as {template : "assrock" | "basic" | "mpesa" | "one-click"}
+    }]) as {template : "assrock" | "basic" | "mpesa" | "one-click" | "bupper-click2sms"}
 
   const {confirm} = await inquirer.prompt([
     { 
@@ -153,6 +157,10 @@ async function main() {
     await cp(pageName, 'one-click', 'Root.tsx.template', 'Root.tsx')
   }
 
+  if(template == "bupper-click2sms") {
+    await cp(pageName, 'bupper-click2sms', 'Root.tsx.template', 'Root.tsx')
+  }
+  
 
   console.log('✅', chalk.bgGreen.yellowBright.bold('  Done!'))
   console.log(dedent`
