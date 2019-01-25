@@ -10,15 +10,15 @@
   "if_not_your_mobile": "إذا لم يكن {phone} رقم هاتفك الصحيح",
   "click_here_to_change_your_number": "اضغط هنا لتغيير رقم هاتفك.",
 
-  "splash_header_msg":"Exclusive chat invitation",
-  "splash_start_title":"The predictions",
-  "splash_medium_amanda":"Medium Amanda",
-  "splash_startsub_title":"the most recognized astrologer in the whole world",
-  "splash_footer_title":"Your future is written...",
-  "establishing_text":"Establishing Connection, Please wait...",
+  "splash_header_msg":"دعوة حصرية للدردشة،",
+  "splash_start_title":"التنبؤات",
+  "splash_medium_amanda":"المنجمة اماندا ،",
+  "splash_startsub_title":"المنجمة الأكثر شهرة في العالم،",
+  "splash_footer_title":"مستقبلك مكتوب ... ،",
+  "establishing_text":"تجهيز الاتصال ، يرجى الانتظار ... ،",
 
-  "medium_amanda": "Medium Amanda",
-  "astrologer": "Astrologer",
+  "medium_amanda": "المنجمة اماندا ،",
+  "astrologer": "منجمة،",
 
   "amanda_welcome": "مرحبًا ، كنت أنتظرك.",
   "amanda_amazing_vision": "لدي رؤية رائعة ودقيقة ولقد أستشعرت معلومات عنك.",
@@ -57,11 +57,11 @@
 
   "answer_no": "لا",
 
-  "terms_yes": "Yes",
+  "terms_yes": "نعم",
 
-  "terms_no": "No",
+  "terms_no": "لا",
 
-  "terms_msg": "Do you accept the terms and conditions?",
+  "terms_msg": "هل توافق على الشروط والأحكام؟",
 
   "enter_mobile_number_here":"",
 
