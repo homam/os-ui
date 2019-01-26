@@ -11,13 +11,15 @@ export const mockedSuccessState : State = RDS.Success<string, IKeywordShortcode>
 export const mockedFailureState : State = RDS.Failure<string, IKeywordShortcode>("Mocked Network Error") as State
 export const mockedLoadingState : State = RDS.Loading<string, IKeywordShortcode>()
 
+export { IKeywordShortcode }
+
 export type HOCProps = {
   currentState: State,
   MOLink: ACompType
 }
 
-type ACompType =  React.ComponentType<{children: React.ReactNode} & React.HTMLAttributes<HTMLAnchorElement>>
-
+type ACompType = 
+    React.ComponentType<{children: React.ReactNode} & React.HTMLAttributes<HTMLAnchorElement> & {keyword?: string, shortcode?: string}>
 export default <P extends HOCProps>(tracker: ITracker, Comp: React.ComponentType<P>, maybeConfig?: IConfig) => (
   initialState: State
 ) =>
@@ -40,8 +42,20 @@ export default <P extends HOCProps>(tracker: ITracker, Comp: React.ComponentType
         nothingYet: () => ({children, ...props} ) => <a data-state="nothingYet" onClick={() => console.info("nothingYet")} href="javascript: void(0)" {...props}>{children}</a>,
         loading: () => ({children, ...props}) => <a data-state="loading" onClick={() => console.info("loading")} href="javascript: void(0)" {...props}>{children}</a> ,
         failure: (error) => ({children, ...props}) => <a data-state="failure" onClick={() => console.error(error)} href="javascript: void(0)" {...props}>{children}</a> ,
-        success: (keywordAndShortcode) => ({children, ...props}) => <MOLink onClick={() => tracker.advancedInFlow("click2sms", "click")} keywordAndShortcode={keywordAndShortcode} {...props}>{children}</MOLink>
+        success: (keywordAndShortcode) => ({children, keyword, shortcode, ...props}) => {
+          const keywordAndShortcode1 = {
+              keyword: keyword || keywordAndShortcode.keyword, 
+              shortcode: shortcode || keywordAndShortcode.shortcode
+            }
+          return <MOLink onClick={() => tracker.advancedInFlow("click2sms", "click", keywordAndShortcode1)} 
+                  keywordAndShortcode={keywordAndShortcode1} {...props}
+            >{children}</MOLink>
+        }
       })(this.state.currentState)
-      return <Comp {...this.props} currentState={this.state.currentState} MOLink={moLink} />
+      return <Comp 
+                {...this.props} 
+                currentState={this.state.currentState} 
+                MOLink={moLink} 
+              />
     }
   }

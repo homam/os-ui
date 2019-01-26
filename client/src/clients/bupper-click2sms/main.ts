@@ -11,7 +11,16 @@ const defaultConfig = (offer: number) : Config => {
           offer: (offer || 1),
           host: 'w1.mozzi.com',
           country: 'gh',
-          handle: 'secure-pro'
+          handle: '18plus-oc2sms'
+        }
+      }
+      case "hu": {
+        // curl "http://w.mozzi.biz/spa-api/?country=hu&device=smart&slug=gameclub&action=oc2sms"
+        return {
+          offer: (offer || 1),
+          host: "w.mozzi.biz",
+          country: "hu",
+          handle: "gameclub"
         }
       }
     default:
@@ -33,7 +42,7 @@ export default async function load(window: Window, maybeConfig: IConfig): Promis
     if(!result.success) {
       throw result.message;
     } else {
-      return {keyword: `${result.keyword}${result.uid}`, shortcode: result.shortcode}
+      return {keyword: `${result.keyword} ${result.uid}`, shortcode: result.shortcode}
     }
   }
   
