@@ -14,5 +14,9 @@
   "ms": {
     "name": "Bahasa",
     "countries": ["my", "id"]
+  },
+  "zh": {
+    "name": "Chinese",
+    "countries": ["my", "hk"]
   }
 }

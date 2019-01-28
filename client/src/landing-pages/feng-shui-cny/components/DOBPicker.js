@@ -1,5 +1,6 @@
 import React from "react";
 import './DOBPicker.less?raw'
+import { Translate } from "../localization/index";
 
 class DOBPicker extends React.PureComponent {
   render() {
@@ -20,11 +21,18 @@ class DOBPicker extends React.PureComponent {
 
         <div className="arrowDown"> 
         <select>
-          {[...new Array(12).keys()]
-            .map(i => fromMonth + ++i)
-            .map(i => (
-              <option key={i.toString()}>{i}</option>
-            ))}
+         <option value={<Translate id="january" />}><Translate id="january" /></option>
+         <option value={<Translate id="february" />}><Translate id="february" /></option>
+         <option value={<Translate id="march" />}><Translate id="march" /></option>
+         <option value={<Translate id="april" />}><Translate id="april" /></option>
+         <option value={<Translate id="may" />}><Translate id="may" /></option>
+         <option value={<Translate id="june" />}><Translate id="june" /></option>
+         <option value={<Translate id="july" />}><Translate id="july" /></option>
+         <option value={<Translate id="august" />}><Translate id="august" /></option>
+         <option value={<Translate id="september" />}><Translate id="september" /></option>
+         <option value={<Translate id="october" />}><Translate id="october" /></option>
+         <option value={<Translate id="november" />}><Translate id="november" /></option>
+         <option value={<Translate id="december" />}><Translate id="december" /></option>
         </select>
         </div>
 

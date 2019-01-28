@@ -19,12 +19,9 @@ import MsisdnComponent from '../../common-components/msisdn/msisdn-input';
 import { IKeywordShortcode } from "../../clients/lp-api-mo/main";
 import Disclaimer from "../../legal-components/Disclaimer";
 
-
 const shape = require("./assets/img/top-left.svg");
 const editorChoice = require("./assets/img/ed-choice.svg");
 const likes = require("./assets/img/likes.svg");
-
-
 
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
@@ -32,24 +29,29 @@ const tracker = mkTracker(
   "Feng Shui CNY" //TODO: replace Unknown with your page's name
 );
 
+function Wait(props) {
+  return (
+    <div>
+      <Translate id="wait" />
+    </div>
+  )
+}
 
-const MO = ({ keyword, shortcode }: IKeywordShortcode) => {
+function MO({ keyword, shortcode, backToStart }: IKeywordShortcode & { backToStart: () => void }) {
   return (
     <div>
 
-      <div className="balloon balloon-4">
-        <div className="title top-sm lg">To keep watching, send SMS now</div>
-        <div className="btn-container">
-          <MO keyword="ON AYUMI" shortcode="32616" />
+      <div className="box-container">
+        <div>
+          <Translate id="mo-title"></Translate>
         </div>
-      </div>
-      <div className="mo-wrapper">
         <MOLink keywordAndShortcode={{ keyword, shortcode }}>
           <div className="input-container">
-            <div className="button-container">
-              <button type="button" className="btn full-width both">
-                SMS Now
-          </button>
+            <div className="btn-container">
+
+              <button type="button" className="btn both uppercase">
+                <Translate id="send-sms" />
+              </button>
             </div>
             <div className="mo-text">OR</div>
             <div className="mo-text">
@@ -59,9 +61,9 @@ const MO = ({ keyword, shortcode }: IKeywordShortcode) => {
           </div>
         </MOLink>
 
-        {/* <div>
-      <a className="try-again" onClick={()=> backToStart()}>Try again</a>
-    </div> */}
+        <div>
+          <a className="try-again" onClick={() => backToStart()}><Translate id="try-again"></Translate></a>
+        </div>
 
       </div>
     </div>
@@ -70,13 +72,14 @@ const MO = ({ keyword, shortcode }: IKeywordShortcode) => {
 
 
 class MSISDNEntryStep extends React.PureComponent<{
-  msisdn: string;
-  rds: RDS.RemoteDataState<MSISDNEntryFailure, MSISDNEntrySuccess>;
+  msisdn: string; rds: RDS.RemoteDataState<MSISDNEntryFailure,
+    MSISDNEntrySuccess>;
   onEnd: (msisdn: string) => void;
 }> {
   state = {
     msisdn: this.props.msisdn
   };
+
   render() {
     return (
       <form
@@ -100,14 +103,14 @@ class MSISDNEntryStep extends React.PureComponent<{
 
             <button type="submit" className="btn uppercase" disabled={RDS.IsLoading(this.props.rds)}><Translate id="read-my-fortune" /></button>
             {
-              RDS.WhenLoading(null, () => 'Reading...')(this.props.rds)
+              RDS.WhenLoading(null, () => <Wait />)(this.props.rds)
             }
           </div>
         </div>
         <div>
-          {
-            RDS.WhenFailure(null, (err: MSISDNEntryFailure) => <Translate id={err.errorType} />)(this.props.rds)
-          }
+          {RDS.WhenFailure(null, (err: MSISDNEntryFailure) => (
+            <Translate id={err.errorType} />
+          ))(this.props.rds)}
         </div>
       </form>
     );
@@ -116,7 +119,7 @@ class MSISDNEntryStep extends React.PureComponent<{
 
 
 const TQStep = ({ finalUrl }: { finalUrl: string }) => <div>
-  <div className="bold thank-you"><Translate id="thank-you" /></div>
+  <div className="bold thank-you">Thank you!</div>
   {/* <a href={finalUrl}>Click here to access the product</a> */}
 </div>;
 
@@ -124,8 +127,22 @@ class Root extends React.PureComponent<HOCProps> {
   state = {
     locale: "en",
     msisdn: "",
-    preLander: 1,
+    preLander: 1
   };
+
+  componentWillMount() {
+    this.checkPhoneLang();
+  }
+
+  checkPhoneLang() {
+    const lang = typeof window != "undefined" ? window.navigator.language : "en"
+
+    if (lang === "zh") {
+      this.setState({
+        locale: "zh"
+      })
+    }
+  }
 
   nextPrelander = () => {
     this.setState({
@@ -156,16 +173,15 @@ class Root extends React.PureComponent<HOCProps> {
 
   render() {
     return (
-      <div>       
-
+      <div>
         <div className="wrapper">
-        <div className="topbar">
-        <div className="topbar-container">
-        <div className="ed-container"><img src={editorChoice} /></div>
-          <div className="likes-container"><img src={likes} /></div>
-        </div>
-          
-        </div>
+          {/* <div className="topbar">
+            <div className="topbar-container">
+              <div className="ed-container"><img src={editorChoice} /></div>
+              <div className="likes-container"><img src={likes} /></div>
+            </div>
+
+          </div> */}
           <div className="starbust"></div>
           <div className="lantern-container">
             <div className="lantern left wobble-hor-top"></div>
@@ -173,6 +189,8 @@ class Root extends React.PureComponent<HOCProps> {
           </div>
           <div className="masthead vibrate-1"></div>
         </div>
+
+
         <div className="container force-top text-center">
           <div className="box-border">
             <div className="box">
@@ -183,87 +201,70 @@ class Root extends React.PureComponent<HOCProps> {
                 {match({
                   msisdnEntry: rds => (
                     <div>
-                    <div className="box-container">
-                      <div>
-                        {/* 1st PRELANDER */}
-                        <div className={"start " + (this.state.preLander === 1 ? "active" : "hidden")}>
-                          <div className="box-content">
-                            <Translate id="discover-fortune" />
-                          </div>
-
-                          <div className="section btn-container">
-                            <div className="box-content sub-title float-left">
-                             <Translate id="you-are" />
-                          </div>
-
-                            <div className="gender-container">
-                              <label className="container-radio"><Translate id="female" />
-                          <input type="radio" name="radio"></input>
-                                <span className="checkmark"></span>
-                              </label>
-
-                              <label className="container-radio"><Translate id="male" />
-                          <input type="radio" name="radio"></input>
-                                <span className="checkmark"></span>
-                              </label>
-
+                      <div className="box-container">
+                        <div>
+                          {/* 1st PRELANDER */}
+                          <div className={"start " + (this.state.preLander === 1 ? "active" : "hidden")}>
+                            <div className="box-content">
+                              <Translate id="discover-fortune" />
                             </div>
-                          </div>
 
-                          <div className="box-content sub-title">
-                            <Translate id="date-birth" />
-                          </div>
+                            <div className="section btn-container">
+                              <div className="box-content sub-title float-left">
+                                <Translate id="you-are" />
+                              </div>
 
-                          <div className="section">
-                            <div className="date-picker-container">
-                              <DOBPicker />
+                              <div className="gender-container">
+                                <label className="container-radio"><Translate id="female" />
+                                  <input type="radio" name="radio"></input>
+                                  <span className="checkmark"></span>
+                                </label>
+
+                                <label className="container-radio"><Translate id="male" />
+                                  <input type="radio" name="radio"></input>
+                                  <span className="checkmark"></span>
+                                </label>
+
+                              </div>
                             </div>
-                          </div>
 
-                          <div className="box-content sub-title">
-                            <Translate id="phone-number" />
+                            <div className="box-content sub-title">
+                              <Translate id="date-birth" />
+                            </div>
+
+                            <div className="section">
+                              <div className="date-picker-container">
+                                <DOBPicker />
+                              </div>
+                            </div>
+
+                            <div className="box-content sub-title">
+                              <Translate id="phone-number" />
+                            </div>
+
+
                           </div>
-                          <SimpleOpacityTransition key="msisdnEntry">
-                                <MSISDNEntryStep
-                                  msisdn={this.state.msisdn}
-                                  rds={rds}
-                                  onEnd={msisdn => {
-                                    this.setState({ msisdn });
-                                    this.props.actions.submitMSISDN(window, null, msisdn);
-                                  }}
-                                />
-                              </SimpleOpacityTransition>
 
                         </div>
-
-
-                      </div>
-                    </div>
-                      <div>
-                        {RDS.WhenSuccess<MSISDNEntrySuccess, JSX.Element>(
-                          <MSISDNEntryStep msisdn={this.state.msisdn} rds={rds} onEnd={msisdn=> {
-                            this.setState({ msisdn });
-                            this.props.actions.submitMSISDN(
-                            window,
-                            null,
-                            msisdn
-                            );
+                        <div>
+                          {RDS.WhenSuccess<MSISDNEntrySuccess, JSX.Element>(
+                            <MSISDNEntryStep msisdn={this.state.msisdn} rds={rds} onEnd={msisdn => {
+                              this.setState({ msisdn });
+                              this.props.actions.submitMSISDN(
+                                window,
+                                null,
+                                msisdn
+                              );
                             }}
                             />,
-                            data =>
-                            <MO {...data} />
-                            )(rds)}
+                            data => <MO {...data} backToStart={this.props.actions.backToStart} />)(rds)}
+                        </div>
                       </div>
-                      {/* MO VIEW */}
-                      <Translate id="mo-title" />
-                      <div className="title top-sm lg">
-                       <Translate id="send-sms" />
-                      </div>
-                      <div className="btn-container">
-                        <MO keyword="ON AYUMI" shortcode="32616"></MO>
-                      </div>
-                    {/* MO VIEW END */}
-                      </div>
+
+                    </div>
+
+
+
                   ),
 
 
@@ -281,31 +282,32 @@ class Root extends React.PureComponent<HOCProps> {
               <div className="box-img bottom"></div>
             </div>
           </div>
-          <CustomTesti
-            className="fengshui-testimonial"
-            testimonials={
-              [
-                {
-                  Message: () => <span className="message"><Translate id="testimonial-1" /></span>,
-                  Name: () => <span className="testimonials-name"> - <Translate id="name-1" /></span>,
-                  stars: 5
-                },
-                {
-                  Message: () => <span className="message"><Translate id="testimonial-2" /></span>,
-                  Name: () => <span className="testimonials-name"> - <Translate id="name-2" /></span>,
-                  stars: 5
-                },
-                {
-                  Message: () => <span className="message"><Translate id="testimonial-3" /></span>,
-                  Name: () => <span className="testimonials-name"> - <Translate id="name-3" /></span>,
-                  stars: 5
-                }
-              ]
-            }
-          />
-
+          <TranslationProvider locale={this.state.locale}>
+            <CustomTesti
+              className="fengshui-testimonial"
+              testimonials={
+                [
+                  {
+                    Message: () => <span className="message"><Translate id="testimonial-1" /></span>,
+                    Name: () => <span className="testimonials-name"> - <Translate id="name-1" /></span>,
+                    stars: 5
+                  },
+                  {
+                    Message: () => <span className="message"><Translate id="testimonial-2" /></span>,
+                    Name: () => <span className="testimonials-name"> - <Translate id="name-2" /></span>,
+                    stars: 5
+                  },
+                  {
+                    Message: () => <span className="message"><Translate id="testimonial-3" /></span>,
+                    Name: () => <span className="testimonials-name"> - <Translate id="name-3" /></span>,
+                    stars: 5
+                  }
+                ]
+              }
+            />
+          </TranslationProvider>
           <div className="disclaimer">
-          <Disclaimer />
+              <Disclaimer />          
           </div>
 
         </div>

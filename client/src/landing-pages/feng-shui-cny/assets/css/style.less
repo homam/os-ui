@@ -59,7 +59,7 @@ button {
     margin: auto;
     z-index: 1;
     position: relative;
-    max-height: 400px;
+    height: 60vh;
 }
 
 .box-border {
@@ -217,10 +217,12 @@ input {
     text-align-last: center;
     padding: 0 12px 10px 12px;
     font-size: 11px;
-    opacity: 0.5;
+    opacity: 1;
+    color: white;
 }
 
 .msisdn-fengshui {
+    margin-top: -5px;
     .msisdn-input {
         background-color: white;
         padding-left: 89px;
@@ -324,9 +326,15 @@ input {
                 background-image: url("../img/testimonial-3.png");
             }
           }
-          .details .rating span {
+          .details {
+              .rating span {
               color: white;
               font-size: 12px;
+          }
+          .message {
+              line-height: inherit;
+              height: 30px;
+          }
           }
           &:after {
               color: white;
@@ -338,7 +346,7 @@ input {
 .date-picker-container {
     position: relative;
     display: inline-block;
-    margin: 8px auto;
+    margin: 4px auto 8px;
     .DOBPicker-container {
         select {
             width: 87px;
@@ -554,6 +562,17 @@ input {
 	-webkit-animation: wobble-hor-top 10s ease-in-out infinite both;
 	        animation: wobble-hor-top 10s ease-in-out infinite both;
 }
+
+.mo-text {
+    font-size: 18px;
+    font-weight: bold;
+    color: red;
+    a {
+        text-decoration: none;
+    }
+}
+
+@media screen and (min-width: )
 
 
 
