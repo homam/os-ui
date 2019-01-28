@@ -41,10 +41,12 @@ function MO({ keyword, shortcode, backToStart }: IKeywordShortcode & { backToSta
   return (
     <div>
 
-      <div className="box-container">
-        <div>
+      <div className="">
+        <div className="mo-fade">
           <Translate id="mo-title"></Translate>
+          
         </div>
+        <Translate id="mo-title-2"></Translate>
         <MOLink keywordAndShortcode={{ keyword, shortcode }}>
           <div className="input-container">
             <div className="btn-container">
@@ -53,15 +55,17 @@ function MO({ keyword, shortcode, backToStart }: IKeywordShortcode & { backToSta
                 <Translate id="send-sms" />
               </button>
             </div>
+            <div className="mo-top">
             <div className="mo-text">OR</div>
             <div className="mo-text">
               Send <span className="keyword">{keyword}</span> to{" "}
               <span className="shortcode">{shortcode} </span>
             </div>
+            </div>
           </div>
         </MOLink>
 
-        <div>
+        <div className="try-again-top">
           <a className="try-again" onClick={() => backToStart()}><Translate id="try-again"></Translate></a>
         </div>
 
@@ -88,6 +92,50 @@ class MSISDNEntryStep extends React.PureComponent<{
           this.props.onEnd(this.state.msisdn);
         }}
       >
+
+<div>
+                          {/* 1st PRELANDER */}
+                          <div>
+                            <div className="box-content">
+                              <Translate id="discover-fortune" />
+                            </div>
+
+                            <div className="section btn-container">
+                              <div className="box-content sub-title float-left">
+                                <Translate id="you-are" />
+                              </div>
+
+                              <div className="gender-container">
+                                <label className="container-radio"><Translate id="female" />
+                                  <input type="radio" name="radio"></input>
+                                  <span className="checkmark"></span>
+                                </label>
+
+                                <label className="container-radio"><Translate id="male" />
+                                  <input type="radio" name="radio"></input>
+                                  <span className="checkmark"></span>
+                                </label>
+
+                              </div>
+                            </div>
+
+                            <div className="box-content sub-title">
+                              <Translate id="date-birth" />
+                            </div>
+
+                            <div className="section">
+                              <div className="date-picker-container">
+                                <DOBPicker />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        
+
+        <div className="box-content sub-title">
+          <Translate id="phone-number" />
+        </div>
         <div>
           {/* <input
             placeholder="Phone number"
@@ -173,6 +221,7 @@ class Root extends React.PureComponent<HOCProps> {
 
   render() {
     return (
+      <TranslationProvider locale={this.state.locale}>
       <div>
         <div className="wrapper">
           {/* <div className="topbar">
@@ -196,56 +245,13 @@ class Root extends React.PureComponent<HOCProps> {
             <div className="box">
               <div className="box-img top"></div>
 
-              <TranslationProvider locale={this.state.locale}>
+              
 
                 {match({
                   msisdnEntry: rds => (
                     <div>
                       <div className="box-container">
-                        <div>
-                          {/* 1st PRELANDER */}
-                          <div className={"start " + (this.state.preLander === 1 ? "active" : "hidden")}>
-                            <div className="box-content">
-                              <Translate id="discover-fortune" />
-                            </div>
-
-                            <div className="section btn-container">
-                              <div className="box-content sub-title float-left">
-                                <Translate id="you-are" />
-                              </div>
-
-                              <div className="gender-container">
-                                <label className="container-radio"><Translate id="female" />
-                                  <input type="radio" name="radio"></input>
-                                  <span className="checkmark"></span>
-                                </label>
-
-                                <label className="container-radio"><Translate id="male" />
-                                  <input type="radio" name="radio"></input>
-                                  <span className="checkmark"></span>
-                                </label>
-
-                              </div>
-                            </div>
-
-                            <div className="box-content sub-title">
-                              <Translate id="date-birth" />
-                            </div>
-
-                            <div className="section">
-                              <div className="date-picker-container">
-                                <DOBPicker />
-                              </div>
-                            </div>
-
-                            <div className="box-content sub-title">
-                              <Translate id="phone-number" />
-                            </div>
-
-
-                          </div>
-
-                        </div>
+                        
                         <div>
                           {RDS.WhenSuccess<MSISDNEntrySuccess, JSX.Element>(
                             <MSISDNEntryStep msisdn={this.state.msisdn} rds={rds} onEnd={msisdn => {
@@ -276,13 +282,10 @@ class Root extends React.PureComponent<HOCProps> {
                 })(this.props.currentState)}
 
 
-              </TranslationProvider>
-
 
               <div className="box-img bottom"></div>
             </div>
           </div>
-          <TranslationProvider locale={this.state.locale}>
             <CustomTesti
               className="fengshui-testimonial"
               testimonials={
@@ -305,13 +308,13 @@ class Root extends React.PureComponent<HOCProps> {
                 ]
               }
             />
-          </TranslationProvider>
           <div className="disclaimer">
-              <Disclaimer />          
+            <Disclaimer />
           </div>
 
         </div>
       </div>
+      </TranslationProvider>
     );
   }
 }
