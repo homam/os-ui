@@ -11,17 +11,17 @@ import HOC, {
   MOLink,
 } from "../../clients/lp-api-mo/HOC";
 import * as RDS from "../../common-types/RemoteDataState";
-import { SimpleOpacityTransition, TransitionGroup, simpleOpacityTransitionStyles } from "../../common-components/simple-opacity-transition";
 import "./assets/css/style.less?raw";
 import CustomTesti from "../bid-win/components/CustomTesti";
 import DOBPicker from "./components/DOBPicker";
 import MsisdnComponent from '../../common-components/msisdn/msisdn-input';
 import { IKeywordShortcode } from "../../clients/lp-api-mo/main";
 import Disclaimer from "../../legal-components/Disclaimer";
+import PhoneInput, { getConfig } from "ouisys-phone-input/dist/common/PhoneInput"
 
-const shape = require("./assets/img/top-left.svg");
-const editorChoice = require("./assets/img/ed-choice.svg");
-const likes = require("./assets/img/likes.svg");
+// const shape = require("./assets/img/top-left.svg");
+// const editorChoice = require("./assets/img/ed-choice.svg");
+// const likes = require("./assets/img/likes.svg");
 
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
@@ -84,6 +84,8 @@ class MSISDNEntryStep extends React.PureComponent<{
     msisdn: this.props.msisdn
   };
 
+  phoneInputRef = React.createRef<HTMLInputElement>()
+
   render() {
     return (
       <form
@@ -143,11 +145,27 @@ class MSISDNEntryStep extends React.PureComponent<{
             onChange={ev => this.setState({ msisdn: ev.target.value })}
           /> */}
           <div className="msisdn-fengshui">
-            <MsisdnComponent
+            {/* <MsisdnComponent
               maxLength={10}
               placeholder="Phone Number"
               onChange={(msisdn) => this.setState({ msisdn })}
-              countryCode={'+60'} />
+              countryCode={'+60'} /> */}
+
+          <PhoneInput
+            inputElementRef={this.phoneInputRef}
+            placeholder = "Mobile Phone number"
+            msisdn={this.state.msisdn}
+            countryCode={process.env.country}
+            showFlag={true}
+            showMobileIcon={false}
+            showError={true}
+            onChange={({msisdn, isValid, bupperNumber}) => {
+
+                this.setState({ msisdn, isValid, bupperNumber })
+              }
+            }
+        
+           />
 
             <button type="submit" className="btn uppercase" disabled={RDS.IsLoading(this.props.rds)}><Translate id="read-my-fortune" /></button>
             {
@@ -174,7 +192,7 @@ const TQStep = ({ finalUrl }: { finalUrl: string }) => <div>
 class Root extends React.PureComponent<HOCProps> {
   state = {
     locale: "en",
-    msisdn: "",
+    msisdn: getConfig(process.env.country).commonPrefix,
     preLander: 1
   };
 
