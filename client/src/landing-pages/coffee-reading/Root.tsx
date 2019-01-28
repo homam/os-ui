@@ -66,10 +66,26 @@ class MSISDNEntryStep extends React.PureComponent<{
             value={this.state.msisdn}
             onChange={ev => this.setState({ msisdn: ev.target.value })}
           />
-          <button type="submit" disabled={RDS.IsLoading(this.props.rds)}><Translate id="msisdn_btn_send" defaultMessage="Submit" /></button>
+
+        <div>
+
           {
             RDS.WhenLoading(null, () => <div className="wait-msg"><Translate id="waitingText" defaultMessage="Please wait..." /></div>)(this.props.rds)
           }
+
+          {
+            RDS.WhenFailure(null, (err: MSISDNEntryFailure) => <div className="error-msg"><Translate id={err.errorType} /></div>)(this.props.rds)
+          }
+
+          {
+            this.state.validationError != null
+              ? <div className="error-msg">{this.state.validationError}</div>
+              : null
+          }
+        </div>
+
+          <button type="submit" disabled={RDS.IsLoading(this.props.rds)}><Translate id="msisdn_btn_send" defaultMessage="Submit" /></button>
+       
 
           <div className="terms">
 
@@ -87,17 +103,7 @@ class MSISDNEntryStep extends React.PureComponent<{
           </div>
 
         </div>
-        <div>
-          {
-            RDS.WhenFailure(null, (err: MSISDNEntryFailure) => <div className="error-msg"><Translate id={err.errorType} /></div>)(this.props.rds)
-          }
-
-          {
-            this.state.validationError != null
-              ? <div className="error-msg">{this.state.validationError}</div>
-              : null
-          }
-        </div>
+   
       </form>
     );
   }
