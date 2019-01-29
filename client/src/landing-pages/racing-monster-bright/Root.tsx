@@ -71,7 +71,7 @@ class Root extends React.PureComponent<IProps> {
 
           <div id="holder">
 
-              <button onClick={() => this.props.actions.onClick()} className="btn">اشترك الان!</button>
+              <button onClick={() => this.props.actions.onClick()} className="btn">اشترك!</button>
 
           </div>
 
