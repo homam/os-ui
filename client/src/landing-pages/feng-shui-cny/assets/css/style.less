@@ -41,7 +41,7 @@ button {
     position: relative;
     z-index: 2;
     &.force-top {
-        margin-top: -120px;
+        margin-top: -188px;
     }
 }
 
@@ -225,25 +225,25 @@ input {
     margin-top: -5px;
     .msisdn-input {
         background-color: white;
-        padding-left: 89px;
-        font-size: 15px;
+        padding-left: 96px;
+        font-size: 18px;
         border-radius: 1px;
         border: 1px solid #9a9a9a;
         max-width: 354px;
-        height: 33px;
+        height: 40px;
     }
     .country-code {
-        top: 16px;
-        left: 36px;
-        font-size: 15px;
+        top: 19px;
+        left: 44px;
+        font-size: 17px;
     }
     .msisdn-wrapper {
         &:after {
             border: 1px solid #9a9a9a;
             border-radius: 0;
-            height: 31px;
+            height: 38px;
             background-size: 64%;
-            width: 31px;
+            width: 38px;
         }
         .phone {
             top: 9px;
@@ -352,12 +352,13 @@ input {
             width: 87px;
             border-radius: 0;
             border: 1px solid #9a9a9a;
+            height: 40px;
         }
         .arrowDown {
             &:after {
                 border-color: #6b6b6b transparent transparent transparent;
                 border-width: 7px 6px 0 6px;
-                top: 11px;
+                top: 18px;
                 margin-left: 69px;
                 border-radius: 10px;
             }
@@ -458,6 +459,42 @@ input {
     padding: 20px 0;
 }
 
+a {
+    text-decoration: none;
+}
+
+.mo-top {
+    margin-top: -10px;
+}
+
+.try-again-top {
+    margin-top: 10px;
+}
+
+.mo-fade {
+  position: relative;
+  height: 3.6em;
+  margin-bottom: 10px;
+//   &:after {
+//     content: "";
+//     text-align: right;
+//     position: absolute;
+//     bottom: 0;
+//     right: 0;
+//     width: 67%;
+//     height: 1.2em;
+//     background: linear-gradient(to right, rgba(214, 280, 263, 0), #fff1df 50%);
+//   }
+}
+
+.general-terms {
+    margin-bottom: 4px;
+    a {
+        color: #ebb957;
+        font-weight: bold;
+    }
+    
+}
 
 /* The container */
 .container-radio {
@@ -466,7 +503,7 @@ input {
     padding-left: 35px;
     /* margin-bottom: 12px; */
     cursor: pointer;
-    font-size: 13px;
+    font-size: 15px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -476,7 +513,7 @@ input {
     padding: 8px 21px;
     margin: 0 3px;
     border-radius: 6px;
-    /* font-weight: bold; */
+    font-weight: bold;
   }
   
   /* Hide the browser's default radio button */
@@ -693,3 +730,22 @@ input {
     }
   }
   
+  form {
+    .phone-input {
+        height: 40px;
+        border-radius: 10px;
+        margin-top: 12px;
+        margin-bottom: 12px;
+        background: white;
+    }
+    .phone-input input.text-input {
+        font-size: 130%;
+        height: 40px;
+        margin-left: 0.2em;
+        padding-left: 0.2em;
+    }
+    .phone-input .checkmark-container {
+        width: 36px;
+        height: 36px;
+    }
+  }
