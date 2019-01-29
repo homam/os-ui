@@ -1,0 +1,321 @@
+@font-face {
+  font-family: "Sailec-Black";
+  src: 
+  url("./fonts/Sailec-Black.ttf") format("truetype"),
+  url("./fonts/Sailec-Black.woff") format("woff"),
+  url("./fonts/Sailec-Black.woff2") format("woff2");
+  }
+  
+@font-face {
+  font-family: "Sailec-Bold";
+  src: 
+  url("./fonts/Sailec-Bold.ttf") format("truetype"),
+  url("./fonts/Sailec-Bold.woff") format("woff"),
+  url("./fonts/Sailec-Bold.woff2") format("woff2");
+    }
+
+@font-face {
+  font-family: "Sailec-Regular";
+  src: 
+  url("./fonts/Sailec.ttf") format("truetype"),
+  url("./fonts/Sailec.woff") format("woff"),
+  url("./fonts/Sailec.woff2") format("woff2");
+        }
+
+@font-face {
+  font-family: "Burbank";
+  src: 
+  url("./fonts/Burbank.ttf") format("truetype"),
+  url("./fonts/Burbank.woff") format("woff")
+}
+
+body, html, header {
+  margin:0;
+  -webkit-touch-callout:none;
+	  -webkit-text-size-adjust: none;
+	  -webkit-font-smoothing: antialiased;
+
+}
+  
+.container-full {
+  max-width:700px;
+  margin:0 auto;
+  position:relative;
+}
+
+.top-bar {
+  background:#2A2A2A;
+  width:100%;
+  color:white; 
+  display:flex;
+  justify-content: space-between;
+  align-content: center;
+  align-items:center;
+  position: relative; 
+}
+
+.fortnite-logo {
+  background: url(./imgs/logo.png);
+  width:170px;
+  height:30px;
+  background-size:contain; 
+  background-position: center;
+  background-repeat: no-repeat;
+  padding:0px 10px;
+
+}
+
+.online {
+  font-family: Sailec-Regular;
+  font-size:12px;
+  display:flex;
+  align-items:center; 
+  align-content: center;
+  justify-content: space-between;
+  border-left:2px solid white;
+}
+
+.profile {
+  width:60px;
+  height:30px;
+  background: url('./imgs/ninja-logo.jpg');
+  background-repeat: no-repeat; 
+  background-size: cover;
+  background-position: center;
+  margin:0px 10px;
+  border-radius:5px;
+  
+}
+
+.online span {
+  font-family: Sailec-Bold;
+}
+
+.green-blink {
+  width:9px;
+  height:9px;
+  background:#67FE43;
+  border-radius:10px;
+  float: right;
+  margin-top:-2px;
+  margin-right: -2px;
+}
+
+.full-title {
+  background:linear-gradient(#009AD6, white);
+  position: relative;
+  margin:0 auto;
+  padding:25px 15px;
+  display:flex;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+}
+
+h1, h2 {
+  font-family: Burbank;
+  color:white;
+  text-shadow: 0px 3px 5px rgba(0,0,0, 0.3);
+  margin:0;
+}
+
+h1 {
+  text-transform:uppercase;
+  font-size:2.8em;
+  line-height:0.9em;
+}
+
+.badge {
+  background: url('./imgs/badge.gif');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width:200px;
+  height:100px;
+  margin-right:20px;
+  margin-top:-15px;
+}
+
+
+/** Swiper heroes **/
+
+.slide {
+  height:430px;
+  width:93%;
+}
+
+.slide button {
+  position:absolute;
+  bottom:25px;
+  width:90%;
+  background:linear-gradient(#FAB635, #F8D860) ;
+  font-family: Burbank;
+  font-size:33px;
+  text-transform:uppercase;
+  padding:12px;
+  z-index:100;
+  margin-left:5%;
+  border:2px solid #FAB635;
+  border-radius:10px;
+  box-shadow: 0px 5px 10px rgba(0,0,0,0.2);
+}
+
+
+
+.container-slide {
+  border-radius:10px;
+  height:280px;
+  top:55px;
+  width:95%;
+  position:absolute;
+  display: block;
+  z-index:0;
+
+}
+
+.container-slide p {
+  font-family:Burbank;
+  text-transform:uppercase;
+  font-size:34px;
+  margin-left:15px;
+  text-shadow: 0px 5px 5px rgba(0,0,0,0.2)
+}
+
+
+
+.orange {
+ background:linear-gradient(90deg, #F9B060, #F67439) ;
+}
+
+
+.orange:before, .grey:before, .green:before, .blue:before, {
+  background:url('./imgs/background.png') no-repeat bottom right;
+  content:"";
+  position:absolute;
+  width:100%;
+  height:100%;
+  background-size:95%;
+}
+
+
+.grey {
+  background:linear-gradient(90deg, #4B5269, #292929)
+ }
+
+ .green {
+  background:linear-gradient(90deg, #FFF843, #2B9026)
+ }
+
+ .blue {
+  background:linear-gradient(90deg, #8DF5D5, #43AFFF)
+ }
+
+.swiper p {
+  font-family: Burbank;
+  color:white;
+  font-size:20px;
+  text-transform:uppercase;
+  margin:0 auto;
+  text-shadow: 0px 3px 5px rgba(0,0,0,0.2)
+}
+
+.swiper .icon {
+  border:8px solid white;
+  background: url('./imgs/SWIPE.svg') no-repeat center center;
+  width:80px; 
+  height:80px;
+  border-radius:80px;
+  background-size:70%;
+  margin-bottom:-20px !important;
+  margin:0 auto;
+}
+
+.swiper {
+  margin-left:30px;
+  text-align:center;
+  position: absolute;
+  margin-top:215px;
+  z-index:2;
+}
+
+.hero {
+  height:320px;
+  width:100%;
+  position: absolute;
+  z-index:1;
+  top:15px;
+}
+
+.question {
+  margin-bottom:-25px;
+  margin-left:5px;
+} 
+
+.question span {
+  color:white;
+  background:black;
+  padding:2px 8px; 
+  border-radius:15px;
+  font-family: Sailec; 
+  font-size:14px;
+  width:10px;
+  height:10px;
+  vertical-align: text-top;
+  margin-right: 5px;
+}
+
+.question p {
+ margin:0;
+}
+
+.question .subtitle {
+  margin-left:25px;
+  background:#f2f2f2; 
+  padding: 2px 5px;
+  border-radius:15px;
+  width:170px;
+  text-align:center;
+
+}
+
+.question .subtitle p {
+  font-family: Sailec; 
+  font-size:12px; 
+} 
+
+
+.question .title p {
+  font-family: Sailec-black; 
+  font-size:22px; 
+} 
+
+@media all and (max-width:320px) {
+  .hero {width:100%;height:250px;}
+  .orange p {font-size:28px;}
+  h1 {font-size:2.1em}
+  h2 {font-size:1.3em }
+  .container-slide { height:210px}
+  .swiper {margin-top:150px}
+  .slide {height:360px;}
+
+}
+
+.constructor {
+  background:url('./imgs/constructor.png') no-repeat center right;
+  background-size:contain;
+}
+
+.ninja {
+  background:url('./imgs/ninja.png') no-repeat center right;
+  background-size:contain;
+}
+
+.outlander {
+  background:url('./imgs/outlander.png') no-repeat center right;
+  background-size:contain;
+}
+
+.soldier {
+  background:url('./imgs/soldier.png') no-repeat center right;
+  background-size:contain;
+}
