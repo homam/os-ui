@@ -55,7 +55,7 @@ class Root extends React.PureComponent<HOCProps> {
 
               {console.log(this.state.keyValue)}
 
-             {/*<div>keyword:{this.state.keyValue}</div>*/}
+             <div className="keyword">keyword:{this.state.keyValue}</div>
              <MOLink className="cta-a-tag">SMS Now!</MOLink>
 
           </div>
