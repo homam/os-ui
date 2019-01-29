@@ -53,8 +53,6 @@ class Root extends React.PureComponent<HOCProps> {
 
               <ChatScreen/>
 
-              {console.log(this.state.keyValue)}
-
              <div className="keyword">keyword:{this.state.keyValue}</div>
              <MOLink className="cta-a-tag">SMS Now!</MOLink>
 
