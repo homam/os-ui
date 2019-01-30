@@ -143,7 +143,7 @@ class PINEntryStep extends React.PureComponent<{
         </div>
         <div>
           {
-            RDS.match({
+            RDS.match<PINEntryFailure, PINEntrySuccess, any>({
               failure: (err: PINEntryFailure) => (
                 <div className="messagePIN">
                   <div><Translate id={err.errorType} /></div>
@@ -166,7 +166,7 @@ class PINEntryStep extends React.PureComponent<{
                 </div>
               ),
               loading: () => null,
-              success: () => null
+              success: ({finalUrl}) => null
             })(this.props.rds)
           }
         </div>
@@ -175,7 +175,7 @@ class PINEntryStep extends React.PureComponent<{
   }
 }
 
-const TQStep = ({ finalUrl }: { finalUrl: string }) => <div>
+const TQStep = ({ finalUrl }: PINEntrySuccess) => <div>
   <h3><Translate id="congratsTitle" defaultMessage="Congratulations!" /></h3>
   <p><Translate id="congratsText" defaultMessage="You have successfully enrolled in the service." /></p>
   <a href={finalUrl} className="button"><Translate id="portalBtnText" defaultMessage="Go to portal page" /></a>
