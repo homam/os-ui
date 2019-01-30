@@ -104,6 +104,8 @@ class MSISDNEntryStep extends React.PureComponent<{
           <div className="new">
             {/* <img src={New} /> */}
           </div>
+          <div className="op-logo"></div>
+
           <div className="laugh-it">
             {/* <img src={LaughitUp} /> */}
           </div>
@@ -189,7 +191,7 @@ class MSISDNEntryStep extends React.PureComponent<{
                 </div>
                 <span ><Translate id="phone-legals" /></span>
 
-                <a href="https://www.google.com/" className="exit-btn">Exit</a>
+                <a href="https://www.google.com/" className="exit-btn"><Translate id="exit" /></a>
                 {/* MSISDN END HERE*/}
               </div>
             </div>
@@ -259,10 +261,14 @@ class PINEntryStep extends React.PureComponent<{
       >
         {/* PIN FLOW */}
         <div className="bg"></div>
+        <span className="top-legals"><Translate id="top-legals" /></span>
+
         <div className="wrapper">
           <div className="new">
             {/* <img src={New} /> */}
           </div>
+          <div className="op-logo"></div>
+
           <div className="laugh-it">
             {/* <img src={LaughitUp} /> */}
           </div>
@@ -370,10 +376,14 @@ class TQStep extends React.PureComponent<{ finalUrl: string }> {
     return (
       <div>
         <div className="bg"></div>
+        <span className="top-legals"><Translate id="top-legals" /></span>
+
         <div className="wrapper">
           <div className="new">
             {/* <img src={New} /> */}
           </div>
+          <div className="op-logo"></div>
+
           <div className="laugh-it">
             {/* <img src={LaughitUp} /> */}
           </div>

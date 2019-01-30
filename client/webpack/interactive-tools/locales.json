@@ -7,6 +7,10 @@
     "name": "Arabic",
     "countries": ["ae", "sa", "kw", "om", "jo", "bh", "eg", "iq"]
   },
+  "ee": {
+    "name": "Estonian",
+    "countries": ["ee"]
+  },
   "el": {
     "name": "Greek",
     "countries": ["gr"]
@@ -14,6 +18,14 @@
   "ms": {
     "name": "Bahasa",
     "countries": ["my", "id"]
+  },
+  "pt": {
+    "name": "Portuguese",
+    "countries": ["pt"]
+  },
+  "vn": {
+    "name": "Vietnamese",
+    "countries": ["vn"]
   },
   "zh": {
     "name": "Chinese",
