@@ -21,8 +21,8 @@ import PhoneInput, { getConfig } from "ouisys-phone-input/dist/common/PhoneInput
 import { translate } from "../../../webpack/dev-utils/translate-by-yandex";
 
 // const shape = require("./assets/img/top-left.svg");
-const editorChoice = require("./assets/img/ed-choice.svg");
-const likes = require("./assets/img/likes.svg");
+// const editorChoice = require("./assets/img/ed-choice.svg");
+// const likes = require("./assets/img/likes.svg");
 
 document.documentElement.lang
 const tracker = mkTracker(
