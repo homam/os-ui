@@ -1,0 +1,91 @@
+{
+  "splash_header_msg":"Συζητήστε μαζί της τώρα",
+  "splash_start_title":"Οι προβλέψεις",
+  "splash_medium_amanda":"Μέντιουμ Μαρία",
+  "splash_startsub_title":"η πιο αναγνωρισμένη μελλοντολόγος παγκοσμίως",
+  "splash_footer_title":"Το μέλλον σας έχει γραφτεί...",
+  "establishing_text":"Παρακαλώ περιμένετε...",
+  
+  "medium_amanda": "Μέντιουμ Μαρία",
+  "astrologer": "Μελλοντολόγος",
+  
+  "amanda_welcome": "Καλώς ήρθες, σε περίμενα.",
+  "amanda_amazing_vision": "Σε παρακαλώ βοήθησέ με να πάρω τα σωστά vibes απαντώντας σε μερικές ερωτήσεις.",
+  "amanda_your_dob": "Αν κοιτάξεις πίσω στη ζωή σου, θεωρείς τον εαυτό σου τυχερό;",
+  "amanda_your_gender": "Έχεις ερωτευτεί ποτέ πραγματικά;",
+  "amanda_marital_status": "Θεωρείς τον εαυτό σου ως ένα κοινωνικά ενεργό άτομο;",
+  "amanda_signals": "Επιβεβαίωσα ήδη πως βλέπω καθαρά για σένα.",
+  "amanda_would_you_future": "Θέλεις να λάβεις την πλήρη πρόβλεψή μου για σένα;",
+  "amanda_private_secure": "Αυτή η ανάγνωση θα έχει πολύ προσωπικές πληροφορίες για το μέλλον σου.",
+  "amanda_accept_tnc": "Επιβεβαίωσε τον αριθμό του κινητού σου για να μάθεις την πρόβλεψη.",
+  "amanda_not_valid_number": "Λάθος αριθμός - παρακαλώ γράψε το σωστό νούμερο.",
+  "amanda_have_not_agreed_tnc": "Για να προχωρήσεις, δέξου τους όρους χρήσης.",
+  "amanda_tq_submit_number": "Ευχαριστώ που έγραψες τον αριθμό σου.",
+  "amanda_sent_you_a_code": "Σου έστειλα έναν κωδικό, παρακαλώ συμπλήρωσέ τον.",
+  "amanda_valid_pin": "Γράψε το σωστό PIN παρακαλώ.",
+  "amanda_succesfully_subscribe": "Έχετε εγγραφεί με επιτυχία!",
+  
+  "on_a_day": "μια μέρα",
+  "man": "άνδρας",
+  "woman": "γυναίκα",
+  
+  "january": "Γενάρη",
+  "february": "Φλεβάρη",
+  "march": "Μάρτιο",
+  "april": "Απρίλιο",
+  "may": "Μάη",
+  "june": "Ιούνιο",
+  "july": "Ιούλιο",
+  "august": "Αύγουστο",
+  "september": "Σεπτέμβρη",
+  "october": "Οκτώβρη",
+  "novemeber": "Νοέμβρη",
+  "december": "Δεκέμβρη",
+  
+  "answer_yes": "Ναι",
+  
+  "answer_no": "Όχι",
+
+  "ops_vodafone": "vodafone",
+
+  "ops_orange": "orange",
+
+  "terms_yes": "Ναι",
+  
+  "terms_no": "Όχι",
+
+  "terms_msg": "Αποδέχομαι τους Όρους και τις Προϋποθέσεις",
+  
+  "enter_mobile_number_here":"Γράψε τον αριθμό σου",
+  
+  "msisdn_btn_send" : "ΣΥΝΕΧΕΙΑ",
+  
+  "accept_text" : "",
+  
+  "alternate_accept_first": "Έχω λάβει γνώση των",
+
+  "alternate_accept_second": "κι αποδέχομαι να ενεργοποιήσω τη συνδρομητική υπηρεσία περιεχομένου Mobioastro με χρέωση δύο ευρώ και οκτώ λεπτά ανά sms, τρία sms ανά εβδομάδα.",
+
+  "text_terms":"όρων χρήσης",
+
+  "text_price":"Τελική Τιμή Μηνύματος",
+
+  "terms_text" : "Όροι χρήσης",
+  
+  "enter_pin_number_here" : "Γράψε το PIN",
+  
+  "pin_btn_text" : "ΕΠΙΒΕΒΑΙΩΣΗ",
+  
+  "msisdnCheck_if" : "Αν ο",
+  
+  "msisdnCheck_not" : "δεν είναι ο αριθμός σου",
+  
+  "msisdnCheck_click" : "κάνε κλικ εδώ",
+  
+  "access_portal": "ΜΠΕΣ ΣΤΟ ΠΟΡΤΑΛ",
+  
+  "sms_now": "Στείλε μήνυμα τώρα",
+
+  "terms_link": "http://n.mobioastro.com/gr/tnc-mobioastro?offer=1&_next=general_conditions.html"
+
+}
