@@ -18,15 +18,17 @@ import MsisdnComponent from '../../common-components/msisdn/msisdn-input';
 import { IKeywordShortcode } from "../../clients/lp-api-mo/main";
 import Disclaimer from "../../legal-components/Disclaimer";
 import PhoneInput, { getConfig } from "ouisys-phone-input/dist/common/PhoneInput"
+import { translate } from "../../../webpack/dev-utils/translate-by-yandex";
 
 // const shape = require("./assets/img/top-left.svg");
-// const editorChoice = require("./assets/img/ed-choice.svg");
-// const likes = require("./assets/img/likes.svg");
+const editorChoice = require("./assets/img/ed-choice.svg");
+const likes = require("./assets/img/likes.svg");
 
+document.documentElement.lang
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
   "xx",
-  "Feng Shui CNY" //TODO: replace Unknown with your page's name
+  "Feng Shui CNY" 
 );
 
 function Wait(props) {
@@ -37,16 +39,22 @@ function Wait(props) {
   )
 }
 
+
 function MO({ keyword, shortcode, backToStart }: IKeywordShortcode & { backToStart: () => void }) {
   return (
     <div>
 
       <div className="">
-        <div className="mo-fade">
+        <div className="mo-fade mo-fade-en">
           <Translate id="mo-title"></Translate>
-          
-        </div>
+<br></br>
+            <Translate id="mo-title-breaks"></Translate>
+          </div>
+        
+        <div className="line-breaks">
         <Translate id="mo-title-2"></Translate>
+        </div>
+
         <MOLink keywordAndShortcode={{ keyword, shortcode }}>
           <div className="input-container">
             <div className="btn-container">
@@ -156,9 +164,10 @@ class MSISDNEntryStep extends React.PureComponent<{
             placeholder = "Mobile Phone number"
             msisdn={this.state.msisdn}
             countryCode={process.env.country}
-            showFlag={true}
-            showMobileIcon={false}
+            showFlag={false}
+            showMobileIcon={true}
             showError={true}
+        
             onChange={({msisdn, isValid, bupperNumber}) => {
 
                 this.setState({ msisdn, isValid, bupperNumber })
@@ -242,13 +251,19 @@ class Root extends React.PureComponent<HOCProps> {
       <TranslationProvider locale={this.state.locale}>
       <div>
         <div className="wrapper">
-          {/* <div className="topbar">
+          <div className="topbar">
             <div className="topbar-container">
-              <div className="ed-container"><img src={editorChoice} /></div>
-              <div className="likes-container"><img src={likes} /></div>
-            </div>
+            
+              {/* <div className={`ed-container ${(this.state.locale === "zh") ? "ed-choice-zh" : "ed-choice-en"}`}></div> */}
 
-          </div> */}
+              <div className={"ed-container " + (this.state.locale === "zh" ? "ed-choice-zh" : "ed-choice-en")}></div>
+              <div className={"likes-container " + (this.state.locale === "zh" ? "likes-zh" : "likes-en")}></div>
+
+              {/* <div className="likes-container"></div> */}
+
+            </div>
+          </div>
+
           <div className="starbust"></div>
           <div className="lantern-container">
             <div className="lantern left wobble-hor-top"></div>
