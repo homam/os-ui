@@ -69,7 +69,7 @@ function slideRenderer(params) {
         <div key={key} className="slide" style={Object.assign({}, styles.slide)}>
         <div className="hero ninja"></div>
         <div className="swiper">
-          <p>select your classe</p>
+          <p>select your class</p>
           <div className="icon">
           <div className="hand"></div>
           </div>
@@ -86,7 +86,7 @@ function slideRenderer(params) {
         <div key={key} className="slide" style={Object.assign({}, styles.slide)}>
           <div className="hero outlander"></div>
           <div className="swiper">
-          <p>select your classe</p>
+          <p>select your class</p>
           <div className="icon"><div className="hand"></div></div>
           </div>
           <div className="container-slide green">
@@ -101,7 +101,7 @@ function slideRenderer(params) {
         <div key={key} className="slide" style={Object.assign({}, styles.slide)}>
         <div className="hero soldier "></div>
         <div className="swiper">
-        <p>select your classe</p>
+        <p>select your class</p>
         <div className="icon"><div className="hand"></div></div>
         </div>
         <div  className="container-slide blue">
