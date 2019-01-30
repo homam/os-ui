@@ -13,6 +13,42 @@ const tracker = mkTracker(
 
 const operatorImg = require("./assets/img/iraqcom.png");
 
+// Google Optimize Starts
+const abTest_variant = (() => { 
+  const variant = Math.round(Math.random()); 
+
+  return () => variant
+})()
+
+function gtag(...args) {window.dataLayer.push(...args)}
+
+if (typeof window != "undefined") {
+  window.addEventListener('load', () => setTimeout(() => {
+    const ga = window['ga']
+    
+    // update body class to have the ab test variant 
+    document.body.classList.add(`ab-${abTest_variant()}`)
+
+    if (!!ga) {
+
+
+      const setGAExperimentCX = (_expId, _vId) => {
+        const gtm = ga.getAll()[0].get('name')
+        ga(`${gtm}.set`, 'exp', _expId.toString() + '.' + _vId.toString());
+        ga(`${gtm}.send`, 'event', 'Experiment', 'Trigger', _expId.toString() + '.' + _vId.toString());
+
+      }
+
+      setGAExperimentCX('x-5qgNM5S7mgjClus71IIQ', abTest_variant());
+
+    }
+
+  }, 90))
+
+}
+
+// Google Optimize End
+
 class Root extends React.PureComponent<IProps> {
 
   componentDidMount(){
@@ -103,11 +139,12 @@ class Root extends React.PureComponent<IProps> {
       <TranslationProvider locale={this.state.locale}>
 
         <div className="container">
-
-          <div className="rating"></div>
+        <div className="overlay"></div>
+          {/* <div className="rating"></div> */}
+         
 
           <div className="creative">
-
+          <div className="persuasive animated bounceInDown"> خالي من الاعلانات</div>
             <div className="title animated bounceInDown"></div>
 
             <div id="monster"  className="sleepy play"></div>
