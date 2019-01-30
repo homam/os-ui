@@ -31,6 +31,7 @@
   "if_not_your_mobile": "If {phone} is not your mobile number,",
   "click_here_to_change_your_number": "Click here to change your phone number.",
   "wait_message": "Wait...",
-  "phone-legals": "Du: AED 10/week",
-  "top-legals": "Free for 1 Day then AED 11 per Week VAT Included for Etisalat Users."
+  "phone-legals": "Etisalat: Free for 1 Day then AED 11 per Week VAT Included. Du: AED 10/week",
+  "top-legals": "Etisalat: Free for 1 Day then AED 11 per Week VAT Included. Du: AED 10/week",
+  "exit": "Exit"
 }

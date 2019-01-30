@@ -190,6 +190,8 @@ input {
     border: none;
     border-radius: 10px;
     margin-bottom: 5px;
+    position: relative;
+    z-index: 2;
 }
 
 .btn-container {
@@ -473,18 +475,43 @@ a {
 
 .mo-fade {
   position: relative;
-  height: 3.6em;
   margin-bottom: 10px;
-  &:after {
+  &.mo-fade-en {
+       &:after {
     content: "";
     text-align: right;
     position: absolute;
     bottom: 0;
     right: 0;
-    width: 67%;
-    height: 1.2em;
-    background: linear-gradient(to right, rgba(214, 280, 263, 0), #fff1df 50%);
+    width: 100%;
+    height: 15vh;
+    top: -0.56vh;
+    background-image: url("../img/fade.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+} 
   }
+
+  &.mo-fade-zh {
+    &:after {
+ content: "";
+ text-align: right;
+ position: absolute;
+ bottom: 0;
+ right: 0;
+ width: 100%;
+ height: 92px;
+ top: -38px;
+ background-image: url("../img/fade.png");
+} 
+}
+
+}
+
+.line-breaks {
+    margin-top: 10px;
+    position: relative;
 }
 
 .general-terms {
@@ -584,15 +611,39 @@ a {
     margin: auto;
   }
 
+  .ed-choice-zh {
+    background-image: url("../img/ed-choice-zh.svg");
+    width: 120px;
+  }
+  .ed-choice-en {
+    background-image: url("../img/ed-choice.svg");
+    width: 137px;
+  }
+
   .ed-container {
       float: left;
-      margin: 3px 4px 0 10px;
+      margin: 3px 4px 0 10px;      
+      height: 20px;
+      background-repeat: no-repeat;
   }
 
 .likes-container {
     background-color: white;
     float: right;
-    padding: 2px 25px 0 25px;
+    width: 150px;
+    height: 20px;
+    background-repeat: no-repeat;
+    text-align: center;
+    background-size: 76%;
+    background-position: center;
+}
+
+.likes-zh {
+    background-image: url("../img/likes-zh.svg");
+}
+
+.likes-en {
+    background-image: url("../img/likes.svg");
 }
 
 .wobble-hor-top {
@@ -737,6 +788,9 @@ a {
         margin-top: 12px;
         margin-bottom: 12px;
         background: white;
+        .phone {
+            background-size: 55%;
+        }
     }
     .phone-input input.text-input {
         font-size: 130%;
