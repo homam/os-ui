@@ -362,7 +362,7 @@ class Root extends React.PureComponent<HOCProps> {
         <div className="heroes hide intro">
           <div className="question">
           <div className="subtitle"><p>what kind of player are you?</p></div>
-          <div className="title"><p><span>1</span>What is your main classe?</p></div>
+          <div className="title"><p><span>1</span>What is your main class?</p></div>
 
           </div>
           {/* <VirtualizeSwipeableViews slideRenderer={slideRenderer} enableMouseEvents resistance/> */}
