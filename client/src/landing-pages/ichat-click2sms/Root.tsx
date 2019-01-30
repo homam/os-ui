@@ -21,6 +21,7 @@ class Root extends React.PureComponent<HOCProps> {
   state = {
     locale: "en",
     keyValue:"",
+    startchat:false,
     applicationState: "Selection" as ApplicationStates
   };
 
@@ -30,7 +31,7 @@ class Root extends React.PureComponent<HOCProps> {
 
     function changeState() {
 
-       _self.setState({applicationState: "Chat"});
+       _self.setState({applicationState: "Chat", startchat:true});
 
     }
 
@@ -52,12 +53,11 @@ class Root extends React.PureComponent<HOCProps> {
 
               <ChatScreen
               keyword={this.state.keyValue}
-              MOLink={this.props.MOLink}  
+              MOLink={this.props.MOLink} 
+              startchat={this.state.startchat}
               currentState={this.props.currentState} 
-              tracker={tracker} />
+              tracker={tracker}/>
 
-             {/*<div className="keyword">keyword:{this.state.keyValue}</div>*/}
-             {/*<MOLink className="cta-a-tag">SMS Now!</MOLink>*/}
 
           </div>
         </TranslationProvider>

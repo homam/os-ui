@@ -5,15 +5,15 @@ import { InjectedIntlProps } from "react-intl";
 import { queryString, ITracker } from "../../../pacman/record";
 
 interface IProps{
-  keyword:string
+  keyword:string,
+  startchat:boolean
 }
 
 type ChatApplicationState = "Chatting" | "Subscribing"
 
 class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: ITracker} & IProps> {
 
-  state = {
-    checked: false,
+ state = {
     applicationState: "Chatting" as ChatApplicationState,
     messages: [
       [
@@ -109,9 +109,11 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: 
     ]
 }
 
+
   botResponse: (msg) => void;
 
-  componentDidMount() {
+ 
+  chatStarter(){
 
     const self = this;
 
@@ -143,7 +145,7 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: 
       botResponse(self.state.messages[0]);
 
     }
-
+ 
     function botResponse(botMsgData) {
 
       i = 0;
@@ -262,7 +264,6 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: 
       if (k == 5) {
 
         self.setState({applicationState: "Subscribing"})
-
         moSubmit.classList.add("fadeInUp");
 
       }
@@ -310,13 +311,34 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: 
       });
 
     }
+   
+      setTimeout(startChat, 1000);
+      this.botResponse = botResponse
 
-    setTimeout(startChat, 2500);
-
-    this.botResponse = botResponse
   }
 
-  render() {
+
+  componentDidUpdate(prevProps)  {  
+
+    if(prevProps.startchat){
+
+      console.log("Chat Finish")
+
+    }else{
+
+      if(this.props.startchat){
+        this.chatStarter();     
+      }
+
+    } 
+
+ 
+}
+ 
+
+
+
+  render() { 
 
     return (<div className={`chatScreen display-${this.state.applicationState}`} id="chat">
 
