@@ -50,7 +50,9 @@ class Root extends React.PureComponent<HOCProps> {
 
               <SplashScreen onChange={()=>{this.state.applicationState == "Splash" ? changeState() : false}}/>
 
-              <ChatScreen  
+              <ChatScreen
+              keyword={this.state.keyValue}
+              MOLink={this.props.MOLink}  
               currentState={this.props.currentState} 
               tracker={tracker} />
 

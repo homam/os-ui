@@ -4,10 +4,13 @@ import {Translate, injectIntl} from "./../localization/index"
 import { InjectedIntlProps } from "react-intl";
 import { queryString, ITracker } from "../../../pacman/record";
 
+interface IProps{
+  keyword:string
+}
 
 type ChatApplicationState = "Chatting" | "Subscribing"
 
-class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: ITracker}> {
+class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: ITracker} & IProps> {
 
   state = {
     checked: false,
@@ -367,7 +370,7 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: 
 
             <div className="animated" id="moSubmit">
 
-              <button>SMS NOW</button>
+            <this.props.MOLink className="button" keyword={this.props.keyword}>SMS Now!</this.props.MOLink>
 
             </div>
 
