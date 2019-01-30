@@ -28,7 +28,7 @@ document.documentElement.lang
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
   "xx",
-  "Feng Shui CNY" 
+  "Feng Shui CNY"
 );
 
 function Wait(props) {
@@ -47,12 +47,12 @@ function MO({ keyword, shortcode, backToStart }: IKeywordShortcode & { backToSta
       <div className="">
         <div className="mo-fade mo-fade-en">
           <Translate id="mo-title"></Translate>
-<br></br>
-            <Translate id="mo-title-breaks"></Translate>
-          </div>
-        
+          <br></br>
+          <Translate id="mo-title-breaks"></Translate>
+        </div>
+
         <div className="line-breaks">
-        <Translate id="mo-title-2"></Translate>
+          <Translate id="mo-title-2"></Translate>
         </div>
 
         <MOLink keywordAndShortcode={{ keyword, shortcode }}>
@@ -64,11 +64,11 @@ function MO({ keyword, shortcode, backToStart }: IKeywordShortcode & { backToSta
               </button>
             </div>
             <div className="mo-top">
-            <div className="mo-text">OR</div>
-            <div className="mo-text">
-              Send <span className="keyword">{keyword}</span> to{" "}
-              <span className="shortcode">{shortcode} </span>
-            </div>
+              <div className="mo-text">OR</div>
+              <div className="mo-text">
+                Send <span className="keyword">{keyword}</span> to{" "}
+                <span className="shortcode">{shortcode} </span>
+              </div>
             </div>
           </div>
         </MOLink>
@@ -103,45 +103,45 @@ class MSISDNEntryStep extends React.PureComponent<{
         }}
       >
 
-<div>
-                          {/* 1st PRELANDER */}
-                          <div>
-                            <div className="box-content">
-                              <Translate id="discover-fortune" />
-                            </div>
+        <div>
+          {/* 1st PRELANDER */}
+          <div>
+            <div className="box-content">
+              <Translate id="discover-fortune" />
+            </div>
 
-                            <div className="section btn-container">
-                              <div className="box-content sub-title float-left">
-                                <Translate id="you-are" />
-                              </div>
+            <div className="section btn-container">
+              <div className="box-content sub-title float-left">
+                <Translate id="you-are" />
+              </div>
 
-                              <div className="gender-container">
-                                <label className="container-radio"><Translate id="female" />
-                                  <input type="radio" name="radio"></input>
-                                  <span className="checkmark"></span>
-                                </label>
+              <div className="gender-container">
+                <label className="container-radio"><Translate id="female" />
+                  <input type="radio" name="radio"></input>
+                  <span className="checkmark"></span>
+                </label>
 
-                                <label className="container-radio"><Translate id="male" />
-                                  <input type="radio" name="radio"></input>
-                                  <span className="checkmark"></span>
-                                </label>
+                <label className="container-radio"><Translate id="male" />
+                  <input type="radio" name="radio"></input>
+                  <span className="checkmark"></span>
+                </label>
 
-                              </div>
-                            </div>
+              </div>
+            </div>
 
-                            <div className="box-content sub-title">
-                              <Translate id="date-birth" />
-                            </div>
+            <div className="box-content sub-title">
+              <Translate id="date-birth" />
+            </div>
 
-                            <div className="section">
-                              <div className="date-picker-container">
-                                <DOBPicker />
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        
-                        
+            <div className="section">
+              <div className="date-picker-container">
+                <DOBPicker />
+              </div>
+            </div>
+          </div>
+        </div>
+
+
 
         <div className="box-content sub-title">
           <Translate id="phone-number" />
@@ -159,22 +159,22 @@ class MSISDNEntryStep extends React.PureComponent<{
               onChange={(msisdn) => this.setState({ msisdn })}
               countryCode={'+60'} /> */}
 
-          <PhoneInput
-            inputElementRef={this.phoneInputRef}
-            placeholder = "Mobile Phone number"
-            msisdn={this.state.msisdn}
-            countryCode={process.env.country}
-            showFlag={false}
-            showMobileIcon={true}
-            showError={true}
-        
-            onChange={({msisdn, isValid, bupperNumber}) => {
+            <PhoneInput
+              inputElementRef={this.phoneInputRef}
+              placeholder="Mobile Phone number"
+              msisdn={this.state.msisdn}
+              countryCode={process.env.country}
+              showFlag={false}
+              showMobileIcon={true}
+              showError={true}
+
+              onChange={({ msisdn, isValid, bupperNumber }) => {
 
                 this.setState({ msisdn, isValid, bupperNumber })
               }
-            }
-        
-           />
+              }
+
+            />
 
             <button type="submit" className="btn uppercase" disabled={RDS.IsLoading(this.props.rds)}><Translate id="read-my-fortune" /></button>
             {
@@ -249,42 +249,42 @@ class Root extends React.PureComponent<HOCProps> {
   render() {
     return (
       <TranslationProvider locale={this.state.locale}>
-      <div>
-        <div className="wrapper">
-          <div className="topbar">
-            <div className="topbar-container">
-            
-              {/* <div className={`ed-container ${(this.state.locale === "zh") ? "ed-choice-zh" : "ed-choice-en"}`}></div> */}
+        <div>
+          <div className="wrapper">
+            <div className="topbar">
+              <div className="topbar-container">
 
-              <div className={"ed-container " + (this.state.locale === "zh" ? "ed-choice-zh" : "ed-choice-en")}></div>
-              <div className={"likes-container " + (this.state.locale === "zh" ? "likes-zh" : "likes-en")}></div>
+                {/* <div className={`ed-container ${(this.state.locale === "zh") ? "ed-choice-zh" : "ed-choice-en"}`}></div> */}
 
-              {/* <div className="likes-container"></div> */}
+                <div className={"ed-container " + (this.state.locale === "zh" ? "ed-choice-zh" : "ed-choice-en")}></div>
+                <div className={"likes-container " + (this.state.locale === "zh" ? "likes-zh" : "likes-en")}></div>
 
+                {/* <div className="likes-container"></div> */}
+
+              </div>
             </div>
+
+            <div className="starbust"></div>
+            <div className="lantern-container">
+              <div className="lantern left wobble-hor-top"></div>
+              <div className="lantern right wobble-hor-top"></div>
+            </div>
+            <div className="masthead vibrate-1"></div>
           </div>
 
-          <div className="starbust"></div>
-          <div className="lantern-container">
-            <div className="lantern left wobble-hor-top"></div>
-            <div className="lantern right wobble-hor-top"></div>
-          </div>
-          <div className="masthead vibrate-1"></div>
-        </div>
+
+          <div className="container force-top text-center">
+            <div className="box-border">
+              <div className="box">
+                <div className="box-img top"></div>
 
 
-        <div className="container force-top text-center">
-          <div className="box-border">
-            <div className="box">
-              <div className="box-img top"></div>
-
-              
 
                 {match({
                   msisdnEntry: rds => (
                     <div>
                       <div className="box-container">
-                        
+
                         <div>
                           {RDS.WhenSuccess<MSISDNEntrySuccess, JSX.Element>(
                             <MSISDNEntryStep msisdn={this.state.msisdn} rds={rds} onEnd={msisdn => {
@@ -316,9 +316,9 @@ class Root extends React.PureComponent<HOCProps> {
 
 
 
-              <div className="box-img bottom"></div>
+                <div className="box-img bottom"></div>
+              </div>
             </div>
-          </div>
             <CustomTesti
               className="fengshui-testimonial"
               testimonials={
@@ -341,12 +341,12 @@ class Root extends React.PureComponent<HOCProps> {
                 ]
               }
             />
-          <div className="disclaimer">
-            <Disclaimer />
-          </div>
+            <div className="disclaimer">
+              <Disclaimer />
+            </div>
 
+          </div>
         </div>
-      </div>
       </TranslationProvider>
     );
   }
