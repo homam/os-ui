@@ -1,11 +1,10 @@
 import * as React from "react";
 import mkTracker from "../../pacman/record";
-import { TranslationProvider, Translate } from "./localization/index";
+import { TranslationProvider, injectIntl } from "./localization/index";
 import HOC, {initialState, HOCProps, IKeywordShortcode} from "../../clients/bupper-click2sms/HOC"
 import * as RDS from "../../common-types/RemoteDataState";
 
 import "./assets/css/styles.less?raw"
-import { hydrate } from "react-dom";
 import SelectionScreen from "./components/SelectionScreen";
 import SplashScreen from "./components/SplashScreen";
 import ChatScreen from "./components/ChatScreen";
@@ -49,12 +48,14 @@ class Root extends React.PureComponent<HOCProps> {
 
               <SelectionScreen onSelected={({keyData})=> {this.setState({applicationState:'Splash', keyValue: keyData})}}/>
 
-              <SplashScreen onChange={()=>{this.state.applicationState == "Splash" ? changeState() : null}}/>
+              <SplashScreen onChange={()=>{this.state.applicationState == "Splash" ? changeState() : false}}/>
 
-              <ChatScreen/>
+              <ChatScreen  
+              currentState={this.props.currentState} 
+              tracker={tracker} />
 
-             <div className="keyword">keyword:{this.state.keyValue}</div>
-             <MOLink className="cta-a-tag">SMS Now!</MOLink>
+             {/*<div className="keyword">keyword:{this.state.keyValue}</div>*/}
+             {/*<MOLink className="cta-a-tag">SMS Now!</MOLink>*/}
 
           </div>
         </TranslationProvider>
