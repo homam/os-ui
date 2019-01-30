@@ -9,6 +9,7 @@ import HOC, {
   MSISDNEntrySuccess,
   PINEntryFailure,
   PINEntrySuccess,
+  mockedPINSuccesState,
   match
 } from "../../clients/lp-api/HOC";
 import * as RDS from "../../common-types/RemoteDataState";
@@ -54,7 +55,7 @@ function slideRenderer(params) {
           <div className="hero constructor slideInRight animated"></div>
           <div className="swiper">
           <p>select your class</p>
-          <div className="icon"></div>
+          <div className="icon"><div className="hand"></div></div>
           </div>
           <div className="container-slide orange">
           <p>constructor</p>
@@ -69,7 +70,9 @@ function slideRenderer(params) {
         <div className="hero ninja"></div>
         <div className="swiper">
           <p>select your classe</p>
-          <div className="icon"></div>
+          <div className="icon">
+          <div className="hand"></div>
+          </div>
           </div>
          <div className="container-slide grey">
          <p>ninja</p>
@@ -84,7 +87,7 @@ function slideRenderer(params) {
           <div className="hero outlander"></div>
           <div className="swiper">
           <p>select your classe</p>
-          <div className="icon"></div>
+          <div className="icon"><div className="hand"></div></div>
           </div>
           <div className="container-slide green">
           <p>outlander</p>
@@ -99,7 +102,7 @@ function slideRenderer(params) {
         <div className="hero soldier "></div>
         <div className="swiper">
         <p>select your classe</p>
-        <div className="icon"></div>
+        <div className="icon"><div className="hand"></div></div>
         </div>
         <div  className="container-slide blue">
         <p>soldier</p>
@@ -121,7 +124,7 @@ function slideRenderer2(params) {
       return (
         <div key={key} className="slide improver" style={Object.assign({}, styles.slide)}>
           <div className="swiper">
-          <div className="icon"></div>
+          <div className="icon"><div className="hand"></div></div>
           </div>
           <div className="container-slide building">
           <p>Building</p>
@@ -134,7 +137,7 @@ function slideRenderer2(params) {
       return (
         <div key={key} className="slide improver" style={Object.assign({}, styles.slide)}>
         <div className="swiper">
-          <div className="icon"></div>
+          <div className="icon"><div className="hand"></div></div>
           </div>
          <div className="container-slide onevone">
          <p>1 v 1</p>
@@ -147,7 +150,7 @@ function slideRenderer2(params) {
       return (
         <div key={key} className="slide improver" style={Object.assign({}, styles.slide)}>
           <div className="swiper">
-          <div className="icon"></div>
+          <div className="icon"><div className="hand"></div></div>
           </div>
           <div className="container-slide aimshooting">
           <p>AIM and Shooting</p>
@@ -160,7 +163,7 @@ function slideRenderer2(params) {
       return (
         <div key={key} className="slide improver" style={Object.assign({}, styles.slide)}>
         <div className="swiper">
-        <div className="icon"></div>
+        <div className="icon"><div className="hand"></div></div>
         </div>
         <div className="container-slide weapon">
         <p>Weapon crafting</p>
@@ -173,7 +176,7 @@ function slideRenderer2(params) {
       return (
         <div key={key} className="slide improver" style={Object.assign({}, styles.slide)}>
         <div className="swiper">
-        <div className="icon"></div>
+        <div className="icon"><div className="hand"></div></div>
         </div>
         <div className="container-slide everything">
         <p>Everything</p>
@@ -270,9 +273,9 @@ class PINEntryStep extends React.PureComponent<{
             className="pin"
             placeholder="_ _ _ _"
             value={this.state.pin}
-            onChange={ev => this.setState({ pin: ev.target.value })}
+            onChange={ev => this.setState({ pin: ev.target.value, isValid: true })}
           />
-          <button className="pinButton" type="submit" disabled={RDS.IsLoading(this.props.rds)}>OK</button>
+          <button className="pinButton" type="submit" disabled={!this.state.isValid}>OK</button>
             <div className="error">
             {
               RDS.WhenLoading(null, () => 'Wait...')(this.props.rds)
@@ -313,9 +316,9 @@ class PINEntryStep extends React.PureComponent<{
   }
 }
 
-const TQStep = ({finalUrl} : {finalUrl: string}) => <div>
+const TQStep = ({finalUrl} : {finalUrl: string}) => <div className="tqstep">
   <h3>Thank you!</h3>
-  <a href={finalUrl}>Click here to access the product</a>
+  <a href={finalUrl}><button className="msisdn-button">Access your results now</button></a>
 </div>;
 
 
@@ -432,4 +435,4 @@ class Root extends React.PureComponent<HOCProps> {
     );
   }
 }
-export default HOC(tracker, Root)(initialState);
+export default HOC(tracker, Root)(mockedCompletedState);
