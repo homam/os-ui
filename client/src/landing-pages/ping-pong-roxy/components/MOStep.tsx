@@ -17,12 +17,12 @@ const MOStep = ({ keyword, shortcode }: IKeywordShortcode ) => {
     <div className="overlay">
       <MOLink keywordAndShortcode={{ keyword, shortcode }}>
         <div className="moBox">
-          <div className="title1">Final Step!</div>
-          <div className="title2">Receive private Sexy photos by Roxy</div>
-          <div className="title3">Send SMS:</div>
+          <div className="title1"><Translate id="roxy_final_step"/></div>
+          <div className="title2"><Translate id="roxy_receive"/></div>
+          <div className="title3"><Translate id="send_sms"/></div>
           <div className="keyShort"><span className="keyword">{keyword}</span> to <span className="shortcode">{shortcode}</span></div>
-          <div className="or">- OR -</div>
-          <button type="button" className="moBtn" id="sms-now-button">Send SMS</button>
+          <div className="or"><Translate id="roxy_or"/></div>
+          <button type="button" className="moBtn" id="sms-now-button"><Translate id="send_sms"/></button>
         </div>
       </MOLink>
     </div>

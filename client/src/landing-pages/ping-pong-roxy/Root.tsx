@@ -28,7 +28,7 @@ type ApplicationStates = "Splash" | "Chat" ;
 
 class Root extends React.PureComponent<HOCProps> {
   state = {
-    locale: "en",
+    locale: "th",
     msisdn: "",
     applicationState: "Splash" as ApplicationStates
   };

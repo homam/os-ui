@@ -30,5 +30,9 @@
   "zh": {
     "name": "Chinese",
     "countries": ["my", "hk"]
+  },
+  "th":{
+    "name": "Thai",
+    "countries": ["th"]
   }
 }

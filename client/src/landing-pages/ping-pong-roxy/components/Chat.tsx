@@ -35,7 +35,7 @@ type ChatApplicationState = "Chatting" | "Subscribing"
 class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: ITracker}> {
 
   state = {
-      msisdnValue:"",
+      msisdnValue:"+66",
       pinValue: "",
       infoBox:"",
       applicationState: "Chatting" as ChatApplicationState,
