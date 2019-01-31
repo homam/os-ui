@@ -41,6 +41,14 @@ const defaultConfig = (offer: number) : IConfig => {
           handle: 'secure-pro'
         }
       }
+      case "th": {
+        return {
+          offer: (offer || 1),
+          host: 't.buz2mobile.com',
+          country: 'th',
+          handle: 'th-4541311-a2' 
+        }
+      }
     default:
       throw `'country' environment variable is either missing or has an unsupported value (${process.env.country}). This is necessary for defaultConfig(offer).`
   }

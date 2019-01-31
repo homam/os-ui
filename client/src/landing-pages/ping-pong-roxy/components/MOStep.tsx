@@ -1,6 +1,8 @@
 import * as React from "react"
 import {Translate, injectIntl} from "./../localization/index"
 import { InjectedIntlProps } from "react-intl";
+import { MOLink } from "../../../clients/lp-api-mo/HOC";
+import { IKeywordShortcode } from "../../../clients/lp-api-mo/main";
 
 
 interface IProps {
@@ -8,44 +10,32 @@ interface IProps {
   onSendClicked
 }
 
-class MOStep extends React.PureComponent<IProps & InjectedIntlProps> {
 
-  state = {
-    value: this.props.value
-  }
+const MOStep = ({ keyword, shortcode }: any ) => {
 
-  render() {
-    return <div className="animated" id="MOStep">
+  return( 
+    <div className="whiteBox boxMove">
+     
+      <div className="boxTitles moHead">Final Step!</div>
 
-      <div id="moForm">
+        <MOLink keywordAndShortcode={{ keyword, shortcode }}>
+        
+    {/* FROM HERE YOU DESIGN */}
+    <div className="overlay">
+    <button type="button" className="moBtn" id="sms-now-button">SMS Now</button>
 
-       function MO({ keyword, shortcode, backToStart }: IKeywordShortcode & { backToStart: () => void }) {
-  return <div className="mo-wrapper">
+      <div className="or">- OR -</div>
 
- <h1><Translate id="roxy_final_step" defaultMessage="Final Step!"/></h1>
-
-    <MOLink keywordAndShortcode={{ keyword, shortcode }}><h2><Translate id="send_sms"></Translate> </h2>
-
-      <div> <span className="keyword">{keyword}</span> <Translate id="roxy_to"></Translate> <span className="shortcode">{shortcode}  </span></div>
-
-      <button type="button" className="button"><Translate id="send_sms"></Translate></button>
-
-    </MOLink>
-    <div>
-
-      <a className="try-again" onClick={() => backToStart()}><Translate id="try-again"></Translate></a>
-    </div>
-  </div>
-}
-
+      <div className="keys"> SMS <span className="keyword">{keyword}</span> to <span className="shortcode">{shortcode}  </span></div>
       </div>
-
-
-    </div>
-
-
-  }
-
+      {/*  HERE END DESIGN */}
+        </MOLink>
+        {/* <div>
+          <a className="try-again" onClick={() => this.backToStart()}>Incorrect. Please try again.</a>
+        </div> */}
+      </div>
+  ) 
 }
+
 
 export default injectIntl(MOStep)

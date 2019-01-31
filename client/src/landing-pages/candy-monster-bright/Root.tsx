@@ -51,108 +51,107 @@ if (typeof window != "undefined") {
 
 class Root extends React.PureComponent<IProps> {
 
-  componentDidMount(){
+  componentDidMount() {
 
- 	
     var monster = document.getElementById("monster");
 
-    
- function monsterAnimate(){
-    
-    if(monster.classList == "sleepy play"){
-      
-      monster.classList="";
-      
-      monster.classList="point play";
-      
-     monster.style.top="150px";
-     monster.style.left="-100px";
-     monster.style.transform="scale(1.3)";
-      
-    }else{
-      
-     monster.classList="";
-     
-     monster.classList="sleepy play";
-     
-     monster.style.top="150px";
-     monster.style.left="0px";
-     monster.style.transform="scale(1)";
-      
+
+    function monsterAnimate() {
+
+      if (monster.classList == "sleepy play") {
+
+        monster.classList = "";
+
+        monster.classList = "point play";
+
+        monster.style.top = "150px";
+        monster.style.left = "-100px";
+        monster.style.transform = "scale(1.3)";
+
+      } else {
+
+        monster.classList = "";
+
+        monster.classList = "sleepy play";
+
+        monster.style.top = "150px";
+        monster.style.left = "0px";
+        monster.style.transform = "scale(1)";
+
+      }
+
+
     }
-    
-    
-  }
-         
 
- var id = setInterval(monsterAnimate, 4000);
-    
-  var backgroundParallax = document.getElementById('parallax');
 
-   if (window.DeviceOrientationEvent) {
-     window.addEventListener('deviceorientation', function(eventData) {
-           var LR = eventData.gamma;
-           var FB = eventData.beta;
-           var DIR = eventData.alpha;
-           deviceOrientationHandler(LR, FB, DIR);
-       }, false);
-   }
+    var id = setInterval(monsterAnimate, 4000);
 
-   function deviceOrientationHandler(LR, FB, DIR) {
+    var backgroundParallax = document.getElementById('parallax');
 
-       if(window.innerHeight < window.innerWidth){
-       
-           // landscape
+    if (window.DeviceOrientationEvent) {
+      window.addEventListener('deviceorientation', function (eventData) {
+        var LR = eventData.gamma;
+        var FB = eventData.beta;
+        var DIR = eventData.alpha;
+        deviceOrientationHandler(LR, FB, DIR);
+      }, false);
+    }
 
-           var landscapePosition = "translate3d("+(FB/4)+"px, "+(LR/4)+"px, 0)";
+    function deviceOrientationHandler(LR, FB, DIR) {
 
-           backgroundParallax.style.webkitTransform = landscapePosition;
-           backgroundParallax.style.MozTransform = landscapePosition;
-           backgroundParallax.style.msTransform = landscapePosition;
-           backgroundParallax.style.OTransform = landscapePosition;
-           backgroundParallax.style.transform = landscapePosition;
-           
-       } else {
-       
-           // portrait
+      if (window.innerHeight < window.innerWidth) {
 
-           var portraitPosition = "translate3d("+(LR/4)+"px, "+(FB/4)+"px, 0)";
+        // landscape
 
-           backgroundParallax.style.webkitTransform = portraitPosition;
-           backgroundParallax.style.MozTransform = portraitPosition;
-           backgroundParallax.style.msTransform = portraitPosition;
-           backgroundParallax.style.OTransform = portraitPosition;
-           backgroundParallax.style.transform = portraitPosition;
-           
-       }
+        var landscapePosition = "translate3d(" + (FB / 4) + "px, " + (LR / 4) + "px, 0)";
 
-   }
+        backgroundParallax.style.webkitTransform = landscapePosition;
+        backgroundParallax.style.MozTransform = landscapePosition;
+        backgroundParallax.style.msTransform = landscapePosition;
+        backgroundParallax.style.OTransform = landscapePosition;
+        backgroundParallax.style.transform = landscapePosition;
+
+      } else {
+
+        // portrait
+
+        var portraitPosition = "translate3d(" + (LR / 4) + "px, " + (FB / 4) + "px, 0)";
+
+        backgroundParallax.style.webkitTransform = portraitPosition;
+        backgroundParallax.style.MozTransform = portraitPosition;
+        backgroundParallax.style.msTransform = portraitPosition;
+        backgroundParallax.style.OTransform = portraitPosition;
+        backgroundParallax.style.transform = portraitPosition;
+
+      }
+
+    }
 
   }
 
   state = {
     locale: "en"
   };
+
   render() {
     return (
 
       <TranslationProvider locale={this.state.locale}>
 
         <div className="container">
-        <div className="overlay"></div>
-          {/* <div className="rating"></div> */}
-         
+
+          <div className="rating"></div>
 
           <div className="creative">
-          <div className="persuasive animated bounceInDown"> خالي من الاعلانات</div>
+
             <div className="title animated bounceInDown"></div>
 
             <div id="monster"  className="sleepy play"></div>
 
             <div className="holder animated bounceInUp">
-
-              <button onClick={() => this.props.actions.onClick()} className="btn">إشترك</button>
-
+              <div className="persuasive"> خالي من الاعلانات</div>
+              <button onClick={() => this.props.actions.onClick()} className="btn">!اشترك </button>
+              
             </div>
 
           </div>
@@ -180,4 +179,5 @@ class Root extends React.PureComponent<IProps> {
     );
   }
 }
+
 export default HOC(tracker, null, Root)(initialState);

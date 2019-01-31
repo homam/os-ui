@@ -1,5 +1,4 @@
 import * as React from "react";
-const service = process.env.service || "default";
 const iraqcomImg = require("../Disclaimers/assets/iraqcom_BIG.png");
 import "../Disclaimers/iq-videozland.less?raw";
 

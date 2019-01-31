@@ -18,16 +18,16 @@ body{
 	position: relative;
 }
 
-// .rating{
-// 	top:0;
-// 	left:0;
-// 	width:100px;
-// 	height: 100px;
-// 	display: block;
-// 	position: absolute;
-// 	background-size: 100% auto;
-// 	background-image: url(../img/rating.png);	
-// }
+.rating{
+	top:0;
+	left:0;
+	width:100px;
+	height: 100px;
+	display: block;
+	position: absolute;
+	background-size: 100% auto;
+	background-image: url(../img/rating.png);	
+}
 
 .creative{
 	width:300px;
@@ -93,28 +93,139 @@ body{
 	position: absolute;
 }
 
+.persuasive{
+  color: #000000;
+  text-align: center;
+  font-size: 20px;
+  background-color: #f6c32c;
+  display: block;
+  width: 200px;
+  height: 32px;
+  margin: 0 auto;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  animation: bounceIn 2s 6s infinite alternate backwards;
+  padding-top: 10px;
+  font-weight: bold;
+}
+
+@-webkit-keyframes bounceIn {
+  from,
+  20%,
+  40%,
+  60%,
+  80%,
+  to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+
+  20% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1);
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+
+  40% {
+    -webkit-transform: scale3d(0.9, 0.9, 0.9);
+    transform: scale3d(0.9, 0.9, 0.9);
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-transform: scale3d(1.03, 1.03, 1.03);
+    transform: scale3d(1.03, 1.03, 1.03);
+  }
+
+  80% {
+    -webkit-transform: scale3d(0.97, 0.97, 0.97);
+    transform: scale3d(0.97, 0.97, 0.97);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes bounceIn {
+  from,
+  20%,
+  40%,
+  60%,
+  80%,
+  to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+
+  20% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1);
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+
+  40% {
+    -webkit-transform: scale3d(0.9, 0.9, 0.9);
+    transform: scale3d(0.9, 0.9, 0.9);
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-transform: scale3d(1.03, 1.03, 1.03);
+    transform: scale3d(1.03, 1.03, 1.03);
+  }
+
+  80% {
+    -webkit-transform: scale3d(0.97, 0.97, 0.97);
+    transform: scale3d(0.97, 0.97, 0.97);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+
+
 .btn{
-	width:260px;
-	color:#783706;
-	margin:0 auto;
-	cursor:pointer;
-	display: block;
-	font-size: 30px;
-	font-weight: bold;
-	text-align: center;
-	text-decoration: none;
-	border: 2px solid #c36c05;
-	text-transform: uppercase;
-	padding: 20px 10px 10px 10px;
-	border-radius: 15px 19px 15px 10px;
-	text-shadow: 0px 1px 1px rgba(255,255,255,0.25);
-	box-shadow: inset 0px 0px 1px 1px rgba(255,255,255,0.5), 0px 0px 1px 1px rgba(255,255,255,0.5);
-	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#feb845+0,feb845+50,fa6b02+51,fa6b02+100 */
-	background: rgb(254,184,69); /* Old browsers */
-	background: -moz-linear-gradient(top, rgba(254,184,69,1) 0%, rgba(254,184,69,1) 50%, rgba(250,107,2,1) 51%, rgba(250,107,2,1) 100%); /* FF3.6-15 */
-	background: -webkit-linear-gradient(top, rgba(254,184,69,1) 0%,rgba(254,184,69,1) 50%,rgba(250,107,2,1) 51%,rgba(250,107,2,1) 100%); /* Chrome10-25,Safari5.1-6 */
-	background: linear-gradient(to bottom, rgba(254,184,69,1) 0%,rgba(254,184,69,1) 50%,rgba(250,107,2,1) 51%,rgba(250,107,2,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feb845', endColorstr='#fa6b02',GradientType=0 ); /* IE6-9 */
+  width: 250px;
+  margin: 0 auto;
+  cursor: pointer;
+  display: block;
+  font-size: 30px;
+  text-align: center;
+  text-decoration: none;
+  padding: 10px 10px 10px 10px;
+  border-radius: 5px;
+  color: white;
+  background-color: #f23ba1; //main
+  box-shadow: 0px 5px 0px 0px #9c0c5b; //side
+  border: none;
+  font-weight: bold;
+}
+
+.btn:active{
+  transform: translate(0px, 5px);
+  -webkit-transform: translate(0px, 5px);
+  box-shadow: 0px 1px 0px 0px;
+}
+
+.btn:hover {
+  background-color: #f16db5; 
 }
 
 .footer{
@@ -126,10 +237,9 @@ body{
   margin:10px auto;
   position: relative;
   text-align: center;
-  font-size: 10px;
 
     img{
-      width:110px;
+      width:240px;
       display: block;
       margin:10px auto;
     }
@@ -476,73 +586,8 @@ body{
 	
 }
 
-.persuasive, .overlay{
-  display: none;
-}
-
 body.ab-1 {
-  background-color: #473c9a;
   .btn {
-    cursor: pointer;
-    display: block; 
-    width: 100%;
-    max-width: 250px;
-    height: 50px;
-    color: white;
-    background-image: -ms-linear-gradient(#fe8110, #fa6315);
-    background-image: -o-linear-gradient(#fe8110, #fa6315);
-    background-image: -webkit-linear-gradient(#fe8110, #fa6315);
-    background-image: -moz-linear-gradient(#fe8110, #fa6315);
-    background-image: linear-gradient(#fe8110, #fa6315);
-    margin: 0 auto;
-    text-align: center;
-    font-size: 30px;
-    font-weight: bold;
-    padding: 0px;
-    text-shadow: 1px 2px #fb3e2f;
-    border-radius: 50px;
-    border: 1px solid #fe8111;
-    -moz-box-shadow: 0px 10px 0px 0px #fa4f12,
-                0px 13px 0px 4px #ffffff,
-                0px 20px 0px 3px #ab9178;
-    -webkit-box-shadow: 0px 10px 0px 0px #fa4f12,
-                0px 13px 0px 4px #ffffff,
-                0px 20px 0px 3px #ab9178;
-    box-shadow: 0px 10px 0px 0px #fa4f12,
-                0px 13px 0px 4px #ffffff,
-                0px 20px 0px 3px #ab9178;
-  }
-  // .persuasive{
-  //   top: 76px;
-  //   left: 9px;
-  //   width: 164px;
-  //   height: 26px;
-  //   display: block;
-  //   position: absolute;
-  //   background-color: red;
-  //   color: white;
-  //   font-weight: bold;
-  //   text-align: center;
-  //   font-size: 17px;
-  //   border-radius: 20px;
-  //   border: 3px solid white;
-  // }
-  //to be used for a later ab testing
-
-  .title{
-    width: 250px;
-    top: 0px;
-  }
-
-  .overlay{
-    background-color: rgba(0, 0, 0, 0.300);
-    display: block;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
+    color: red;
   }
 }
