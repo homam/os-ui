@@ -24,7 +24,7 @@ import { translate } from "../../../webpack/dev-utils/translate-by-yandex";
 // const editorChoice = require("./assets/img/ed-choice.svg");
 // const likes = require("./assets/img/likes.svg");
 
-document.documentElement.lang
+//document.documentElement.lang
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
   "xx",
