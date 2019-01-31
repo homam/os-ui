@@ -72,6 +72,8 @@
 
   "access_portal": "Access Portal",
 
-  "terms_link": "http://n.appspool.net/gr/tnc-appspool?offer=1&_next=general_conditions.html"
+  "terms_link": "http://n.appspool.net/gr/tnc-appspool?offer=1&_next=general_conditions.html",
+
+  "sms_now": "SMS NOW"
 
 }

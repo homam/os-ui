@@ -805,30 +805,44 @@ span.l-6 {-webkit-animation-delay: 0;animation-delay: 0;-ms-animation-delay: 0;-
   height: 100%;
   width: 100%;
   position: absolute;
-  z-index: 0;
-  top: 30px;
+	z-index: 10;
 }
 
- .whiteBox{
-  background-color: red;
+ .moBox{
+  background-color: white;
   display: block;
   width: 100%;
   max-width: 310px;
-  height: 220px;
+  height: 300px;
   border-radius: 10px;
   margin: 0 auto;
 	margin-top: 30px;
-	position: absolute;
 	z-index: 2;
 }
 
-.boxTitles{
+.title1, .title2{
   font-family: 'Arial';
-  font-size: 18px;
   color: black;
-  font-weight: bold;
   text-align: center;
   padding-top: 20px;
+}
+
+.title2{
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.title1{
+	font-size: 22px;
+	font-weight: normal;
+}
+
+.title3{
+	font-family: 'Arial';
+	font-size: 16px;
+	color: black;
+	text-align: left;
+	padding: 20px;
 }
 
 .moHead{
@@ -838,23 +852,23 @@ span.l-6 {-webkit-animation-delay: 0;animation-delay: 0;-ms-animation-delay: 0;-
 }
 
 .moBtn{
+	height: 50px;
+	color:#fff;
+	width: 100%;
+	border:none;
+	outline: none;
+	max-width: 250px;
+	margin: 0 auto;
+	cursor:pointer;
 	font-size: 18px;
-  background-color: #9D2257;
-  background: linear-gradient(#F00B6C,#9D2257);
-  border-radius: 50px;
-  color: white;
-  cursor: pointer;
-  display: block;
-  min-width: 30px;
-  box-sizing: border-box;
-  width: 100%;
-  max-width: 250px;
-  height: 50px;
-  margin: 0px auto;
-  font-weight: bold;
-	box-shadow: 0px 2px 5px #9c9090;
-	max-width: 280px;
-  font-size: 22px;
+	font-weight: bold;
+	border-radius: 8px;
+	text-decoration: none;
+	display: block;
+	text-transform: uppercase;
+	background-color: #40B25B;
+	transition: 0.25s ease-in-out;
+	-webkit-transition: 0.25s ease-in-out;
 }
 
 .or{
@@ -881,7 +895,13 @@ a{
   font-size: 22px;
   font-weight: bold;
   text-align: center;
-  animation: flash 3s infinite; 
+	animation: flash 3s infinite; 
+}
+
+.keyShort{
+	text-align: center;
+	padding-bottom: 10px;
+	color: black;
 }
 
 /*Mo ends*/
