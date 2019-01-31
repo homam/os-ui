@@ -9,10 +9,14 @@ export type MSISDNEntryFailure = {
 };
 export type MSISDNEntrySuccess = IKeywordShortcode
 
+export { IKeywordShortcode }
+
+type MSISDNEntryState = RDS.RemoteDataState<MSISDNEntryFailure, MSISDNEntrySuccess>
+
 export type State =
   | {
     type: "MSISDNEntry";
-    result: RDS.RemoteDataState<MSISDNEntryFailure, MSISDNEntrySuccess>;
+    result: MSISDNEntryState;
   }
   | {
     type: 'Completed';
@@ -23,8 +27,6 @@ export type MSISDNEntryErrorTypes =
   | "AlreadySubscribed"
   | "UnknownError"
   | "InvalidMSISDN";
-
-export type PINEntryErrorTypes = "UnknownError" | "TooEarly" | "InvalidPIN";
 
 export const initialState: State = { type: "MSISDNEntry", result: RDS.NothingYet<MSISDNEntryFailure, MSISDNEntrySuccess>() }
 export const mockedMSISDNEntrySuccess: State = { type: "MSISDNEntry", result: RDS.Success<MSISDNEntryFailure, MSISDNEntrySuccess>({ keyword: 'TEST OK', shortcode: '666' }) }
@@ -56,6 +58,18 @@ export function match<R>(
     }
   }
 }
+
+export const isMSISDNEntry = (s: State) =>
+  s.type == "MSISDNEntry";
+
+export function whenMSISDNEntry<R>  (f: (x: MSISDNEntryState) => R) {
+  return (s: State) => {
+    if(isMSISDNEntry(s)) {
+      return f(s.result as MSISDNEntryState)
+    }
+  }
+}
+
 
 export default <P extends HOCProps>(tracker: ITracker, Comp: React.ComponentType<P>) => (
   initialState: State
@@ -90,6 +104,7 @@ export default <P extends HOCProps>(tracker: ITracker, Comp: React.ComponentType
                 actions: { ...self.state.actions }
               })
             } catch (ex) {
+              console.error(ex)
               const errorType: MSISDNEntryErrorTypes =
                 "SEAlreadySubscribed" === ex.type
                   ? "AlreadySubscribed"
@@ -108,7 +123,7 @@ export default <P extends HOCProps>(tracker: ITracker, Comp: React.ComponentType
               tracker.recedeInFlow('assrock/v1', 'msisdn-submission-failure', { msisdn, errorType: errorType || 'UnknownError' })
             }
           }
-        }
+        } as IActions
       };
     }
 

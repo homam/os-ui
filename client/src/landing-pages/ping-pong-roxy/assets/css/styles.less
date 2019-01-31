@@ -75,7 +75,7 @@ body{
 		height: 35px;
 		position: absolute;
 		right: 0;
-		left: 3px;
+		left: 15px;
 		bottom: 0px;
 	}
 	
@@ -92,14 +92,14 @@ body{
 			h1{
 				color: white;
 				text-shadow: 6px 6px 19px black;
-				font-size: 26px;
+				font-size: 40px;
 				font-weight: bold;
 			}
 			
 			h2{
 				padding-top: 20px;
-				color:#ffffff;
-				font-size: 18px;
+				color:white;
+				font-size: 22px;
 				max-width: 260px;
 				line-height: 1.5em;
 				font-weight: normal;
@@ -380,7 +380,7 @@ body{
 		width: 70%;
 		padding:10px;
 		margin: 0 3px;
-		font-size: 18px;
+		font-size: 16px;
 		display: inline-block;	
 		border:1px solid #D8D8D8;
 
@@ -438,68 +438,6 @@ body{
 		a{
 			color:#40B25B;
 			margin-left: 3px;
-		}
-		
-	}
-	
-}
-
-
-#pinEntry{
-	flex: 1;
-	display: flex;
-	text-align: center;
-	flex-direction: column;
-	align-items: flex-start;
-	
-	#pinForm{
-		width: 100%;
-		display: flex;
-		margin: 0 auto;
-
-		input{
-				width: 50%;
-				padding:10px;
-				font-size: 18px;
-				display: inline-block;	
-				border:1px solid #D8D8D8;
-			
-			&:focus{
-				outline-color: #40B25B;
-			}	
-		}
-		
-		button{
-			color:#fff;
-			width: 50%;
-			border:none;
-			outline: none;
-			cursor:pointer;
-			font-size: 14px !important;
-			margin-left: 5px;
-			padding:10px 0px;
-			font-weight: bold;
-			border-radius: 8px;
-			display: inline-block;
-			text-transform: uppercase;
-			background-color: #40B25B;
-			transition: 0.25s ease-in-out;
-			-webkit-transition: 0.25s ease-in-out;	
-		}
-	
-}
-
-	#msisdnCheck{
-		width:100%;
-		display:flex;
-		color:#727272;
-		font-size: 12px;
-		text-align: left;
-		display: inline-block;
-		margin:10px auto 0px auto;	
-		
-		a{
-			color: #40B25B;
 		}
 		
 	}
@@ -792,9 +730,125 @@ span.l-6 {-webkit-animation-delay: 0;animation-delay: 0;-ms-animation-delay: 0;-
 	#numberEntry input { 
     	width: 66%;
     }
-    
-    #pinEntry input {
-	    width: 46%;
-    }
  	
  }
+/*for Mo step*/
+.overlay{
+  background-color: rgba(0, 0, 0, 0.680);
+  display: block;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+	z-index: 10;
+}
+
+ .moBox{
+  background-color: white;
+  display: block;
+  width: 100%;
+  max-width: 310px;
+  height: 300px;
+  border-radius: 10px;
+  margin: 0 auto;
+	margin-top: 80px;
+	z-index: 2;
+	transition: 0.25s ease-in-out;
+	-webkit-transition: 0.25s ease-in-out;
+}
+
+.title1, .title2{
+  font-family: 'Arial';
+  color: black;
+  text-align: center;
+  padding-top: 20px;
+}
+
+.title2{
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.title1{
+	font-size: 22px;
+	font-weight: normal;
+}
+
+.title3{
+	font-family: 'Arial';
+	font-size: 16px;
+	color: black;
+	text-align: left;
+	padding: 20px;
+}
+
+.moHead{
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.moBtn{
+	height: 50px;
+	color:#fff;
+	width: 100%;
+	border:none;
+	outline: none;
+	max-width: 250px;
+	margin: 0 auto;
+	cursor:pointer;
+	font-size: 18px;
+	font-weight: bold;
+	border-radius: 8px;
+	text-decoration: none;
+	display: block;
+	text-transform: uppercase;
+	background-color: #40B25B;
+	transition: 0.25s ease-in-out;
+	-webkit-transition: 0.25s ease-in-out;
+}
+
+.or{
+  font-size: 22px;
+  color: #000;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 17px;
+}
+
+.keys{
+  font-size: 22px;
+  color: #000;
+  text-align: center;
+}
+
+a{
+  text-decoration: none;
+}
+
+.keyword, .shortcode{
+  color: rgb(207, 30, 116);
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+	animation: flash 4s infinite; 
+}
+
+.keyShort{
+	text-align: center;
+	padding-bottom: 10px;
+	color: black;
+}
+/*Mo ends*/
+
+/*number entry starts*/
+.phone-input{
+	border-radius: 0px !important;
+	.phone{
+		width: 34px !important;
+	}
+	.checkmark-container{
+		width: 29px !important;
+		height: 30px !important;
+	}
+}
+/*number entry ends*/
