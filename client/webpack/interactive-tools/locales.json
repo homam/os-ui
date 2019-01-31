@@ -19,6 +19,10 @@
     "name": "Bahasa",
     "countries": ["my", "id"]
   },
+  "nl": {
+    "name": "Dutch",
+    "countries": ["nl", "id"]
+  },
   "pt": {
     "name": "Portuguese",
     "countries": ["pt"]

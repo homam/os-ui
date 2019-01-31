@@ -23,9 +23,9 @@
   "select_header_text2": "Astrology",
   "select_header_text3": "reading today!",
   "question_text": "What do you want to know about?",
-  "Love": "Love",
-  "Luck": "Luck",
-  "Money": "Money",
-  "Family": "Family",
-  "Work": "Work"
+  "love": "Love",
+  "luck": "Luck",
+  "money": "Money",
+  "family": "Family",
+  "work": "Work"
 }
