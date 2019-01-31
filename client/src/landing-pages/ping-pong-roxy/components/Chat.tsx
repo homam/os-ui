@@ -6,24 +6,36 @@ import {
   match,
   whenMSISDNEntry,
   MSISDNEntrySuccess,
-  MOLink
+  MOLink,
+  State,
+  IKeywordShortcode
 } from "../../../clients/lp-api-mo/HOC";
 import * as RDS from "../../../common-types/RemoteDataState"
 import Loader from "./Loader";
 import {Translate, injectIntl} from "./../localization/index"
 import { InjectedIntlProps } from "react-intl";
-import { queryString } from "../../../pacman/record";
+import { queryString, ITracker } from "../../../pacman/record";
 import MOStep from "./MOStep";
 const chatImg = require("../assets/imgs/chatImg.jpg");
 
-
+function stateToKeywordAndShortcode(state: State) : IKeywordShortcode {
+  return match<IKeywordShortcode>({
+    msisdnEntry: RDS.match({
+      nothingYet: () => null,
+      loading: () => null,
+      failure: () => null,
+      success: (data) => data
+    }),
+    completed: (data) => null
+  })(state) 
+}
 
 type ChatApplicationState = "Chatting" | "Subscribing"
 
-class Chat extends React.PureComponent<HOCProps & InjectedIntlProps> {
+class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: ITracker}> {
 
   state = {
-      msisdnValue:"",
+      msisdnValue:"+66",
       pinValue: "",
       infoBox:"",
       applicationState: "Chatting" as ChatApplicationState,
@@ -38,7 +50,7 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps> {
                 id: "roxy_question",
                 defaultMessage: "Do you think I look cute?"
             }),
-            `<img src=${chatImg}/>`
+            `<img src=${chatImg}>`
         ],
       
         [
@@ -277,7 +289,12 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps> {
         userResponse(reply);
 
         booleanBtns.style.display = "none";
-
+        
+        self.props.tracker.advancedInPreFlow(`Answer-${k - 1}`, { 
+          question: self.state.messages[k - 1][self.state.messages[k - 1].length - 1], 
+          reply 
+        }
+      )
 
         if (k == 2) {
 
@@ -354,7 +371,7 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps> {
     {
       this.state.isShowingMOModal 
       ? 
-        <MOStep/>
+        <MOStep {...stateToKeywordAndShortcode(this.props.currentState)} />
       : null
     }
 
