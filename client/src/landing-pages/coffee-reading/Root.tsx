@@ -66,10 +66,26 @@ class MSISDNEntryStep extends React.PureComponent<{
             value={this.state.msisdn}
             onChange={ev => this.setState({ msisdn: ev.target.value })}
           />
-          <button type="submit" disabled={RDS.IsLoading(this.props.rds)}><Translate id="msisdn_btn_send" defaultMessage="Submit" /></button>
+
+        <div>
+
           {
             RDS.WhenLoading(null, () => <div className="wait-msg"><Translate id="waitingText" defaultMessage="Please wait..." /></div>)(this.props.rds)
           }
+
+          {
+            RDS.WhenFailure(null, (err: MSISDNEntryFailure) => <div className="error-msg"><Translate id={err.errorType} /></div>)(this.props.rds)
+          }
+
+          {
+            this.state.validationError != null
+              ? <div className="error-msg">{this.state.validationError}</div>
+              : null
+          }
+        </div>
+
+          <button type="submit" disabled={RDS.IsLoading(this.props.rds)}><Translate id="msisdn_btn_send" defaultMessage="Submit" /></button>
+       
 
           <div className="terms">
 
@@ -87,17 +103,7 @@ class MSISDNEntryStep extends React.PureComponent<{
           </div>
 
         </div>
-        <div>
-          {
-            RDS.WhenFailure(null, (err: MSISDNEntryFailure) => <div className="error-msg"><Translate id={err.errorType} /></div>)(this.props.rds)
-          }
-
-          {
-            this.state.validationError != null
-              ? <div className="error-msg">{this.state.validationError}</div>
-              : null
-          }
-        </div>
+   
       </form>
     );
   }
@@ -137,7 +143,7 @@ class PINEntryStep extends React.PureComponent<{
         </div>
         <div>
           {
-            RDS.match({
+            RDS.match<PINEntryFailure, PINEntrySuccess, any>({
               failure: (err: PINEntryFailure) => (
                 <div className="messagePIN">
                   <div><Translate id={err.errorType} /></div>
@@ -160,7 +166,7 @@ class PINEntryStep extends React.PureComponent<{
                 </div>
               ),
               loading: () => null,
-              success: () => null
+              success: ({finalUrl}) => null
             })(this.props.rds)
           }
         </div>
@@ -169,7 +175,7 @@ class PINEntryStep extends React.PureComponent<{
   }
 }
 
-const TQStep = ({ finalUrl }: { finalUrl: string }) => <div>
+const TQStep = ({ finalUrl }: PINEntrySuccess) => <div>
   <h3><Translate id="congratsTitle" defaultMessage="Congratulations!" /></h3>
   <p><Translate id="congratsText" defaultMessage="You have successfully enrolled in the service." /></p>
   <a href={finalUrl} className="button"><Translate id="portalBtnText" defaultMessage="Go to portal page" /></a>

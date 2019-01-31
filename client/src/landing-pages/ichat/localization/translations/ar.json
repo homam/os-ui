@@ -1,0 +1,98 @@
+{
+  "hello_world": "مرحبا!",
+  "AlreadySubscribed": "لقد اشتركت من قبل",
+  "InvalidMSISDN": "رقم الهاتف غير صحيح ، حاول مرة أخرى",
+  "UnknownError": "حدث خطأ غير معروف.",
+  "InvalidPIN": "يرجى إدخال رمز التعريف الشخصي  الذي تم إرساله الى هاتفك",
+  "TooEarly": "يجب عليك أولاً إرسال رقم الهاتف",
+  "we_just_sent_a_pin": "لقد أرسلنا رمز التعريف  إلى هاتفك. يرجى التحقق من صندوق الرسائل وإدخال رقم التعريف الشخصي الذي تلقيته أدناه:",
+  "didnt_receive_pin_yet": "ألم تحصل على رقم تعريف شخصي حتى الآن؟ تأكد من أن {phone} هو رقم هاتفك المحمول الصحيح.",
+  "if_not_your_mobile": "إذا لم يكن {phone} رقم هاتفك الصحيح",
+  "click_here_to_change_your_number": "اضغط هنا لتغيير رقم هاتفك.",
+
+  "splash_header_msg":"دعوة حصرية للدردشة،",
+  "splash_start_title":"التنبؤات",
+  "splash_medium_amanda":"المنجمة اماندا ،",
+  "splash_startsub_title":"المنجمة الأكثر شهرة في العالم،",
+  "splash_footer_title":"مستقبلك مكتوب ... ،",
+  "establishing_text":"تجهيز الاتصال ، يرجى الانتظار ... ،",
+
+  "medium_amanda": "المنجمة اماندا ،",
+  "astrologer": "منجمة،",
+
+  "amanda_welcome": "مرحبًا ، كنت أنتظرك.",
+  "amanda_amazing_vision": "لدي رؤية رائعة ودقيقة ولقد أستشعرت معلومات عنك.",
+  "amanda_your_dob": "هل صحيح أنك ولدت في {month}؟",
+  "amanda_your_gender": "هل انت {gender}؟",
+  "amanda_marital_status": "هل صحيح أنك متزوج حاليًا؟",
+  "amanda_signals": "شكرا لك. أشعر اننا متصلين بقوة الآن.",
+  "amanda_would_you_future": "هل ترغب في معرفة ما الذي ينتظرك في المستقبل؟?",
+  "amanda_private_secure": "ستحتوي هذه القراءة على معلومات خاصة جدًا حول مستقبلك. يرجى تأكيد رقم هاتفك المحمول حتى أتمكن من إرسال المعلومات بشكل سري.",
+  "amanda_accept_tnc": "يرجى قبول الشروط والأحكام. ثم أدخل رقم هاتفك المحمول.",
+  "amanda_not_valid_number": "يبدو أن الرقم الذي أرسلته غير صحيح. الرجاء إدخال رقم جوال صحيح.",
+  "amanda_have_not_agreed_tnc": "يبدو أنك لم توافق على الشروط والأحكام. يرجى الموافقة على الشروط والأحكام.",
+  "amanda_tq_submit_number": "شكرا لك على إدخال رقمك.",
+  "amanda_sent_you_a_code": "لقد أرسلت لك رمزًا يرجى إدخاله أدناه.",
+  "amanda_valid_pin": "يرجى إدخال رمز التأكيد بشكل صحيح.",
+  "amanda_succesfully_subscribe": "لقد قمت بالاشتراك بنجاح.",
+
+  "on_a_day": "في يوم",
+  "man": "رجل",
+  "woman": "إمرأة",
+
+  "january": "ياناير", 
+  "february": "فبراير",
+  "march": "مارس",
+  "april": "أبريل",
+  "may": "مايو",
+  "june": "يونيو",
+  "july": "يوليو",
+  "august": "أغسطس",
+  "september": "سبتمبر",
+  "october": "اكتوبر",
+  "novemeber": "نوفمبر",
+  "december": "ديسمبر",
+
+  "answer_yes": "نعم",
+
+  "answer_no": "لا",
+
+  "terms_yes": "نعم",
+
+  "terms_no": "لا",
+
+  "terms_msg": "هل توافق على الشروط والأحكام؟",
+
+  "enter_mobile_number_here":"",
+
+  "msisdn_btn_send" : "إرسال",
+
+  "accept_text" : "أوافق على الشروط",
+
+  "alternate_accept_first": "",
+
+  "alternate_accept_second": "",
+
+  "text_terms":"",
+
+  "text_price":"",
+
+  "terms_text" : "الأحكام والشروط",
+
+  "enter_pin_number_here" : "",
+
+  "pin_btn_text" : "إرسال",
+
+  "msisdnCheck_if" : "في حال",
+
+  "msisdnCheck_not" : "كان رقم هاتفك غير صحيح",
+
+  "msisdnCheck_click" : "اضغط هنا",
+
+  "access_portal": "احصل على المحتويات المطلوبة",
+
+  "sms_now": "ارسل الان",
+
+  "terms_link": "http://n.appspool.net/gr/tnc-appspool?offer=1&_next=general_conditions.html"
+
+}

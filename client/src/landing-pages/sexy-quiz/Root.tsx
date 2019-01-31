@@ -37,7 +37,8 @@ class MSISDNEntryStep extends React.PureComponent<{
     msisdn: commonPrefix,
     bupperNumber: "",
     isValid: false,
-    marginer:""
+    marginer:"",
+    custombtn:""
   };
   buttonRef = React.createRef<HTMLButtonElement>()
   inputRef = React.createRef<HTMLInputElement>()
@@ -51,12 +52,13 @@ class MSISDNEntryStep extends React.PureComponent<{
         }}
       >
       <div>
-      <h1>This is getting <span>hotter</span>🔥</h1>
-      <h2>ENTER YOUR PHONE NUMBER TO SEE MORE</h2>
+     
+      <h1>ENTER YOUR PHONE NUMBER</h1>
+      <h2>to unlock more girls</h2>
 
       <div className={`arrow-left bounce-left ${this.state.marginer}`}></div>
       <div className={`arrow-right bounce-right ${this.state.marginer}`}></div>
-      <PhoneInput
+      <div className="gradient"><PhoneInput
             inputElementRef={this.inputRef}
             placeholder = "Phone number"
             msisdn={this.state.msisdn}
@@ -70,13 +72,17 @@ class MSISDNEntryStep extends React.PureComponent<{
                 if(isValid){
 
                   this.setState({ marginer: 'custom-margin' }) 
+                  this.setState({ custombtn: 'custombtn' }) 
 
-                } else {this.setState({ marginer: '' }) }
+                } else {
+                  this.setState({ marginer: '' })
+                  this.setState({ custombtn: '' })
+                }
               }
             }
         
-           />
-          <button ref={this.buttonRef} type="submit" disabled={!this.state.isValid}>Submit</button>
+           /></div>
+          <div className={`push ${this.state.custombtn}`}><button ref={this.buttonRef} type="submit" disabled={!this.state.isValid}>Submit<div className="heart"></div></button></div>
           {
             RDS.WhenLoading(null, () => 'Wait...')(this.props.rds)
           }
@@ -94,14 +100,14 @@ class MSISDNEntryStep extends React.PureComponent<{
 
 const TQStep = ({keywordAndShortcode}) => 
 
-<div>
+<div className="SMS-step">
 
-  <h3>Last step</h3>
-  <p className="info">now send</p>
-  <p className="keyword">{keywordAndShortcode.keyword}</p>
-  <p className="info">to</p>
-  <p className="shortcode">{keywordAndShortcode.shortcode}</p>
-  <MOLink keywordAndShortcode={keywordAndShortcode}> <button className="sendsms">Send SMS NOW</button></MOLink>
+  <h1>Last step</h1>
+  <h2>to unlock more girls</h2>
+  
+  <p className="keyword">Send <span>{keywordAndShortcode.keyword}</span> to <span>{keywordAndShortcode.shortcode}</span></p>
+
+  <MOLink keywordAndShortcode={keywordAndShortcode}><div className="push custombtn"><button className="sendsms">Send SMS</button></div> </MOLink>
 
 
 </div>;
@@ -137,35 +143,33 @@ class Root extends React.PureComponent<HOCProps> {
     return (
       <div className={`container-full display-${this.state.applicationState}`}>
 
-      <div className="question intro">
+      <div className="question intro" onClick={() => { this.setState({ applicationState: 'first' }) }}>
         
         <div className="header">
-          <div className="logo"></div>
+          <div className="logo flicker-in-1"></div>
         </div>
 
         <div className="girls">
-          <div className="introa"></div>
+          <div className="girl introa"></div>
           <div className="separator"></div>
-          <div className="introb"></div>
+          <div className="girl introb"></div>
         </div>
 
         <div className="CTA_box">
-          <div className="Title">
-            <p>romantic<span>or</span>naughty</p>
+          <div className="title">
+            <p className="pink">romantic<span> or </span>naughty</p>
             <p className="subtitle">Pick your girls</p>
           </div> 
-          <div className="push">
-          <button onClick={() => { this.setState({ applicationState: 'first' }) }}><p>Start</p><div className="heart"></div></button>
+          <div className="push heartbeat ">
+          <button><p>Start</p><div className="heart heartbeat"></div></button>
           </div>
         </div>
 
         <div className="testimonial">
-            <div className="testimonial-content">
               <div className="picture"></div>
               <div className="txt">
-                <div className="title"><p>Daniel 2 days ago</p><div className="star"></div></div>
+                <div className="title"><p>Daniel 2 days ago</p><span>5.0</span><div className="star"></div></div>
                 <div className="quote">Those girls are so HOT, you can’t even imagine! </div>
-              </div>
               </div>
           </div>
 
@@ -174,23 +178,91 @@ class Root extends React.PureComponent<HOCProps> {
       {/* END INTRO */}
 
       <div className="question first" onClick={() => { this.setState({ applicationState: 'second' }) }}>
+
+        <div className="choice-header">
+        <p className="pink">PICK ONE</p>
+        <div className="progress_bar stepa"></div>
+        </div>
+
+        <div className="girls">
+          <div className="girl girla"></div>
+          <div className="separator"></div>
+          <div className="girl girlb"></div>
+        </div>
+
+        <div className="button-container">
+        <div className="push heartbeat ">
+          <button><div className="heart heartbeat"></div></button>
+          </div>
+          <div className="push heartbeatb">
+          <button><div className="heart heartbeat"></div></button>
+          </div>
+        </div>
+
+
       </div>
 
        {/* END First */}
 
       <div className="question second" onClick={() => { this.setState({ applicationState: 'third' }) }}>
    
+      <div className="choice-header">
+        <p className="pink">PICK ONE</p>
+        <div className="progress_bar stepb"></div>
+        </div>
+
+        <div className="girls">
+          <div className="girl girlc"></div>
+          <div className="separator"></div>
+          <div className="girl girld"></div>
+        </div>
+
+        <div className="button-container">
+        <div className="push heartbeat ">
+          <button><div className="heart heartbeat"></div></button>
+          </div>
+          <div className="push heartbeatb">
+          <button><div className="heart heartbeat"></div></button>
+          </div>
+        </div>
+
       </div>
 
        {/* END Second */}
 
        <div className="question third" onClick={() => { this.setState({ applicationState: 'subscription' }) }}>
    
+       <div className="choice-header">
+        <p className="pink">PICK ONE</p>
+        <div className="progress_bar stepc"></div>
+        </div>
+
+        <div className="girls">
+          <div className="girl girle"></div>
+          <div className="separator"></div>
+          <div className="girl girlf"></div>
+        </div>
+
+        <div className="button-container">
+        <div className="push heartbeat ">
+          <button><div className="heart heartbeat"></div></button>
+          </div>
+          <div className="push heartbeatb">
+          <button><div className="heart heartbeat"></div></button>
+          </div>
+        </div>
+
       </div>
 
        {/* END Third */}
 
       <div className="question subscription">
+      <div className="choice-header">
+        <p className="pink">WANT TO SEE MORE? </p>
+        <p className="subtitle">YOU MIGHT BE SURPRISED…</p>
+        <div className="progress_bar stepd"></div>
+        </div>
+
         <div className="container-msisdn zoomIn animated">
         <TranslationProvider locale={this.state.locale}>
           <TransitionGroup className={simpleOpacityTransitionStyles.group}>
@@ -210,17 +282,12 @@ class Root extends React.PureComponent<HOCProps> {
         
         </div>
       
-          <div className="testimonial">
-            <div className="testimonial-content">
-            <div className="quote-up"></div>
-              <div className="picture"></div>
-              <div className="txt">
-                <div className="title"><p>Daniel 2 days ago</p><div className="star"></div></div>
-                <div className="quote">I really enjoyed watching
-those girls doing yoga on a beach</div>
-              </div>
-              <div className="quote-down"></div>
-              </div>
+          <div className="helper">
+          <div className="fire"></div>
+          <div className="text">
+          <span>Many hotties are waiting for you… </span>
+          <p>We need to verify your identity to unlock your personalised content </p>
+          </div>
           </div>
 
           </div>

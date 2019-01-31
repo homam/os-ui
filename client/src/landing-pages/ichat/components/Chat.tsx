@@ -26,6 +26,7 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: 
       checked: false,
       pinValue: "",
       infoBox:"",
+      termsBox:"",
       applicationState: "Chatting" as ChatApplicationState,
       isDelayingPinUI: true,
       messages: [
@@ -90,7 +91,7 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: 
         [
             this.props.intl.formatMessage({
                 id: "amanda_have_not_agreed_tnc",
-                defaultMessage: "It's seems that ou hayven't agreed to terms and conditions. Please agree to the terms and conditions."
+                defaultMessage: "It's seems that ou haven't agreed to terms and conditions. Please agree to the terms and conditions."
             })
         ],
       
@@ -247,7 +248,7 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: 
 
       if (chatInner.clientHeight > chatOuter.clientHeight) {
 
-        var scrollValue = (chatOuter.clientHeight - chatInner.clientHeight) - 100;
+        var scrollValue = (chatOuter.clientHeight - chatInner.clientHeight) - 120;
 
         chatInner.style.webkitTransform = "translateY(" + scrollValue + "px)";
 
@@ -406,12 +407,13 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: 
       onTermsClicked = {() =>  this.setState({infoBox:'active'})}
       onSendClicked={({value, checked}) => {
 
-        if(value == ""){
+        if(value == this.state.msisdnValue){
 
           this.botResponse(self.state.messages[5]);
 
         }else if(!checked){
 
+          this.setState({ termsBox: 'terms' });
           this.botResponse(self.state.messages[6]);
 
         }else{
@@ -436,9 +438,6 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: 
           <div className="infoBoxContent">
           
             <div className="closeBtn" onClick={() => this.setState({infoBox:''})}>X</div>
-
-          
-
 
           </div>
 
@@ -469,13 +468,37 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: 
 
       </div>
 
-      <div className="footer">
+      <div className={`footer display-${this.state.termsBox}`} id="footer">
 
         <div className="boolean-group animated" id="boolean-buttons">
 
           <button data-reply={this.props.intl.formatMessage({id: "answer_yes", defaultMessage: "Yes"})}><Translate id="answer_yes" defaultMessage="Yes" /></button>
 
           <button data-reply={this.props.intl.formatMessage({id: "answer_no", defaultMessage: "No"})}><Translate id="answer_no" defaultMessage="No" /></button>
+
+        </div>
+
+        <div className="terms-group animated" id="terms-buttons">
+
+          <div className="instructions"><Translate id="terms_msg" defaultMessage="Do you accept the Terms and Conditions?" /></div>
+
+          <div className="terms-buttons">
+          <button data-reply={this.props.intl.formatMessage({id: "answer_yes", defaultMessage: "Yes"})}
+          
+            onClick = {()=>{
+
+              this.setState({ termsBox: null })
+              document.getElementById('numberEntry').style.display="none";
+              document.getElementById('agree').click();
+              document.getElementById('msisdnBtn').click();
+
+            }}
+             
+          ><Translate id="terms_yes" defaultMessage="Yes" /></button>
+
+          <button data-reply={this.props.intl.formatMessage({id: "answer_no", defaultMessage: "No"})} onClick={()=>{this.setState({ termsBox: '' })}}><Translate id="terms_no" defaultMessage="No" /></button>
+
+          </div>  
 
         </div>
 
