@@ -50,7 +50,7 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: 
                 id: "roxy_question",
                 defaultMessage: "Do you think I look cute?"
             }),
-            `<img src=${chatImg}/>`
+            `<img src=${chatImg}>`
         ],
       
         [
