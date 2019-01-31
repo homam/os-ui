@@ -19,21 +19,14 @@ type ApplicationStates = "Selection" | "Splash" | "Chat" ;
 
 class Root extends React.PureComponent<HOCProps> {
   state = {
-    locale: "en",
+    locale: "nl",
     keyValue:"",
+    preloader:false,
     startchat:false,
     applicationState: "Selection" as ApplicationStates
   };
 
   render() {
-
-    var _self = this;
-
-    function changeState() {
-
-       _self.setState({applicationState: "Chat", startchat:true});
-
-    }
 
     const MOLink = this.props.MOLink
     const {keyword, shortcode} = RDS.WhenSuccess<IKeywordShortcode, IKeywordShortcode>(
@@ -47,16 +40,33 @@ class Root extends React.PureComponent<HOCProps> {
         <TranslationProvider locale={this.state.locale}>
         <div className={`container display-${this.state.applicationState}`}>
 
-              <SelectionScreen onSelected={({keyData})=> {this.setState({applicationState:'Splash', keyValue: keyData})}}/>
+              <SelectionScreen 
+              onSelected={({keyData})=> {
+                this.setState({
+                  applicationState:'Splash', 
+                  keyValue: keyData, 
+                  preloader:true
+                })
+              }}
+              />
 
-              <SplashScreen onChange={()=>{this.state.applicationState == "Splash" ? changeState() : false}}/>
+              <SplashScreen
+              onChange={()=>{
+                  this.setState({
+                    applicationState: "Chat", 
+                    startchat:true
+                  })
+                }} 
+              activate={this.state.preloader}
+              />
 
               <ChatScreen
               keyword={this.state.keyValue}
               MOLink={this.props.MOLink} 
               startchat={this.state.startchat}
               currentState={this.props.currentState} 
-              tracker={tracker}/>
+              tracker={tracker}
+              />
 
 
           </div>
