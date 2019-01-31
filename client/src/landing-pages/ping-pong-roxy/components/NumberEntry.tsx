@@ -15,7 +15,10 @@ class NumberEntry extends React.PureComponent<IProps & InjectedIntlProps> {
   }
 
   render() {
-    return <div className="animated" id="numberEntry">
+    return <form className="animated" id="numberEntry" onSubmit={(ev) => {
+      ev.preventDefault();
+      this.props.onSendClicked({value: this.state.value});
+    }}>
 
       <div id="numberForm">
 
@@ -23,12 +26,12 @@ class NumberEntry extends React.PureComponent<IProps & InjectedIntlProps> {
           this.setState({ value: ev.target.value })
         }} name="msisdn" id="msisdn" maxLength={10} placeholder={this.props.intl.formatMessage({id: "enter_mobile_number_here", defaultMessage: "Enter mobile number here..."})} />
 
-        <button onClick={() => this.props.onSendClicked({value: this.state.value})}><Translate id="msisdn_btn_send" defaultMessage="Send" /></button>
+        <button type="submit"><Translate id="msisdn_btn_send" defaultMessage="Send" /></button>
 
       </div>
 
 
-    </div>
+    </form>
 
 
   }

@@ -3,18 +3,17 @@ import NumberEntry from "./NumberEntry";
 import {
   HOCProps,
   MSISDNEntryFailure,
-  PINEntryFailure,
-  PINEntrySuccess,
   match,
   whenMSISDNEntry,
-  whenPINEntry
-} from "../../../clients/lp-api/HOC";
+  MSISDNEntrySuccess,
+  MOLink
+} from "../../../clients/lp-api-mo/HOC";
 import * as RDS from "../../../common-types/RemoteDataState"
-import PinEntry from "./PinEntry";
 import Loader from "./Loader";
 import {Translate, injectIntl} from "./../localization/index"
 import { InjectedIntlProps } from "react-intl";
 import { queryString } from "../../../pacman/record";
+import MOStep from "./MOStep";
 const chatImg = require("../assets/imgs/chatImg.jpg");
 
 
@@ -28,6 +27,7 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps> {
       pinValue: "",
       infoBox:"",
       applicationState: "Chatting" as ChatApplicationState,
+      isShowingMOModal: false,
       messages: [
         [
             this.props.intl.formatMessage({
@@ -318,8 +318,15 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps> {
           // invalid mobile number
           this.botResponse(self.state.messages[3]);
         }
+
+        if(RDS.IsLoading(previous_rds) && RDS.IsSuccess(new_rds)) {
+          // valid mobile number, show the user the popup
+          this.setState({isShowingMOModal: true})
+        }
+
       })(this.props.currentState)
     })(prevProps.currentState)
+
   }
 
 
@@ -328,7 +335,7 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps> {
     const numberEntry = <NumberEntry 
       value={this.state.msisdnValue} 
       onSendClicked={({value}) => {
-
+        
         if(value == ""){
 
           this.botResponse(self.state.messages[5]);
@@ -341,14 +348,15 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps> {
 
         }} 
     />
-    const pinEntry = <PinEntry 
-      msisdnValue={this.state.msisdnValue} 
-      value={this.state.pinValue} 
-      onSendClicked={pin => this.props.actions.submitPIN(pin) }
-      onNotMyMobileClicked={() => this.props.actions.backToStart()}
-      />   
 
     return <div className={`chat display-${this.state.applicationState}`}>
+
+    {
+      this.state.isShowingMOModal 
+      ? 
+        <MOStep/>
+      : null
+    }
 
       <div className={`infoBox display-${this.state.infoBox}`}>
       
@@ -405,17 +413,12 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps> {
             msisdnEntry: (rds) => RDS.match({
               nothingYet: () => numberEntry,
               loading: () => <Loader />,
-              success: () => null,
+              success: (result: MSISDNEntrySuccess) => {
+                console.log(result.keyword, result.shortcode)
+                return null;
+              },
               failure: () => numberEntry
-            })(rds),
-            pinEntry: (rds) => RDS.match({
-              nothingYet: ()  => pinEntry,
-              loading: () => <div>...</div>,
-              success: (succ: PINEntrySuccess) => <div className="animated" id="finalLink">
-                <a href={succ.finalUrl} className="button"><Translate id="access_portal" defaultMessage="Access Portal" /></a>
-              </div>,
-              failure: () => pinEntry
-            })(rds) ,
+            })(rds)
 
           })(this.props.currentState) 
         }
