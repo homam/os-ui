@@ -1,0 +1,35 @@
+---
+name: common-components/pin-input
+---
+import { Playground, PropsTable } from 'docz'
+import Pin from './PinInput'
+
+# Reusable Components in `bin-win` page
+
+
+## CustomSlider
+
+<Playground>
+  <Pin />
+</Playground>
+
+### Example:
+
+<Playground>
+ { ()  => {
+    class Example extends React.PureComponent {
+      constructor(props) {
+        super(props)
+        this.state = {
+          value: 200
+        }
+      }
+
+      render() {
+        return <div />;
+      }
+    }
+
+    return <Example />;
+ } }
+</Playground>
