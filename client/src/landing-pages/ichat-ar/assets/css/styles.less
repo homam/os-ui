@@ -389,36 +389,82 @@ body{
 // 	}
 // }
 
+.boolean-operator{
+	display: flex;
+	width: 100%;
+	max-width: 500px;
+	margin: 0 3px;
+	padding: 5px;
+}
+
 .btn-vodafone{
 	width: 100%;
-	display:block;
+	max-width: 245px;
 	position: relative;
 	color: white;
-	margin: auto;
+	margin: 0 3px;
 	background-color: red;
-	padding: 10px 30px;
+	padding: 25px 30px;
 	font-size: 15px;
 	font-weight: bold;
 	border: none;
 	border-radius: 8px;
+	display: inline-block;
+	border:none;
+	outline: none;
 	-webkit-transition: 0.25s ease-in-out;
 }
+
+.btn-vodafone::before{
+	content:'';
+	position: absolute;
+	width: 100%;
+	height: 40px;
+	bottom: 0;
+	top: 6px;
+	left: 0px;
+	margin: auto;
+	background-image: url(../img/vodafone-logo.png);
+	position: absolute;
+	background-size: 120px, 5px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+    
 
 .btn-orange{
 	width: 100%;
-	display:block;
+	max-width: 245px;
 	position: relative;
 	color: white;
-	margin: auto;
-	background-color: orange;
-	padding: 10px 30px;
+	margin: 0 3px;
+	background-color: #ff5701;
+	padding: 25px 30px;
 	font-size: 15px;
 	font-weight: bold;
 	border: none;
 	border-radius: 8px;
+	display: inline-block;
+	border:none;
+	outline: none;
 	-webkit-transition: 0.25s ease-in-out;
 }
 
+.btn-orange::before{
+	content:'';
+	position: absolute;
+	width: 100%;
+	height: 40px;
+	bottom: 0;
+  top: 6px;
+	left: 0px;
+	margin: auto;
+	background-image: url(../img/orange-logo.png);
+	position: absolute;
+	background-size: 115px, 5px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 
 .terms-group{
 	flex: 1;
@@ -469,6 +515,7 @@ body{
 #numberForm{
 	width: 100%;
 	display: flex;
+	padding-top: 10px;
 
 	input{
 		width: 70%;
@@ -840,6 +887,7 @@ span.l-6 {-webkit-animation-delay: 0;animation-delay: 0;}
 	}
 }
 
+
  @media screen and (orientation:landscape) {
 	 
 	 .container{
@@ -908,9 +956,12 @@ span.l-6 {-webkit-animation-delay: 0;animation-delay: 0;}
 	}
 
 }
+
+
 .show{
-	display: block;
+	display: flex;
+
 }
 .hide{
-	display: none;
+	display: none !important;
 }
