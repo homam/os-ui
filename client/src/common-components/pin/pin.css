@@ -1,0 +1,21 @@
+.pin-input {
+  max-width: 10ch;
+  padding: 9px;
+  box-sizing: border-box;
+  margin: 10px 0;
+  outline: none;
+  font-size: 21px;
+  border-radius: 30px;
+  border: 1px solid #ccc;
+  height: 47px;
+  text-align: center;
+}
+
+.pin-input:focus + label {
+  display: none;
+}
+
+.input-wrapper{
+	position: relative;
+	margin: auto;
+}

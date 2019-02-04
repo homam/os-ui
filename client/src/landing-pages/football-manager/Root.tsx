@@ -2,7 +2,7 @@ import * as React from "react";
 import mkTracker from "../../pacman/record";
 import { TranslationProvider, Translate, injectIntl } from "./localization/index";
 import CustomTesti from "../bid-win/components/CustomTesti";
-import MsisdnComponent from '../../common-components/msisdn/msisdn-input';
+import PhoneInput, { getConfig } from "ouisys-phone-input/dist/common/PhoneInput"
 import HOC, {
   initialState,
   mockedCompletedState,
@@ -51,6 +51,8 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
     isJerseySelected: false,
     isTeamSelected: false
   };
+
+  phoneInputRef = React.createRef<HTMLInputElement>()
 
 
   submitTeam = () => {
@@ -197,12 +199,22 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
           <div className="number-entry">
             <label><Translate id="msisdn-label" /></label>
             <div className="input-wrapper">
-              <MsisdnComponent
-                countryCode={"+06"}
-                placeholder={this.props.intl.formatMessage({ id: "msisdn_placeholder" })}
-                onChange={msisdn => this.setState({ msisdn: msisdn })}
-                maxLength={11}
-              />
+            <PhoneInput
+              inputElementRef={this.phoneInputRef}
+              placeholder=""
+              msisdn={this.state.msisdn}
+              countryCode={process.env.country}
+              showFlag={false}
+              showMobileIcon={true}
+              showError={true}
+
+              onChange={({ msisdn, isValid, bupperNumber }) => {
+
+                this.setState({ msisdn, isValid, bupperNumber })
+              }
+              }
+
+            />
             </div>
             <button
               className="btn enabled"
