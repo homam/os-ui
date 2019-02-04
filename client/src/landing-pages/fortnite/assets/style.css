@@ -179,12 +179,13 @@ h2 {
 
 .slide {
   height:460px;
-  width:93%;
+  width:100%;
+  position: absolute;
 }
 
 .slide button {
   position:absolute;
-  bottom:45px;
+  bottom:50px;
   width:90%;
   background:linear-gradient(#FAA80D, #F8D860) ;
   font-family: Burbank;
@@ -595,7 +596,7 @@ height:500px;
 }
 
 .tqstep button {
-font-size:22px !important;
+font-size:20px !important;
 margin:0;
 }
 
@@ -608,7 +609,7 @@ margin:0;
 
 .tqstep h3 {
   color:white;
-  font-family: Sailec-Black;
+  font-family: Sailec-Bold;
   margin:0;
 }
 
@@ -624,7 +625,7 @@ label span {
   line-height:8px;
 }
 
-.aimshootingbtn {font-size:21px}
+.aimshootingbtn {font-size:21px !important;padding-top:14px !important}
 
 @media all and (max-width:320px) {
   .hero {width:100%;height:250px;}
@@ -635,10 +636,10 @@ label span {
   .container-slide { height:210px}
   .swiper {margin-top:160px}
   .slide {height:380px;}
-  .slide button {bottom:30px; }
+  .slide button {bottom:45px; }
   .slide button {font-size: 20px;}
-  .improver .swiper {margin-top:223px !important; }
-  .improver .container-slide {height: 232px !important;top: 55px;}
+  .improver .swiper {margin-top:212px !important; }
+  .improver .container-slide {height: 232px !important;top: 45px;}
   .msisdn-container p {font-size:13px;}
   .msisdn-container {height:225px;margin-top:30px;}
   .phone-input {margin-top:10px; width:90%};
@@ -752,8 +753,12 @@ label span {
 
 
 @media all and (min-width:1024px) {
-  .container-slide {height:245px;}
-  .hero {top:0;}
-  .slide {height:416px;}
-  .swiper {margin-top:210px}
+  .container-slide,  .improver .container-slide {height:200px;}
+  .hero {top:0;height:265px}
+  .slide {height:340px;min-height:340px !important;}
+  .swiper {margin-top:150px; }
+  .footer-gr {margin-top:-130px !important}
+  .slide button {bottom:10px}
+  .improve-txt {margin:5px 15px;}
+  .msisdn-container {height:210px}
 }

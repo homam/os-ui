@@ -288,9 +288,11 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: 
 
         booleanBtns.classList.add("fadeInUp");
 
+        
+
       }
 
-      if (k == 5) {
+      if (k == 1) {
 
         // numberEntry.style.display = "flex";
         self.setState({applicationState: "Subscribing"})
@@ -479,16 +481,10 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: 
 
       </div>
 
-      <div  className={`boolean-operator animated ${this.state.showOperatorSelection ? "show" : "hide"}` } id="operator-buttons">
-
-{/* <button data-reply={this.props.intl.formatMessage({ id: "ops_orange", defaultMessage: "Yes" })}>Vodafone</button>
-
-<button data-reply={this.props.intl.formatMessage({ id: "ops_vodafone", defaultMessage: "No" })}>Orange</button> */}
-
-<button type="button" className="btn-vodafone" id="select-btn1">Vodafone</button>
-<button type="button" className="btn-orange" id="select-btn2">Orange</button>
-
-</div>
+      {/* <div className={`boolean-operator animated ${this.state.showOperatorSelection ? "show" : "hide"}`} id="operator-buttons">
+        <button type="button" className="btn-vodafone" id="select-btn1"></button>
+        <button type="button" className="btn-orange" id="select-btn2"></button>
+      </div> */}
 
       <div className={`footer`} id="footer">
 

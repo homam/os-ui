@@ -16,7 +16,7 @@ render(){
     <li>Πάροχος Υπηρεσίας <span>Mobimilia BV</span></li>
     <li>Επικοινωνία <span>2103009942, <a href="mailto:info-gr@mobile-info.cc">info-gr@mobile-info.cc</a></span></li>
     <li>Διαγραφή <span>Στείλε MC STOP στο 54444 ή στο 54088 (Απλή χρέωση SMS στην αποστολή)</span></li>
-    <li>Όροι <span><a href="http://n.mobioastro.com/gr/tnc-mobioastro?offer=1&_next=general_conditions.htmlhttp://n.mobiworld.biz/gr/tnc-mobiworld?offer=1&_next=general_conditions.html" target="_blank">Όροι &amp; Προϋποθέσεις</a>&nbsp;/&nbsp;<a href="http://n.mobiworld.biz/gr/tnc-mobiworld?offer=1&_next=privacy_policy.html" target="_blank">Πολιτική Απορρήτου</a></span></li>
+    <li>Όροι <span><a href="http://n.mobiworld.biz/gr/tnc-mobiworld?offer=1&amp;_next=general_conditions.html" target="_blank">Όροι &amp; Προϋποθέσεις</a>&nbsp;/&nbsp;<a href="http://n.mobiworld.biz/gr/tnc-mobiworld?offer=1&amp;_next=privacy_policy.html" target="_blank">Πολιτική Απορρήτου</a></span></li>
     <li>Πάροχος δικτύου <span>DIMOCO Greece Moν. ΙΚΕ.</span></li>
 
 </ul>
