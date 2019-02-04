@@ -243,7 +243,7 @@ class Root extends React.PureComponent<HOCProps> {
                 <Translate id="readingInsText" defaultMessage="Are you ready to learn your future?" />
               </div>
 
-              <button onClick={() => { this.setState({ applicationState: 'results' }) }}>Δείξε μου</button>
+              <button onClick={() => { this.setState({ applicationState: 'results' }) }}><Translate id="show_me" defaultMessage="Show me" /></button>
 
             </div>
 
@@ -307,6 +307,7 @@ class Root extends React.PureComponent<HOCProps> {
 
             </div>
 
+            {/*
             <ul className="socialproof">
 
               <li>
@@ -322,6 +323,7 @@ class Root extends React.PureComponent<HOCProps> {
               </li>
 
             </ul>
+            */}
 
           </div>
 
