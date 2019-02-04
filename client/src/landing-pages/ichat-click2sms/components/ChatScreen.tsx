@@ -109,10 +109,8 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: 
     ]
 }
 
-
   botResponse: (msg) => void;
 
- 
   chatStarter(){
 
     const self = this;
@@ -312,30 +310,16 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: 
 
     }
    
-      setTimeout(startChat, 1000);
+      setTimeout(startChat, 800);
       this.botResponse = botResponse
 
   }
 
-
   componentDidUpdate(prevProps)  {  
 
-    if(prevProps.startchat){
+    prevProps.startchat ?  false : this.props.startchat ?  this.chatStarter() : false;
 
-      console.log("Chat Finish")
-
-    }else{
-
-      if(this.props.startchat){
-        this.chatStarter();     
-      }
-
-    } 
-
- 
 }
- 
-
 
 
   render() { 
@@ -348,9 +332,9 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: 
 
           <div className="user-details">
 
-            <h1>Medium Amanda</h1>
+          <h1><Translate id="medium_amanda" defaultMessage="Medium Amanda" /></h1>
 
-            <p>Astrologer</p>
+          <p><Translate id="astrologer" defaultMessage="Astrologer" /></p>
 
           </div>
 
@@ -370,9 +354,9 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: 
 
             <div className="boolean-group animated" id="boolean-buttons">
 
-              <button data-reply="Yes">Yes</button>
+          <button data-reply={this.props.intl.formatMessage({id: "answer_yes", defaultMessage: "Yes"})}><Translate id="answer_yes" defaultMessage="Yes" /></button>
 
-              <button data-reply="No">No</button>
+          <button data-reply={this.props.intl.formatMessage({id: "answer_no", defaultMessage: "No"})}><Translate id="answer_no" defaultMessage="No" /></button>
 
             </div>
 
@@ -392,7 +376,7 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: 
 
             <div className="animated" id="moSubmit">
 
-            <this.props.MOLink className="button" keyword={this.props.keyword}>SMS Now!</this.props.MOLink>
+            <this.props.MOLink className="button" keyword={this.props.keyword}><Translate id="sms_now" defaultMessage="SMS NOW" /></this.props.MOLink>
 
             </div>
 

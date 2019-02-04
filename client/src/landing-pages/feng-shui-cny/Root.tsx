@@ -93,6 +93,14 @@ class MSISDNEntryStep extends React.PureComponent<{
   };
 
   phoneInputRef = React.createRef<HTMLInputElement>()
+  ref_rockman_id = React.createRef<HTMLInputElement>();
+  ref_no_js_form_submission = React.createRef<HTMLInputElement>();
+
+  componentDidMount() {
+    this.ref_no_js_form_submission.current.value = "false";
+    if(typeof window != "undefined")
+      this.ref_rockman_id.current.value = window.pac_analytics.visitor.rockmanId
+  }
 
   render() {
     return (
@@ -102,6 +110,8 @@ class MSISDNEntryStep extends React.PureComponent<{
           this.props.onEnd(this.state.msisdn);
         }}
       >
+      <input type="hidden" name="rockman_id" ref={this.ref_rockman_id} />
+      <input type="hidden" name="no_js_form_submission" value="true" ref={this.ref_no_js_form_submission} />
 
         <div>
           {/* 1st PRELANDER */}

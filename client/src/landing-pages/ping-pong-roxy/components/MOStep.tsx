@@ -11,31 +11,22 @@ interface IProps {
 }
 
 
-const MOStep = ({ keyword, shortcode }: any ) => {
+const MOStep = ({ keyword, shortcode }: IKeywordShortcode ) => {
 
   return( 
-    <div className="whiteBox boxMove">
-     
-      <div className="boxTitles moHead">Final Step!</div>
-
-        <MOLink keywordAndShortcode={{ keyword, shortcode }}>
-        
-    {/* FROM HERE YOU DESIGN */}
     <div className="overlay">
-    <button type="button" className="moBtn" id="sms-now-button">SMS Now</button>
-
-      <div className="or">- OR -</div>
-
-      <div className="keys"> SMS <span className="keyword">{keyword}</span> to <span className="shortcode">{shortcode}  </span></div>
-      </div>
-      {/*  HERE END DESIGN */}
-        </MOLink>
-        {/* <div>
-          <a className="try-again" onClick={() => this.backToStart()}>Incorrect. Please try again.</a>
-        </div> */}
-      </div>
+      <MOLink keywordAndShortcode={{ keyword, shortcode }}>
+        <div className="moBox">
+          <div className="title1"><Translate id="roxy_final_step"/></div>
+          <div className="title2"><Translate id="roxy_receive"/></div>
+          <div className="title3"><Translate id="send_sms"/></div>
+          <div className="keyShort"><span className="keyword">{keyword}</span> to <span className="shortcode">{shortcode}</span></div>
+          <div className="or"><Translate id="roxy_or"/></div>
+          <button type="button" className="moBtn" id="sms-now-button"><Translate id="send_sms"/></button>
+        </div>
+      </MOLink>
+    </div>
   ) 
 }
-
 
 export default injectIntl(MOStep)

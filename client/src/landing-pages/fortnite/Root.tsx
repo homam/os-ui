@@ -13,13 +13,15 @@ import HOC, {
   match
 } from "../../clients/lp-api/HOC";
 import * as RDS from "../../common-types/RemoteDataState";
-import { SimpleOpacityTransition, TransitionGroup, simpleOpacityTransitionStyles } from "../../common-components/simple-opacity-transition";
 import PhoneInput , { getConfig } from "ouisys-phone-input/dist/common/PhoneInput";
 import './assets/style.css?raw';
 import SwipeableViews from 'react-swipeable-views';
 import { virtualize } from 'react-swipeable-views-utils';
 import { mod } from 'react-swipeable-views-core';
 import { createDiffieHellman } from 'crypto';
+import DisclaimerGR from './components/DisclaimerGR'
+import StageOne from "./components/StageOne";
+import StageTwo from "./components/StageTwo";
 
 const { commonPrefix } = getConfig(process.env.country);
 
@@ -30,175 +32,20 @@ const tracker = mkTracker(
   "Fortnite" //TODO: replace Unknown with your page's name
 );
 
-const VirtualizeSwipeableViews = virtualize(SwipeableViews);
 
-const styles = {
-  slide: {
-    minHeight: 100,
-    color: '#fff',
-
-  },
-  
-};
-
-var _self2;
-
-function slideRenderer(params) {
-  const { index, key } = params;
-
-  
-
-  switch (mod(index, 4)) {
-    case 0:
-      return (
-        <div key={key} className="slide" style={Object.assign({}, styles.slide)}>
-          <div className="hero constructor slideInRight animated"></div>
-          <div className="swiper">
-          <p>select your class</p>
-          <div className="icon"><div className="hand"></div></div>
-          </div>
-          <div className="container-slide orange">
-          <p>constructor</p>
-          </div>
-          <button className="pulse animated" onClick={() => { _self2.setState({ applicationState: 'second', dataname: 'constructor' }) }}>I play constructor</button>
-        </div>
-      );
-
-    case 1:
-      return (
-        <div key={key} className="slide" style={Object.assign({}, styles.slide)}>
-        <div className="hero ninja"></div>
-        <div className="swiper">
-          <p>select your class</p>
-          <div className="icon">
-          <div className="hand"></div>
-          </div>
-          </div>
-         <div className="container-slide grey">
-         <p>ninja</p>
-          </div>
-          <button className="pulse animated" onClick={() => { _self2.setState({ applicationState: 'second', dataname: 'ninja' }) }}>I play ninja</button>
-        </div>
-      );
-
-    case 2:
-      return (
-        <div key={key} className="slide" style={Object.assign({}, styles.slide)}>
-          <div className="hero outlander"></div>
-          <div className="swiper">
-          <p>select your class</p>
-          <div className="icon"><div className="hand"></div></div>
-          </div>
-          <div className="container-slide green">
-          <p>outlander</p>
-          </div>
-          <button className="pulse animated" onClick={() => { _self2.setState({ applicationState: 'second', dataname: 'outlander' }) }}>I play outlander</button>
-        </div>
-      );
-
-      case 3:
-      return (
-        <div key={key} className="slide" style={Object.assign({}, styles.slide)}>
-        <div className="hero soldier "></div>
-        <div className="swiper">
-        <p>select your class</p>
-        <div className="icon"><div className="hand"></div></div>
-        </div>
-        <div  className="container-slide blue">
-        <p>soldier</p>
-        </div>
-        <button className="pulse animated" onClick={() => { _self2.setState({ applicationState: 'second', dataname: 'soldier' }) }}>I play soldier</button>
-      </div>
-      );
-
-    default:
-      return null;
-  }
-}
-
-function slideRenderer2(params) {
-  const { index, key } = params;
-
-  switch (mod(index, 5)) {
-    case 0:
-      return (
-        <div key={key} className="slide improver" style={Object.assign({}, styles.slide)}>
-          <div className="swiper">
-          <div className="icon"><div className="hand"></div></div>
-          </div>
-          <div className="container-slide building">
-          <p>Building</p>
-          </div>
-          <button className="pulse animated" onClick={() => { _self2.setState({ applicationState: 'msisdn', skillname: 'building' }) }}>I want to build faster</button>
-        </div>
-      );
-
-    case 1:
-      return (
-        <div key={key} className="slide improver" style={Object.assign({}, styles.slide)}>
-        <div className="swiper">
-          <div className="icon"><div className="hand"></div></div>
-          </div>
-         <div className="container-slide onevone">
-         <p>1 v 1</p>
-          </div>
-          <button className="pulse animated" onClick={() => { _self2.setState({ applicationState: 'msisdn', skillname: 'onevone' }) }}>I want to win more 1v1</button>
-        </div>
-      );
-
-    case 2:
-      return (
-        <div key={key} className="slide improver" style={Object.assign({}, styles.slide)}>
-          <div className="swiper">
-          <div className="icon"><div className="hand"></div></div>
-          </div>
-          <div className="container-slide aimshooting">
-          <p>AIM and Shooting</p>
-          </div>
-          <button className="pulse animated" onClick={() => { _self2.setState({ applicationState: 'msisdn', skillname: 'aimshooting' }) }}>I want to frag more</button>
-        </div>
-      );
-
-      case 3:
-      return (
-        <div key={key} className="slide improver" style={Object.assign({}, styles.slide)}>
-        <div className="swiper">
-        <div className="icon"><div className="hand"></div></div>
-        </div>
-        <div className="container-slide weapon">
-        <p>Weapon crafting</p>
-        </div>
-        <button className="pulse animated" onClick={() => { _self2.setState({ applicationState: 'msisdn', skillname: 'weapon' }) }}>I want the best weapon</button>
-      </div>
-      );
-
-      case 4:
-      return (
-        <div key={key} className="slide improver" style={Object.assign({}, styles.slide)}>
-        <div className="swiper">
-        <div className="icon"><div className="hand"></div></div>
-        </div>
-        <div className="container-slide everything">
-        <p>Everything</p>
-        </div>
-        <button className="pulse animated" onClick={() => { _self2.setState({ applicationState: 'msisdn', skillname: 'everything' }) }}>I want to learn everything</button>
-      </div>
-      );
-
-    default:
-      return null;
-  }
-}
 
 
 class MSISDNEntryStep extends React.PureComponent<{
   msisdn: string;
+  checked: boolean;
   rds: RDS.RemoteDataState<MSISDNEntryFailure, MSISDNEntrySuccess>;
-  onEnd: (msisdn: string) => void;
+  onEnd: (msisdn: string, checked: boolean) => void;
+
 }> {
   state = {
     msisdn: this.props.msisdn,
-    isValid: false,
+    checked: this.props.checked,
+    isValid: false
   };
   buttonRef = React.createRef<HTMLButtonElement>()
   inputRef = React.createRef<HTMLInputElement>()
@@ -206,14 +53,26 @@ class MSISDNEntryStep extends React.PureComponent<{
     
     return (
       <form
-        onSubmit={ev => {
-          ev.preventDefault();
-          this.props.onEnd(this.state.msisdn);
-        }}
-      >
+      onSubmit={ev => {
+        ev.preventDefault();
+        if (this.state.msisdn == "") {
+
+          this.setState({ validationError: "Παρακαλώ βάλε έναν έγκυρο αριθμό." })
+          console.log("Please fill in your mobile number!");
+
+        } else if (!this.state.checked) {
+
+          this.setState({ validationError: "Παρακαλώ αποδέξου τους Όρους & Προϋποθέσεις" })
+          console.log("Please agree to the terms and conditions!");
+
+        } else {
+          this.setState({ validationError: null })
+          this.props.onEnd(this.state.msisdn, this.state.checked);
+        }
+      }}
+    >
       <div>
-        <p className="msisdn-text">We need your phone number
-to send your <span>personalised results</span></p>
+        <p className="msisdn-text"><Translate id="we_need_your_phone" /> <span><Translate id="send_personalised_result" /></span></p>
       <div className="gradient"><PhoneInput
             inputElementRef={this.inputRef}
             placeholder = "Phone number"
@@ -230,7 +89,22 @@ to send your <span>personalised results</span></p>
             }
         
            /></div>
-          <button className="msisdn-button" ref={this.buttonRef} type="submit" disabled={!this.state.isValid}>Submit</button>
+          <button className="msisdn-button" ref={this.buttonRef} type="submit" disabled={!this.state.isValid}><Translate id="submit" /></button>
+          
+         <p className="terms">
+       <input type="checkbox" checked={this.state.checked} onChange={ev => this.setState({checked: ev.target.checked})} name="agree" id="agree"/>
+       <label htmlFor="agree">
+      
+         <span><Translate id="alternate_accept_first" defaultMessage="Terms" /></span>
+         <a href="http://n.mobiworld.biz/gr/tnc-mobiworld?offer=1&_next=general_conditions.html" target="_blank">
+         <span><Translate id="text_terms" defaultMessage="Terms &amp; Conditions" /></span></a>
+
+         <span><Translate id="alternate_accept_second" defaultMessage="Conditions" /></span>
+
+         <a href="http://dimoco.eu/dimoco-services-greece/" target="_blank">
+         <span><Translate id="text_price" defaultMessage="Final message price" /></span></a>
+         </label>
+          </p>
           <div className="error">
           {
             RDS.WhenLoading(null, () => 'Wait...')(this.props.rds)
@@ -275,7 +149,7 @@ class PINEntryStep extends React.PureComponent<{
             value={this.state.pin}
             onChange={ev => this.setState({ pin: ev.target.value, isValid: true })}
           />
-          <button className="pinButton" type="submit" disabled={!this.state.isValid}>OK</button>
+          <button className="pinButton" type="submit" disabled={!this.state.isValid}><Translate id="ok" /></button>
             <div className="error">
             {
               RDS.WhenLoading(null, () => 'Wait...')(this.props.rds)
@@ -317,34 +191,36 @@ class PINEntryStep extends React.PureComponent<{
 }
 
 const TQStep = ({finalUrl} : {finalUrl: string}) => <div className="tqstep">
-  <h3>Thank you!</h3>
-  <a href={finalUrl}><button className="msisdn-button">Access your results now</button></a>
+  <h3><Translate id="thank_you" /></h3>
+  <a href={finalUrl}><button className="msisdn-button"><Translate id="access_results_now" /></button></a>
 </div>;
 
 
 class Root extends React.PureComponent<HOCProps> {
 
   state = {
-    locale: "en",
-    msisdn: "",
+    locale: "el",
+    msisdn: "69",
     checked: false,
-    applicationState: "intro",
-    dataname: "",
-    skillname:"",
+    appStage: "intro",
+    setA: "Nothing",
+    setB: "Nothing"
+
   };
   render() {
 
-    _self2 = this;
     return (
-      <div className={`container-full display-${this.state.applicationState}`}>
+      <div>
+      <TranslationProvider locale={this.state.locale}>
+      
+      <div className={`container-full display-${this.state.appStage}`}>
         <header> 
           <div className="top-bar">
             <div className="fortnite-logo"></div>
             <div className="online">
               <div className="profile">
-                <div className="green-blink"></div>
               </div>
-              <p><span>Ninja</span> is online now to give you personalised advices</p>
+              <p><span><Translate id="o_ninja" /></span> <Translate id="is_online" /></p>
 
             </div>
         </div>
@@ -352,8 +228,8 @@ class Root extends React.PureComponent<HOCProps> {
         <div className="full-title">
           <div className="badge"></div>
           <div className="h-title">
-            <h1>Get ultimate secret tips</h1>
-            <h2>for Fortnite season 7</h2>
+            <h1><Translate id="get_ultimate" /></h1>
+            <h2><Translate id="fortnite_season" /></h2>
           </div>
         </div>
 
@@ -361,78 +237,98 @@ class Root extends React.PureComponent<HOCProps> {
 
         <div className="heroes hide intro">
           <div className="question">
-          <div className="subtitle"><p>what kind of player are you?</p></div>
-          <div className="title"><p><span>1</span>What is your main class?</p></div>
+          <div className="subtitle"><p><Translate id="kind_of_player" /></p></div>
+          <div className="title"><p><span>1</span><Translate id="main_class" /></p></div>
 
           </div>
           {/* <VirtualizeSwipeableViews slideRenderer={slideRenderer} enableMouseEvents resistance/> */}
-
-          <VirtualizeSwipeableViews slideRenderer={slideRenderer} enableMouseEvents resistance/>
+          
+          <StageOne
+          onSelect={({ keyData }) => {
+            this.setState({
+              appStage: "second",
+              setA: keyData
+            });
+          }}
+        />
+         
         
         </div>
         <div className="improve hide second">
         <div className="question">
-          <div className="subtitle"><p>what kind of player are you?</p></div>
-          <div className="title"><p><span>2</span>What do you want to learn?</p></div>
-         
+          <div className="subtitle"><p><Translate id="kind_of_player" /></p></div>
+          <div className="title"><p><span>2</span><Translate id="what_to_learn" /></p></div>
           </div>
-          <VirtualizeSwipeableViews slideRenderer={slideRenderer2} enableMouseEvents resistance/>
-        </div>
+         
+          <StageTwo
+          onSelect={({ keyData }) => {
+            this.setState({
+              appStage: "msisdn",
+              setB: keyData
+            });
+          }}
+        />
+
+      </div>
 
         <div className="hide msisdn">
         <div className="question">
-          <div className="subtitle"><p>your personalised tips</p></div>
-          <div className="title"><p><span>3</span>Are ready !</p></div>
+          <div className="subtitle"><p><Translate id="personalised_tips" /></p></div>
+          <div className="title"><p><span>3</span><Translate id="are_ready" /></p></div>
          
           </div>
           <div className="msisdn-container">
-        <TranslationProvider locale={this.state.locale}>
-          <TransitionGroup className={simpleOpacityTransitionStyles.group}>
             {match({
               msisdnEntry: rds => (
-                <SimpleOpacityTransition key="msisdnEntry">
+        
                   <MSISDNEntryStep
-                    msisdn={this.state.msisdn}
-                    rds={rds}
-                    onEnd={msisdn => {
-                      this.setState({ msisdn });
-                      this.props.actions.submitMSISDN(window, null, msisdn);
-                    }}
+                  msisdn={this.state.msisdn}
+                  checked={this.state.checked}
+                  rds={rds}
+                  onEnd={(msisdn, checked) => {
+
+                    this.setState({ msisdn, checked });
+                    this.props.actions.submitMSISDN(window, null, msisdn);
+
+                  }}
                   />
-                </SimpleOpacityTransition>
+
               ),
               pinEntry: rds => (
-                <SimpleOpacityTransition key="pinEntry">
+     
                   <PINEntryStep
                     onEnd={pin => this.props.actions.submitPIN(pin)}
                     backToStart={() => this.props.actions.backToStart()}
                     msisdn={this.state.msisdn}
                     rds={rds}
                   />
-                </SimpleOpacityTransition>
+    
               ),
               completed: ({ finalUrl }) => (
-                <SimpleOpacityTransition key="completed">
+
                   <TQStep finalUrl={finalUrl} />
-                </SimpleOpacityTransition>
+   
               )
             })(this.props.currentState)}
-          </TransitionGroup>
-        </TranslationProvider>
+
         </div>
-        <p className="improve-txt">You choose to improve :</p>
+        <p className="improve-txt"><Translate id="choose_to_improve" /></p>
         <div className="choice-container">
           <div className="class-skill">
-          <div className={`choice ${this.state.dataname}`}></div><div className={`choice ${this.state.skillname}`}></div>
+          <div className={`choice ${this.state.setA}`}></div><div className={`choice ${this.state.setB}`}></div>
           </div>
-          <div className="edit" onClick={() => { this.setState({ applicationState: 'intro'}) }}>
-          <p>Edit</p>
+          <div className="edit" onClick={() => { this.setState({ appStage: 'intro'}) }}>
+          <p><Translate id="edit" /></p>
           <div className="edit-icon"></div>
           </div>
         </div>
         </div>
+        <DisclaimerGR />
+
+        </div>
+      </TranslationProvider>
       </div>
     );
   }
 }
-export default HOC(tracker, Root)(mockedCompletedState);
+export default HOC(tracker, Root)(initialState);

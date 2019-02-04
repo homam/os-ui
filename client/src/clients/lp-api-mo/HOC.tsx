@@ -9,6 +9,8 @@ export type MSISDNEntryFailure = {
 };
 export type MSISDNEntrySuccess = IKeywordShortcode
 
+export { IKeywordShortcode }
+
 type MSISDNEntryState = RDS.RemoteDataState<MSISDNEntryFailure, MSISDNEntrySuccess>
 
 export type State =

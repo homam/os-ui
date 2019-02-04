@@ -1,98 +1,31 @@
 {
-  "hello_world": "Hello World!",
-  "AlreadySubscribed": "You are already a subscriber!",
-  "InvalidMSISDN": "This mobile number is incorrect, try again",
-  "UnknownError": "An unknown error occurred.",
-  "InvalidPIN": "Please enter the correct PIN that you received on your phone",
-  "TooEarly": "You must first submit a mobile number",
-  "we_just_sent_a_pin": "We just sent a PIN to your mobile phone.\nPlease check your SMS inbox and enter the PIN that you received below:",
-  "didnt_receive_pin_yet": "Didn't receive a PIN yet? Make sure {phone} is your correct mobile number.",
-  "if_not_your_mobile": "If {phone} is not your mobile number,",
-  "click_here_to_change_your_number": "Click here to change your phone number.",
-
-  "splash_header_msg":"Exclusive chat invitation",
-  "splash_start_title":"The predictions",
-  "splash_medium_amanda":"Medium Amanda",
-  "splash_startsub_title":"the most recognized astrologer in the whole world",
-  "splash_footer_title":"Your future is written...",
-  "establishing_text":"Establishing Connection, Please wait...",
-
+  "splash_header_msg": "Exclusive chat invitation",
+  "splash_start_title": "The predictions",
+  "splash_medium_amanda": "Medium Amanda",
+  "splash_startsub_title": "the most recognized astrologer in the whole world",
+  "splash_footer_title": "Your future is written...",
+  "establishing_text": "Establishing Connection, Please wait...",
   "medium_amanda": "Medium Amanda",
   "astrologer": "Astrologer",
-
-  "amanda_welcome": "Welcome, I was waiting for you.",
-  "amanda_amazing_vision": "An amazing vision occured and I am sensing information about you.",
-  "amanda_your_dob": "Is it correct that you were born {month}?",
-  "amanda_your_gender": "Is it right that you are a {gender}?",
-  "amanda_marital_status": "Is it correct that you are currently married?",
-  "amanda_signals": "Ok, I have already confirmed that I am receiving your signals.",
-  "amanda_would_you_future": "Would you like to receive your complete reading of the future?",
-  "amanda_private_secure": "Because I would like it to be private and secure, I would like to send it to your cell phone.",
-  "amanda_accept_tnc": "Please accept the Terms and Conditions. And enter your mobile number.",
-  "amanda_not_valid_number": "It's seems the number you've sent is not valid. Please enter a valid mobile number.",
-  "amanda_have_not_agreed_tnc": "It's seems that ou hayven't agreed to terms and conditions. Please agree to the terms and conditions.",
-  "amanda_tq_submit_number": "Thank you for submitting your number.",
-  "amanda_sent_you_a_code": "I sent you a code kindly enter it below.",
-  "amanda_valid_pin": "Please enter a valid PIN code.",
-  "amanda_succesfully_subscribe": "You've succesfully subscribe.",
-
-  "on_a_day": "on a day",
-  "man": "man",
-  "woman": "woman",
-
-  "january": "January", 
-  "february": "February",
-  "march": "March",
-  "april": "April",
-  "may": "May",
-  "june": "June",
-  "july": "July",
-  "august": "August",
-  "september": "September",
-  "october": "October",
-  "novemeber": "November",
-  "december": "December",
-
+  "amanda_welcome": "Welcome. I was expecting you...",
+  "amanda_amazing_vision": "I see you came to me with a question in mind... You came to the right place. Please, answer a few questions to strengthen our connection.",
+  "amanda_your_dob": "If you look back in life, would you consider yourself lucky?",
+  "amanda_your_gender": "Have you ever been trully in love?",
+  "amanda_marital_status": "Have you ever trully hated anyone?",
+  "amanda_signals": "Yes.. I can see clearly now. How interesting..",
+  "amanda_would_you_future": "Are you sure you would like to receive your future reading?",
+  "amanda_private_secure": "To keep it private, I will send my vision details on your mobile phone.",
+  "amanda_accept_tnc": "Please click SMS NOW button and confrim your chosen aspect of the reading",
   "answer_yes": "Yes",
-
   "answer_no": "No",
-
-  "terms_yes": "Yes",
-
-  "terms_no": "No",
-
-  "terms_msg": "Do you accept the terms and conditions?",
-
-  "enter_mobile_number_here":"",
-
-  "msisdn_btn_send" : "Send",
-
-  "accept_text" : "I accept the terms",
-
-  "alternate_accept_first": "",
-
-  "alternate_accept_second": "",
-
-  "text_terms":"",
-
-  "text_price":"",
-
-  "terms_text" : "Terms & Conditions",
-
-  "enter_pin_number_here" : "",
-
-  "pin_btn_text" : "Send",
-
-  "msisdnCheck_if" : "If",
-
-  "msisdnCheck_not" : "is not your mobile number",
-
-  "msisdnCheck_click" : "Click here",
-
-  "access_portal": "Access Portal",
-
   "sms_now": "SMS Now",
-
-  "terms_link": "http://n.appspool.net/gr/tnc-appspool?offer=1&_next=general_conditions.html"
-
+  "select_header_text1": " Get exclusive live",
+  "select_header_text2": "Astrology",
+  "select_header_text3": "reading today!",
+  "question_text": "What do you want to know about?",
+  "love": "Love",
+  "luck": "Luck",
+  "money": "Money",
+  "family": "Family",
+  "work": "Work"
 }
