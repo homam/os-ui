@@ -1,0 +1,151 @@
+html, body {
+    padding: 0;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.2;
+    height: 100%;
+    font-size: 16px;
+    background: #000;
+    color: #fff;
+}
+
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+.list-container{
+    margin: 15px 8px 0 8px;
+    display: none;
+}
+
+.title{
+    text-transform: uppercase;
+    margin: 8px 0;
+    font-weight: bold;
+}
+
+.categories{
+    font-weight: bold;
+    font-size: 14px;
+    display: flex;
+    overflow: scroll;
+}
+
+.category-item{
+    flex: 1;
+    margin: 5px 8px 5px 0;
+    min-width: 25%;
+}
+
+.thumbs-intro{
+    font-size: 11px;
+    display: flex;
+    margin-top: 10px;
+    justify-content: space-between;
+}
+
+.thumbs{
+    
+    display: flex;
+    overflow: scroll;
+}
+
+.thumb{
+    
+    margin: 10px 8px 0px 0;
+    flex: 1;
+    min-width: 40%;
+    
+
+    .img{
+        height: 140px;
+        background-color: #ccc;
+        border-radius: 4px;
+    }
+}
+
+.thumb-info{
+    font-size: 12px;
+    margin: 8px 0 
+}
+
+.rating{
+    margin: 4px 0;
+}
+
+/**** PLAYER PAGE*****/
+
+.player{
+    height: 250px;
+    background-color: #ccc;
+width: 100%;
+position: relative;
+}
+
+.progress-bar-container{
+    
+    padding: 15px 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+}
+
+.duration{
+    font-size: 13px;
+    margin-left:8px;
+}
+
+.progress-bar{
+    flex: 1;
+    height: 14px;
+    background-color: #fff;
+    border-radius: 8px;
+    margin: 0 8px;
+}
+
+.player-info{
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    padding: 15px 10px;
+}
+
+.comment{
+    background-color: #171717;
+    display: flex;
+    font-size: 12px;
+    padding: 8px;
+    .user{
+       
+        margin-right: 12px;
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        background-color: #ccc;
+    }
+
+    .comment-details{
+        flex: 1;
+
+        .name{
+            font-weight: bold;
+            margin: 2px 0 4px 0;
+        }
+
+        .post-time{
+            margin: 2px 0 4px 0;
+        }
+    }
+
+    .user-comment{
+        margin-top: 0;
+        display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+    }
+}
+
