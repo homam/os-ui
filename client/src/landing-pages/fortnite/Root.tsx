@@ -45,7 +45,8 @@ class MSISDNEntryStep extends React.PureComponent<{
   state = {
     msisdn: this.props.msisdn,
     checked: this.props.checked,
-    isValid: false
+    isValid: false,
+    validationError: null
   };
   buttonRef = React.createRef<HTMLButtonElement>()
   inputRef = React.createRef<HTMLInputElement>()
@@ -115,6 +116,12 @@ class MSISDNEntryStep extends React.PureComponent<{
           {
             RDS.WhenFailure(null, (err : MSISDNEntryFailure) => <Translate id={err.errorType} />)(this.props.rds)
           }
+        {
+            this.state.validationError != null
+              ? <div className="error-msg">{this.state.validationError}</div>
+              : null
+          }
+
         </div>
       </form>
     );
