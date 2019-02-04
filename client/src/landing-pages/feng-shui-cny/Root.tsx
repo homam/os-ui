@@ -145,6 +145,7 @@ class MSISDNEntryStep extends React.PureComponent<{
 
         <div className="box-content sub-title">
           <Translate id="phone-number" />
+          <span className="require">&nbsp;<Translate id="required" /></span> :
         </div>
         <div>
           {/* <input
@@ -250,20 +251,19 @@ class Root extends React.PureComponent<HOCProps> {
     return (
       <TranslationProvider locale={this.state.locale}>
         <div>
-          <div className="wrapper">
-            <div className="topbar">
-              <div className="topbar-container">
+          <div className="topbar">
+            <div className="topbar-container">
 
-                {/* <div className={`ed-container ${(this.state.locale === "zh") ? "ed-choice-zh" : "ed-choice-en"}`}></div> */}
+              {/* <div className={`ed-container ${(this.state.locale === "zh") ? "ed-choice-zh" : "ed-choice-en"}`}></div> */}
 
-                <div className={"ed-container " + (this.state.locale === "zh" ? "ed-choice-zh" : "ed-choice-en")}></div>
-                <div className={"likes-container " + (this.state.locale === "zh" ? "likes-zh" : "likes-en")}></div>
+              <div className={"ed-container " + (this.state.locale === "zh" ? "ed-choice-zh" : "ed-choice-en")}></div>
+              <div className={"likes-container " + (this.state.locale === "zh" ? "likes-zh" : "likes-en")}></div>
 
-                {/* <div className="likes-container"></div> */}
+              {/* <div className="likes-container"></div> */}
 
-              </div>
             </div>
-
+          </div>
+          <div className="wrapper">
             <div className="starbust"></div>
             <div className="lantern-container">
               <div className="lantern left wobble-hor-top"></div>
@@ -275,6 +275,9 @@ class Root extends React.PureComponent<HOCProps> {
 
           <div className="container force-top text-center">
             <div className="box-border">
+            <div className="operator-tag">
+              Maxis Only
+            </div>
               <div className="box">
                 <div className="box-img top"></div>
 
