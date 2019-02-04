@@ -1,0 +1,401 @@
+@import "../../../../reset.css";
+
+body{
+  margin: 0;
+  padding:0;
+  text-align: center;
+  color:#ccc;
+  background-color: #000;
+  font-family: Arial, Arial, Helvetica, sans-serif;
+
+  -webkit-touch-callout:none;
+	-webkit-text-size-adjust: none;
+	-webkit-font-smoothing: antialiased;
+}
+
+.loader [class^="l-"], .subscription, .loader{
+  display: none;
+}
+
+.quiz .loader,
+.subscription .subscription,
+.display,
+.loader.display-l-1 .l-1,
+.loader.display-l-2 .l-2,
+.loader.display-l-3 .l-3,
+.loader.display-l-4 .l-4
+{
+  display: block;
+}
+
+.button{
+  font-size: 1.4em;
+  background-color: #9D2257;
+  background: linear-gradient(#F00B6C,#9D2257);
+  border-radius: 50px;
+  color: #FFF;
+  cursor: pointer;
+  display: block;
+  min-width: 12ch;
+  box-sizing: border-box;
+  max-width: 250px;
+  height: 50px;
+  margin: 6px auto;
+  font-weight: bold;
+  box-shadow: 0px 2px 5px #9c9090;
+}
+
+.button3{
+  &:extend(.button);
+  max-width: 280px;
+}
+
+/*mo designs start*/
+
+a{
+  text-decoration: none;
+}
+
+.keys{
+  font-size: 22px;
+  color: #000;
+}
+
+.tag1{
+  font-size: 14px;
+  color: #000;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.timer{
+  color: red;
+  font-size: 22px;
+  font-weight: bold;
+}
+/*mo designs end*/
+
+.gender{
+  background-image: url('../imgs/male.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 110px;
+  padding-top: 130px;
+  background-color: #FFF;
+  border: none;
+  color: #000;
+  font-size: 16px;
+  font-weight: bold;
+}
+.female{
+  &:extend(.gender);
+  background-image: url('../imgs/female.png');
+}
+
+.btnGender{
+  padding-top: 15px;
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.container{
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  max-width: 1020px;
+  min-height: 670px;
+  background-image: url('../imgs/heartBG1.jpg');
+  background-repeat: no-repeat;
+}
+
+ .boxFont{
+  font-size: 16px;
+}
+
+.form1{
+  padding-top: 10px;
+}
+
+.entryTitle{
+  text-align: left;
+  font-size: 16px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.smallTitle{
+  color: #000;
+  font-size: 16px;
+  margin: 30px auto 15px;
+}
+
+.firstHead{
+  padding-top: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 20px;
+}
+
+.whiteBox{
+  background-color: #FFF;
+  color: #000;
+  display: block;
+  width: 100%;
+  max-width: 310px;
+  min-height: 220px;
+  border-radius: 10px;
+  margin: 30px auto;
+  padding: 1em;
+}
+
+.bigBox{
+  height: 265px;
+}
+
+.header{
+  background: linear-gradient(#028D9F, #22BCBC);
+  width: 100%;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  color: #FFF;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.creative{
+  position: relative;
+  margin: 0 auto;
+  display: block;
+  width: 100%;
+  max-width: 250px;
+  min-height: 239px;
+  background-image: url('../imgs/couples2.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  .title{
+    display: block;
+    margin: 0 auto;
+    position: absolute;
+    top: 154px;
+    right: -17px;
+    width: 100%;
+    max-width: 250px;
+    height: 110px;
+    background-image: url('../imgs/LVlogo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+}
+
+h2.result {
+  font-size: 3.2em;
+  font-weight: bold;
+  color: #000033;
+  text-shadow: .05em .05em #22BCBC;
+  margin: 0.2em;
+}
+h2.result::before, h2.result::after{
+  content: '\E805';
+  color: #f8a618;
+  font-family: fontello;
+  text-shadow: none;
+  display: inline-block;
+  margin: 0 0.3em;
+  font-size: 0.7em;
+  vertical-align: middle;
+}
+
+p.text-result {
+text-align: start;
+line-height: 1.2;
+}
+
+.stamp{
+  display: block;
+  margin: 0 auto;
+  position: absolute;
+  top: 20px;
+  left: 12px;
+  width: 100%;
+  max-width: 110px;
+  height: 75px;
+  background-image: url('../imgs/stamp21.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform: rotate(-10deg);
+}
+
+.c-input-name{
+  padding-bottom: 10px;
+}
+
+.labelStyle{
+  color: #000;
+  padding-left: 10px;
+  padding-bottom: 4px;
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/*for text form*/
+.inputStyle1{
+  width: 100%;
+  max-width: 280px;
+  min-width: 200px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 7px;
+  font-size: 16px;
+  border-radius: 30px;
+  border: 1px solid #9c9090;
+  display: block;
+  margin: 0 auto;
+}
+/*for date*/
+.inputStyle2{
+  &:extend(.inputStyle1);
+  border: none;
+  background-color: #FFF;
+}
+
+.customTesti{
+  background-color: rgba(27, 4, 4, 0.55) !important;
+}
+
+.customTesti.testi {
+  width: auto;
+  margin: auto;
+  max-width: 300px;
+  direction: ltr;
+  margin-top: 10px;
+}
+
+.customTesti.testi ul li .details .rating span {
+  color: #FFF;
+}
+
+.customTesti.testi ul li .avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.customTesti.testi ul li .details .rating {
+  margin-left: 60px;
+}
+
+.customTesti.testi ul li::after {
+  right: 16px;
+  font-size: 16px;
+}
+
+.customTesti.testi ul li .avatar.person1 {
+  background-image: url("../imgs/photo1.png");
+}
+
+.customTesti.testi ul li .avatar.person2 {
+  background-image: url("../imgs/photo2.png");
+}
+
+.customTesti.testi ul li .avatar.person3 {
+  background-image: url("../imgs/photo3.png");
+}
+
+.customTesti.testi ul li .details .message, .customTesti.testi ul li .details .rating span  {
+  font-size: 14px;
+}
+
+.rating {
+  position: absolute;
+  height: 0;
+}
+
+.rating img {
+  width: 100%;
+  top: -12px;
+  position: relative;
+  left: 0;
+  right: 0;
+  max-width: 452px;
+  margin-top: -17%;
+}
+
+.rating-text {
+  position: relative;
+  margin-top: -12px;
+  font-size: 14px;
+}
+
+.overlay{
+  background-color: rgba(0, 0, 0, 0.8);
+  display: block;
+  height: 40%;
+  width: 100%;
+  position: absolute;
+  z-index: 2;
+  top: 30px;
+}
+
+.tagline{
+  color: #FFF;
+  font-size: 18px;
+  padding: 10px 30px;
+  position: absolute;
+  bottom: 10px;
+}
+.error {
+  color: #F00;
+  margin: 1em;
+}
+
+.disclaimer{
+  margin: 60px auto;
+  width: 100%;
+  color: gray;
+  font-size: 12px;
+}
+
+.disclaimer a{
+  color: inherit;
+}
+
+.App{
+  padding-left: 10px;
+}
+
+.country-code{
+  display: none;
+}
+
+.msisdn-input{
+  padding-left: 60px !important;
+  min-width: 260px;
+  margin: 10px auto !important;
+}
+
+// L A N G U A G E S
+
+#lang_ee {
+  .creative {
+    background-image: url('../imgs/couple_ee.png');
+    .title {
+      background-image: url('../imgs/logo_ee.png');
+    }
+  }
+  .stamp {
+    background-image: url('../imgs/stamp_ee.png');
+  }
+  .customTesti.testi ul li .avatar.person1 {
+    background-image: url("../imgs/photo1_ee.jpg");
+  }
+  .customTesti.testi ul li .avatar.person2 {
+    background-image: url("../imgs/photo2_ee.jpg");
+  }
+  .customTesti.testi ul li .avatar.person3 {
+    background-image: url("../imgs/photo3_ee.jpg");
+  }
+}

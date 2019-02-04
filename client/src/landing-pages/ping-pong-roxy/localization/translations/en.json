@@ -10,9 +10,9 @@
   "if_not_your_mobile": "If {phone} is not your mobile number,",
   "click_here_to_change_your_number": "Click here to change your phone number.",
 
-  "splash_header_msg":"Private chat invitation",
+  "splash_header_msg":"Private invitation",
   "splash_ping_roxy":"Ping Pong Roxy",
-  "splash_startsub_title":"The most satisfying chat experience you will ever have",
+  "splash_startsub_title":"The most satisfying experience you will ever have",
   "splash_footer_title":"Leaves you craving for more...",
   "establishing_text":"Establishing Connection, Please wait...",
 
@@ -29,6 +29,7 @@
   "roxy_receive": "Receive private sexy photos from Roxy",
   "send_sms": "Send SMS",
   "roxy_to" : "to",
+  "roxy_or" : "or",
   "try-again" : "try-again",
 
   "on_a_day": "on a day",
@@ -72,6 +73,8 @@
 
   "access_portal": "Access Portal",
 
-  "terms_link": "http://n.appspool.net/gr/tnc-appspool?offer=1&_next=general_conditions.html"
+  "terms_link": "http://n.appspool.net/gr/tnc-appspool?offer=1&_next=general_conditions.html",
+
+  "sms_now": "SMS NOW"
 
 }

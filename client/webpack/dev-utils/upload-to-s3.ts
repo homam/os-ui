@@ -10,7 +10,6 @@ const toPromise = (f) => (...args) => new Promise((resolve, reject) => {
   f(...args, (err, res) => !!err ? reject(err) : resolve(res))
 })
 
-
 const client = new S3({
   accessKeyId: process.env.osui_aws_access_key_id,
   secretAccessKey: process.env.osui_secret_access_key,

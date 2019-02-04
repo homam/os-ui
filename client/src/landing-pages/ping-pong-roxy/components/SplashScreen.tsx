@@ -35,11 +35,11 @@ export default class SplashScreen extends React.PureComponent<IProps> {
     const {animating} = this.state
     return <div className={`panel splash ${animating ? "active" : ""}`} >
 
-      <div className="top-area"><img src={imgLogo}/><Translate id="splash_header_msg" defaultMessage="Private chat invitation"/></div>
+      <div className="top-area"><img src={imgLogo}/><Translate id="splash_header_msg" defaultMessage="Private invitation"/></div>
 
       <div className="center-area">
           <h1><Translate id="splash_ping_roxy" defaultMessage="Ping Pong Roxy" /></h1>
-          <h2><Translate id="splash_startsub_title" defaultMessage="The most satisfying chat experience you will ever have" /></h2>
+          <h2><Translate id="splash_startsub_title" defaultMessage="The most satisfying experience you will ever have" /></h2>
           <p><Translate id="splash_footer_title" defaultMessage="Leaves you craving for more..." /></p>
       </div>
 

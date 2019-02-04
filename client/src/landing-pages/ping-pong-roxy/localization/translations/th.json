@@ -1,0 +1,64 @@
+{
+  "hello_world": "Hello World!",
+  "AlreadySubscribed": "You are already a subscriber!",
+  "InvalidMSISDN": "This mobile number is incorrect, try again",
+  "UnknownError": "An unknown error occurred.",
+  "InvalidPIN": "Please enter the correct PIN that you received on your phone",
+  "TooEarly": "You must first submit a mobile number",
+  "we_just_sent_a_pin": "We just sent a PIN to your mobile phone.\nPlease check your SMS inbox and enter the PIN that you received below:",
+  "didnt_receive_pin_yet": "Didn't receive a PIN yet? Make sure {phone} is your correct mobile number.",
+  "if_not_your_mobile": "If {phone} is not your mobile number,",
+  "click_here_to_change_your_number": "Click here to change your phone number.",
+
+  "splash_header_msg":"คำเชิญแบบส่วนตั๊วส่วนตัว",
+  "splash_ping_roxy":"ปิงปอง ร็อกซี่",
+  "splash_startsub_title":"ประสบการณ์ที่แสนสุดจะประทับใจ ที่นี่ที่เดียว",
+  "splash_footer_title":"อยากดูมากกว่านี้...",
+  "establishing_text":"กำลังดำเนินการเชื่อมต่อ กรุณารอสักครู่...",
+
+  "ping_pong_roxy": "ปิงปอง ร็อกซี่",
+  "escort": "อยากให้ไปอยู่ด้วยไหม",
+
+  "roxy_welcome": "เฮ้ ที่รัก ชั้นรอคุณอยู่นานแล้วนะ",
+  "roxy_question": "คุณว่าชั้นน่ารักไหม?",
+  "roxy_more_photos": "อยากได้รูปวาบหวิวมากกว่านี้ไหมคะ?",
+  "roxy_not_valid_number": "ดูเหมือนจะใส่เบอร์ผิดนะคะ กรอกเบอร์ให้ถูกอีกครั้งนะที่รัก",
+  "roxy_succesfully_subscribe": "You've succesfully subscribe.",
+  "roxy_empty_phone": "Enter your mobile number to get more sexy photos baby!",
+  "roxy_final_step": "ขั้นตอนสุดท้ายแล้ว!",
+  "roxy_receive": "รับรูปภาพส่วนตัวของ ร็อกซี่ได้เลย",
+  "send_sms": "ส่ง sms",
+  "roxy_to" : "ถึง",
+  "roxy_or" : "หรือ",
+  "try-again" : "try-again",
+ 
+
+  "answer_yes": "ใช่",
+
+  "answer_no": "ไม่",
+
+  "enter_mobile_number_here":"",
+
+  "msisdn_btn_send" : "Send",
+
+  "accept_text" : "I accept the terms",
+
+  "terms_text" : "Terms & Conditions",
+
+  "enter_pin_number_here" : "",
+
+  "pin_btn_text" : "Send",
+
+  "msisdnCheck_if" : "If",
+
+  "msisdnCheck_not" : " is not your mobile number",
+
+  "msisdnCheck_click" : "Click here",
+
+  "access_portal": "Access Portal",
+
+  "terms_link": "http://n.appspool.net/gr/tnc-appspool?offer=1&_next=general_conditions.html",
+
+  "sms_now": "SMS NOW"
+
+}

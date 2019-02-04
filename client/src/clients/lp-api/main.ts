@@ -15,13 +15,13 @@ const scenario = process.env.scenario
 const defaultConfig = (offer: number) : IConfig => {
   switch(process.env.country) {
     case "gr":
-      if(!!process.env.scenarioName && /54006/ig.test(process.env.scenarioName)) { 
+      if(/gr-ast54006-pin/ig.test(scenario) || (!!process.env.scenarioName && /54006/ig.test(process.env.scenarioName))) { 
         //GR AST@54006 [PIN]
         return {
           offer,
           host: 'n.appspool.net',
           country: 'gr',
-          handle: 'facebook-dmb'
+          handle: 'gr-ast54006-pin'
         }
       } else if(/gr-gmz19366-pin/ig.test(scenario)) {
         return {

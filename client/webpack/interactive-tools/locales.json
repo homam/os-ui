@@ -19,6 +19,10 @@
     "name": "Bahasa",
     "countries": ["my", "id"]
   },
+  "nl": {
+    "name": "Dutch",
+    "countries": ["nl", "id"]
+  },
   "pt": {
     "name": "Portuguese",
     "countries": ["pt"]
@@ -30,5 +34,9 @@
   "zh": {
     "name": "Chinese",
     "countries": ["my", "hk"]
+  },
+  "th":{
+    "name": "Thai",
+    "countries": ["th"]
   }
 }

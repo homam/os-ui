@@ -34,6 +34,7 @@
     "react-flickity": "^1.0.8",
     "react-flickity-component": "^3.1.0",
     "react-intl": "^2.4.0",
+    "react-phone-number-input": "^2.3.3",
     "react-swipe": "^6.0.4",
     "react-swipeable-views": "^0.13.1",
     "react-transition-group": "^2.4.0",

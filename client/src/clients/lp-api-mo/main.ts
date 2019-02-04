@@ -15,6 +15,8 @@ export type IResult = {
   keyword: IKeywordShortcode
 }
 
+const scenario = process.env.scenario
+
 const defaultConfig = (offer: number) : IConfig => {
   switch(process.env.country) {
     case "my":
@@ -25,11 +27,26 @@ const defaultConfig = (offer: number) : IConfig => {
         handle: 'api-handle'
       }
       case "gh": {
-        return {
+        return !!scenario && /gh-sugar-1905-smo/.test(scenario)
+        ? {
+          offer: (offer || 1),
+          host: 'n.sugar-girls.com',
+          country: 'gh',
+          handle: 'gh-sugar-1905-smo'
+        }
+        : {
           offer: (offer || 1),
           host: 'w1.mozzi.com',
           country: 'gh',
           handle: 'secure-pro'
+        }
+      }
+      case "th": {
+        return {
+          offer: (offer || 1),
+          host: 't.buz2mobile.com',
+          country: 'th',
+          handle: 'th-4541311-a2' 
         }
       }
     default:

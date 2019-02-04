@@ -454,6 +454,36 @@ body{
 	
 	}
 
+	#moSubmit{
+		flex:1;
+		display:none;
+
+		.button{
+			color:#fff;
+			width: 100%;
+			border:none;
+			outline: none;
+			margin: 0 3px;
+			cursor:pointer;
+			font-size: 18px;
+			padding:10px 0px;
+			font-weight: bold;
+			border-radius: 8px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			text-transform: uppercase;
+			background-color: #006cff;
+			transition: 0.25s ease-in-out;
+			-webkit-transition: 0.25s ease-in-out;
+		}
+
+	}
+
+	&.display-Subscribing #moSubmit{
+		display:flex;
+	}
+
 }
 
 .loader{

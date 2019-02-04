@@ -133,8 +133,8 @@ export default <P extends HOCProps>(tracker: ITracker, Comp: React.ComponentType
                     tracker.advancedInFlow('assrock/v1', 'pin-submission-success',{msisdn, pin})
                     this.setState({
                       currentState: {
-                        type: "PINEntry",
-                        result: RDS.Success<PINEntryFailure, PINEntrySuccess>({finalUrl: result})
+                        type: "Completed",
+                        result: {finalUrl: result}
                       } as State
                     })
                   } catch(ex) {

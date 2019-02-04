@@ -22,11 +22,12 @@ type ChatApplicationState = "Chatting" | "Subscribing"
 class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: ITracker}> {
 
   state = {
-      msisdnValue:"69",
-      checked: false,
+      showOperatorSelection:false,
+      msisdnValue:"01",
+      // checked: false,
       pinValue: "",
       infoBox:"",
-      termsBox:"",
+      // termsBox:"",
       applicationState: "Chatting" as ChatApplicationState,
       isDelayingPinUI: true,
       messages: [
@@ -287,9 +288,11 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: 
 
         booleanBtns.classList.add("fadeInUp");
 
+        
+
       }
 
-      if (k == 5) {
+      if (k == 1) {
 
         // numberEntry.style.display = "flex";
         self.setState({applicationState: "Subscribing"})
@@ -356,6 +359,7 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: 
         } else if (k == 5) {
 
           setTimeout(() => botResponse(self.state.messages[4]), 1000);
+          self.setState({showOperatorSelection:true})
 
         } else {
 
@@ -417,23 +421,18 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: 
     const self = this
     const numberEntry = <NumberEntry 
       value={this.state.msisdnValue} 
-      checked={this.state.checked}
-      onTermsClicked = {() =>  this.setState({infoBox:'active'})}
-      onSendClicked={({value, checked}) => {
+    
+    
+      onSendClicked={({value}) => {
 
         if(value == this.state.msisdnValue){
 
           this.botResponse(self.state.messages[5]);
 
-        }else if(!checked){
-
-          this.setState({ termsBox: 'terms' });
-          this.botResponse(self.state.messages[6]);
-
         }else{
           //Proceed if msisdn is not blank and accepted terms
           this.props.actions.submitMSISDN(window, null, value);
-          this.setState({checked, msisdnValue: value})
+          this.setState({ msisdnValue: value})
         }
 
         }} 
@@ -482,7 +481,12 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: 
 
       </div>
 
-      <div className={`footer display-${this.state.termsBox}`} id="footer">
+      {/* <div className={`boolean-operator animated ${this.state.showOperatorSelection ? "show" : "hide"}`} id="operator-buttons">
+        <button type="button" className="btn-vodafone" id="select-btn1"></button>
+        <button type="button" className="btn-orange" id="select-btn2"></button>
+      </div> */}
+
+      <div className={`footer`} id="footer">
 
         <div className="boolean-group animated" id="boolean-buttons">
 
@@ -492,22 +496,13 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: 
 
         </div>
 
-        <div className="boolean-operator animated" id="operator-buttons">
-
-          {/* <button data-reply={this.props.intl.formatMessage({ id: "ops_orange", defaultMessage: "Yes" })}>Vodafone</button>
-
-          <button data-reply={this.props.intl.formatMessage({ id: "ops_vodafone", defaultMessage: "No" })}>Orange</button> */}
-
-          <button type="button" className="btn-vodafone" id="select-btn1">Vodafone</button>
-          <button type="button" className="btn-orange" id="select-btn2">Orange</button>
-
-        </div>
+       
 
         <div className="terms-group animated" id="terms-buttons">
 
-          <div className="instructions"><Translate id="terms_msg" defaultMessage="Do you accept the Terms and Conditions?" /></div>
+          {/* <div className="instructions"><Translate id="terms_msg" defaultMessage="Do you accept the Terms and Conditions?" /></div> */}
 
-          <div className="terms-buttons">
+          {/* <div className="terms-buttons">
           <button data-reply={this.props.intl.formatMessage({id: "answer_yes", defaultMessage: "Yes"})}
           
             onClick = {()=>{
@@ -523,7 +518,7 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: 
 
           <button data-reply={this.props.intl.formatMessage({id: "answer_no", defaultMessage: "No"})} onClick={()=>{this.setState({ termsBox: '' })}}><Translate id="terms_no" defaultMessage="No" /></button>
 
-          </div>  
+          </div>   */}
 
         </div>
 

@@ -1,11 +1,10 @@
 import * as React from "react";
 import mkTracker from "../../pacman/record";
-import { TranslationProvider, Translate } from "./localization/index";
+import { TranslationProvider, injectIntl } from "./localization/index";
 import HOC, {initialState, HOCProps, IKeywordShortcode} from "../../clients/bupper-click2sms/HOC"
 import * as RDS from "../../common-types/RemoteDataState";
 
 import "./assets/css/styles.less?raw"
-import { hydrate } from "react-dom";
 import SelectionScreen from "./components/SelectionScreen";
 import SplashScreen from "./components/SplashScreen";
 import ChatScreen from "./components/ChatScreen";
@@ -20,20 +19,14 @@ type ApplicationStates = "Selection" | "Splash" | "Chat" ;
 
 class Root extends React.PureComponent<HOCProps> {
   state = {
-    locale: "en",
+    locale: "nl",
     keyValue:"",
+    preloader:false,
+    startchat:false,
     applicationState: "Selection" as ApplicationStates
   };
 
   render() {
-
-    var _self = this;
-
-    function changeState() {
-
-       _self.setState({applicationState: "Chat"});
-
-    }
 
     const MOLink = this.props.MOLink
     const {keyword, shortcode} = RDS.WhenSuccess<IKeywordShortcode, IKeywordShortcode>(
@@ -47,14 +40,34 @@ class Root extends React.PureComponent<HOCProps> {
         <TranslationProvider locale={this.state.locale}>
         <div className={`container display-${this.state.applicationState}`}>
 
-              <SelectionScreen onSelected={({keyData})=> {this.setState({applicationState:'Splash', keyValue: keyData})}}/>
+              <SelectionScreen 
+              onSelected={({keyData})=> {
+                this.setState({
+                  applicationState:'Splash', 
+                  keyValue: keyData, 
+                  preloader:true
+                })
+              }}
+              />
 
-              <SplashScreen onChange={()=>{this.state.applicationState == "Splash" ? changeState() : null}}/>
+              <SplashScreen
+              onChange={()=>{
+                  this.setState({
+                    applicationState: "Chat", 
+                    startchat:true
+                  })
+                }} 
+              activate={this.state.preloader}
+              />
 
-              <ChatScreen/>
+              <ChatScreen
+              keyword={this.state.keyValue}
+              MOLink={this.props.MOLink} 
+              startchat={this.state.startchat}
+              currentState={this.props.currentState} 
+              tracker={tracker}
+              />
 
-             <div className="keyword">keyword:{this.state.keyValue}</div>
-             <MOLink className="cta-a-tag">SMS Now!</MOLink>
 
           </div>
         </TranslationProvider>

@@ -101,6 +101,7 @@ const definePlugin = new webpack.DefinePlugin({
   'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
   'process.env.country': JSON.stringify(process.env.country || ''),
   'process.env.scenarioName': JSON.stringify(process.env.scenarioName || ''),
+  'process.env.scenario': JSON.stringify(process.env.scenario || null)
   // 'process.env.api_root': JSON.stringify(process.env.api_root || ''),
   // 'process.env.finance_email': JSON.stringify(process.env.finance_email || '')
 })

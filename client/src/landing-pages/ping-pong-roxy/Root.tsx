@@ -28,7 +28,7 @@ type ApplicationStates = "Splash" | "Chat" ;
 
 class Root extends React.PureComponent<HOCProps> {
   state = {
-    locale: "en",
+    locale: "th",
     msisdn: "",
     applicationState: "Splash" as ApplicationStates
   };
@@ -55,7 +55,11 @@ componentDidMount(){
 
             {/*----------Chat Area----------*/}
 
-            <Chat currentState={this.props.currentState} actions={this.props.actions} />
+            <Chat 
+              currentState={this.props.currentState} 
+              actions={this.props.actions} 
+              tracker={tracker}
+              />
 
           </div>
 
