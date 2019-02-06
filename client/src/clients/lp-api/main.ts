@@ -70,6 +70,14 @@ const defaultConfig = (offer: number) : IConfig => {
         handle: 'general-download-1'
       }
     }
+    case "ee": {
+      return {
+        offer,
+        host: "w1.mozzi.com",
+        country: "ee",
+        handle: "ee-astro15181-pin"
+      }
+    }
     default:
       const errorMsg = `'country' environment variable is either missing or has an unsupported value (${process.env.country}). This is necessary for defaultConfig(offer).`
       console.error(errorMsg)
