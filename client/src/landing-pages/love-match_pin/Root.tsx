@@ -44,7 +44,7 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
         }}
       >
         <h2 className="boxTitles"><Translate id="TooEarly" />:</h2>
-        <MsisdnInput maxLength={10}
+        <MsisdnInput maxLength={11}
           placeholder={this.props.intl.formatMessage({ id: "msisdn_placeholder" })}
           onChange={(msisdn) => this.setState({ msisdn })}
           countryCode={'+372'}>
