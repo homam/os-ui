@@ -229,7 +229,7 @@ class Root extends React.PureComponent<HOCProps> {
                 <Translate id="shakeInsText" defaultMessage="The future is in your hand..." />
               </div>
 
-              <button onClick={() => { this.setState({ applicationState: 'reading' }) }}>Next Page</button>
+              {/*<button onClick={() => { this.setState({ applicationState: 'reading' }) }}>Next Page</button>*/}
 
             </div>
 
