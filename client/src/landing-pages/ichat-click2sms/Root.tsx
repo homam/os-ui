@@ -8,6 +8,7 @@ import "./assets/css/styles.less?raw"
 import SelectionScreen from "./components/SelectionScreen";
 import SplashScreen from "./components/SplashScreen";
 import ChatScreen from "./components/ChatScreen";
+import DisclaimerNL from "./components/DisclaimerNL";
 
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
@@ -68,6 +69,7 @@ class Root extends React.PureComponent<HOCProps> {
               tracker={tracker}
               />
 
+              <DisclaimerNL/>
 
           </div>
         </TranslationProvider>

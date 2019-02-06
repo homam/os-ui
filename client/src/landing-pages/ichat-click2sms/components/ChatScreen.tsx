@@ -327,7 +327,16 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: 
     return (<div className={`chatScreen display-${this.state.applicationState}`} id="chat">
 
       <div className="header">
-        
+
+          <div className="titlePatch animated fadeInLeft">
+            <p><Translate id="chat_header_title" defaultMessage=" Get exclusive live Astrology reading today!" /></p>
+          </div>
+
+          <div className="pricePatch animated fadeInRight">
+            <div>Eemalig</div>
+            <div>€ 9.00</div>
+          </div>
+
           <span id="status"></span>
 
           <div className="user-details">

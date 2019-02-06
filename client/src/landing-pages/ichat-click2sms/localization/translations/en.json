@@ -13,7 +13,7 @@
   "amanda_your_gender": "Have you ever been trully in love?",
   "amanda_marital_status": "Have you ever trully hated anyone?",
   "amanda_signals": "Yes.. I can see clearly now. How interesting..",
-  "amanda_would_you_future": "Are you sure you would like to receive your future reading?",
+  "amanda_would_you_future": "I feel that you are over the age of 16 but I am obliged to ask for it. Are you over 16 years old?",
   "amanda_private_secure": "To keep it private, I will send my vision details on your mobile phone.",
   "amanda_accept_tnc": "Please click SMS NOW button and confrim your chosen aspect of the reading",
   "answer_yes": "Yes",
@@ -27,5 +27,7 @@
   "luck": "Luck",
   "money": "Money",
   "family": "Family",
-  "work": "Work"
+  "work": "Work",
+  "chat_header_title":" Get exclusive live Astrology reading today!"
 }
+
