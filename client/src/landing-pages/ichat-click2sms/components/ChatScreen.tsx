@@ -333,8 +333,8 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: 
           </div>
 
           <div className="pricePatch animated fadeInRight">
-            <div>Eemalig</div>
-            <div>€ 9.00</div>
+            <div>Eenmalig</div>
+            <div>€ 3,00/item</div>
           </div>
 
           <span id="status"></span>
