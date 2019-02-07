@@ -37,6 +37,13 @@ const defaultConfig = (offer: number) : IConfig => {
           country: 'gr',
           handle: 'gr-aps54006-pin'
         }
+      } else if (/gr-wmi54006-pin/ig.test(scenario)) {
+        return {
+          offer,
+          host: 'n.winimi.com',
+          country: 'gr',
+          handle: 'gr-wmi54006-pin'
+        }
       } else {
         return {
           offer,
