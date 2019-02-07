@@ -84,14 +84,10 @@ class PINEntryStep extends React.PureComponent<{
           <Translate id="we_just_sent_a_pin" />
         </h2>
         <div>
-          {/* <input
-            placeholder="PIN"
-            value={this.state.pin}
-            onChange={ev => this.setState({ pin: ev.target.value })}
-          /> */}
           <PinInput maxLength={4}
+            pin={this.state.pin}
             placeholder={"● ● ● ●"}
-            onChange={(pin) => this.setState({ PinInput })}>
+            onChange={(pin) => this.setState({ pin })}>
           </PinInput>
           <button className="button3" type="submit" disabled={RDS.IsLoading(this.props.rds)}>OK</button>
           {
@@ -191,8 +187,8 @@ class Root extends React.PureComponent<HOCProps> {
                     />
 
                   ),
-                  completed: ({ finalUrl }) => (
-                    <TQStep finalUrl={finalUrl} />
+                  completed: () => (
+                    <TQStep />
                   )
                 })(this.props.currentState)}
               </div>
