@@ -18,7 +18,7 @@ export default class SplashScreen extends React.PureComponent<IProps> {
 
   render() {
 
-    return (<div className="splashScreen">
+    return (<div className="splashScreen" id="splash">
 
       <div className="top-area"><Translate id="splash_header_msg" defaultMessage="Exclusive chat invitation" /></div>
 

@@ -1,4 +1,5 @@
 {
+  "Wait_msg": "Wait...",
   "AlreadySubscribed": "You are already a subscriber!",
   "InvalidMSISDN": "This mobile number is incorrect, try again",
   "UnknownError": "An unknown error occurred.",
