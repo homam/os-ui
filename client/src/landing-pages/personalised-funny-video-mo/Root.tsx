@@ -7,12 +7,12 @@ import HOC, {
   HOCProps,
   MSISDNEntryFailure,
   MSISDNEntrySuccess,
-  PINEntryFailure,
-  PINEntrySuccess,
   match,
-  mockedPINState,
-} from "../../clients/lp-api/HOC";
+  MOLink,
+} from "../../clients/lp-api-mo/HOC";
 import * as RDS from "../../common-types/RemoteDataState";
+import { IKeywordShortcode } from "../../clients/lp-api-mo/main";
+
 import { SimpleOpacityTransition, TransitionGroup, simpleOpacityTransitionStyles } from "../../common-components/simple-opacity-transition";
 import PhoneInput, { getConfig } from "ouisys-phone-input/dist/common/PhoneInput";
 import Disclaimer from "../../legal-components/Disclaimer";
@@ -39,6 +39,55 @@ function Wait(props) {
     </div>
   )
 }
+
+
+function MO({ keyword, shortcode, backToStart }: IKeywordShortcode & { backToStart: () => void }) {
+  return (
+    <div>
+
+      <div className="input-wrapper custom-top">
+      <div className="input-container">
+        <div className="mo-title">
+          Please confirm your videos by
+        </div>
+
+        <div className="mo-gray-bg">
+        Send SMS on 
+       
+
+        <MOLink keywordAndShortcode={{ keyword, shortcode }}>
+          <div>
+            <div className="mo-top">
+            
+              <div className="mo-text">
+                <span className="keyword">{keyword}</span> to{" "}
+                <span className="shortcode">{shortcode} </span>
+              </div>
+            </div>
+
+            <div className="btn-container">
+
+              <button type="button" className="btn uppercase">
+                <Translate id="send-sms" />
+              </button>
+            </div>
+
+          </div>
+        </MOLink>
+
+        </div>
+
+        <div>
+          <a className="try-again" onClick={() => backToStart()}>Try Again</a>
+        </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+
+
 
 class MSISDNEntryStep extends React.PureComponent<{
   msisdn: string;
@@ -106,86 +155,6 @@ class MSISDNEntryStep extends React.PureComponent<{
   }
 }
 
-class PINEntryStep extends React.PureComponent<{
-  msisdn: string;
-  rds: RDS.RemoteDataState<PINEntryFailure, PINEntrySuccess>;
-  backToStart: () => void;
-  onEnd: (pin: string) => void;
-}> {
-  state = {
-    pin: ""
-  };
-  render() {
-    return (
-      <form
-        onSubmit={ev => {
-          ev.preventDefault();
-          this.props.onEnd(this.state.pin);
-        }}
-      >
-
-        <div className="funny-guy-2 funny-guy-pin"></div>
-        <div className="masthead-container">
-          <div className="ribbon"></div>
-          <div className="headline"></div>
-          <div className="hand-container">
-            <div className="hand-wrapper top31">
-              <div className="hand"></div>
-            </div>
-          </div>
-        </div>
-
-        <div className="input-wrapper custom-top">
-          <div className="input-container">
-            <div>
-              <Translate id="we_just_sent_a_pin" />
-            </div>
-            <div className="pin-input">
-              <input
-                placeholder="PIN"
-                value={this.state.pin}
-                onChange={ev => this.setState({ pin: ev.target.value })}
-              />
-              <button type="submit" className="btn" disabled={RDS.IsLoading(this.props.rds)}>CONFIRM</button>
-              {
-                RDS.WhenLoading(null, () => 'Wait...')(this.props.rds)
-              }
-            </div>
-            <div>
-              {
-                RDS.match({
-                  failure: (err: PINEntryFailure) => (
-                    <div>
-                      <div><Translate id={err.errorType} /></div>
-                      <Translate id="if_not_your_mobile" values={{
-                        phone: this.props.msisdn
-                      }} />&nbsp;
-                  <a onClick={() => this.props.backToStart()}>
-                        <Translate id="click_here_to_change_your_number" />
-                      </a>
-                    </div>
-                  ),
-                  nothingYet: () => (
-                    <div>
-                      <Translate id="didnt_receive_pin_yet" values={{
-                        phone: this.props.msisdn
-                      }} />&nbsp;
-                  <a onClick={() => this.props.backToStart()}>
-                        <Translate id="click_here_to_change_your_number" />
-                      </a>
-                    </div>
-                  ),
-                  loading: () => null,
-                  success: () => null
-                })(this.props.rds)
-              }
-            </div>
-          </div>
-        </div>
-      </form>
-    );
-  }
-}
 
 const TQStep = ({ finalUrl }: { finalUrl: string }) => <div>
 
@@ -228,28 +197,6 @@ class Root extends React.PureComponent<HOCProps> {
 
   };
 
-  // funnyChangeSad = () => {
-  //   document.getElementById("sadGuy").classList.add("sad");
-  //   document.getElementById("normalGuy").classList.remove("normal");
-  //   document.getElementById("happyGuy").classList.remove("happy");
-  //   document.getElementById("faceDefault").classList.add("hidden");
-  // };
-
-  // funnyChangeNormal = () => {
-  //   document.getElementById("normalGuy").classList.add("normal");
-  //   document.getElementById("sadGuy").classList.remove("sad");
-  //   document.getElementById("happyGuy").classList.remove("happy");
-  //   document.getElementById("faceDefault").classList.add("hidden");
-
-  // };
-
-  // funnyChangeHappy = () => {
-  //   document.getElementById("happyGuy").classList.add("happy");
-  //   document.getElementById("sadGuy").classList.remove("sad");
-  //   document.getElementById("normalGuy").classList.remove("normal");
-  //   document.getElementById("faceDefault").classList.add("hidden");
-
-  // };
 
   showLoading = () => {
     this.setState({
@@ -313,8 +260,7 @@ class Root extends React.PureComponent<HOCProps> {
   }
 
   render() {
-    return (
-    <TranslationProvider locale={this.state.locale}>
+    return (<TranslationProvider locale={this.state.locale}>
       <div>
 
         <div id="hide-bg" className={"prelander black-bg " + (this.state.preLander === 5 ? "active" : "hidden")}></div>
@@ -352,7 +298,7 @@ class Root extends React.PureComponent<HOCProps> {
                   <div>
                     <div className={"funny-guy " + ((this.state.preLander === 1 || this.state.preLander === 2 || this.state.preLander === 3 || this.state.preLander === 4) ? "active" : "hidden")}></div>
 
-                    <div className={"hidden funny-guy-2 funny-guy-msisdn " + (this.state.preLander === 5 ? "active" : "")}></div>
+                    <div className={"hidden funny-guy-2 funny-guy-pin " + (this.state.preLander === 5 ? "active" : "")}></div>
 
 
                     <div className="masthead-container">
@@ -517,45 +463,30 @@ class Root extends React.PureComponent<HOCProps> {
                         <div className="hand"></div>
                       </div>
 
-                      <MSISDNEntryStep
-                        msisdn={this.state.msisdn}
-                        rds={rds}
-                        onEnd={msisdn => {
-                          this.setState({ msisdn });
-                          this.props.actions.submitMSISDN(
-                            window,
-                            null,
-                            msisdn
-                          );
-                        }}
-                      />
+                      <div>
+                          {RDS.WhenSuccess<MSISDNEntrySuccess, JSX.Element>(
+                            <MSISDNEntryStep msisdn={this.state.msisdn} rds={rds} onEnd={msisdn => {
+                              this.setState({ msisdn });
+                              this.props.actions.submitMSISDN(
+                                window,
+                                null,
+                                msisdn
+                              );
+                            }}
+                            />,
+                            data => <MO {...data} backToStart={this.props.actions.backToStart} />)(rds)}
+                        </div>
                     </div>
                   </div>
                 ),
 
-
-                pinEntry: rds => (
-
-                  <SimpleOpacityTransition key="pinEntry">
-                    <div>
-
-                      <PINEntryStep
-                        onEnd={pin => this.props.actions.submitPIN(pin)}
-                        backToStart={() =>
-                          this.props.actions.backToStart()
-                        }
-                        msisdn={this.state.msisdn}
-                        rds={rds}
-                      /> </div>
-                  </SimpleOpacityTransition>
-
-                ),
-                completed: ({ finalUrl }) => (
-                  <SimpleOpacityTransition key="completed">
-                    <TQStep finalUrl={finalUrl} />
-                  </SimpleOpacityTransition>
+                completed: () => (
+                  <div>
+                    <TQStep finalUrl={""} />
+                  </div>
                 )
               })(this.props.currentState)}
+
             </TransitionGroup>
 
           </div>
