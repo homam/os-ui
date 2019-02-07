@@ -250,6 +250,13 @@ class Root extends React.PureComponent<HOCProps> {
               appStage: "second",
               setA: keyData
             });
+
+            tracker.advancedInPreFlow(`cardSelect1`, {card:keyData});
+
+           
+
+            
+
           }}
         />
          
@@ -267,6 +274,9 @@ class Root extends React.PureComponent<HOCProps> {
               appStage: "msisdn",
               setB: keyData
             });
+
+            tracker.advancedInPreFlow(`cardSelect2`, {card:keyData});
+
           }}
         />
 

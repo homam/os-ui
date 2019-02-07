@@ -27,6 +27,22 @@ class Root extends React.PureComponent<HOCProps> {
     applicationState: "Selection" as ApplicationStates
   };
 
+  componentDidMount(){
+  
+    var splashArea = document.getElementById("splash"),
+        chatArea = document.getElementById("chat"),
+        wHeight = window.innerHeight-70 + "px",
+        wWidth = window.innerWidth;
+  
+  
+        if (wWidth < 1280){
+          splashArea.style.height = wHeight ;
+          chatArea.style.height = wHeight;
+        }
+  
+  }
+  
+
   render() {
 
     const MOLink = this.props.MOLink
