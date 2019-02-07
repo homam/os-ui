@@ -184,7 +184,7 @@ const TQStep = ({ finalUrl }: { finalUrl: string }) => <div className="congrats"
 
   <p><Translate id="congratsMsg" defaultMessage="Submit" /></p>
 
-  <button className="btn"><Translate id="congratsSubmit" defaultMessage="Submit" /></button>
+  <a href={finalUrl} className="btn" target="_blank"><Translate id="congratsSubmit" defaultMessage="Submit" /></a>
 </div>;
 
 
@@ -228,7 +228,7 @@ class Root extends React.PureComponent<HOCProps> {
 
               <h2><Translate id="initialWarning" defaultMessage="Are you over 18 old?" /></h2>
 
-              <button className="btn" onClick={() => this.setState({ phase: 'flow' })}><Translate id="initialSubmit" defaultMessage="Yes, I am" /></button>
+              <button className="btn" onClick={() => {this.setState({ phase: 'flow' }), tracker.advancedInPreFlow("age-validate")}}><Translate id="initialSubmit" defaultMessage="Yes, I am" /></button>
 
             </div>
 
