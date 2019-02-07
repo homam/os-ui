@@ -31,5 +31,6 @@
   "text_terms":"",
   "text_price":"",
   "msisdn_btn_send" : "Submit",
-  "pin_btn_send" : "Submit"
+  "pin_btn_send" : "Submit",
+  "show_me":"Show me"
 }
