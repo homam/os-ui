@@ -1,7 +1,7 @@
 import * as React from "react"
-import "./DisclaimerGR.less?raw"
+import "./DisclaimerGR_Appspool.less?raw"
 
-export default class DisclaimerGR extends React.PureComponent {
+export default class DisclaimerGR_Appspool extends React.PureComponent {
 
 render(){
 

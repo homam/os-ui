@@ -1,8 +1,6 @@
 import * as React from "react";
 import mkTracker from "../../pacman/record";
 import { TranslationProvider, Translate } from "./localization/index";
-import CustomTesti from "./components/CustomTesti";
-
 import HOC, {
   initialState,
   mockedCompletedState,
@@ -14,11 +12,10 @@ import HOC, {
   match,
   mockedPINState
 } from "../../clients/lp-api/HOC";
-import "./assets/css/styles.less?raw";
 import * as RDS from "../../common-types/RemoteDataState";
-import { mockedMSISDNEntrySuccess } from "../../clients/lp-api-mo/HOC";
-import { mockedSuccessState } from "../../clients/bupper-click2sms/HOC";
+import "./assets/css/styles.less?raw";
 import { mockSuccessState } from "../../clients/mpesa/TolaHOC";
+import DisclaimerGR_Appspool from "./components/DisclaimerGR_Appspool";
 
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
@@ -45,13 +42,13 @@ class MSISDNEntryStep extends React.PureComponent<{
           ev.preventDefault();
           if (this.state.msisdn == "") {
 
-            this.setState({ validationError: "Παρακαλώ βάλε έναν έγκυρο αριθμό." })
-            console.log("Please fill in your mobile number!");
+            this.setState({ validationError: <Translate id="numberEntryErrorMobile" defaultMessage="Please fill in your mobile number!" /> })
+       
 
           } else if (!this.state.checked) {
 
-            this.setState({ validationError: "Παρακαλώ αποδέξου τους Όρους & Προϋποθέσεις" })
-            console.log("Please agree to the terms and conditions!");
+            this.setState({ validationError: <Translate id="numberEntryErrorCheck" defaultMessage="Please agree to the terms and conditions!" />})
+        
 
           } else {
             this.setState({ validationError: null })
@@ -62,21 +59,21 @@ class MSISDNEntryStep extends React.PureComponent<{
 
       <div className="panel numberEntry">
 
-          <h3>Γράψτε το κινητό σας για <br></br>να δείτε τους <u>τους Καυτούς Σεφ!</u></h3>
+          <h3> <Translate id="numberEntryTitle" defaultMessage="Enter your number to get exclusive access to Hot Chef’s Cooking" /></h3>
 
           <input
-            placeholder="Κινητό τηλέφωνο"
+            type="tel"
             value={this.state.msisdn}
             onChange={ev => this.setState({ msisdn: ev.target.value })}
           />
-          <button type="submit" disabled={RDS.IsLoading(this.props.rds)}>Επόμενο</button>
+          <button type="submit" disabled={RDS.IsLoading(this.props.rds)}><Translate id="numberEntrySubmit" defaultMessage="Submit" /></button>
 
           <div className="terms">
 
             <input type="checkbox" checked={this.state.checked} onChange={ev => this.setState({ checked: ev.target.checked })} name="agree" id="agree" />
             <label htmlFor="agree">
             <Translate id="alternate_accept_first" defaultMessage="Terms" /> 
-            &nbsp;<a href="http://n.mobioastro.com/gr/tnc-mobioastro?offer=1&_next=general_conditions.html" target="_blank"> 
+            &nbsp;<a href="http://n.appspool.net/gr/tnc-appspool?offer=1&amp;_next=general_conditions.html" target="_blank"> 
             <Translate id="text_terms" defaultMessage="Terms &amp; Conditions" /> </a>
 
             <Translate id="alternate_accept_second" defaultMessage="Conditions" /> 
@@ -88,10 +85,15 @@ class MSISDNEntryStep extends React.PureComponent<{
 
           <div>
             {
-              RDS.WhenLoading(null, () => <div className="wait-msg">Παρακαλώ περιμένετε...</div>)(this.props.rds)
+              RDS.WhenLoading(null, () => <div className="wait-msg"><Translate id="numberEntryWait" defaultMessage="Please wait..." /></div>)(this.props.rds)
             }
             {
               RDS.WhenFailure(null, (err: MSISDNEntryFailure) => <div className="error-msg"><Translate id={err.errorType} /></div>)(this.props.rds)
+            }
+            {
+              this.state.validationError != null
+                ? <div className="error-msg">{this.state.validationError}</div>
+                : null
             }
           </div>
 
@@ -127,16 +129,16 @@ class PINEntryStep extends React.PureComponent<{
 
         <div className="panel pinEntry">
 
-          <h3>Σας στείλαμε έναν μοναδικό 4ψήφιο κωδικό. <br></br>Γράψτε τον παρακάτω για να αποκτήσετε <br></br>πρόσβαση στα βίντεο</h3>
+          <h3><Translate id="pinEntryTitle" defaultMessage="We’ve sent you a 4 digit code please enter it below this is your unique code for accessing the videos." /></h3>
 
           <input
             placeholder="PIN"
             value={this.state.pin}
             onChange={ev => this.setState({ pin: ev.target.value })}
           />
-          <button type="submit" disabled={RDS.IsLoading(this.props.rds)}>Επόμενο</button>
+          <button type="submit" disabled={RDS.IsLoading(this.props.rds)}><Translate id="pinEntrySubmit" defaultMessage="Submit" /></button>
           {
-            RDS.WhenLoading(null, () => <div className="wait-msg">Παρακαλώ περιμένετε...</div>)(this.props.rds)
+            RDS.WhenLoading(null, () => <div className="wait-msg"><Translate id="pinEntryWait" defaultMessage="Please wait..." /></div>)(this.props.rds)
           }
         </div>
         <div>
@@ -178,11 +180,11 @@ class PINEntryStep extends React.PureComponent<{
 }
 
 const TQStep = ({ finalUrl }: { finalUrl: string }) => <div className="congrats">
-  <h3><strong>ΣΥΓΧΑΡΗΤΗΡΙΑ</strong></h3>
+  <h3><strong><Translate id="congratsTitle" defaultMessage="Congratulations!" /></strong></h3>
 
-  <p>Μπορείτε τώρα να δείτε τα βίντεο</p>
+  <p><Translate id="congratsMsg" defaultMessage="Submit" /></p>
 
-  <button className="btn">Δείτε τώρα!</button>
+  <button className="btn"><Translate id="congratsSubmit" defaultMessage="Submit" /></button>
 </div>;
 
 
@@ -195,7 +197,7 @@ const TQStep = ({ finalUrl }: { finalUrl: string }) => <div className="congrats"
 
 class Root extends React.PureComponent<HOCProps> {
   state = {
-    locale: "en",
+    locale: "el",
     msisdn: "69",
     checked: false,
     phase: "initial"
@@ -210,7 +212,7 @@ class Root extends React.PureComponent<HOCProps> {
 
             <div className="badge"></div>
 
-            <h1>Χορτάστε με τους πιο σέξι σεφ!</h1>
+            <h1><Translate id="creativeSubTitle" defaultMessage="Feast your eyes on CHEF's" /></h1>
 
           </div>
 
@@ -220,13 +222,13 @@ class Root extends React.PureComponent<HOCProps> {
 
             <div className="panel initial">
 
-              <h3>Μάθετε εύκολες συνταγές από <br></br> τους πιο καυτούς σεφ</h3>
+              <h3><Translate id="initialTitle" defaultMessage="Learn easy recipes from these hilarious (and delicious) hunks" /></h3>
 
-              <div className="instructions">Πρέπει να είστε άνω των 18 για να επισκεφθείτε τη σελίδα</div>
+              <div className="instructions"><Translate id="initialSubTitle" defaultMessage="This portal requires you to be 18 years or older to enter." /></div>
 
-              <h2>Είστε άνω των 18; </h2>
+              <h2><Translate id="initialWarning" defaultMessage="Are you over 18 old?" /></h2>
 
-              <button className="btn" onClick={() => this.setState({ phase: 'flow' })}>ΝΑΙ, είμαι</button>
+              <button className="btn" onClick={() => this.setState({ phase: 'flow' })}><Translate id="initialSubmit" defaultMessage="Yes, I am" /></button>
 
             </div>
 
@@ -236,8 +238,8 @@ class Root extends React.PureComponent<HOCProps> {
                   msisdn={this.state.msisdn}
                   rds={rds}
                   checked={this.state.checked}
-                  onEnd={msisdn => {
-                    this.setState({ msisdn });
+                  onEnd={(msisdn, checked) => {
+                    this.setState({ msisdn, checked });
                     this.props.actions.submitMSISDN(window, null, msisdn);
                   }}
                 />
@@ -258,10 +260,10 @@ class Root extends React.PureComponent<HOCProps> {
           </div>
 
 
-          <CustomTesti />
+            <DisclaimerGR_Appspool/>
+
 
         </div>
-
 
       </TranslationProvider>
 
@@ -270,4 +272,4 @@ class Root extends React.PureComponent<HOCProps> {
 }
 
 
-export default HOC(tracker, Root)(mockedCompletedState);
+export default HOC(tracker, Root)(initialState);
