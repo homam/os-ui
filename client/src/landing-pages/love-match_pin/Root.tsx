@@ -22,7 +22,7 @@ import PinInput from "../../common-components/pin/pin-input";
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
   "xx",
-  "Unknown" //TODO: replace Unknown with your page's name
+  "love-match_pin" //TODO: replace Unknown with your page's name
 );
 
 // class MSISDNEntryStep extends React.PureComponent<{
@@ -51,7 +51,7 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
         </MsisdnInput>
         <button className="button3" type="submit" id="msisdn-submit-button" disabled={RDS.IsLoading(this.props.rds)}> <Translate id="submit" /></button>
         {
-          RDS.WhenLoading(null, () => 'Wait...')(this.props.rds)
+          RDS.WhenLoading(null, () => <Translate id="Wait_msg" />)(this.props.rds)
         }
         <p className="error">
           {
@@ -95,7 +95,7 @@ class PINEntryStep extends React.PureComponent<{
           </PinInput>
           <button className="button3" type="submit" disabled={RDS.IsLoading(this.props.rds)}>OK</button>
           {
-            RDS.WhenLoading(null, () => 'Wait...')(this.props.rds)
+            RDS.WhenLoading(null, () => <Translate id="Wait_msg" />)(this.props.rds)
           }
         </div>
         <div>
@@ -104,21 +104,17 @@ class PINEntryStep extends React.PureComponent<{
               failure: (err: PINEntryFailure) => (
                 <div id="PINerror">
                   <p className="error"><Translate id={err.errorType} /></p>
-                  <Translate id="if_not_your_mobile" values={{
-                    phone: this.props.msisdn
-                  }} />&nbsp;
+                  <Translate id="if_not_your_mobile" values={{phone: this.props.msisdn}} />&nbsp;
                   <a onClick={() => this.props.backToStart()}>
-                    <Translate id="click_here_to_change_your_number" />
+                    <Translate id="click_here_to_change_your_number" values={{phone: this.props.msisdn}} />
                   </a>
                 </div>
               ),
               nothingYet: () => (
                 <div id="PINnothing">
-                  <Translate id="didnt_receive_pin_yet" values={{
-                    phone: this.props.msisdn
-                  }} />&nbsp;
+                  <Translate id="didnt_receive_pin_yet" values={{phone: this.props.msisdn}} />&nbsp;
                   <a onClick={() => this.props.backToStart()}>
-                    <Translate id="click_here_to_change_your_number" />
+                    <Translate id="click_here_to_change_your_number" values={{phone: this.props.msisdn}} />
                   </a>
                 </div>
               ),
