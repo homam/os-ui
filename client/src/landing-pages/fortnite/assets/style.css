@@ -81,7 +81,7 @@ p {
   width:100%;
   color:white; 
   display:flex;
-  justify-content: space-between;
+  justify-content: center;
   align-content: center;
   align-items:center;
   position: relative; 
@@ -340,7 +340,7 @@ h2 {
 
 .question .title p {
   font-family: Sailec-Bold; 
-  font-size:22px; 
+  font-size:17px; 
 } 
 
 .msisdn {
