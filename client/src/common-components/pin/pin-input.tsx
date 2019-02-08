@@ -22,7 +22,7 @@ function DigitOnlyInput(props: any) {
 
 interface IProps {
   maxLength: number
-  pin?: string
+  pin: string
   placeholder: string
   onChange: (pin: string) => void;
 }

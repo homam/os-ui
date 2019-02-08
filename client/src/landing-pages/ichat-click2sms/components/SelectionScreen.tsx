@@ -28,17 +28,16 @@ export default class SelectionScreen extends React.PureComponent<IProps>{
 
       <div className="button-holder">
 
-        <button onClick={() => this.props.onSelected({ keyData: "Love" })}><Translate id="love" defaultMessage="Love" /></button>
-        <button onClick={() => this.props.onSelected({ keyData: "Luck" })}><Translate id="luck" defaultMessage="Luck" /></button>
-        <button onClick={() => this.props.onSelected({ keyData: "Money" })}><Translate id="money" defaultMessage="Money" /></button>
-        <button onClick={() => this.props.onSelected({ keyData: "Family" })}><Translate id="family" defaultMessage="Family" /></button>
-        <button onClick={() => this.props.onSelected({ keyData: "Work" })}><Translate id="work" defaultMessage="Work" /></button>
+        <button onClick={() => this.props.onSelected({ keyData: "Liefde" })}><Translate id="love" defaultMessage="Love" /></button>
+        <button onClick={() => this.props.onSelected({ keyData: "Geluk" })}><Translate id="luck" defaultMessage="Luck" /></button>
+        <button onClick={() => this.props.onSelected({ keyData: "Geld" })}><Translate id="money" defaultMessage="Money" /></button>
+        <button onClick={() => this.props.onSelected({ keyData: "Familie" })}><Translate id="family" defaultMessage="Family" /></button>
+        <button onClick={() => this.props.onSelected({ keyData: "Werk" })}><Translate id="work" defaultMessage="Work" /></button>
 
       </div>
 
     </div>)
 
   }
-
 
 }

@@ -22,7 +22,7 @@ import PinInput from "../../common-components/pin/pin-input";
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
   "xx",
-  "Unknown" //TODO: replace Unknown with your page's name
+  "love-match_pin" //TODO: replace Unknown with your page's name
 );
 
 // class MSISDNEntryStep extends React.PureComponent<{
@@ -44,14 +44,14 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
         }}
       >
         <h2 className="boxTitles"><Translate id="TooEarly" />:</h2>
-        <MsisdnInput maxLength={10}
+        <MsisdnInput maxLength={11}
           placeholder={this.props.intl.formatMessage({ id: "msisdn_placeholder" })}
           onChange={(msisdn) => this.setState({ msisdn })}
           countryCode={'+372'}>
         </MsisdnInput>
         <button className="button3" type="submit" id="msisdn-submit-button" disabled={RDS.IsLoading(this.props.rds)}> <Translate id="submit" /></button>
         {
-          RDS.WhenLoading(null, () => 'Wait...')(this.props.rds)
+          RDS.WhenLoading(null, () => <Translate id="Wait_msg" />)(this.props.rds)
         }
         <p className="error">
           {
@@ -84,18 +84,14 @@ class PINEntryStep extends React.PureComponent<{
           <Translate id="we_just_sent_a_pin" />
         </h2>
         <div>
-          {/* <input
-            placeholder="PIN"
-            value={this.state.pin}
-            onChange={ev => this.setState({ pin: ev.target.value })}
-          /> */}
           <PinInput maxLength={4}
+            pin={this.state.pin}
             placeholder={"● ● ● ●"}
-            onChange={(pin) => this.setState({ PinInput })}>
+            onChange={(pin) => this.setState({ pin })}>
           </PinInput>
           <button className="button3" type="submit" disabled={RDS.IsLoading(this.props.rds)}>OK</button>
           {
-            RDS.WhenLoading(null, () => 'Wait...')(this.props.rds)
+            RDS.WhenLoading(null, () => <Translate id="Wait_msg" />)(this.props.rds)
           }
         </div>
         <div>
@@ -104,21 +100,17 @@ class PINEntryStep extends React.PureComponent<{
               failure: (err: PINEntryFailure) => (
                 <div id="PINerror">
                   <p className="error"><Translate id={err.errorType} /></p>
-                  <Translate id="if_not_your_mobile" values={{
-                    phone: this.props.msisdn
-                  }} />&nbsp;
+                  <Translate id="if_not_your_mobile" values={{phone: this.props.msisdn}} />&nbsp;
                   <a onClick={() => this.props.backToStart()}>
-                    <Translate id="click_here_to_change_your_number" />
+                    <Translate id="click_here_to_change_your_number" values={{phone: this.props.msisdn}} />
                   </a>
                 </div>
               ),
               nothingYet: () => (
                 <div id="PINnothing">
-                  <Translate id="didnt_receive_pin_yet" values={{
-                    phone: this.props.msisdn
-                  }} />&nbsp;
+                  <Translate id="didnt_receive_pin_yet" values={{phone: this.props.msisdn}} />&nbsp;
                   <a onClick={() => this.props.backToStart()}>
-                    <Translate id="click_here_to_change_your_number" />
+                    <Translate id="click_here_to_change_your_number" values={{phone: this.props.msisdn}} />
                   </a>
                 </div>
               ),
@@ -195,8 +187,8 @@ class Root extends React.PureComponent<HOCProps> {
                     />
 
                   ),
-                  completed: ({ finalUrl }) => (
-                    <TQStep finalUrl={finalUrl} />
+                  completed: () => (
+                    <TQStep />
                   )
                 })(this.props.currentState)}
               </div>
@@ -222,7 +214,7 @@ class Root extends React.PureComponent<HOCProps> {
               ]}
             />
             <div className="disclaimer">
-              Sisestades oma telefoninumbri ja tellides teenuse liitud Mozzi klubiga, mis maksab 3,2 Eurot nädalas. Selle eest saadame su mobiili iganädalaselt mobiilisisu: erineva helina, taustapildi või java-mängu, mida saad oma telefoni kaudu alla laadida. See saadetav SMS maksab 3,2 €. Teenusest loobumiseks saada sms: STOP numbrile 15181. Tegemist on iseuueneva teenusega ehk teenus kehtib kuni lõpetatakse kasutaja poolt. Teenuse kasutamiseks peab sinu telefon toetama WAP-i! Teenusega liitumiseks pead olema vähemalt 18-aastane. Juhul, kui sa ei ole teenust alla laadinud, on sul õigus lepingust taganeda 14 päeva jooksul ning saada makstud raha tagasi. Teenusetingimuste lugemiseks klikkige palun <a href="http://www.mozzi.com/online_ads/t&c_content_ee.php" target="_blank">siia</a>. Teenus kasutatav järgmistes võrkudes: Telia, Elisa, Tele2. Mistahes küsimustega võid pöörduda klienditoe poole telefonil 666 2364 või elektronposti aadressil ee@mozzi.com. Käesolevat teenust pakub Sam Media, Van Diemenstraat 140, 1013CN - Amsterdam, Holland.
+              Sisestades oma telefoninumbri ja tellides teenuse liitud Mozzi klubiga, mis maksab 3,2 Eurot nädalas. Selle eest saadame su mobiili iganädalaselt mobiilisisu: erineva helina, taustapildi või java-mängu, mida saad oma telefoni kaudu alla laadida. See saadetav SMS maksab 3,2 €. Teenusest loobumiseks saada sms: STOP numbrile 15181. Tegemist on iseuueneva teenusega ehk teenus kehtib kuni lõpetatakse kasutaja poolt. Teenuse kasutamiseks peab sinu telefon toetama WAP-i! Teenusega liitumiseks pead olema vähemalt 18-aastane. Juhul, kui sa ei ole teenust alla laadinud, on sul õigus lepingust taganeda 14 päeva jooksul ning saada makstud raha tagasi. Teenusetingimuste lugemiseks klikkige palun <a href="http://w1.mozzi.com/ee/tnc-mozzi?offer=1&device=pc&_next=general_conditions.html" target="_blank">siia</a>. Teenus kasutatav järgmistes võrkudes: Telia, Elisa, Tele2. Mistahes küsimustega võid pöörduda klienditoe poole telefonil 666 2364 või elektronposti aadressil ee@mozzi.com. Käesolevat teenust pakub Sam Media, Van Diemenstraat 140, 1013CN - Amsterdam, Holland.
         </div>
           </div>
 

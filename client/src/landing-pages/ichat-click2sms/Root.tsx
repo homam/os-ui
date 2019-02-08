@@ -8,6 +8,7 @@ import "./assets/css/styles.less?raw"
 import SelectionScreen from "./components/SelectionScreen";
 import SplashScreen from "./components/SplashScreen";
 import ChatScreen from "./components/ChatScreen";
+import DisclaimerNL from "./components/DisclaimerNL";
 
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
@@ -25,6 +26,22 @@ class Root extends React.PureComponent<HOCProps> {
     startchat:false,
     applicationState: "Selection" as ApplicationStates
   };
+
+  componentDidMount(){
+  
+    var splashArea = document.getElementById("splash"),
+        chatArea = document.getElementById("chat"),
+        wHeight = window.innerHeight-70 + "px",
+        wWidth = window.innerWidth;
+  
+  
+        if (wWidth < 1280){
+          splashArea.style.height = wHeight ;
+          chatArea.style.height = wHeight;
+        }
+  
+  }
+  
 
   render() {
 
@@ -68,6 +85,7 @@ class Root extends React.PureComponent<HOCProps> {
               tracker={tracker}
               />
 
+              <DisclaimerNL/>
 
           </div>
         </TranslationProvider>

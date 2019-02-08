@@ -45,7 +45,8 @@ class MSISDNEntryStep extends React.PureComponent<{
   state = {
     msisdn: this.props.msisdn,
     checked: this.props.checked,
-    isValid: false
+    isValid: false,
+    validationError: null
   };
   buttonRef = React.createRef<HTMLButtonElement>()
   inputRef = React.createRef<HTMLInputElement>()
@@ -107,7 +108,7 @@ class MSISDNEntryStep extends React.PureComponent<{
           </p>
           <div className="error">
           {
-            RDS.WhenLoading(null, () => 'Wait...')(this.props.rds)
+            RDS.WhenLoading(null, () => 'Παρακαλούμε περίμενε...')(this.props.rds)
           }
           </div>
         </div>
@@ -115,6 +116,12 @@ class MSISDNEntryStep extends React.PureComponent<{
           {
             RDS.WhenFailure(null, (err : MSISDNEntryFailure) => <Translate id={err.errorType} />)(this.props.rds)
           }
+        {
+            this.state.validationError != null
+              ? <div className="error-msg">{this.state.validationError}</div>
+              : null
+          }
+
         </div>
       </form>
     );
@@ -217,12 +224,6 @@ class Root extends React.PureComponent<HOCProps> {
         <header> 
           <div className="top-bar">
             <div className="fortnite-logo"></div>
-            <div className="online">
-              <div className="profile">
-              </div>
-              <p><span><Translate id="o_ninja" /></span> <Translate id="is_online" /></p>
-
-            </div>
         </div>
 
         <div className="full-title">
@@ -249,6 +250,13 @@ class Root extends React.PureComponent<HOCProps> {
               appStage: "second",
               setA: keyData
             });
+
+            tracker.advancedInPreFlow(`cardSelect1`, {card:keyData});
+
+           
+
+            
+
           }}
         />
          
@@ -266,6 +274,9 @@ class Root extends React.PureComponent<HOCProps> {
               appStage: "msisdn",
               setB: keyData
             });
+
+            tracker.advancedInPreFlow(`cardSelect2`, {card:keyData});
+
           }}
         />
 

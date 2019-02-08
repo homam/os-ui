@@ -3,6 +3,7 @@ import SwipeableViews from "react-swipeable-views";
 import { virtualize } from "react-swipeable-views-utils";
 import { mod } from "react-swipeable-views-core";
 import { TranslationProvider, Translate } from "../localization/index";
+import { tracker } from "../../../pacman/events";
 
 
 const VirtualizeSwipeableViews = virtualize(SwipeableViews);
@@ -144,8 +145,10 @@ export default class StageOne extends React.PureComponent<IProps> {
           enableMouseEvents
         />
         <div
-          onClick={() => this.props.onSelect({ keyData: "constructor" })}
+          onClick={() =>
+            this.props.onSelect({ keyData: "constructor" })}
           id="clickA"
+          
         />
         <div
           onClick={() => this.props.onSelect({ keyData: "ninja" })}
