@@ -213,7 +213,7 @@ const TQStep = ({ finalUrl }: { finalUrl: string }) => <div>
 
 class Root extends React.PureComponent<HOCProps> {
   state = {
-    locale: "th",
+    locale: "en",
     msisdn: getConfig(process.env.country).commonPrefix,
     preLander: 1,
     rangeValue: "1",
