@@ -89,7 +89,7 @@ class MSISDNEntryStep extends React.PureComponent<{
                 }
 
               />
-              <button type="submit" className="btn uppercase" disabled={RDS.IsLoading(this.props.rds)}>Submit</button>
+              <button type="submit" className="btn btn-sms uppercase" disabled={RDS.IsLoading(this.props.rds)}>Submit</button>
               {
                 RDS.WhenLoading(null, () => <Wait />)(this.props.rds)
               }
@@ -213,7 +213,7 @@ const TQStep = ({ finalUrl }: { finalUrl: string }) => <div>
 
 class Root extends React.PureComponent<HOCProps> {
   state = {
-    locale: "en",
+    locale: "th",
     msisdn: getConfig(process.env.country).commonPrefix,
     preLander: 1,
     rangeValue: "1",
@@ -341,7 +341,7 @@ class Root extends React.PureComponent<HOCProps> {
                     <div className={"prelander " + (this.state.preLander === 1 ? "active" : "hidden")}>
 
                       <div className="btn-container">
-                        <button type="button" className="btn" onClick={this.nextPrelander}>START</button>
+                        <button type="button" className="btn" onClick={this.nextPrelander}><Translate id="start" /></button>
                       </div>
                     </div>
 
@@ -353,7 +353,7 @@ class Root extends React.PureComponent<HOCProps> {
                         <div id="faceDefault" className={`faces shake-bottom ${this.state.faceImage}`}></div>
                         <div className="input-wrapper send-to-front">
                           <div className="input-container">
-                            <div className="title">Tell us your mood right now.</div>
+                            <div className="title"><Translate id="tell-mood" /></div>
 
                             <div className="slidecontainer">
                               <input
