@@ -1,7 +1,7 @@
 import * as React from "react";
 import mkTracker from "../../pacman/record";
 import { TranslationProvider, Translate } from "./localization/index";
-import HOC, {IProps, initialState, Link} from "../../clients/one-click/HOC";
+import HOC, {IProps, initialState} from "../../clients/one-click/HOC";
 import "./assets/css/styles.less?raw";
 import CustomTesti from "../bid-win/components/CustomTesti";
 const rateImg = require("./assets/imgs/rate.png");
@@ -41,8 +41,8 @@ class Root extends React.PureComponent<IProps> {
                   <div className="mainImg"><img src={monkey} /></div>
                   </div>
                 <div className="middle">
-               <div className="btnPlace"><Link className="btnMain" tracker={tracker}>إشترك الان</Link></div>
-                {/* <div className="btnPlace"><button className="btnMain" onClick={() => this.props.actions.onClick()}>إشترك الان</button></div> */}
+               {/* <div className="btnPlace"><Link className="btnMain" tracker={tracker}>إشترك الان</Link></div> */}
+                <div className="btnPlace"><button className="btnMain" onClick={() => this.props.actions.onClick()}>إشترك الان</button></div>
                 <img src={catImg} />
                 </div>
                 <h2>إشترك الان واحصل على فترة مجانية لمدة ثلاثة أيام</h2>
