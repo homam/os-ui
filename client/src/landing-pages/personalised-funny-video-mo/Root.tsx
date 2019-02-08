@@ -67,7 +67,7 @@ function MO({ keyword, shortcode, backToStart }: IKeywordShortcode & { backToSta
 
             <div className="btn-container">
 
-              <button type="button" className="btn uppercase">
+              <button type="button" className="btn btn-sms uppercase">
                 <Translate id="send-sms" />
               </button>
             </div>
@@ -164,7 +164,7 @@ const TQStep = ({ finalUrl }: { finalUrl: string }) => <div>
           <div className="headline"></div>
           <div className="hand-container">
             <div className="hand-wrapper top31">
-              <div className="hand"></div>
+              <div className="hand vibrate-2"></div>
             </div>
           </div>
         </div>
@@ -227,12 +227,12 @@ class Root extends React.PureComponent<HOCProps> {
            faceImage:"sad"
          })
         break;
-      case (val < 50 && val > 30):
+      case (val < 65 && val > 30):
         this.setState({
           faceImage:"normal"
         })
         break;
-      case (val > 50):
+      case (val > 65):
         this.setState({
           faceImage:"happy"
         })
@@ -247,12 +247,12 @@ class Root extends React.PureComponent<HOCProps> {
            humourImage:"humour-1"
          })
         break;
-      case (val < 50 && val > 30):
+      case (val < 65 && val > 30):
         this.setState({
           humourImage:"humour-2"
         })
         break;
-      case (val > 50):
+      case (val > 65):
         this.setState({
           humourImage:"humour-3"
         })
@@ -296,7 +296,7 @@ class Root extends React.PureComponent<HOCProps> {
                 msisdnEntry: rds => (
 
                   <div>
-                    <div className={"funny-guy " + ((this.state.preLander === 1 || this.state.preLander === 2 || this.state.preLander === 3 || this.state.preLander === 4) ? "active" : "hidden")}></div>
+                    <div className={"funny-guy vibrate-2 " + ((this.state.preLander === 1 || this.state.preLander === 2 || this.state.preLander === 3 || this.state.preLander === 4) ? "active" : "hidden")}></div>
 
                     <div className={"hidden funny-guy-2 funny-guy-pin " + (this.state.preLander === 5 ? "active" : "")}></div>
 
@@ -319,20 +319,11 @@ class Root extends React.PureComponent<HOCProps> {
                     <div className={"prelander faces-wrapper " + (this.state.preLander === 2 ? "active" : "hidden")}>
 
                       <div className="masthead-container">
-                        <div id="faceDefault" className={`faces ${this.state.faceImage}`}></div>
-                        <div id="sadGuy" className="faces hidden"></div>
-                        <div id="normalGuy" className="faces hidden"></div>
-                        <div id="happyGuy" className="faces hidden"></div>
+                        <div id="faceDefault" className={`faces shake-bottom ${this.state.faceImage}`}></div>
                         <div className="input-wrapper send-to-front">
                           <div className="input-container">
                             <div className="title">Tell us your mood right now.</div>
-                            {/* <div className="slider">
-                              <div className="btn-slider-container">
-                                <button type="button" className="slider-btn left-sad" onClick={this.funnyChangeSad}></button>
-                                <button id="faceDefaultSelected" type="button" className="slider-btn middle-normal" onClick={this.funnyChangeNormal}></button>
-                                <button type="button" className="slider-btn right-happy" onClick={this.funnyChangeHappy}></button>
-                              </div>
-                            </div> */}
+
                             <div className="slidecontainer">
                               <input
                                 type="range"
@@ -366,18 +357,10 @@ class Root extends React.PureComponent<HOCProps> {
                     <div className={"prelander faces-wrapper " + (this.state.preLander === 3 ? "active" : "hidden")}>
 
                       <div className="masthead-container">
-                        <div className={`faces ${this.state.humourImage}`}></div>
+                        <div className={`faces shake-bottom ${this.state.humourImage}`}></div>
                         <div className="input-wrapper send-to-front">
                           <div className="input-container">
                             <div className="title">Tell us your sense of humour.</div>
-                            {/* <div className="slider">
-                               <div className="btn-slider-container">
-                                <button type="button" className="slider-btn left-sad" onClick={this.funnyChangeSad}></button>
-                                <button id="faceDefaultSelected" type="button" className="slider-btn middle-normal" onClick={this.funnyChangeNormal}></button>
-                                <button type="button" className="slider-btn right-happy" onClick={this.funnyChangeHappy}></button>
-                              </div>
-                              
-                            </div> */}
 
                             <div className="slidecontainer">
                               <input
@@ -412,7 +395,7 @@ class Root extends React.PureComponent<HOCProps> {
                         <div className="input-wrapper send-to-front">
                           <div className="input-container">
                             <div className="title">Please select the things that you like</div>
-                            <div className="icons-wrapper">
+                            <div className="icons-wrapper slide-in-elliptic-top-fwd">
 
                               <div className="icons-container">
                                 <input type="checkbox" value="icon-1" name="icon-1" id="icon-1" />
@@ -430,7 +413,7 @@ class Root extends React.PureComponent<HOCProps> {
                             </div>
 
 
-                            <div className="icons-wrapper">
+                            <div className="icons-wrapper slide-in-elliptic-top-fwd">
 
                               <div className="icons-container">
                                 <input type="checkbox" value="icon-4" name="icon-4" id="icon-4" />
@@ -460,7 +443,7 @@ class Root extends React.PureComponent<HOCProps> {
                     <div className={"prelander " + (this.state.preLander === 5 ? "active" : "hidden")}>
 
                       <div className="hand-wrapper">
-                        <div className="hand"></div>
+                        <div className="hand vibrate-2"></div>
                       </div>
 
                       <div>
