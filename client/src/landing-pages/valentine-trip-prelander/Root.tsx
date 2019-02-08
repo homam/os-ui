@@ -21,7 +21,7 @@ import DisclaimerGR from './components/DisclaimerGR';
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
   "xx",
-  "Valentine's Trip" //TODO: replace Unknown with your page's name
+  "Valentine's Trip Prelander" //TODO: replace Unknown with your page's name
 );
 
 class MSISDNEntryStep extends React.PureComponent<{
@@ -200,27 +200,92 @@ class Root extends React.PureComponent<HOCProps> {
     locale: "el",
     msisdn: "69",
     checked: false,
+    appState: "questiona",
   };
   render() {
     return (
-        <TranslationProvider locale={this.state.locale}>
-        <div className="container">
+    <TranslationProvider locale={this.state.locale}>
+    <div className={`container display-${this.state.appState}`}>
 
           <div className="header">
             <p><Translate id="win-header" /></p>
             <span><Translate id="win-perfect" /></span>
           </div>
 
-          <div className="subheader">
-            <p><Translate id="win-subheader" /></p>
-          </div>
-
           <div className="prizes">
-          <p><Translate id="paris" /> </p><p className="heart"><Translate id="or" /></p><p> <Translate id="roma" /></p>
+          <p className="heart"><Translate id="or" /></p>
+          <p className="subtext"><Translate id="subtext" /></p>
           </div>
 
           <div className="separator"></div>
 
+          <div className="questiona hide">
+
+            <div className="qcontainer">
+
+              <div className="progress-bar">
+                <div className="step actv">1</div>
+                <div className="step">2</div>
+                <div className="step">3</div>
+              </div>
+              
+              <div className="qtitle">
+              <div className="qsubt"><Translate id="question_1" /></div>
+              <p><Translate id="questiona" /></p>
+              </div>
+
+              <button className="msisdn-button" onClick={() => { this.setState({ appState: 'questionb' }) }}><Translate id="choicea1" /></button>
+              <button className="msisdn-button" onClick={() => { this.setState({ appState: 'questionb' }) }}><Translate id="choicea2" /></button>
+
+            </div>
+
+          </div>
+
+          <div className="questionb hide">
+
+          <div className="qcontainer">
+
+              <div className="progress-bar">
+                <div className="step">1</div>
+                <div className="step actv">2</div>
+                <div className="step">3</div>
+              </div>
+              
+              <div className="qtitle">
+              <div className="qsubt"><Translate id="question_2" /></div>
+              <p><Translate id="questionb" /></p>
+              </div>
+
+              <button className="msisdn-button" onClick={() => { this.setState({ appState: 'questionc' }) }}><Translate id="choiceb1" /></button>
+              <button className="msisdn-button" onClick={() => { this.setState({ appState: 'questionc' }) }}><Translate id="choiceb2" /></button>
+
+            </div>
+
+          </div>
+
+          <div className="questionc hide">
+
+            <div className="qcontainer">
+
+              <div className="progress-bar">
+                <div className="step ">1</div>
+                <div className="step ">2</div>
+                <div className="step actv">3</div>
+              </div>
+
+              <div className="qtitle">
+              <div className="qsubt"><Translate id="question_3" /></div>
+              <p><Translate id="questionc" /></p>
+              </div>
+
+              <button className="msisdn-button" onClick={() => { this.setState({ appState: 'msisdn' }) }}><Translate id="choicec1" /></button>
+              <button className="msisdn-button" onClick={() => { this.setState({ appState: 'msisdn' }) }}><Translate id="choicec2" /></button>
+
+              </div>
+          
+          </div>
+
+          <div className="msisdn hide">
           <div className="countdown"><Timer /></div>
          
          <div className="msisdn-container">
@@ -260,6 +325,7 @@ class Root extends React.PureComponent<HOCProps> {
             })(this.props.currentState)}
           
 
+          </div>
           </div>
           <DisclaimerGR />
           </div>
