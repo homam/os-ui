@@ -4,11 +4,11 @@ import './DOBPicker.less?raw'
 class DOBPicker extends React.PureComponent {
   render() {
     const fromYear = 1940;
-    const fromMonth = "Tháng ";
+    // const fromMonth = "Tháng ";
     const fromDay = 1;
     return (
       <div className="DOBPicker-container">
-      <div className="arrowDown"> 
+      <div className="arrowDown">
         <select>
           {[...new Array(31).keys()]
             .map(i => fromDay + i)
@@ -18,17 +18,18 @@ class DOBPicker extends React.PureComponent {
         </select>
         </div>
 
-        <div className="arrowDown"> 
+        <div className="arrowDown">
         <select>
           {[...new Array(12).keys()]
-            .map(i => fromMonth + ++i)
+            // .map(i => fromMonth + ++i)
+            .map(i => ++i)
             .map(i => (
               <option key={i.toString()}>{i}</option>
             ))}
         </select>
         </div>
 
-        <div className="arrowDown"> 
+        <div className="arrowDown">
         <select>
           {[...new Array(80).keys()]
             .map(i => fromYear + i)
