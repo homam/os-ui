@@ -138,7 +138,7 @@ class MSISDNEntryStep extends React.PureComponent<{
                 }
 
               />
-              <button type="submit" className="btn uppercase" disabled={RDS.IsLoading(this.props.rds)}>Submit</button>
+              <button type="submit" className="btn btn-sms uppercase" disabled={RDS.IsLoading(this.props.rds)}>Submit</button>
               {
                 RDS.WhenLoading(null, () => <Wait />)(this.props.rds)
               }
@@ -174,7 +174,7 @@ const TQStep = ({ finalUrl }: { finalUrl: string }) => <div>
       <h3>Thank you!</h3>
       <div className="sub-title">Now you can enjoy full access of funny videos</div>
       <div className="btn-container">
-      <a className="btn" href={finalUrl}>Access Now</a>
+      <a className="btn btn-sms" href={finalUrl}>Access Now</a>
       </div>
     </div>
   </div>
