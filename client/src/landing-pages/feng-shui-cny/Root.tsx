@@ -89,7 +89,8 @@ class MSISDNEntryStep extends React.PureComponent<{
   onEnd: (msisdn: string) => void;
 }> {
   state = {
-    msisdn: this.props.msisdn
+    msisdn: this.props.msisdn,
+    bupperNumber: this.props.msisdn
   };
 
   phoneInputRef = React.createRef<HTMLInputElement>()
@@ -107,7 +108,7 @@ class MSISDNEntryStep extends React.PureComponent<{
       <form
         onSubmit={ev => {
           ev.preventDefault();
-          this.props.onEnd(this.state.msisdn);
+          this.props.onEnd(this.state.bupperNumber);
         }}
       >
       <input type="hidden" name="rockman_id" ref={this.ref_rockman_id} />
