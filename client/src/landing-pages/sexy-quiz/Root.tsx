@@ -143,7 +143,7 @@ class Root extends React.PureComponent<HOCProps> {
     return (
       <div className={`container-full display-${this.state.applicationState}`}>
 
-      <div className="question intro" onClick={() => { this.setState({ applicationState: 'first' }) }}>
+      <div className="question intro" onClick={() => { this.setState({ applicationState: 'first' }); tracker.advancedInPreFlow("step1"); }}>
         
         <div className="header">
           <div className="logo flicker-in-1"></div>
@@ -177,7 +177,7 @@ class Root extends React.PureComponent<HOCProps> {
 
       {/* END INTRO */}
 
-      <div className="question first" onClick={() => { this.setState({ applicationState: 'second' }) }}>
+      <div className="question first" onClick={() => { this.setState({ applicationState: 'second' }); tracker.advancedInPreFlow("step2"); }}>
 
         <div className="choice-header">
         <p className="pink">PICK ONE</p>
@@ -204,7 +204,7 @@ class Root extends React.PureComponent<HOCProps> {
 
        {/* END First */}
 
-      <div className="question second" onClick={() => { this.setState({ applicationState: 'third' }) }}>
+      <div className="question second" onClick={() => { this.setState({ applicationState: 'third' }); tracker.advancedInPreFlow("step3"); }}>
    
       <div className="choice-header">
         <p className="pink">PICK ONE</p>
@@ -230,7 +230,7 @@ class Root extends React.PureComponent<HOCProps> {
 
        {/* END Second */}
 
-       <div className="question third" onClick={() => { this.setState({ applicationState: 'subscription' }) }}>
+       <div className="question third" onClick={() => { this.setState({ applicationState: 'subscription' }); tracker.advancedInPreFlow("step4"); }}>
    
        <div className="choice-header">
         <p className="pink">PICK ONE</p>

@@ -234,8 +234,8 @@ class Root extends React.PureComponent<HOCProps> {
               <p><Translate id="questiona" /></p>
               </div>
 
-              <button className="msisdn-button" onClick={() => { this.setState({ appState: 'questionb' }) }}><Translate id="choicea1" /></button>
-              <button className="msisdn-button" onClick={() => { this.setState({ appState: 'questionb' }) }}><Translate id="choicea2" /></button>
+              <button className="msisdn-button" onClick={() => { this.setState({ appState: 'questionb' }); tracker.advancedInPreFlow("step1"); }}><Translate id="choicea1" /></button>
+              <button className="msisdn-button" onClick={() => { this.setState({ appState: 'questionb' }); tracker.advancedInPreFlow("step1"); }}><Translate id="choicea2" /></button>
 
             </div>
 
@@ -256,8 +256,8 @@ class Root extends React.PureComponent<HOCProps> {
               <p><Translate id="questionb" /></p>
               </div>
 
-              <button className="msisdn-button" onClick={() => { this.setState({ appState: 'questionc' }) }}><Translate id="choiceb1" /></button>
-              <button className="msisdn-button" onClick={() => { this.setState({ appState: 'questionc' }) }}><Translate id="choiceb2" /></button>
+              <button className="msisdn-button" onClick={() => { this.setState({ appState: 'questionc' }); tracker.advancedInPreFlow("step2"); }}><Translate id="choiceb1" /></button>
+              <button className="msisdn-button" onClick={() => { this.setState({ appState: 'questionc' }); tracker.advancedInPreFlow("step2"); }}><Translate id="choiceb2" /></button>
 
             </div>
 
@@ -278,8 +278,8 @@ class Root extends React.PureComponent<HOCProps> {
               <p><Translate id="questionc" /></p>
               </div>
 
-              <button className="msisdn-button" onClick={() => { this.setState({ appState: 'msisdn' }) }}><Translate id="choicec1" /></button>
-              <button className="msisdn-button" onClick={() => { this.setState({ appState: 'msisdn' }) }}><Translate id="choicec2" /></button>
+              <button className="msisdn-button" onClick={() => { this.setState({ appState: 'msisdn' }); tracker.advancedInPreFlow("step3"); }}><Translate id="choicec1" /></button>
+              <button className="msisdn-button" onClick={() => { this.setState({ appState: 'msisdn' }); tracker.advancedInPreFlow("step3"); }}><Translate id="choicec2" /></button>
 
               </div>
           

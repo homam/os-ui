@@ -100,16 +100,12 @@ class Root extends React.PureComponent<IProps> {
 
             />
 
-
             <div className="frame"></div>
             <div className="wrap">
 
-              <p className="wraptext">CHEAPER than a GYM Membership ONLY £4.50 per week. Charges added to this mobile bill.</p>
+              <p className="wraptext">CHEAPER than a GYM Membership <br></br><b>ONLY £4.50 per week.</b><br></br>Charges added to this mobile bill.</p>
          
-
             </div>
-
-
 
             <div className="disclaimer">
 

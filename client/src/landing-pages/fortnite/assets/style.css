@@ -771,3 +771,87 @@ label span {
   .online p {font-size:9px;}
   .aimshootingbtn {font-size:17px !important;padding:16px 10px 10px 10px !important}
 }
+
+/** ABTEST **/
+
+.ab-1 .question {
+margin-bottom:0 !important;
+}
+
+.min-image {
+  width: 60px;
+  height:60px;
+  border-radius:5px;
+  box-shadow: 0px 5px 5px rgba(0,0,0,0.2);
+  background-color:#f2f2f2;
+  background-position: center;
+}
+
+.class {
+  display:flex;
+  justify-content: left;  
+  align-content: center;
+  align-items:center;
+  margin:15px;
+}
+
+.listbutton {
+
+    width:80%;
+    background:linear-gradient(#FAA80D, #F8D860) ;
+    font-family: Burbank;
+    font-size:14px;
+    text-transform:uppercase;
+    padding:12px 10px 10px 10px;
+    z-index:100;
+    margin-left:5%;
+    border:7px solid rgba(255,255,255,0.2);
+    border-top:none;
+    border-radius:10px;
+    box-shadow: 0px 5px 10px rgba(0,0,0,0.2);
+    color:white;
+    text-shadow: 0px 5px 5px rgba(0,0,0,0.1);
+    outline:none;
+
+}
+
+@media all and (max-width:320px) {
+  .ab-1 button { font-size : 12px }
+
+}
+
+@media (min-width: 1024px) {
+.ab-1 .footer-gr {margin-top:0px !important}}
+
+
+.slideInLeft {
+  -webkit-animation-name: slideInLeft;
+  animation-name: slideInLeft;
+}
+
+@-webkit-keyframes slideInLeft {
+  from {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+    visibility: visible;
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+    visibility: visible;
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+

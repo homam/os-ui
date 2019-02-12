@@ -49,7 +49,7 @@ const defaultConfig = (offer: number) : IConfig => {
           offer,
           host: 'm.mobiworld.biz',
           country: 'gr',
-          handle: 'mobilearts'
+          handle: 'gr-mc54444-pin'
         }
     }
     case "iq": {
