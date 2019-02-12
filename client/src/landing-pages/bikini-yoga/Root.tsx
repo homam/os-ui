@@ -141,7 +141,7 @@ class Root extends React.PureComponent<HOCProps> {
       <div className="logo"></div>
       </header>
 
-      <div className="question intro" onClick={() => { this.setState({ applicationState: 'palms' }) }}>
+      <div className="question intro" onClick={() => { this.setState({ applicationState: 'palms' }) ; tracker.advancedInPreFlow("step1"); }}>
         <div className="palms">
           <div className="palm-a shaker"></div>
           <div className="palm-b "></div>
@@ -157,7 +157,7 @@ class Root extends React.PureComponent<HOCProps> {
 
       {/* END INTRO */}
 
-      <div className="question palms" onClick={() => { this.setState({ applicationState: 'bikini' }) }}>
+      <div className="question palms" onClick={() => { this.setState({ applicationState: 'bikini' }); tracker.advancedInPreFlow("step2"); }}>
       <div className="palms-leaf">
           <div className="palm-a"></div>
           <div className="palm-b shaker"></div>
@@ -173,7 +173,7 @@ class Root extends React.PureComponent<HOCProps> {
 
        {/* END PALM */}
 
-      <div className="question bikini" onClick={() => { this.setState({ applicationState: 'subscription' }) }}>
+      <div className="question bikini" onClick={() => { this.setState({ applicationState: 'subscription' }) ; tracker.advancedInPreFlow("step3"); }}>
       <div className="palms-leaf">
           <div className="palm-a roll-out-left"></div>
           <div className="palm-b roll-out-left"></div>
