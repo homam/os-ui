@@ -311,7 +311,10 @@ body.guide #disclaimer{
 	border: 0;
 	text-decoration:none;
 	background: linear-gradient(to bottom, #b1b1b1 0%, #616161 100%);
-    opacity: 0.5;
+		opacity: 0.5;
+		&.auto {
+			width: auto;
+		}
 }
 
 
@@ -752,6 +755,22 @@ h1 {
 
 input.text-input::placeholder {
 	color: transparent;
+}
+
+.football-manager-mo {
+	margin-top: 15px;
+	a {
+		text-decoration: none;
+	}
+	.mo-text {
+		color: black;
+    font-weight: 800;
+    margin: 7px;
+    font-size: 18px;
+	}
+	.keyword, .shortcode {
+		color: #1357f2;
+	}
 }
 
 .football-manager-disclaimer {

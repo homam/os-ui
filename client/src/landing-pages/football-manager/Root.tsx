@@ -21,11 +21,11 @@ import {
   simpleOpacityTransitionStyles
 } from "../../common-components/simple-opacity-transition";
 
-// CSS DECLARATION
 import "./assets/css/styles.less?raw";
 import { translate } from "../../../webpack/dev-utils/translate-by-yandex";
 import { mockedMSISDNEntrySuccess } from "../../clients/lp-api-mo/HOC";
 import { mockSuccessState } from "../../clients/mpesa/TolaHOC";
+import Disclaimer from "../../legal-components/Disclaimer";
 
 // IMAGES DECLARATION
 // ok
@@ -37,7 +37,7 @@ const history = require("./assets/img/history.svg");
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
   "xx",
-  "Football Star Manager" //TODO: replace Unknown with your page's name
+  "Football Star Manager"
 );
 
 const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
@@ -151,9 +151,9 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
 
           </button>
 
-          <div className="testimonials">
+          <div className="football-manager-testimonials">
             <CustomTesti
-              className="frontline-testimonials"
+              className="testimonials"
               testimonials={
                 [
                   {
@@ -175,6 +175,10 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
               }
             />
           </div>
+
+          <div className="football-manager-disclaimer">
+                  <Disclaimer />
+                </div>
 
         </div>
         <div
