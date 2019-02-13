@@ -50,7 +50,7 @@ body.guide #disclaimer{
 #creative{
 	display:block;
 	margin:0 auto;
-	min-height:352px;
+	min-height: 438px;
 	position: relative;
 }
 
@@ -389,9 +389,9 @@ background-image:url('../img/en/top-game-badge.png');
 	bottom: 0;
 	width: 100%;
 	max-width: 300px;
-	padding: 14px;
+	padding: 14px 14px 30px 14px;
 	box-sizing: border-box;
-	margin-top: 150px;
+	margin-top: 0;
 	display: none;
 	text-align: center;
 
@@ -635,6 +635,7 @@ input[type=radio]:checked + label {
 	.customTesti ul li .details .message {
 		font-size: 12px;
 		line-height: 1.2;
+		height: 40px;
 	}
 	.customTesti ul li .avatar.person1 {
 		background-image: url("../img/testimonial-img-1.png");
@@ -692,6 +693,15 @@ html[lang="ar"] {
 		}
 		.right-column {
 			float: right;
+		}
+
+		.customTesti ul li .details .message {
+			text-align: right;
+			width: 220px;
+		}
+		.customTesti ul li .details .rating {
+			text-align: right;
+			padding-right: 30px;
 		}
 
 }
@@ -781,4 +791,14 @@ input.text-input::placeholder {
 	max-width: 300px;
 	opacity: 0.7;
 	line-height: 1.2;
+}
+.overlay-container {
+	position: relative;
+	width: 100%;
+}
+
+.panel-container {
+	display: none;
+	position: relative;
+	top: 150px;
 }

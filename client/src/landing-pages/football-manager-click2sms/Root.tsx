@@ -11,6 +11,7 @@ import CustomTesti from "../bid-win/components/CustomTesti";
 
 
 
+const history = require("./assets/img/history.svg");
 
 
 const tracker = mkTracker(
@@ -30,7 +31,7 @@ const getDefaultLocale = () => {
 
 class Root extends React.PureComponent<HOCProps> {
   state = {
-    locale: getDefaultLocale(),
+    locale: "ar",
     isJerseySelected: false,
     isTeamSelected: false
 
@@ -48,12 +49,6 @@ class Root extends React.PureComponent<HOCProps> {
   componentDidMount() {
     this.setHtmlLang();
   }
-
-  showMO = () => {
-    this.setState({
-      showMOpage: true
-    });
-  };
 
   selectJersey = () => {
     this.setState({
@@ -93,24 +88,24 @@ class Root extends React.PureComponent<HOCProps> {
               <div className="language-container">
 
 
-                  <button className="lang-btn"
-                    onClick={() => {
-                      if (this.state.locale === "en") {
-                        this.setLocale('ar')
-                      } else {
-                        this.setLocale('en')
-                      }
-                    }}
-                  >{
-                      this.state.locale === "ar"
-                        ? "EN"
-                        : "عربى"
-                    }</button>
+                <button className="lang-btn"
+                  onClick={() => {
+                    if (this.state.locale === "en") {
+                      this.setLocale('ar')
+                    } else {
+                      this.setLocale('en')
+                    }
+                  }}
+                >{
+                    this.state.locale === "ar"
+                      ? "EN"
+                      : "عربى"
+                  }</button>
 
-                </div>
+              </div>
 
-              <div className={"overlay " + (this.state.isTeamSelected === true ? "active" : "")}></div>
-
+             
+                <div className={"overlay " + (this.state.isTeamSelected === true ? "active" : "")}></div>
               <div className={"c-team-selection " + (this.state.isTeamSelected === false ? "active" : "")}>
 
                 <div className="cta-lead" />
@@ -141,46 +136,73 @@ class Root extends React.PureComponent<HOCProps> {
                   </label>
                 </div>
 
+                <button onClick={this.submitTeam} type="button" className="btn enabled ">
+                  <Translate id="submit-team-btn" />
+                </button>
 
-              <div className="input-wrapper">
-                <MOLink className="btn auto enabled cta-a-tag">SMS Now!</MOLink>
               </div>
 
+
+              <div className={"panel-container " + (this.state.isTeamSelected === true ? "active" : "")}>
+              <div className="panel active">
+                <div className="rays"></div>
+                <div className="cta-lead2" />
+
+                <div className="cta-sub-lead">
+                  <div className="selected-team">
+                    <div className="jersey-blue"></div>
+                  </div>
+                  <h1> <Translate id="selected-team-title" /></h1>
+                  <p><Translate id="selected-team-lead" /></p>
+                </div>
+
+                <div className="input-wrapper">
+                  <MOLink className="btn auto enabled cta-a-tag"><Translate id="sms-now" /></MOLink>
+                </div>
+
+                <div className="participants-container">
+              <div className="left-column history">
+                <img src={history} alt="history icon" />
+              </div>
+              <div className="right-column">
+                <h2><Translate id="latest-participants"></Translate></h2>
+                <h3><Translate id="participants-minute"></Translate></h3>
+              </div>
+            </div>
               </div>
 
+            </div>
 
-          <div className="football-manager-testimonials">
-            <CustomTesti
-              className="testimonials"
-              testimonials={
-                [
-                  {
-                    Message: () => <span className="message"><Translate id="testi1" /></span>,
-                    Name: () => <span> -Hashem</span>,
-                    stars: 5
-                  },
-                  {
-                    Message: () => <span className="message"><Translate id="testi2" /></span>,
-                    Name: () => <span> -Suleiman</span>,
-                    stars: 4
-                  },
-                  {
-                    Message: () => <span className="message"><Translate id="testi3" /></span>,
-                    Name: () => <span> -Amir</span>,
-                    stars: 5
+            </div>
+
+            <div className="football-manager-testimonials">
+                <CustomTesti
+                  className="testimonials"
+                  testimonials={
+                    [
+                      {
+                        Message: () => <span className="message"><Translate id="testi1" /></span>,
+                        Name: () => <span> - <Translate id="name-1" /></span>,
+                        stars: 5
+                      },
+                      {
+                        Message: () => <span className="message"><Translate id="testi2" /></span>,
+                        Name: () => <span> - <Translate id="name-2" /></span>,
+                        stars: 4
+                      },
+                      {
+                        Message: () => <span className="message"><Translate id="testi3" /></span>,
+                        Name: () => <span> - <Translate id="name-3" /></span>,
+                        stars: 5
+                      }
+                    ]
                   }
-                ]
-              }
-            />
-          </div>
+                />
+              </div>
 
               <div className="football-manager-disclaimer">
-              <Disclaimer />
-            </div>
-
-            </div>
-
-            
+                <Disclaimer />
+              </div>
 
           </div>
         </div>

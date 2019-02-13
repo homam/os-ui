@@ -94,16 +94,18 @@ function MO({ keyword, shortcode, backToStart }: IKeywordShortcode & { backToSta
 };
 
 
-const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
-  msisdn: string;
-  rds: RDS.RemoteDataState<MSISDNEntryFailure, MSISDNEntrySuccess>;
+class MSISDNEntryStep extends React.PureComponent<{
+  msisdn: string; rds: RDS.RemoteDataState<MSISDNEntryFailure,
+    MSISDNEntrySuccess>;
   onEnd: (msisdn: string) => void;
-  intl: any
 }> {
   state = {
     msisdn: this.props.msisdn,
     isJerseySelected: false,
-    isTeamSelected: false
+    isTeamSelected: false,
+    bupperNumber: this.props.msisdn,
+    isValid: false
+
   };
 
   showMO = () => {
@@ -125,6 +127,8 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
   };
 
   phoneInputRef = React.createRef<HTMLInputElement>()
+  ref_rockman_id = React.createRef<HTMLInputElement>();
+  ref_no_js_form_submission = React.createRef<HTMLInputElement>();
 
   render() {
 
@@ -132,8 +136,7 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
       <form
         onSubmit={ev => {
           ev.preventDefault();
-
-          this.props.onEnd(this.state.msisdn);
+          this.props.onEnd(this.state.bupperNumber);
         }}
       >
 
@@ -172,36 +175,6 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
           <button onClick={this.submitTeam} type="button" className="btn enabled ">
             <Translate id="submit-team-btn" />
           </button>
-
-          <div className="football-manager-testimonials">
-            <CustomTesti
-              className="testimonials"
-              testimonials={
-                [
-                  {
-                    Message: () => <span className="message"><Translate id="testi1" /></span>,
-                    Name: () => <span> -Hashem</span>,
-                    stars: 5
-                  },
-                  {
-                    Message: () => <span className="message"><Translate id="testi2" /></span>,
-                    Name: () => <span> -Suleiman</span>,
-                    stars: 4
-                  },
-                  {
-                    Message: () => <span className="message"><Translate id="testi3" /></span>,
-                    Name: () => <span> -Amir</span>,
-                    stars: 5
-                  }
-                ]
-              }
-            />
-          </div>
-
-          <div className="football-manager-disclaimer">
-                  <Disclaimer />
-                </div>
-
         </div>
 
 
@@ -271,10 +244,40 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
             ))(this.props.rds)}
           </div>
         </div>
+
+        <div className="football-manager-testimonials">
+            <CustomTesti
+              className="testimonials"
+              testimonials={
+                [
+                  {
+                    Message: () => <span className="message"><Translate id="testi1" /></span>,
+                    Name: () => <span> - <Translate id="name-1" /></span>,
+                    stars: 5
+                  },
+                  {
+                    Message: () => <span className="message"><Translate id="testi2" /></span>,
+                    Name: () => <span> - <Translate id="name-2" /></span>,
+                    stars: 4
+                  },
+                  {
+                    Message: () => <span className="message"><Translate id="testi3" /></span>,
+                    Name: () => <span> - <Translate id="name-3" /></span>,
+                    stars: 5
+                  }
+                ]
+              }
+            />
+          </div>
+
+          <div className="football-manager-disclaimer">
+                  <Disclaimer />
+                </div>
+
       </form>
     );
   }
-});
+};
 
 
 const TQStep = ({ finalUrl }: { finalUrl: string }) => (
@@ -312,9 +315,8 @@ const getDefaultLocale = () => {
 
 class Root extends React.PureComponent<HOCProps> {
   state = {
-    locale: getDefaultLocale(),
-    msisdn: "",
-
+    locale: "ar",
+    msisdn: getConfig(process.env.country).commonPrefix,
   };
 
 

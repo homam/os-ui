@@ -12,7 +12,8 @@ import HOC, {
   PINEntryFailure,
   PINEntrySuccess,
   match,
-  mockedPINState
+  mockedPINState,
+  mockedPINSuccesState
 } from "../../clients/lp-api/HOC";
 import * as RDS from "../../common-types/RemoteDataState";
 import {
@@ -24,13 +25,10 @@ import {
 import "./assets/css/styles.less?raw";
 import { translate } from "../../../webpack/dev-utils/translate-by-yandex";
 import { mockedMSISDNEntrySuccess } from "../../clients/lp-api-mo/HOC";
-import { mockSuccessState } from "../../clients/mpesa/TolaHOC";
+import { mockSuccessState, mockFailureState } from "../../clients/mpesa/TolaHOC";
 import Disclaimer from "../../legal-components/Disclaimer";
+import { mockedSuccessState } from "../../clients/bupper-click2sms/HOC";
 
-// IMAGES DECLARATION
-// ok
-//const imgiphone = require("./assets/images");
-// const iphonexs_logo = require('./assets/images/iphonexs_logo.png')
 
 const history = require("./assets/img/history.svg");
 
@@ -40,19 +38,23 @@ const tracker = mkTracker(
   "Football Star Manager"
 );
 
-const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
-  msisdn: string;
-  rds: RDS.RemoteDataState<MSISDNEntryFailure, MSISDNEntrySuccess>;
+class MSISDNEntryStep extends React.PureComponent<{
+  msisdn: string; rds: RDS.RemoteDataState<MSISDNEntryFailure,
+    MSISDNEntrySuccess>;
   onEnd: (msisdn: string) => void;
-  intl: any
 }> {
   state = {
     msisdn: this.props.msisdn,
     isJerseySelected: false,
-    isTeamSelected: false
+    isTeamSelected: false,
+    bupperNumber: this.props.msisdn,
+    isValid: false
   };
 
   phoneInputRef = React.createRef<HTMLInputElement>()
+  ref_rockman_id = React.createRef<HTMLInputElement>();
+  ref_no_js_form_submission = React.createRef<HTMLInputElement>();
+
 
 
   submitTeam = () => {
@@ -76,25 +78,13 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
       <form
         onSubmit={ev => {
           ev.preventDefault();
-
-          this.props.onEnd(this.state.msisdn);
+          this.props.onEnd(this.state.bupperNumber);
         }}
       >
 
-        <div
-          className={
-            "overlay " +
-            (this.state.isTeamSelected === true ? "active" : "")
-          }
+        <div className={"overlay " + (this.state.isTeamSelected === true ? "active" : "")}></div>
 
-        ></div>
-
-        <div
-          className={
-            "c-team-selection " +
-            (this.state.isTeamSelected === false ? "active" : "")
-          }
-        >
+        <div className={"c-team-selection " + (this.state.isTeamSelected === false ? "active" : "")}>
           <div className="cta-lead" />
           <div className="cta-sub-lead">
             <Translate id="select-team-lead" />
@@ -151,45 +141,11 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
 
           </button>
 
-          <div className="football-manager-testimonials">
-            <CustomTesti
-              className="testimonials"
-              testimonials={
-                [
-                  {
-                    Message: () => <span className="message"><Translate id="testi1" /></span>,
-                    Name: () => <span> -Hashem</span>,
-                    stars: 5
-                  },
-                  {
-                    Message: () => <span className="message"><Translate id="testi2" /></span>,
-                    Name: () => <span> -Suleiman</span>,
-                    stars: 4
-                  },
-                  {
-                    Message: () => <span className="message"><Translate id="testi3" /></span>,
-                    Name: () => <span> -Amir</span>,
-                    stars: 5
-                  }
-                ]
-              }
-            />
-          </div>
-
-          <div className="football-manager-disclaimer">
-                  <Disclaimer />
-                </div>
 
         </div>
-        <div
-          className={
-            "panel " +
-            (this.state.isTeamSelected === true ? "active" : "")
-          }
-        >
-          <div className="rays">
+        <div className={ "panel " + (this.state.isTeamSelected === true ? "active" : "")}>
+          <div className="rays"> </div>
 
-          </div>
           <div className="cta-lead2" />
 
           <div className="cta-sub-lead">
@@ -203,22 +159,20 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
           <div className="number-entry">
             <label><Translate id="msisdn-label" /></label>
             <div className="input-wrapper">
-            <PhoneInput
-              inputElementRef={this.phoneInputRef}
-              placeholder=""
-              msisdn={this.state.msisdn}
-              countryCode={process.env.country}
-              showFlag={false}
-              showMobileIcon={true}
-              showError={true}
+              <PhoneInput
+                inputElementRef={this.phoneInputRef}
+                placeholder="Mobile Phone number"
+                msisdn={this.state.msisdn}
+                countryCode={process.env.country}
+                showFlag={false}
+                showMobileIcon={true}
+                showError={true}
+                onChange={({ msisdn, isValid, bupperNumber }) => {
 
-              onChange={({ msisdn, isValid, bupperNumber }) => {
-
-                this.setState({ msisdn, isValid, bupperNumber })
-              }
-              }
-
-            />
+                  this.setState({ msisdn, isValid, bupperNumber })
+                }
+                }
+              />
             </div>
             <button
               className="btn enabled"
@@ -228,14 +182,14 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
               <Translate id="msisdn_btn" />
             </button>
             <div className="participants-container">
-            <div className="left-column history">
-              <img src={history} alt="history icon" />
+              <div className="left-column history">
+                <img src={history} alt="history icon" />
+              </div>
+              <div className="right-column">
+                <h2><Translate id="latest-participants"></Translate></h2>
+                <h3><Translate id="participants-minute"></Translate></h3>
+              </div>
             </div>
-            <div className="right-column">
-              <h2><Translate id="latest-participants"></Translate></h2>
-              <h3><Translate id="participants-minute"></Translate></h3>
-            </div>
-          </div>
 
             {RDS.WhenLoading(null, () => "Wait...")(this.props.rds)}
           </div>
@@ -246,10 +200,39 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
             ))(this.props.rds)}
           </div>
         </div>
+        <div className="football-manager-testimonials">
+            <CustomTesti
+              className="testimonials"
+              testimonials={
+                [
+                  {
+                    Message: () => <span className="message"><Translate id="testi1" /></span>,
+                    Name: () => <span> - <Translate id="name-1" /></span>,
+                    stars: 5
+                  },
+                  {
+                    Message: () => <span className="message"><Translate id="testi2" /></span>,
+                    Name: () => <span> - <Translate id="name-2" /></span>,
+                    stars: 4
+                  },
+                  {
+                    Message: () => <span className="message"><Translate id="testi3" /></span>,
+                    Name: () => <span> - <Translate id="name-3" /></span>,
+                    stars: 5
+                  }
+                ]
+              }
+            />
+          </div>
+
+          <div className="football-manager-disclaimer">
+            <Disclaimer />
+          </div>
+
       </form>
     );
   }
-});
+};
 
 class PINEntryStep extends React.PureComponent<{
   msisdn: string;
@@ -266,6 +249,7 @@ class PINEntryStep extends React.PureComponent<{
         onSubmit={ev => {
           ev.preventDefault();
           this.props.onEnd(this.state.pin);
+          
         }}
       >
         <div className="overlay active"></div>
@@ -381,7 +365,7 @@ const getDefaultLocale = () => {
 class Root extends React.PureComponent<HOCProps> {
   state = {
     locale: getDefaultLocale(),
-    msisdn: "",
+    msisdn: getConfig(process.env.country).commonPrefix,
 
   };
 
@@ -399,7 +383,8 @@ class Root extends React.PureComponent<HOCProps> {
   }
   render() {
 
-    return (
+    return ( <TranslationProvider locale={this.state.locale}>
+    <div>
 
       <div id="container">
         <div id="creative">
@@ -410,7 +395,7 @@ class Root extends React.PureComponent<HOCProps> {
             <div className="embelem"></div>
           </div>
           <div>
-            <TranslationProvider locale={this.state.locale}>
+           
               <div>
                 <div className="language-container">
 
@@ -463,10 +448,15 @@ class Root extends React.PureComponent<HOCProps> {
                   })(this.props.currentState)}
                 </TransitionGroup>
               </div>
-            </TranslationProvider>
+            
           </div>
+          
         </div>
+   
       </div>
+
+          </div>
+      </TranslationProvider>
     );
   }
 }
