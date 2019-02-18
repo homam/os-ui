@@ -29,6 +29,8 @@ var degree = 100;
 
 var clicks = 0;
 
+var result;
+
 function spinIt(){
 
 	clicks++;
@@ -51,41 +53,46 @@ function spinIt(){
 
 		if(wr < 360 ){
 
-
 			if((wr > 0 && wr < 30)||(wr > 0 && wr < -30)||(wr > 330 && wr < 365)){
 
-				console.log("bulb");
+				result = "bulb";
 	
 			}else if(wr > 269 && wr < 335 ){
-	
-				console.log("bell");
-	
+
+				result = "bell";
+
 			}else if(wr > 215 && wr < 270){
 	
-				console.log("chat");
-	
-			}else if(wr > 149 && wr < 215){
-	
-				console.log("smile");
-	
-			}else if(wr > 95 && wr < 148 ){
-	
-				console.log("heart");
-	
-			}else if(wr > 34 && wr < 90){
-	
-				console.log("star");
-	
-			}else{
-				console.log("no win!");
-			}
+				result = "chat";
 
+			}else if(wr > 149 && wr < 215){
+
+				result = "smile";
+
+			}else if(wr > 95 && wr < 148 ){
+
+				result = "heart";
+
+			}else if(wr > 34 && wr < 90){
+
+				result = "star";
+
+			}else{
+
+				result = "no win";
+
+			}
 
 		}else{
 
+	
 			wheel.style.transform='rotate(' + 330 + 'deg)';
 
 		}
+
+	var myResult = document.getElementById("myResult");
+
+	myResult.innerHTML=result;
 
 	},700)
 
@@ -99,10 +106,18 @@ interface IProps{
 }
 
 export default class SpinningWheel extends React.PureComponent<IProps> {
-  
+	
+	state = {
+	
+	}
+
   render() {
 
-    return  <div id="wheel">
+
+
+    return <div>
+
+					<div id="wheel">
 						<ul id="inner-wheel">
 							{spinningWheel}
 						</ul>
@@ -110,7 +125,12 @@ export default class SpinningWheel extends React.PureComponent<IProps> {
 							<div id="inner-spin"></div>
 						</div>
 						<div id="shine"></div>
-				</div>
+
+					</div>
+
+					<div id="myResult"></div>
+
+			</div>
   }
 
 }
