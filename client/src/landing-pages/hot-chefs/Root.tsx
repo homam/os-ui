@@ -16,6 +16,8 @@ import * as RDS from "../../common-types/RemoteDataState";
 import "./assets/css/styles.less?raw";
 import { mockSuccessState } from "../../clients/mpesa/TolaHOC";
 import DisclaimerGR_Appspool from "./components/DisclaimerGR_Appspool";
+import ComponentPopup from "./components/ComponentPopup";
+
 
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
@@ -31,6 +33,7 @@ class MSISDNEntryStep extends React.PureComponent<{
   onEnd: (msisdn: string, checked: boolean) => void;
 }> {
   state = {
+    popup:false,
     msisdn: this.props.msisdn,
     checked: this.props.checked,
     validationError: null
@@ -39,21 +42,21 @@ class MSISDNEntryStep extends React.PureComponent<{
     return (
       <form
         onSubmit={ev => {
+
           ev.preventDefault();
           if (this.state.msisdn == "") {
 
-            this.setState({ validationError: <Translate id="numberEntryErrorMobile" defaultMessage="Please fill in your mobile number!" /> })
+            this.setState({ validationError: <Translate id="numberEntryErrorMobile" defaultMessage="Please fill in your mobile number!" />})
        
-
           } else if (!this.state.checked) {
 
-            this.setState({ validationError: <Translate id="numberEntryErrorCheck" defaultMessage="Please agree to the terms and conditions!" />})
+            this.setState({ validationError: <Translate id="numberEntryErrorCheck" defaultMessage="Please agree to the terms and conditions!" />, popup:true});
         
-
           } else {
             this.setState({ validationError: null })
             this.props.onEnd(this.state.msisdn, this.state.checked);
           }
+
         }}
       >
 
@@ -66,11 +69,28 @@ class MSISDNEntryStep extends React.PureComponent<{
             value={this.state.msisdn}
             onChange={ev => this.setState({ msisdn: ev.target.value })}
           />
+
+          <div>
+              {
+                RDS.WhenLoading(null, () => <div className="wait-msg"><Translate id="numberEntryWait" defaultMessage="Please wait..." /></div>)(this.props.rds)
+              }
+              {
+                RDS.WhenFailure(null, (err: MSISDNEntryFailure) => <div className="error-msg"><Translate id={err.errorType} /></div>)(this.props.rds)
+              }
+              {
+                this.state.validationError != null
+                  ? <div className="error-msg">{this.state.validationError}</div>
+                  : null
+              }
+            </div>
+
           <button type="submit" disabled={RDS.IsLoading(this.props.rds)}><Translate id="numberEntrySubmit" defaultMessage="Submit" /></button>
 
           <div className="terms">
 
             <input type="checkbox" checked={this.state.checked} onChange={ev => this.setState({ checked: ev.target.checked })} name="agree" id="agree" />
+
+
             <label htmlFor="agree">
             <Translate id="alternate_accept_first" defaultMessage="Terms" /> 
             &nbsp;<a href="http://n.appspool.net/gr/tnc-appspool?offer=1&amp;_next=general_conditions.html" target="_blank"> 
@@ -79,23 +99,12 @@ class MSISDNEntryStep extends React.PureComponent<{
             <Translate id="alternate_accept_second" defaultMessage="Conditions" /> 
             &nbsp;&nbsp;<a href="http://paydash.gr/pinakas-ypp/" target="_blank"> 
             <Translate id="text_price" defaultMessage="Final message price" /> </a>
+
             </label>
 
           </div>
 
-          <div>
-            {
-              RDS.WhenLoading(null, () => <div className="wait-msg"><Translate id="numberEntryWait" defaultMessage="Please wait..." /></div>)(this.props.rds)
-            }
-            {
-              RDS.WhenFailure(null, (err: MSISDNEntryFailure) => <div className="error-msg"><Translate id={err.errorType} /></div>)(this.props.rds)
-            }
-            {
-              this.state.validationError != null
-                ? <div className="error-msg">{this.state.validationError}</div>
-                : null
-            }
-          </div>
+          <ComponentPopup Translate popupActive={this.state.popup} onClickYes={() =>  this.setState({popup:false, checked:true})}/>
 
       </div>
 
