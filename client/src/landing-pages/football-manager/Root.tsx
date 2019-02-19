@@ -364,7 +364,7 @@ const getDefaultLocale = () => {
 
 class Root extends React.PureComponent<HOCProps> {
   state = {
-    locale: getDefaultLocale(),
+    locale: "ar",
     msisdn: getConfig(process.env.country).commonPrefix,
 
   };

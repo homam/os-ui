@@ -1,7 +1,7 @@
 import * as React from "react";
 import mkTracker from "../../pacman/record";
 import { TranslationProvider, Translate } from "./localization/index";
-import HOC, {initialState, HOCProps, IKeywordShortcode} from "../../clients/bupper-click2sms/HOC"
+import HOC, { initialState, HOCProps, IKeywordShortcode } from "../../clients/bupper-click2sms/HOC"
 import * as RDS from "../../common-types/RemoteDataState";
 
 import "./assets/css/styles.less?raw";
@@ -9,14 +9,25 @@ import PhoneInput, { getConfig } from "ouisys-phone-input/dist/common/PhoneInput
 import Disclaimer from "../../legal-components/Disclaimer";
 import CustomTesti from "../bid-win/components/CustomTesti";
 
+
+
 const history = require("./assets/img/history.svg");
 
 
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
   "xx",
-  "football-manager-click2sms"
+  process.env.page
 );
+
+const getDefaultLocale = () => {
+  const lsLang = localStorage.getItem('locale')
+  if (!!lsLang && (lsLang == 'ar' || lsLang == 'en')) {
+    return lsLang
+  } else {
+    return ((!!navigator.languages && navigator.languages.some(lang => /ar/.test(lang))) || /ar/.test(navigator.language)) ? 'ar' : 'en'
+  }
+}
 
 class Root extends React.PureComponent<HOCProps> {
   state = {
@@ -61,9 +72,10 @@ class Root extends React.PureComponent<HOCProps> {
       kw => kw
     )(this.props.currentState)
     return (
-      <div>
-        <TranslationProvider locale={this.state.locale}>
-          <div>
+      <TranslationProvider locale={this.state.locale}>
+
+        <div>
+
           <div id="container">
             <div id="creative">
               <div className="header">
@@ -194,14 +206,15 @@ class Root extends React.PureComponent<HOCProps> {
               </div>
 
           </div>
-          </div>
-        </TranslationProvider>
-      </div>
+        </div>
+
+      </TranslationProvider>
+
     );
   }
 }
 
-// export default HOC(tracker, Root)(initialState);
+export default HOC(tracker, Root)(initialState);
 
 // In the Netherlands use this instead of the above line:
-export default HOC(tracker, Root, {tag: "keywordAndShortCode", shortcode: "8010", keyword: "Geld"})(initialState);
+// export default HOC(tracker, Root, {tag: "keywordAndShortCode", shortcode: "8010", keyword: "Geld"})(initialState);
