@@ -1,0 +1,12 @@
+{
+  "hello_world": "el:: Hello World!",
+  "AlreadySubscribed": "el:: You are already a subscriber!",
+  "InvalidMSISDN": "el:: This mobile number is incorrect, try again",
+  "UnknownError": "el:: An unknown error occurred.",
+  "InvalidPIN": "el:: Please enter the correct PIN that you received on your phone",
+  "TooEarly": "el:: You must first submit a mobile number",
+  "we_just_sent_a_pin": "el:: We just sent a PIN to your mobile phone.\nPlease check your SMS inbox and enter the PIN that you received below:",
+  "didnt_receive_pin_yet": "el:: Didn't receive a PIN yet? Make sure {phone} is your correct mobile number.",
+  "if_not_your_mobile": "el:: If {phone} is not your mobile number,",
+  "click_here_to_change_your_number": "el:: Click here to change your phone number."
+}

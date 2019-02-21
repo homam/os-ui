@@ -21,8 +21,10 @@ import {
   simpleOpacityTransitionStyles
 } from "../../common-components/simple-opacity-transition";
 
-// CSS DECLARATION
 import "./assets/css/styles.less?raw";
+import Disclaimer from "../../legal-components/Disclaimer";
+
+
 import { translate } from "../../../webpack/dev-utils/translate-by-yandex";
 import { mockedMSISDNEntrySuccess } from "../../clients/lp-api-mo/HOC";
 import { mockSuccessState } from "../../clients/mpesa/TolaHOC";
@@ -38,23 +40,85 @@ const history = require("./assets/img/history.svg");
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
   "xx",
-  "Football Star Manager" //TODO: replace Unknown with your page's name
+  "Football Star Manager" 
 );
 
-const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
-  msisdn: string;
-  rds: RDS.RemoteDataState<MSISDNEntryFailure, MSISDNEntrySuccess>;
+
+
+function MO({ keyword, shortcode, backToStart }: IKeywordShortcode & { backToStart: () => void }) {
+  return (
+    <div>
+
+      <div className="football-manager-mo">
+      <div className="panel active">
+      <div className="rays"></div>
+          <div className="cta-lead2" />
+
+          <div className="cta-sub-lead">
+            <div className="selected-team">
+              <div className="jersey-blue"></div>
+            </div>
+            <h1> <Translate id="selected-team-title" /></h1>
+            <p><Translate id="selected-team-lead" /></p>
+          </div>
+
+      <div className="number-entry">
+      <div className="input-wrapper">
+      <MOLink keywordAndShortcode={{ keyword, shortcode }}>
+          <div className="input-container">
+            <div className="btn-container">
+
+              <button type="button" className="btn enabled both uppercase">
+                Send SMS
+              </button>
+            </div>
+            <div className="mo-top">
+              <div className="mo-text">OR</div>
+              <div className="mo-text">
+                Send <span className="keyword">{keyword}</span> to{" "}
+                <span className="shortcode">{shortcode} </span>
+              </div>
+            </div>
+          </div>
+        </MOLink>
+
+        {/* <div className="try-again-top">
+          <a className="try-again" onClick={() => backToStart()}>Try Again</a>
+        </div> */}
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  );
+};
+
+
+class MSISDNEntryStep extends React.PureComponent<{
+  msisdn: string; rds: RDS.RemoteDataState<MSISDNEntryFailure,
+    MSISDNEntrySuccess>;
   onEnd: (msisdn: string) => void;
-  intl: any
 }> {
   state = {
     msisdn: this.props.msisdn,
     isJerseySelected: false,
-    isTeamSelected: false
+    isTeamSelected: false,
+    bupperNumber: this.props.msisdn,
+    isValid: false
+
   };
 
-  phoneInputRef = React.createRef<HTMLInputElement>()
+  showMO = () => {
+    this.setState({
+      showMOpage: true
+    });
+  };
 
+  selectJersey = () => {
+    this.setState({
+      isJerseySelected: true
+    });
+  };
 
   submitTeam = () => {
     this.setState({
@@ -62,14 +126,9 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
     });
   };
 
-  selectJersey = () => {
-
-    this.setState({
-      isJerseySelected: true
-    });
-  };
-
-
+  phoneInputRef = React.createRef<HTMLInputElement>()
+  ref_rockman_id = React.createRef<HTMLInputElement>();
+  ref_no_js_form_submission = React.createRef<HTMLInputElement>();
 
   render() {
 
@@ -77,25 +136,13 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
       <form
         onSubmit={ev => {
           ev.preventDefault();
-
-          this.props.onEnd(this.state.msisdn);
+          this.props.onEnd(this.state.bupperNumber);
         }}
       >
 
-        <div
-          className={
-            "overlay " +
-            (this.state.isTeamSelected === true ? "active" : "")
-          }
+        <div className={"overlay " + (this.state.isTeamSelected === true ? "active" : "")}></div>
 
-        ></div>
-
-        <div
-          className={
-            "c-team-selection " +
-            (this.state.isTeamSelected === false ? "active" : "")
-          }
-        >
+        <div className={"c-team-selection " + (this.state.isTeamSelected === false ? "active" : "")}>
           <div className="cta-lead" />
           <div className="cta-sub-lead">
             <Translate id="select-team-lead" />
@@ -106,87 +153,34 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
           </div>
 
           <div className="jersey-selection">
-            <input
-              type="radio"
-              defaultChecked={true}
-              onClick={this.selectJersey}
-              name="jersey"
-              id="red-jersey"
-            />
+            <input type="radio" defaultChecked={true} onClick={this.selectJersey} name="jersey" id="red-jersey"/>
 
             <label htmlFor="red-jersey" className="jersey">
               <div className="jersey-red" />
-
             </label>
 
-            <input
-              type="radio"
-              onClick={this.selectJersey}
-              name="jersey"
-              id="blue-jersey"
-            />
+            <input type="radio" onClick={this.selectJersey} name="jersey" id="blue-jersey"/>
 
             <label htmlFor="blue-jersey" className="jersey">
               <div className="jersey-blue" />
-
             </label>
 
-            <input
-              type="radio"
-              onClick={this.selectJersey}
-              name="jersey"
-              id="yellow-jersey"
-            />
+            <input type="radio" onClick={this.selectJersey} name="jersey" id="yellow-jersey"/>
 
             <label onClick={this.selectTeam} htmlFor="yellow-jersey" className="jersey">
               <div className="jersey-yellow" />
-
             </label>
           </div>
 
-          <button
-            onClick={this.submitTeam}
-            type="button"
-            className="btn enabled ">
+          <button onClick={this.submitTeam} type="button" className="btn enabled ">
             <Translate id="submit-team-btn" />
-
           </button>
-
-          <div className="testimonials">
-            <CustomTesti
-              className="frontline-testimonials"
-              testimonials={
-                [
-                  {
-                    Message: () => <span className="message"><Translate id="testi1" /></span>,
-                    Name: () => <span> -Hashem</span>,
-                    stars: 5
-                  },
-                  {
-                    Message: () => <span className="message"><Translate id="testi2" /></span>,
-                    Name: () => <span> -Suleiman</span>,
-                    stars: 4
-                  },
-                  {
-                    Message: () => <span className="message"><Translate id="testi3" /></span>,
-                    Name: () => <span> -Amir</span>,
-                    stars: 5
-                  }
-                ]
-              }
-            />
-          </div>
-
         </div>
-        <div
-          className={
-            "panel " +
-            (this.state.isTeamSelected === true ? "active" : "")
-          }
-        >
-          <div className="rays">
 
-          </div>
+
+
+        <div className={"panel " + (this.state.isTeamSelected === true ? "active" : "")}>
+          <div className="rays"></div>
           <div className="cta-lead2" />
 
           <div className="cta-sub-lead">
@@ -196,6 +190,8 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
             <h1> <Translate id="selected-team-title" /></h1>
             <p><Translate id="selected-team-lead" /></p>
           </div>
+
+        
 
           <div className="number-entry">
             <label><Translate id="msisdn-label" /></label>
@@ -216,14 +212,19 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
               }
 
             />
+
+              {/* <MO keyword="FTBLMNG" shortcode="34322" ></MO> */}
+
             </div>
-            <button
-              className="btn enabled"
-              type="submit"
-              disabled={RDS.IsLoading(this.props.rds)}
-            >
+            <button className="btn enabled" type="submit" disabled={RDS.IsLoading(this.props.rds)}>
               <Translate id="msisdn_btn" />
             </button>
+
+            {/* <button type="button" className="btn both full-width lg" onClick={this.showMO}>
+               Show MO
+            </button> */}
+
+
             <div className="participants-container">
             <div className="left-column history">
               <img src={history} alt="history icon" />
@@ -243,10 +244,40 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
             ))(this.props.rds)}
           </div>
         </div>
+
+        <div className="football-manager-testimonials">
+            <CustomTesti
+              className="testimonials"
+              testimonials={
+                [
+                  {
+                    Message: () => <span className="message"><Translate id="testi1" /></span>,
+                    Name: () => <span> - <Translate id="name-1" /></span>,
+                    stars: 5
+                  },
+                  {
+                    Message: () => <span className="message"><Translate id="testi2" /></span>,
+                    Name: () => <span> - <Translate id="name-2" /></span>,
+                    stars: 4
+                  },
+                  {
+                    Message: () => <span className="message"><Translate id="testi3" /></span>,
+                    Name: () => <span> - <Translate id="name-3" /></span>,
+                    stars: 5
+                  }
+                ]
+              }
+            />
+          </div>
+
+          <div className="football-manager-disclaimer">
+                  <Disclaimer />
+                </div>
+
       </form>
     );
   }
-});
+};
 
 
 const TQStep = ({ finalUrl }: { finalUrl: string }) => (
@@ -266,9 +297,9 @@ const TQStep = ({ finalUrl }: { finalUrl: string }) => (
         </h1>
       </div>
       <div className="pin-support"></div>
-      <a className="btn thank-you enabled" href={finalUrl}>
+      {/* <a className="btn thank-you enabled" href={finalUrl}>
         <Translate id="download-now"></Translate>
-      </a>
+      </a> */}
     </div>
   </div>
 );
@@ -284,10 +315,11 @@ const getDefaultLocale = () => {
 
 class Root extends React.PureComponent<HOCProps> {
   state = {
-    locale: getDefaultLocale(),
-    msisdn: "",
-
+    locale: "ar",
+    msisdn: getConfig(process.env.country).commonPrefix,
   };
+
+
 
   setLocale = (lang) => {
     localStorage.setItem('locale', lang)
@@ -338,25 +370,34 @@ class Root extends React.PureComponent<HOCProps> {
                 <TransitionGroup className={simpleOpacityTransitionStyles.group}>
                   {match({
                     msisdnEntry: rds => (
-                      <SimpleOpacityTransition key="msisdnEntry">
-                        <MSISDNEntryStep
-                          msisdn={this.state.msisdn}
-                          rds={rds}
-                          onEnd={msisdn => {
-                            this.setState({ msisdn });
-                            this.props.actions.submitMSISDN(window, null, msisdn);
-                          }}
-                        />
-                      </SimpleOpacityTransition>
+
+
+                          <div>
+                          {RDS.WhenSuccess<MSISDNEntrySuccess, JSX.Element>(
+                            <MSISDNEntryStep msisdn={this.state.msisdn} rds={rds} onEnd={msisdn => {
+                              this.setState({ msisdn });
+                              this.props.actions.submitMSISDN(
+                                window,
+                                null,
+                                msisdn
+                              );
+                            }}
+                            />,
+                            data => <MO {...data} backToStart={this.props.actions.backToStart} />)(rds)}
+                        </div>
+
+
                     ),
 
-                    completed: ({ finalUrl }) => (
-                      <SimpleOpacityTransition key="completed">
+                    completed: () => (
+                      <div>
                         <TQStep finalUrl={""} />
-                      </SimpleOpacityTransition>         
+                      </div>
                     )
                   })(this.props.currentState)}
+  
                 </TransitionGroup>
+               
               </div>
             </TranslationProvider>
           </div>
