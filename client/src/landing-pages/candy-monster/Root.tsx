@@ -14,38 +14,38 @@ const tracker = mkTracker(
 const operatorImg = require("./assets/img/iraqcom.png");
 
 // Google Optimize Starts
-const abTest_variant = (() => { 
-  const variant = Math.round(Math.random()); 
+// const abTest_variant = (() => { 
+//   const variant = Math.round(Math.random()); 
 
-  return () => variant
-})()
+//   return () => variant
+// })()
 
-function gtag(...args) {window.dataLayer.push(...args)}
+// function gtag(...args) {window.dataLayer.push(...args)}
 
-if (typeof window != "undefined") {
-  window.addEventListener('load', () => setTimeout(() => {
-    const ga = window['ga']
+// if (typeof window != "undefined") {
+//   window.addEventListener('load', () => setTimeout(() => {
+//     const ga = window['ga']
     
-    // update body class to have the ab test variant 
-    document.body.classList.add(`ab-${abTest_variant()}`)
+//     // update body class to have the ab test variant 
+//     document.body.classList.add(`ab-${abTest_variant()}`)
 
-    if (!!ga) {
+//     if (!!ga) {
 
 
-      const setGAExperimentCX = (_expId, _vId) => {
-        const gtm = ga.getAll()[0].get('name')
-        ga(`${gtm}.set`, 'exp', _expId.toString() + '.' + _vId.toString());
-        ga(`${gtm}.send`, 'event', 'Experiment', 'Trigger', _expId.toString() + '.' + _vId.toString());
+//       const setGAExperimentCX = (_expId, _vId) => {
+//         const gtm = ga.getAll()[0].get('name')
+//         ga(`${gtm}.set`, 'exp', _expId.toString() + '.' + _vId.toString());
+//         ga(`${gtm}.send`, 'event', 'Experiment', 'Trigger', _expId.toString() + '.' + _vId.toString());
 
-      }
+//       }
 
-      setGAExperimentCX('x-5qgNM5S7mgjClus71IIQ', abTest_variant());
+//       setGAExperimentCX('x-5qgNM5S7mgjClus71IIQ', abTest_variant());
 
-    }
+//     }
 
-  }, 90))
+//   }, 90))
 
-}
+// }
 
 // Google Optimize End
 
