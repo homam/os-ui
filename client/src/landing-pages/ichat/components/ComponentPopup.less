@@ -1,0 +1,68 @@
+.popup{
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  width:100%;
+  z-index: 99;
+  display: none;
+  position: fixed;
+  background-color: rgba(0,0,0,0.65);
+
+  &.display-true{
+    display:block;
+  }
+
+  .modal{
+    top:50%;
+    left:50%;
+    width: 260px;
+    height:260px;
+    padding:20px;
+    display: block;
+    text-align: center;
+    border-radius: 8px;
+    position: absolute;
+    margin: -150px 0 0 -150px;
+    background-color: #fff;
+
+
+    p{
+      font-size:12px;
+      margin-top:40px;
+      display: block;
+      line-height: 1.5em;
+
+      a{
+        color:blue;
+        font-size: 12px;
+      }
+
+    }
+
+    .yesBtn{
+        color:#fff;
+        width:180px;
+        border:none;
+        outline: none;
+        cursor:pointer;
+        margin:20px auto;
+        font-size: 14px !important;
+        padding:10px 10px;
+        font-weight: bold;
+        border-radius: 8px;
+        display: inline-block;
+        text-transform: uppercase;
+        background-color: #006cff;
+        transition: 0.25s ease-in-out;
+        -webkit-transition: 0.25s ease-in-out;
+    }
+
+    .noBtn{
+      color:#333;
+    }
+
+  }
+
+
+}
