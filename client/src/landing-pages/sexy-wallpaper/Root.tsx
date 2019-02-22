@@ -36,7 +36,7 @@ import { mockedPINState } from "../../clients/lp-api/HOC";
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
   "xx",
-  "Sexy Wallpaper" //TODO: replace Unknown with your page's name
+  "Sexy Wallpaper"
 );
 
 const rating = require("./assets/img/rating.svg");
@@ -121,11 +121,11 @@ class MSISDNEntryStep extends React.PureComponent<{
               </div>
               <button type="submit" className="btn both full-width lg" disabled={RDS.IsLoading(this.props.rds)}>
                 <Translate id="submit-to-subscribe" />
-          </button>
-            
-            <div className="wait-container">
-              {RDS.WhenLoading(null, () => "Wait...")(this.props.rds)}
-            </div>
+              </button>
+
+              <div className="wait-container">
+                {RDS.WhenLoading(null, () => "Wait...")(this.props.rds)}
+              </div>
               <div className="error-msg">
                 {RDS.WhenFailure(null, (err: MSISDNEntryFailure) => (
                   <Translate id={err.errorType} />
@@ -182,7 +182,7 @@ class Root extends React.PureComponent<HOCProps> {
 
   render() {
     return (<TranslationProvider locale={this.state.locale}>
-    <div>
+      <div>
         <div className="wrapper">
           <div className="header">
             <div className="rating">
@@ -195,161 +195,160 @@ class Root extends React.PureComponent<HOCProps> {
 
           <div className="dark-bg">
             <div className="container">
-              
-                <div>
-                  {match({
-                    msisdnEntry: rds => (
-                      <div>
+
+              <div>
+                {match({
+                  msisdnEntry: rds => (
+                    <div>
 
 
-                        
-                        {/* 1ST PRELANDER */}
-                        <div className={"start " + (this.state.preLander === 1 ? "active" : "hidden")}>
+                      {/* 1ST PRELANDER */}
+                      <div className={"start " + (this.state.preLander === 1 ? "active" : "hidden")}>
+                        <div className="prelander-img-1">
+                          <div className="img-container guy-1 vibrate-2" />
+                          <div className="img-container girl-1 vibrate-1" />
+                        </div>
+                        <div className="balloon balloon-1">
+                          <div className="title">
+                            <Translate id="title" />
+                          </div>
+                          <div className="title-2"><Translate id="title-babe" /></div>
+                          <div className="btn-container">
+                            <button type="submit" className="btn male" onClick={e => this.genderMale(e)}>
+                              <Translate id="male" />
+                            </button>
+
+                            <button type="submit" className="btn female" onClick={e => this.genderFemale(e)}>
+                              <Translate id="female" />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* 2ND PRELANDER */}
+                      <div className={"prelander " + (this.state.preLander === 2 ? "active" : "hidden")}>
+                        <div className={"prelander-img-1 " + (this.state.gender === "female" ? "active" : "hidden")}>
                           <div className="prelander-img-1">
-                            <div className="img-container guy-1 vibrate-2" />
-                            <div className="img-container girl-1 vibrate-1" />
+                            <div className="img-container girl-2 vibrate-1" />
                           </div>
-                          <div className="balloon balloon-1">
-                            <div className="title">
-                              <Translate id="title" />
+                          <div className="balloon balloon-2">
+                            <div className="title-2 margin-sm">
+                              <Translate id="think-hot" />
                             </div>
-                            <div className="title-2"><Translate id="title-babe" /></div>
                             <div className="btn-container">
-                              <button type="submit" className="btn male" onClick={e => this.genderMale(e)}>
-                                <Translate id="male" />
+                              <button type="button" className="btn female full-width" onClick={this.nextPrelander}>
+                                <Translate id="of-course" />
                               </button>
-
-                              <button type="submit" className="btn female" onClick={e => this.genderFemale(e)}>
-                                <Translate id="female" />
+                              <button type="button" className="btn female full-width" onClick={this.nextPrelander}>
+                                <Translate id="yes-babe" />
                               </button>
                             </div>
                           </div>
                         </div>
 
-                        {/* 2ND PRELANDER */}
-                        <div className={"prelander " + (this.state.preLander === 2 ? "active" : "hidden")}>
-                          <div className={"prelander-img-1 " + (this.state.gender === "female" ? "active" : "hidden")}>
-                            <div className="prelander-img-1">
-                              <div className="img-container girl-2 vibrate-1" />
-                            </div>
-                            <div className="balloon balloon-2">
-                              <div className="title-2 margin-sm">
-                                <Translate id="think-hot" />
-                              </div>
-                              <div className="btn-container">
-                                <button type="button" className="btn female full-width" onClick={this.nextPrelander}>
-                                  <Translate id="of-course" />
-                                </button>
-                                <button type="button" className="btn female full-width" onClick={this.nextPrelander}>
-                                  <Translate id="yes-babe" />
-                                </button>
-                              </div>
-                            </div>
-                          </div>
+                        <div className={"prelander-img-1 " + (this.state.gender === "male" ? "active" : "hidden")}>
+                          <div className="img-container guy-2 vibrate-1" />
 
-                          <div className={"prelander-img-1 " + (this.state.gender === "male" ? "active" : "hidden")}>
-                            <div className="img-container guy-2 vibrate-1" />
-
-                            <div className="balloon balloon-2">
-                              <div className="title-2 margin-sm">
-                                <Translate id="think-hot" />
-                              </div>
-                              <div className="btn-container">
-                                <button type="button" className="btn male full-width" onClick={this.nextPrelander}>
-                                  <Translate id="of-course" />
-                                </button>
-                                <button type="button" className="btn male full-width" onClick={this.nextPrelander}>
-                                  <Translate id="yes-babe" />
-                                </button>
-                              </div>
+                          <div className="balloon balloon-2">
+                            <div className="title-2 margin-sm">
+                              <Translate id="think-hot" />
+                            </div>
+                            <div className="btn-container">
+                              <button type="button" className="btn male full-width" onClick={this.nextPrelander}>
+                                <Translate id="of-course" />
+                              </button>
+                              <button type="button" className="btn male full-width" onClick={this.nextPrelander}>
+                                <Translate id="yes-babe" />
+                              </button>
                             </div>
                           </div>
                         </div>
+                      </div>
 
-                        {/* 3RD PRELANDER */}
-                        <div className={"prelander " + (this.state.preLander === 3 ? "active" : "hidden")}>
-                          <div className={"prelander-img-1 " + (this.state.gender === "male" ? "active" : "hidden")}>
-                            <div className="img-container guy-3 vibrate-1" />
+                      {/* 3RD PRELANDER */}
+                      <div className={"prelander " + (this.state.preLander === 3 ? "active" : "hidden")}>
+                        <div className={"prelander-img-1 " + (this.state.gender === "male" ? "active" : "hidden")}>
+                          <div className="img-container guy-3 vibrate-1" />
+                        </div>
+                        <div className="balloon balloon-3">
+                          <div className="title-2 md-width margin-sm">
+                            <Translate id="intense" />
+                          </div>
+                          <div className="btn-container">
+                            <button type="button" className="btn male full-width" onClick={this.nextPrelander}>
+                              <Translate id="shoulder-massage" />
+                            </button>
+                            <button type="button" className="btn male full-width" onClick={this.nextPrelander}>
+                              <Translate id="foot-massage" />
+                            </button>
+                          </div>
+                        </div>
+
+                        <div className={"prelander " + (this.state.gender === "female" ? "active" : "hidden")}>
+                          <div className="prelander-img-1">
+                            <div className="img-container girl-3 vibrate-1" />
                           </div>
                           <div className="balloon balloon-3">
                             <div className="title-2 md-width margin-sm">
-                              <Translate id="intense" />
+                              <Translate id="shirt-dirty" />
                             </div>
                             <div className="btn-container">
-                              <button type="button" className="btn male full-width" onClick={this.nextPrelander}>
-                                <Translate id="shoulder-massage" />
+                              <button type="button" className="btn female full-width" onClick={this.nextPrelander}>
+                                <Translate id="take-off-shirt" />
                               </button>
-                              <button type="button" className="btn male full-width" onClick={this.nextPrelander}>
-                                <Translate id="foot-massage" />
+                              <button type="button" className="btn female full-width" onClick={this.nextPrelander}>
+                                <Translate id="wash-me" />
                               </button>
                             </div>
                           </div>
+                        </div>
+                      </div>
 
-                          <div className={"prelander " + (this.state.gender === "female" ? "active" : "hidden")}>
-                            <div className="prelander-img-1">
-                              <div className="img-container girl-3 vibrate-1" />
-                            </div>
-                            <div className="balloon balloon-3">
-                              <div className="title-2 md-width margin-sm">
-                                <Translate id="shirt-dirty" />
-                              </div>
-                              <div className="btn-container">
-                                <button type="button" className="btn female full-width" onClick={this.nextPrelander}>
-                                  <Translate id="take-off-shirt" />
-                                </button>
-                                <button type="button" className="btn female full-width" onClick={this.nextPrelander}>
-                                  <Translate id="wash-me" />
-                                </button>
-                              </div>
+                      {/* MSISDN PAGE */}
+                      <div className={"prelander " + (this.state.preLander === 4 ? "active" : "hidden")}>
+                        {/* MSISDN GUY VIEW */}
+                        <div className={"prelander-img-1 " + (this.state.gender === "male" ? "active" : "hidden")}>
+                          <div className="img-container guy-4 vibrate-1" />
+                          <div className="balloon balloon-5">
+                            <div className="title-sm guy">
+                              <Translate id="more-action" />
                             </div>
                           </div>
                         </div>
 
-                        {/* MSISDN PAGE */}
-                        <div className={"prelander " + (this.state.preLander === 4 ? "active" : "hidden")}>
-                          {/* MSISDN GUY VIEW */}
-                          <div className={"prelander-img-1 " + (this.state.gender === "male" ? "active" : "hidden")}>
-                            <div className="img-container guy-4 vibrate-1" />
-                            <div className="balloon balloon-5">
-                              <div className="title-sm guy">
-                                <Translate id="more-action" />
-                              </div>
+                        {/* MSISDN GIRL VIEW */}
+                        <div className={"prelander-img-1 " + (this.state.gender === "female" ? "active" : "hidden")}>
+                          <div className="img-container girl-4 vibrate-1" />
+                          <div className="balloon balloon-5">
+                            <div className="title-sm guy">
+                              <Translate id="shower" />
                             </div>
                           </div>
+                        </div>
 
-                          {/* MSISDN GIRL VIEW */}
-                          <div className={"prelander-img-1 " + (this.state.gender === "female" ? "active" : "hidden")}>
-                            <div className="img-container girl-4 vibrate-1" />
-                            <div className="balloon balloon-5">
-                              <div className="title-sm guy">
-                                <Translate id="shower" />
-                              </div>
-                            </div>
+                        {/* MSISDN BALLOON */}
+                        <div className="balloon balloon-4">
+                          <div className="title md-width top-sm">
+                            <Translate id="keep-watching" />
                           </div>
 
-                          {/* MSISDN BALLOON */}
-                          <div className="balloon balloon-4">
-                            <div className="title md-width top-sm">
-                              <Translate id="keep-watching" />
-                            </div>
+                          {RDS.WhenSuccess<MSISDNEntrySuccess, JSX.Element>(
+                            <MSISDNEntryStep msisdn={this.state.msisdn} rds={rds} onEnd={msisdn => {
+                              this.setState({ msisdn });
+                              this.props.actions.submitMSISDN(
+                                window,
+                                null,
+                                msisdn
+                              );
+                            }}
+                            />,
+                            data =>
+                              <MO {...data} />
+                          )(rds)}
+                        </div>
 
-                            {RDS.WhenSuccess<MSISDNEntrySuccess, JSX.Element>(
-                              <MSISDNEntryStep msisdn={this.state.msisdn} rds={rds} onEnd={msisdn => {
-                                this.setState({ msisdn });
-                                this.props.actions.submitMSISDN(
-                                  window,
-                                  null,
-                                  msisdn
-                                );
-                              }}
-                              />,
-                              data =>
-                                <MO {...data} />
-                            )(rds)}
-                          </div>
-
-                          {/* MO VIEW */}
-                          {/* <div className="balloon balloon-4">
+                        {/* MO VIEW */}
+                        {/* <div className="balloon balloon-4">
                       <div className="title top-sm lg">
                         To keep watching, send SMS now
                       </div>
@@ -357,62 +356,57 @@ class Root extends React.PureComponent<HOCProps> {
                         <MO keyword="SEXY" shortcode="3678"></MO>
                       </div>
                     </div> */}
-                          {/* MO VIEW END */}
-                        </div>
+                        {/* MO VIEW END */}
                       </div>
-                    ),
+                    </div>
+                  ),
 
-                    completed: () => (
-                      <div>
-                        <TQStep finalUrl={""} />
-                      </div>
-                    )
-                  })(this.props.currentState)}
+                  completed: () => (
+                    <div>
+                      <TQStep finalUrl={""} />
+                    </div>
+                  )
+                })(this.props.currentState)}
 
-                  {/* <button type="button" className="btn both full-width lg" onClick={this.showMO}>
+                {/* <button type="button" className="btn both full-width lg" onClick={this.showMO}>
                   Show MO
                 </button> */}
-                </div>
-             
+              </div>
+
             </div>
-            <CustomTesti className="sexy-wallpaper" testimonials={[{
-              Message: () => (
-                <span className="message">
-                  <Translate id="testimonial-1" />
-            </span>
-              ),
-              Name: () => <span className="testimonials-name">- <Translate id="testimonial-name-1" /></span>,
-              stars: 5
-            },
-            {
-              Message: () => (
-                <span className="message">
-                  <Translate id="testimonial-2" />
-            </span>
-              ),
-              Name: () => <span className="testimonials-name">- <Translate id="testimonial-name-2" /></span>,
-              stars: 5
-            },
-            {
-              Message: () => (
-                <span className="message">
-                  <Translate id="testimonial-3" />
-            </span>
-              ),
-              Name: () => (
-                <span className="testimonials-name">- <Translate id="testimonial-name-3" /></span>
-              ),
-              stars: 5
+
+
+            <CustomTesti
+            className="sexy-wallpaper"
+            testimonials={
+              [
+                {
+                  Message: () => <span className="message"><Translate id="testimonial-1" /></span>,
+                  Name: () => <span className="testimonials-name"> - <Translate id="testimonial-name-1" /></span>,
+                  stars: 5
+                },
+                {
+                  Message: () => <span className="message"><Translate id="testimonial-2" /></span>,
+                  Name: () => <span className="testimonials-name"> - <Translate id="testimonial-name-2" /></span>,
+                  stars: 5
+                },
+                {
+                  Message: () => <span className="message"><Translate id="testimonial-3" /></span>,
+                  Name: () => <span className="testimonials-name"> - <Translate id="testimonial-name-3" /></span>,
+                  stars: 5
+                }
+              ]
             }
-            ]}
-            />
+          />
+
           </div>
           <div className="sexy-wallpaper-disclaimer">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </div>
+            <Disclaimer />
+            {/* Lorem ipsum */}
+          </div>
         </div>
       </div>
-       </TranslationProvider>
+    </TranslationProvider>
     );
   }
 }

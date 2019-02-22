@@ -98,13 +98,14 @@ const prepareContent = (() => {
 const getAndCachePreparedContentFromFileSystem = (() => {
   const cache = {};
   return async function(page: string, country: string, skipCache: boolean): Promise<(visitor: IVisitor) => Readable> {
-    const cachedItem = cache[page];
+    const cacheKey = `${country}::${page}`;
+    const cachedItem = cache[cacheKey];
     if (!skipCache && !!cachedItem) {
       return cachedItem;
     } else {
       const content = await getPageContent(page, country);
       const item = prepareContent(content);
-      cache[page] = item;
+      cache[cacheKey] = item;
       return item;
     }
   };
