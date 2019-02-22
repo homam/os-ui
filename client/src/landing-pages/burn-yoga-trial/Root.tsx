@@ -2,14 +2,13 @@ import * as React from "react";
 import mkTracker from "../../pacman/record";
 import { TranslationProvider, Translate } from "./localization/index";
 import HOC, {IProps, initialState, Link} from "../../clients/one-click/HOC"
-import "./assets/styles.less?raw"
 import CustomToplegal from "./components/CustomToplegal";
-
+import "./assets/styles.less?raw"
 
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
   "xx",
-  "yoga" //TODO: replace Unknown with your page's name
+  "burn-yoga-trial" 
 );
 
 const ButtonArea = ({ clicked, subscribeNowClicked, confirmClicked }) => {
@@ -21,7 +20,7 @@ const ButtonArea = ({ clicked, subscribeNowClicked, confirmClicked }) => {
       <Link className="ConfirmBtn" tracker={tracker}>Confirm</Link>
     </div>
   } else {
-    return <div><button className="SubscribeBtn" onClick={subscribeNowClicked}>Subscribe Now!</button></div>
+    return <div><button className="SubscribeBtn" onClick={subscribeNowClicked}>Subscribe</button></div>
 
   }
 
@@ -39,25 +38,57 @@ class Root extends React.PureComponent<IProps> {
         <TranslationProvider locale={this.state.locale}>
           <div>
 
-
             <CustomToplegal />
 
+          
             <div className="creative">
               <div className="time">
                 
               </div>
 
               <div className="logo"></div>
-              <h1 className="toptitle">Home Yoga Class</h1>
 
-              <div className="text">
-                <p>Healthier You. Any place. Any time</p>
+              <div className="titles">
+                  <div className="textlogo"></div>
+                  
+                  <div className="text">
+                   <p>Access to <b>Your Online Yoga </b><br></br><b>Classes</b> For Your Health.</p>
+                  
+                  </div>
+
+                
               </div>
+
+            
+
+              <div className="benefits">
+
+                      <h1 className="health">
+                        <ul>
+                          <li>Health</li>
+                        </ul>
+                      </h1>
+
+                      <h1 className="body">
+                        <ul>
+                          <li>Body</li>
+                        </ul>
+                      </h1>
+
+                      <h1 className="mind">
+                        <ul>
+                           <li>Mind</li>
+                        </ul>
+                      </h1>
+
+
+              </div>
+
+            
 
 
             </div>
-
-
+          
 
             <ButtonArea clicked={this.state.clicked}
               subscribeNowClicked={() => {
@@ -66,27 +97,18 @@ class Root extends React.PureComponent<IProps> {
               } }
               confirmClicked={() => this.props.actions.onClick()}
 
-
             />
+
+            <div className="frame"></div>
+
 
             <div className="wrap">
 
-              <p className="wraptext">Get UNLIMITED ACCSESS cheaper than the cost of one regular class <br></br><b>ONLY £4.50 per week</b>
-              <br></br>Charges added to this mobile bill.</p>
+
+              <p className="wraptext">FREE ACCESS FIRST 24 HOURS<br></br><b>Then only £4.50 per week</b><br></br>Charges added to this mobile bill.</p>
+         
               
-              {/* <div className="price">
-                  <span>£4.50 per week</span>
-              </div>
-
-              <div className="undertext">
-                  <span>Charges added to this mobile bill.</span>
-              </div> */}
-
-           </div>
-
-
-
-
+            </div>
 
             <div className="disclaimer">
 
@@ -104,7 +126,6 @@ class Root extends React.PureComponent<IProps> {
               <div className="mobiotv"></div>
             </div>
 
-            
 
           </div>
         </TranslationProvider>

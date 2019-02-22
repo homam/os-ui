@@ -115,10 +115,9 @@ class Root extends React.PureComponent<IProps> {
               <p>Subscribe and transform your body, mind and life today for just £4.50 a week! Service provided by Mobio TV</p>
 
               <div className="links">
-                  <a href="http://n.mobiotv.com/uk/tnc-mobiotv?offer=1&_next=index.html" className="align-left">Terms &amp; Conditions</a>
-                  <a href="http://n.mobiotv.com/uk/tnc-mobiotv?offer=1&_next=privacy_policy.html" className="align-right">Privacy Policy</a>
-                  
-            </div>
+                <a href="http://n.mobiotv.com/uk/tnc-mobiotv?offer=1&_next=index.html" className="align-left">Terms &amp; Conditions</a>
+                <a href="http://n.mobiotv.com/uk/tnc-mobiotv?offer=1&_next=privacy_policy.html" className="align-right">Privacy Policy</a>
+              </div>
 
             </div>
 
@@ -127,7 +126,6 @@ class Root extends React.PureComponent<IProps> {
               <div className="mobiotv"></div>
             </div>
 
-            
 
           </div>
         </TranslationProvider>
