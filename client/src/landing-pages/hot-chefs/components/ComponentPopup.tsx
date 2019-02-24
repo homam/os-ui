@@ -4,22 +4,16 @@ import { TranslationProvider, Translate } from "../localization/index";
 
 interface IProps{
   Translate,
-  popupActive:boolean,
-  onClickYes
+  onClickYes,
+  popupActive:boolean
 }
 
+
 export default class ComponentPopup extends React.PureComponent<IProps>{
-
+  
   state={
-    pop: false
+    pop: this.props.popupActive
   }
-
-  componentDidUpdate(){
-
-    this.setState({pop: this.props.popupActive})
-
-  }
-
   render() {
 
     return <div className={`popup display-${this.state.pop}`}>

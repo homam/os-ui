@@ -4,6 +4,7 @@ import { TranslationProvider, Translate } from "./localization/index";
 import HOC, { IProps, initialState } from "../../clients/one-click/HOC";
 
 import "./assets/css/styles.less?raw";
+import { Disclaimer } from "../../legal-components/Disclaimers/gr";
 
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
@@ -66,7 +67,11 @@ class Root extends React.PureComponent<IProps> {
 
           </div>
 
+
         </TranslationProvider>
+
+        
+
       </div>
     );
   }
