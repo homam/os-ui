@@ -385,7 +385,7 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: 
 
             <div className="animated" id="moSubmit">
 
-            <this.props.MOLink className="button" keyword={this.props.keyword}><Translate id="sms_now" defaultMessage="SMS NOW" /></this.props.MOLink>
+            <this.props.MOLink className="button" ><Translate id="sms_now" defaultMessage="SMS NOW" /></this.props.MOLink>
 
             </div>
 
