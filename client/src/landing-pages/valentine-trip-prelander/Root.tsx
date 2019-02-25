@@ -18,6 +18,31 @@ import './assets/style.css?raw';
 import Timer from "./components/Timer";
 import DisclaimerGR from './components/DisclaimerGR';
 
+const abTest_variant = (() => {
+  const variant = Math.round(Math.random());
+
+  return () => variant
+})()
+
+// function gtag(...args) {window.dataLayer.push(...args)}
+
+if (typeof window != "undefined") {
+  window.addEventListener('load', () => setTimeout(() => {
+    const ga = window['ga']
+    if (!!ga) {
+
+      const setGAExperimentCX = (_expId, _vId) => {
+        const gtm = ga.getAll()[0].get('name')
+        ga(`${gtm}.set`, 'exp', _expId.toString() + '.' + _vId.toString());
+        ga(`${gtm}.send`, 'event', 'Experiment', 'Trigger', _expId.toString() + '.' + _vId.toString());
+      }
+      setGAExperimentCX('mo1jCLkaQku8pFJUmFN6VQ', abTest_variant());
+    }
+
+  }, 750))
+
+}
+
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
   "xx",
@@ -201,7 +226,14 @@ class Root extends React.PureComponent<HOCProps> {
     msisdn: "69",
     checked: false,
     appState: "questiona",
+    abTestVariant: 0,
   };
+
+  componentDidMount() {
+    this.setState({ abTestVariant: abTest_variant() })
+    document.body.classList.add(`ab-${abTest_variant()}`)
+  }
+
   render() {
     return (
     <TranslationProvider locale={this.state.locale}>
@@ -213,6 +245,11 @@ class Root extends React.PureComponent<HOCProps> {
           </div>
 
           <div className="prizes">
+          {
+            this.state.abTestVariant == 0
+            ? <p className="subtext warm"><Translate id="warm-up"/></p>
+            : null
+          }
           <p className="heart"><Translate id="or" /></p>
           <p className="subtext"><Translate id="subtext" /></p>
           </div>

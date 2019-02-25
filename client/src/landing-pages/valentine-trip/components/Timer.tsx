@@ -19,7 +19,7 @@ export default class Timer extends React.PureComponent {
       var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      document.getElementById("timer").innerHTML = days + ' μέρες μένουν';
+      document.getElementById("timer").innerHTML = days + ' μέρα έμεινε';
 
       // document.getElementById("timer").innerHTML = days + "days left " + hours + "h "
       // + minutes + "m " + seconds + "s ";
