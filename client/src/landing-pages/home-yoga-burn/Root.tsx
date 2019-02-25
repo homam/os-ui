@@ -2,8 +2,8 @@ import * as React from "react";
 import mkTracker from "../../pacman/record";
 import { TranslationProvider, Translate } from "./localization/index";
 import HOC, {IProps, initialState, Link} from "../../clients/one-click/HOC"
-import "./assets/styles.less?raw"
 import CustomToplegal from "./components/CustomToplegal";
+import "./assets/styles.less?raw"
 
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
@@ -38,9 +38,9 @@ class Root extends React.PureComponent<IProps> {
         <TranslationProvider locale={this.state.locale}>
           <div>
 
-
             <CustomToplegal />
 
+          
             <div className="creative">
               <div className="time">
                 
@@ -52,12 +52,14 @@ class Root extends React.PureComponent<IProps> {
                   <div className="textlogo"></div>
                   
                   <div className="text">
-                   <p>Access to <b>Your Online</b><br></br><b>Yoga Classes</b> For Your Health.</p>
+                   <p>Access to <b>Your Online Yoga </b><br></br><b>Classes</b> For Your Health.</p>
                   
                   </div>
+
+                
               </div>
 
-              
+            
 
               <div className="benefits">
 
@@ -79,17 +81,14 @@ class Root extends React.PureComponent<IProps> {
                         </ul>
                       </h1>
 
+
               </div>
 
-              
-
-
-            </div>
             
-            <div className="arrow">
-                <div className="circle"></div>
+
 
             </div>
+          
 
             <ButtonArea clicked={this.state.clicked}
               subscribeNowClicked={() => {
@@ -101,10 +100,14 @@ class Root extends React.PureComponent<IProps> {
             />
 
             <div className="frame"></div>
+
+
             <div className="wrap">
+
 
               <p className="wraptext">CHEAPER than a GYM Membership <br></br><b>ONLY £4.50 per week.</b><br></br>Charges added to this mobile bill.</p>
          
+              
             </div>
 
             <div className="disclaimer">
@@ -123,7 +126,6 @@ class Root extends React.PureComponent<IProps> {
               <div className="mobiotv"></div>
             </div>
 
-            
 
           </div>
         </TranslationProvider>

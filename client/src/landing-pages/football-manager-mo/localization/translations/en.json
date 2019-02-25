@@ -1,0 +1,36 @@
+{
+  "AlreadySubscribed": "You are already a subscriber!",
+  "InvalidMSISDN": "This mobile number is incorrect, try again",
+  "UnknownError": "An unknown error occurred.",
+  "InvalidPIN": "Please enter the correct PIN that you received on your phone",
+  "TooEarly": "You must first submit a mobile number",
+  "we_just_sent_a_pin": "We have sent you a 4 digit pin, please enter it below to confirm your team!",
+  "didnt_receive_pin_yet": "Didn't receive a PIN yet?",
+  "if_not_your_mobile": "If {phone} is not your mobile number,",
+  "click_here_to_change_your_number": "or change your phone number.",
+  "submit-team-btn": "SUBMIT YOUR TEAM",
+  "thank-you": "Thank you!",
+  "download-now": "Subscribe Now",
+  "latest-participants": "Participations",
+  "participants-minute": "3 participants in 5 minutes ago",
+  "testi1": "Excellent, this game is simple but really fun. I can play anywhere, anytime.",
+  "testi2": "Lovely game. Its fun and somewhat real.",
+  "testi3": "From the first day I downloaded this game I never knew it will be so amazing!",
+  "name-1" :"Hashem",
+  "name-2" :"Suleiman",
+  "name-3" :"Amir",
+
+
+  "selected-team-lead": "The match has started. Register your team now.",
+  "pin-lead": "Confirm you team!",
+  "pin-submit-btn": "Confirm Pin Now",
+  "select-team-cta":"Select your team now!",
+  "resend-pin": "Resend Pin",
+  "select-team-lead": "Your friend challenge you a match. Challenge him now!",
+  "selected-team-title": "Great Team!",
+  "msisdn-label": "Enter your phone number to register",
+  "msisdn_btn": "SUBSCRIBE",
+  "msisdn_placeholder": "Phone number"
+  
+  
+}

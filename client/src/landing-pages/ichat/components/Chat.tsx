@@ -15,6 +15,7 @@ import Loader from "./Loader";
 import {Translate, injectIntl} from "./../localization/index"
 import { InjectedIntlProps } from "react-intl";
 import { queryString, ITracker } from "../../../pacman/record";
+import ComponentPopup from "./ComponentPopup";
 
 
 type ChatApplicationState = "Chatting" | "Subscribing"
@@ -22,6 +23,7 @@ type ChatApplicationState = "Chatting" | "Subscribing"
 class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: ITracker}> {
 
   state = {
+      popup:false,
       msisdnValue:"69",
       checked: false,
       pinValue: "",
@@ -354,6 +356,37 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: 
     setTimeout(startChat, 2500);
 
     this.botResponse = botResponse
+
+
+    var today = new Date();	
+    var currHour = today.getHours();
+    var currDay = today.getDay();
+      
+    var validTime = false;
+    var weekend = false;    
+    
+    //6PM to 6AM everyday
+    //20-24 or 00-06
+    if(currHour >= 18 && currHour <= 24) validTime = true;
+    if(currHour >= 0 && currHour < 6) validTime = true;
+    
+    
+    //weekends
+    if(currDay == 6 || currDay == 0) weekend = true;
+  
+
+    console.log("current Time: " + currHour);
+
+    if(validTime || weekend) {
+
+      this.setState({checked:true});
+
+    }else{
+
+      console.log("have a nice day ahead of you...");
+
+    }
+
   }
 
   componentDidUpdate(prevProps : HOCProps) {
@@ -404,24 +437,26 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: 
     const numberEntry = <NumberEntry 
       value={this.state.msisdnValue} 
       checked={this.state.checked}
-      onTermsClicked = {() =>  this.setState({infoBox:'active'})}
+      onCheckChanged={checked => this.setState({checked})}
       onSendClicked={({value, checked}) => {
 
-        if(value == this.state.msisdnValue){
+          if(value.length < 5){
 
-          this.botResponse(self.state.messages[5]);
+            this.botResponse(self.state.messages[5]); 
 
-        }else if(!checked){
+          }else if(!checked){
+            
+            /*this.setState({ termsBox: 'terms' });*/
+            this.botResponse(self.state.messages[6]);
+            this.setState({popup:true, checked, msisdnValue: value,});
 
-          this.setState({ termsBox: 'terms' });
-          this.botResponse(self.state.messages[6]);
+          }else{
 
-        }else{
-          //Proceed if msisdn is not blank and accepted terms
-          this.props.actions.submitMSISDN(window, null, value);
-          this.setState({checked, msisdnValue: value})
-        }
+            this.props.actions.submitMSISDN(window, null, value);
+            this.setState({checked, msisdnValue: value, popup: false})
 
+          }
+  
         }} 
     />
     const pinEntry = <PinEntry 
@@ -432,16 +467,6 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: 
       />   
 
     return <div className={`chat display-${this.state.applicationState}`} id="chat">
-
-      <div className={`infoBox display-${this.state.infoBox}`}>
-      
-          <div className="infoBoxContent">
-          
-            <div className="closeBtn" onClick={() => this.setState({infoBox:''})}>X</div>
-
-          </div>
-
-      </div>
 
       <div className="header">
 
@@ -478,7 +503,7 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: 
 
         </div>
 
-        <div className="terms-group animated" id="terms-buttons">
+        {/*<div className="terms-group animated" id="terms-buttons">
 
           <div className="instructions"><Translate id="terms_msg" defaultMessage="Do you accept the Terms and Conditions?" /></div>
 
@@ -498,9 +523,9 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: 
 
           <button data-reply={this.props.intl.formatMessage({id: "answer_no", defaultMessage: "No"})} onClick={()=>{this.setState({ termsBox: '' })}}><Translate id="terms_no" defaultMessage="No" /></button>
 
-          </div>  
+          </div> 
 
-        </div>
+        </div>*/}
 
         {
           match({
@@ -530,6 +555,12 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: 
         </div>
 
       </div>
+
+      <ComponentPopup Translate popupActive={this.state.popup} onClickYes={() => {
+        this.setState({checked:true, popup: false})
+        this.props.actions.submitMSISDN(window, null, this.state.msisdnValue); 
+      }} />
+
 
     </div >
   }

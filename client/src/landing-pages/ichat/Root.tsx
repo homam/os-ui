@@ -65,7 +65,6 @@ componentDidMount(){
               currentState={this.props.currentState} 
               actions={this.props.actions}
               tracker={tracker} />
-
             <DisclaimerGR />
 
           </div>
