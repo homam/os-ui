@@ -2,6 +2,7 @@ import * as React from "react"
 import {Translate, injectIntl} from "./../localization/index"
 import { InjectedIntlProps } from "react-intl";
 import cancelAndDebounce from "./cancelAndDebounceEvent";
+import { checkPropTypes } from "prop-types";
 
 interface IProps {
   value,
@@ -18,6 +19,7 @@ class NumberEntry extends React.PureComponent<IProps & InjectedIntlProps> {
   }
 
   render() {
+
     return <form className="animated" id="numberEntry" onSubmit={cancelAndDebounce((ev: React.FormEvent<HTMLFormElement>) => {
       this.props.onSendClicked({value: this.state.value, checked: this.props.checked})
     }, 1000)}>

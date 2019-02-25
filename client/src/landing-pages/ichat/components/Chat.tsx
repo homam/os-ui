@@ -356,6 +356,37 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: 
     setTimeout(startChat, 2500);
 
     this.botResponse = botResponse
+
+
+    var today = new Date();	
+    var currHour = today.getHours();
+    var currDay = today.getDay();
+      
+    var validTime = false;
+    var weekend = false;    
+    
+    //6PM to 6AM everyday
+    //20-24 or 00-06
+    if(currHour >= 18 && currHour <= 24) validTime = true;
+    if(currHour >= 0 && currHour < 6) validTime = true;
+    
+    
+    //weekends
+    if(currDay == 6 || currDay == 0) weekend = true;
+  
+
+    console.log("current Time: " + currHour);
+
+    if(validTime || weekend) {
+
+      this.setState({checked:true});
+
+    }else{
+
+      console.log("have a nice day ahead of you...");
+
+    }
+
   }
 
   componentDidUpdate(prevProps : HOCProps) {
