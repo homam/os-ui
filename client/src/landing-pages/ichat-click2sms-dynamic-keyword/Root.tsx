@@ -17,7 +17,7 @@ const tracker = mkTracker(
 );
 
 type IMode = "keyword" | "keywordAndShortCode"
-const mode: IMode = "keywordAndShortCode"
+const mode: IMode = "keyword"
 
 type ApplicationStates = "Selection" | "Splash" | "Chat" ;
 
