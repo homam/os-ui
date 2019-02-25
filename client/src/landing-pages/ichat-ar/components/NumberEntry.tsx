@@ -43,7 +43,6 @@ class NumberEntry extends React.PureComponent<IProps & InjectedIntlProps> {
       </div>
     </form>
 
-
   }
 
 }

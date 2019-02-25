@@ -14,13 +14,15 @@ import HOC, {
   match,
   mockedPINState
 } from "../../clients/lp-api/HOC";
+
+import HOC, {initialState, HOCProps, IKeywordShortcode} from "../../clients/bupper-click2sms/HOC"
 import * as RDS from "../../common-types/RemoteDataState";
 import {
   SimpleOpacityTransition,
   TransitionGroup,
   simpleOpacityTransitionStyles
 } from "../../common-components/simple-opacity-transition";
-
+import TopLegals  from "../../legal-components/TopLegals"
 // CSS DECLARATION
 import "./assets/css/styles.less?raw";
 import { translate } from "../../../webpack/dev-utils/translate-by-yandex";
@@ -81,6 +83,8 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
         }}
       >
 
+      
+
         <div
           className={
             "overlay " +
@@ -88,6 +92,8 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
           }
 
         ></div>
+
+        
 
         <div
           className={
@@ -117,6 +123,8 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
               <div className="jersey-red" />
 
             </label>
+
+            
 
             <input
               type="radio"
@@ -150,7 +158,7 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
             <Translate id="submit-team-btn" />
 
           </button>
-
+            
           <div className="testimonials">
             <CustomTesti
               className="frontline-testimonials"
@@ -407,7 +415,10 @@ class Root extends React.PureComponent<HOCProps> {
           </div>
           <div>
             <TranslationProvider locale={this.state.locale}>
+
+            
               <div>
+              <TopLegals />
                 <div className="language-container">
 
 
