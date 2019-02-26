@@ -8,6 +8,8 @@
   z-index:10;
 }
 
+
+
 /** fonts **/
 
 @font-face {
@@ -27,14 +29,17 @@
 
   /** Main **/
 
-  body {
+  body, html {
     margin:0;
+    overscroll-behavior: contain;
     -webkit-touch-callout:none;
     -webkit-text-size-adjust: none;
     -webkit-font-smoothing: antialiased;
     font-family: 'Sailec', Arial, sans-serif;
- 
-    
+    -ms-touch-action: pan-y;
+    touch-action: pan-y;
+    position: relative;
+    height:100%;
   }
 
    
@@ -45,7 +50,7 @@
   background:url(./img/background.svg) no-repeat center top;
   background-size:cover;
   height:100vh;
-  padding:25px 0px 0px 0px;
+  padding:10px 0px 0px 0px;
   overflow-x:hidden;
   z-index: 0;
 }
@@ -65,21 +70,21 @@ p, h1 {
   color:white;
   text-transform: uppercase;
   font-family: 'Sailec-Bold', Arial, Helvetica, sans-serif;
-  font-size: 1.35em;
+  font-size: 1.15em;
 }
 
 .ab-1 h1 {
   color:white;
   text-transform: uppercase;
   font-family: 'Sailec-Bold', Arial, Helvetica, sans-serif;
-  font-size: 1.9em;
+  font-size: 1.6em;
 }
 
 h2 {
   color:white;
   text-transform: uppercase;
   font-family: 'Sailec-Bold', Arial, Helvetica, sans-serif;
-  font-size: 1.7em;
+  font-size: 1.5em;
   line-height:20px;
   margin:10px auto;
 }
@@ -97,33 +102,44 @@ h2 {
 }
 
 @media all and (max-width:320px) {
-  .ab-0 h1 {font-size:1.2em}
+  .ab-0 h1 {font-size:1em}
   .ab-1 h1 {font-size:1.4em}
-  .ab-0 h2 {font-size:1.4em}
+  .ab-0 h2 {font-size:1.2em}
   .slick-slide h2 {font-size: 1.4em !important;}
   .available {width:70px}
   .rated .icon {height:40px !important; width:40px !important;margin-top:15px !important;}
   .videos .icon {height:40px !important; width:40px !important;margin-top:15px !important;}
-  .experience {height:140px !important}
-  .slick-slide .cover {height:62vh !important;}
-  .min-text {top:42% !important; left:36% !important;}
+  .experience {height:120px !important; margin-top:10px;}
+  .slick-slide .cover {height:53vh !important;}
+  .min-text {top:30% !important; left:36% !important;}
   .ab-1 .slide-custom .btn-container {margin-left:33%}
-  .round-btn {width:90px !important; height:90px !important;}
-  .btn-container {width:110px !important; height:110px !important;}
-  .cover {height:63vh !important}
-  .intro .cover {height:65vh !important}
-  .ab-0 .custom-footer {margin-top:-33px !important}
-  .ab-1 .intro .custom-footer {margin-top:-33px !important}
-  .round-btn .enter {font-size:1.7em !important}
+  .round-btn {width:80px !important; height:80px !important;}
+  .btn-container {width:100px !important; height:100px !important;}
+  .cover {height:54vh !important}
+  .intro .cover {height:54vh !important}
+  .ab-0 .custom-footer {margin-top:-27px !important}
+  .ab-1 .intro .custom-footer {margin-top:-27px !important}
+  .round-btn .enter {font-size:1.2em !important}
+  .ab-1 .first .custom-footer {margin-top:-27px}
+  .listbtn {margin-top:5px !important}
+  .experience {margin-top:10px !important}
 } 
+
+@media all and (min-width:321px) and (max-width:375px) {
+  .cover {height:57
+    vh !important}
+  .min-text {top:45% !important; left:38% !important;}
+  .experience {height:140px !important;}
+  .slide-custom .btn-container {margin-left:33% !important;}
+}
 
 .cover {
   background-size:cover !important;
-  height:65vh;
+  height:58vh;
   width:93%;
+  margin-top:5px !important;
   margin:0 auto;
   border-radius: 15px;
-  margin-top:15px;
   box-shadow: 0px 5px 10px rgba(0,0,0,0.15);
   display: block;
   position: relative;
@@ -137,6 +153,14 @@ h2 {
   background:url(./img/dark.jpg) no-repeat center center;
   background-size:100%;
   padding-top:5px;
+}
+
+.ab-1 .display-first  {
+  height:90vh !important;
+  overflow-y: hidden !important;
+  position: static !important;
+  display: block;
+
 }
 
 .btn-container {
@@ -160,10 +184,16 @@ h2 {
   background: linear-gradient(#65FDFD, #871DA0);
   border-radius:110px;
   margin: auto;
-  display:block;
+  display:flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;  
+  justify-content: center;
+  text-align:center;
   box-shadow: 0px 5px 10px rgba(0,0,0,0.15);
   border:none;
   outline: none;
+  align-items:center;
 }
 
 .round-btn p {
@@ -172,7 +202,7 @@ h2 {
 
 .round-btn .enter {
   font-family: 'Sailec-Bold', Arial, sans-serif;
-  font-size:2em;
+  font-size:1.7em;
   line-height: 25px;
   text-shadow: 0px 3px 3px rgba(0,0,0,0.15);
   
@@ -276,7 +306,7 @@ a {
 .experience {
   height:25vh; 
   width:93%;
-  height:170px;
+  height:160px;
   margin: 0 auto;
   text-align:center;
   border-radius:15px; 
@@ -334,7 +364,7 @@ a {
 .slide-custom {
   width:100% !important;
   margin-left:-13px;
-  height:90vh;
+  height:auto;
   outline:none;
 }
 
@@ -347,10 +377,7 @@ a {
  margin-left:34%;
 }
 
-.ab-1 .first .custom-footer {
-  margin-top:-65px;
 
-}
 
 .slick-slide {
   position: relative;
@@ -359,6 +386,7 @@ a {
 
 .slick-slide h2 {
   font-size:1.5em ;
+  color:white;
 }
 
 .slick-slide .header {
