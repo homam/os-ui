@@ -13,7 +13,7 @@ const abTest_variant = (() => {
   return () => variant
 })()
 
-// function gtag(...args) {window.dataLayer.push(...args)}
+function gtag(...args) {window.dataLayer.push(...args)}
 
 if (typeof window != "undefined") {
   window.addEventListener('load', () => setTimeout(() => {
@@ -30,7 +30,11 @@ if (typeof window != "undefined") {
 
   }, 750))
 
+
+  
 }
+
+
 
 class Root extends React.PureComponent  {
   state = {
@@ -53,6 +57,7 @@ class Root extends React.PureComponent  {
             ? <Root0 {...this.props} />
             : <Root1 {...this.props} />
           }
+          
       </div>
 
   }

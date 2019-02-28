@@ -38,5 +38,9 @@
   "th":{
     "name": "Thai",
     "countries": ["th"]
+  },
+  "hu":{
+    "name": "Hungarian",
+    "countries": ["hu"]
   }
 }
