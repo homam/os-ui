@@ -8,7 +8,8 @@ interface IProps {
   value,
   onSendClicked, 
   onCheckChanged: (checked: boolean) => void
-  checked : boolean
+  checked : boolean,
+  onTerms
   //onTermsClicked
 }
 
@@ -40,14 +41,19 @@ class NumberEntry extends React.PureComponent<IProps & InjectedIntlProps> {
 
        <label htmlFor="agree">
 
-         <Translate id="alternate_accept_first" defaultMessage="Terms" />
+       <Translate id="sa_terms_text" defaultMessage="I accept" />
+       <a href="javascript:void(0)" onClick={()=>this.props.onTerms()}><Translate id="sa_terms_link_text" defaultMessage="Terms &amp; Conditions" /></a>
+
+         {
+         /*<Translate id="alternate_accept_first" defaultMessage="Terms" />
          <a  target="_blank">
           <Translate id="text_terms" defaultMessage="Terms &amp; Conditions" /></a>
 
           <Translate id="alternate_accept_second" defaultMessage="Conditions" />
 
          <a  target="_blank">
-          <Translate id="text_price" defaultMessage="Final message price" /></a>
+          <Translate id="text_price" defaultMessage="Final message price" /></a>*/
+          }
 
          </label>
 
