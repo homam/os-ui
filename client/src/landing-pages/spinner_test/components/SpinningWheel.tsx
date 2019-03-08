@@ -53,7 +53,7 @@ function spinIt(){
 
 		if(wr < 360 ){
 
-			if((wr > 0 && wr < 30)||(wr > 0 && wr < -30)||(wr > 330 && wr < 365)){
+			if((wr > 0 && wr < 30)||(wr > 0 && wr < -30)||(wr > 331 && wr < 365)){
 
 				result = "bulb";
 	
@@ -61,7 +61,7 @@ function spinIt(){
 
 				result = "bell";
 
-			}else if(wr > 215 && wr < 270){
+			}else if(wr > 210 && wr < 270){
 	
 				result = "chat";
 

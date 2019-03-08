@@ -74,8 +74,8 @@ class Root extends React.PureComponent<IProps> {
 
             <div className="wrap">
 
-              <p className="wraptext">Get UNLIMITED ACCSESS cheaper than the cost of one regular class ONLY £4.50 per week
-              Charges added to this mobile bill.</p>
+              <p className="wraptext">Get UNLIMITED ACCSESS cheaper than the cost of one regular class <br></br><b>ONLY £4.50 per week</b>
+              <br></br>Charges added to this mobile bill.</p>
               {/* <div className="price">
                   <span>£4.50 per week</span>
               </div>

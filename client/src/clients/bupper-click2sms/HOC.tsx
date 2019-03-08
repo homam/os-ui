@@ -15,6 +15,10 @@ export { IKeywordShortcode }
 
 export type HOCProps = {
   currentState: State,
+  actions?: {
+    onSetKeyword?: (keyword: string) => void
+    onSetKeywordAndShortcode?: (keyword: string, shortcode) => void
+  }
   MOLink: ACompType
 }
 
@@ -25,16 +29,41 @@ export default <P extends HOCProps>(tracker: ITracker, Comp: React.ComponentType
 ) =>
   class HOC extends React.PureComponent<P> {
     state = {
-      currentState: initialState
+      currentState: initialState,
+      keyword: null as string,
+      shortcode: null as string
+    }
+
+    actions = {
+      onSetKeyword: (keyword: string) => {
+        this.setState({keyword})
+        load(window, maybeConfig, keyword).then(
+          x => this.setState({ currentState: RDS.Success(x) as State })
+        ).catch(
+          e => this.setState({ currentState: RDS.Failure(e.toString()) as State })
+        )
+      },
+      onSetKeywordAndShortcode: (keyword: string, shortcode: string) => {
+        this.setState({ keyword, shortcode })
+        load(window, maybeConfig, keyword, shortcode).then(
+          x => this.setState({ currentState: RDS.Success(x) as State })
+        ).catch(
+          e => this.setState({ currentState: RDS.Failure(e.toString()) as State })
+        )
+      }
     }
 
     componentDidMount() {
-      this.setState({currentState: RDS.Loading() as State})
-      load(window, maybeConfig).then(
-        x => this.setState({currentState: RDS.Success(x) as State})
-      ).catch(
-        e => this.setState({currentState: RDS.Failure(e.toString()) as State})
-      )
+      if(!!maybeConfig && maybeConfig.tag == "bupper") {
+        this.setState({currentState: RDS.Loading() as State})
+        load(window, maybeConfig).then(
+          x => this.setState({currentState: RDS.Success(x) as State})
+        ).catch(
+          e => this.setState({currentState: RDS.Failure(e.toString()) as State})
+        )
+      } else if(!!maybeConfig && maybeConfig.tag == "keywordAndShortCode") {
+        this.setState({ currentState: RDS.Success({}) as State })
+      }
     }
 
     render() {
@@ -44,8 +73,8 @@ export default <P extends HOCProps>(tracker: ITracker, Comp: React.ComponentType
         failure: (error) => ({children, ...props}) => <a data-state="failure" onClick={() => console.error(error)} href="javascript: void(0)" {...props}>{children}</a> ,
         success: (keywordAndShortcode) => ({children, keyword, shortcode, ...props}) => {
           const keywordAndShortcode1 = {
-              keyword: keyword || keywordAndShortcode.keyword, 
-              shortcode: shortcode || keywordAndShortcode.shortcode
+              keyword: keyword || keywordAndShortcode.keyword || this.state.keyword, 
+              shortcode: shortcode || keywordAndShortcode.shortcode || this.state.shortcode
             }
           return <MOLink onClick={() => tracker.advancedInFlow("click2sms", "click", keywordAndShortcode1)} 
                   keywordAndShortcode={keywordAndShortcode1} {...props}
@@ -54,7 +83,8 @@ export default <P extends HOCProps>(tracker: ITracker, Comp: React.ComponentType
       })(this.state.currentState)
       return <Comp 
                 {...this.props} 
-                currentState={this.state.currentState} 
+                currentState={this.state.currentState}
+                actions={this.actions} 
                 MOLink={moLink} 
               />
     }

@@ -16,11 +16,14 @@ const tracker = mkTracker(
   process.env.page
 );
 
+type IMode = "keyword" | "keywordAndShortCode"
+const mode: IMode = "keywordAndShortCode"
+
 type ApplicationStates = "Selection" | "Splash" | "Chat" ;
 
 class Root extends React.PureComponent<HOCProps> {
   state = {
-    locale: "nl",
+    locale: "hu",
     keyValue:"",
     preloader:false,
     startchat:false,
@@ -45,13 +48,6 @@ class Root extends React.PureComponent<HOCProps> {
 
   render() {
 
-    const MOLink = this.props.MOLink
-    const {keyword, shortcode} = RDS.WhenSuccess<IKeywordShortcode, IKeywordShortcode>(
-      {keyword: "", shortcode: ""}, // when keyword and shortcode are not yet loaded, they are empty strings.
-      kw => kw
-    )(this.props.currentState)
-
-
     return (
       <div>
         <TranslationProvider locale={this.state.locale}>
@@ -64,6 +60,11 @@ class Root extends React.PureComponent<HOCProps> {
                   keyValue: keyData, 
                   preloader:true
                 })
+                if(mode == "keyword") {
+                  this.props.actions.onSetKeyword(keyData)
+                } else if(mode == "keywordAndShortCode") {
+                  this.props.actions.onSetKeywordAndShortcode(keyData, "8010")
+                }
               }}
               />
 
@@ -94,7 +95,4 @@ class Root extends React.PureComponent<HOCProps> {
   }
 }
 
-//export default HOC(tracker, Root)(initialState);
-
-// In the Netherlands use this instead of the above line:
-export default HOC(tracker, Root, {tag: "keywordAndShortCode", shortcode: "8010", keyword: "Geld"})(initialState);
+export default HOC(tracker, Root, { tag: mode })(initialState);

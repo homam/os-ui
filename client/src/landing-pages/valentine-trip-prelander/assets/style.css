@@ -559,3 +559,8 @@ letter-spacing: 2px;
   .trip-left {display:none;}
   .header p {padding: 0% 5%;}
 }
+
+.warm {
+  margin-top:-15px;
+  margin-bottom:15px;
+}

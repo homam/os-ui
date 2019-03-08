@@ -28,5 +28,7 @@
   "pinEntryWait": "Παρακαλώ περιμένετε",
   "congratsTitle": "ΣΥΓΧΑΡΗΤΗΡΙΑ",
   "congratsMsg": "Μπορείτε τώρα να δείτε τα βίντεο",
-  "congratsSubmit": "Δείτε τώρα"
+  "congratsSubmit": "Δείτε τώρα",
+  "sa_terms_text":"Αποδέχομαι τους ",
+  "sa_terms_link_text": "όρους χρήσης"
 }

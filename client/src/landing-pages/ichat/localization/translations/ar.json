@@ -93,6 +93,10 @@
 
   "sms_now": "ارسل الان",
 
-  "terms_link": "http://n.appspool.net/gr/tnc-appspool?offer=1&_next=general_conditions.html"
+  "terms_link": "http://n.appspool.net/gr/tnc-appspool?offer=1&_next=general_conditions.html",
+
+  "sa_terms_text":"Αποδέχομαι τους",
+
+  "sa_terms_link_text": "όρους χρήσης"
 
 }
