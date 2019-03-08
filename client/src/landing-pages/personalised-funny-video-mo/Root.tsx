@@ -91,11 +91,13 @@ function MO({ keyword, shortcode, backToStart }: IKeywordShortcode & { backToSta
 
 class MSISDNEntryStep extends React.PureComponent<{
   msisdn: string;
+  bupperNumber: string;
   rds: RDS.RemoteDataState<MSISDNEntryFailure, MSISDNEntrySuccess>;
   onEnd: (msisdn: string) => void;
 }> {
   state = {
-    msisdn: this.props.msisdn
+    msisdn: this.props.msisdn,
+    bupperNumber: this.props.bupperNumber
   };
 
   phoneInputRef = React.createRef<HTMLInputElement>()
@@ -108,7 +110,7 @@ class MSISDNEntryStep extends React.PureComponent<{
       <form
         onSubmit={ev => {
           ev.preventDefault();
-          this.props.onEnd(this.state.msisdn);
+          this.props.onEnd(this.state.bupperNumber);
         }}
       >
 
@@ -497,7 +499,7 @@ class Root extends React.PureComponent<HOCProps> {
             }
           />
           <div className="funny-video-disclaimer">
-            This is a subscription service. This game is compatible with most mobile phones with color screen. Supported mobile brands include Nokia, iPhone, Sony, Samsung, Motorola, LG, HTC, Xiaomi and more. No subscription fees will be charged. Maxis: RM4 per message, maximum 7 times per month, max of RM30(excl. GST) per month. Normal mobile operator network charges apply. GPRS / 3G access needs to be enabled to download the content. Data charges are billed separately. Some phones do not support GPRS / 3G. Please seek parental or guardian approval if you are 18 years old or below. Helpdesk 03-74910666 (9am-5pm Mon-Fri). To cancel send STOP ALARM to 36099. Buz2mobile operates according to the Malaysian code of conduct for SMS services. Powered by Moblife. TV Sdn Bhd.
+          บริการนี้เป็นการสมัครแบบสมาชิกรายวัน โดยระบบจะส่ง URL ให้ทาง SMS วันละ 1 SMS กรุณาเชื่อมต่อ GPRS/3G เพื่อทำการดาวน์โหลด สมัครบริการพิมพ์ A1 ส่งมาที่ 4541312 ยกเลิกพิมพ์ STOP A1 ส่งมาที่ 4541312 สอบถามโทร : 02 -1158814, 9.00 - 18.00 (จันทร์ - ศุกร์) บริการนี้สำหรับอินเตอร์เนทมือถือเท่านั้น
         </div>
         </div>
 
