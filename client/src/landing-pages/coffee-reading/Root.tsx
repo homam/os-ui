@@ -213,7 +213,10 @@ class Root extends React.PureComponent<HOCProps> {
 
               </ul>
 
-              <button onClick={() => { this.setState({ applicationState: 'shake' }) }}><Translate id="introBtnText" defaultMessage="I want to know" /></button>
+              <button onClick={() => { 
+                this.setState({ applicationState: 'shake' }) ; 
+                tracker.advancedInPreFlow("first-click");
+              }}><Translate id="introBtnText" defaultMessage="I want to know" /></button>
 
             </div>
 
@@ -222,14 +225,17 @@ class Root extends React.PureComponent<HOCProps> {
               <div className="subTitle"><Translate id="shakeSubTitle" defaultMessage="Make a wish and shake your phone 3 times" /></div>
 
               <div className="CoffeCup">
-                {this.state.applicationState == "shake" ? <ShakeScreen onShakeEvent={() => this.setState({ applicationState: 'reading' })} /> : null}
+                {this.state.applicationState == "shake" ? <ShakeScreen onShakeEvent={() => {
+                  tracker.advancedInPreFlow("shake");
+                  this.setState({ applicationState: 'reading' })
+                  }} /> : null}
               </div>
 
               <div className="instructions">
                 <Translate id="shakeInsText" defaultMessage="The future is in your hand..." />
               </div>
 
-              <button onClick={() => { this.setState({ applicationState: 'reading' }) }}>Next Page</button>
+              {/*<button onClick={() => { this.setState({ applicationState: 'reading' }) }}>Next Page</button>*/}
 
             </div>
 
@@ -243,7 +249,10 @@ class Root extends React.PureComponent<HOCProps> {
                 <Translate id="readingInsText" defaultMessage="Are you ready to learn your future?" />
               </div>
 
-              <button onClick={() => { this.setState({ applicationState: 'results' }) }}><Translate id="show_me" defaultMessage="Show me" /></button>
+              <button onClick={() => { 
+                this.setState({ applicationState: 'results' }); 
+                tracker.advancedInPreFlow("results");
+                }}><Translate id="show_me" defaultMessage="Show me" /></button>
 
             </div>
 

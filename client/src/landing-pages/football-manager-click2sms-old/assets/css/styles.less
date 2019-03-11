@@ -1,0 +1,804 @@
+@import "../../../../reset.css";
+
+body{
+
+	-webkit-text-size-adjust: none;
+	-webkit-font-smoothing: antialiased;
+	font-family: Arial, Helvetica, sans-serif;
+	background-color: #0F1B07;
+	color: #fff;
+}
+
+body.guide #container,
+body.guide #price-info,
+body.guide #creative,
+body.guide #click-here,
+body.guide #msg,
+body.guide #lang-btn,
+body.guide #disclaimer{
+	border:1px dotted #cccccc;
+}
+
+#container.ar{
+	direction:rtl;
+}
+
+.change-number, .resend-btn{
+	display: block;
+	color: blue;
+	text-decoration: underline;
+	line-height: 26px;
+}
+
+.pin-support{
+	text-align: center;
+}
+
+#container{
+	padding:0;
+	margin:0 auto;
+	max-width:1020px;
+	min-height:680px;
+	position:relative;
+	background-size:1020px auto;
+	background-repeat:no-repeat;
+	background-position:top center;
+	background-image:url('../img/bg3.png');
+}
+
+
+#creative{
+	display:block;
+	margin:0 auto;
+	min-height: 438px;
+	position: relative;
+}
+
+#holder{
+	left:0;
+	right:0;
+	bottom:0px;
+	position: absolute;
+	background-color:#f5f5f5;
+}
+
+#price-info{
+	color:#999;
+	padding:5px 0;
+	display:block;
+	font-size:11px;
+	text-align: center;		
+}
+
+#operator-selection{
+	margin:0px;
+	padding:10px;
+	display:block;
+	text-align:center;
+}
+
+#operator-selection h1{
+	padding:0;
+	color:#999;
+	margin:10px 0;
+	font-size: 14px;
+}
+
+#operator-selection .opt-btn{
+	padding:0;
+	width:75px;
+	height:auto;
+	margin:0 4px;
+	display:inline-block;
+	text-decoration:none;
+	background-color:transparent;
+}
+
+#operator-selection .opt-btn span{
+	color:#999;
+	font-size:13px;
+	text-transform:uppercase;
+}
+
+#operator-selection .opt-btn img{
+	width:75px;
+	height:75px;
+	outline:none;
+	display:block;
+	border:1px solid #ccc;
+	margin:0 auto 10px auto;
+}
+
+
+#default-state{
+	margin:0px;
+	padding:10px;
+	display:block;
+}
+
+#double-confirmation{
+	margin:0px;
+	padding:10px;
+	display:block;
+	text-align:center;
+}
+
+#double-confirmation span{
+	color:#999;
+	display:block;
+	font-size:12px;
+	font-weight:bold;
+	margin-bottom:10px;
+}
+
+#subscription-polling{
+	margin:0px;
+	padding:10px;
+	display:block;
+	text-align:center;
+}
+
+#subscription-polling .preloader{
+	width:50px;
+	height:50px;
+	display:block;
+	margin:10px auto;
+	border-radius:50%;
+	border:3px dotted #00c0e6;
+	animation:spin 6s infinite linear;
+	-webkit-animation:spin 6s infinite linear;
+}
+
+@keyframes spin{
+	0%{
+		transform:rotate(0deg);
+	}
+	100%{
+		transform:rotate(360deg);
+	}
+}
+
+@-webkit-keyframes spin{
+	0%{
+		-webkit-transform:rotate(0deg);
+	}
+	100%{
+		-webkit-transform:rotate(360deg);
+	}
+}
+
+
+.msisdn-input{
+	padding-left: 110px;
+}
+.number-entry label,
+#pin-entry label{
+	
+	display:block;
+	font-size:14px;
+	font-weight:bold;
+}
+
+
+#pin-entry{
+	margin:0px;
+	padding:10px;
+	display:block;
+	text-align:center;
+}
+
+#pin-entry input{
+	width:80px;
+	padding:10px;
+	margin:10px 0;
+	outline: none;
+	font-size:20px;
+	border-radius:7px;
+	text-align:center;
+	border:1px solid #ccc;
+}
+
+#mo{
+	margin:0px;
+	padding:10px;
+	display:block;
+	color:#999999;
+	font-size:16px;
+	font-weight:bold;
+	text-align:center;
+}
+
+#mo h3{
+	margin:0;
+	padding:0;
+	color:#00c0e6;
+	font-size:18px;
+}
+
+#congrats{
+	margin:0px;
+	padding:10px;
+	display:block;
+	text-align:center;
+	padding-bottom:20px;
+}
+
+#congrats h3{
+	color:#00c0e6;
+	font-size:18px;
+}
+
+#congrats h6{
+	margin:0;
+	padding:0;
+	color:#999;
+	font-size:14px;
+	font-weight:normal;
+}
+
+#disclaimer{
+	margin:0;
+	padding:0;
+	display:block;
+	text-align:center;
+	padding-bottom:20px;
+}
+
+#disclaimer p{
+	color:#999;
+	display:block;
+	font-size: 12px;
+	margin:10px auto;
+	max-width: 300px;
+	line-height: 1.5em;
+	text-align: justify;
+}
+
+#disclaimer a{
+	color:#999;
+	font-size: 12px;
+}
+
+#click-here{
+	color:#999;
+	display:block;
+	font-size: 12px;
+	text-align: center;	
+	margin:10px auto 0 auto;
+}
+
+#click-here a{
+	color:#00c0e6;
+}
+
+#msg{
+	color:#999;
+	margin:10px 0;
+	display: block;
+	font-size: 12px;
+	text-align: center;
+}
+
+.lang-btn{
+	width:70px;
+	height:30px;
+	display:block;
+	margin:-4px 0 0;
+	border-radius: 0 0 12px 12px;
+	text-align: center;
+	background-color: rgba(0, 0, 0, 0.77);
+	color: #fff;
+	border: 1px solid #fff;
+	font-weight: bold;
+	text-decoration: none;
+	position: relative;
+	right: 0;
+	z-index: 9999;
+	float: right;
+}
+
+
+.btn{
+	color:#fff;
+	width: 100%;
+	display:block;
+	margin:0 auto;
+	font-size:18px;
+	font-weight:bold;
+	padding:15px 10px;
+	text-align:center;
+	border-radius:30px;
+	border: 0;
+	text-decoration:none;
+	background: linear-gradient(to bottom, #b1b1b1 0%, #616161 100%);
+		opacity: 0.5;
+		&.auto {
+			width: auto;
+		}
+}
+
+
+button:focus {outline:0;}
+
+.btn.enabled{
+	background: linear-gradient(to bottom, #F6911D 0%, #D04427 100%);
+	opacity: 1;
+}
+
+.no{
+	color:#999;
+	display:block;
+	font-size:18px;
+	margin-top:10px;
+	text-decoration:underline;
+}
+
+.error{
+	margin:10px 0;
+	display:block;
+	color:#DC292C;
+	font-size:12px;
+}
+
+
+.header{
+	max-width: 300px;
+	margin: auto;
+	position: relative;
+}
+.logo{
+	position: absolute;
+	left: 0;
+	right: 0;
+	top:-10px;
+	height: 130px;
+
+  width: 100px;
+background-image:url('../img/en/football_star_emblem.png');
+	background-repeat: no-repeat;
+	background-size: fill;
+	margin:auto;
+}
+
+.embelem{
+	position: absolute;
+	left: 0;
+	top:-0px;
+	height: 130px;
+  width: 100px;
+background-image:url('../img/en/top-game-badge.png');
+	background-repeat: no-repeat;
+	background-size: fill;
+	
+}
+
+.c-team-selection{
+	padding-top: 100px;
+	max-width: 300px;
+    margin: auto;
+}
+
+.panel{
+	background-color: #fff;
+	color: #000;
+	border-radius: 10px;
+	position: relative;
+	left: 0;
+	right: 0;
+	margin: auto;
+	bottom: 0;
+	width: 100%;
+	max-width: 300px;
+	padding: 14px 14px 30px 14px;
+	box-sizing: border-box;
+	margin-top: 0;
+	display: none;
+	text-align: center;
+
+	.rays{
+		margin:-135px auto 0 auto;
+		height: 190px;
+		width:200px;
+		background-position: top center;
+		background-size: 240px 240px;
+		background-image: url("../img/burst-rays.png");
+		background-repeat: none;
+		
+		z-index: -1;
+	}
+
+	.selected-team{
+		height:90px;
+		width: 80px;
+		margin:-120px auto 0 auto;
+	}
+
+	&.floating {
+		position: absolute;
+		height: 300px;
+	}
+
+}
+
+
+
+.cta-lead{
+	transform: scale(0.8);
+	height: 70px;
+	width: 250px;
+	margin:auto;
+	margin-top: 47px;
+	background-repeat: no-repeat;
+}
+.cta-lead2{
+//background-image:url('../img/en/match-started.png');
+  
+}
+
+html[lang="en"]{
+
+	.cta-lead{
+  background-image:url('../img/en/start_utl_tm.png');
+	}
+}
+
+.cta-sub-lead{
+	text-align: center;
+	display: block;
+	z-index: 999 !important;
+	font-weight: bold;
+		font-size: 14px;
+		line-height: 1.2;
+    text-transform: uppercase;
+	
+	h1{
+		
+		font-weight: bold;
+		font-size: 25px;
+		margin:0 0 8px 0;
+	}
+
+	p{
+		text-transform: initial;
+		font-weight: 100;
+		font-size: 15px;
+		margin-bottom: 5px;
+	}
+}
+
+.team-cta{
+	color: #fff;
+  text-align: center;
+  margin: 20px 0 0 0;
+	text-transform: capitalize;
+	font-size: 14px;
+  
+}
+
+.jersey-selection{
+	display: flex;
+	margin: 15px auto;
+	max-width: 260px;	
+}
+
+.jersey{
+	box-sizing: border-box;
+	flex: 1;
+	margin-right: 10px;
+	height: 90px;
+	max-width: 80px;
+	border-radius: 12px;
+	border: 0;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#656c62+0,383c36+42,333631+100 */
+background: #656c62; /* Old browsers */
+background: -moz-linear-gradient(top, #656c62 0%, #383c36 42%, #333631 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, #656c62 0%,#383c36 42%,#333631 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, #656c62 0%,#383c36 42%,#333631 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#656c62', endColorstr='#333631',GradientType=0 ); /* IE6-9 */
+}
+
+.jersey:focus{
+	border: 2px solid red !important;
+	outline: 0;
+}
+
+.jersey-red, .jersey-yellow, .jersey-blue{
+	height: 70px;
+	width: 70px;
+	background-repeat: no-repeat;
+	background-position: center;
+	margin:10px auto;
+}
+
+.jersey-red{ background-image: url('../img/red-jersey.png');}
+.jersey-yellow{ background-image: url('../img/yellow-jersey.png');}
+.jersey-blue{ background-image: url('../img/blue-jersey.png');}
+
+.jersey:last-child{
+	margin-right: 0;
+	background-repeat: no-repeat;
+
+}
+
+.jersey img{
+	display: block;
+	height: 70px;
+	width: 70px;
+	margin: 13px auto;
+}
+
+
+.c-team-selection{
+	display: none;
+}
+.c-start-match{
+	display: none;
+}
+
+.active{
+	display: block !important;
+}
+
+
+
+.tester{
+	color: #fff;
+}
+
+.not-active{
+	display: none;
+}
+
+.active{
+	display: block;
+}
+
+// move this code later sping bg 
+.overlay{
+	background-color: rgba(4, 4, 4, 0.48);
+	height: 100vh;
+	width: 100%;
+	left: 0;
+	top: 0;
+	position: absolute;
+	z-index: 9999;
+	z-index: -0;
+	display: none;
+}
+
+.c-window-light{
+	position: absolute;
+top: 50px;
+		z-index: 99999;
+}
+
+.window-light{
+	position: absolute;
+    width: 654px;
+    height: 667px;
+    top: 50%;
+    left: 50%;
+   background: url(../img/red_light.png) center no-repeat;
+    background-size: contain;
+    z-index: -1;
+    animation: rotateLight 5s infinite linear;
+}
+
+.window-bg{
+	position: relative;
+	margin: 0 auto;
+	display: block;
+	width: 330px;
+	height: 100%;
+	height: 313px;
+background: url(../img/rocket.png) no-repeat;
+	background-size: contain;
+	border: 1px solid red;
+	padding-top: 100px;
+}
+
+@keyframes rotateLight {
+0% {
+	transform: translate(-50%,-50%) rotate(0);
+}
+
+100% {
+	transform: translate(-50%,-50%) rotate(360deg);
+}
+}
+
+input[type="radio"] {
+    display:none;
+}
+
+
+.checkboxes label {
+	padding: 3px 10px;
+}
+
+input[type=radio]:checked + label {
+	
+	
+	border: 2px solid red;
+}
+
+.football-manager-testimonials {
+	.customTesti ul li .avatar{
+		height: 45px;
+		width: 45px;
+	}
+	.customTesti, .customTesti ul{
+		min-height: 60px;
+		height: auto;
+		direction: ltr !important;
+	}
+	.customTesti ul li .details .message {
+		font-size: 12px;
+		line-height: 1.2;
+		height: 40px;
+	}
+	.customTesti ul li .avatar.person1 {
+		background-image: url("../img/testimonial-img-1.png");
+	}
+	
+	.customTesti ul li .avatar.person2 {
+		background-image: url("../img/testimonial-img-2.png");
+	}
+	
+	.customTesti ul li .avatar.person3 {
+		background-image: url("../img/testimonial-img-3.png");
+	}
+}
+
+
+.language-container {
+	width: 100%;
+	max-width: 520px;
+	margin: auto;
+	display: block;
+}
+
+html[lang="ar"] {
+
+	body{
+		direction: rtl;
+	}
+
+	.cta-lead{
+		background-image:url('../img/ar/start-match.png');
+		height: 110px;
+		margin-top: 37px;
+		background-position: center;
+	  }
+
+	  .embelem{
+		background-image: url("../img/ar/top-game-badge.png");
+	  }
+
+	  .logo{
+		  background-image: url("../img/ar/emblem_footballstarmanager@2x.png");
+	  }
+
+	  .jersey:last-child{
+		margin-right: 10px;
+		}
+		.msisdn-input, .country-code {
+			direction: ltr;
+		}
+		.participants-container h2 {
+			text-align: right;
+		}
+		.left-column.history img {
+			float: right;
+		}
+		.right-column {
+			float: right;
+		}
+
+		.customTesti ul li .details .message {
+			text-align: right;
+			width: 220px;
+		}
+		.customTesti ul li .details .rating {
+			text-align: right;
+			padding-right: 30px;
+		}
+
+}
+
+.thank-you {
+	padding: 15px 0;
+}
+.thank-you-text {
+	font-weight: bold;
+	padding: 10px 0;
+}
+
+h1 {
+	text-transform: capitalize;
+}
+
+.participants-container {
+	background-color: #d6d6d657;
+	padding: 15px;
+	border-radius: 40px;
+	text-align: left;
+	height: 33px;
+	margin: 10px 0;
+	h2 {
+		font-weight: 900;
+		font-size: 12px;
+		margin-bottom: 3px;
+		float: left;
+		display: block;
+	}
+	h3 {
+		font-size: 11px;
+		display: block;
+		clear: both;
+	}
+}
+.left-column {
+	&.history img {
+		width: 30px;
+    float: left;
+    display: block;
+	}
+}
+.right-column {
+	display: block;
+	float: left;
+	margin: 3px 20px;
+}
+
+.phone-input input.text-input{
+	font-size: 24px;
+}
+
+.phone-input{
+	margin: 12px 0 4px 0;
+	direction: ltr;
+}
+.phone-input .phone{
+	background-size: 30px;
+}
+
+input.text-input::placeholder {
+	color: transparent;
+}
+
+.football-manager-mo {
+	margin-top: 15px;
+	a {
+		text-decoration: none;
+	}
+	.mo-text {
+		color: black;
+    font-weight: 800;
+    margin: 7px;
+    font-size: 18px;
+	}
+	.keyword, .shortcode {
+		color: #1357f2;
+	}
+}
+
+.football-manager-disclaimer {
+	font-size: 11px;
+	text-align: justify;
+	text-align-last: center;
+	margin: 10px auto;
+	max-width: 300px;
+	opacity: 0.7;
+	line-height: 1.2;
+}
+.overlay-container {
+	position: relative;
+	width: 100%;
+}
+
+.panel-container {
+	display: none;
+	position: relative;
+	top: 150px;
+}

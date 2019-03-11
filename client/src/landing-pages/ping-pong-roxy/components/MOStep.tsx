@@ -3,7 +3,7 @@ import {Translate, injectIntl} from "./../localization/index"
 import { InjectedIntlProps } from "react-intl";
 import { MOLink } from "../../../clients/lp-api-mo/HOC";
 import { IKeywordShortcode } from "../../../clients/lp-api-mo/main";
-
+import Disclaimer from "../../../legal-components/Disclaimer";
 
 interface IProps {
   value,
@@ -25,6 +25,7 @@ const MOStep = ({ keyword, shortcode }: IKeywordShortcode ) => {
           <button type="button" className="moBtn" id="sms-now-button"><Translate id="send_sms"/></button>
         </div>
       </MOLink>
+     <div className="disclaimPlace"><Disclaimer/></div>
     </div>
   ) 
 }

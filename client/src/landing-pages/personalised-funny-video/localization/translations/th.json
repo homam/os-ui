@@ -1,0 +1,20 @@
+{
+  "wait": "th:: Wait...",
+  "mo-title": "th::  Some positive change will happen, ",
+  "mo-title-breaks": "th:: however to obtain it the opportunity, you have to...",
+  "mo-title-2": "th:: Send SMS now for full readings.",
+  "send-sms": "th:: SMS NOW",
+  "start": "th::START",
+  "tell-mood": "th::Tell us your mood right now.",
+
+  "hello_world": "th:: Hello World!",
+  "AlreadySubscribed": "th:: You are already a subscriber!",
+  "InvalidMSISDN": "th:: This mobile number is incorrect, try again",
+  "UnknownError": "th:: An unknown error occurred.",
+  "InvalidPIN": "th:: Please enter the correct PIN that you received on your phone",
+  "TooEarly": "th:: You must first submit a mobile number",
+  "we_just_sent_a_pin": "th:: We’ve sent you a PIN code. Please enter it below to confirm your videos! ",
+  "didnt_receive_pin_yet": "th:: Didn't receive a PIN yet? Make sure {phone} is your correct mobile number.",
+  "if_not_your_mobile": "th:: If {phone} is not your mobile number,",
+  "click_here_to_change_your_number": "th:: Click here to change your phone number."
+}

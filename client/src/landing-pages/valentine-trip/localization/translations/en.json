@@ -1,0 +1,35 @@
+{
+  "alternate_accept_first":"",
+  "text_terms":"",
+  "alternate_accept_second":"",
+  "text_price":"",
+  
+  "only":"Only",
+  "before-v-day":"before Valentine's day",
+  "timer-day" : "days left",
+  "expired" : "Valentine's Day is over but you can still participate",
+  "final_url" : "Claim your trip!",
+  "win-header": "This valentine go big",
+  "win-perfect": "Win the perfect last minute gift for your partner",
+  "win-subheader" : "WIN a weekend gateway to a country of your choice",
+  "paris":"Paris",
+  "roma":"Roma",
+  "or": "or",
+  "last-chance":"Last chance to win ! ",
+  "msisdn-ask":"ENTER YOUR PHONE NUMBER TO PARTICIPATE",
+  "trip-left":"3 TRIPS LEFT TO GIVE",
+  "submit":"ΣΥΝΕΧΕΙΑ",
+  "confirm":"Επιβεβαίωσε τη συμμετοχή σου",
+
+
+  "hello_world": "Hello World!",
+  "AlreadySubscribed": "You are already a subscriber!",
+  "InvalidMSISDN": "This mobile number is incorrect, try again",
+  "UnknownError": "An unknown error occurred.",
+  "InvalidPIN": "Please enter the correct PIN that you received on your phone",
+  "TooEarly": "You must first submit a mobile number",
+  "we_just_sent_a_pin": "We just sent a PIN to your mobile phone.\nPlease check your SMS inbox and enter the PIN that you received below:",
+  "didnt_receive_pin_yet": "Didn't receive a PIN yet? Make sure {phone} is your correct mobile number.",
+  "if_not_your_mobile": "If {phone} is not your mobile number,",
+  "click_here_to_change_your_number": "Click here to change your phone number."
+}

@@ -1,0 +1,43 @@
+{
+  "thank_you": "Thank you",
+ 
+  "timer-day" : "days left",
+  "expired" : "Valentine's Day is over but you can still participate",
+  "only":"Only",
+  "before-v-day":"before valentine's day",
+  "question_1":"Question 1",
+  "question_2":"Question 2",
+  "question_3":"Question 3",
+  "questiona":"How often are you traveling each year?",
+  "choicea1":"Less than 2 times",
+  "choicea2":"More than 2 times",
+  "questionb":"Are you currently single or in a relationship?",
+  "choiceb1":"I’m single",
+  "choiceb2":"I’m in a relationship",
+  "questionc":"Would you like to win this voucher?",
+  "choicec1":"Yes",
+  "choicec2":"No",
+
+  "win-header": "Are you late for valentine's day?",
+  "win-perfect": "win the perfect gift for your partner",
+  "or": "WIN €500",
+  "last-chance":"Claim your voucher now!",
+  "msisdn-ask":"Enter your phone number to participate",
+  "trip-left":"3 trip left to win",
+  "submit":"Submit",
+  "confirm":"Confirm your entry now",
+  "final_url":"Claim your prize! ",
+  "subtext":"to travel to your favorite destinations",
+
+
+  "hello_world": "Hello World!",
+  "AlreadySubscribed": "You are already a subscriber!",
+  "InvalidMSISDN": "This mobile number is incorrect, try again",
+  "UnknownError": "An unknown error occurred.",
+  "InvalidPIN": "Please enter the correct PIN that you received on your phone",
+  "TooEarly": "You must first submit a mobile number",
+  "we_just_sent_a_pin": "We just sent a PIN to your mobile phone.\nPlease check your SMS inbox and enter the PIN that you received below:",
+  "didnt_receive_pin_yet": "Didn't receive a PIN yet? Make sure {phone} is your correct mobile number.",
+  "if_not_your_mobile": "If {phone} is not your mobile number,",
+  "click_here_to_change_your_number": "Click here to change your phone number."
+}

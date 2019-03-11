@@ -24,10 +24,14 @@ const getRedirectUrl = (maybeConfig : IConfig) : string => {
 
   switch(process.env.country) {
     case "gb": 
-        var host = maybeConfig.host || 'n.mobzonefun.com'
+      if(!!scenario && /uk-tv86707-24h/ig.test(scenario))  {
+        var handle = maybeConfig.handle || 'uk-tv86707-24h'
+      } else {
         var handle = maybeConfig.handle || 'yoga-videos'
-        var tq_url = encodeURIComponent(`${window.location.protocol}://${window.location.host}/pixels/?rockman_id=${window.pac_analytics.visitor.rockmanId}`)
-        return `http://${host}/uk/${handle}?offer=${offer}&atmobirun=1&rockman_id=${window.pac_analytics.visitor.rockmanId}&redirPixels=${window.location.host}&${search}`
+      }
+      var host = maybeConfig.host || 'n.mobzonefun.com'
+      var tq_url = encodeURIComponent(`${window.location.protocol}://${window.location.host}/pixels/?rockman_id=${window.pac_analytics.visitor.rockmanId}`)
+      return `http://${host}/uk/${handle}?offer=${offer}&atmobirun=1&rockman_id=${window.pac_analytics.visitor.rockmanId}&redirPixels=${window.location.host}&${search}`
     case "iq":
 
       if(!!scenario && /iq-gmz2884-3g/ig.test(scenario)) { 

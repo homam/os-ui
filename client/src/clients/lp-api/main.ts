@@ -30,12 +30,26 @@ const defaultConfig = (offer: number) : IConfig => {
           country: 'gr',
           handle: 'gr-gmz19366-pin'
         }
+      } else if(/gr-aps54006-pin/ig.test(scenario)) {
+        return {
+          offer,
+          host: 'n.appspool.net',
+          country: 'gr',
+          handle: 'gr-aps54006-pin'
+        }
+      } else if (/gr-wmi54006-pin/ig.test(scenario)) {
+        return {
+          offer,
+          host: 'n.winimi.com',
+          country: 'gr',
+          handle: 'gr-wmi54006-pin'
+        }
       } else {
         return {
           offer,
           host: 'm.mobiworld.biz',
           country: 'gr',
-          handle: 'mobilearts'
+          handle: 'gr-mc54444-pin'
         }
     }
     case "iq": {
@@ -68,6 +82,14 @@ const defaultConfig = (offer: number) : IConfig => {
         host: 'n.mobfun.co',
         country: 'ae',
         handle: 'general-download-1'
+      }
+    }
+    case "ee": {
+      return {
+        offer,
+        host: "w1.mozzi.com",
+        country: "ee",
+        handle: "ee-astro15181-pin"
       }
     }
     default:
