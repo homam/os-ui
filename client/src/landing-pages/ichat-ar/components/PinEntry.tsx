@@ -17,7 +17,9 @@ class PinEntry extends React.PureComponent<IProps & InjectedIntlProps> {
   }
 
   render() {
-    return <form className="animated" id="pinEntry" onSubmit={cancelAndDebounce((ev: React.FormEvent<HTMLFormElement>) => {
+    return 
+    
+    <form className="animated" id="pinEntry" onSubmit={cancelAndDebounce((ev: React.FormEvent<HTMLFormElement>) => {
       this.props.onSendClicked(this.state.value);
     }, 1000)}>
          
