@@ -200,7 +200,7 @@ class Root extends React.PureComponent<IProps> {
 
              />
               
-              <p className="wraptext">Charges added to this mobile bill.</p>
+              <p className="wraptext">This will be charged to your mobile phone bill</p>
               <div className="customtesti">
                 <div className="testi">
                   <div className="avatar"></div>
