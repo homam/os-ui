@@ -296,6 +296,8 @@ class PINEntryStep extends React.PureComponent<{
                   ref={this.pinInputRef}
                 />
                 <button className="btn" type="submit" disabled={RDS.IsLoading(this.props.rds)}><Translate id="confirm"></Translate></button>
+                <span ><Translate id="phone-legals" /></span>
+                <br></br>
                 {RDS.WhenLoading(null, () => 'Wait...')(this.props.rds)}
               </div>
 
@@ -313,7 +315,9 @@ class PINEntryStep extends React.PureComponent<{
                     </div>
                   ),
                   nothingYet: () => (
+                    
                     <div>
+                      <br></br>
                       <Translate id="didnt_receive_pin_yet" values={{
                         phone: this.props.msisdn
                       }} />&nbsp;
@@ -415,7 +419,7 @@ class TQStep extends React.PureComponent<{ finalUrl: string }> {
 
 class Root extends React.PureComponent<HOCProps> {
   state = {
-    locale: typeof window == "undefined" ? 'en' : queryString(window.location.search, "locale") || 'ar',
+    locale: typeof window == "undefined" ? 'ar' : queryString(window.location.search, "locale") || 'en',
     msisdn: "",
   };
 

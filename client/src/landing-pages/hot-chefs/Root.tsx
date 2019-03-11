@@ -44,13 +44,14 @@ class MSISDNEntryStep extends React.PureComponent<{
         onSubmit={ev => {
 
           ev.preventDefault();
-          if (this.state.msisdn == "") {
+          if (this.state.msisdn.length < 5) {
 
             this.setState({ validationError: <Translate id="numberEntryErrorMobile" defaultMessage="Please fill in your mobile number!" />})
        
           } else if (!this.state.checked) {
 
-            this.setState({ validationError: <Translate id="numberEntryErrorCheck" defaultMessage="Please agree to the terms and conditions!" />, popup:true});
+            this.setState({ 
+              validationError: <Translate id="numberEntryErrorCheck" defaultMessage="Please agree to the terms and conditions!" />, popup:true});
         
           } else {
             this.setState({ validationError: null })
@@ -86,25 +87,29 @@ class MSISDNEntryStep extends React.PureComponent<{
 
           <button type="submit" disabled={RDS.IsLoading(this.props.rds)}><Translate id="numberEntrySubmit" defaultMessage="Submit" /></button>
 
-          <div className="terms">
+            <div className="terms">
 
             <input type="checkbox" checked={this.state.checked} onChange={ev => this.setState({ checked: ev.target.checked })} name="agree" id="agree" />
 
 
             <label htmlFor="agree">
-            <Translate id="alternate_accept_first" defaultMessage="Terms" /> 
+            
+            <Translate id="sa_terms_text" defaultMessage="I accept" />
+            <a href="javascript:void(0)" onClick={()=> this.setState({popup:true})}><Translate id="sa_terms_link_text" defaultMessage="Terms &amp; Conditions" /></a>
+
+            {/*<Translate id="alternate_accept_first" defaultMessage="Terms" /> 
             &nbsp;<a href="http://n.appspool.net/gr/tnc-appspool?offer=1&amp;_next=general_conditions.html" target="_blank"> 
             <Translate id="text_terms" defaultMessage="Terms &amp; Conditions" /> </a>
 
             <Translate id="alternate_accept_second" defaultMessage="Conditions" /> 
             &nbsp;&nbsp;<a href="http://paydash.gr/pinakas-ypp/" target="_blank"> 
-            <Translate id="text_price" defaultMessage="Final message price" /> </a>
+            <Translate id="text_price" defaultMessage="Final message price" /> </a>*/}
 
             </label>
 
           </div>
 
-          <ComponentPopup Translate popupActive={this.state.popup} onClickYes={() =>  this.setState({popup:false, checked:true})}/>
+          <ComponentPopup Translate popupActive={this.state.popup} onClickYes={() =>  {this.setState({popup:false, checked:true}), tracker.advancedInPreFlow("popup_agree")}}/>
 
       </div>
 

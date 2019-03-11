@@ -14,8 +14,8 @@
   "amanda_your_dob": "Αν κοιτάξεις πίσω στη ζωή σου, θεωρείς τον εαυτό σου τυχερό;",
   "amanda_your_gender": "Έχεις ερωτευτεί ποτέ πραγματικά;",
   "amanda_marital_status": "Θεωρείς τον εαυτό σου ως ένα κοινωνικά ενεργό άτομο;",
-  "amanda_signals": "Επιβεβαίωσα ήδη πως βλέπω καθαρά για σένα.",
-  "amanda_would_you_future": "Θέλεις να λάβεις την πλήρη πρόβλεψή μου για σένα;",
+  "amanda_signals": "Σε ευχαριστώ για τις απαντήσεις σου, τώρα θα ξεκινήσω με την ανάγνωση αποκλειστικά για εσένα.",
+  "amanda_would_you_future": "Παρακαλώ, δείξε υπομονή. Οι κάρτες ταρό δεν είναι για τους βιαστικούς! Σίγουρα θέλεις να μάθεις τι σε περιμένει στο μέλλον;",
   "amanda_private_secure": "Αυτή η ανάγνωση θα έχει πολύ προσωπικές πληροφορίες για το μέλλον σου.",
   "amanda_accept_tnc": "Επιβεβαίωσε τον αριθμό του κινητού σου για να μάθεις την πρόβλεψη.",
   "amanda_not_valid_number": "Λάθος αριθμός - παρακαλώ γράψε το σωστό νούμερο.",
@@ -82,6 +82,9 @@
   
   "sms_now": "Στείλε μήνυμα τώρα",
 
-  "terms_link": "http://n.mobioastro.com/gr/tnc-mobioastro?offer=1&_next=general_conditions.html"
+  "terms_link": "http://n.mobioastro.com/gr/tnc-mobioastro?offer=1&_next=general_conditions.html",
 
+  "sa_terms_text":"Αποδέχομαι τους ",
+
+  "sa_terms_link_text": "όρους χρήσης"
 }

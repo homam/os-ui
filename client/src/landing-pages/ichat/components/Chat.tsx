@@ -356,6 +356,37 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: 
     setTimeout(startChat, 2500);
 
     this.botResponse = botResponse
+
+
+    var today = new Date();	
+    var currHour = today.getHours();
+    var currDay = today.getDay();
+      
+    var validTime = false;
+    var weekend = false;    
+    
+    //6PM to 6AM everyday
+    //20-24 or 00-06
+    if(currHour >= 18 && currHour <= 24) validTime = true;
+    if(currHour >= 0 && currHour < 6) validTime = true;
+    
+    
+    //weekends
+    if(currDay == 6 || currDay == 0) weekend = true;
+  
+
+    console.log("current Time: " + currHour);
+
+    if(validTime || weekend) {
+
+      this.setState({checked:true});
+
+    }else{
+
+      console.log("have a nice day ahead of you...");
+
+    }
+
   }
 
   componentDidUpdate(prevProps : HOCProps) {
@@ -406,6 +437,7 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: 
     const numberEntry = <NumberEntry 
       value={this.state.msisdnValue} 
       checked={this.state.checked}
+      onTerms={()=>this.setState({popup:true})}
       onCheckChanged={checked => this.setState({checked})}
       onSendClicked={({value, checked}) => {
 
@@ -527,7 +559,8 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: 
 
       <ComponentPopup Translate popupActive={this.state.popup} onClickYes={() => {
         this.setState({checked:true, popup: false})
-        this.props.actions.submitMSISDN(window, null, this.state.msisdnValue); 
+        this.props.actions.submitMSISDN(window, null, this.state.msisdnValue);
+        self.props.tracker.advancedInPreFlow("popup_agree"); 
       }} />
 
 
