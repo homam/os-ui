@@ -204,6 +204,9 @@ class MSISDNEntryStep extends React.PureComponent<{
             </div>
             <img src={More} />
           </div>
+        
+        
+        
           <div className="whatsapp-testimonial">
             <CustomTesti
               className="whatsapp-sticker"

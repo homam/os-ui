@@ -37,7 +37,8 @@ body{
 
 .container{
     margin:0 auto;
-	display: block;
+    display: block;
+    max-width: 500px;
 
 
     .scene{
@@ -57,7 +58,7 @@ body{
 .splash{
     height: 150px;
     margin:0 auto;
-    width: 300px;
+    min-width: 320px;
 	position: relative;
 
     .title{
@@ -267,7 +268,7 @@ body{
 .questions{
     display: block;
     margin:0 auto;
-    max-width: 320px;
+    min-width: 320px;
     position: relative;
 
     .set{
@@ -315,7 +316,7 @@ body{
     .number1,
     .number2,
     .number3{
-        top:17px;
+        top:20px;
         padding:2px;
         display: block;
         font-size: 49px;
@@ -342,23 +343,13 @@ body{
     .photo3{
         right:0px;
         left: 0px;
-        width:320px;
-        height: 215px;
         margin: 0 auto;
         display: block;
-        background-size: 100%;
+        width:100%;
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
     }   
-    .photo1{
-        background-image: url('../imgs/photo.png');
-    }
-    .photo2{
-        background-image: url('../imgs/photo2.png');
-    }
-    .photo3{
-        background-image: url('../imgs/photo3.png');
-    }
+ 
     
     .btn1,
     .btn2,
@@ -659,7 +650,8 @@ body{
     }
 
     .yogacreative{
-        width: 320px;
+        width: 330px;
+        max-width: 700px;
         height: 300px;
         margin: 0 auto;
         display: block;
@@ -668,9 +660,10 @@ body{
 
         .yogatitle{
             font-size: 26px;
-            text-align: right;
             color: #DD2D68;
-            margin-left: 106px;
+            margin-left: 126px;
+            display: block;
+            position: relative;
     
         }
 
@@ -678,8 +671,10 @@ body{
             font-size: 18px;       
             text-align: left;
             color: #2A2E43;
-            margin-top: -18px;
-            margin-left: 125px;
+            margin-top: -5px;
+            display: block;
+            padding-left: 127px;
+            position: relative;
         }
 
         .pricetag{
@@ -721,14 +716,14 @@ body{
             top:12px;
             z-index: 2;
             width: 90%;
-            height: 85px;
+            height: 80px;
             color: #fff;
             outline: none;
             display: block;
             margin:0 auto;
             cursor: pointer;
             font-size: 19px;
-            font-weight: bold;
+            font-weight: 700;
             text-align: center;
             text-decoration: none;
             position: relative;
@@ -744,14 +739,23 @@ body{
         background: linear-gradient(0deg, #9a0946 30%, #ff389c 100%);
          
        }
-
+       .SubscribeBtn:hover{
+        background: #df2966;
+       }
+   
        .ConfirmBtn{
-        line-height: 69px;
-        text-shadow: 0px 1px 0px #009688;
+        line-height: 75px;
+        text-shadow: 0px 1px 0px #047468;
         box-shadow: inset 0 -0.6em 0 -0.35em #4CAF50;
         background: linear-gradient(0deg, #128617 30%, #2fea36 100%);
          
        }
+      
+       .ConfirmBtn:hover{
+        background: #4CAF50;
+
+       }
+
     }
     
     
@@ -846,6 +850,7 @@ body{
         }
 } 
 
+}
 
 
 @keyframes load{
@@ -857,41 +862,23 @@ body{
     }
   }
 
-
-@media screen and (max-width: 700px) {
-    .questions,
-    .splash,
-    .redirection,
-    .yoga{
-        max-width: 700px;
+@media screen and (min-width: 360px){
+    .yogacreative{
+        min-width: 360px;
+        max-width: 600px;
+    }
         
-    }
-    
-    .title1,
-    .title2,
-    .title3{
-        font-size: 26px ;
+    .yoga .yogacreative .yogatitle{
+        font-size: 28px;
+        margin-left: 151px;
 
     }
-     
-    .info1,
-    .info2,
-    .info3{
-        font-size: 15px;
+    .yoga .yogacreative .yogatext{
+        font-size: 20px;
+        padding-left: 153px;
     }
 
-    .price2{
-        font-size:20px;
+    .yoga .yogacreative .pricetag{
+       left: 85px;
     }
-
-    .questions .photo1,
-    .questions .photo2,
-    .questions .photo3{
-        width: 100%;
-        height: 224px;
-
-    }
-  
-}
-
 }

@@ -6,6 +6,10 @@ import "./assets/css/styles.less?raw";
 import CustomToplegal from "./components/CustomToplegal";
 
 
+const photo1 = require("./assets/imgs/photo.png");
+const photo2 = require("./assets/imgs/photo2.png");
+const photo3 = require("./assets/imgs/photo3.png");
+
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
   "xx",
@@ -23,7 +27,6 @@ const ButtonArea = ({ clicked, subscribeNowClicked, confirmClicked }) => {
 
   }
 
-  
 }
 
 class Root extends React.PureComponent<IProps> {
@@ -104,7 +107,7 @@ class Root extends React.PureComponent<IProps> {
 
               <h1 className="number1">01</h1>
               <h1 className="title1">Does your lower back hurt after sitting for too long?</h1>
-              <div className="photo1"></div>
+              <img className="photo1" src={photo1} alt="photo 1" />
 
               <button className="btn1" onClick={() => this.setState({ appQuestion: "question2" })}>Yes</button>
               <button className="btn2" onClick={() => this.setState({ appQuestion: "question2" })}>No</button>
@@ -126,7 +129,7 @@ class Root extends React.PureComponent<IProps> {
 
               <h1 className="number2">02</h1>
               <h1 className="title2">Do you find it hard to bend down at times?</h1>
-              <div className="photo2"></div>
+              <img className="photo2" src={photo2} alt="photo 2" />
 
               <button className="btn3" onClick={() => this.setState({ appQuestion: "question3" })}>Yes</button>
               <button className="btn4" onClick={() => this.setState({ appQuestion: "question3" })}>No</button>
@@ -148,7 +151,7 @@ class Root extends React.PureComponent<IProps> {
 
               <h1 className="number3">03</h1>
               <h1 className="title3">Does you back feel tight after waking up?</h1>
-              <div className="photo3"></div>
+              <img className="photo3" src={photo3} alt="photo 3" />
 
               <button className="btn5" onClick={() => this.newRedirect()}>Yes</button>
               <button className="btn6" onClick={() => this.newRedirect()}>No</button>
