@@ -49,14 +49,7 @@ const defaultConfig = (offer: number) : IConfig => {
           handle: 'th-4541311-a2' 
         }
       }
-      case "vn": {
-        return {
-          offer: (offer || 1),
-          host: 't.buz2mobile.com',
-          country: 'vn',
-          handle: 'th-4541311-a2' 
-        }
-      }
+     
     default:
       throw `'country' environment variable is either missing or has an unsupported value (${process.env.country}). This is necessary for defaultConfig(offer).`
   }
