@@ -185,7 +185,9 @@ class Root extends React.PureComponent<IProps> {
               <div className="yogacreative">
               <h1 className="yogatitle">HEALING YOGA</h1>
               <p className="yogatext">Relieve Back Pains, Fix Posture, Increased Core Strength and Makes You Happy</p> 
-              <div className="pricetag"><span>FREE for 24 HRS,<br></br>THEN £4.50 Per Week</span></div>
+              {/* <div className="pricetag"><span>FREE for 24 HRS,<br></br>THEN £4.50 Per Week</span></div> */}
+              <div className="pricetag"><span>CHEAPER THAN GYM,<br></br>£4.50 Per Week</span></div>
+
               
               </div>
              
