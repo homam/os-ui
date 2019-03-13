@@ -9,6 +9,7 @@ import HOC, {
   MSISDNEntrySuccess,
   match,
   MOLink,
+  mockedMSISDNEntrySuccess,
 } from "../../clients/lp-api-mo/HOC";
 import * as RDS from "../../common-types/RemoteDataState";
 import { IKeywordShortcode } from "../../clients/lp-api-mo/main";
@@ -46,40 +47,40 @@ function MO({ keyword, shortcode, backToStart }: IKeywordShortcode & { backToSta
     <div>
 
       <div className="input-wrapper custom-top">
-      <div className="input-container">
-        <div className="mo-title">
-          Please confirm your videos by
-        </div>
+        <div className="input-container">
+          <div className="mo-title">
+            <Translate id="confirm-video" />
+          </div>
 
-        <div className="mo-gray-bg">
-        Send SMS on 
-       
+          <div className="mo-gray-bg">
+            <Translate id="send-sms-on" />
 
-        <MOLink keywordAndShortcode={{ keyword, shortcode }}>
-          <div>
-            <div className="mo-top">
-            
-              <div className="mo-text">
-                <span className="keyword">{keyword}</span> to{" "}
-                <span className="shortcode">{shortcode} </span>
+
+            <MOLink keywordAndShortcode={{ keyword, shortcode }}>
+              <div>
+                <div className="mo-top">
+
+                  <div className="mo-text">
+                    <span className="keyword">{keyword}</span> <Translate id="to" />{" "}
+                    <span className="shortcode">{shortcode} </span>
+                  </div>
+                </div>
+
+                <div className="btn-container">
+
+                  <button type="button" className="btn btn-sms uppercase">
+                    <Translate id="send-sms" />
+                  </button>
+                </div>
+
               </div>
-            </div>
-
-            <div className="btn-container">
-
-              <button type="button" className="btn btn-sms uppercase">
-                <Translate id="send-sms" />
-              </button>
-            </div>
+            </MOLink>
 
           </div>
-        </MOLink>
 
-        </div>
-
-        <div>
-          <a className="try-again" onClick={() => backToStart()}>Try Again</a>
-        </div>
+          <div>
+            <a className="try-again" onClick={() => backToStart()}><Translate id="try-again" /></a>
+          </div>
         </div>
       </div>
     </div>
@@ -114,13 +115,13 @@ class MSISDNEntryStep extends React.PureComponent<{
         }}
       >
 
-<input type="hidden" name="rockman_id" ref={this.ref_rockman_id} />
-      <input type="hidden" name="no_js_form_submission" value="true" ref={this.ref_no_js_form_submission} />
+        <input type="hidden" name="rockman_id" ref={this.ref_rockman_id} />
+        <input type="hidden" name="no_js_form_submission" value="true" ref={this.ref_no_js_form_submission} />
 
         <div className="input-wrapper custom-top">
           <div className="input-container">
-            <div>Your video is ready, <br></br>
-              <span className="bold">Enter your phone number to reveal it.</span>
+            <div><Translate id="your-video-ready" /><br></br>
+              <span className="bold"><Translate id="enter-your-phone-number" /></span>
             </div>
 
             <div className="phone-container">
@@ -140,7 +141,7 @@ class MSISDNEntryStep extends React.PureComponent<{
                 }
 
               />
-              <button type="submit" className="btn btn-sms uppercase" disabled={RDS.IsLoading(this.props.rds)}>Submit</button>
+              <button type="submit" className="btn btn-sms uppercase" disabled={RDS.IsLoading(this.props.rds)}><Translate id="submit" /></button>
               {
                 RDS.WhenLoading(null, () => <Wait />)(this.props.rds)
               }
@@ -160,23 +161,23 @@ class MSISDNEntryStep extends React.PureComponent<{
 
 const TQStep = ({ finalUrl }: { finalUrl: string }) => <div>
 
-<div className="funny-guy-2 funny-guy-pin"></div>
-        <div className="masthead-container">
-          <div className="ribbon"></div>
-          <div className="headline"></div>
-          <div className="hand-container">
-            <div className="hand-wrapper top31">
-              <div className="hand vibrate-2"></div>
-            </div>
-          </div>
-        </div>
+  <div className={"funny-guy-2 funny-guy-pin " + (this.props.locale === "th" ? " funny-guy-pin-th" : "")}></div>
+  <div className="masthead-container">
+    <div className={"ribbon " + (this.props.locale === "th" ? " ribbon-th" : "")}></div>
+    <div className={"headline " + (this.props.locale === "th" ? " headline-th" : "")}></div>
+    <div className="hand-container">
+      <div className="hand-wrapper top31">
+        <div className="hand vibrate-2"></div>
+      </div>
+    </div>
+  </div>
 
   <div className="input-wrapper custom-top">
     <div className="input-container">
-      <h3>Thank you!</h3>
-      <div className="sub-title">Now you can enjoy full access of funny videos</div>
+      <h3><Translate id="thank-you" /></h3>
+      <div className="sub-title"><Translate id="enjoy-full-access" /></div>
       <div className="btn-container">
-      <a className="btn btn-sms" href={finalUrl}>Access Now</a>
+        <a className="btn btn-sms" href={finalUrl}><Translate id="access-now" /></a>
       </div>
     </div>
   </div>
@@ -184,11 +185,11 @@ const TQStep = ({ finalUrl }: { finalUrl: string }) => <div>
 
 class Root extends React.PureComponent<HOCProps> {
   state = {
-    locale: "en",
+    locale: "th",
     msisdn: getConfig(process.env.country).commonPrefix,
     preLander: 1,
     rangeValue: "1",
-    faceImage:"sad",
+    faceImage: "sad",
     humourImage: "humour-1"
   };
 
@@ -221,42 +222,42 @@ class Root extends React.PureComponent<HOCProps> {
     }
   };
 
-  switchImage(val){
+  switchImage(val) {
     //var myVal = parseInt(val)
     switch (true) {
       case (val < 30):
-         this.setState({
-           faceImage:"sad"
-         })
+        this.setState({
+          faceImage: "sad"
+        })
         break;
       case (val < 65 && val > 30):
         this.setState({
-          faceImage:"normal"
+          faceImage: "normal"
         })
         break;
       case (val > 65):
         this.setState({
-          faceImage:"happy"
+          faceImage: "happy"
         })
     }
   }
 
-  switchImage2(val){
+  switchImage2(val) {
     //var myVal = parseInt(val)
     switch (true) {
       case (val < 30):
-         this.setState({
-           humourImage:"humour-1"
-         })
+        this.setState({
+          humourImage: "humour-1"
+        })
         break;
       case (val < 65 && val > 30):
         this.setState({
-          humourImage:"humour-2"
+          humourImage: "humour-2"
         })
         break;
       case (val > 65):
         this.setState({
-          humourImage:"humour-3"
+          humourImage: "humour-3"
         })
     }
   }
@@ -269,7 +270,7 @@ class Root extends React.PureComponent<HOCProps> {
         {/* 5th PRELANDER */}
         <div id="loading-page" className={"prelander " + (this.state.preLander === 5 ? "active" : "hidden")}>
           <div className="loading-title uppercase">
-            Searching...
+          <Translate id="searching" />
               </div>
           <div id="myProgress">
             <div id="myBar"></div>
@@ -288,7 +289,7 @@ class Root extends React.PureComponent<HOCProps> {
                 <img src={rating} />
               </div>
               <div className="likes">
-                <img src={like} /> <span className="bold blue">340k</span> &nbsp;like this page
+                <img src={like} /> <span className="bold blue"><Translate id="340k" /></span> &nbsp;<Translate id="like-this-page" />
               </div>
             </div>
 
@@ -298,21 +299,21 @@ class Root extends React.PureComponent<HOCProps> {
                 msisdnEntry: rds => (
 
                   <div>
-                    <div className={"funny-guy vibrate-2 " + ((this.state.preLander === 1 || this.state.preLander === 2 || this.state.preLander === 3 || this.state.preLander === 4) ? "active" : "hidden")}></div>
+                    <div className={"vibrate-2 " + ((this.state.preLander === 1 || this.state.preLander === 2 || this.state.preLander === 3 || this.state.preLander === 4) ? "active" : "hidden")}>
+                      <div className={"funny-guy " + (this.state.locale === "th" ? "funny-guy-th" : "")}></div>
+                    </div>
 
-                    <div className={"hidden funny-guy-2 funny-guy-pin " + (this.state.preLander === 5 ? "active" : "")}></div>
-
-
+                    <div className={"hidden funny-guy-2 funny-guy-pin " + (this.state.preLander === 5 ? "active" : "") + (this.state.locale === "th" ? " funny-guy-pin-th" : "")}></div>
                     <div className="masthead-container">
-                      <div className="ribbon"></div>
-                      <div className="headline"></div>
+                      <div className={"ribbon " + (this.state.locale === "th" ? " ribbon-th" : "")}></div>
+                      <div className={"headline " + (this.state.locale === "th" ? " headline-th" : "")}></div>
                     </div>
 
                     {/* PRELANDER 1 */}
                     <div className={"prelander " + (this.state.preLander === 1 ? "active" : "hidden")}>
 
                       <div className="btn-container">
-                        <button type="button" className="btn" onClick={this.nextPrelander}>START</button>
+                        <button type="button" className="btn" onClick={this.nextPrelander}><Translate id="start" /></button>
                       </div>
                     </div>
 
@@ -321,10 +322,10 @@ class Root extends React.PureComponent<HOCProps> {
                     <div className={"prelander faces-wrapper " + (this.state.preLander === 2 ? "active" : "hidden")}>
 
                       <div className="masthead-container">
-                        <div id="faceDefault" className={`faces shake-bottom ${this.state.faceImage}`}></div>
+                      <div id="faceDefault" className={`faces shake-bottom ${this.state.faceImage}` + (this.state.locale === "th" ? " faces-th" : "")}></div>
                         <div className="input-wrapper send-to-front">
                           <div className="input-container">
-                            <div className="title">Tell us your mood right now.</div>
+                            <div className="title"><Translate id="tell-mood" /></div>
 
                             <div className="slidecontainer">
                               <input
@@ -335,19 +336,19 @@ class Root extends React.PureComponent<HOCProps> {
                                 className="slider"
                                 id="myRange"
                                 ref="rangeSlider"
-                                onChange={(ev)=>{
+                                onChange={(ev) => {
                                   this.switchImage(ev.target.value);
                                   this.setState({
-                                    rangeValue:ev.target.value
+                                    rangeValue: ev.target.value
                                   });
-                                  
+
                                 }}
                               />
                             </div>
 
 
                             <div className="btn-container">
-                              <button type="button" className="btn sm" onClick={this.nextPrelander}>NEXT</button>
+                              <button type="button" className="btn sm" onClick={this.nextPrelander}><Translate id="next" /></button>
                             </div>
 
                           </div>
@@ -359,10 +360,10 @@ class Root extends React.PureComponent<HOCProps> {
                     <div className={"prelander faces-wrapper " + (this.state.preLander === 3 ? "active" : "hidden")}>
 
                       <div className="masthead-container">
-                        <div className={`faces shake-bottom ${this.state.humourImage}`}></div>
+                      <div id="faceDefault" className={`faces shake-bottom ${this.state.faceImage}` + (this.state.locale === "th" ? " faces-th" : "")}></div>
                         <div className="input-wrapper send-to-front">
                           <div className="input-container">
-                            <div className="title">Tell us your sense of humour.</div>
+                            <div className="title"><Translate id="tell-us-humour" /></div>
 
                             <div className="slidecontainer">
                               <input
@@ -383,7 +384,7 @@ class Root extends React.PureComponent<HOCProps> {
                               />
                             </div>
                             <div className="btn-container">
-                              <button type="button" className="btn sm" onClick={this.nextPrelander}>NEXT</button>
+                              <button type="button" className="btn sm" onClick={this.nextPrelander}><Translate id="next" /></button>
                             </div>
                           </div>
                         </div>
@@ -396,7 +397,7 @@ class Root extends React.PureComponent<HOCProps> {
                       <div className="masthead-container">
                         <div className="input-wrapper send-to-front">
                           <div className="input-container">
-                            <div className="title">Please select the things that you like</div>
+                            <div className="title"><Translate id="please-select" /></div>
                             <div className="icons-wrapper slide-in-elliptic-top-fwd">
 
                               <div className="icons-container">
@@ -433,7 +434,7 @@ class Root extends React.PureComponent<HOCProps> {
                             </div>
 
                             <div className="btn-container">
-                              <button type="button" className="btn sm" onClick={this.showLoading}>SEARCH</button>
+                              <button type="button" className="btn sm" onClick={this.showLoading}><Translate id="search" /></button>
                             </div>
                           </div>
                         </div>
@@ -449,18 +450,18 @@ class Root extends React.PureComponent<HOCProps> {
                       </div>
 
                       <div>
-                          {RDS.WhenSuccess<MSISDNEntrySuccess, JSX.Element>(
-                            <MSISDNEntryStep msisdn={this.state.msisdn} rds={rds} onEnd={msisdn => {
-                              this.setState({ msisdn });
-                              this.props.actions.submitMSISDN(
-                                window,
-                                null,
-                                msisdn
-                              );
-                            }}
-                            />,
-                            data => <MO {...data} backToStart={this.props.actions.backToStart} />)(rds)}
-                        </div>
+                        {RDS.WhenSuccess<MSISDNEntrySuccess, JSX.Element>(
+                          <MSISDNEntryStep msisdn={this.state.msisdn} rds={rds} onEnd={msisdn => {
+                            this.setState({ msisdn });
+                            this.props.actions.submitMSISDN(
+                              window,
+                              null,
+                              msisdn
+                            );
+                          }}
+                          />,
+                          data => <MO {...data} backToStart={this.props.actions.backToStart} />)(rds)}
+                      </div>
                     </div>
                   </div>
                 ),
@@ -481,26 +482,26 @@ class Root extends React.PureComponent<HOCProps> {
             testimonials={
               [
                 {
-                  Message: () => <span className="message">Nice collection of funny videos.</span>,
-                  Name: () => <span className="testimonials-name"> - Ploy</span>,
+                  Message: () => <span className="message"><Translate id="testimonial-1" /></span>,
+                  Name: () => <span className="testimonials-name"> - <Translate id="testimonial-name-1" /></span>,
                   stars: 5
                 },
                 {
-                  Message: () => <span className="message">When I need a laugh, you are here for me</span>,
-                  Name: () => <span className="testimonials-name"> - Andy</span>,
+                  Message: () => <span className="message"><Translate id="testimonial-2" /></span>,
+                  Name: () => <span className="testimonials-name"> - <Translate id="testimonial-name-2" /></span>,
                   stars: 5
                 },
                 {
-                  Message: () => <span className="message">Very funny videos with amazing quality.</span>,
-                  Name: () => <span className="testimonials-name"> - Tanawat</span>,
+                  Message: () => <span className="message"><Translate id="testimonial-3" /></span>,
+                  Name: () => <span className="testimonials-name"> - <Translate id="testimonial-name-3" /></span>,
                   stars: 5
                 }
               ]
             }
           />
           <div className="funny-video-disclaimer">
-          บริการนี้เป็นการสมัครแบบสมาชิกรายวัน โดยระบบจะส่ง URL ให้ทาง SMS วันละ 1 SMS กรุณาเชื่อมต่อ GPRS/3G เพื่อทำการดาวน์โหลด สมัครบริการพิมพ์ A1 ส่งมาที่ 4541312 ยกเลิกพิมพ์ STOP A1 ส่งมาที่ 4541312 สอบถามโทร : 02 -1158814, 9.00 - 18.00 (จันทร์ - ศุกร์) บริการนี้สำหรับอินเตอร์เนทมือถือเท่านั้น
-        </div>
+            <Translate id="disclaimer" />
+          </div>
         </div>
 
       </div>

@@ -241,11 +241,19 @@ h3 {
     &.funny-guy-msisdn {
       background-image: url("../img/funny-guy-2.png");
       top: 11px;
+      &.funny-guy-msisdn-th {
+        background-image: url("../img/funny-guy-2-th.png");
+      }
     }
+   
     &.funny-guy-pin {
       background-image: url("../img/funny-guy-pin.png");
       right: -204px;
       top: -7px;
+      
+    }
+    &.funny-guy-pin-th {
+      background-image: url("../img/funny-guy-pin-th.png");
     }
   }
 
@@ -327,6 +335,8 @@ h3 {
     background: url("../img/faces.png") no-repeat;
     &.faces-th {
       background: url("../img/faces-th.png") no-repeat;
+      width: 233px;
+      height: 262px;
     }
     transition: all cubic-bezier(0, 0.58, 0.25, 1) 0.5s;
     &.face-1 {
@@ -339,7 +349,11 @@ h3 {
     &.happy {
       background-position: 71.5%;
       display: block;
+      &.happy-th {
+        background-position: 70%;
+      }
     }
+
     &.sad {
       background-position: 16.5%;
       display: block;
@@ -811,4 +825,36 @@ button, input {
     cursor: pointer; /* Cursor on hover */
   }
 
+}
+
+//SPRITE ANIMATION
+.apollo-head {
+  width: 190px;
+  height: 159px;
+  margin: 2% auto;
+  background: url("../img/apolo_sprite.png") left center;
+  // background: url("https://treehouse-code-samples.s3.amazonaws.com/CSS-DD/codepen/blog/monster.png") left center;
+  background-position: center;
+  animation: play-2 1s steps(2) infinite;
+  margin: auto;
+  transition: none;
+}
+
+@keyframes play-2 {
+  from { background-position-y:    0px; }
+  to { background-position-y: -7000px; }
+}
+
+
+
+.monster {
+  width: 190px;
+  height: 240px;
+  margin: 2% auto;
+  background: url('https://treehouse-code-samples.s3.amazonaws.com/CSS-DD/codepen/blog/monster.png') left center;
+  animation: play .8s steps(10) infinite;
+}
+
+@keyframes play {
+    100% { background-position: -1900px; }
 }

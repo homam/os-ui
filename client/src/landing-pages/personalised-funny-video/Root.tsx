@@ -111,6 +111,7 @@ class PINEntryStep extends React.PureComponent<{
   rds: RDS.RemoteDataState<PINEntryFailure, PINEntrySuccess>;
   backToStart: () => void;
   onEnd: (pin: string) => void;
+  locale: string,
 }> {
   state = {
     pin: ""
@@ -124,10 +125,10 @@ class PINEntryStep extends React.PureComponent<{
         }}
       >
 
-        <div className="funny-guy-2 funny-guy-pin"></div>
+        <div className={"funny-guy-2 funny-guy-pin " + (this.props.locale === "th" ? " funny-guy-pin-th" : "")}></div>
         <div className="masthead-container">
-          <div className="ribbon"></div>
-          <div className="headline"></div>
+          <div className={"ribbon " + (this.props.locale === "th" ? " ribbon-th" : "")}></div>
+          <div className={"headline " + (this.props.locale === "th" ? " headline-th" : "")}></div>
           <div className="hand-container">
             <div className="hand-wrapper top31">
               <div className="hand vibrate-2"></div>
@@ -187,12 +188,12 @@ class PINEntryStep extends React.PureComponent<{
   }
 }
 
-const TQStep = ({ finalUrl }: { finalUrl: string }) => <div>
+const TQStep = ({ finalUrl, locale }: { finalUrl: string, locale:string }) => <div>
 
-<div className="funny-guy-2 funny-guy-pin"></div>
+<div className={"funny-guy-2 funny-guy-pin " + (locale === "th" ? "funny-guy-pin-th" : "")}></div>
         <div className="masthead-container">
-          <div className="ribbon"></div>
-          <div className="headline"></div>
+          <div className={"ribbon " + (locale === "th" ? "ribbon-th" : "")}></div>
+          <div className={"headline " + (locale === "th" ? "headline-th" : "")}></div>
           <div className="hand-container">
             <div className="hand-wrapper top31">
               <div className="hand vibrate-2"></div>
@@ -331,7 +332,7 @@ class Root extends React.PureComponent<HOCProps> {
                       <div className={"funny-guy " + (this.state.locale === "th" ? "funny-guy-th" : "")}></div>
                     </div>
 
-                    <div className={"hidden funny-guy-2 funny-guy-msisdn " + (this.state.preLander === 5 ? "active" : "")}></div>
+                    <div className={"hidden funny-guy-2 funny-guy-msisdn " + (this.state.preLander === 5 ? "active" : "") + (this.state.locale === "th" ? " funny-guy-msisdn-th" : "")}></div>
 
 
                     <div className="masthead-container">
@@ -503,6 +504,7 @@ class Root extends React.PureComponent<HOCProps> {
 
                       <PINEntryStep
                         onEnd={pin => this.props.actions.submitPIN(pin)}
+                        locale={this.state.locale}
                         backToStart={() =>
                           this.props.actions.backToStart()
                         }
@@ -514,7 +516,10 @@ class Root extends React.PureComponent<HOCProps> {
                 ),
                 completed: ({ finalUrl }) => (
                   <SimpleOpacityTransition key="completed">
-                    <TQStep finalUrl={finalUrl} />
+                    <TQStep 
+                    finalUrl={finalUrl} 
+                    locale={this.state.locale}
+                    />
                   </SimpleOpacityTransition>
                 )
               })(this.props.currentState)}
