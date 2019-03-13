@@ -360,7 +360,7 @@ class Root extends React.PureComponent<HOCProps> {
                     <div className={"prelander faces-wrapper " + (this.state.preLander === 3 ? "active" : "hidden")}>
 
                       <div className="masthead-container">
-                      <div id="faceDefault" className={`faces shake-bottom ${this.state.faceImage}` + (this.state.locale === "th" ? " faces-th" : "")}></div>
+                      <div id="faceDefault" className={`faces shake-bottom ${this.state.humourImage}` + (this.state.locale === "th" ? " faces-th" : "")}></div>
                         <div className="input-wrapper send-to-front">
                           <div className="input-container">
                             <div className="title"><Translate id="tell-us-humour" /></div>
