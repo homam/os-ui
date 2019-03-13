@@ -68,8 +68,8 @@ class MSISDNEntryStep extends React.PureComponent<{
 
         <div className="input-wrapper custom-top">
           <div className="input-container">
-            <div>Your video is ready, <br></br>
-              <span className="bold">Enter your phone number to reveal it.</span>
+            <div><Translate id="your-video-ready" /><br></br>
+              <span className="bold"><Translate id="enter-your-phone-number" /></span>
             </div>
 
             <div className="phone-container">
@@ -89,7 +89,7 @@ class MSISDNEntryStep extends React.PureComponent<{
                 }
 
               />
-              <button type="submit" className="btn btn-sms uppercase" disabled={RDS.IsLoading(this.props.rds)}>Submit</button>
+              <button type="submit" className="btn btn-sms uppercase" disabled={RDS.IsLoading(this.props.rds)}><Translate id="submit" /></button>
               {
                 RDS.WhenLoading(null, () => <Wait />)(this.props.rds)
               }
@@ -146,7 +146,7 @@ class PINEntryStep extends React.PureComponent<{
                 value={this.state.pin}
                 onChange={ev => this.setState({ pin: ev.target.value })}
               />
-              <button type="submit" className="btn btn-sms" disabled={RDS.IsLoading(this.props.rds)}>CONFIRM</button>
+              <button type="submit" className="btn btn-sms" disabled={RDS.IsLoading(this.props.rds)}><Translate id="confirm" /></button>
               {
                 RDS.WhenLoading(null, () => 'Wait...')(this.props.rds)
               }
@@ -202,10 +202,10 @@ const TQStep = ({ finalUrl }: { finalUrl: string }) => <div>
 
   <div className="input-wrapper custom-top">
     <div className="input-container">
-      <h3>Thank you!</h3>
-      <div className="sub-title">Now you can enjoy full access of funny videos</div>
+      <h3><Translate id="thank-you" /></h3>
+      <div className="sub-title"><Translate id="enjoy-full-access" /></div>
       <div className="btn-container">
-      <a className="btn btn-sms" href={finalUrl}>Access Now</a>
+      <a className="btn btn-sms" href={finalUrl}><Translate id="access-now" /></a>
       </div>
     </div>
   </div>
@@ -213,7 +213,7 @@ const TQStep = ({ finalUrl }: { finalUrl: string }) => <div>
 
 class Root extends React.PureComponent<HOCProps> {
   state = {
-    locale: "en",
+    locale: "th",
     msisdn: getConfig(process.env.country).commonPrefix,
     preLander: 1,
     rangeValue: "1",
@@ -298,7 +298,7 @@ class Root extends React.PureComponent<HOCProps> {
         {/* 5th PRELANDER */}
         <div id="loading-page" className={"prelander " + (this.state.preLander === 5 ? "active" : "hidden")}>
           <div className="loading-title uppercase">
-            Searching...
+            <Translate id="searching" />
               </div>
           <div id="myProgress">
             <div id="myBar"></div>
@@ -317,7 +317,7 @@ class Root extends React.PureComponent<HOCProps> {
                 <img src={rating} />
               </div>
               <div className="likes">
-                <img src={like} /> <span className="bold blue">340k</span> &nbsp;like this page
+                <img src={like} /> <span className="bold blue"><Translate id="340k" /></span> &nbsp;<Translate id="like-this-page" />
               </div>
             </div>
 
@@ -327,14 +327,16 @@ class Root extends React.PureComponent<HOCProps> {
                 msisdnEntry: rds => (
 
                   <div>
-                    <div className={"funny-guy vibrate-2 " + ((this.state.preLander === 1 || this.state.preLander === 2 || this.state.preLander === 3 || this.state.preLander === 4) ? "active" : "hidden")}></div>
+                    <div className={"vibrate-2 " + ((this.state.preLander === 1 || this.state.preLander === 2 || this.state.preLander === 3 || this.state.preLander === 4) ? "active" : "hidden")}>
+                      <div className={"funny-guy " + (this.state.locale === "th" ? "funny-guy-th" : "")}></div>
+                    </div>
 
                     <div className={"hidden funny-guy-2 funny-guy-msisdn " + (this.state.preLander === 5 ? "active" : "")}></div>
 
 
                     <div className="masthead-container">
-                      <div className="ribbon"></div>
-                      <div className="headline"></div>
+                      <div className={"ribbon " + (this.state.locale === "th" ? "ribbon-th" : "")}></div>
+                      <div className={"headline " + (this.state.locale === "th" ? "headline-th" : "")}></div>
                     </div>
 
                     {/* PRELANDER 1 */}
@@ -350,7 +352,7 @@ class Root extends React.PureComponent<HOCProps> {
                     <div className={"prelander faces-wrapper " + (this.state.preLander === 2 ? "active" : "hidden")}>
 
                       <div className="masthead-container">
-                        <div id="faceDefault" className={`faces shake-bottom ${this.state.faceImage}`}></div>
+                        <div id="faceDefault" className={`faces shake-bottom ${this.state.faceImage}` + (this.state.locale === "th" ? " faces-th" : "")}></div>
                         <div className="input-wrapper send-to-front">
                           <div className="input-container">
                             <div className="title"><Translate id="tell-mood" /></div>
@@ -376,7 +378,7 @@ class Root extends React.PureComponent<HOCProps> {
 
 
                             <div className="btn-container">
-                              <button type="button" className="btn sm" onClick={this.nextPrelander}>NEXT</button>
+                              <button type="button" className="btn sm" onClick={this.nextPrelander}><Translate id="next" /></button>
                             </div>
 
                           </div>
@@ -388,10 +390,10 @@ class Root extends React.PureComponent<HOCProps> {
                     <div className={"prelander faces-wrapper " + (this.state.preLander === 3 ? "active" : "hidden")}>
 
                       <div className="masthead-container">
-                        <div className={`faces shake-bottom ${this.state.humourImage}`}></div>
+                        <div className={`faces shake-bottom ${this.state.humourImage}` + (this.state.locale === "th" ? " faces-th" : "")}></div>
                         <div className="input-wrapper send-to-front">
                           <div className="input-container">
-                            <div className="title">Tell us your sense of humour.</div>
+                            <div className="title"><Translate id="tell-us-humour" /></div>
 
                             <div className="slidecontainer">
                               <input
@@ -412,7 +414,7 @@ class Root extends React.PureComponent<HOCProps> {
                               />
                             </div>
                             <div className="btn-container">
-                              <button type="button" className="btn sm" onClick={this.nextPrelander}>NEXT</button>
+                              <button type="button" className="btn sm" onClick={this.nextPrelander}><Translate id="next" /></button>
                             </div>
                           </div>
                         </div>
@@ -425,7 +427,7 @@ class Root extends React.PureComponent<HOCProps> {
                       <div className="masthead-container">
                         <div className="input-wrapper send-to-front">
                           <div className="input-container">
-                            <div className="title">Please select the things that you like</div>
+                            <div className="title"><Translate id="please-select" /></div>
                             <div className="icons-wrapper slide-in-elliptic-top-fwd">
 
                               <div className="icons-container">
@@ -462,7 +464,7 @@ class Root extends React.PureComponent<HOCProps> {
                             </div>
 
                             <div className="btn-container">
-                              <button type="button" className="btn sm" onClick={this.showLoading}>SEARCH</button>
+                              <button type="button" className="btn sm" onClick={this.showLoading}><Translate id="search" /></button>
                             </div>
                           </div>
                         </div>
@@ -525,25 +527,25 @@ class Root extends React.PureComponent<HOCProps> {
             testimonials={
               [
                 {
-                  Message: () => <span className="message">Nice collection of funny videos.</span>,
-                  Name: () => <span className="testimonials-name"> - Ploy</span>,
+                  Message: () => <span className="message"><Translate id="testimonial-1" /></span>,
+                  Name: () => <span className="testimonials-name"> - <Translate id="testimonial-name-1" /></span>,
                   stars: 5
                 },
                 {
-                  Message: () => <span className="message">When I need a laugh, you are here for me</span>,
-                  Name: () => <span className="testimonials-name"> - Andy</span>,
+                  Message: () => <span className="message"><Translate id="testimonial-2" /></span>,
+                  Name: () => <span className="testimonials-name"> - <Translate id="testimonial-name-2" /></span>,
                   stars: 5
                 },
                 {
-                  Message: () => <span className="message">Very funny videos with amazing quality.</span>,
-                  Name: () => <span className="testimonials-name"> - Tanawat</span>,
+                  Message: () => <span className="message"><Translate id="testimonial-3" /></span>,
+                  Name: () => <span className="testimonials-name"> - <Translate id="testimonial-name-3" /></span>,
                   stars: 5
                 }
               ]
             }
           />
           <div className="funny-video-disclaimer">
-            This is a subscription service. This game is compatible with most mobile phones with color screen. Supported mobile brands include Nokia, iPhone, Sony, Samsung, Motorola, LG, HTC, Xiaomi and more. No subscription fees will be charged. Maxis: RM4 per message, maximum 7 times per month, max of RM30(excl. GST) per month. Normal mobile operator network charges apply. GPRS / 3G access needs to be enabled to download the content. Data charges are billed separately. Some phones do not support GPRS / 3G. Please seek parental or guardian approval if you are 18 years old or below. Helpdesk 03-74910666 (9am-5pm Mon-Fri). To cancel send STOP ALARM to 36099. Buz2mobile operates according to the Malaysian code of conduct for SMS services. Powered by Moblife. TV Sdn Bhd.
+          <Translate id="disclaimer" />
         </div>
         </div>
 

@@ -168,6 +168,11 @@ h3 {
     background-repeat: no-repeat;
     width: auto;
     height: 54px;
+    &.ribbon-th {
+      background-image: url("../img/ribbon-th.svg");
+      width: 139px;
+      background-size: contain
+    }
   }
 
   .masthead-container {
@@ -185,12 +190,20 @@ h3 {
 
   .headline {
     background-image: url("../img/headline.svg");
+    background-size: contain;
     background-repeat: no-repeat;
     width: 160px;
     height: 140px;
     position: relative;
     left: 20px;
     top: -10px;
+    &.headline-th {
+      background-image: url("../img/headline-thai.svg");
+      width: 123px;
+      height: 119px;
+      transform: rotate(-10deg);
+      left: 31px;
+    }
   }
 
   .funny-guy {
@@ -206,6 +219,12 @@ h3 {
     margin: auto;
     position: absolute;
     z-index: 1;
+    &.funny-guy-th {
+      background-image: url("../img/funny-guy-th.png");
+      height: 298px;
+      left: -10px;
+      top: 148px;
+    }
   }
 
   .funny-guy-2 {
@@ -306,6 +325,9 @@ h3 {
     width: 263px;
     height: 242px;
     background: url("../img/faces.png") no-repeat;
+    &.faces-th {
+      background: url("../img/faces-th.png") no-repeat;
+    }
     transition: all cubic-bezier(0, 0.58, 0.25, 1) 0.5s;
     &.face-1 {
       background-position: -4%;
