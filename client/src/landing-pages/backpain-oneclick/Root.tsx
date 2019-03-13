@@ -109,8 +109,8 @@ class Root extends React.PureComponent<IProps> {
               <h1 className="title1">Does your lower back hurt after sitting for too long?</h1>
               <img className="photo1" src={photo1} alt="photo 1" />
 
-              <button className="btn1" onClick={() => this.setState({ appQuestion: "question2" })}>Yes</button>
-              <button className="btn2" onClick={() => this.setState({ appQuestion: "question2" })}>No</button>
+              <button className="btn1" onClick={() => {tracker.advancedInPreFlow("question1_btn_yes"), this.setState({ appQuestion: "question2" })}}>Yes</button>
+              <button className="btn2" onClick={() => {tracker.advancedInPreFlow("question1_btn_no"), this.setState({ appQuestion: "question2" })}}>No</button>
 
               <div className="testimonial">
                 <div className="line2"></div>       
@@ -131,8 +131,8 @@ class Root extends React.PureComponent<IProps> {
               <h1 className="title2">Do you find it hard to bend down at times?</h1>
               <img className="photo2" src={photo2} alt="photo 2" />
 
-              <button className="btn3" onClick={() => this.setState({ appQuestion: "question3" })}>Yes</button>
-              <button className="btn4" onClick={() => this.setState({ appQuestion: "question3" })}>No</button>
+              <button className="btn3" onClick={() => {tracker.advancedInPreFlow("question2_btn_yes"),this.setState({ appQuestion: "question3" })}}>Yes</button>
+              <button className="btn4" onClick={() => {tracker.advancedInPreFlow("question2_btn_no"),this.setState({ appQuestion: "question3" })}}>No</button>
 
               <div className="testimonial">
               <div className="line2"></div>  
@@ -153,8 +153,8 @@ class Root extends React.PureComponent<IProps> {
               <h1 className="title3">Does you back feel tight after waking up?</h1>
               <img className="photo3" src={photo3} alt="photo 3" />
 
-              <button className="btn5" onClick={() => this.newRedirect()}>Yes</button>
-              <button className="btn6" onClick={() => this.newRedirect()}>No</button>
+              <button className="btn5" onClick={() => {tracker.advancedInPreFlow("question3_btn_yes"),this.newRedirect()}}>Yes</button>
+              <button className="btn6" onClick={() => {tracker.advancedInPreFlow("question3_btn_no"),this.newRedirect()}}>No</button>
 
               <div className="testimonial">
               <div className="line2"></div>       
