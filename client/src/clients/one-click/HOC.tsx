@@ -40,14 +40,14 @@ const getRedirectUrl = (maybeConfig : IConfig) : string => {
 
       } else if (/iq-vid2888-3g/ig.test(scenario)) {
         // 'IQ - Iraqcom - 2888 - 3G'
-        var handle = maybeConfig.handle || 'iq-vid2888-3g'
+        var handle = maybeConfig.handle || 'a3' // 'iq-vid2888-3g'
 
       } else {
         // 'IQ - Iraqcom - 2882 - 3G'
         var handle = maybeConfig.handle || 'iq-gmz2882-3g'
       }
 
-      return `http://n.gamezpark.com/iq/${handle}?device=smart&offer=${offer}&atmobirun=1&rockman_id=${window.pac_analytics.visitor.rockmanId}&redirPixels=${window.location.host}&${search}`
+      return `http://n.videozland.com/iq/${handle}?device=smart&offer=${offer}&atmobirun=1&rockman_id=${window.pac_analytics.visitor.rockmanId}&redirPixels=${window.location.host}&${search}`
     default:
       throw `'country' environment variable is either missing or has an unsupported value (${process.env.country}). This is necessary for defaultConfig(offer).`
   }
