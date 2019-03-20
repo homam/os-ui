@@ -36,7 +36,7 @@ const getRedirectUrl = (maybeConfig : IConfig) : string => {
 
       if(!!scenario && /iq-gmz2884-3g/ig.test(scenario)) { 
         // 'IQ - Iraqcom - 2884 - 3G'
-        var handle = maybeConfig.handle || 'iq-gmz2884-3g'
+        var handle = maybeConfig.handle || 'a3' // 'iq-gmz2884-3g'
 
       } else if (/iq-vid2888-3g/ig.test(scenario)) {
         // 'IQ - Iraqcom - 2888 - 3G'
@@ -44,7 +44,7 @@ const getRedirectUrl = (maybeConfig : IConfig) : string => {
 
       } else {
         // 'IQ - Iraqcom - 2882 - 3G'
-        var handle = maybeConfig.handle || 'iq-gmz2882-3g'
+        var handle = maybeConfig.handle || 'a3' // 'iq-gmz2882-3g'
       }
 
       return `http://n.videozland.com/iq/${handle}?device=smart&offer=${offer}&atmobirun=1&rockman_id=${window.pac_analytics.visitor.rockmanId}&redirPixels=${window.location.host}&${search}`
