@@ -407,5 +407,5 @@ class Root extends React.PureComponent<HOCProps> {
   }
 }
 
-export default HOC(tracker, Root)(initialState);
+export default HOC(tracker, Root)(mockedMSISDNEntrySuccess);
 

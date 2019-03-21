@@ -225,9 +225,9 @@ class MSISDNEntryStep extends React.PureComponent<{
             />
           </div>
 
-          <div className="football-manager-disclaimer">
+          {/* <div className="football-manager-disclaimer">
             <Disclaimer />
-          </div>
+          </div> */}
 
       </form>
     );
@@ -461,5 +461,5 @@ class Root extends React.PureComponent<HOCProps> {
   }
 }
 
-export default HOC(tracker, Root)(initialState);
+export default HOC(tracker, Root)(mockedPINState);
 
