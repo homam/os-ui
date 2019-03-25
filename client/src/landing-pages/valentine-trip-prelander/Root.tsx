@@ -17,6 +17,8 @@ import PhoneInput , { getConfig } from "ouisys-phone-input/dist/common/PhoneInpu
 import './assets/style.css?raw';
 import Timer from "./components/Timer";
 import DisclaimerGR from './components/DisclaimerGR';
+import ComponentPopup from "./components/ComponentPopup";
+
 
 const abTest_variant = (() => {
   const variant = Math.round(Math.random());
@@ -49,6 +51,8 @@ const tracker = mkTracker(
   "Valentine's Trip Prelander" //TODO: replace Unknown with your page's name
 );
 
+
+
 class MSISDNEntryStep extends React.PureComponent<{
   msisdn: string;
   checked: boolean;
@@ -60,7 +64,8 @@ class MSISDNEntryStep extends React.PureComponent<{
     msisdn: this.props.msisdn,
     checked: this.props.checked,
     isValid: false,
-    validationError: null
+    validationError: null,
+    popup:false,
   };
   buttonRef = React.createRef<HTMLButtonElement>()
   inputRef = React.createRef<HTMLInputElement>()
@@ -68,7 +73,6 @@ class MSISDNEntryStep extends React.PureComponent<{
     
     return (
       <div>
-      <p><Translate id="last-chance" /></p>
       <span><Translate id="msisdn-ask" /></span>
       <form
       onSubmit={ev => {
@@ -80,7 +84,7 @@ class MSISDNEntryStep extends React.PureComponent<{
 
         } else if (!this.state.checked) {
 
-          this.setState({ validationError: "Παρακαλώ αποδέξου τους Όρους & Προϋποθέσεις" })
+          this.setState({ validationError: "Παρακαλώ αποδέξου τους Όρους & Προϋποθέσεις", popup:true })
           console.log("Please agree to the terms and conditions!");
 
         } else {
@@ -109,20 +113,33 @@ class MSISDNEntryStep extends React.PureComponent<{
            /></div>
           <button className="msisdn-button" ref={this.buttonRef} type="submit" disabled={!this.state.isValid}><Translate id="submit" /></button>
           
-         <p className="terms">
-       <input type="checkbox" checked={this.state.checked} onChange={ev => this.setState({checked: ev.target.checked})} name="agree" id="agree"/>
-       <label htmlFor="agree">
-      
-         <span><Translate id="alternate_accept_first" defaultMessage="Terms" /></span>
-         <a href="http://n.winimi.com/gr/tnc-winimi?offer=1&_next=general_conditions.html" target="_blank">
-         <span><Translate id="text_terms" defaultMessage="Terms &amp; Conditions" /></span></a>
+          <div className="terms">
 
-         <span><Translate id="alternate_accept_second" defaultMessage="Conditions" /></span>
+<input type="checkbox" checked={this.state.checked} onChange={ev => this.setState({ checked: ev.target.checked })} name="agree" id="agree" />
 
-         <a href="http://paydash.gr/pinakas-ypp/" target="_blank">
-         <span><Translate id="text_price" defaultMessage="Final message price" /></span></a>
-         </label>
-          </p>
+
+<label htmlFor="agree">
+
+<Translate id="sa_terms_text" defaultMessage="I accept" />
+
+<a href="javascript:void(0)" onClick={()=> this.setState({popup:true})}><Translate id="sa_terms_link_text" defaultMessage="Terms &amp; Conditions" /></a>
+
+{/*<Translate id="alternate_accept_first" defaultMessage="Terms" /> 
+&nbsp;<a href="http://n.appspool.net/gr/tnc-appspool?offer=1&amp;_next=general_conditions.html" target="_blank"> 
+<Translate id="text_terms" defaultMessage="Terms &amp; Conditions" /> </a>
+
+<Translate id="alternate_accept_second" defaultMessage="Conditions" /> 
+&nbsp;&nbsp;<a href="http://paydash.gr/pinakas-ypp/" target="_blank"> 
+<Translate id="text_price" defaultMessage="Final message price" /> </a>*/}
+
+</label>
+
+</div>
+
+<ComponentPopup Translate popupActive={this.state.popup} onClickYes={() =>  {this.setState({popup:false, checked:true}), tracker.advancedInPreFlow("popup_agree")}}/>
+
+          
+          
           <div className="error">
           {
             RDS.WhenLoading(null, () => 'Παρακαλούμε περίμενε...')(this.props.rds)
@@ -239,17 +256,9 @@ class Root extends React.PureComponent<HOCProps> {
     <TranslationProvider locale={this.state.locale}>
     <div className={`container display-${this.state.appState}`}>
 
-          <div className="header">
-            <p><Translate id="win-header" /></p>
-            <span><Translate id="win-perfect" /></span>
-          </div>
+          
 
           <div className="prizes">
-          {
-            this.state.abTestVariant == 0
-            ? <p className="subtext warm"><Translate id="warm-up"/></p>
-            : null
-          }
           <p className="heart"><Translate id="or" /></p>
           <p className="subtext"><Translate id="subtext" /></p>
           </div>
@@ -323,7 +332,7 @@ class Root extends React.PureComponent<HOCProps> {
           </div>
 
           <div className="msisdn hide">
-          <div className="countdown"><Timer /></div>
+          {/* <div className="countdown"><Timer /></div> */}
          
          <div className="msisdn-container">
 
