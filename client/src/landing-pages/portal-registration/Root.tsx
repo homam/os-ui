@@ -302,8 +302,6 @@ class Root extends React.PureComponent<IProps> {
                 <div className="progress-bar">
                 </div>
 
-                
-
               </div>
 
             </div>

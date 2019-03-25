@@ -20,6 +20,7 @@ import MsisdnInput from "../../common-components/msisdn/msisdn-input";
 import TimerComponent from "../../common-components/timer/timer";
 import { translate } from "../../../webpack/dev-utils/translate-by-yandex";
 import DOBPicker from "./components/DOBPicker";
+import PhoneInput from "ouisys-phone-input/dist/common/PhoneInput/PhoneInput";
 
 
 const tracker = mkTracker(
@@ -55,6 +56,7 @@ const tracker = mkTracker(
 
 const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
   msisdn: string;
+  bupperNumber: string;
   rds: RDS.RemoteDataState<MSISDNEntryFailure, MSISDNEntrySuccess>;
   onEnd: (msisdn: string) => void;
   intl: any;
@@ -62,7 +64,8 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
 }> {
   state = {
     msisdn: this.props.msisdn,
-    displayScreen: 1
+    displayScreen: 1,
+    bupperNumber: this.props.msisdn
     
   };
 
@@ -72,6 +75,8 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
     });
   }
 
+  phoneInputRef = React.createRef<HTMLInputElement>()
+
   render() {
 
     return (
@@ -79,7 +84,7 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
       <form
         onSubmit={ev => {
           ev.preventDefault();
-          this.props.onEnd(this.state.msisdn);
+          this.props.onEnd(this.state.bupperNumber);
         }}
       >
 
@@ -165,15 +170,26 @@ const MSISDNEntryStep = injectIntl(class extends React.PureComponent<{
      </div>
      <div className="whiteBox boxMove">
      <h2 className="boxTitles entryTitle"><Translate id="phone_entry_statement"/></h2>
-     <button type="button" className="button" onClick={this.updateState} >
-     <Translate id="submit"/>
-        </button>
         <div>
          
-          <MsisdnInput maxLength={10}
-                      placeholder={this.props.intl.formatMessage({ id: "msisdn_placeholder" })}
-                      onChange={(msisdn) => this.setState({ msisdn })}
-                      countryCode={'+84'}></MsisdnInput>
+        <PhoneInput
+                inputElementRef={this.phoneInputRef}
+                placeholder="Phone number"
+                msisdn={this.state.msisdn}
+                countryCode={process.env.country}
+                showFlag={false}
+                showMobileIcon={true}
+                showError={true}
+
+                onChange={({ msisdn, isValid, bupperNumber }) => {
+
+                  console.table([isValid, process.env.country, bupperNumber, msisdn]);
+
+                  this.setState({ msisdn, isValid, bupperNumber })
+                }
+                }
+
+              />
           <button className="button3" type="submit" id="msisdn-submit-button" disabled={RDS.IsLoading(this.props.rds)}> <Translate id="submit"/></button>
           {
             RDS.WhenLoading(null, () => 'Wait...')(this.props.rds)
