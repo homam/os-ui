@@ -14,8 +14,8 @@ type ChatApplicationState = "Chatting" | "Subscribing"
 class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: ITracker} & IProps> {
 
  state = {
-    applicationState: "Chatting" as ChatApplicationState,
-    // applicationState: "Subscribing",
+    // applicationState: "Chatting" as ChatApplicationState,
+    applicationState: "Subscribing",
     messages: [
       [
           this.props.intl.formatMessage({
@@ -316,11 +316,11 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: 
 
   }
 
-  componentDidUpdate(prevProps)  {  
+//   componentDidUpdate(prevProps)  {  
 
-   prevProps.startchat ?  false : this.props.startchat ?  this.chatStarter() : false;
+//     prevProps.startchat ?  false : this.props.startchat ?  this.chatStarter() : false;
 
-}
+// }
 
 
   render() { 
@@ -354,9 +354,28 @@ class Chat extends React.PureComponent<HOCProps & InjectedIntlProps & {tracker: 
 
             <div id="chatInner">
 
-             <ul id="chatBox"></ul> 
-           
+            {/* <ul id="chatBox"></ul> */}
+            <div className="offer">
+            <p className="title">Voor een persoonlijk consult van Amanda vul hier uw gegevens in:</p>
+            <div className="subs-ctn">
+            <p>Voonam*</p>
+            <input className="subs-inpt" placeholder="voonaam"></input>
             </div>
+            <div className="subs-ctn">
+            <p>Achternaam*</p>
+            <input className="subs-inpt" placeholder="Achternaam"></input>
+            </div>
+            <div className="subs-ctn">
+            <p>Email*</p>
+            <input className="subs-inpt" placeholder="Email"></input>
+            </div>
+            <div className="subs-ctn">
+            <input type="checkbox" checked></input> 
+            <p>Door op verzenden te klikken, gaat u akkoord met de algemene voorwaarden</p>
+            </div>
+            </div>
+            </div>
+
           </div>
 
       <div className="footer">

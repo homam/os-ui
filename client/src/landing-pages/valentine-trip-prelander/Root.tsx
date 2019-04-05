@@ -20,30 +20,30 @@ import DisclaimerGR from './components/DisclaimerGR';
 import ComponentPopup from "./components/ComponentPopup";
 
 
-const abTest_variant = (() => {
-  const variant = Math.round(Math.random());
+// const abTest_variant = (() => {
+//   const variant = Math.round(Math.random());
 
-  return () => variant
-})()
+//   return () => variant
+// })()
 
-// function gtag(...args) {window.dataLayer.push(...args)}
+// // function gtag(...args) {window.dataLayer.push(...args)}
 
-if (typeof window != "undefined") {
-  window.addEventListener('load', () => setTimeout(() => {
-    const ga = window['ga']
-    if (!!ga) {
+// if (typeof window != "undefined") {
+//   window.addEventListener('load', () => setTimeout(() => {
+//     const ga = window['ga']
+//     if (!!ga) {
 
-      const setGAExperimentCX = (_expId, _vId) => {
-        const gtm = ga.getAll()[0].get('name')
-        ga(`${gtm}.set`, 'exp', _expId.toString() + '.' + _vId.toString());
-        ga(`${gtm}.send`, 'event', 'Experiment', 'Trigger', _expId.toString() + '.' + _vId.toString());
-      }
-      setGAExperimentCX('mo1jCLkaQku8pFJUmFN6VQ', abTest_variant());
-    }
+//       const setGAExperimentCX = (_expId, _vId) => {
+//         const gtm = ga.getAll()[0].get('name')
+//         ga(`${gtm}.set`, 'exp', _expId.toString() + '.' + _vId.toString());
+//         ga(`${gtm}.send`, 'event', 'Experiment', 'Trigger', _expId.toString() + '.' + _vId.toString());
+//       }
+//       setGAExperimentCX('mo1jCLkaQku8pFJUmFN6VQ', abTest_variant());
+//     }
 
-  }, 750))
+//   }, 750))
 
-}
+// }
 
 const tracker = mkTracker(
   typeof window != "undefined" ? window : null,
@@ -233,7 +233,7 @@ class PINEntryStep extends React.PureComponent<{
 }
 
 const TQStep = ({finalUrl} : {finalUrl: string}) => <div>
-  <h3><Translate id="thank_you" /></h3>
+  <h4><Translate id="thank_you" /></h4>
   <a href={finalUrl} target="_blank"><button className="msisdn-button end-button"><Translate id="final_url" /></button></a>
 </div>;
 
@@ -243,20 +243,21 @@ class Root extends React.PureComponent<HOCProps> {
     msisdn: "69",
     checked: false,
     appState: "questiona",
-    abTestVariant: 0,
+    // abTestVariant: 0,
   };
 
-  componentDidMount() {
-    this.setState({ abTestVariant: abTest_variant() })
-    document.body.classList.add(`ab-${abTest_variant()}`)
-  }
+  // componentDidMount() {
+  //   this.setState({ abTestVariant: abTest_variant() })
+  //   document.body.classList.add(`ab-${abTest_variant()}`)
+  // }
 
   render() {
     return (
     <TranslationProvider locale={this.state.locale}>
     <div className={`container display-${this.state.appState}`}>
 
-          
+
+          <div className="questiona hide">
 
           <div className="prizes">
           <p className="heart"><Translate id="or" /></p>
@@ -264,8 +265,6 @@ class Root extends React.PureComponent<HOCProps> {
           </div>
 
           <div className="separator"></div>
-
-          <div className="questiona hide">
 
             <div className="qcontainer">
 
@@ -289,6 +288,13 @@ class Root extends React.PureComponent<HOCProps> {
 
           <div className="questionb hide">
 
+          <div className="prizes">
+          <p className="heart"><Translate id="or" /></p>
+          <p className="subtext"><Translate id="subtext" /></p>
+          </div>
+
+          <div className="separator"></div>
+
           <div className="qcontainer">
 
               <div className="progress-bar">
@@ -311,6 +317,13 @@ class Root extends React.PureComponent<HOCProps> {
 
           <div className="questionc hide">
 
+          <div className="prizes">
+          <p className="heart"><Translate id="or" /></p>
+          <p className="subtext"><Translate id="subtext" /></p>
+          </div>
+
+          <div className="separator"></div>
+
             <div className="qcontainer">
 
               <div className="progress-bar">
@@ -332,11 +345,19 @@ class Root extends React.PureComponent<HOCProps> {
           </div>
 
           <div className="msisdn hide">
+
+          <div className="voucher-container">
+          <div className="voucher"></div>
+          </div>
+
+          <h1>ΤΕΛΕΥΤΑΙΟ ΒΗΜΑ</h1>
+          <h2>για να διεκδικήσετε τα μετρητά</h2>
+
           {/* <div className="countdown"><Timer /></div> */}
          
          <div className="msisdn-container">
 
-            <div className="trip-left"><Translate id="trip-left" /></div>
+            {/* <div className="trip-left"><Translate id="trip-left" /></div> */}
             {match({
               msisdnEntry: rds => (
               
@@ -372,6 +393,9 @@ class Root extends React.PureComponent<HOCProps> {
           
 
           </div>
+          
+
+
           </div>
           <DisclaimerGR />
           </div>
