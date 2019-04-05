@@ -30,7 +30,7 @@ const defaultConfig : Config = (() => {
       case "nl": {
         return {
           country: "nl",
-          host: "n.gamezones.biz",
+          host: "api.checkastronow.com",
           campaign: "5c6a2be8a305283e528b4582",        }
       }
     default:
@@ -49,8 +49,12 @@ async function load1(window: Window, config: IConfig, keyword?: string) {
       , campaign: config.campaign || defaultConfig.campaign
       , country: !config.country || defaultConfig.country 
     }
+    const search = (() =>  {
+      const s = (window.location.search || '?').substr(1) || '&'
+      return s[0] == '&' ? s.substr(1) : s
+    })()
     const result: IFetchResult = await fetch(
-      `https://${host}/tallyman/v2/?rockman_id=${window.pac_analytics.visitor.rockmanId}&action=oc2sms&campaign_id=${campaign}&offerId=${offer}${!!keyword ? '&keyword=' + keyword : ''}`
+      `https://${host}/tallyman/v2/?rockman_id=${window.pac_analytics.visitor.rockmanId}&action=oc2sms&campaign_id=${campaign}&offerId=${offer}${!!keyword ? '&keyword=' + keyword : ''}&${search}`
     ).then(x => x.json())
     if (!result.success) {
       throw result.message;

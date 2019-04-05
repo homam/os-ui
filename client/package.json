@@ -6,7 +6,7 @@
   "scripts": {
     "dev:init": "ts-node webpack/dev-utils/add-d-ts-files.ts",
     "build": "NODE_ENV=production webpack --config webpack/webpack.config.prod.babel.js",
-    "build:ssr": "NODE_ENV=production webpack --config webpack/webpack.config.ssr.babel.js",
+    "build:ssr": "NODE_ENV=production webpack --config webpack/webpack.config.ssr.babel.js --profile --json > stats.json",
     "build:ssr:server": "NODE_ENV=production ts-node --config tsconfig.json webpack/ssr.ts",
     "dev": "yarn dev:init && webpack-dev-server --config webpack/webpack.config.dev.babel.js",
     "main": "yarn dev",
@@ -130,6 +130,7 @@
     "uglifyjs-webpack-plugin": "^2.0.1",
     "url-loader": "^1.1.1",
     "webpack": "^4.16.5",
+    "webpack-bundle-analyzer": "^3.1.0",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.5",
     "webpack-node-externals": "^1.7.2"
