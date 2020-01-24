@@ -48,7 +48,7 @@ export default class ComponentPopup extends React.PureComponent<IProps>{
 
             </p>
 
-            <button className="yesBtn" onClick={()=>this.props.onClickYes()}>Yes</button>
+            <button className="yesBtn" onClick={()=>this.props.onClickYes()}><Translate id="answer_yes" defaultMessage="Yes" /></button>
 
         </div>
 

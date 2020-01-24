@@ -105,7 +105,7 @@ class Root extends React.PureComponent<IProps> {
             <div className="wrap">
 
 
-              <p className="wraptext">CHEAPER than a GYM Membership <br></br><b>ONLY £4.50 per week.</b><br></br>This will be charged to your mobile phone bill</p>
+              <p className="wraptext">CHEAPER than a GYM Membership <br></br><strong>ONLY £4.50 per week.</strong><br></br>This will be charged to your mobile phone bill</p>
          
               
             </div>

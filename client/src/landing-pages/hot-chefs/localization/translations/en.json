@@ -30,5 +30,6 @@
   "congratsMsg":"We’ve got your confirmation to access the video",
   "congratsSubmit":"Access now!",
   "sa_terms_text":"I accept ",
-  "sa_terms_link_text": "Terms & Conditions"
+  "sa_terms_link_text": "Terms & Conditions",
+  "answer_yes": "Yes"
   }

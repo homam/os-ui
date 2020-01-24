@@ -23,7 +23,7 @@ type ApplicationStates = "Selection" | "Splash" | "Chat" ;
 
 class Root extends React.PureComponent<HOCProps> {
   state = {
-    locale: "hu",
+    locale: "nl",
     keyValue:"",
     preloader:false,
     startchat:false,
