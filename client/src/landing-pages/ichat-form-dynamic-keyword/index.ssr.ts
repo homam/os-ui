@@ -6,7 +6,5 @@
   to take effect in the page.
 */
 
-import "@babel/polyfill";
-import "intl"
 import Root from './Root'
 export default Root;
