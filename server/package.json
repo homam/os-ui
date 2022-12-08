@@ -17,7 +17,7 @@
     "base62": "^2.0.0",
     "bases": "^0.2.1",
     "cookie-parser": "^1.4.3",
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "fp-ts": "^1.8.0",
     "newtype-ts": "^0.2.1",
     "node-cache": "^4.2.0",
